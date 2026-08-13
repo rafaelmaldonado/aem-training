@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WKND training project and backlog · AEM Training</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="brand" href="../index.html">AEM Training</a>
+    <ul>
+      <li><a href="../index.html">Overview</a></li>
+      <li><a href="eight-week-syllabus.html">Syllabus</a></li>
+      <li><a href="slide-ready-lessons.html">Slides</a></li>
+      <li><a href="wknd-project-backlog.html" aria-current="page">Project</a></li>
+      <li><a href="initial-setup.html">Setup</a></li>
+      <li><a href="seguimiento-evidencias.html">Evidence</a></li>
+    </ul>
+  </nav>
+  <header>
+    <p class="eyebrow">Eight-week simulation · six contributors</p>
+    <h1>Maintain and extend WKND.</h1>
+    <p class="lede">A realistic AEM Sites maintenance project generated with Adobe's Project Archetype and guided by the full-stack WKND tutorial.</p>
+    <ul class="meta"><li>AEM as a Cloud Service</li><li>Traditional Sites</li><li>48 backlog items</li></ul>
+  </header>
+  <main id="content">
+    <section class="callout"><strong>Decision:</strong> generate one shared starter with <a href="https://github.com/adobe/aem-project-archetype/tree/aem-project-archetype-57">AEM Project Archetype 57</a> and follow the <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/getting-started-wknd-tutorial-develop/project-archetype/overview">Project Archetype WKND tutorial</a>. Use Adobe's finished WKND repository only as a reference; do not use the SPA or Headless variants.</section>
+
+    <h2>Why this is the best fit</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Candidate</th><th>Fit</th><th>Decision</th></tr></thead>
+      <tbody>
+        <tr><td>WKND · Project Archetype</td><td>Full-stack Sites, Maven modules, Core Components, templates, HTL, clientlibs, Sling Models, Style System and tests.</td><td><strong>Use it.</strong></td></tr>
+        <tr><td>WKND · Site Template</td><td>Useful for low-code theming, but too shallow for backend and maintenance training.</td><td>Do not use as the main project.</td></tr>
+        <tr><td>WKND SPA or Headless</td><td>Adds delivery models that are outside the confirmed scope.</td><td>Exclude.</td></tr>
+      </tbody>
+    </table></div>
+    <p>The tutorial documentation still contains examples generated with older archetype and Java versions. The <a href="initial-setup.html">course setup guide</a> is authoritative: use its Archetype 57 command, JDK 21 and Maven 3.9.4. Do not copy an old generation command from a tutorial chapter.</p>
+
+    <h2>Product scenario</h2>
+    <p>The team inherits WKND and receives a request for a new <strong>Weekend Guides</strong> area. Authors must create guide pages and reusable cards without code changes. Visitors must browse accessible, responsive guide content. The implementation must be testable, cache-safe and deployable through an AEMaaCS pipeline.</p>
+    <ul class="checklist">
+      <li>An editable Guide Page template with controlled policies.</li>
+      <li>A Guide Card proxy component with a clear empty state.</li>
+      <li>A Guide List that can retrieve and order guide pages.</li>
+      <li>Responsive styling, keyboard access and useful metadata.</li>
+      <li>Tests, permissions, Dispatcher rules, deployment checks and runbook.</li>
+    </ul>
+
+    <h2>Repository strategy</h2>
+    <ol>
+      <li>Generate the starter once using the command in the <a href="initial-setup.html">setup guide</a>; record Archetype 57 and the generation properties in the training README.</li>
+      <li>Push the generated baseline to an organization-owned repository. Keep <a href="https://github.com/adobe/aem-guides-wknd">adobe/aem-guides-wknd</a> read-only as the finished reference.</li>
+      <li>Create a protected <code>training/main</code> baseline. Each item uses <code>feature/&lt;id&gt;-short-name</code>.</li>
+      <li>Change the sample content filter to <code>mode="merge"</code> before learners author content, so builds do not overwrite their work.</li>
+      <li>Require one primary owner and one asynchronous reviewer. The next contributor number reviews: P1 → P2, P2 → P3, …, P6 → P1.</li>
+      <li>Keep each PR to one backlog item. A screenshot alone is not acceptance; include the changed behavior and the check used.</li>
+    </ol>
+
+    <h2>Definition of done</h2>
+    <ul class="checklist">
+      <li>Acceptance criteria pass in a fresh local SDK or the shared Development environment.</li>
+      <li><code>mvn clean verify</code> succeeds and the PR contains no generated <code>target</code> files or secrets.</li>
+      <li>The owner supplies author and visitor evidence, plus the relevant test or diagnostic output.</li>
+      <li>The reviewer leaves at least one evidence-based observation and the owner resolves it.</li>
+      <li>The owner can explain where the change lives, why it belongs there and one remaining risk.</li>
+    </ul>
+
+    <h2 id="week-1">Week 1 · Baseline and architecture</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>ID / owner</th><th>Story</th><th>Acceptance and individual evidence</th><th>Depends on</th></tr></thead>
+      <tbody>
+        <tr><td>W1-01 · P1</td><td>Generate the shared WKND starter and record the archetype inputs.</td><td>Protected baseline exists; README names Archetype 57, generation properties and build command. Evidence: PR link and successful clone/build.</td><td>Access</td></tr>
+        <tr><td>W1-02 · P2</td><td>Build and install WKND on the latest local SDK.</td><td>Sites console opens WKND and Maven ends in <code>BUILD SUCCESS</code>. Evidence: version output and reactor summary.</td><td>W1-01</td></tr>
+        <tr><td>W1-03 · P3</td><td>Map the Maven modules used by one visible page.</td><td>Map connects <code>core</code>, <code>ui.apps</code>, <code>ui.frontend</code>, <code>ui.content</code>, <code>ui.config</code> and <code>all</code>. Evidence: annotated diagram.</td><td>W1-02</td></tr>
+        <tr><td>W1-04 · P4</td><td>Trace a title from Page Editor to its JCR resource.</td><td>Content path, resource type and stored property are correct. Evidence: trace with paths, not credentials.</td><td>W1-02</td></tr>
+        <tr><td>W1-05 · P5</td><td>Trace one WKND URL through Sling resolution.</td><td>URL → resource → resource type → HTL script is demonstrated. Evidence: four-step trace.</td><td>W1-02</td></tr>
+        <tr><td>W1-06 · P6</td><td>Create the baseline smoke-test checklist.</td><td>Checklist covers build, authoring, render, browser console and one negative case. Evidence: executed results.</td><td>W1-02</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2 id="week-2">Week 2 · Authoring and content model</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>ID / owner</th><th>Story</th><th>Acceptance and individual evidence</th><th>Depends on</th></tr></thead>
+      <tbody>
+        <tr><td>W2-01 · P6</td><td>Define the Guide Page authoring contract.</td><td>Required fields, defaults, ownership and empty states are documented. Evidence: approved content model.</td><td>W1-03</td></tr>
+        <tr><td>W2-02 · P1</td><td>Create the editable Guide Page template.</td><td>Structure and initial content are separated; a new page can be created. Evidence: template and authored page.</td><td>W2-01</td></tr>
+        <tr><td>W2-03 · P2</td><td>Configure policies and allowed components.</td><td>Only approved components appear; styles have author-facing names. Evidence: policy paths and before/after capture.</td><td>W2-02</td></tr>
+        <tr><td>W2-04 · P3</td><td>Design the Guide Card dialog.</td><td>Labels, descriptions, validation and stored properties match the content model. Evidence: field → property map.</td><td>W2-01</td></tr>
+        <tr><td>W2-05 · P4</td><td>Prepare guide assets and accessibility rules.</td><td>Three assets have meaningful metadata and documented decorative/informative behavior. Evidence: asset review.</td><td>W2-01</td></tr>
+        <tr><td>W2-06 · P5</td><td>Run an author usability test.</td><td>A participant completes create/edit/publish steps without coaching; two findings are recorded and one fixed. Evidence: test notes and PR.</td><td>W2-02–05</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2 id="week-3">Week 3 · Frontend component slice</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>ID / owner</th><th>Story</th><th>Acceptance and individual evidence</th><th>Depends on</th></tr></thead>
+      <tbody>
+        <tr><td>W3-01 · P5</td><td>Create the Guide Card proxy component.</td><td>Uses a Core Component super type where appropriate and copies no product implementation. Evidence: minimal component diff.</td><td>W2-03</td></tr>
+        <tr><td>W3-02 · P6</td><td>Render Guide Card data with HTL.</td><td>Configured and empty states render; contexts are explicit for URL or rich output. Evidence: HTL and two states.</td><td>W2-04, W3-01</td></tr>
+        <tr><td>W3-03 · P1</td><td>Add responsive Guide Card styles.</td><td>Works at mobile, tablet and desktop widths with no horizontal overflow. Evidence: three viewport checks.</td><td>W3-01</td></tr>
+        <tr><td>W3-04 · P2</td><td>Add minimal Guide Card behavior.</td><td>JavaScript is progressive enhancement, scoped and error-free when content is missing. Evidence: behavior check and clean console.</td><td>W3-01</td></tr>
+        <tr><td>W3-05 · P3</td><td>Test keyboard, semantics and empty state.</td><td>Correct link/button semantics, visible focus, logical order and useful empty author state. Evidence: test checklist and fixes.</td><td>W3-02–04</td></tr>
+        <tr><td>W3-06 · P4</td><td>Integrate the vertical frontend ticket.</td><td>Dialog → stored property → HTL → CSS/JS works on the Guide Page. Evidence: PR demo and regression check.</td><td>W3-01–05</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2 id="week-4">Week 4 · Backend and tests</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>ID / owner</th><th>Story</th><th>Acceptance and individual evidence</th><th>Depends on</th></tr></thead>
+      <tbody>
+        <tr><td>W4-01 · P4</td><td>Create the Guide Card Sling Model contract.</td><td>Interface exposes view-ready values and documents fallback behavior. Evidence: contract and example adaptation.</td><td>W3-06</td></tr>
+        <tr><td>W4-02 · P5</td><td>Implement the Sling Model.</td><td>Configured, missing and legacy content render without exceptions. Evidence: model and runtime check.</td><td>W4-01</td></tr>
+        <tr><td>W4-03 · P6</td><td>Add a guide settings OSGi configuration.</td><td>Typed config has safe defaults and environment-specific values contain no secrets. Evidence: config path and effective value.</td><td>W4-01</td></tr>
+        <tr><td>W4-04 · P1</td><td>Create a reusable guide URL service.</td><td>One responsibility, testable contract and no request/session state. Evidence: service use from the model.</td><td>W4-02, W4-03</td></tr>
+        <tr><td>W4-05 · P2</td><td>Add Sling Model and service tests.</td><td>Tests cover configured, fallback and invalid input; at least one test fails without the implementation. Evidence: test output.</td><td>W4-02–04</td></tr>
+        <tr><td>W4-06 · P3</td><td>Decide whether Guide List needs a servlet.</td><td>Decision compares model, Core Component and resource-type servlet; if no servlet is needed, no endpoint is added. Evidence: ADR and threat surface.</td><td>W4-01</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2 id="week-5">Week 5 · Maintenance and investigation</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>ID / owner</th><th>Story</th><th>Acceptance and individual evidence</th><th>Depends on</th></tr></thead>
+      <tbody>
+        <tr><td>W5-01 · P3</td><td>Make sample-content installation safe.</td><td>Content filter uses merge behavior and a rebuild does not overwrite authored guides. Evidence: before/after test.</td><td>W1-01</td></tr>
+        <tr><td>W5-02 · P4</td><td>Diagnose an inactive OSGi component.</td><td>Report contains hypothesis, exact runtime evidence, cause and correction. Evidence: five-line incident note.</td><td>W4-03</td></tr>
+        <tr><td>W5-03 · P5</td><td>Review a guide publication workflow.</td><td>Payload, permissions, launcher filters and retry/idempotency risk are identified. Evidence: workflow review.</td><td>W2-02</td></tr>
+        <tr><td>W5-04 · P6</td><td>Implement the Guide List query.</td><td>Query is path/type constrained, ordered and does not traverse. Evidence: query and explain result.</td><td>W4-06</td></tr>
+        <tr><td>W5-05 · P1</td><td>Fix a seeded Guide Card defect.</td><td>Root cause is corrected, adjacent behavior is checked and regression proof is added. Evidence: PR and test.</td><td>W4-05</td></tr>
+        <tr><td>W5-06 · P2</td><td>Create the maintenance incident template.</td><td>Template captures reproduction, layer, hypothesis, evidence, fix and remaining risk. Evidence: completed example.</td><td>W5-02, W5-05</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2 id="week-6">Week 6 · Cloud delivery</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>ID / owner</th><th>Story</th><th>Acceptance and individual evidence</th><th>Depends on</th></tr></thead>
+      <tbody>
+        <tr><td>W6-01 · P2</td><td>Map the real Git-to-Development flow.</td><td>Repository, branch, pipeline, gates, environments and owners are shown. Evidence: delivery diagram.</td><td>Cloud access or provided data</td></tr>
+        <tr><td>W6-02 · P3</td><td>Analyze a failed Cloud Manager build.</td><td>First actionable error, owning layer and next command/check are correct. Evidence: annotated log.</td><td>W6-01</td></tr>
+        <tr><td>W6-03 · P4</td><td>Review Dispatcher filters for guide URLs.</td><td>Deny-by-default remains; only required public paths/methods are allowed. Evidence: rule tests.</td><td>W3-06</td></tr>
+        <tr><td>W6-04 · P5</td><td>Define Guide caching behavior.</td><td>Public HTML/assets are classified; personalized or mutable responses are not cached unsafely. Evidence: request matrix.</td><td>W6-03</td></tr>
+        <tr><td>W6-05 · P6</td><td>Test headers and cache invalidation.</td><td>Two repeated requests and one publication are compared using observable headers/timing. Evidence: trace and conclusion.</td><td>W6-04</td></tr>
+        <tr><td>W6-06 · P1</td><td>Create and execute the deployment runbook.</td><td>Preflight, pipeline, smoke test, evidence capture and failure response can be followed by another person. Evidence: executed runbook.</td><td>W6-01–05</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2 id="week-7">Week 7 · Production quality</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>ID / owner</th><th>Story</th><th>Acceptance and individual evidence</th><th>Depends on</th></tr></thead>
+      <tbody>
+        <tr><td>W7-01 · P1</td><td>Define least-privilege guide permissions.</td><td>Groups and service users have only required paths/actions; no administrator session. Evidence: access matrix.</td><td>W5-03</td></tr>
+        <tr><td>W7-02 · P2</td><td>Threat-model Guide Card and Guide List.</td><td>Inputs, assets, trust boundaries and three controls are identified. Evidence: threat review and one fix.</td><td>W4-06</td></tr>
+        <tr><td>W7-03 · P3</td><td>Complete the accessibility audit.</td><td>Keyboard, semantics, focus, alternative text and zoom are checked; priority finding is fixed. Evidence: before/after.</td><td>W3-05</td></tr>
+        <tr><td>W7-04 · P4</td><td>Complete the SEO and metadata audit.</td><td>Title, description, canonical, headings and indexability are correct for a Guide Page. Evidence: rendered markup review.</td><td>W2-02</td></tr>
+        <tr><td>W7-05 · P5</td><td>Measure and improve one performance risk.</td><td>Baseline and after measurement use the same conditions; improvement does not break authoring. Evidence: measurement and diff.</td><td>W6-04</td></tr>
+        <tr><td>W7-06 · P6</td><td>Run the production-readiness review.</td><td>One actionable finding in each relevant area: function, authorability, security, performance and operation. Evidence: review and accepted fix.</td><td>W7-01–05</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2 id="week-8">Week 8 · Capstone and transfer</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>ID / owner</th><th>Story</th><th>Acceptance and individual evidence</th><th>Depends on</th></tr></thead>
+      <tbody>
+        <tr><td>W8-01 · P6</td><td>Plan the final vertical increment.</td><td>Six independent tickets have observable outcomes, dependencies and acceptance criteria. Evidence: refined board.</td><td>Weeks 1–7</td></tr>
+        <tr><td>W8-02 · P1</td><td>Deliver the authoring slice.</td><td>An author creates and configures a Guide Page without developer intervention. Evidence: PR and author demo.</td><td>W8-01</td></tr>
+        <tr><td>W8-03 · P2</td><td>Deliver the component/frontend slice.</td><td>Guide Card/List render responsive, accessible visitor states. Evidence: PR and viewport/keyboard checks.</td><td>W8-01</td></tr>
+        <tr><td>W8-04 · P3</td><td>Deliver the backend/test slice.</td><td>Model/service behavior has safe fallbacks and focused passing tests. Evidence: PR and test output.</td><td>W8-01</td></tr>
+        <tr><td>W8-05 · P4</td><td>Deliver the delivery/security slice.</td><td>Permissions, Dispatcher and deployment checks pass without broader access. Evidence: rule and smoke-test results.</td><td>W8-01</td></tr>
+        <tr><td>W8-06 · P5</td><td>Lead hardening, demo and operational handoff.</td><td>Critical defects are closed; demo shows author and visitor outcomes; runbook names checks and first-response steps. Evidence: final review.</td><td>W8-02–05</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2>Capacity and rotation</h2>
+    <p>Each item is sized for approximately 60–120 minutes of core practice. If an item is larger, split it before work begins. Primary ownership rotates each week so frontend experience does not become permanent frontend ownership. The architect reviews architecture and evidence but is not counted as delivery capacity.</p>
+    <h2>Official references</h2>
+    <ul>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/getting-started-wknd-tutorial-develop/overview">WKND tutorial overview — Adobe</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/getting-started-wknd-tutorial-develop/project-archetype/overview">WKND Project Archetype path — Adobe</a></li>
+      <li><a href="https://github.com/adobe/aem-guides-wknd">WKND full-stack repository — Adobe</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/getting-started-wknd-tutorial-develop/project-archetype/unit-testing">WKND unit testing chapter — Adobe</a></li>
+    </ul>
+  </main>
+  <footer><a href="../index.html">Training overview</a></footer>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class 1 · AEM foundations</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="brand" href="../index.html">AEM Training</a>
+    <ul>
+      <li><a href="../index.html">Overview</a></li>
+      <li><a href="../reference/eight-week-syllabus.html">Syllabus</a></li>
+      <li><a href="../reference/slide-ready-lessons.html">Slides</a></li>
+      <li><a href="../reference/wknd-project-backlog.html">Project</a></li>
+      <li><a href="../reference/initial-setup.html">Setup</a></li>
+      <li><a href="../reference/seguimiento-evidencias.html">Evidence</a></li>
+    </ul>
+  </nav>
+  <header>
+    <p class="eyebrow">Class 1 · Week 1 · Day 1</p>
+    <h1>From author to browser.</h1>
+    <p class="lede">Build a shared mental model of AEM Sites before opening its implementation details.</p>
+    <ul class="meta"><li>30 minutes online</li><li>60–90 minutes practice</li><li>No breakout rooms</li></ul>
+  </header>
+  <main id="content">
+    <section class="callout"><strong>Observable outcome:</strong> each contributor can draw and explain how a content change moves from Author to a visitor, and distinguish that flow from a code deployment.</section>
+
+    <h2>Architect preparation</h2>
+    <ul class="checklist">
+      <li>Send the <a href="../reference/initial-setup.html">initial setup guide</a> before the session.</li>
+      <li>Open one WKND test page in Author and its Publish URL, if available.</li>
+      <li>Create one shared thread or form for the six diagrams and exit answers.</li>
+      <li>Do not troubleshoot individual installations during the explanation; record blockers for office hours.</li>
+    </ul>
+
+    <h2>Learning objectives</h2>
+    <p>By the end of the session, each contributor can:</p>
+    <ul>
+      <li>distinguish Author, Publish, Dispatcher and CDN;</li>
+      <li>separate content publication from code deployment;</li>
+      <li>explain where a content author and visitor interact with the system;</li>
+      <li>form a first hypothesis about the layer responsible for a symptom.</li>
+    </ul>
+
+    <h2>30-minute agenda</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Time</th><th>Activity</th><th>Facilitation</th></tr></thead>
+      <tbody>
+        <tr><td>0–3</td><td>Retrieval</td><td>Chat prompt: “Where does an author work, and which service answers a visitor?”</td></tr>
+        <tr><td>3–5</td><td>Outcome</td><td>State the observable outcome and introduce the content/code distinction.</td></tr>
+        <tr><td>5–17</td><td>Slides 1–5</td><td>Use one diagram and one idea per slide.</td></tr>
+        <tr><td>17–25</td><td>Live demonstration</td><td>Edit a component, preview it and contrast Author with Publish.</td></tr>
+        <tr><td>25–28</td><td>Assignment</td><td>Explain the five scenarios and the acceptance criteria.</td></tr>
+        <tr><td>28–30</td><td>Exit prompt</td><td>Chat prompt: “Content and code meet when…”</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2>Complete slide content</h2>
+    <ol class="slides">
+      <li><strong>Slide 1 — What problem does AEM Sites solve?</strong> Developers create reusable components, templates and rules. Authors use those capabilities to assemble and update experiences without editing source code. <em>Presenter note: ask the team to name one change an author should make without a deployment.</em></li>
+      <li><strong>Slide 2 — Author is not the public website.</strong> Author serves internal users who create, edit, review and manage content. Publish serves approved experiences to visitors. <em>Presenter note: saving on Author changes neither Publish nor the public cache.</em></li>
+      <li><strong>Slide 3 — The content flow.</strong> Author → review → publish/distribute → Publish. Saving is not publishing, and publishing content does not execute a Maven build. <em>Presenter note: draw this flow in one color and keep it visible.</em></li>
+      <li><strong>Slide 4 — The request flow.</strong> Browser → CDN → Dispatcher → Publish. CDN or Dispatcher may answer a cache hit; Publish renders a cache miss. <em>Presenter note: do not introduce filter or cache syntax yet.</em></li>
+      <li><strong>Slide 5 — The code flow.</strong> Git → build and quality gates → deployment → AEM. Deployed code and distributed content meet when the runtime renders a response. <em>Presenter note: draw this flow in a second color and ask which flow changes after editing Java.</em></li>
+    </ol>
+
+    <h2>Suggested speaking script</h2>
+    <details open>
+      <summary>Slide 1 · about 2 minutes</summary>
+      <p>“AEM Sites separates what the experience can do from the content used in that experience. Development creates safe, reusable choices. Authors use those choices repeatedly. Our goal is not to remove governance; it is to let content change without requiring a code release.”</p>
+    </details>
+    <details>
+      <summary>Slide 2 · about 2 minutes</summary>
+      <p>“Author and Publish are separate services with separate audiences. An author can save a valid change and still have no public change. When investigating an incident, always ask which service and which user can reproduce it.”</p>
+    </details>
+    <details>
+      <summary>Slide 3 · about 2 minutes</summary>
+      <p>“Content follows an editorial lifecycle. Saving records work on Author. Publishing distributes approved content. That operation does not compile Java, package components or deploy a client library.”</p>
+    </details>
+    <details>
+      <summary>Slide 4 · about 3 minutes</summary>
+      <p>“A visitor usually reaches delivery layers before Publish. If a cache already has a valid response, Publish may not see the request. This is why a page can be correct on Author and Publish but still appear stale to a visitor.”</p>
+    </details>
+    <details>
+      <summary>Slide 5 · about 3 minutes</summary>
+      <p>“Source code follows a controlled delivery path. A commit is built, tested and deployed. At runtime, the deployed component code reads distributed content and produces the response. Keeping both flows separate is the foundation for every diagnosis in this course.”</p>
+    </details>
+
+    <h2>Live demonstration</h2>
+    <ol>
+      <li>Open an existing WKND page in Author.</li>
+      <li>Edit only the text of one component and ask, “Did source code change?”</li>
+      <li>Use Preview and ask what remains exclusive to Author.</li>
+      <li>Publish the page if the environment permits it.</li>
+      <li>Open the Publish URL and compare interface, URL and audience.</li>
+      <li>Open browser developer tools, select the HTML document request and point to the delivery path.</li>
+      <li>Ask where CDN and Dispatcher could respond even though neither is visible in the page markup.</li>
+    </ol>
+    <p>If only a local Author SDK is available, demonstrate editing and Preview. Explain Publish with the diagram; do not pretend that a local architecture is a cloud delivery environment.</p>
+
+    <h2>Asynchronous assignment · Who owns the first check?</h2>
+    <p>Individual work, 60–90 minutes. For every scenario, choose the most likely layer and one inexpensive check that could disprove the hypothesis.</p>
+    <ol>
+      <li>An author saved a title, but the visitor still sees the old value.</li>
+      <li>A component does not appear in the component browser for one page.</li>
+      <li>After a deployment, a JavaScript request returns 404.</li>
+      <li>The page works on Author but fails only on Publish.</li>
+      <li>The first request is slow and repeated requests are fast.</li>
+    </ol>
+    <details>
+      <summary>Instructor feedback guide</summary>
+      <ol>
+        <li>Check publication and cache before blaming component rendering.</li>
+        <li>Inspect template policy and allowed components.</li>
+        <li>Inspect clientlib generation, public path and deployed artifact, then caching.</li>
+        <li>Compare configuration, permissions, logs and content between services.</li>
+        <li>Inspect CDN/Dispatcher/browser cache evidence and response headers before assuming Java latency.</li>
+      </ol>
+      <p>Accept another layer when the contributor proposes a cheap check that can falsify the hypothesis.</p>
+    </details>
+
+    <h2>Individual evidence</h2>
+    <ol>
+      <li>One diagram showing the content flow and code flow in different colors.</li>
+      <li>A response of no more than 60 words: “Why can a change visible on Author be absent on Publish?”</li>
+      <li>The first layer and check for scenario 5.</li>
+      <li>Setup status: ready, or the exact blocked step and error.</li>
+    </ol>
+    <p><strong>Acceptance criteria:</strong> the diagram contains both flows, correctly places the five delivery layers and distinguishes save, content publication and code deployment. Record proficiency as <em>not demonstrated</em>, <em>with support</em>, <em>independent</em> or <em>can guide</em>; do not grade visual design.</p>
+
+    <h2>Official reading</h2>
+    <ul>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/overview/introduction">Introduction to AEM as a Cloud Service — Adobe</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/overview">Content Delivery Flow — Adobe</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/getting-started-wknd-tutorial-develop/site-template/author-content-publish">Authoring and Publishing — Adobe</a></li>
+    </ul>
+  </main>
+  <footer><a href="../index.html">Training overview</a></footer>
+</body>
+</html>
