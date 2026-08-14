@@ -6,6 +6,10 @@
   Fuente principal para arquitectura, desarrollo, seguridad, operación y cambios actuales del producto.
 - [Introduction to AEM as a Cloud Service — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/overview/introduction)
   Explica el modelo cloud-native, actualizaciones continuas, escalamiento y responsabilidades del equipo.
+- [AEM as a Cloud Service architecture — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/overview/architecture)
+  Fuente para distinguir Author, Replication Service, Publish, código inmutable y pipelines de despliegue.
+- [Content Delivery Flow — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/overview)
+  Secuencia oficial Browser → CDN → Dispatcher → Publish y decisiones de caché usadas en la primera lección.
 - [AEM as a Cloud Service onboarding journey — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/onboarding/journey/overview)
   Útil para acceso, ambientes y para distinguir Publish Delivery de Edge Delivery Services.
 - [AEM as a Cloud Service SDK — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/aem-as-a-cloud-service-sdk)

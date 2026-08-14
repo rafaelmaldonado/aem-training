@@ -51,20 +51,152 @@
       <tbody>
         <tr><td>0–3</td><td>Retrieval</td><td>Chat prompt: “Where does an author work, and which service answers a visitor?”</td></tr>
         <tr><td>3–5</td><td>Outcome</td><td>State the observable outcome and introduce the content/code distinction.</td></tr>
-        <tr><td>5–17</td><td>Slides 1–5</td><td>Use one diagram and one idea per slide.</td></tr>
-        <tr><td>17–25</td><td>Live demonstration</td><td>Edit a component, preview it and contrast Author with Publish.</td></tr>
+        <tr><td>5–18</td><td>Slides 1–6</td><td>Teach the two flows with one concrete WKND example.</td></tr>
+        <tr><td>18–25</td><td>Live demonstration</td><td>Edit a component, preview it and contrast Author with Publish.</td></tr>
         <tr><td>25–28</td><td>Assignment</td><td>Explain the five scenarios and the acceptance criteria.</td></tr>
         <tr><td>28–30</td><td>Exit prompt</td><td>Chat prompt: “Content and code meet when…”</td></tr>
       </tbody>
     </table></div>
 
-    <h2>Complete slide content</h2>
-    <ol class="slides">
-      <li><strong>Slide 1 — What problem does AEM Sites solve?</strong> Developers create reusable components, templates and rules. Authors use those capabilities to assemble and update experiences without editing source code. <em>Presenter note: ask the team to name one change an author should make without a deployment.</em></li>
-      <li><strong>Slide 2 — Author is not the public website.</strong> Author serves internal users who create, edit, review and manage content. Publish serves approved experiences to visitors. <em>Presenter note: saving on Author changes neither Publish nor the public cache.</em></li>
-      <li><strong>Slide 3 — The content flow.</strong> Author → review → publish/distribute → Publish. Saving is not publishing, and publishing content does not execute a Maven build. <em>Presenter note: draw this flow in one color and keep it visible.</em></li>
-      <li><strong>Slide 4 — The request flow.</strong> Browser → CDN → Dispatcher → Publish. CDN or Dispatcher may answer a cache hit; Publish renders a cache miss. <em>Presenter note: do not introduce filter or cache syntax yet.</em></li>
-      <li><strong>Slide 5 — The code flow.</strong> Git → build and quality gates → deployment → AEM. Deployed code and distributed content meet when the runtime renders a response. <em>Presenter note: draw this flow in a second color and ask which flow changes after editing Java.</em></li>
+    <h2>Complete slide deck</h2>
+    <p class="section-intro">Each card below is a complete 16:9-style slide. The bullets belong on screen; the gray strip is for the presenter.</p>
+    <ol class="slides lesson-deck">
+      <li>
+        <div class="slide-copy">
+          <p class="slide-number">01 · Shared mental model</p>
+          <h3>What problem does AEM Sites solve?</h3>
+          <p class="slide-thesis">AEM separates <strong>reusable experience capabilities</strong> from the <strong>content that changes every day</strong>.</p>
+          <ul>
+            <li><strong>Developers</strong> build components, templates, policies and integrations.</li>
+            <li><strong>Authors</strong> assemble pages and change text, images and links without editing source code.</li>
+            <li><strong>Visitors</strong> receive only the approved public experience.</li>
+            <li><strong>The boundary matters:</strong> frequent editorial changes should not require a release.</li>
+          </ul>
+          <aside class="slide-example"><strong>WKND example:</strong> a developer builds a reusable Guide Card once; an author creates 30 cards by choosing an image, title and link.</aside>
+          <p class="slide-source">Source: <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/getting-started-wknd-tutorial-develop/site-template/author-content-publish">Adobe WKND · Authoring and publishing</a></p>
+        </div>
+        <figure class="role-map" aria-label="Developers create capabilities, authors create experiences, and visitors consume them">
+          <div><span aria-hidden="true">⌨</span><strong>Developer</strong><small>Creates safe choices</small></div>
+          <b aria-hidden="true">→</b>
+          <div><span aria-hidden="true">✎</span><strong>Author</strong><small>Uses those choices</small></div>
+          <b aria-hidden="true">→</b>
+          <div><span aria-hidden="true">◉</span><strong>Visitor</strong><small>Sees the result</small></div>
+        </figure>
+        <p class="presenter-note"><strong>Ask:</strong> “Which homepage change should an author make without waiting for us?” Use one answer to expose the developer/author boundary.</p>
+      </li>
+
+      <li>
+        <div class="slide-copy">
+          <p class="slide-number">02 · Two services, two audiences</p>
+          <h3>Author is not the public website.</h3>
+          <div class="comparison">
+            <section><h4>Author</h4><ul><li>Internal, authenticated workspace</li><li>Create, edit, review and preview</li><li>Contains work that may not be approved</li><li>Shows authoring controls</li></ul></section>
+            <section><h4>Publish</h4><ul><li>Visitor-facing delivery tier</li><li>Uses published content only</li><li>Renders without editing controls</li><li>Sits behind Dispatcher and CDN</li></ul></section>
+          </div>
+          <aside class="slide-example"><strong>Concrete check:</strong> if a new title appears in Page Editor but not on the public URL, first ask whether it was published. Do not start by changing Java.</aside>
+          <p class="slide-source">Source: <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/overview/architecture">Adobe · AEM as a Cloud Service architecture</a></p>
+        </div>
+        <figure class="slide-image">
+          <img src="../assets/aem-author-publish.svg" alt="An author edits a WKND guide in Author and a visitor sees the approved version on Publish">
+          <figcaption>Saving changes Author. Publishing changes what can reach visitors.</figcaption>
+        </figure>
+        <p class="presenter-note"><strong>Emphasize:</strong> the same page can legitimately show different states on Author and Publish. Always record the service and user when reproducing a problem.</p>
+      </li>
+
+      <li>
+        <div class="slide-copy">
+          <p class="slide-number">03 · Editorial lifecycle</p>
+          <h3>Content moves by publication, not deployment.</h3>
+          <ul>
+            <li><strong>Edit:</strong> the author changes a component on Author.</li>
+            <li><strong>Save:</strong> the new value exists on Author only.</li>
+            <li><strong>Review / preview:</strong> the team verifies the experience before release.</li>
+            <li><strong>Publish:</strong> AEM distributes approved content through its replication service.</li>
+            <li><strong>Deliver:</strong> Publish can now render the new state for visitors.</li>
+          </ul>
+          <aside class="slide-example"><strong>WKND example:</strong> change “Cycling Tuscany” to “Cycling Yucatán”. Save it, compare Author and Publish, then publish and compare again.</aside>
+          <p class="slide-source">Source: <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/overview/architecture#service-architecture">Adobe · Replication service</a></p>
+        </div>
+        <figure class="flow-diagram" aria-label="Content flows from an author edit through save, review, publish, and delivery">
+          <div><strong>Edit</strong><small>Author</small></div><b>→</b>
+          <div><strong>Save</strong><small>Author only</small></div><b>→</b>
+          <div><strong>Review</strong><small>Approve</small></div><b>→</b>
+          <div class="active"><strong>Publish</strong><small>Distribute</small></div><b>→</b>
+          <div><strong>Deliver</strong><small>Publish</small></div>
+        </figure>
+        <p class="presenter-note"><strong>Say explicitly:</strong> publishing does not compile Java, build a package or run a Cloud Manager deployment. It moves approved content.</p>
+      </li>
+
+      <li>
+        <div class="slide-copy">
+          <p class="slide-number">04 · Visitor request</p>
+          <h3>A visitor may never reach Publish.</h3>
+          <ul>
+            <li>The browser requests a URL from the site domain.</li>
+            <li>The <strong>CDN</strong> returns a valid cached response or forwards the request.</li>
+            <li><strong>Dispatcher</strong> applies web-tier rules and checks its cache.</li>
+            <li><strong>Publish</strong> renders only when the delivery layers need a fresh response.</li>
+            <li>The response returns through the same layers and may be cached.</li>
+          </ul>
+          <aside class="slide-example"><strong>Why it matters:</strong> Author and Publish can show the new title while a visitor still sees an older cached response. That is evidence about delivery, not proof of a rendering bug.</aside>
+          <p class="slide-source">Source: <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/overview">Adobe · Content Delivery Flow</a></p>
+        </div>
+        <figure class="request-diagram" aria-label="Browser requests pass through CDN and Dispatcher before reaching Publish">
+          <div><strong>Browser</strong><small>requests URL</small></div><b>→</b>
+          <div><strong>CDN</strong><small>cache?</small><span>HIT → return</span></div><b>→</b>
+          <div><strong>Dispatcher</strong><small>cache?</small><span>HIT → return</span></div><b>→</b>
+          <div><strong>Publish</strong><small>render</small></div>
+        </figure>
+        <p class="presenter-note"><strong>Teach only the decision:</strong> hit returns; miss continues. Cache configuration comes later. Ask which systems see a CDN hit: the browser and CDN, but not Dispatcher or Publish.</p>
+      </li>
+
+      <li>
+        <div class="slide-copy">
+          <p class="slide-number">05 · Application lifecycle</p>
+          <h3>Code moves through a controlled pipeline.</h3>
+          <ul>
+            <li>A developer changes Java, HTL, CSS, JavaScript or configuration in <strong>Git</strong>.</li>
+            <li>The pipeline builds the project and executes quality, security and test gates.</li>
+            <li>A successful deployment updates application code on both Author and Publish tiers.</li>
+            <li>The deployed code is effectively immutable at runtime; durable fixes return to Git.</li>
+            <li>No content is “published” merely because a code pipeline finished.</li>
+          </ul>
+          <aside class="slide-example"><strong>WKND example:</strong> changing a Guide Card title is content. Changing its HTL markup or Sling Model is code. Only the second change needs a build and deployment.</aside>
+          <p class="slide-source">Source: <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/overview/architecture#deployment-pipelines">Adobe · Deployment pipelines</a></p>
+        </div>
+        <figure class="flow-diagram code-flow" aria-label="Code flows from Git through build and quality gates to deployment on Author and Publish">
+          <div><strong>Git</strong><small>commit</small></div><b>→</b>
+          <div><strong>Build</strong><small>package</small></div><b>→</b>
+          <div><strong>Gates</strong><small>test + scan</small></div><b>→</b>
+          <div class="active"><strong>Deploy</strong><small>new version</small></div><b>→</b>
+          <div><strong>AEM</strong><small>Author + Publish</small></div>
+        </figure>
+        <p class="presenter-note"><strong>Retrieval check:</strong> “I changed a dialog label. Which flow?” Code. “An author filled that dialog with a title. Which flow?” Content.</p>
+      </li>
+
+      <li>
+        <div class="slide-copy">
+          <p class="slide-number">06 · Put the model to work</p>
+          <h3>Content and code meet at render time.</h3>
+          <ul>
+            <li><strong>Published content</strong> supplies values such as title, image and link.</li>
+            <li><strong>Deployed code</strong> decides how those values become HTML, CSS and behavior.</li>
+            <li><strong>Delivery layers</strong> decide whether to reuse a response or request a fresh render.</li>
+            <li>A useful diagnosis starts by identifying the flow and the last layer known to be correct.</li>
+          </ul>
+          <div class="scenario-grid" aria-label="Examples classified by flow">
+            <span><strong>Old title after Save</strong><small>content publication</small></span>
+            <span><strong>New markup absent</strong><small>code deployment</small></span>
+            <span><strong>Publish correct, browser stale</strong><small>delivery cache</small></span>
+          </div>
+          <p class="slide-source">Sources: <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/overview/architecture">architecture</a> and <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/overview">delivery flow</a></p>
+        </div>
+        <figure class="slide-image architecture-image">
+          <img src="../assets/aem-two-flows.svg" alt="Content and code follow separate paths into the AEM runtime while visitor requests pass through delivery caches">
+          <figcaption>Three paths, one rendered response. Follow the affected path before changing anything.</figcaption>
+        </figure>
+        <p class="presenter-note"><strong>Close:</strong> point to one scenario at a time and ask for the cheapest observation that could disprove its assigned layer.</p>
+      </li>
     </ol>
 
     <h2>Suggested speaking script</h2>
@@ -87,6 +219,10 @@
     <details>
       <summary>Slide 5 · about 3 minutes</summary>
       <p>“Source code follows a controlled delivery path. A commit is built, tested and deployed. At runtime, the deployed component code reads distributed content and produces the response. Keeping both flows separate is the foundation for every diagnosis in this course.”</p>
+    </details>
+    <details>
+      <summary>Slide 6 · about 2 minutes</summary>
+      <p>“A visitor receives the result of three paths: published content provides values, deployed code renders them and delivery caches decide whether that response can be reused. Name the affected path first; then test the nearest boundary.”</p>
     </details>
 
     <h2>Live demonstration</h2>

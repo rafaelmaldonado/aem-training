@@ -6,6 +6,7 @@
 - Duración: ocho semanas, lunes a viernes; sesión en línea de 30 minutos y ejercicios asíncronos posteriores.
 - Preferencias: proyecto integrador, diagnóstico inicial, evaluaciones periódicas y exposiciones de participantes.
 - Presentación: materiales en HTML, accesibles desde `index.html`, con estilo compartido e impresión limpia.
+- Preferencia para slides: contenido completo con bullets, ejemplos concretos, diagramas e imágenes; no limitarse a una descripción breve.
 - Entregable docente: cada sesión necesita contenido breve en formato reutilizable como slides, más ejercicio y criterio de aceptación.
 - Publicación prevista: GitHub Pages; mantener navegación con rutas relativas y `index.html` como overview de planeación.
 - Prioridad: aprendizaje aplicable y seguimiento con pocas reuniones.

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Author and Publish serve different users</title>
+  <desc id="desc">An author edits a WKND guide in an internal editor, publishes it, and a visitor sees the approved page on the public site.</desc>
+  <defs>
+    <linearGradient id="author" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff7ed"/>
+      <stop offset="1" stop-color="#ffedd5"/>
+    </linearGradient>
+    <linearGradient id="publish" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#eff6ff"/>
+      <stop offset="1" stop-color="#dbeafe"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0 0 12 6 0 12Z" fill="#b42318"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="620" rx="36" fill="#f7f7f8"/>
+  <rect x="48" y="72" width="440" height="460" rx="24" fill="url(#author)" stroke="#c2410c" stroke-width="3"/>
+  <text x="82" y="122" fill="#7c2d12" font-family="system-ui, sans-serif" font-size="31" font-weight="700">AUTHOR</text>
+  <text x="82" y="158" fill="#7c2d12" font-family="system-ui, sans-serif" font-size="20">Internal workspace</text>
+  <rect x="82" y="190" width="372" height="268" rx="14" fill="#fff" stroke="#fed7aa" stroke-width="3"/>
+  <rect x="82" y="190" width="372" height="42" rx="14" fill="#292524"/>
+  <circle cx="108" cy="211" r="7" fill="#fb7185"/>
+  <circle cx="132" cy="211" r="7" fill="#facc15"/>
+  <circle cx="156" cy="211" r="7" fill="#4ade80"/>
+  <rect x="102" y="254" width="80" height="184" rx="8" fill="#f5f5f4"/>
+  <rect x="202" y="258" width="222" height="50" rx="6" fill="#fed7aa"/>
+  <text x="218" y="291" fill="#7c2d12" font-family="system-ui, sans-serif" font-size="20" font-weight="700">Weekend Guide</text>
+  <rect x="202" y="326" width="222" height="16" rx="8" fill="#d6d3d1"/>
+  <rect x="202" y="356" width="186" height="16" rx="8" fill="#d6d3d1"/>
+  <rect x="202" y="394" width="112" height="32" rx="16" fill="#c2410c"/>
+  <text x="220" y="417" fill="#fff" font-family="system-ui, sans-serif" font-size="17" font-weight="700">Edit title</text>
+  <text x="82" y="496" fill="#7c2d12" font-family="system-ui, sans-serif" font-size="20">Create · review · preview</text>
+  <path d="M510 302H686" fill="none" stroke="#b42318" stroke-width="8" marker-end="url(#arrow)"/>
+  <rect x="526" y="238" width="144" height="46" rx="23" fill="#fff" stroke="#b42318" stroke-width="2"/>
+  <text x="548" y="268" fill="#b42318" font-family="system-ui, sans-serif" font-size="19" font-weight="700">PUBLISH</text>
+  <text x="532" y="348" fill="#5f6368" font-family="system-ui, sans-serif" font-size="18">Approved content</text>
+  <rect x="712" y="72" width="440" height="460" rx="24" fill="url(#publish)" stroke="#1d4ed8" stroke-width="3"/>
+  <text x="746" y="122" fill="#1e3a8a" font-family="system-ui, sans-serif" font-size="31" font-weight="700">PUBLISH</text>
+  <text x="746" y="158" fill="#1e3a8a" font-family="system-ui, sans-serif" font-size="20">Public experience</text>
+  <rect x="746" y="190" width="372" height="268" rx="14" fill="#fff" stroke="#bfdbfe" stroke-width="3"/>
+  <rect x="746" y="190" width="372" height="42" rx="14" fill="#172554"/>
+  <circle cx="772" cy="211" r="7" fill="#fb7185"/>
+  <circle cx="796" cy="211" r="7" fill="#facc15"/>
+  <circle cx="820" cy="211" r="7" fill="#4ade80"/>
+  <rect x="766" y="254" width="332" height="86" rx="8" fill="#dbeafe"/>
+  <path d="M766 322 846 268 907 306 960 278 1098 340H766Z" fill="#60a5fa"/>
+  <text x="766" y="377" fill="#1e3a8a" font-family="system-ui, sans-serif" font-size="24" font-weight="700">Weekend Guide</text>
+  <rect x="766" y="397" width="250" height="14" rx="7" fill="#cbd5e1"/>
+  <rect x="766" y="423" width="196" height="14" rx="7" fill="#cbd5e1"/>
+  <text x="746" y="496" fill="#1e3a8a" font-family="system-ui, sans-serif" font-size="20">Read · browse · interact</text>
+</svg>
