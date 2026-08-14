@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">A visitor may never reach Publish</title>
+  <desc id="desc">A decision flow shows a request checking CDN cache, then Dispatcher cache, then Publish only on cache misses.</desc>
+  <defs>
+    <marker id="green-arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 12 6 0 12Z" fill="#39dbc1"/></marker>
+    <marker id="gray-arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 12 6 0 12Z" fill="#8b9995"/></marker>
+    <style>
+      text{font-family:Inter,Arial,sans-serif;fill:#f4f7f6}.eyebrow{font-size:20px;font-weight:800;letter-spacing:3px;fill:#39dbc1}.title{font-size:56px;font-weight:760;letter-spacing:-2px}.subtitle{font-size:23px;fill:#9aa5a2}.node{font-size:24px;font-weight:760}.node-note{font-size:17px;fill:#9aa5a2}.label{font-size:17px;font-weight:800}.body{font-size:21px}.source{font-size:15px;fill:#71807c}.request{fill:none;stroke:#8b9995;stroke-width:5;marker-end:url(#gray-arrow)}.return{fill:none;stroke:#39dbc1;stroke-width:5;marker-end:url(#green-arrow)}
+    rect[fill="#fff"],path[fill="#fff"],circle[fill="#fff"]{fill:#111817}</style>
+  </defs>
+  <rect width="1600" height="900" fill="#0b0f0e"/><rect width="14" height="900" fill="#39dbc1"/>
+  <g opacity=".16" fill="none" stroke="#53615e"><circle cx="1570" cy="920" r="650" stroke-width="180"/><circle cx="1570" cy="920" r="390" stroke-width="110"/></g>
+  <text x="72" y="70" class="eyebrow">04 · VISITOR REQUEST</text>
+  <text x="72" y="145" class="title">A visitor may never reach Publish.</text>
+  <text x="72" y="198" class="subtitle">Each cache hit ends the trip early; only consecutive misses require a fresh render.</text>
+
+  <rect x="72" y="320" width="230" height="120" rx="20" fill="#fff" stroke="#8b9995" stroke-width="3"/>
+  <circle cx="132" cy="380" r="30" fill="#16201e" stroke="#8b9995" stroke-width="2"/>
+  <circle cx="132" cy="380" r="12" fill="none" stroke="#8b9995" stroke-width="3"/><path d="M112 380h40M132 360c8 8 8 32 0 40M132 360c-8 8-8 32 0 40" fill="none" stroke="#8b9995" stroke-width="2"/>
+  <text x="180" y="374" class="node">Browser</text><text x="180" y="405" class="node-note">requests URL</text>
+
+  <path d="M302 380H412" class="request"/><text x="326" y="355" class="label" fill="#8b9995">REQUEST</text>
+  <path d="M520 282 628 380 520 478 412 380Z" fill="#fff" stroke="#39dbc1" stroke-width="3"/>
+  <text x="471" y="369" class="node" fill="#72ead7">CDN</text><text x="452" y="401" class="node-note">valid cache?</text>
+
+  <path d="M628 380H758" class="request"/><text x="664" y="355" class="label" fill="#8b9995">MISS</text>
+  <path d="M866 282 974 380 866 478 758 380Z" fill="#fff" stroke="#39dbc1" stroke-width="3"/>
+  <text x="800" y="369" class="node" fill="#72ead7">Dispatcher</text><text x="813" y="401" class="node-note">valid cache?</text>
+
+  <path d="M974 380H1105" class="request"/><text x="1010" y="355" class="label" fill="#8b9995">MISS</text>
+  <rect x="1128" y="320" width="250" height="120" rx="20" fill="#121c1b" stroke="#32cbb3" stroke-width="3"/>
+  <text x="1201" y="374" class="node" fill="#72ead7">Publish</text><text x="1181" y="405" class="node-note">renders fresh HTML</text>
+
+  <path d="M520 478V592H372" class="return"/><text x="423" y="527" class="label" fill="#39dbc1">HIT</text>
+  <rect x="72" y="548" width="300" height="88" rx="18" fill="#102522" stroke="#39dbc1" stroke-width="3"/>
+  <text x="112" y="584" class="node" fill="#72ead7">Response</text><text x="112" y="614" class="node-note">CDN returns cached HTML</text>
+
+  <path d="M866 478V678H372" class="return"/><text x="769" y="525" class="label" fill="#39dbc1">HIT</text>
+  <rect x="72" y="650" width="300" height="88" rx="18" fill="#102522" stroke="#39dbc1" stroke-width="3"/>
+  <text x="112" y="686" class="node" fill="#72ead7">Response</text><text x="99" y="716" class="node-note">Dispatcher returns cached HTML</text>
+
+  <path d="M1378 380H1450V796H372" class="return"/>
+  <rect x="72" y="752" width="300" height="88" rx="18" fill="#102522" stroke="#39dbc1" stroke-width="3"/>
+  <text x="112" y="788" class="node" fill="#72ead7">Response</text><text x="99" y="818" class="node-note">fresh HTML returns and caches</text>
+
+  <rect x="1070" y="522" width="380" height="146" rx="18" fill="#102522"/>
+  <text x="1102" y="562" class="body" font-weight="700" fill="#39dbc1">Diagnostic meaning</text>
+  <text x="1102" y="601" class="body">Publish can be correct while</text>
+  <text x="1102" y="632" class="body">a visitor sees cached HTML.</text>
+  <text x="72" y="875" class="source">Source: Adobe · Content Delivery Flow (Browser → CDN → Dispatcher → Publish)</text>
+</svg>

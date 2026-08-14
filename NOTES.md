@@ -7,6 +7,8 @@
 - Preferencias: proyecto integrador, diagnóstico inicial, evaluaciones periódicas y exposiciones de participantes.
 - Presentación: materiales en HTML, accesibles desde `index.html`, con estilo compartido e impresión limpia.
 - Preferencia para slides: contenido completo con bullets, ejemplos concretos, diagramas e imágenes; no limitarse a una descripción breve.
+- Flujo de presentación: publicar las slides en GitHub Pages y copiarlas como una imagen completa a PowerPoint para conservar el formato; no generar un `.pptx` aparte.
+- Estilo visual de slides: fondo carbón, acento turquesa luminoso, texto blanco/gris, líneas finas y curvas concéntricas sutiles; usar la referencia visual proporcionada el 2026-08-13.
 - Entregable docente: cada sesión necesita contenido breve en formato reutilizable como slides, más ejercicio y criterio de aceptación.
 - Publicación prevista: GitHub Pages; mantener navegación con rutas relativas y `index.html` como overview de planeación.
 - Prioridad: aprendizaje aplicable y seguimiento con pocas reuniones.

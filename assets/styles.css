@@ -121,54 +121,47 @@ summary { cursor: pointer; font-weight: 700; }
 .slides > li strong { display: block; margin-bottom: 1rem; font-size: 1.15rem; line-height: 1.3; }
 .slides > li em { display: block; margin-top: 1rem; color: var(--muted); font-size: .92rem; }
 .section-intro { color: var(--muted); }
-.lesson-deck { display: block; counter-reset: none; }
-.lesson-deck > li {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(18rem, .95fr);
-  min-height: 38rem;
-  margin: 1.5rem 0;
-  padding: clamp(1.25rem, 3vw, 2.5rem);
-  gap: 1.5rem 2rem;
-  align-items: center;
-  border-left-width: .55rem;
+.web-deck { display: grid; gap: 2.5rem; margin-top: 1.5rem; }
+.web-slide {
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: .6rem;
   background: var(--paper);
   box-shadow: 0 .8rem 2.4rem rgb(32 33 36 / 10%);
 }
-.lesson-deck h3 { margin: .2rem 0 1rem; font-size: clamp(1.8rem, 4vw, 3rem); letter-spacing: -.035em; }
-.lesson-deck h4 { margin: 0 0 .4rem; font-size: 1.1rem; }
-.lesson-deck > li strong { display: inline; margin: 0; font-size: inherit; line-height: inherit; }
-.lesson-deck ul { padding-left: 1.2rem; }
-.lesson-deck li li { margin-bottom: .55rem; }
-.slide-copy { align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
-.slide-number { margin: 0; color: var(--accent); font-size: .82rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
-.slide-thesis { margin-top: 0; font-size: 1.15rem; }
-.slide-example { margin-top: .8rem; padding: .8rem 1rem; border-left: .25rem solid #d97706; background: #fffbeb; font-size: .94rem; }
-.slide-source { margin-top: auto; padding-top: 1rem; color: var(--muted); font-size: .78rem; }
-.presenter-note { grid-column: 1 / -1; max-width: none; margin: 0; padding: .8rem 1rem; color: var(--muted); background: var(--wash); font-size: .88rem; }
-.slide-image { margin: 0; }
-.slide-image img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: .7rem; background: var(--wash); }
-.slide-image figcaption { margin-top: .55rem; color: var(--muted); font-size: .82rem; text-align: center; }
-.architecture-image { grid-column: 1 / -1; }
-.architecture-image img { max-height: 29rem; object-fit: contain; }
-.role-map, .flow-diagram, .request-diagram { display: flex; margin: 0; gap: .6rem; align-items: center; justify-content: center; }
-.role-map { flex-direction: column; }
-.role-map div { width: min(100%, 16rem); padding: 1rem; border: 1px solid var(--line); border-radius: .7rem; text-align: center; background: var(--wash); }
-.role-map span, .role-map strong, .role-map small, .flow-diagram strong, .flow-diagram small, .request-diagram strong, .request-diagram small, .request-diagram span, .scenario-grid strong, .scenario-grid small { display: block; }
-.role-map span { color: var(--accent); font-size: 2rem; }
-.role-map small, .flow-diagram small, .request-diagram small, .scenario-grid small { color: var(--muted); }
-.role-map b, .flow-diagram b, .request-diagram b { color: var(--accent); font-size: 1.6rem; }
-.comparison { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
-.comparison section { padding: .8rem; border: 1px solid var(--line); border-radius: .5rem; background: var(--wash); }
-.comparison ul { margin-bottom: 0; font-size: .92rem; }
-.flow-diagram, .request-diagram { flex-wrap: wrap; }
-.flow-diagram div, .request-diagram div { min-width: 7rem; padding: .85rem .7rem; border: 2px solid var(--line); border-radius: .6rem; text-align: center; background: var(--paper); }
-.flow-diagram .active { color: #fff; border-color: var(--accent); background: var(--accent); }
-.flow-diagram .active small { color: #fff; }
-.code-flow .active { border-color: #2563eb; background: #2563eb; }
-.request-diagram span { margin-top: .4rem; color: #15803d; font-size: .72rem; font-weight: 800; }
-.scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin-top: 1rem; }
-.scenario-grid span { padding: .65rem; border: 1px solid var(--line); border-radius: .4rem; background: var(--wash); font-size: .82rem; }
-.scenario-grid strong, .scenario-grid small { display: block; }
+.web-slide-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  background: var(--wash);
+  object-fit: contain;
+}
+.slide-actions {
+  display: flex;
+  min-height: 2.8rem;
+  margin-top: .8rem;
+  gap: .7rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.slide-actions button, .slide-actions a {
+  padding: .55rem .85rem;
+  border: 1px solid var(--accent);
+  border-radius: .35rem;
+  color: var(--accent);
+  background: var(--paper);
+  font: inherit;
+  font-size: .9rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+}
+.slide-actions button:hover, .slide-actions a:hover { color: var(--paper); background: var(--accent); }
+.slide-actions button:disabled { cursor: wait; opacity: .55; }
+.slide-actions span { color: var(--muted); font-size: .88rem; }
+.presenter-note { max-width: none; margin: .75rem 0 0; padding: .8rem 1rem; color: var(--muted); background: var(--wash); font-size: .88rem; }
 .week { scroll-margin-top: 1rem; }
 .status { display: inline-block; padding: .15rem .5rem; border-radius: 1rem; color: var(--accent); background: var(--accent-soft); font-size: .85rem; font-weight: 750; }
 
@@ -204,9 +197,9 @@ th { background: var(--wash); }
   .site-nav { align-items: flex-start; flex-direction: column; padding-inline: 1rem; }
   .site-nav ul { width: 100%; margin-left: 0; overflow-x: auto; }
   .site-nav a { white-space: nowrap; }
-  .lesson-deck > li { grid-template-columns: 1fr; min-height: 0; }
-  .comparison, .scenario-grid { grid-template-columns: 1fr; }
-  .architecture-image, .presenter-note { grid-column: 1; }
+  .web-slide { padding: .5rem; }
+  .slide-actions { align-items: stretch; flex-direction: column; }
+  .slide-actions button, .slide-actions a { text-align: center; }
 }
 
 @media print {
@@ -219,8 +212,8 @@ th { background: var(--wash); }
   table, .callout { break-inside: avoid; }
   .slides { display: block; }
   .slides > li { min-height: 0; margin-bottom: 1rem; break-inside: avoid; }
-  .lesson-deck > li { display: block; min-height: 0; padding: 1rem; box-shadow: none; break-after: page; }
-  .lesson-deck > li:last-child { break-after: auto; }
-  .presenter-note { margin-top: 1rem; }
+  .web-slide { padding: 0; border: 0; box-shadow: none; break-after: page; }
+  .web-slide:last-child { break-after: auto; }
+  .presenter-note { display: none; }
   a { color: inherit; text-decoration: none; }
 }
