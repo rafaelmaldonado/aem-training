@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Questions and thank you</title>
+  <desc id="desc">Closing slide with three prompts for questions about content publication, code deployment, and delivery requests.</desc>
+  <defs>
+    <radialGradient id="blue-glow" cx="78%" cy="52%" r="65%"><stop offset="0" stop-color="#e9f9ff" stop-opacity=".92"/><stop offset=".3" stop-color="#7bc9ea" stop-opacity=".32"/><stop offset=".7" stop-color="#174e70" stop-opacity=".1"/><stop offset="1" stop-color="#031d32" stop-opacity="0"/></radialGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#9fe7ff" opacity=".22"/></pattern>
+    <style>text{font-family:Inter,Arial,sans-serif;fill:#f7fbff}.eyebrow{font-size:20px;font-weight:800;letter-spacing:3px;fill:#9fe7ff}.title{font-size:112px;font-weight:760;letter-spacing:-4px}.body{font-size:30px;fill:#b8c8d4}.thanks{font-size:20px;font-weight:700}</style>
+  </defs>
+  <rect width="1600" height="900" fill="#031d32"/>
+  <rect width="1600" height="900" fill="url(#blue-glow)"/>
+  <rect width="1600" height="900" fill="url(#dots)" opacity=".18"/>
+  <g opacity=".14" fill="none" stroke="#9fe7ff"><circle cx="1320" cy="430" r="430" stroke-width="120"/><circle cx="1320" cy="430" r="250" stroke-width="70"/></g>
+  <rect width="14" height="900" fill="#9fe7ff"/>
+
+  <text x="90" y="105" class="eyebrow">CLASS 1 · AEM SITES FOUNDATIONS</text>
+  <text x="800" y="418" text-anchor="middle" class="title">Questions?</text>
+  <text x="800" y="480" text-anchor="middle" class="body">What would you like to explore further?</text>
+  <line x1="650" y1="568" x2="950" y2="568" stroke="#9fe7ff" stroke-width="2"/>
+  <text x="800" y="616" text-anchor="middle" class="thanks">Thank you.</text>
+</svg>

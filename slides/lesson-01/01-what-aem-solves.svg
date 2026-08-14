@@ -2,27 +2,29 @@
   <title id="title">What problem does AEM Sites solve?</title>
   <desc id="desc">Developers create reusable capabilities, authors compose governed experiences, and visitors consume approved pages.</desc>
   <defs>
-    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 12 6 0 12Z" fill="#39dbc1"/></marker>
+    <radialGradient id="blue-glow" cx="52%" cy="76%" r="72%"><stop offset="0" stop-color="#e9f9ff" stop-opacity=".9"/><stop offset=".3" stop-color="#7bc9ea" stop-opacity=".34"/><stop offset=".68" stop-color="#174e70" stop-opacity=".12"/><stop offset="1" stop-color="#031d32" stop-opacity="0"/></radialGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#9fe7ff" opacity=".22"/></pattern>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 12 6 0 12Z" fill="#9fe7ff"/></marker>
     <style>
-      text{font-family:Inter,Arial,sans-serif;fill:#f4f7f6}.eyebrow{font-size:20px;font-weight:800;letter-spacing:3px;fill:#39dbc1}.title{font-size:56px;font-weight:760;letter-spacing:-2px}.thesis{font-size:27px;fill:#9aa5a2}.role{font-size:30px;font-weight:760}.role-note{font-size:20px;fill:#9aa5a2}.body{font-size:22px}.small{font-size:17px;fill:#9aa5a2}.example{font-size:22px}.source{font-size:15px;fill:#71807c}.panel{fill:#111817;stroke:#33403d;stroke-width:2}.icon-ring{fill:#102522;stroke:#39dbc1;stroke-width:2}.arrow{fill:none;stroke:#39dbc1;stroke-width:5;marker-end:url(#arrow)}
-    rect[fill="#fff"],path[fill="#fff"],circle[fill="#fff"]{fill:#111817}</style>
+      text{font-family:Inter,Arial,sans-serif;fill:#f7fbff}.eyebrow{font-size:20px;font-weight:800;letter-spacing:3px;fill:#9fe7ff}.title{font-size:56px;font-weight:760;letter-spacing:-2px}.thesis{font-size:27px;fill:#b8c8d4}.role{font-size:30px;font-weight:760}.role-note{font-size:20px;fill:#b8c8d4}.body{font-size:22px}.small{font-size:17px;fill:#b8c8d4}.example{font-size:22px}.source{font-size:15px;fill:#6f91a5}.panel{fill:#08283f;stroke:#2f6f91;stroke-width:2}.icon-ring{fill:#0a3048;stroke:#9fe7ff;stroke-width:2}.arrow{fill:none;stroke:#9fe7ff;stroke-width:5;marker-end:url(#arrow)}
+    rect[fill="#fff"],path[fill="#fff"],circle[fill="#fff"]{fill:#08283f}</style>
   </defs>
-  <rect width="1600" height="900" fill="#0b0f0e"/>
-  <rect width="14" height="900" fill="#39dbc1"/>
-  <g opacity=".16" fill="none" stroke="#53615e"><circle cx="1570" cy="920" r="650" stroke-width="180"/><circle cx="1570" cy="920" r="390" stroke-width="110"/></g>
+  <rect width="1600" height="900" fill="#031d32"/>
+  <rect width="14" height="900" fill="#9fe7ff"/>
+  <rect width="1600" height="900" fill="url(#blue-glow)"/><rect width="1600" height="900" fill="url(#dots)" opacity=".18"/><g opacity=".12" fill="none" stroke="#9fe7ff"><circle cx="1570" cy="920" r="650" stroke-width="180"/><circle cx="1570" cy="920" r="390" stroke-width="110"/></g>
   <text x="72" y="70" class="eyebrow">01 · SHARED MENTAL MODEL</text>
   <text x="72" y="145" class="title">What problem does AEM Sites solve?</text>
   <text x="72" y="200" class="thesis">Separate reusable experience capabilities from content that changes every day.</text>
 
   <rect x="72" y="270" width="410" height="405" rx="22" class="panel"/>
   <circle cx="132" cy="335" r="34" class="icon-ring"/>
-  <path d="M116 326h32M116 338h22M116 350h28" stroke="#39dbc1" stroke-width="4" stroke-linecap="round"/>
+  <path d="M116 326h32M116 338h22M116 350h28" stroke="#9fe7ff" stroke-width="4" stroke-linecap="round"/>
   <text x="188" y="330" class="role">Developer</text>
   <text x="188" y="360" class="role-note">creates safe choices</text>
-  <circle cx="102" cy="425" r="5" fill="#39dbc1"/><text x="122" y="433" class="body">Components define reusable UI.</text>
-  <circle cx="102" cy="483" r="5" fill="#39dbc1"/><text x="122" y="491" class="body">Templates define page structure.</text>
-  <circle cx="102" cy="541" r="5" fill="#39dbc1"/><text x="122" y="549" class="body">Policies define authoring limits.</text>
-  <rect x="104" y="592" width="330" height="48" rx="10" fill="#102522"/>
+  <circle cx="102" cy="425" r="5" fill="#9fe7ff"/><text x="122" y="433" class="body">Components define reusable UI.</text>
+  <circle cx="102" cy="483" r="5" fill="#9fe7ff"/><text x="122" y="491" class="body">Templates define page structure.</text>
+  <circle cx="102" cy="541" r="5" fill="#9fe7ff"/><text x="122" y="549" class="body">Policies define authoring limits.</text>
+  <rect x="104" y="592" width="330" height="48" rx="10" fill="#0a3048"/>
   <text x="122" y="623" class="small">Code changes require deployment.</text>
 
   <path d="M495 470H548" class="arrow"/>
@@ -30,13 +32,13 @@
 
   <rect x="565" y="270" width="410" height="405" rx="22" class="panel"/>
   <circle cx="625" cy="335" r="34" class="icon-ring"/>
-  <path d="M612 350l25-25 9 9-25 25-12 3Z" fill="none" stroke="#39dbc1" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M612 350l25-25 9 9-25 25-12 3Z" fill="none" stroke="#9fe7ff" stroke-width="4" stroke-linejoin="round"/>
   <text x="681" y="330" class="role">Author</text>
   <text x="681" y="360" class="role-note">composes experiences</text>
-  <circle cx="595" cy="425" r="5" fill="#39dbc1"/><text x="615" y="433" class="body">Selects approved components.</text>
-  <circle cx="595" cy="483" r="5" fill="#39dbc1"/><text x="615" y="491" class="body">Adds text, images and links.</text>
-  <circle cx="595" cy="541" r="5" fill="#39dbc1"/><text x="615" y="549" class="body">Reviews and publishes content.</text>
-  <rect x="597" y="592" width="330" height="48" rx="10" fill="#102522"/>
+  <circle cx="595" cy="425" r="5" fill="#9fe7ff"/><text x="615" y="433" class="body">Selects approved components.</text>
+  <circle cx="595" cy="483" r="5" fill="#9fe7ff"/><text x="615" y="491" class="body">Adds text, images and links.</text>
+  <circle cx="595" cy="541" r="5" fill="#9fe7ff"/><text x="615" y="549" class="body">Reviews and publishes content.</text>
+  <rect x="597" y="592" width="330" height="48" rx="10" fill="#0a3048"/>
   <text x="615" y="623" class="small">Content changes avoid deployment.</text>
 
   <path d="M988 470H1041" class="arrow"/>
@@ -44,20 +46,20 @@
 
   <rect x="1058" y="270" width="470" height="405" rx="22" class="panel"/>
   <circle cx="1118" cy="335" r="34" class="icon-ring"/>
-  <circle cx="1118" cy="335" r="13" fill="none" stroke="#39dbc1" stroke-width="4"/><path d="M1094 335h48M1118 311c9 10 9 38 0 48M1118 311c-9 10-9 38 0 48" fill="none" stroke="#39dbc1" stroke-width="3"/>
+  <circle cx="1118" cy="335" r="13" fill="none" stroke="#9fe7ff" stroke-width="4"/><path d="M1094 335h48M1118 311c9 10 9 38 0 48M1118 311c-9 10-9 38 0 48" fill="none" stroke="#9fe7ff" stroke-width="3"/>
   <text x="1174" y="330" class="role">Visitor</text>
   <text x="1174" y="360" class="role-note">uses the public site</text>
-  <rect x="1090" y="403" width="405" height="200" rx="12" fill="#101615" stroke="#43504d" stroke-width="2"/>
-  <rect x="1090" y="403" width="405" height="38" rx="12" fill="#f4f7f6"/>
+  <rect x="1090" y="403" width="405" height="200" rx="12" fill="#101615" stroke="#446c82" stroke-width="2"/>
+  <rect x="1090" y="403" width="405" height="38" rx="12" fill="#f7fbff"/>
   <circle cx="1114" cy="422" r="5" fill="#fb7185"/><circle cx="1134" cy="422" r="5" fill="#facc15"/><circle cx="1154" cy="422" r="5" fill="#4ade80"/>
-  <rect x="1116" y="465" width="150" height="102" rx="8" fill="#19322e"/>
-  <path d="M1116 548l45-46 38 30 31-24 36 59h-150Z" fill="#2e9f8e"/>
+  <rect x="1116" y="465" width="150" height="102" rx="8" fill="#10364f"/>
+  <path d="M1116 548l45-46 38 30 31-24 36 59h-150Z" fill="#58acd0"/>
   <text x="1290" y="486" class="body" font-weight="700">Weekend Guide</text>
-  <rect x="1290" y="510" width="170" height="12" rx="6" fill="#43504d"/><rect x="1290" y="535" width="130" height="12" rx="6" fill="#43504d"/>
+  <rect x="1290" y="510" width="170" height="12" rx="6" fill="#446c82"/><rect x="1290" y="535" width="130" height="12" rx="6" fill="#446c82"/>
   <text x="1114" y="638" class="small">No editing controls. Approved content only.</text>
 
-  <rect x="72" y="728" width="1456" height="92" rx="16" fill="#101817" stroke="#2fbba5" stroke-width="2"/>
-  <text x="102" y="765" class="example" font-weight="700" fill="#72ead7">WKND example</text>
+  <rect x="72" y="728" width="1456" height="92" rx="16" fill="#08283f" stroke="#6ecbed" stroke-width="2"/>
+  <text x="102" y="765" class="example" font-weight="700" fill="#b9ecff">WKND example</text>
   <text x="102" y="798" class="example">Build Guide Card once; authors create 30 cards by choosing an image, title and link.</text>
   <text x="72" y="862" class="source">Source: Adobe WKND · Introduction to authoring and publishing</text>
 </svg>

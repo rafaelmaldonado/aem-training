@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">AEM Sites Foundations: From author to browser</title>
+  <desc id="desc">Cover slide for class one, introducing the content, code, and delivery mental model.</desc>
+  <defs>
+    <radialGradient id="blue-glow" cx="50%" cy="48%" r="68%"><stop offset="0" stop-color="#e9f9ff" stop-opacity=".92"/><stop offset=".28" stop-color="#7bc9ea" stop-opacity=".34"/><stop offset=".66" stop-color="#174e70" stop-opacity=".12"/><stop offset="1" stop-color="#031d32" stop-opacity="0"/></radialGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#9fe7ff" opacity=".22"/></pattern>
+    <style>text{font-family:Inter,Arial,sans-serif;fill:#f7fbff}.eyebrow{font-size:20px;font-weight:800;letter-spacing:3px;fill:#9fe7ff}.title{font-size:92px;font-weight:760;letter-spacing:-4px}.subtitle{font-size:40px;fill:#b8c8d4}.body{font-size:24px;fill:#b8c8d4}.name{font-size:21px;font-weight:700}</style>
+  </defs>
+  <rect width="1600" height="900" fill="#031d32"/>
+  <rect width="1600" height="900" fill="url(#blue-glow)"/>
+  <rect width="1600" height="900" fill="url(#dots)" opacity=".18"/>
+  <g opacity=".12" fill="none" stroke="#9fe7ff"><circle cx="1410" cy="470" r="620" stroke-width="170"/><circle cx="1410" cy="470" r="360" stroke-width="100"/></g>
+  <rect width="14" height="900" fill="#9fe7ff"/>
+
+  <text x="90" y="105" class="eyebrow">CLASS 1 · AEM SITES FOUNDATIONS</text>
+  <text x="90" y="378" class="title">From author</text>
+  <text x="90" y="474" class="title">to browser.</text>
+  <text x="94" y="546" class="subtitle">A practical mental model for AEM Sites</text>
+  <text x="94" y="600" class="body">How content, code and delivery become one visitor experience.</text>
+  <line x1="94" y1="720" x2="520" y2="720" stroke="#9fe7ff" stroke-width="2"/>
+  <text x="94" y="766" class="name">Juan Maldonado</text>
+</svg>

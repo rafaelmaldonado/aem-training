@@ -2,57 +2,59 @@
   <title id="title">Content moves by publication, not deployment</title>
   <desc id="desc">A content timeline shows that Save remains within Author while Publish crosses the service boundary through the replication service to Publish.</desc>
   <defs>
-    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 12 6 0 12Z" fill="#39dbc1"/></marker>
+    <radialGradient id="blue-glow" cx="52%" cy="76%" r="72%"><stop offset="0" stop-color="#e9f9ff" stop-opacity=".9"/><stop offset=".3" stop-color="#7bc9ea" stop-opacity=".34"/><stop offset=".68" stop-color="#174e70" stop-opacity=".12"/><stop offset="1" stop-color="#031d32" stop-opacity="0"/></radialGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#9fe7ff" opacity=".22"/></pattern>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 12 6 0 12Z" fill="#9fe7ff"/></marker>
     <style>
-      text{font-family:Inter,Arial,sans-serif;fill:#f4f7f6}.eyebrow{font-size:20px;font-weight:800;letter-spacing:3px;fill:#39dbc1}.title{font-size:56px;font-weight:760;letter-spacing:-2px}.subtitle{font-size:23px;fill:#9aa5a2}.step{font-size:24px;font-weight:760}.step-note{font-size:18px;fill:#9aa5a2}.body{font-size:21px}.small{font-size:17px;fill:#9aa5a2}.white{fill:#fff}.source{font-size:15px;fill:#71807c}.arrow{fill:none;stroke:#39dbc1;stroke-width:6;marker-end:url(#arrow)}
-    rect[fill="#fff"],path[fill="#fff"],circle[fill="#fff"]{fill:#111817}</style>
+      text{font-family:Inter,Arial,sans-serif;fill:#f7fbff}.eyebrow{font-size:20px;font-weight:800;letter-spacing:3px;fill:#9fe7ff}.title{font-size:56px;font-weight:760;letter-spacing:-2px}.subtitle{font-size:23px;fill:#b8c8d4}.step{font-size:24px;font-weight:760}.step-note{font-size:18px;fill:#b8c8d4}.body{font-size:21px}.small{font-size:17px;fill:#b8c8d4}.white{fill:#fff}.source{font-size:15px;fill:#6f91a5}.arrow{fill:none;stroke:#9fe7ff;stroke-width:6;marker-end:url(#arrow)}
+    rect[fill="#fff"],path[fill="#fff"],circle[fill="#fff"]{fill:#08283f}</style>
   </defs>
-  <rect width="1600" height="900" fill="#0b0f0e"/><rect width="14" height="900" fill="#39dbc1"/>
-  <g opacity=".16" fill="none" stroke="#53615e"><circle cx="1570" cy="920" r="650" stroke-width="180"/><circle cx="1570" cy="920" r="390" stroke-width="110"/></g>
+  <rect width="1600" height="900" fill="#031d32"/><rect width="14" height="900" fill="#9fe7ff"/>
+  <rect width="1600" height="900" fill="url(#blue-glow)"/><rect width="1600" height="900" fill="url(#dots)" opacity=".18"/><g opacity=".12" fill="none" stroke="#9fe7ff"><circle cx="1570" cy="920" r="650" stroke-width="180"/><circle cx="1570" cy="920" r="390" stroke-width="110"/></g>
   <text x="72" y="70" class="eyebrow">03 · EDITORIAL LIFECYCLE</text>
   <text x="72" y="145" class="title">Content moves by publication, not deployment.</text>
   <text x="72" y="198" class="subtitle">Save records a draft on Author. Publish distributes an approved state to the delivery tier.</text>
 
-  <rect x="72" y="250" width="530" height="430" rx="22" fill="#101817" stroke="#2fbba5" stroke-width="3"/>
-  <text x="106" y="298" class="step" fill="#72ead7">AUTHOR</text>
-  <rect x="106" y="332" width="462" height="188" rx="14" fill="#fff" stroke="#17302c" stroke-width="2"/>
-  <rect x="132" y="360" width="140" height="126" rx="8" fill="#14231f"/>
-  <path d="M132 476l42-57 38 32 28-26 32 61H132Z" fill="#37c8b0"/>
+  <rect x="72" y="250" width="530" height="430" rx="22" fill="#08283f" stroke="#6ecbed" stroke-width="3"/>
+  <text x="106" y="298" class="step" fill="#b9ecff">AUTHOR</text>
+  <rect x="106" y="332" width="462" height="188" rx="14" fill="#fff" stroke="#123a55" stroke-width="2"/>
+  <rect x="132" y="360" width="140" height="126" rx="8" fill="#0b2f48"/>
+  <path d="M132 476l42-57 38 32 28-26 32 61H132Z" fill="#7acff0"/>
   <text x="300" y="397" class="small">TITLE</text>
-  <text x="300" y="438" class="step" fill="#72ead7">Cycling Yucatán</text>
-  <rect x="300" y="457" width="210" height="12" rx="6" fill="#4a5552"/>
-  <rect x="106" y="548" width="214" height="58" rx="12" fill="#fff" stroke="#2fbba5" stroke-width="2"/>
-  <text x="135" y="584" class="body" font-weight="700" fill="#72ead7">1  EDIT + SAVE</text>
-  <rect x="338" y="548" width="230" height="58" rx="12" fill="#fff" stroke="#2fbba5" stroke-width="2"/>
-  <text x="366" y="584" class="body" font-weight="700" fill="#72ead7">2  REVIEW</text>
-  <path d="M602 235V702" stroke="#52615d" stroke-width="3" stroke-dasharray="10 10"/>
-  <rect x="460" y="640" width="285" height="52" rx="26" fill="#102522" stroke="#39dbc1" stroke-width="2"/>
-  <text x="494" y="673" class="body" font-weight="700" fill="#39dbc1">SAVE STOPS HERE</text>
+  <text x="300" y="438" class="step" fill="#b9ecff">Cycling Yucatán</text>
+  <rect x="300" y="457" width="210" height="12" rx="6" fill="#527b90"/>
+  <rect x="106" y="548" width="214" height="58" rx="12" fill="#fff" stroke="#6ecbed" stroke-width="2"/>
+  <text x="135" y="584" class="body" font-weight="700" fill="#b9ecff">1  EDIT + SAVE</text>
+  <rect x="338" y="548" width="230" height="58" rx="12" fill="#fff" stroke="#6ecbed" stroke-width="2"/>
+  <text x="366" y="584" class="body" font-weight="700" fill="#b9ecff">2  REVIEW</text>
+  <path d="M602 235V702" stroke="#47748c" stroke-width="3" stroke-dasharray="10 10"/>
+  <rect x="460" y="640" width="285" height="52" rx="26" fill="#0a3048" stroke="#9fe7ff" stroke-width="2"/>
+  <text x="494" y="673" class="body" font-weight="700" fill="#9fe7ff">SAVE STOPS HERE</text>
 
   <path d="M640 422H812" class="arrow"/>
-  <rect x="659" y="357" width="134" height="42" rx="21" fill="#39dbc1"/>
+  <rect x="659" y="357" width="134" height="42" rx="21" fill="#9fe7ff"/>
   <text x="687" y="385" class="small white" font-weight="700">3  PUBLISH</text>
   <text x="660" y="474" class="small">crosses the boundary</text>
 
-  <rect x="836" y="304" width="260" height="236" rx="90" fill="#102522" stroke="#39dbc1" stroke-width="3"/>
-  <path d="M888 414c0-36 31-64 70-64 31 0 58 18 68 44 34 1 61 25 61 55 0 31-29 56-65 56H908c-39 0-70-26-70-58 0-25 20-47 50-53Z" fill="#fff" stroke="#39dbc1" stroke-width="3"/>
-  <text x="886" y="431" class="step" fill="#39dbc1">Replication</text>
+  <rect x="836" y="304" width="260" height="236" rx="90" fill="#0a3048" stroke="#9fe7ff" stroke-width="3"/>
+  <path d="M888 414c0-36 31-64 70-64 31 0 58 18 68 44 34 1 61 25 61 55 0 31-29 56-65 56H908c-39 0-70-26-70-58 0-25 20-47 50-53Z" fill="#fff" stroke="#9fe7ff" stroke-width="3"/>
+  <text x="886" y="431" class="step" fill="#9fe7ff">Replication</text>
   <text x="909" y="462" class="step-note">cloud queues</text>
-  <text x="867" y="579" class="body" font-weight="700" fill="#39dbc1">4  DISTRIBUTE</text>
+  <text x="867" y="579" class="body" font-weight="700" fill="#9fe7ff">4  DISTRIBUTE</text>
 
   <path d="M1115 422H1213" class="arrow"/>
-  <rect x="1234" y="250" width="294" height="430" rx="22" fill="#121c1b" stroke="#32cbb3" stroke-width="3"/>
-  <text x="1268" y="298" class="step" fill="#72ead7">PUBLISH</text>
-  <rect x="1268" y="332" width="226" height="188" rx="14" fill="#fff" stroke="#28524a" stroke-width="2"/>
-  <rect x="1292" y="356" width="178" height="80" rx="8" fill="#162c28"/>
-  <path d="M1292 425l48-45 38 27 34-24 58 53h-178Z" fill="#2fc2ab"/>
-  <text x="1292" y="478" class="body" font-weight="700" fill="#72ead7">Cycling Yucatán</text>
-  <rect x="1268" y="548" width="226" height="58" rx="12" fill="#32cbb3"/>
+  <rect x="1234" y="250" width="294" height="430" rx="22" fill="#092a42" stroke="#74d2f5" stroke-width="3"/>
+  <text x="1268" y="298" class="step" fill="#b9ecff">PUBLISH</text>
+  <rect x="1268" y="332" width="226" height="188" rx="14" fill="#fff" stroke="#356f90" stroke-width="2"/>
+  <rect x="1292" y="356" width="178" height="80" rx="8" fill="#123a55"/>
+  <path d="M1292 425l48-45 38 27 34-24 58 53h-178Z" fill="#77d1f3"/>
+  <text x="1292" y="478" class="body" font-weight="700" fill="#b9ecff">Cycling Yucatán</text>
+  <rect x="1268" y="548" width="226" height="58" rx="12" fill="#74d2f5"/>
   <text x="1292" y="584" class="body white" font-weight="700">5  DELIVER</text>
   <text x="1270" y="635" class="small">Approved content</text><text x="1270" y="660" class="small">can now render.</text>
 
-  <rect x="72" y="738" width="1456" height="82" rx="16" fill="#101817" stroke="#2fbba5" stroke-width="2"/>
-  <text x="102" y="772" class="body" font-weight="700" fill="#72ead7">What does not happen:</text>
+  <rect x="72" y="738" width="1456" height="82" rx="16" fill="#08283f" stroke="#6ecbed" stroke-width="2"/>
+  <text x="102" y="772" class="body" font-weight="700" fill="#b9ecff">What does not happen:</text>
   <text x="102" y="802" class="body">no Java compilation, Maven build, package installation or Cloud Manager deployment.</text>
   <text x="72" y="862" class="source">Source: Adobe · AEM as a Cloud Service replication service</text>
 </svg>

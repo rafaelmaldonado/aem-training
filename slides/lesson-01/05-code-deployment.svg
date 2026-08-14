@@ -2,55 +2,57 @@
   <title id="title">Code moves through a controlled pipeline</title>
   <desc id="desc">Changes in Git pass through build, test and security gates before one deployment updates the application on both Author and Publish.</desc>
   <defs>
-    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 8 4 0 8Z" fill="#32cbb3"/></marker>
+    <radialGradient id="blue-glow" cx="52%" cy="76%" r="72%"><stop offset="0" stop-color="#e9f9ff" stop-opacity=".9"/><stop offset=".3" stop-color="#7bc9ea" stop-opacity=".34"/><stop offset=".68" stop-color="#174e70" stop-opacity=".12"/><stop offset="1" stop-color="#031d32" stop-opacity="0"/></radialGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#9fe7ff" opacity=".22"/></pattern>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 8 4 0 8Z" fill="#74d2f5"/></marker>
     <style>
-      text{font-family:Inter,Arial,sans-serif;fill:#f4f7f6}.eyebrow{font-size:20px;font-weight:800;letter-spacing:3px;fill:#39dbc1}.title{font-size:56px;font-weight:760;letter-spacing:-2px}.subtitle{font-size:23px;fill:#9aa5a2}.node{font-size:24px;font-weight:760}.node-note{font-size:17px;fill:#9aa5a2}.body{font-size:21px}.small{font-size:17px;fill:#9aa5a2}.white{fill:#fff}.source{font-size:15px;fill:#71807c}.arrow{fill:none;stroke:#32cbb3;stroke-width:6;marker-end:url(#arrow)}
-    rect[fill="#fff"],path[fill="#fff"],circle[fill="#fff"]{fill:#111817}</style>
+      text{font-family:Inter,Arial,sans-serif;fill:#f7fbff}.eyebrow{font-size:20px;font-weight:800;letter-spacing:3px;fill:#9fe7ff}.title{font-size:56px;font-weight:760;letter-spacing:-2px}.subtitle{font-size:23px;fill:#b8c8d4}.node{font-size:24px;font-weight:760}.node-note{font-size:17px;fill:#b8c8d4}.body{font-size:21px}.small{font-size:17px;fill:#b8c8d4}.white{fill:#fff}.source{font-size:15px;fill:#6f91a5}.arrow{fill:none;stroke:#74d2f5;stroke-width:6;marker-end:url(#arrow)}
+    rect[fill="#fff"],path[fill="#fff"],circle[fill="#fff"]{fill:#08283f}</style>
   </defs>
-  <rect width="1600" height="900" fill="#0b0f0e"/><rect width="14" height="900" fill="#39dbc1"/>
-  <g opacity=".16" fill="none" stroke="#53615e"><circle cx="1570" cy="920" r="650" stroke-width="180"/><circle cx="1570" cy="920" r="390" stroke-width="110"/></g>
+  <rect width="1600" height="900" fill="#031d32"/><rect width="14" height="900" fill="#9fe7ff"/>
+  <rect width="1600" height="900" fill="url(#blue-glow)"/><rect width="1600" height="900" fill="url(#dots)" opacity=".18"/><g opacity=".12" fill="none" stroke="#9fe7ff"><circle cx="1570" cy="920" r="650" stroke-width="180"/><circle cx="1570" cy="920" r="390" stroke-width="110"/></g>
   <text x="72" y="70" class="eyebrow">05 · APPLICATION LIFECYCLE</text>
   <text x="72" y="145" class="title">Code moves through a controlled pipeline.</text>
   <text x="72" y="198" class="subtitle">A deployment changes application capability; it does not publish an author's draft.</text>
 
-  <rect x="72" y="275" width="300" height="250" rx="22" fill="#121c1b" stroke="#32cbb3" stroke-width="3"/>
-  <path d="M118 325h88l26 28h94v124H118Z" fill="#fff" stroke="#32cbb3" stroke-width="3" stroke-linejoin="round"/>
-  <text x="150" y="386" class="node" fill="#72ead7">Git repository</text>
+  <rect x="72" y="275" width="300" height="250" rx="22" fill="#092a42" stroke="#74d2f5" stroke-width="3"/>
+  <path d="M118 325h88l26 28h94v124H118Z" fill="#fff" stroke="#74d2f5" stroke-width="3" stroke-linejoin="round"/>
+  <text x="150" y="386" class="node" fill="#b9ecff">Git repository</text>
   <text x="150" y="423" class="small">Java · HTL · CSS · JS</text>
   <text x="150" y="454" class="small">OSGi · Dispatcher config</text>
-  <text x="116" y="497" class="body" font-weight="700" fill="#72ead7">1  COMMIT</text>
+  <text x="116" y="497" class="body" font-weight="700" fill="#b9ecff">1  COMMIT</text>
 
   <path d="M372 400H478" class="arrow"/>
-  <rect x="500" y="250" width="530" height="300" rx="22" fill="#fff" stroke="#32cbb3" stroke-width="3"/>
-  <text x="538" y="296" class="node" fill="#72ead7">Cloud Manager pipeline</text>
-  <rect x="538" y="334" width="138" height="118" rx="14" fill="#121c1b" stroke="#32cbb3" stroke-width="2"/>
-  <text x="573" y="384" class="node" fill="#72ead7">Build</text><text x="567" y="417" class="small">packages</text>
+  <rect x="500" y="250" width="530" height="300" rx="22" fill="#fff" stroke="#74d2f5" stroke-width="3"/>
+  <text x="538" y="296" class="node" fill="#b9ecff">Cloud Manager pipeline</text>
+  <rect x="538" y="334" width="138" height="118" rx="14" fill="#092a42" stroke="#74d2f5" stroke-width="2"/>
+  <text x="573" y="384" class="node" fill="#b9ecff">Build</text><text x="567" y="417" class="small">packages</text>
   <path d="M678 392H710" class="arrow"/>
-  <rect x="730" y="334" width="138" height="118" rx="14" fill="#121c1b" stroke="#32cbb3" stroke-width="2"/>
-  <text x="768" y="384" class="node" fill="#72ead7">Test</text><text x="751" y="417" class="small">behavior</text>
+  <rect x="730" y="334" width="138" height="118" rx="14" fill="#092a42" stroke="#74d2f5" stroke-width="2"/>
+  <text x="768" y="384" class="node" fill="#b9ecff">Test</text><text x="751" y="417" class="small">behavior</text>
   <path d="M870 392H902" class="arrow"/>
-  <rect x="922" y="334" width="80" height="118" rx="14" fill="#121c1b" stroke="#32cbb3" stroke-width="2"/>
-  <text x="941" y="384" class="node" fill="#72ead7">Scan</text><text x="937" y="417" class="small">quality</text>
-  <text x="538" y="508" class="body" font-weight="700" fill="#72ead7">2  BUILD + QUALITY GATES</text>
+  <rect x="922" y="334" width="80" height="118" rx="14" fill="#092a42" stroke="#74d2f5" stroke-width="2"/>
+  <text x="941" y="384" class="node" fill="#b9ecff">Scan</text><text x="937" y="417" class="small">quality</text>
+  <text x="538" y="508" class="body" font-weight="700" fill="#b9ecff">2  BUILD + QUALITY GATES</text>
 
   <path d="M1030 400H1120" class="arrow"/>
-  <circle cx="1180" cy="400" r="54" fill="#32cbb3"/>
+  <circle cx="1180" cy="400" r="54" fill="#74d2f5"/>
   <text x="1137" y="408" class="node white">DEPLOY</text>
   <path d="M1234 384H1310V322" class="arrow"/>
   <path d="M1234 416H1310V500" class="arrow"/>
-  <rect x="1330" y="265" width="198" height="114" rx="18" fill="#101817" stroke="#2fbba5" stroke-width="3"/>
-  <text x="1380" y="318" class="node" fill="#72ead7">Author</text><text x="1370" y="349" class="small">new application</text>
-  <rect x="1330" y="443" width="198" height="114" rx="18" fill="#121c1b" stroke="#32cbb3" stroke-width="3"/>
-  <text x="1378" y="496" class="node" fill="#72ead7">Publish</text><text x="1370" y="527" class="small">new application</text>
-  <text x="1107" y="594" class="body" font-weight="700" fill="#72ead7">3  ONE VERSION</text>
+  <rect x="1330" y="265" width="198" height="114" rx="18" fill="#08283f" stroke="#6ecbed" stroke-width="3"/>
+  <text x="1380" y="318" class="node" fill="#b9ecff">Author</text><text x="1370" y="349" class="small">new application</text>
+  <rect x="1330" y="443" width="198" height="114" rx="18" fill="#092a42" stroke="#74d2f5" stroke-width="3"/>
+  <text x="1378" y="496" class="node" fill="#b9ecff">Publish</text><text x="1370" y="527" class="small">new application</text>
+  <text x="1107" y="594" class="body" font-weight="700" fill="#b9ecff">3  ONE VERSION</text>
   <text x="1121" y="625" class="small">deployed to both tiers</text>
 
-  <rect x="72" y="676" width="700" height="128" rx="18" fill="#102522" stroke="#39dbc1" stroke-width="2"/>
-  <text x="104" y="717" class="body" font-weight="700" fill="#72ead7">CONTENT EXAMPLE</text>
+  <rect x="72" y="676" width="700" height="128" rx="18" fill="#0a3048" stroke="#9fe7ff" stroke-width="2"/>
+  <text x="104" y="717" class="body" font-weight="700" fill="#b9ecff">CONTENT EXAMPLE</text>
   <text x="104" y="753" class="body">Change the Guide Card title in its dialog.</text>
   <text x="104" y="783" class="small">Uses publication flow · no build</text>
-  <rect x="828" y="676" width="700" height="128" rx="18" fill="#121c1b" stroke="#32cbb3" stroke-width="2"/>
-  <text x="860" y="717" class="body" font-weight="700" fill="#72ead7">CODE EXAMPLE</text>
+  <rect x="828" y="676" width="700" height="128" rx="18" fill="#092a42" stroke="#74d2f5" stroke-width="2"/>
+  <text x="860" y="717" class="body" font-weight="700" fill="#b9ecff">CODE EXAMPLE</text>
   <text x="860" y="753" class="body">Change the Guide Card HTL or Sling Model.</text>
   <text x="860" y="783" class="small">Uses deployment flow · build required</text>
   <text x="72" y="862" class="source">Source: Adobe · AEM as a Cloud Service deployment architecture</text>
