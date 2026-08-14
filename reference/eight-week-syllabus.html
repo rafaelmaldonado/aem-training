@@ -22,127 +22,128 @@
   <header>
     <p class="eyebrow">40 sesiones · temario completo</p>
     <h1>De authoring a desarrollo AEM.</h1>
-    <p class="lede">Ruta de ocho semanas para seis desarrolladores remotos con experiencia frontend y de autoría, comenzando los fundamentos técnicos desde cero.</p>
+    <p class="lede">An eight-week path for six remote developers with frontend and authoring experience, building AEM technical foundations from the ground up.</p>
     <ul class="meta"><li>AEM Sites tradicional</li><li>30 min en línea</li><li>60–120 min de práctica</li></ul>
   </header>
   <main id="contenido">
     <section class="callout"><strong>Formato diario:</strong> 3 min de recuperación, 2 min de objetivo, 12 min de slides, 8 min de demo, 3 min para explicar el ejercicio y 2 min de cierre. Después: 60–120 min de práctica asíncrona.</section>
+    <p><strong>Course objective:</strong> Enable frontend-oriented developers to maintain, extend, test, deploy and troubleshoot traditional AEM Sites solutions on AEM as a Cloud Service.</p>
     <p>La práctica es el núcleo. El tiempo restante de la ventana disponible de 2–4 horas se usa en proyecto integrador, lectura oficial o PR review, sin extender la sesión en línea.</p>
     <p><strong>Proyecto del curso:</strong> mantenimiento y extensión del repositorio oficial WKND mediante el escenario <em>Weekend Guides</em>. <a href="wknd-project-backlog.html">Abrir el backlog de 48 historias →</a></p>
 
     <p><a href="slide-ready-lessons.html">Abrir el contenido listo para slides de las 40 sesiones →</a></p>
 
-    <h2>Resultados del curso</h2>
+    <h2>Course outcomes</h2>
     <ul class="checklist">
-      <li>Explicar el recorrido de contenido y código desde Author hasta el navegador.</li>
-      <li>Leer la estructura de un proyecto AEM y localizar correctamente un cambio.</li>
-      <li>Modificar componentes authorables con HTL, diálogos, clientlibs y Sling Models.</li>
-      <li>Construir, probar, revisar y desplegar cambios compatibles con AEM Cloud.</li>
-      <li>Diagnosticar problemas básicos de AEM, Dispatcher, caché y pipeline.</li>
-      <li>Demostrar competencia individual mediante artefactos y explicación técnica.</li>
+      <li>Explain how content and code travel from Author to the browser.</li>
+      <li>Read an AEM project structure and locate a change in the correct module.</li>
+      <li>Modify authorable components with HTL, dialogs, client libraries and Sling Models.</li>
+      <li>Build, test, review and deploy changes compatible with AEM as a Cloud Service.</li>
+      <li>Troubleshoot foundational AEM, Dispatcher, caching and pipeline issues.</li>
+      <li>Demonstrate individual proficiency through working artifacts and technical explanation.</li>
     </ul>
 
-    <h2 class="week" id="semana-1">Semana 1 · Modelo mental y entorno</h2>
+    <h2 class="week" id="semana-1">Week 1 · Mental model and environment</h2>
     <p><strong>Entrega semanal:</strong> entorno local funcional y mapa técnico de una página del proyecto.</p>
     <div class="table-wrap"><table>
-      <thead><tr><th>Día</th><th>Objetivo y temas</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
+      <thead><tr><th>Día</th><th>Objective and topics</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
       <tbody>
-        <tr><td>1</td><td>AEM Sites desde cero: AEMaaCS, Author, Publish, Dispatcher/CDN, contenido y código</td><td>Recorrer una página desde la edición hasta la entrega</td><td>Diagrama explicado sin apuntes</td></tr>
-        <tr><td>2</td><td>SDK local, Maven y módulos del repositorio: <code>core</code>, <code>ui.apps</code>, <code>ui.content</code>, <code>ui.config</code>, <code>all</code>, <code>dispatcher</code></td><td>Levantar Author, construir e instalar el proyecto</td><td>Build exitoso y mapa de módulos</td></tr>
-        <tr><td>3</td><td>JCR, nodos, propiedades, recursos y separación <code>/apps</code>, <code>/content</code>, <code>/conf</code></td><td>Relacionar una página authorable con su representación en el repositorio</td><td>Ruta, propiedades y propósito</td></tr>
-        <tr><td>4</td><td>Sling: resolución URL → recurso → tipo de recurso → script</td><td>Trazar la resolución de una URL real del proyecto</td><td>Traza anotada</td></tr>
-        <tr><td>5</td><td>Integración de conceptos y primer diagnóstico técnico</td><td>Investigar una página rota con pistas limitadas</td><td>Hallazgo, evidencia y siguiente prueba</td></tr>
+        <tr><td>1</td><td>AEM Sites from the ground up: AEMaaCS, Author, Publish, Dispatcher/CDN, content and code</td><td>Recorrer una página desde la edición hasta la entrega</td><td>Diagrama explicado sin apuntes</td></tr>
+        <tr><td>2</td><td>Local SDK, Maven and repository modules: <code>core</code>, <code>ui.apps</code>, <code>ui.content</code>, <code>ui.config</code>, <code>all</code>, <code>dispatcher</code></td><td>Levantar Author, construir e instalar el proyecto</td><td>Build exitoso y mapa de módulos</td></tr>
+        <tr><td>3</td><td>JCR, nodes, properties, resources and the separation of <code>/apps</code>, <code>/content</code> and <code>/conf</code></td><td>Relacionar una página authorable con su representación en el repositorio</td><td>Ruta, propiedades y propósito</td></tr>
+        <tr><td>4</td><td>Sling resolution: URL → resource → resource type → script</td><td>Trazar la resolución de una URL real del proyecto</td><td>Traza anotada</td></tr>
+        <tr><td>5</td><td>Concept integration and first technical diagnosis</td><td>Investigar una página rota con pistas limitadas</td><td>Hallazgo, evidencia y siguiente prueba</td></tr>
       </tbody>
     </table></div>
 
-    <h2 class="week" id="semana-2">Semana 2 · Autoría diseñada para mantenerse</h2>
+    <h2 class="week" id="semana-2">Week 2 · Maintainable authoring</h2>
     <p><strong>Entrega semanal:</strong> una sección authorable configurada con template, política y Core Components.</p>
     <div class="table-wrap"><table>
-      <thead><tr><th>Día</th><th>Objetivo y temas</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
+      <thead><tr><th>Día</th><th>Objective and topics</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
       <tbody>
-        <tr><td>6</td><td>Páginas, templates editables, tipos de template y estructura inicial</td><td>Crear o inspeccionar un template del proyecto</td><td>Explicación estructura vs. contenido</td></tr>
-        <tr><td>7</td><td>Políticas, componentes permitidos, Style System y responsabilidades del autor</td><td>Configurar una política sin modificar el componente</td><td>Cambio y justificación</td></tr>
-        <tr><td>8</td><td>Componentes, diálogos Granite UI y persistencia de propiedades</td><td>Seguir un campo desde el diálogo hasta JCR y render</td><td>Mapa campo → propiedad → salida</td></tr>
-        <tr><td>9</td><td>Assets, referencias, componente Image, responsive images, texto alternativo</td><td>Crear una variante accesible con un asset</td><td>Revisión de authorability y a11y</td></tr>
-        <tr><td>10</td><td>Checkpoint de authoring y modelado</td><td>Revisión asíncrona de la sección de otra persona</td><td>Dos hallazgos y una corrección</td></tr>
+        <tr><td>6</td><td>Pages, editable templates, template types and initial structure</td><td>Crear o inspeccionar un template del proyecto</td><td>Explicación estructura vs. contenido</td></tr>
+        <tr><td>7</td><td>Policies, allowed components, the Style System and author responsibilities</td><td>Configurar una política sin modificar el componente</td><td>Cambio y justificación</td></tr>
+        <tr><td>8</td><td>Components, Granite UI dialogs and property persistence</td><td>Seguir un campo desde el diálogo hasta JCR y render</td><td>Mapa campo → propiedad → salida</td></tr>
+        <tr><td>9</td><td>Assets, references, the Image Component, responsive images and alternative text</td><td>Crear una variante accesible con un asset</td><td>Revisión de authorability y a11y</td></tr>
+        <tr><td>10</td><td>Authoring and content modeling checkpoint</td><td>Revisión asíncrona de la sección de otra persona</td><td>Dos hallazgos y una corrección</td></tr>
       </tbody>
     </table></div>
 
-    <h2 class="week" id="semana-3">Semana 3 · Desarrollo frontend en AEM</h2>
+    <h2 class="week" id="semana-3">Week 3 · Frontend development in AEM</h2>
     <p><strong>Entrega semanal:</strong> componente proxy authorable, accesible y responsive.</p>
     <div class="table-wrap"><table>
-      <thead><tr><th>Día</th><th>Objetivo y temas</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
+      <thead><tr><th>Día</th><th>Objective and topics</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
       <tbody>
-        <tr><td>11</td><td>HTL: expresiones, atributos, condiciones, listas, templates y context-aware escaping</td><td>Renderizar propiedades con salida segura</td><td>HTL y explicación del contexto</td></tr>
-        <tr><td>12</td><td>Client Libraries: categorías, dependencias, embed, carga y depuración</td><td>Modificar CSS/JS y comprobar inclusión</td><td>Red de dependencias clientlib</td></tr>
-        <tr><td>13</td><td>Core Components y proxy pattern; <code>sling:resourceSuperType</code></td><td>Crear/extender un proxy sin copiar implementación</td><td>Diff mínimo y razón de extensión</td></tr>
-        <tr><td>14</td><td>Responsive, accesibilidad, estados y experiencia de autor vacía</td><td>Probar teclado, viewport y estado sin contenido</td><td>Lista de pruebas y corrección</td></tr>
-        <tr><td>15</td><td>Integración vertical frontend</td><td>Resolver un ticket desde diálogo hasta navegador</td><td>PR y demo individual breve</td></tr>
+        <tr><td>11</td><td>HTL: expressions, attributes, conditions, lists, templates and context-aware escaping</td><td>Renderizar propiedades con salida segura</td><td>HTL y explicación del contexto</td></tr>
+        <tr><td>12</td><td>Client Libraries: categories, dependencies, embed, loading and debugging</td><td>Modificar CSS/JS y comprobar inclusión</td><td>Red de dependencias clientlib</td></tr>
+        <tr><td>13</td><td>Core Components and the proxy pattern; <code>sling:resourceSuperType</code></td><td>Crear/extender un proxy sin copiar implementación</td><td>Diff mínimo y razón de extensión</td></tr>
+        <tr><td>14</td><td>Responsive behavior, accessibility, states and the empty author experience</td><td>Probar teclado, viewport y estado sin contenido</td><td>Lista de pruebas y corrección</td></tr>
+        <tr><td>15</td><td>Vertical frontend integration</td><td>Resolver un ticket desde diálogo hasta navegador</td><td>PR y demo individual breve</td></tr>
       </tbody>
     </table></div>
 
-    <h2 class="week" id="semana-4">Semana 4 · Backend esencial para frontend developers</h2>
+    <h2 class="week" id="semana-4">Week 4 · Essential backend for frontend developers</h2>
     <p><strong>Entrega semanal:</strong> Sling Model probado que mantiene HTL simple.</p>
     <div class="table-wrap"><table>
-      <thead><tr><th>Día</th><th>Objetivo y temas</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
+      <thead><tr><th>Día</th><th>Objective and topics</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
       <tbody>
-        <tr><td>16</td><td>Java y OSGi en el contexto de AEM: bundle, servicio, componente y ciclo de vida</td><td>Localizar bundle y clases del proyecto</td><td>Mapa código → bundle → runtime</td></tr>
-        <tr><td>17</td><td>Sling Models: adaptables, inyección, opcionalidad, getters y límites</td><td>Exponer un valor calculado a HTL</td><td>Modelo funcional y decisión de fallback</td></tr>
-        <tr><td>18</td><td>Servicios OSGi y configuración por ambiente</td><td>Consumir una configuración desde un servicio sencillo</td><td>Configuración sin secretos en Git</td></tr>
-        <tr><td>19</td><td>Resource API, servlets y cuándo no crear un endpoint</td><td>Resolver un caso primero con recursos/modelo; servlet sólo si procede</td><td>Decisión y superficie de seguridad</td></tr>
-        <tr><td>20</td><td>Pruebas unitarias de Sling Models y checkpoint backend</td><td>Agregar una prueba que falla antes del fix</td><td>Test, implementación y resultado</td></tr>
+        <tr><td>16</td><td>Java and OSGi in AEM: bundles, services, components and lifecycle</td><td>Localizar bundle y clases del proyecto</td><td>Mapa código → bundle → runtime</td></tr>
+        <tr><td>17</td><td>Sling Models: adaptables, injection, optionality, getters and boundaries</td><td>Exponer un valor calculado a HTL</td><td>Modelo funcional y decisión de fallback</td></tr>
+        <tr><td>18</td><td>OSGi services and environment-specific configuration</td><td>Consumir una configuración desde un servicio sencillo</td><td>Configuración sin secretos en Git</td></tr>
+        <tr><td>19</td><td>Resource API, servlets and when not to create an endpoint</td><td>Resolver un caso primero con recursos/modelo; servlet sólo si procede</td><td>Decisión y superficie de seguridad</td></tr>
+        <tr><td>20</td><td>Sling Model unit testing and backend checkpoint</td><td>Agregar una prueba que falla antes del fix</td><td>Test, implementación y resultado</td></tr>
       </tbody>
     </table></div>
 
-    <h2 class="week" id="semana-5">Semana 5 · Mantenimiento e investigación</h2>
+    <h2 class="week" id="semana-5">Week 5 · Maintenance and investigation</h2>
     <p><strong>Entrega semanal:</strong> ticket desconocido diagnosticado y corregido con evidencia.</p>
     <div class="table-wrap"><table>
-      <thead><tr><th>Día</th><th>Objetivo y temas</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
+      <thead><tr><th>Día</th><th>Objective and topics</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
       <tbody>
-        <tr><td>21</td><td>Estructura cloud-compatible: contenido mutable, código inmutable y paquetes</td><td>Clasificar rutas y módulos de un cambio</td><td>Ubicación correcta y riesgo</td></tr>
-        <tr><td>22</td><td>Logs, bundles, componentes, configuraciones y herramientas de diagnóstico</td><td>Encontrar la causa de un bundle o servicio inactivo</td><td>Hipótesis → prueba → conclusión</td></tr>
-        <tr><td>23</td><td>Workflows, launchers, jobs y límites cloud</td><td>Inspeccionar un flujo existente y sus efectos</td><td>Diagrama de evento y responsabilidad</td></tr>
-        <tr><td>24</td><td>Búsquedas, QueryBuilder/Oak, índices y señales de consulta costosa</td><td>Evaluar una consulta sin crear índices especulativos</td><td>Resultado y recomendación</td></tr>
-        <tr><td>25</td><td>Simulación de mantenimiento</td><td>Tomar un reporte ambiguo, reproducir, corregir y verificar regresión</td><td>Informe corto con PR</td></tr>
+        <tr><td>21</td><td>Cloud-compatible structure: mutable content, immutable code and packages</td><td>Clasificar rutas y módulos de un cambio</td><td>Ubicación correcta y riesgo</td></tr>
+        <tr><td>22</td><td>Logs, bundles, components, configurations and diagnostic tools</td><td>Encontrar la causa de un bundle o servicio inactivo</td><td>Hipótesis → prueba → conclusión</td></tr>
+        <tr><td>23</td><td>Workflows, launchers, jobs and cloud limitations</td><td>Inspeccionar un flujo existente y sus efectos</td><td>Diagrama de evento y responsabilidad</td></tr>
+        <tr><td>24</td><td>Search, QueryBuilder/Oak, indexes and signs of an expensive query</td><td>Evaluar una consulta sin crear índices especulativos</td><td>Resultado y recomendación</td></tr>
+        <tr><td>25</td><td>Maintenance simulation</td><td>Tomar un reporte ambiguo, reproducir, corregir y verificar regresión</td><td>Informe corto con PR</td></tr>
       </tbody>
     </table></div>
 
-    <h2 class="week" id="semana-6">Semana 6 · Entrega en AEM as a Cloud Service</h2>
+    <h2 class="week" id="semana-6">Week 6 · Delivery on AEM as a Cloud Service</h2>
     <p><strong>Entrega semanal:</strong> cambio desplegado o pipeline simulado con diagnóstico de una falla.</p>
     <div class="table-wrap"><table>
-      <thead><tr><th>Día</th><th>Objetivo y temas</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
+      <thead><tr><th>Día</th><th>Objective and topics</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
       <tbody>
-        <tr><td>26</td><td>Programas, ambientes, servicios, repositorios y flujo Git del equipo</td><td>Trazar commit → build → ambiente</td><td>Mapa de entrega</td></tr>
-        <tr><td>27</td><td>Cloud Manager, pipelines, quality gates y lectura de logs</td><td>Clasificar una falla de pipeline y localizar su dueño</td><td>Diagnóstico con línea de evidencia</td></tr>
-        <tr><td>28</td><td>Dispatcher: virtual hosts, filters, rewrites y caché</td><td>Leer la configuración del proyecto y evaluar una URL</td><td>Decisión allow/deny/cache</td></tr>
-        <tr><td>29</td><td>CDN, headers, invalidación y recorrido de un cache miss</td><td>Explicar dos solicitudes consecutivas a la misma página</td><td>Traza CDN → Dispatcher → Publish</td></tr>
-        <tr><td>30</td><td>Ensayo de despliegue y recuperación</td><td>Desplegar si hay acceso; si no, ejecutar un pipeline lab con logs reales anonimizados</td><td>Resultado y runbook corregido</td></tr>
+        <tr><td>26</td><td>Programs, environments, services, repositories and the team's Git workflow</td><td>Trazar commit → build → ambiente</td><td>Mapa de entrega</td></tr>
+        <tr><td>27</td><td>Cloud Manager, pipelines, quality gates and log analysis</td><td>Clasificar una falla de pipeline y localizar su dueño</td><td>Diagnóstico con línea de evidencia</td></tr>
+        <tr><td>28</td><td>Dispatcher: virtual hosts, filters, rewrites and caching</td><td>Leer la configuración del proyecto y evaluar una URL</td><td>Decisión allow/deny/cache</td></tr>
+        <tr><td>29</td><td>CDN, headers, invalidation and the path of a cache miss</td><td>Explicar dos solicitudes consecutivas a la misma página</td><td>Traza CDN → Dispatcher → Publish</td></tr>
+        <tr><td>30</td><td>Deployment and recovery rehearsal</td><td>Desplegar si hay acceso; si no, ejecutar un pipeline lab con logs reales anonimizados</td><td>Resultado y runbook corregido</td></tr>
       </tbody>
     </table></div>
 
-    <h2 class="week" id="semana-7">Semana 7 · Calidad de producción</h2>
+    <h2 class="week" id="semana-7">Week 7 · Production quality</h2>
     <p><strong>Entrega semanal:</strong> auditoría cruzada con corrección de los riesgos prioritarios.</p>
     <div class="table-wrap"><table>
-      <thead><tr><th>Día</th><th>Objetivo y temas</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
+      <thead><tr><th>Día</th><th>Objective and topics</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
       <tbody>
-        <tr><td>31</td><td>Usuarios, grupos, permisos, service users y mínimo privilegio</td><td>Revisar un acceso sin codificar credenciales</td><td>Matriz recurso/acción/principal</td></tr>
-        <tr><td>32</td><td>Seguridad de salida, validación, CSRF/XSS y secretos</td><td>Threat review de un componente o endpoint</td><td>Riesgo, control y comprobación</td></tr>
-        <tr><td>33</td><td>Accesibilidad, SEO y semántica en componentes authorables</td><td>Auditar HTML, teclado, títulos y metadata</td><td>Hallazgo reproducible y fix</td></tr>
-        <tr><td>34</td><td>Rendimiento y pruebas: unitarias, integración, UI y smoke tests</td><td>Elegir la comprobación más barata para cada riesgo</td><td>Matriz riesgo → prueba</td></tr>
-        <tr><td>35</td><td>Revisión de producción</td><td>Auditoría asíncrona del cambio de otra persona</td><td>PR review y corrección aceptada</td></tr>
+        <tr><td>31</td><td>Users, groups, permissions, service users and least privilege</td><td>Revisar un acceso sin codificar credenciales</td><td>Matriz recurso/acción/principal</td></tr>
+        <tr><td>32</td><td>Output security, validation, CSRF/XSS and secrets</td><td>Threat review de un componente o endpoint</td><td>Riesgo, control y comprobación</td></tr>
+        <tr><td>33</td><td>Accessibility, SEO and semantics in authorable components</td><td>Auditar HTML, teclado, títulos y metadata</td><td>Hallazgo reproducible y fix</td></tr>
+        <tr><td>34</td><td>Performance and testing: unit, integration, UI and smoke tests</td><td>Elegir la comprobación más barata para cada riesgo</td><td>Matriz riesgo → prueba</td></tr>
+        <tr><td>35</td><td>Production review</td><td>Auditoría asíncrona del cambio de otra persona</td><td>PR review y corrección aceptada</td></tr>
       </tbody>
     </table></div>
 
-    <h2 class="week" id="semana-8">Semana 8 · Capstone y transferencia</h2>
+    <h2 class="week" id="semana-8">Week 8 · Capstone and knowledge transfer</h2>
     <p><strong>Entrega semanal:</strong> evaluación práctica individual, demo grupal y backlog de crecimiento.</p>
     <div class="table-wrap"><table>
-      <thead><tr><th>Día</th><th>Objetivo y temas</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
+      <thead><tr><th>Día</th><th>Objective and topics</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
       <tbody>
-        <tr><td>36</td><td>Planear el incremento final y dividir trabajo sin ocultar ownership</td><td>Refinar tickets, riesgos y criterios de aceptación</td><td>Ticket propio explicado</td></tr>
-        <tr><td>37</td><td>Implementación del capstone</td><td>Desarrollar con roles rotativos y commits pequeños</td><td>Artefacto propio verificable</td></tr>
-        <tr><td>38</td><td>Revisión, defectos y hardening</td><td>Revisar trabajo ajeno y corregir un hallazgo</td><td>Review y respuesta técnica</td></tr>
-        <tr><td>39</td><td>Evaluación práctica individual</td><td>Resolver una variante nueva sin ayuda directa</td><td>Resultado, prueba y explicación</td></tr>
-        <tr><td>40</td><td>Demo, defensa técnica, retrospectiva y plan de 30 días</td><td>Demostrar el sistema y responder escenarios</td><td>Nivel final y siguiente objetivo</td></tr>
+        <tr><td>36</td><td>Plan the final increment and divide work without obscuring ownership</td><td>Refinar tickets, riesgos y criterios de aceptación</td><td>Ticket propio explicado</td></tr>
+        <tr><td>37</td><td>Capstone implementation</td><td>Desarrollar con roles rotativos y commits pequeños</td><td>Artefacto propio verificable</td></tr>
+        <tr><td>38</td><td>Review, defects and hardening</td><td>Revisar trabajo ajeno y corregir un hallazgo</td><td>Review y respuesta técnica</td></tr>
+        <tr><td>39</td><td>Individual practical assessment</td><td>Resolver una variante nueva sin ayuda directa</td><td>Resultado, prueba y explicación</td></tr>
+        <tr><td>40</td><td>Demo, technical defense, retrospective and 30-day plan</td><td>Demostrar el sistema y responder escenarios</td><td>Nivel final y siguiente objetivo</td></tr>
       </tbody>
     </table></div>
 
