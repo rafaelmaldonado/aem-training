@@ -1,0 +1,363 @@
+{
+  "run_status": "slides_recorded",
+  "deck_name": "lesson-03",
+  "selected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Session 3 repository-boundaries sample prompt",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-03/sample/slide_06.png",
+    "input_context_preparation": "Use view_image to inspect the approved sample PNG before generation, then pass it to image_gen as a style-only reference.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "max_concurrent_slides": 3,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "Read AEM as a resource tree.",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-03/sample/slide_06.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact three-boundary layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/session3_slide_01",
+        "agent_nickname": "session3_slide_01",
+        "prompt": "prompts/slide_01.json",
+        "prompt_sha256": "84c86a495f9c8c8a8a65b26e56e0a87b2e30dbbc512ffe643adc450aad28c601",
+        "dispatched_at": "2026-08-17T23:23:41Z"
+      },
+      "result": {
+        "agent_id": "/root/session3_slide_01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a01200-1dd8-7460-9fa1-b8a6b2f59dc1/exec-d53db270-df98-480f-9e6e-be636bcc0288.png",
+        "selected_source_sha256": "42e31cd7cdb0bd4f966dae05bb56b8de6f179a542447aecf60ac16e0e1c5065e",
+        "final_image": "origin_image/slide_01.png",
+        "final_image_sha256": "42e31cd7cdb0bd4f966dae05bb56b8de6f179a542447aecf60ac16e0e1c5065e",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Exact cover text is legible; root uses jcr:primaryType = nt:unstructured, and Sling Resource is described as an application view.",
+        "recorded_at": "2026-08-17T23:23:41Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "JCR stores a hierarchy, not a table of pages.",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-03/sample/slide_06.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact three-boundary layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/session3_slide_02",
+        "agent_nickname": "session3_slide_02",
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "78d5b25f2c57aa6b286c28ceb6ec8bdc5e04aed08fdf2fa8f878e48e3277f7b7",
+        "dispatched_at": "2026-08-17T23:23:42Z"
+      },
+      "result": {
+        "agent_id": "/root/session3_slide_02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a01200-3aea-7600-8959-e36d10296a3f/exec-e9cf7b59-d237-48fc-9d45-1d972435fd66.png",
+        "selected_source_sha256": "a18525d8e8a8ea3250663f3888c84e3eb155837c9a94f0cead71d3f0249d7611",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "a18525d8e8a8ea3250663f3888c84e3eb155837c9a94f0cead71d3f0249d7611",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Nodes form the hierarchy, properties remain attached values, and path and node-type distinctions are legible.",
+        "recorded_at": "2026-08-17T23:23:42Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "A node holds structure; properties hold values.",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-03/sample/slide_06.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact three-boundary layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/session3_slide_03",
+        "agent_nickname": "session3_slide_03",
+        "prompt": "prompts/slide_03.json",
+        "prompt_sha256": "f910b30c1fe29a62130a7f378d4d31fa70d88609c13e8aff3b94252886b35e34",
+        "dispatched_at": "2026-08-17T23:23:42Z"
+      },
+      "result": {
+        "agent_id": "/root/session3_slide_03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a01200-5743-7813-b911-c5bc73faa8d4/exec-8afe833e-9ac9-4e4d-a3ca-01da83efb34c.png",
+        "selected_source_sha256": "5c1c81df11d036804cd037f8049096201a0fd198798be402ffc08c395be423c4",
+        "final_image": "origin_image/slide_03.png",
+        "final_image_sha256": "5c1c81df11d036804cd037f8049096201a0fd198798be402ffc08c395be423c4",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "jcr:primaryType, jcr:title, sling:resourceType and cq:tags are exact; scalar, multi-value and child-node concepts are distinct.",
+        "recorded_at": "2026-08-17T23:23:43Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "One page has two important layers.",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-03/sample/slide_06.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact three-boundary layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/session3_slide_04",
+        "agent_nickname": "session3_slide_04",
+        "prompt": "prompts/slide_04.json",
+        "prompt_sha256": "a3d1b8ce68e53f8e3ef140b5ba29cedf48b6238038c921febc8d6cafd4fdfcbc",
+        "dispatched_at": "2026-08-17T23:23:43Z"
+      },
+      "result": {
+        "agent_id": "/root/session3_slide_04",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a01202-3afa-7de1-8a54-8b8a882529ee/exec-e8105fe9-45ce-4306-97c6-3cdb4d3611dd.png",
+        "selected_source_sha256": "f4ad7a447e018efa5438d20a4cadfc1f6972689c3bc19ee8a432d507b541b965",
+        "final_image": "origin_image/slide_04.png",
+        "final_image_sha256": "f4ad7a447e018efa5438d20a4cadfc1f6972689c3bc19ee8a432d507b541b965",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Shows the Guide path as cq:Page, child jcr:content as cq:PageContent and component descendants below it.",
+        "recorded_at": "2026-08-17T23:23:43Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "Sling exposes repository content as resources.",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-03/sample/slide_06.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact three-boundary layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/session3_slide_05",
+        "agent_nickname": "session3_slide_05",
+        "prompt": "prompts/slide_05.json",
+        "prompt_sha256": "10030cdb86156a62588577aea619ea8e08040e765cc768accf5ee4f06ab56feb",
+        "dispatched_at": "2026-08-17T23:23:44Z"
+      },
+      "result": {
+        "agent_id": "/root/session3_slide_05",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a01202-5bfc-7dd3-870c-491503d14f06/exec-0bca8b2c-d802-4b29-8a86-d28a63127010.png",
+        "selected_source_sha256": "90be4fb04a3014235e3d9bccdaeeafa45f208ed71ff3e4366dac815475ee2823",
+        "final_image": "origin_image/slide_05.png",
+        "final_image_sha256": "90be4fb04a3014235e3d9bccdaeeafa45f208ed71ff3e4366dac815475ee2823",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "ResourceResolver and same repository path replace the incorrect adaptTo arrow; ValueMap and sling:resourceType remain exact.",
+        "recorded_at": "2026-08-17T23:23:44Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "Content, configuration and code have different owners.",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-03/sample/slide_06.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact three-boundary layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "accepted",
+      "dispatch": null,
+      "result": {
+        "final_image": "origin_image/slide_06.png",
+        "accepted_sample": true
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "Trace one Guide Page without changing it.",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-03/sample/slide_06.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact three-boundary layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/session3_slide_07",
+        "agent_nickname": "session3_slide_07",
+        "prompt": "prompts/slide_07.json",
+        "prompt_sha256": "5331322d8f1a11a6d484de1299c836e84d94b02128b878d60acaddde6ba1b74e",
+        "dispatched_at": "2026-08-17T23:23:44Z"
+      },
+      "result": {
+        "agent_id": "/root/session3_slide_07",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a01202-eea8-7620-a678-128d92b093ab/exec-7f28adb7-33a2-43e3-9563-ebbbcfdd100a.png",
+        "selected_source_sha256": "b8b6439cda92b3ad4945c93a215e0181b6e7c4c895afe21c7681976fbca1f6e7",
+        "final_image": "origin_image/slide_07.png",
+        "final_image_sha256": "b8b6439cda92b3ad4945c93a215e0181b6e7c4c895afe21c7681976fbca1f6e7",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Read-only /content to sling:resourceType to /apps trace is clear; /conf supplies policy and no live environment is required.",
+        "recorded_at": "2026-08-17T23:23:44Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "Key takeaways",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-03/sample/slide_06.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact three-boundary layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/session3_slide_08",
+        "agent_nickname": "session3_slide_08",
+        "prompt": "prompts/slide_08.json",
+        "prompt_sha256": "f85d7429d40d834d087e8e4fc9fe7229e1afff45e65a4d7b2a61b0bd7ad538c5",
+        "dispatched_at": "2026-08-17T23:23:45Z"
+      },
+      "result": {
+        "agent_id": "/root/session3_slide_08",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a01204-9b8e-7930-a2ec-9c1b5ac3eb17/exec-e3dbff70-d45f-4ebc-8ef7-e6ed299e110e.png",
+        "selected_source_sha256": "f0a7873944f9b70cb62da03183cffb22bdbb91f8981c4c1a68c7dc8e75ae5a43",
+        "final_image": "origin_image/slide_08.png",
+        "final_image_sha256": "f0a7873944f9b70cb62da03183cffb22bdbb91f8981c4c1a68c7dc8e75ae5a43",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "All four key takeaways are legible, exact and introduce no new technical concept.",
+        "recorded_at": "2026-08-17T23:23:45Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Questions",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-03/sample/slide_06.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact three-boundary layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/session3_slide_09",
+        "agent_nickname": "session3_slide_09",
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "b941d810a31bac2598914399354766cb6e842c42ea3d75b3f45a4a161de8c3c4",
+        "dispatched_at": "2026-08-17T23:23:45Z"
+      },
+      "result": {
+        "agent_id": "/root/session3_slide_09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a01204-c0b8-7790-be92-fde47ff34875/exec-d4c3fd40-8c19-4e24-aef4-b901e6747c21.png",
+        "selected_source_sha256": "d0717aee19a40b67cdb2f9503eb3857668b01d032e46b413093579c9b59f3bf2",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "d0717aee19a40b67cdb2f9503eb3857668b01d032e46b413093579c9b59f3bf2",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Questions-only close is legible and contains no demo, practice, assignment, command, acceptance, evidence or next-step content.",
+        "recorded_at": "2026-08-17T23:23:46Z"
+      },
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-08-17T23:23:46Z"
+}

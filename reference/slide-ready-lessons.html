@@ -58,14 +58,19 @@
 
     <details><summary>Day 3 · JCR, nodes, properties and resources</summary>
       <p><strong>Retrieval question:</strong> Which module would contain a dialog, and where would the author's value be stored?</p>
+      <p><a href="../lessons/0005-jcr-resources-repository-boundaries.html">Open the complete illustrated nine-slide deck →</a></p>
       <ol class="slides">
-        <li><strong>Slide 1 — AEM content is a tree.</strong> JCR stores addressable nodes and properties rather than web pages as database rows. <em>Speaker cue: use the Sites hierarchy as the familiar entry point.</em></li>
-        <li><strong>Slide 2 — Sling uses resources.</strong> A resource gives application code a web-oriented view of repository content and properties. <em>Speaker cue: prefer the Resource API unless JCR-specific behavior is required.</em></li>
-        <li><strong>Slide 3 — <code>/content</code> holds managed experiences.</strong> Pages and assets change through authoring and operations. <em>Speaker cue: mutable does not mean uncontrolled or safe to overwrite from a package.</em></li>
-        <li><strong>Slide 4 — <code>/conf</code> holds contextual configuration.</strong> Editable templates and policies live here because authors and administrators can evolve them. <em>Speaker cue: contrast template configuration with component code.</em></li>
-        <li><strong>Slide 5 — <code>/apps</code> is application code.</strong> Project components live under <code>/apps</code>; product code under <code>/libs</code> must never be edited. <em>Speaker cue: overlays and proxies are controlled extension points.</em></li>
+        <li><strong>Slide 1 — Read AEM as a resource tree.</strong> Trace one authored page into repository content, configuration and code.</li>
+        <li><strong>Slide 2 — JCR stores a hierarchy.</strong> Paths identify nodes; properties store values on those nodes.</li>
+        <li><strong>Slide 3 — Nodes and properties have different jobs.</strong> Child nodes express structure; scalar and multi-value properties express data.</li>
+        <li><strong>Slide 4 — One page has two important layers.</strong> Separate the <code>cq:Page</code> container from <code>jcr:content</code> and its descendants.</li>
+        <li><strong>Slide 5 — Sling exposes Resources.</strong> Use paths, children, <code>ValueMap</code> and <code>sling:resourceType</code> as the application view.</li>
+        <li><strong>Slide 6 — Repository boundaries communicate lifecycle.</strong> Distinguish <code>/content</code>, <code>/conf</code> and <code>/apps</code> by owner and change process.</li>
+        <li><strong>Slide 7 — Trace one Guide Page.</strong> Follow supplied evidence from content to resource type, component and policy.</li>
+        <li><strong>Slide 8 — Key takeaways.</strong> Retrieve hierarchy, page anatomy, Resources and boundaries.</li>
+        <li><strong>Slide 9 — Questions.</strong> Close on paths, properties and repository boundaries.</li>
       </ol>
-      <p><strong>Demo:</strong> follow a WKND title from Page Editor to stored properties. <strong>Assignment:</strong> document five real paths and classify their lifecycle. <strong>Acceptance:</strong> content, configuration and code are distinguished correctly.</p>
+      <p><strong>Inspection:</strong> annotate a supplied Repository Browser or CRXDE snapshot; use local Author only if available. <strong>Evidence:</strong> exact paths, two properties and lifecycle classifications for <code>/content</code>, <code>/conf</code> and <code>/apps</code>.</p>
     </details>
 
     <details><summary>Day 4 · How Sling resolves a request</summary>

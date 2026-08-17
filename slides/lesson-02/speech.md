@@ -48,8 +48,6 @@ Reconstruct the session from the center line. Local development combines a versi
 
 If you remember one routine, use this: name the change, find its owner and verify the assembled result. That routine is the bridge from today's repository tour to every implementation and diagnosis later in the course.
 
-## Slide 9: Questions & next move
+## Slide 9: Questions
 
-Before the demo, answer the retrieval question: when a Java class changes, which flow changes—content or code? Use the answer to explain why publishing a page cannot deliver that Java change.
-
-Next I will run the WKND build and locate the `all` package. Your individual practice is to route six change scenarios to modules and justify each choice. Completion requires `BUILD SUCCESS` and at least five justified routes. If setup blocks you, capture the exact command and error; that is better evidence than saying the environment does not work.
+What is still unclear? Which module boundary needs another example? What would you verify first? We will use the remaining time to clarify those questions without depending on a live environment.

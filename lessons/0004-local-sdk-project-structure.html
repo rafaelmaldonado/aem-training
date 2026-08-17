@@ -52,9 +52,9 @@
         <tr><td>0–3</td><td>Retrieval</td><td>Chat prompt: “Which flow changes when a Java class changes: content or code?”</td></tr>
         <tr><td>3–5</td><td>Outcome</td><td>State the routing question and define the required evidence.</td></tr>
         <tr><td>5–17</td><td>Slides 1–8</td><td>Trace the local system, build and module lifecycles.</td></tr>
-        <tr><td>17–25</td><td>Live demonstration</td><td>Run the WKND build, read the reactor and locate the <code>all</code> package.</td></tr>
+        <tr><td>17–25</td><td>Worked example</td><td>Read a captured WKND reactor result and locate the <code>all</code> package; use live output only if available.</td></tr>
         <tr><td>25–28</td><td>Assignment</td><td>Route six changes and explain the acceptance criteria.</td></tr>
-        <tr><td>28–30</td><td>Questions</td><td>Use slide 9 to capture one blocker and the next move.</td></tr>
+        <tr><td>28–30</td><td>Questions</td><td>Use slide 9 only for open questions and concepts that need another example.</td></tr>
       </tbody>
     </table></div>
 
@@ -102,9 +102,9 @@
         <p class="presenter-note"><strong>Key takeaways:</strong> name the change, find its owner and verify the assembled result.</p>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-02/origin_image/slide_09.png">
-        <img class="web-slide-image" src="../slides/lesson-02/origin_image/slide_09.png" alt="Questions and next steps for the build demo and individual routing exercise.">
+        <img class="web-slide-image" src="../slides/lesson-02/origin_image/slide_09.png" alt="Three closing questions about unclear concepts, module boundaries and the first verification step.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-02/origin_image/slide_09.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Close:</strong> capture one question, then move directly into the build and evidence requirements.</p>
+        <p class="presenter-note"><strong>Close:</strong> invite questions; do not depend on a live demo or repeat the assignment on this slide.</p>
       </article>
     </div>
 
@@ -118,9 +118,9 @@
     <details><summary>Slide 6 · about 2 minutes</summary><p>“Build, install and runtime behavior are three different evidence gates. Passing one does not prove the next.”</p></details>
     <details><summary>Slide 7 · about 2 minutes</summary><p>“Name each change, choose its owner and then verify that the assembled package carries the result.”</p></details>
     <details><summary>Slide 8 · about 1 minute</summary><p>“The reusable routine is: name the change, find its owner and verify the assembled result.”</p></details>
-    <details><summary>Slide 9 · about 1 minute</summary><p>“After one question, we will build WKND, locate the <code>all</code> package and begin the routing exercise.”</p></details>
+    <details><summary>Slide 9 · about 1 minute</summary><p>“What is still unclear? Which module boundary needs another example? What would you verify first?”</p></details>
 
-    <h2>Live demonstration</h2>
+    <h2>Worked example · live only if available</h2>
     <ol>
       <li>From the repository root, open <code>pom.xml</code> and read the module list.</li>
       <li>Run the repository-approved validation command; use <code>mvn clean verify</code> only when it matches the README.</li>

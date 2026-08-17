@@ -1,0 +1,278 @@
+{
+  "deck_name": "lesson-03",
+  "language": "English",
+  "goal": "Teach frontend-oriented AEM developers to inspect a page as repository content, distinguish nodes from properties, use the Sling Resource mental model, and classify content, configuration and code by repository boundary.",
+  "deck_context": {
+    "source_summary": "Class 3 of a seven-week AEM Sites training course, delivered Wednesday, August 19, 2026. The audience is learning traditional AEM Sites on AEM as a Cloud Service through WKND. This class focuses on JCR hierarchy, page anatomy, Sling Resources, and the responsibilities of /content, /conf and /apps. A supplied repository snapshot can replace a live environment.",
+    "core_claim": "An AEM page becomes easier to reason about when every observation is tied to a path, a node or property, and the repository boundary that owns its lifecycle.",
+    "canonical_terms": [
+      "JCR",
+      "node",
+      "property",
+      "jcr:primaryType",
+      "cq:Page",
+      "jcr:content",
+      "Sling Resource",
+      "ValueMap",
+      "sling:resourceType",
+      "/content",
+      "/conf",
+      "/apps",
+      "WKND"
+    ]
+  },
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 3,
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Session 3 repository-boundaries sample prompt",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-03/sample/slide_06.png",
+    "input_context_preparation": "Use view_image to inspect the approved sample PNG before generation, then pass it to image_gen as a style-only reference.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "style": {
+    "name": "Detailed AEM repository atlas",
+    "visual_direction": "Information-rich technical blueprint blended with sober academic courseware. Each slide must contain credible AEM paths, node or property labels, precise annotations and meaningful connectors rather than generic corporate cards.",
+    "color_palette": "Warm off-white drafting-paper background; deep navy typography; faint square grid; semantic blue for authored content, green for configuration, violet for application code and restrained slate for neutral repository concepts.",
+    "typography": "Crisp modern sans serif headings and labels; true monospace appearance for paths, node names, properties and types; strong hierarchy readable on a projected slide.",
+    "texture_and_finish": "Flat 2D technical drawing with fine rules, restrained colored headers, precise tree glyphs and subtle drafting-grid texture. No gradients, neon, glass, 3D icons or photography.",
+    "deck_consistency": "Match the approved sample's palette, typography, annotation density, line weight, grid texture and AEM-specific technical precision while varying composition by slide role."
+  },
+  "approved_style_reference": {
+    "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-03/sample/slide_06.png",
+    "role": "approved sample slide style reference",
+    "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact three-boundary layout."
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Read AEM as a resource tree.",
+      "role": "cover",
+      "intent": "Open the session with the inspection path from an authored page to repository content, configuration and rendering code.",
+      "key_points": [
+        "Class 3 · Week 1 · Day 3 · August 19, 2026",
+        "JCR, resources and repository boundaries",
+        "From an authored page to the code that renders it",
+        "Juan Maldonado"
+      ],
+      "local_context": {
+        "required_background": "The observable outcome is to inspect an AEM page, distinguish nodes from properties, and explain whether an item belongs to /content, /conf or /apps."
+      },
+      "layout": {
+        "composition": "Editorial cover with a large repository tree growing from one browser page card and branching toward /content, /conf and /apps."
+      },
+      "visual_elements": {
+        "main_visual": "A WKND Guide Page card connected to a precise three-branch AEM repository tree."
+      },
+      "constraints": [
+        "Render the date and class metadata exactly.",
+        "Keep the cover visually rich but text sparse."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "JCR stores a hierarchy, not a table of pages.",
+      "role": "concept explanation",
+      "intent": "Replace file-folder and relational-table assumptions with the addressable repository-tree mental model.",
+      "key_points": [
+        "A repository is an addressable tree",
+        "Nodes create structure and paths",
+        "Properties store values on nodes",
+        "Node types describe intended shape and behavior"
+      ],
+      "local_context": {
+        "required_background": "Use a credible WKND path and identify the path, nodes, properties and node types without implying that JCR is merely a filesystem."
+      },
+      "layout": {
+        "composition": "Large annotated repository tree on the left, compact comparison against a relational row on the right, with the tree clearly presented as the AEM model."
+      },
+      "visual_elements": {
+        "main_visual": "A /content/wknd/us/en/guide tree whose branches are labeled node and whose attached values are labeled property."
+      },
+      "constraints": [
+        "Use node, property, path and node type precisely.",
+        "Do not call nodes folders or properties files."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "A node holds structure; properties hold values.",
+      "role": "vocabulary",
+      "intent": "Give learners precise inspection vocabulary for nodes, child nodes, scalar values, multi-value properties and primary types.",
+      "key_points": [
+        "Child nodes represent nested structure",
+        "Properties can be scalar or multi-value",
+        "jcr:primaryType identifies the node's primary type",
+        "A path identifies a node; a property name identifies a value on it"
+      ],
+      "local_context": {
+        "required_background": "Show a repository inspector close-up for /content/wknd/us/en/guide/jcr:content with example properties jcr:title, sling:resourceType and cq:tags."
+      },
+      "layout": {
+        "composition": "Repository inspector close-up split into a left hierarchy pane and a right property table with numbered callouts."
+      },
+      "visual_elements": {
+        "main_visual": "Selected jcr:content node with child nodes below it and a property grid containing names, types and example values."
+      },
+      "constraints": [
+        "Render jcr:primaryType, jcr:title, sling:resourceType and cq:tags exactly.",
+        "Clearly distinguish a multi-value property from child nodes."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "One page has two important layers.",
+      "role": "architecture",
+      "intent": "Connect the Sites console page to its cq:Page container, jcr:content content resource and component descendants.",
+      "key_points": [
+        "The page container is commonly a cq:Page node",
+        "jcr:content stores authored content and metadata",
+        "Component instances appear below jcr:content",
+        "The browser URL and repository path are related but different views"
+      ],
+      "local_context": {
+        "required_background": "Use a Guide Page example. Show /content/wknd/us/en/guide as cq:Page and /content/wknd/us/en/guide/jcr:content as cq:PageContent, with a root/container component descendant."
+      },
+      "layout": {
+        "composition": "Exploded page anatomy: Sites console card at left, repository layers at center and component descendant tree at right."
+      },
+      "visual_elements": {
+        "main_visual": "A two-layer page section with cq:Page above jcr:content, plus a separate browser URL label."
+      },
+      "constraints": [
+        "Do not state that the cq:Page node itself stores all authored component values.",
+        "Keep cq:PageContent as an example node type for jcr:content."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Sling exposes repository content as resources.",
+      "role": "translation",
+      "intent": "Translate repository storage into the application-facing Sling Resource model used by AEM code.",
+      "key_points": [
+        "A Sling Resource has a path, properties and children",
+        "ValueMap provides a convenient view of properties",
+        "sling:resourceType connects content to rendering capability",
+        "Prefer the Resource API unless the requirement is specifically JCR-level"
+      ],
+      "local_context": {
+        "required_background": "JCR is a persistence model; Sling Resource is the application abstraction. Avoid claiming they are identical. Use /content/wknd/us/en/guide/jcr:content/root/container/guide as the example resource."
+      },
+      "layout": {
+        "composition": "Translation pipeline from JCR node view to Sling Resource card to component capability, with a ValueMap inset."
+      },
+      "visual_elements": {
+        "main_visual": "A repository node transformed into a resource card containing path, children, ValueMap and sling:resourceType."
+      },
+      "constraints": [
+        "Do not equate a JCR Node object with a Sling Resource object.",
+        "Render ValueMap and sling:resourceType exactly."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Content, configuration and code have different owners.",
+      "role": "comparison",
+      "intent": "Distinguish /content, /conf and /apps by ownership, mutability and deployment lifecycle.",
+      "key_points": [
+        "/content: what authors manage",
+        "/conf: how the site is configured",
+        "/apps: how the application works",
+        "Different paths. Different owners. Different lifecycles."
+      ],
+      "local_context": {
+        "required_background": "Use the already approved sample image exactly as the final slide."
+      },
+      "layout": {
+        "composition": "Approved three-lane repository responsibility map."
+      },
+      "visual_elements": {
+        "main_visual": "Approved sample at /Users/juanmaldonado/Projects/aem-training/slides/lesson-03/sample/slide_06.png."
+      },
+      "constraints": [
+        "Do not regenerate the approved sample."
+      ],
+      "sample_approved": true
+    },
+    {
+      "number": 7,
+      "title": "Trace one Guide Page without changing it.",
+      "role": "worked example",
+      "intent": "Apply the mental model through an evidence chain that works from a supplied snapshot or an optional local Author instance.",
+      "key_points": [
+        "Start at /content/wknd/us/en/guide",
+        "Inspect jcr:content and authored properties",
+        "Read sling:resourceType",
+        "Locate the matching component under /apps",
+        "Identify the related template or policy under /conf"
+      ],
+      "local_context": {
+        "required_background": "The trace must be read-only and must not depend on a live demo. Show /content → sling:resourceType → /apps, with /conf supplying template or policy configuration."
+      },
+      "layout": {
+        "composition": "Wide forensic evidence chain with five numbered checkpoints, exact paths and observable values."
+      },
+      "visual_elements": {
+        "main_visual": "A Guide Page trace across /content, a sling:resourceType property, /apps component implementation and /conf policy."
+      },
+      "constraints": [
+        "Label the workflow READ-ONLY TRACE.",
+        "Do not mention editing, deployment or a required live environment."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Key takeaways",
+      "role": "summary",
+      "intent": "Consolidate the four mental models before questions.",
+      "key_points": [
+        "AEM content is an addressable hierarchy of nodes and properties",
+        "cq:Page and jcr:content describe different parts of a page",
+        "Sling Resources are the application-facing view of repository content",
+        "/content, /conf and /apps separate authored content, configuration and code"
+      ],
+      "local_context": {
+        "required_background": "Every takeaway should connect to one segment of a compact repository tree and use the exact canonical terms."
+      },
+      "layout": {
+        "composition": "Central repository tree with four numbered takeaway branches and a small retrieval prompt at the bottom."
+      },
+      "visual_elements": {
+        "main_visual": "Four evidence tabs around one AEM repository tree."
+      },
+      "constraints": [
+        "Keep all four takeaways legible.",
+        "Do not introduce new concepts."
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Questions",
+      "role": "Q&A",
+      "intent": "Close with three retrieval questions and no dependency on a live demo or assignment handoff.",
+      "key_points": [
+        "What path is still unclear?",
+        "Which property would you inspect first?",
+        "Which repository boundary needs another example?"
+      ],
+      "local_context": {
+        "required_background": "This is a questions-only closing slide."
+      },
+      "layout": {
+        "composition": "Large repository branch shaped like a question mark with three restrained question rows and generous whitespace."
+      },
+      "visual_elements": {
+        "main_visual": "A technical question mark formed from /content, /conf and /apps branches."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '09 · QUESTIONS'.",
+        "Do not mention a demo, practice, command, assignment, acceptance, evidence or next step."
+      ]
+    }
+  ]
+}

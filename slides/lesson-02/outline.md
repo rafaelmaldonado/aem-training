@@ -74,15 +74,14 @@ Observable outcome: each contributor can explain the local development system, l
 - Visual: compact four-point recap around the question “Where does this change belong?”
 - Role: summary; retrieval checkpoint before questions
 
-## Slide 9 · Questions & next move
+## Slide 9 · Questions
 
-- Retrieval prompt: “Which flow changes when a Java class changes?”
-- Demo: run the WKND build and locate the `all` package
-- Practice: map six change scenarios to modules
-- Acceptance: `BUILD SUCCESS` and at least five justified module choices
-- Visual: minimal closing slide with a repository-to-runtime line
-- Role: Q&A and transition to the hands-on work
+- What is still unclear?
+- Which module boundary needs another example?
+- What would you verify first?
+- Visual: three restrained technical question markers with generous whitespace
+- Role: questions-only close; no demo, assignment, command or acceptance content
 
 ## Required source images
 
-None. Reuse the visual system of `slides/lesson-01` as style reference only: navy background, ice-blue glow, glass cards, cyan borders, dot grid and subtle concentric curves.
+None. Reuse the approved detailed repository-atlas visual system from `origin_image/slide_07.png` as style reference only.

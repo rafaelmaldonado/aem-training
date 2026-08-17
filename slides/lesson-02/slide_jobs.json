@@ -321,7 +321,7 @@
     {
       "slide_id": "slide_09",
       "number": 9,
-      "title": "Questions & next move",
+      "title": "Questions",
       "job": "prompts/slide_09.json",
       "out": "origin_image/slide_09.png",
       "input_images": [
@@ -337,27 +337,27 @@
         "agent_id": "/root/slide_09",
         "agent_nickname": "slide_09",
         "prompt": "prompts/slide_09.json",
-        "prompt_sha256": "8536bbeca059c4a1aef0399ea1c93882882452720e00eff4a56aa6bc7f8cf734",
+        "prompt_sha256": "746490651e1568755a5b0b026003935c86e9a3738215d8e7ca95ede0b268c425",
         "dispatched_at": "2026-08-14T23:40:03Z"
       },
       "result": {
         "agent_id": "/root/slide_09",
         "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a002a5-72a9-7240-a9c8-13b35c4565a8/exec-20960cc2-a438-4e4d-9811-ac149cb56e1f.png",
-        "selected_source_sha256": "aa3fcdbcc86d168651c97445222631d454ba872fe0567009504ddeac0e4624c8",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a00263-2899-7e71-a82f-4482528c6752/exec-4dad0834-7b72-4c96-a791-bc883859f1b3.png",
+        "selected_source_sha256": "504478d3c8fd4616937ad7e49e76bdc3b13debbf43c5f82220fb4f4227261229",
         "final_image": "origin_image/slide_09.png",
-        "final_image_sha256": "aa3fcdbcc86d168651c97445222631d454ba872fe0567009504ddeac0e4624c8",
+        "final_image_sha256": "504478d3c8fd4616937ad7e49e76bdc3b13debbf43c5f82220fb4f4227261229",
         "expected_backend": "built-in image tool",
         "expected_backend_labels": [
           "built-in image tool",
           "image_gen"
         ],
         "sample_generation_method_matched": true,
-        "qa_note": "Safe build command, real package path and approved acceptance evidence are complete and legible.",
-        "recorded_at": "2026-08-14T23:46:48Z"
+        "qa_note": "Questions-only close is legible and contains no demo, practice, command, acceptance or evidence content.",
+        "recorded_at": "2026-08-17T22:26:44Z"
       },
       "blocker": null
     }
   ],
-  "updated_at": "2026-08-14T23:46:48Z"
+  "updated_at": "2026-08-17T22:26:44Z"
 }

@@ -3,7 +3,7 @@
   "language": "English",
   "goal": "Teach frontend-oriented AEM developers to understand the local development system, route a change to the correct WKND module, and distinguish build validation from installation and runtime verification.",
   "deck_context": {
-    "source_summary": "Class 2 of an eight-week AEM Sites training course. The audience is learning traditional AEM Sites on AEM as a Cloud Service through the WKND project. This class focuses on the local SDK, Maven reactor and repository module responsibilities.",
+    "source_summary": "Class 2 of a seven-week AEM Sites training course. The audience is learning traditional AEM Sites on AEM as a Cloud Service through the WKND project. This class focuses on the local SDK, Maven reactor and repository module responsibilities.",
     "core_claim": "Before editing a file, name the change, identify the module that owns its lifecycle, then verify the assembled result.",
     "canonical_terms": [
       "WKND source project",
@@ -288,33 +288,32 @@
     },
     {
       "number": 9,
-      "title": "Questions & next move",
+      "title": "Questions",
       "role": "Q&A",
-      "intent": "Close the concept section and transition directly into the build demo and asynchronous routing exercise.",
+      "intent": "Close the session with focused questions only, without depending on a live demonstration.",
       "key_points": [
-        "Retrieval: Which flow changes when a Java class changes?",
-        "Demo: build WKND and locate the all package",
-        "Practice: route six change scenarios",
-        "Acceptance: BUILD SUCCESS + five justified module choices"
+        "What is still unclear?",
+        "Which module boundary needs another example?",
+        "What would you verify first?"
       ],
-      "speaker_focus": "Invite one question, then set the exact next action and evidence standard.",
+      "speaker_focus": "Invite questions and use the prompts to identify the concept that needs another example.",
       "local_context": {
-        "required_background": "This closing slide should still feel technically complete. The demo uses the WKND build and locates the all package. Practice is individual and requires justified routing decisions."
+        "required_background": "This is a questions-only closing slide. It must not contain a demo, practice, command, acceptance criterion or next-step checklist."
       },
       "layout": {
-        "composition": "Workshop handoff sheet. Use a large question mark formed from a repository branch at left and a detailed three-step execution checklist at right: DEMO, PRACTICE, ACCEPTANCE. Include exact eyebrow '09 · QUESTIONS + NEXT MOVE'.",
-        "content_zones": "Compact close title, visual question mark, technical next-step checklist and evidence strip.",
-        "relationship_to_previous_slide": "Shift from synthesis to action without becoming an empty thank-you page.",
-        "spacing": "Open enough for a closing slide, detailed enough to guide the next 60–90 minutes."
+        "composition": "Questions-only close with three restrained technical question markers and the exact eyebrow '09 · QUESTIONS'.",
+        "content_zones": "Compact title and three evenly spaced question prompts.",
+        "relationship_to_previous_slide": "Move from synthesis to open discussion.",
+        "spacing": "Generous whitespace for a calm closing slide."
       },
       "visual_elements": {
-        "main_visual": "A repository branch bends into a question mark and terminates in a terminal prompt; the right side shows build, locate package and route scenarios.",
-        "supporting_elements": "Acceptance evidence strip with BUILD SUCCESS and 5/6 justified routes."
+        "main_visual": "Three question-mark or speech-bubble motifs aligned with the prompts.",
+        "supporting_elements": "Faint drafting grid and one fine navy divider."
       },
       "constraints": [
-        "Render the eyebrow exactly as '09 · QUESTIONS + NEXT MOVE'.",
-        "Do not use a generic thank-you layout.",
-        "Keep BUILD SUCCESS uppercase."
+        "Render the eyebrow exactly as '09 · QUESTIONS'.",
+        "Do not render demo, practice, acceptance, evidence, commands or next steps.",
+        "Render the three questions exactly."
       ]
     }
   ]
