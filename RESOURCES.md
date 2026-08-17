@@ -19,7 +19,7 @@
 - [Set up the local AEM SDK — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/local-development-environment-set-up/aem-runtime)
   Instrucciones actuales para JDK, descarga del SDK y servicios Author/Publish locales.
 - [Cloud Manager build environment — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/using-cloud-manager/create-application-project/build-environment-details)
-  Fuente de las versiones administradas: Maven 3.9.4 y Oracle JDK 21.0.4; Adobe prefiere Java 21.
+  Referencia teórica para las versiones administradas y el modelo de build; el curso no requiere acceso a Cloud Manager.
 - [Oracle JDK 21.0.12 release notes — Oracle](https://www.oracle.com/java/technologies/javase/21-0-12-relnotes.html)
   Versión local exacta del curso: Oracle JDK 21.0.12+7.
 - [Node.js 24.18.1 release files — Node.js](https://nodejs.org/download/release/v24.18.1/)

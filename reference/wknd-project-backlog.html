@@ -20,13 +20,13 @@
     </ul>
   </nav>
   <header>
-    <p class="eyebrow">Eight weekly practices · one developer per repository</p>
+    <p class="eyebrow">Seven weekly practices · one developer per repository</p>
     <h1>Individual WKND practices.</h1>
     <p class="lede">The architect releases one common practice every Monday. Each developer completes it in an individual repository and local AEM SDK, submits evidence by Thursday and reviews it on Friday.</p>
     <ul class="meta"><li>Released Monday</li><li>Due Thursday</li><li>Reviewed Friday</li></ul>
   </header>
   <main id="content">
-    <section class="callout"><strong>Delivery constraint:</strong> no shared deployment environment is required. Each developer owns a repository and local SDK created from the same read-only baseline. Cloud delivery is demonstrated or rehearsed with supplied pipeline evidence when access is unavailable.</section>
+    <section class="callout"><strong>Delivery constraint:</strong> no shared deployment environment or Cloud Manager access is required. Each developer owns a repository and local SDK created from the same read-only baseline. Cloud Manager is studied from supplied diagrams and anonymized evidence; hands-on checks run locally.</section>
 
     <h2>Product scenario</h2>
     <p>Each developer inherits the same WKND baseline and adds a <strong>Weekend Guides</strong> area. Authors must create guide pages and reusable cards without code changes. Visitors must browse accessible, responsive content. The implementation must be testable, cache-safe and compatible with an AEMaaCS pipeline.</p>
@@ -87,6 +87,22 @@
       <li>Trace one page URL to its resource type and HTL script.</li>
     </ul>
     <p><strong>Acceptance:</strong> clean clone instructions work, Maven reports <code>BUILD SUCCESS</code>, WKND opens in Sites and the repository map is correct. <strong>Evidence:</strong> PR, reactor summary and annotated trace.</p>
+    <div class="practice-details">
+      <h3>PR must include</h3>
+      <ul>
+        <li>A short README with required versions and exact clone, build, install and Author startup steps.</li>
+        <li>An annotated module map covering <code>core</code>, <code>ui.apps</code>, <code>ui.content</code>, <code>ui.config</code>, <code>dispatcher</code> and <code>all</code>.</li>
+        <li>The page URL, JCR content path, <code>sling:resourceType</code> and resolved HTL path used in the trace.</li>
+        <li>No SDK archives, license files, logs, secrets, generated <code>target</code> directories or local configuration.</li>
+      </ul>
+      <h3>Developer must show</h3>
+      <ul>
+        <li>A clean Maven reactor ending in <code>BUILD SUCCESS</code> and the commit being reviewed.</li>
+        <li>Local Author running, WKND visible in Sites and the traced page rendering.</li>
+        <li>How the browser URL resolves to content, resource type, module and HTL script.</li>
+        <li>Which module would own one Java, component, content, configuration and Dispatcher change.</li>
+      </ul>
+    </div>
 
     <h2 id="practice-2">Week 2 practice · Create the Guide Page authoring contract</h2>
     <p><strong>Goal:</strong> create a governed Guide Page that an author can use consistently without developer intervention.</p>
@@ -97,6 +113,22 @@
       <li>Create one guide page with an accessible image and metadata.</li>
     </ul>
     <p><strong>Acceptance:</strong> a new Guide Page can be created and edited from the template; policy restrictions and image alternative-text behavior are observable. <strong>Evidence:</strong> paths, authored page and authoring walkthrough.</p>
+    <div class="practice-details">
+      <h3>PR must include</h3>
+      <ul>
+        <li>Only the required template, initial structure, policy and allowed-component definitions under the appropriate <code>/conf</code> package paths.</li>
+        <li>Readable names, descriptions and defaults for author-facing configuration.</li>
+        <li>Any necessary content-package filter change, kept as narrow as the new paths.</li>
+        <li>PR evidence showing the created page; mutable authored content is not exported into code unless the baseline explicitly requires sample content.</li>
+      </ul>
+      <h3>Developer must show</h3>
+      <ul>
+        <li>Creating a new Guide Page from the template, not only editing an existing page.</li>
+        <li>Allowed and disallowed components in the container plus one Style System choice.</li>
+        <li>Where the template structure, policy and authored properties live in the repository.</li>
+        <li>Image and metadata behavior with both valid and missing alternative text.</li>
+      </ul>
+    </div>
 
     <h2 id="practice-3">Week 3 practice · Deliver the Guide Card frontend slice</h2>
     <p><strong>Goal:</strong> deliver a responsive and accessible Guide Card that exposes the complete dialog-to-browser path.</p>
@@ -108,6 +140,22 @@
       <li>Check keyboard, focus, long text, 200% zoom and narrow width.</li>
     </ul>
     <p><strong>Acceptance:</strong> dialog → property → HTL → browser works; the component passes the stated accessibility and responsive checks. <strong>Evidence:</strong> PR, two component states and executed checklist.</p>
+    <div class="practice-details">
+      <h3>PR must include</h3>
+      <ul>
+        <li>The project-owned proxy component definition, explicit <code>sling:resourceSuperType</code>, dialog and HTL.</li>
+        <li>Scoped client-library CSS and only the JavaScript required for behavior that native HTML/CSS cannot provide.</li>
+        <li>Configured and empty-state markup with correct HTL display contexts and no copied Core Component implementation.</li>
+        <li>A completed accessibility/responsive checklist and screenshots or short recordings for both states.</li>
+      </ul>
+      <h3>Developer must show</h3>
+      <ul>
+        <li>The complete dialog field → JCR property → HTL expression → rendered DOM trace.</li>
+        <li>Configured and empty author states without template errors or broken controls.</li>
+        <li>Keyboard operation, visible focus, long text, narrow viewport and 200% zoom.</li>
+        <li>Why each custom CSS or JavaScript rule is necessary and where its clientlib is loaded.</li>
+      </ul>
+    </div>
 
     <h2 id="practice-4">Week 4 practice · Add server-side behavior and tests</h2>
     <p><strong>Goal:</strong> provide view-ready Guide Card data while keeping HTL simple and missing content safe.</p>
@@ -119,6 +167,22 @@
       <li>Document why a servlet is or is not required.</li>
     </ul>
     <p><strong>Acceptance:</strong> configured, missing and legacy content render without exceptions; at least one test fails without the implementation. <strong>Evidence:</strong> model/service diff, test output and endpoint decision.</p>
+    <div class="practice-details">
+      <h3>PR must include</h3>
+      <ul>
+        <li>A focused Sling Model in <code>core</code> with the correct adaptable, resource type and explicit injection optionality.</li>
+        <li>View-ready getters and safe fallbacks; HTL must not contain business or formatting logic moved from Java.</li>
+        <li>Unit tests for configured, missing and invalid or legacy input, including one assertion that fails without the change.</li>
+        <li>OSGi configuration only for environment-varying behavior and a brief decision explaining why no servlet is needed, or the endpoint contract if one is.</li>
+      </ul>
+      <h3>Developer must show</h3>
+      <ul>
+        <li>The focused test command and passing output, then identify which regression each test protects.</li>
+        <li>Model adaptation from a representative resource and the behavior when a property is absent.</li>
+        <li>The rendered configured, empty and legacy states without exceptions in the log.</li>
+        <li>Why the boundary belongs in a Sling Model, service or servlet rather than HTL.</li>
+      </ul>
+    </div>
 
     <h2 id="practice-5">Week 5 practice · Diagnose and fix a maintenance defect</h2>
     <p><strong>Goal:</strong> diagnose an unfamiliar Weekend Guides defect and correct its root cause without a local workaround.</p>
@@ -130,30 +194,51 @@
       <li>Record hypothesis, test, conclusion and remaining risk.</li>
     </ul>
     <p><strong>Acceptance:</strong> the original symptom and one adjacent case pass; the report connects evidence to the root cause. <strong>Evidence:</strong> incident note, focused diff and regression check.</p>
+    <div class="practice-details">
+      <h3>PR must include</h3>
+      <ul>
+        <li>A concise incident note: symptom, minimal reproduction, hypothesis, evidence, root cause, fix and remaining risk.</li>
+        <li>A focused root-cause diff with no unrelated refactor or formatting churn.</li>
+        <li>A regression test or repeatable command that fails before the fix and passes after it.</li>
+        <li>Verification that the change does not overwrite mutable authored content during rebuild or installation.</li>
+      </ul>
+      <h3>Developer must show</h3>
+      <ul>
+        <li>The original symptom reproduced from a known starting state.</li>
+        <li>The caller, configuration or resolution path that connects the symptom to the cause.</li>
+        <li>The regression check failing before the correction and passing on the reviewed commit.</li>
+        <li>The adjacent case used to prove the fix is not a one-page workaround.</li>
+      </ul>
+    </div>
 
-    <h2 id="practice-6">Week 6 practice · Rehearse cloud delivery locally</h2>
-    <p><strong>Goal:</strong> complete a reproducible delivery rehearsal covering pipeline, Dispatcher and cache behavior without a shared cloud environment.</p>
+    <h2 id="practice-6">Week 6 practice · Complete a local production-readiness review</h2>
+    <p><strong>Goal:</strong> harden the Guide feature with local security, accessibility, performance, Dispatcher and test evidence while explaining the supplied cloud-delivery model.</p>
     <ul>
-      <li>Map commit → build → quality gates → deployment using supplied Cloud Manager evidence.</li>
-      <li>Analyze one anonymized failed pipeline log and identify the first actionable error.</li>
+      <li>Map commit → build → quality gates → environment using supplied Cloud Manager diagrams and logs; do not execute or simulate access.</li>
       <li>Validate a narrow Dispatcher filter or rewrite with local Dispatcher Tools.</li>
-      <li>Explain a cache hit, miss and invalidation from supplied headers or a controlled local lab.</li>
-      <li>Write a short deployment and recovery runbook.</li>
+      <li>Review permissions, output security, secrets, keyboard use, semantics and metadata.</li>
+      <li>Run the cheapest meaningful regression and performance checks.</li>
+      <li>Fix the highest-risk reproducible local finding.</li>
     </ul>
-    <p><strong>Acceptance:</strong> every gate has evidence, the Dispatcher rule preserves deny-by-default and the runbook distinguishes what was executed from what was simulated. <strong>Evidence:</strong> annotated log, rule test and runbook.</p>
+    <p><strong>Acceptance:</strong> Cloud Manager concepts are explained from supplied evidence, local controls are executed, and the selected risk has reproducible before/after proof. <strong>Evidence:</strong> delivery map, readiness matrix, focused fix and verification.</p>
+    <div class="practice-details">
+      <h3>PR must include</h3>
+      <ul>
+        <li>A one-page theoretical delivery map naming repository, branch, build, quality gates, environment and likely failure owner.</li>
+        <li>Any Dispatcher change in the correct module with the narrowest filter, rewrite or cache rule that meets the requirement.</li>
+        <li>A readiness matrix covering functionality, authoring, security, permissions, accessibility, SEO, performance, testing and operation.</li>
+        <li>The highest-risk focused correction, its regression check and before/after evidence; no credentials, private URLs or raw environment dumps.</li>
+      </ul>
+      <h3>Developer must show</h3>
+      <ul>
+        <li>The supplied commit-to-environment flow and first actionable error without claiming Cloud Manager access.</li>
+        <li>One allowed and one denied Dispatcher request with the exact rule responsible.</li>
+        <li>One least-privilege or output-security control plus keyboard, zoom and metadata checks.</li>
+        <li>Why the selected local finding outranks the others and which regression or performance check proves the improvement.</li>
+      </ul>
+    </div>
 
-    <h2 id="practice-7">Week 7 practice · Complete a production-readiness review</h2>
-    <p><strong>Goal:</strong> review the Guide feature across production risks and fix the most important reproducible finding.</p>
-    <ul>
-      <li>Review permissions and service-user access for least privilege.</li>
-      <li>Review output encoding, validation, CSRF/XSS exposure and secrets.</li>
-      <li>Audit keyboard, semantics, headings, metadata and zoom.</li>
-      <li>Select the cheapest meaningful performance and regression checks.</li>
-      <li>Fix the highest-risk reproducible finding.</li>
-    </ul>
-    <p><strong>Acceptance:</strong> findings are evidence-based and prioritized; the selected fix has before/after proof and does not break authoring. <strong>Evidence:</strong> review matrix, PR and verification.</p>
-
-    <h2 id="practice-8">Week 8 practice · Deliver and defend the individual capstone</h2>
+    <h2 id="practice-7">Week 7 practice · Deliver and defend the individual capstone</h2>
     <p><strong>Goal:</strong> deliver one complete Weekend Guides increment and demonstrate independent AEM ownership from authoring to operation.</p>
     <ul>
       <li>Choose one observable author or visitor outcome not implemented in the supplied baseline.</li>
@@ -163,6 +248,22 @@
       <li>Complete a short technical defense and define one 30-day growth outcome.</li>
     </ul>
     <p><strong>Acceptance:</strong> the developer can explain and modify the implementation without direct help; the demo includes working behavior, evidence and one remaining risk. <strong>Evidence:</strong> final PR, demo and technical defense.</p>
+    <div class="practice-details">
+      <h3>PR must include</h3>
+      <ul>
+        <li>An observable author or visitor outcome, explicit acceptance criteria, dependencies and known risks in the PR description.</li>
+        <li>Coherent commits covering the minimum code, content configuration, tests and operational documentation needed for the increment.</li>
+        <li>Clean build output, focused test results, author/visitor evidence and the production-readiness checks relevant to the change.</li>
+        <li>Resolved review comments, one remaining risk and a safe rollback or recovery note.</li>
+      </ul>
+      <h3>Developer must show</h3>
+      <ul>
+        <li>The complete author and visitor journey from a clean local starting state.</li>
+        <li>The most important automated check and one production-readiness control.</li>
+        <li>Where the implementation lives and why three key technical decisions were made.</li>
+        <li>A small requested variation implemented and verified during the technical defense.</li>
+      </ul>
+    </div>
 
     <h2 id="similarity">Code similarity and understanding protocol</h2>
     <p>Similarity is expected because everyone starts from the same archetype and completes the same practice. Use it to select follow-up questions, not as an automatic plagiarism score.</p>

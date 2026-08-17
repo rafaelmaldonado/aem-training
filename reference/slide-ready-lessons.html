@@ -20,7 +20,7 @@
     </ul>
   </nav>
   <header>
-    <p class="eyebrow">40 complete micro-decks · English</p>
+    <p class="eyebrow">35 complete micro-decks · English</p>
     <h1>Presentation content.</h1>
     <p class="lede">Ready-to-copy slide text, speaker cues, demonstrations and assignments for every 30-minute online session.</p>
     <ul class="meta"><li>Five concept slides per day</li><li>No breakout rooms</li><li>WKND-based practice</li></ul>
@@ -345,9 +345,9 @@
     </details>
     <p><strong>Official reading:</strong> <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/aem-project-content-package-structure">AEM Project Structure — Adobe</a>.</p>
 
-    <h2 id="week-6">Week 6 · Cloud delivery</h2>
+    <h2 id="week-6">Week 6 · Production quality and delivery constraints</h2>
 
-    <details><summary>Day 26 · Programs, environments and Git</summary>
+    <details><summary>Day 26 · Cloud delivery model · theory</summary>
       <p><strong>Retrieval question:</strong> Which artifact should move from validation toward production without manual rebuilding?</p>
       <ol class="slides">
         <li><strong>Slide 1 — A Cloud Manager program groups delivery.</strong> It contains repositories, environments and pipelines for an initiative. <em>Speaker cue: distinguish the Adobe organization from the program.</em></li>
@@ -356,128 +356,65 @@
         <li><strong>Slide 4 — Small PRs reduce delivery risk.</strong> One coherent outcome is easier to review, test and diagnose. <em>Speaker cue: rollback is conceptual in an immutable deployment model.</em></li>
         <li><strong>Slide 5 — Promote the validated artifact.</strong> Stage and Production should receive what passed earlier gates, not handcrafted differences. <em>Speaker cue: rebuild drift undermines evidence.</em></li>
       </ol>
-      <p><strong>Demo:</strong> trace a WKND commit to Development using an anonymized example. <strong>Assignment:</strong> contrast the supplied cloud flow with the learner's local repository flow. <strong>Acceptance:</strong> repository, branch, gates, services and environments are named without claiming a deployment that was not performed.</p>
+      <p><strong>Demo:</strong> trace a WKND commit through supplied, anonymized Cloud Manager evidence. <strong>Assignment:</strong> annotate repository, branch, gates, services, environments and one failed stage. <strong>Acceptance:</strong> the model and first actionable error are correct; no login, pipeline execution or deployment is requested.</p>
     </details>
 
-    <details><summary>Day 27 · Cloud Manager pipelines and quality gates</summary>
-      <p><strong>Retrieval question:</strong> Where should you start reading a failed pipeline log?</p>
+    <details><summary>Day 27 · Local Dispatcher and cache lab</summary>
+      <p><strong>Retrieval question:</strong> Which rule decides whether a request may reach Publish, and which rule decides whether its response may be cached?</p>
       <ol class="slides">
-        <li><strong>Slide 1 — A full-stack pipeline builds and deploys.</strong> It compiles, tests, analyzes, packages and releases application code and configuration. <em>Speaker cue: pipeline stages create different types of evidence.</em></li>
-        <li><strong>Slide 2 — Builds start clean.</strong> Cloud containers cannot rely on a developer's local cache, file or unpublished dependency. <em>Speaker cue: reproducibility is a feature of the project.</em></li>
-        <li><strong>Slide 3 — Quality gates stop known risk.</strong> Code quality, security, performance and compatibility findings can block progression. <em>Speaker cue: do not bypass a gate before understanding its protected outcome.</em></li>
-        <li><strong>Slide 4 — The first actionable error matters.</strong> Final “build failed” lines summarize; the originating compiler, test or analyzer message explains. <em>Speaker cue: read upward to the earliest relevant cause.</em></li>
-        <li><strong>Slide 5 — Assign the correct owner.</strong> Source, dependency, test, Dispatcher and platform failures require different next actions. <em>Speaker cue: retry is only valid for a verified transient condition.</em></li>
+        <li><strong>Slide 1 — Dispatcher protects and accelerates Publish.</strong> Filters control request reachability; cache rules control reusable responses. <em>Speaker cue: neither replaces application authorization.</em></li>
+        <li><strong>Slide 2 — Deny first, then allow narrowly.</strong> Methods, paths, selectors and extensions must match an explicit public requirement. <em>Speaker cue: test the exact host and URL shape.</em></li>
+        <li><strong>Slide 3 — Rewrites and virtual hosts shape routing.</strong> Trace the external URL to the internal path before blaming content or code. <em>Speaker cue: a rewrite should not hide broken content architecture.</em></li>
+        <li><strong>Slide 4 — Cache only safe shared responses.</strong> Stable public GET responses are candidates; personalized or mutable operations are not. <em>Speaker cue: speed never overrides privacy or correctness.</em></li>
+        <li><strong>Slide 5 — Headers make cache behavior observable.</strong> Repeat controlled requests and compare status, age, cache indicators and content version. <em>Speaker cue: preserve evidence before clearing every cache.</em></li>
       </ol>
-      <p><strong>Demo:</strong> annotate a failed WKND pipeline log. <strong>Assignment:</strong> classify three failures and propose the next check. <strong>Acceptance:</strong> stage, first error, owner and action are correct.</p>
+      <p><strong>Demo:</strong> validate one Guide URL with local Dispatcher Tools and repeated requests. <strong>Assignment:</strong> test allowed, denied, hit and miss cases. <strong>Acceptance:</strong> each result cites the exact local rule and captured evidence.</p>
     </details>
 
-    <details><summary>Day 28 · Dispatcher fundamentals</summary>
-      <p><strong>Retrieval question:</strong> Which Dispatcher concern decides whether a request is allowed to reach Publish?</p>
+    <details><summary>Day 28 · Permissions and application security</summary>
+      <p><strong>Retrieval question:</strong> Which identity and privilege does the Guide backend actually require?</p>
       <ol class="slides">
-        <li><strong>Slide 1 — Dispatcher is a reverse proxy and cache.</strong> It protects and accelerates Publish but does not replace application authorization. <em>Speaker cue: separate delivery controls from content permissions.</em></li>
-        <li><strong>Slide 2 — Filters restrict request surface.</strong> Deny by default, then allow only required methods, paths, selectors and extensions. <em>Speaker cue: broad allow rules become public attack surface.</em></li>
-        <li><strong>Slide 3 — Virtual hosts select site configuration.</strong> Host and URL rules connect an incoming request to rewrites, filters and cache behavior. <em>Speaker cue: test the intended host, not only localhost.</em></li>
-        <li><strong>Slide 4 — Rewrites normalize URLs.</strong> They can change public paths but should not hide broken content architecture. <em>Speaker cue: trace both external and internal URL.</em></li>
-        <li><strong>Slide 5 — Cache only safe shared responses.</strong> Public stable GET responses are candidates; personalized or mutable operations are not. <em>Speaker cue: “faster” is not a sufficient caching rule.</em></li>
+        <li><strong>Slide 1 — Least privilege bounds impact.</strong> Grant the exact actions on the exact repository paths needed by the capability. <em>Speaker cue: administrator access is not a development shortcut.</em></li>
+        <li><strong>Slide 2 — Service users identify backend code.</strong> Resource resolver mappings and Repo Init make access explicit, versioned and reviewable. <em>Speaker cue: verify effective privileges, not only syntax.</em></li>
+        <li><strong>Slide 3 — Treat content and requests as untrusted.</strong> Dialog values, parameters, headers and external responses require limits. <em>Speaker cue: authenticated authors can still store unsafe data.</em></li>
+        <li><strong>Slide 4 — Encode for the output context.</strong> HTML text, attributes, URIs and scripts need different protections. <em>Speaker cue: prefer HTL context-aware escaping.</em></li>
+        <li><strong>Slide 5 — Protect mutation and secrets.</strong> Use correct methods and CSRF controls; keep credentials out of Git, logs and rendered output. <em>Speaker cue: Dispatcher adds defense in depth.</em></li>
       </ol>
-      <p><strong>Demo:</strong> evaluate a Guide URL against vhost, filter and cache rules. <strong>Assignment:</strong> classify ten requests. <strong>Acceptance:</strong> each decision cites the exact rule and risk.</p>
+      <p><strong>Demo:</strong> threat-review the Guide service, HTL output and public request surface. <strong>Assignment:</strong> produce an access matrix and three risk/control checks. <strong>Acceptance:</strong> no admin, wildcard or hardcoded secret; every control is observable.</p>
     </details>
 
-    <details><summary>Day 29 · CDN, headers and invalidation</summary>
-      <p><strong>Retrieval question:</strong> How can two cache layers make a stale-content incident harder to locate?</p>
+    <details><summary>Day 29 · Accessibility, performance and test strategy</summary>
+      <p><strong>Retrieval question:</strong> What is the cheapest check that observes the user or operational risk?</p>
       <ol class="slides">
-        <li><strong>Slide 1 — CDN and Dispatcher are separate caches.</strong> Either layer may answer without reaching Publish. <em>Speaker cue: include browser cache as a third observation point, not part of Dispatcher.</em></li>
-        <li><strong>Slide 2 — A miss moves inward.</strong> The request continues until a layer can produce a response, then caches may store it. <em>Speaker cue: first-request latency can reveal this path.</em></li>
-        <li><strong>Slide 3 — Headers express freshness and sharing.</strong> Inspect effective response headers rather than inferring configuration from symptoms. <em>Speaker cue: capture the same URL under controlled conditions.</em></li>
-        <li><strong>Slide 4 — Publication and invalidation interact.</strong> Published content can invalidate cached resources, but dynamic dependencies require deliberate rules. <em>Speaker cue: one page can depend on content stored elsewhere.</em></li>
-        <li><strong>Slide 5 — Compare repeatable requests.</strong> Status, age, cache indicators, timing and content version help identify the answering layer. <em>Speaker cue: record evidence before clearing every cache.</em></li>
+        <li><strong>Slide 1 — Semantic HTML and authoring work together.</strong> Native elements, useful labels and safe defaults prevent defects before publication. <em>Speaker cue: authorability is part of accessibility.</em></li>
+        <li><strong>Slide 2 — Keyboard and zoom expose interaction failures.</strong> Order, visible focus, activation and reflow must work without a pointer. <em>Speaker cue: demonstrate the complete Guide journey.</em></li>
+        <li><strong>Slide 3 — Metadata must describe the rendered page.</strong> Title, description, canonical URL, headings and alternative text need human review. <em>Speaker cue: inspect output, not only dialog fields.</em></li>
+        <li><strong>Slide 4 — Measure before optimizing.</strong> Compare the same URL, content, cache state and environment; inspect bytes, requests, rendering and backend work. <em>Speaker cue: intuition chooses a question, not an answer.</em></li>
+        <li><strong>Slide 5 — Match test cost to failure risk.</strong> Unit, integration, UI and smoke checks provide different speed and confidence. <em>Speaker cue: keep the lowest-cost check that sees the real failure.</em></li>
       </ol>
-      <p><strong>Demo:</strong> compare two requests and a publication event. <strong>Assignment:</strong> diagnose hit/miss behavior for Guide pages. <strong>Acceptance:</strong> evidence distinguishes browser, CDN, Dispatcher and Publish.</p>
+      <p><strong>Demo:</strong> audit one Guide journey and select checks for five failures. <strong>Assignment:</strong> fix one measured accessibility, SEO or performance issue. <strong>Acceptance:</strong> comparable before/after evidence and a regression check are supplied.</p>
     </details>
 
-    <details><summary>Day 30 · Weekly review: deployment rehearsal</summary>
-      <p><strong>Retrieval question:</strong> Which two user journeys should a post-deployment smoke test include?</p>
-      <ol class="slides">
-        <li><strong>Slide 1 — Preflight removes cheap failures.</strong> Run clean build, focused tests, diff review and configuration checks before starting a pipeline. <em>Speaker cue: a cloud pipeline is not a substitute for local feedback.</em></li>
-        <li><strong>Slide 2 — Observe each deployment stage.</strong> Record commit and stage transitions rather than repeatedly refreshing the final status. <em>Speaker cue: evidence must connect the artifact to the environment.</em></li>
-        <li><strong>Slide 3 — Smoke test author and visitor paths.</strong> Confirm one critical authoring action and one Publish request after deployment. <em>Speaker cue: build success alone does not prove runtime behavior.</em></li>
-        <li><strong>Slide 4 — Preserve failure evidence before retrying.</strong> Save the stage, first error, log and commit. <em>Speaker cue: a retry can erase the easiest reproduction.</em></li>
-        <li><strong>Slide 5 — A runbook transfers operation.</strong> Another developer should be able to execute checks and know the first response to failure. <em>Speaker cue: keep steps short, ordered and testable.</em></li>
-      </ol>
-      <p><strong>Demo:</strong> execute a real pipeline or an anonymized rehearsal. <strong>Assignment:</strong> run and improve the deployment checklist. <strong>Acceptance:</strong> every gate has evidence and another contributor can follow the runbook.</p>
-    </details>
-    <p><strong>Official reading:</strong> <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/using-cloud-manager/create-application-project/build-environment-details">Cloud Manager Build Environment — Adobe</a>.</p>
-
-    <h2 id="week-7">Week 7 · Production quality</h2>
-
-    <details><summary>Day 31 · Permissions and service users</summary>
-      <p><strong>Retrieval question:</strong> Why should a backend service never use an administrator session?</p>
-      <ol class="slides">
-        <li><strong>Slide 1 — Principals receive privileges.</strong> Users, groups and service users are granted actions on defined repository paths. <em>Speaker cue: separate identity from what the identity may do.</em></li>
-        <li><strong>Slide 2 — Least privilege limits impact.</strong> Grant only required paths and actions for the actual capability. <em>Speaker cue: “read everything” is not a convenient default.</em></li>
-        <li><strong>Slide 3 — Groups make human access maintainable.</strong> Assign users to role-based groups instead of managing many individual ACLs. <em>Speaker cue: onboarding and removal should be predictable.</em></li>
-        <li><strong>Slide 4 — Service users identify backend code.</strong> Resource resolver mappings provide bounded access without human or administrator credentials. <em>Speaker cue: credentials in code are both insecure and inoperable.</em></li>
-        <li><strong>Slide 5 — Repo Init makes access reviewable.</strong> Versioned principal and ACL definitions can be tested and promoted with code. <em>Speaker cue: verify the resulting permissions, not only script syntax.</em></li>
-      </ol>
-      <p><strong>Demo:</strong> read a Guide access matrix and resolver mapping. <strong>Assignment:</strong> define access for authors and the Guide service. <strong>Acceptance:</strong> no admin, wildcard or hardcoded credential; each privilege has a requirement.</p>
-    </details>
-
-    <details><summary>Day 32 · Component and endpoint security</summary>
-      <p><strong>Retrieval question:</strong> Which inputs reach AEM from an untrusted boundary?</p>
-      <ol class="slides">
-        <li><strong>Slide 1 — Treat content and requests as untrusted.</strong> Dialog values, URL parameters, headers and external responses require limits. <em>Speaker cue: authenticated authors can still store unsafe or unexpected data.</em></li>
-        <li><strong>Slide 2 — Encode output for its destination.</strong> HTML text, attributes, URIs and script contexts require different protections. <em>Speaker cue: use HTL context-aware escaping rather than manual string replacement.</em></li>
-        <li><strong>Slide 3 — Mutating operations need method and CSRF controls.</strong> A GET must not change state and authenticated requests still need forgery protection. <em>Speaker cue: browser convenience is not an API design.</em></li>
-        <li><strong>Slide 4 — Secrets stay outside repository and response.</strong> Approved secret configuration must not appear in Git, logs or rendered markup. <em>Speaker cue: redact diagnostic evidence before sharing.</em></li>
-        <li><strong>Slide 5 — Dispatcher reduces exposed surface.</strong> Block internal paths, unsafe selectors and methods that public Publish does not need. <em>Speaker cue: defense in depth complements application checks.</em></li>
-      </ol>
-      <p><strong>Demo:</strong> threat-review the proposed Guide endpoint. <strong>Assignment:</strong> identify assets, entry points and controls for Guide Card/List. <strong>Acceptance:</strong> three concrete risks, each with an observable control.</p>
-    </details>
-
-    <details><summary>Day 33 · Accessibility and SEO</summary>
-      <p><strong>Retrieval question:</strong> Which quality checks require human judgment even when automated tools pass?</p>
-      <ol class="slides">
-        <li><strong>Slide 1 — Semantic HTML creates the document model.</strong> Headings, landmarks, links and buttons must describe meaning and interaction. <em>Speaker cue: begin with native elements before ARIA.</em></li>
-        <li><strong>Slide 2 — Authoring can prevent inaccessible content.</strong> Dialog labels, guidance and safe defaults make required metadata easier to supply. <em>Speaker cue: quality is partly a component design responsibility.</em></li>
-        <li><strong>Slide 3 — Keyboard and focus reveal interaction defects.</strong> Order, visibility and activation must remain usable without a pointer. <em>Speaker cue: demonstrate the complete Guide Card journey by keyboard.</em></li>
-        <li><strong>Slide 4 — Page metadata supports discovery.</strong> Title, description, canonical URL and heading structure must describe the Guide Page consistently. <em>Speaker cue: inspect rendered output, not only dialog fields.</em></li>
-        <li><strong>Slide 5 — Automation is partial evidence.</strong> Scanners find rule violations; people confirm purpose, reading order and useful alternatives. <em>Speaker cue: combine tool results with a short manual protocol.</em></li>
-      </ol>
-      <p><strong>Demo:</strong> audit one Guide Page with browser tools and keyboard. <strong>Assignment:</strong> fix one accessibility and one SEO finding. <strong>Acceptance:</strong> reproducible before/after evidence and no regression in authoring.</p>
-    </details>
-
-    <details><summary>Day 34 · Performance and test strategy</summary>
-      <p><strong>Retrieval question:</strong> What is the cheapest test that detects the risk you are discussing?</p>
-      <ol class="slides">
-        <li><strong>Slide 1 — Measure before optimizing.</strong> Use the same URL, content, cache state and environment for baseline and comparison. <em>Speaker cue: intuition identifies a question, not the answer.</em></li>
-        <li><strong>Slide 2 — Frontend cost includes bytes and work.</strong> Asset size, request count, rendering and responsive behavior affect visitor experience. <em>Speaker cue: a visually small image can still be a large download.</em></li>
-        <li><strong>Slide 3 — Backend cost happens per request or job.</strong> Queries, remote calls and repeated model work can multiply under traffic. <em>Speaker cue: identify execution frequency before micro-optimizing code.</em></li>
-        <li><strong>Slide 4 — Shared caching is often the largest lever.</strong> A safe cache hit removes work across the entire request path. <em>Speaker cue: performance never overrides privacy or correctness.</em></li>
-        <li><strong>Slide 5 — Match the test to the failure.</strong> Unit, integration, UI and smoke checks have different speed and confidence. <em>Speaker cue: use the lowest-cost test that observes the real risk.</em></li>
-      </ol>
-      <p><strong>Demo:</strong> select tests for five Guide failures. <strong>Assignment:</strong> build a risk-to-test matrix and improve one measured issue. <strong>Acceptance:</strong> baseline, change and equivalent after measurement are supplied.</p>
-    </details>
-
-    <details><summary>Day 35 · Weekly review: production readiness</summary>
+    <details><summary>Day 30 · Weekly review: production readiness</summary>
       <p><strong>Retrieval question:</strong> What can pass functional testing but still make a component unsafe for production?</p>
       <ol class="slides">
-        <li><strong>Slide 1 — Verify behavior and states.</strong> Acceptance, empty, error and regression paths must be observable. <em>Speaker cue: “works on my page” is one state, not readiness.</em></li>
-        <li><strong>Slide 2 — Verify authorability.</strong> Labels, defaults, policies and existing content must support maintainable use. <em>Speaker cue: count the decisions imposed on an author.</em></li>
-        <li><strong>Slide 3 — Verify maintainability.</strong> Reuse, module location, focused dependencies and a small diff reduce future work. <em>Speaker cue: compare with the closest WKND pattern.</em></li>
-        <li><strong>Slide 4 — Verify security and performance.</strong> Inputs, output contexts, permissions, queries, assets and caching need evidence. <em>Speaker cue: prioritize data/security before visual polish.</em></li>
-        <li><strong>Slide 5 — Verify operability.</strong> Logs, tests, deployment checks and first-response guidance let another person maintain the feature. <em>Speaker cue: production ownership starts before release.</em></li>
+        <li><strong>Slide 1 — Verify behavior and authorability.</strong> Acceptance, empty, error, policy and existing-content paths must be observable. <em>Speaker cue: “works on my page” is one state.</em></li>
+        <li><strong>Slide 2 — Verify maintainability.</strong> Reuse, correct module placement, focused dependencies and a small diff reduce future work. <em>Speaker cue: compare with the closest WKND pattern.</em></li>
+        <li><strong>Slide 3 — Verify security and performance.</strong> Inputs, output contexts, permissions, assets, queries and caching need evidence. <em>Speaker cue: prioritize data and security before polish.</em></li>
+        <li><strong>Slide 4 — Verify testing and operation.</strong> A focused regression check and first-response guidance let another maintainer act. <em>Speaker cue: local evidence is required; Cloud Manager access is not.</em></li>
+        <li><strong>Slide 5 — Defend the delivery model accurately.</strong> Explain supplied pipeline stages and distinguish observed theory from executed local checks. <em>Speaker cue: never claim a deployment that was not performed.</em></li>
       </ol>
-      <p><strong>Demo:</strong> review one Guide PR with the five lenses. <strong>Assignment:</strong> asynchronously review another contributor's PR. <strong>Acceptance:</strong> one actionable evidence-based finding and one accepted verified correction.</p>
+      <p><strong>Demo:</strong> review one Guide PR with the five lenses and supplied cloud evidence. <strong>Assignment:</strong> fix the highest-risk local finding. <strong>Acceptance:</strong> before/after proof, regression evidence and an accurate theoretical delivery explanation.</p>
     </details>
     <p><strong>Official reading:</strong> <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/development-guidelines">AEMaaCS Development Guidelines — Adobe</a>.</p>
 
-    <h2 id="week-8">Week 8 · Capstone and transfer</h2>
+    <h2 id="week-7">Week 7 · Capstone and transfer</h2>
 
-    <details><summary>Day 36 · Plan the final increment</summary>
+    <details><summary>Day 31 · Plan the final increment</summary>
       <p><strong>Retrieval question:</strong> What outcome can one contributor deliver and demonstrate independently?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Start from user outcome.</strong> Describe what an author or visitor can do when the increment is complete. <em>Speaker cue: avoid practices named only after modules.</em></li>
-        <li><strong>Slide 2 — Slice vertically.</strong> A ticket should reach observable behavior through the required layers. <em>Speaker cue: horizontal “all dialogs” work delays feedback.</em></li>
+        <li><strong>Slide 2 — Slice vertically.</strong> The increment should reach observable behavior through the required layers. <em>Speaker cue: horizontal “all dialogs” work delays feedback.</em></li>
         <li><strong>Slide 3 — Preserve individual ownership.</strong> One contributor must explain, modify and verify each item even when reviews are collaborative. <em>Speaker cue: group output cannot hide individual gaps.</em></li>
         <li><strong>Slide 4 — Order real dependencies.</strong> Template, policy, model, frontend, configuration and deployment constraints shape sequence. <em>Speaker cue: distinguish dependency from preferred order.</em></li>
         <li><strong>Slide 5 — Write acceptance before implementation.</strong> Include happy path, empty state, security and evidence expectations. <em>Speaker cue: acceptance defines the stopping point.</em></li>
@@ -485,8 +422,8 @@
       <p><strong>Demo:</strong> refine one Weekend Guides outcome into a vertical increment. <strong>Assignment:</strong> refine the learner's final practice. <strong>Acceptance:</strong> one independently owned, testable increment with observable acceptance and explicit dependencies.</p>
     </details>
 
-    <details><summary>Day 37 · Implement the capstone</summary>
-      <p><strong>Retrieval question:</strong> Which existing WKND pattern is closest to your ticket?</p>
+    <details><summary>Day 32 · Implement the capstone</summary>
+      <p><strong>Retrieval question:</strong> Which existing WKND pattern is closest to your increment?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Begin with the acceptance check.</strong> Write the test or repeatable checklist before the implementation changes. <em>Speaker cue: this exposes missing assumptions early.</em></li>
         <li><strong>Slide 2 — Choose the smallest path.</strong> Reuse WKND patterns and Core Components before creating new code. <em>Speaker cue: familiarity for maintainers is a quality attribute.</em></li>
@@ -494,23 +431,23 @@
         <li><strong>Slide 4 — Ask for feedback when behavior exists.</strong> Open a draft PR when the first vertical slice is observable. <em>Speaker cue: early review of intent is cheaper than late review of polish.</em></li>
         <li><strong>Slide 5 — Capture evidence while working.</strong> Preserve commands, tests and author/visitor results before context disappears. <em>Speaker cue: do not reconstruct proof on demo day.</em></li>
       </ol>
-      <p><strong>Demo:</strong> implement the instructor's first thin slice. <strong>Assignment:</strong> deliver the owned capstone ticket. <strong>Acceptance:</strong> draft PR shows working behavior, current checks and an explicit remaining task.</p>
+      <p><strong>Demo:</strong> implement the instructor's first thin slice. <strong>Assignment:</strong> deliver the owned capstone increment. <strong>Acceptance:</strong> draft PR shows working behavior, current checks and an explicit remaining task.</p>
     </details>
 
-    <details><summary>Day 38 · Hardening and defects</summary>
+    <details><summary>Day 33 · Hardening and defects</summary>
       <p><strong>Retrieval question:</strong> Which boundary condition is most likely to invalidate your implementation assumption?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Cross-review challenges assumptions.</strong> The reviewer attempts to reproduce edge cases, not merely confirm style. <em>Speaker cue: constructive review includes evidence and impact.</em></li>
-        <li><strong>Slide 2 — Test boundary states.</strong> Missing, long, unauthorized and dependency-failure scenarios reveal resilience. <em>Speaker cue: choose boundaries relevant to the specific ticket.</em></li>
+        <li><strong>Slide 2 — Test boundary states.</strong> Missing, long, unauthorized and dependency-failure scenarios reveal resilience. <em>Speaker cue: choose boundaries relevant to the specific increment.</em></li>
         <li><strong>Slide 3 — Check neighboring behavior.</strong> Shared policies, services, CSS and cache rules can regress other pages. <em>Speaker cue: trace consumers before declaring the fix local.</em></li>
         <li><strong>Slide 4 — Prioritize by risk.</strong> Data and security, functional correctness, operability and polish are addressed in that order. <em>Speaker cue: severity is impact times likelihood, not reviewer preference.</em></li>
         <li><strong>Slide 5 — Resolve comments with proof.</strong> State what changed and which check now passes. <em>Speaker cue: “done” without evidence moves uncertainty to the reviewer.</em></li>
       </ol>
-      <p><strong>Demo:</strong> turn a vague comment into a reproducible finding. <strong>Assignment:</strong> review and harden one peer ticket. <strong>Acceptance:</strong> traceable review, prioritized fix and regression evidence.</p>
+      <p><strong>Demo:</strong> turn a vague comment into a reproducible finding. <strong>Assignment:</strong> review and harden one peer increment. <strong>Acceptance:</strong> traceable review, prioritized fix and regression evidence.</p>
     </details>
 
-    <details><summary>Day 39 · Individual practical assessment</summary>
-      <p><strong>Retrieval question:</strong> What process will you follow before touching code in an unfamiliar ticket?</p>
+    <details><summary>Day 34 · Individual practical assessment</summary>
+      <p><strong>Retrieval question:</strong> What process will you follow before touching code in an unfamiliar change?</p>
       <ol class="slides">
         <li><strong>Slide 1 — The case is new but the pattern is familiar.</strong> Assessment uses a variation of practiced work, not trivia. <em>Speaker cue: success is transfer, not memorization.</em></li>
         <li><strong>Slide 2 — Documentation is allowed; direct implementation help is not.</strong> Real developers consult authoritative sources while owning the decision. <em>Speaker cue: record when and why a source was used.</em></li>
@@ -518,10 +455,10 @@
         <li><strong>Slide 4 — Decisions require alternatives and risk.</strong> Explain why the selected approach is smaller or safer and what remains uncertain. <em>Speaker cue: confidence must match evidence.</em></li>
         <li><strong>Slide 5 — Use the common proficiency scale.</strong> Not demonstrated, with support, independent or can guide describes current evidence. <em>Speaker cue: the level is per capability, not a permanent label.</em></li>
       </ol>
-      <p><strong>Demo:</strong> explain assessment rules without revealing the solution. <strong>Assignment:</strong> complete a timed individual maintenance ticket. <strong>Acceptance:</strong> working behavior, relevant check and technical defense.</p>
+      <p><strong>Demo:</strong> explain assessment rules without revealing the solution. <strong>Assignment:</strong> complete a timed individual maintenance change. <strong>Acceptance:</strong> working behavior, relevant check and technical defense.</p>
     </details>
 
-    <details><summary>Day 40 · Final review: demo, defense and the next 30 days</summary>
+    <details><summary>Day 35 · Final review: demo, defense and the next 30 days</summary>
       <p><strong>Retrieval question:</strong> What evidence best demonstrates the capability you improved most?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Demonstrate outcomes.</strong> Show the author task, visitor experience and evidence rather than navigating source folders. <em>Speaker cue: begin from the acceptance criterion.</em></li>

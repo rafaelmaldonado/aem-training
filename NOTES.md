@@ -3,8 +3,8 @@
 - Audiencia: seis desarrolladores con experiencia principalmente en frontend y authoring; enseñar desarrollo AEM desde cero.
 - Modalidad: equipo completamente remoto; el usuario es el arquitecto y también conduce el entrenamiento.
 - Restricción remota: no depender de breakout rooms; usar chat, preguntas dirigidas, demos y trabajo individual posterior.
-- Duración: ocho semanas, lunes a viernes; sesión en línea de 30 minutos y ejercicios asíncronos posteriores.
-- Preferencias: mismo proyecto en repositorios y ambientes individuales; ocho prácticas semanales, publicadas el lunes, entregadas el jueves y revisadas el viernes.
+- Duración: siete semanas, lunes a viernes; sesión en línea de 30 minutos y ejercicios asíncronos posteriores.
+- Preferencias: mismo proyecto en repositorios y ambientes individuales; siete prácticas semanales, publicadas el lunes, entregadas el jueves y revisadas el viernes.
 - Presentación: materiales en HTML, accesibles desde `index.html`, con estilo compartido e impresión limpia.
 - Preferencia para slides: contenido completo con bullets, ejemplos concretos, diagramas e imágenes; no limitarse a una descripción breve.
 - Flujo de presentación: publicar las slides en GitHub Pages y copiarlas como una imagen completa a PowerPoint para conservar el formato; no generar un `.pptx` aparte.
@@ -18,5 +18,6 @@
 - Supuesto provisional: mantenimiento de AEM Sites tradicional sobre AEM as a Cloud Service.
 - Alcance confirmado: AEM Sites tradicional sobre AEM as a Cloud Service; no incluir EDS, Headless ni Forms en el núcleo.
 - Acceso probable: SDK y repositorio.
-- Pendiente de confirmar: perfiles individuales, acceso a Cloud Manager, versión/plataforma real y alcance del proyecto mantenido.
-- No se esperan interrupciones relevantes durante las ocho semanas.
+- Cloud Manager: contenido teórico con diagramas y evidencia anonimizada; no pedir acceso ni despliegues.
+- Pendiente de confirmar: perfiles individuales, versión/plataforma real y alcance del proyecto mantenido.
+- No se esperan interrupciones relevantes durante las siete semanas restantes.

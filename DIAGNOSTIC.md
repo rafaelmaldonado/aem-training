@@ -10,7 +10,7 @@ Cada participante anota:
 - años aproximados trabajando con web y con AEM;
 - una tarea de AEM que puede realizar sin ayuda;
 - una tarea de AEM que todavía no puede realizar;
-- acceso disponible: Java, Maven, Git, Node, SDK de AEM, repositorio y Cloud Manager.
+- acceso disponible: Java, Maven, Git, Node, SDK de AEM y repositorio; Cloud Manager no es requisito.
 
 ## 2. Recuperación conceptual — 10 minutos
 
