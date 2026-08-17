@@ -4,7 +4,7 @@
 
 En ocho semanas, el equipo remoto debe poder trabajar de extremo a extremo en una solución AEM as a Cloud Service: comprender la arquitectura y el flujo de contenido, desarrollar en su especialidad, revisar el trabajo de otra persona, operar el ciclo de entrega y explicar las decisiones tomadas. El arquitecto debe poder demostrar ese progreso con evidencia individual.
 
-El curso utiliza un solo proyecto integrador para seis desarrolladores y simula el mantenimiento evolutivo de AEM Sites tradicional. La profundidad se ajusta después del diagnóstico; no se intenta que cada persona sea especialista en todo.
+El curso utiliza el mismo proyecto integrador para seis desarrolladores, pero cada persona realiza las prácticas en su propio repositorio y SDK local. La profundidad se ajusta después del diagnóstico; no se intenta que cada persona sea especialista en todo.
 
 ## Ritmo diario (30 minutos en línea)
 
@@ -28,7 +28,7 @@ Después de la sesión, cada participante dedica 60–120 minutos al ejercicio e
 | 5. Mantenimiento e integraciones | Workflows, búsqueda, Content Fragments cuando apliquen, APIs, autenticación, caché e integración segura | Cambio de mantenimiento real e integración con contrato probado |
 | 6. Cloud, entrega y calidad | SDK local, Git, Cloud Manager, ambientes, pipelines, quality gates, Dispatcher/CDN, caché, logs, secretos y troubleshooting | Cambio desplegado por pipeline; ejercicio de fallo, diagnóstico y corrección |
 | 7. Calidad de producción | Rendimiento, seguridad, permisos, accesibilidad, SEO, observabilidad, pruebas y revisión de código | Auditoría cruzada del proyecto; corrección de los riesgos prioritarios |
-| 8. Entrega y transferencia | Hardening, documentación mínima, operación, demo y retrospectiva | Evaluación práctica individual, demo grupal y defensa técnica del proyecto |
+| 8. Entrega y transferencia | Hardening, documentación mínima, operación, demo y retrospectiva | Capstone individual, demo y defensa técnica |
 
 ## Rutas por perfil
 
@@ -51,16 +51,16 @@ Mantener y extender el repositorio oficial WKND con una sección `Weekend Guides
 - permisos, caché, accesibilidad, pruebas y pipeline;
 - README operativo corto y demo final.
 
-Cada semana produce un incremento demostrable. Evitar microservicios, SPA, personalización, Forms o Commerce salvo que el trabajo real los necesite.
+Cada persona parte del mismo baseline de sólo lectura y completa la misma práctica semanal en su propio repositorio y SDK. La práctica se publica el lunes, se entrega el jueves y se revisa el viernes, sin dependencias entre participantes. Evitar microservicios, SPA, personalización, Forms o Commerce salvo que el trabajo real los necesite.
 
-El backlog operativo de 48 historias está en `reference/wknd-project-backlog.html`.
+La guía de ocho prácticas individuales está en `reference/wknd-project-backlog.html`.
 
 ## Evaluación
 
 - Antes del Día 1, diagnóstico asíncrono sin calificación: conceptos, lectura de código y una tarea corta; clasifica apoyo necesario, no personas.
-- Cada viernes, sesión de 30 min: recuperación, una presentación de participante, muestra de evidencia y siguiente reto.
-- Fin de semanas 2, 4 y 6: checkpoint de proyecto con rúbrica común.
-- Semana 8: tarea práctica individual y proyecto grupal. Una presentación no sustituye demostrar el código.
+- Cada viernes, sesión de revisión de 30 min: recuperación, dos demos rotativas, hallazgos comunes, comprobación de entendimiento y siguiente reto.
+- Las seis entregas se revisan de forma asíncrona antes de la sesión; la revisión en vivo usa muestras representativas.
+- Semana 8: capstone individual, demo y defensa técnica. Una presentación no sustituye demostrar el código.
 
 Rúbrica estable: funcionamiento 30%, authorability/modelado 20%, calidad y seguridad 20%, explicación técnica 15%, colaboración y entrega 15%.
 
@@ -72,21 +72,21 @@ Cada participante deja sólo tres evidencias por semana:
 2. Aplicación: PR, commit, prueba, configuración o diagnóstico verificable.
 3. Explicación: comentario de revisión, demo breve o defensa de una decisión y su riesgo.
 
-El arquitecto registra el resultado como `no demostrado`, `con apoyo`, `independiente` o `puede guiar`, además del siguiente tema a comprobar. El proyecto grupal aporta contexto, pero no reemplaza estas tres evidencias individuales. Usar la [hoja de seguimiento](reference/seguimiento-evidencias.html); no usar asistencia, cámara encendida, horas conectadas ni cantidad de commits como sustitutos de aprendizaje.
+El arquitecto registra el resultado como `no demostrado`, `con apoyo`, `independiente` o `puede guiar`, además del siguiente tema a comprobar. La similitud entre soluciones orienta la revisión, pero el entendimiento se confirma al explicar, ejecutar y modificar el código. Usar la [hoja de seguimiento](reference/seguimiento-evidencias.html); no usar asistencia, cámara encendida, horas conectadas ni cantidad de commits como sustitutos de aprendizaje.
 
-Los enlaces se entregan antes del jueves al cierre. El arquitecto dedica aproximadamente cinco minutos por persona a revisarlos de forma asíncrona; el viernes sólo hace una comprobación breve y aclara lo dudoso.
+Los enlaces se entregan el jueves antes del cierre. El arquitecto dedica aproximadamente cinco minutos por persona a revisarlos de forma asíncrona; el viernes discute patrones, observa dos demos rotativas y comprueba lo dudoso.
 
-## Presentaciones de participantes
+## Revisión del viernes
 
-Una presentación semanal de 8 minutos, más 7 de preguntas, preparada por una persona. Debe incluir una demostración o ejemplo, una decisión y un error frecuente. Temas posibles: Sling resolution, HTL context-aware escaping, Core Components, configuración OSGi, Dispatcher caching, Content Fragments, Cloud Manager quality gates y accesibilidad.
+La sesión usa 3 minutos de recuperación, 12 minutos para dos demos rotativas, 10 minutos para hallazgos comunes y una variación técnica, y 5 minutos para feedback y siguiente comprobación.
 
-No usar exposiciones para introducir contenido crítico; sirven para recuperar, enseñar y discutir algo ya practicado.
+No revisar las seis entregas en vivo ni convertir la sesión en estatus. Las demos y preguntas confirman algo ya practicado; el feedback individual restante queda en cada PR.
 
 ## Cadencia remota
 
-- Lunes: objetivo semanal, concepto inicial y ejercicio.
+- Lunes: objetivo semanal, concepto inicial y publicación de la práctica.
 - Martes a jueves: recuperación, microlección, demo y ejercicio posterior.
-- Viernes: presentación de 8 min, 7 min de preguntas, 10 min de evidencia/demo y 5 min de cierre.
+- Viernes: recuperación, dos demos rotativas, hallazgos comunes, comprobación y cierre.
 - Seguimiento asíncrono: `hecho / siguiente / bloqueo / evidencia`.
 - Instructor: un bloque opcional de oficina de 30 min por semana.
 

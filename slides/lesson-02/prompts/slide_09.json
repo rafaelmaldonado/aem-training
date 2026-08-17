@@ -1,0 +1,43 @@
+{
+  "slide": 9,
+  "title": "Questions & next move",
+  "prompt": "# Codex PPT Slide Image Prompt\n\n## Canvas\n{\n  \"type\": \"16:9 full-slide PowerPoint image\",\n  \"language\": \"English\",\n  \"slide_number\": 9,\n  \"render_slide_number\": false\n}\n\n## Deck Goal\nTeach frontend-oriented AEM developers to understand the local development system, route a change to the correct WKND module, and distinguish build validation from installation and runtime verification.\n\n## Required Background\n{\n  \"deck_context\": {\n    \"source_summary\": \"Class 2 of an eight-week AEM Sites training course. The audience is learning traditional AEM Sites on AEM as a Cloud Service through the WKND project. This class focuses on the local SDK, Maven reactor and repository module responsibilities.\",\n    \"core_claim\": \"Before editing a file, name the change, identify the module that owns its lifecycle, then verify the assembled result.\",\n    \"canonical_terms\": [\n      \"WKND source project\",\n      \"AEM SDK\",\n      \"Dispatcher Tools\",\n      \"Maven reactor\",\n      \"core\",\n      \"ui.apps\",\n      \"ui.content\",\n      \"ui.config\",\n      \"dispatcher\",\n      \"all\",\n      \"Local Author\"\n    ]\n  },\n  \"slide_local_context\": {\n    \"required_background\": \"This closing slide should still feel technically complete. The demo uses the WKND build and locates the all package. Practice is individual and requires justified routing decisions.\"\n  }\n}\n\n## Global Style\n{\n  \"name\": \"Detailed AEM repository atlas\",\n  \"visual_direction\": \"Information-rich technical blueprint blended with professional academic courseware. Each slide should feel specific to AEM and WKND, with credible repository paths, build artifacts, precise annotations and meaningful connectors instead of generic corporate cards.\",\n  \"color_palette\": \"Warm off-white drafting-paper background; deep navy typography; faint square grid; semantic blue for Java/application code, violet for AEM presentation code, green for configuration, orange for Dispatcher/delivery and slate for package aggregation.\",\n  \"typography\": \"Crisp modern sans serif headings and labels; true monospace appearance for module names, commands, paths and artifacts; strong hierarchy readable on a projected slide.\",\n  \"texture_and_finish\": \"Flat 2D technical drawing with fine rules, restrained colored headers, precise folder/file glyphs and subtle drafting-grid texture. No gradients, neon, glass, 3D icons or photography.\",\n  \"deck_consistency\": \"Match the approved sample's palette, typography, annotation density, line weight, grid texture and AEM-specific technical precision while varying composition by slide role.\"\n}\n\n## Input Images\n\n- Image 1: /Users/juanmaldonado/Projects/aem-training/slides/lesson-02/origin_image/slide_07.png — approved sample slide style reference; Match style, palette, typography, density and technical precision only; do not copy the exact repository-map layout.\n\n\n## Slide\n{\n  \"number\": 9,\n  \"title\": \"Questions & next move\",\n  \"role\": \"Q&A\",\n  \"intent\": \"Close the concept section and transition directly into the build demo and asynchronous routing exercise.\"\n}\n\n## Text\n{\n  \"title\": \"Questions & next move\",\n  \"key_points\": [\n    \"Retrieval: Which flow changes when a Java class changes?\",\n    \"Demo: build WKND and locate the all package\",\n    \"Practice: route six change scenarios\",\n    \"Acceptance: BUILD SUCCESS + five justified module choices\"\n  ],\n  \"speaker_focus\": \"Invite one question, then set the exact next action and evidence standard.\"\n}\n\n## Layout\n{\n  \"composition\": \"Workshop handoff sheet. Use a large question mark formed from a repository branch at left and a detailed three-step execution checklist at right: DEMO, PRACTICE, ACCEPTANCE. Include exact eyebrow '09 · QUESTIONS + NEXT MOVE'.\",\n  \"content_zones\": \"Compact close title, visual question mark, technical next-step checklist and evidence strip.\",\n  \"relationship_to_previous_slide\": \"Shift from synthesis to action without becoming an empty thank-you page.\",\n  \"spacing\": \"Open enough for a closing slide, detailed enough to guide the next 60–90 minutes.\"\n}\n\n## Visual Elements\n{\n  \"main_visual\": \"A repository branch bends into a question mark and terminates in a terminal prompt; the right side shows build, locate package and route scenarios.\",\n  \"supporting_elements\": \"Acceptance evidence strip with BUILD SUCCESS and 5/6 justified routes.\"\n}\n\n## Constraints\n[\n  \"Render the eyebrow exactly as '09 · QUESTIONS + NEXT MOVE'.\",\n  \"Do not use a generic thank-you layout.\",\n  \"Keep BUILD SUCCESS uppercase.\"\n]\n\n## Style Reference Rule\nUse Image 1 as the approved sample-slide style reference. Match its palette, typography mood, density, texture, and overall visual identity. Do not copy its exact layout unless this slide's layout explicitly asks for it.\n\n## Input Image Handling Rules\nFor any input image marked as a strict input asset, include it visibly and preserve its content. Do not redraw, replace, relabel, or invent a similar figure. Scale and crop only as needed for composition while keeping the important labels, arrows, data, and relationships recognizable.\n\n## Universal Constraints\n- The final image itself must contain the title and key points.\n- Render Chinese text exactly and legibly; avoid garbled characters.\n- Keep the confirmed deck style consistent while varying layout by slide role.\n- No watermark, unrelated logo, or extra slide number.\n",
+  "out": "slide_09.png",
+  "input_images": [
+    {
+      "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-02/origin_image/slide_07.png",
+      "role": "approved sample slide style reference",
+      "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact repository-map layout."
+    }
+  ],
+  "requires_context_images": true,
+  "expected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved third sample prompt in the Codex conversation; detailed annotated repository map",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-02/origin_image/slide_07.png",
+    "input_context_preparation": "Use the approved sample PNG as a style-only local reference; inspect it visually before generation.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "generation_contract": {
+    "must_use_selected_image_backend": true,
+    "must_match_sample_generation_method": true,
+    "forbidden_final_image_methods": [
+      "local drawing/rendering scripts",
+      "Pillow-generated slides",
+      "SVG/HTML/CSS/canvas screenshots",
+      "python-pptx/PptxGenJS/native PPT layout screenshots",
+      "manually composited text/image overlays"
+    ],
+    "must_return": [
+      "backend_used",
+      "selected_source",
+      "qa_note"
+    ]
+  }
+}

@@ -29,7 +29,7 @@ document.addEventListener("click", async (event) => {
     await navigator.clipboard.write([new ClipboardItem({ "image/png": png })]);
     status.textContent = "Copied. Paste directly into PowerPoint.";
   } catch (error) {
-    status.textContent = "Copy failed. Use Download SVG and insert it into PowerPoint.";
+    status.textContent = "Copy failed. Download the slide image and insert it into PowerPoint.";
   } finally {
     button.disabled = false;
   }

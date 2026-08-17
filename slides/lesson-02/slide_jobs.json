@@ -1,0 +1,363 @@
+{
+  "run_status": "slides_recorded",
+  "deck_name": "lesson-02",
+  "selected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved third sample prompt in the Codex conversation; detailed annotated repository map",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-02/origin_image/slide_07.png",
+    "input_context_preparation": "Use the approved sample PNG as a style-only local reference; inspect it visually before generation.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "max_concurrent_slides": 3,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "Know where a change belongs.",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-02/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact repository-map layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_01",
+        "agent_nickname": "slide_01",
+        "prompt": "prompts/slide_01.json",
+        "prompt_sha256": "6bbe4048a0c723b28cae0a4d45510c04580b444c1095a77b7dbf8fd0c8de3fa0",
+        "dispatched_at": "2026-08-14T23:31:25Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0029d-2936-71f2-b912-1433d2dee8be/exec-948b22d2-92f1-4b13-8f7f-e05510c0c18d.png",
+        "selected_source_sha256": "c2f435a356f9b93b8c1eb8719d6da25ed11ecf3990f1624a6d90540ae51a489a",
+        "final_image": "origin_image/slide_01.png",
+        "final_image_sha256": "c2f435a356f9b93b8c1eb8719d6da25ed11ecf3990f1624a6d90540ae51a489a",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Text legible; detailed repository-to-Author cover matches the approved style.",
+        "recorded_at": "2026-08-14T23:34:09Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "Local development has three moving parts.",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-02/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact repository-map layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_02",
+        "agent_nickname": "slide_02",
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "53241be8c87dad8e6ababb22a5870982c328c517ce341acbaf5bd807bea0c8f2",
+        "dispatched_at": "2026-08-14T23:31:25Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0029d-57ba-7911-a9a5-40c0cd9800e1/exec-835efc75-7338-472d-b894-c87e5b0e07c7.png",
+        "selected_source_sha256": "a1421be33e98721bba1a8fedf0e905d64ac2d49a0ee7b2601a1237e0a4bed5cd",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "a1421be33e98721bba1a8fedf0e905d64ac2d49a0ee7b2601a1237e0a4bed5cd",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Correct repository install command; Dispatcher Tools are shown as a separate local delivery model, not in front of Author.",
+        "recorded_at": "2026-08-14T23:38:32Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "Maven coordinates one product.",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-02/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact repository-map layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_03",
+        "agent_nickname": "slide_03",
+        "prompt": "prompts/slide_03.json",
+        "prompt_sha256": "c5486cc1035d08985edbbc49650c434f30558c5f29fcc995dc3e56c2c24a3eff",
+        "dispatched_at": "2026-08-14T23:31:25Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0029d-813d-7ab1-b0ab-3b80f10e1c26/exec-08aa0c94-fa37-492f-b85e-a213396d98da.png",
+        "selected_source_sha256": "51ca4d402604838a91546a22f825c5c4fe97184a1dfe3d32eddef81c7125aa47",
+        "final_image": "origin_image/slide_03.png",
+        "final_image_sha256": "51ca4d402604838a91546a22f825c5c4fe97184a1dfe3d32eddef81c7125aa47",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Success and failure states are separated; downstream modules are blocked and no package is produced after failure.",
+        "recorded_at": "2026-08-14T23:37:19Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "One component can cross two code modules.",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-02/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact repository-map layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_04",
+        "agent_nickname": "slide_04",
+        "prompt": "prompts/slide_04.json",
+        "prompt_sha256": "c0e499a62d686c3f8ecc029e996482b222641681418be5355999816fec40a99b",
+        "dispatched_at": "2026-08-14T23:34:25Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_04",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a002a0-62f3-7cf2-aa49-b1f680ffcf24/exec-527a5f64-cafc-45dc-acef-9b359cb2673a.png",
+        "selected_source_sha256": "c5081bd0a45c0c2f4c3e024560cc40bbd69ea277d21657951f17e739bf6a3e01",
+        "final_image": "origin_image/slide_04.png",
+        "final_image_sha256": "c5081bd0a45c0c2f4c3e024560cc40bbd69ea277d21657951f17e739bf6a3e01",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Guide Card trace correctly separates core from ui.apps and includes the no-unnecessary-Java caveat.",
+        "recorded_at": "2026-08-14T23:37:19Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "Location communicates lifecycle.",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-02/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact repository-map layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_05",
+        "agent_nickname": "slide_05",
+        "prompt": "prompts/slide_05.json",
+        "prompt_sha256": "97f8e63cd4df8028dc184a4eca3f971fbf14ce19542974954389f0c104222015",
+        "dispatched_at": "2026-08-14T23:37:51Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_05",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a002a3-4c2f-7ae2-a52f-16c6a0a5621d/exec-5889cb4c-1da9-4ba5-961f-4120c8cefe90.png",
+        "selected_source_sha256": "03cce0a14de26e87fc1ac8c48c3dbfe32c9eccc6a4290f5e4d0794feccf64643",
+        "final_image": "origin_image/slide_05.png",
+        "final_image_sha256": "03cce0a14de26e87fc1ac8c48c3dbfe32c9eccc6a4290f5e4d0794feccf64643",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Four lifecycle lanes accurately map source paths, artifacts and affected runtime areas.",
+        "recorded_at": "2026-08-14T23:39:41Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "Verify first. Install second.",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-02/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact repository-map layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_06",
+        "agent_nickname": "slide_06",
+        "prompt": "prompts/slide_06.json",
+        "prompt_sha256": "4756346e0f98ccfec26d568f6e0271c4d2022cd811b9b1f3d23b468f37042e00",
+        "dispatched_at": "2026-08-14T23:37:51Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_06",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a002a3-7378-7ab3-8510-54d75cbf141f/exec-4f332216-4398-4cf4-bbba-4fb2e3768ed3.png",
+        "selected_source_sha256": "64364f269a2a2bcb0445808bf6fd89cdf2e227d658204ac207496fc8b5582666",
+        "final_image": "origin_image/slide_06.png",
+        "final_image_sha256": "64364f269a2a2bcb0445808bf6fd89cdf2e227d658204ac207496fc8b5582666",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Three evidence gates are correct; runtime evidence uses direct Local Author with no Dispatcher header.",
+        "recorded_at": "2026-08-14T23:43:28Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "Route the change before opening the editor.",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-02/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact repository-map layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "accepted",
+      "dispatch": null,
+      "result": {
+        "final_image": "origin_image/slide_07.png",
+        "accepted_sample": true
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "Key takeaways",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-02/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact repository-map layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_08",
+        "agent_nickname": "slide_08",
+        "prompt": "prompts/slide_08.json",
+        "prompt_sha256": "cb6abfd0518d3c6559df2ee8b6ab45e2e5520a6a382cbd78990c2f68c9c47d48",
+        "dispatched_at": "2026-08-14T23:38:50Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_08",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a002a4-61b7-7fa3-bcd8-1dc58fbccb08/exec-fc942acb-3a40-47c1-9fb3-e2f431ef896b.png",
+        "selected_source_sha256": "84b39ddd6dbd4d13d3741fc1e5d111eaa2985761f831ad2a79a1ca21f7ec5030",
+        "final_image": "origin_image/slide_08.png",
+        "final_image_sha256": "84b39ddd6dbd4d13d3741fc1e5d111eaa2985761f831ad2a79a1ca21f7ec5030",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "All four takeaways are legible; Maven stops at package and Dispatcher ends as a separate local delivery model.",
+        "recorded_at": "2026-08-14T23:43:28Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Questions & next move",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-02/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact repository-map layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_09",
+        "agent_nickname": "slide_09",
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "8536bbeca059c4a1aef0399ea1c93882882452720e00eff4a56aa6bc7f8cf734",
+        "dispatched_at": "2026-08-14T23:40:03Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a002a5-72a9-7240-a9c8-13b35c4565a8/exec-20960cc2-a438-4e4d-9811-ac149cb56e1f.png",
+        "selected_source_sha256": "aa3fcdbcc86d168651c97445222631d454ba872fe0567009504ddeac0e4624c8",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "aa3fcdbcc86d168651c97445222631d454ba872fe0567009504ddeac0e4624c8",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Safe build command, real package path and approved acceptance evidence are complete and legible.",
+        "recorded_at": "2026-08-14T23:46:48Z"
+      },
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-08-14T23:46:48Z"
+}

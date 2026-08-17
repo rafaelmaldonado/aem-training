@@ -6,7 +6,7 @@ Preparar en ocho semanas a un equipo remoto y heterogéneo para colaborar y entr
 ## Success looks like
 - El equipo puede levantar, entender, modificar, probar y desplegar un proyecto AEM.
 - Cada participante domina los fundamentos comunes y puede contribuir en una ruta frontend o backend.
-- El equipo entrega y demuestra un proyecto final con contenido authorable, calidad, seguridad y operación básica.
+- Cada participante entrega y demuestra el mismo proyecto final desde su propio repositorio y ambiente, con contenido authorable, calidad, seguridad y operación básica.
 - El arquitecto puede comprobar con artefactos qué domina cada participante y qué necesita reforzar.
 
 ## Constraints
@@ -14,7 +14,7 @@ Preparar en ocho semanas a un equipo remoto y heterogéneo para colaborar y entr
 - Seis desarrolladores con experiencia principalmente en frontend y authoring; el desarrollo técnico de AEM comienza desde fundamentos.
 - El instructor es también el arquitecto y el equipo trabaja de forma remota.
 - Ruta provisional: mantenimiento de AEM Sites tradicional; se confirmará con el responsable del proyecto durante la primera semana.
-- Se espera acceso al SDK y al repositorio; el acceso a Cloud Manager todavía debe confirmarse.
+- Cada participante necesita su propio SDK y repositorio a partir de un baseline común; el acceso a Cloud Manager todavía debe confirmarse.
 
 ## Out of scope
 - Especialización profunda en todas las soluciones de Experience Cloud.

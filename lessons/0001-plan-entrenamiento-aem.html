@@ -12,9 +12,9 @@
     <a class="brand" href="../index.html">AEM Training</a>
     <ul>
       <li><a href="../index.html">Overview</a></li>
-      <li><a href="../reference/eight-week-syllabus.html">Temario</a></li>
+      <li><a href="../reference/aem-course-topics.html">Syllabus</a></li>
       <li><a href="../reference/slide-ready-lessons.html">Slides</a></li>
-      <li><a href="../reference/wknd-project-backlog.html">Proyecto</a></li>
+      <li><a href="../reference/wknd-project-backlog.html">Prácticas</a></li>
       <li><a href="../reference/initial-setup.html">Setup</a></li>
       <li><a href="../reference/seguimiento-evidencias.html">Evidencias</a></li>
     </ul>
@@ -22,7 +22,7 @@
   <header>
     <p class="eyebrow">Plan maestro · borrador operativo</p>
     <h1>Ocho semanas para entregar en AEM.</h1>
-    <p class="lede">Seis desarrolladores remotos, un proyecto integrador y una ruta principal: mantenimiento de AEM Sites tradicional con progreso individual verificable.</p>
+    <p class="lede">Seis desarrolladores remotos, el mismo proyecto en repositorios y ambientes individuales, y una ruta principal: mantenimiento de AEM Sites tradicional.</p>
     <ul class="meta"><li>30 min en línea</li><li>60–120 min de práctica</li><li>Arquitecto como instructor</li></ul>
   </header>
   <main id="contenido">
@@ -54,7 +54,7 @@
         <tr><td>5 · Mantenimiento</td><td>Workflows, búsqueda, Content Fragments cuando apliquen, APIs y caché</td><td>Cambio real e integración probados</td></tr>
         <tr><td>6 · Entrega</td><td>SDK, Git, Cloud Manager, pipelines, Dispatcher/CDN y logs</td><td>Despliegue y diagnóstico de un fallo</td></tr>
         <tr><td>7 · Producción</td><td>Rendimiento, seguridad, permisos, accesibilidad, SEO y revisión</td><td>Auditoría cruzada</td></tr>
-        <tr><td>8 · Cierre</td><td>Hardening, documentación, operación, demo y retrospectiva</td><td>Evaluación individual y demo grupal</td></tr>
+        <tr><td>8 · Cierre</td><td>Hardening, documentación, operación, demo y retrospectiva</td><td>Capstone individual, demo y defensa</td></tr>
       </tbody>
     </table></div>
 
@@ -67,7 +67,7 @@
     <p>Cada persona elige una ruta principal y una secundaria, pero todos completan los fundamentos y al menos una tarea vertical.</p>
 
     <h2 id="proyecto">Proyecto integrador</h2>
-    <p>El curso parte del repositorio oficial WKND y simula su mantenimiento evolutivo mediante una nueva sección <em>Weekend Guides</em>. El <a href="../reference/wknd-project-backlog.html">backlog distribuye 48 historias entre seis contributors</a> e incluye:</p>
+    <p>El curso parte del repositorio oficial WKND y simula su mantenimiento evolutivo mediante una nueva sección <em>Weekend Guides</em>. Cada developer parte del mismo baseline y completa las <a href="../reference/wknd-project-backlog.html">ocho prácticas semanales</a> en su propio repositorio y SDK local. El proyecto incluye:</p>
     <ul class="checklist">
       <li>Páginas y navegación administrables.</li>
       <li>Guide Page, Guide Card y Guide List basados en capacidades nativas o Core Components.</li>
@@ -78,15 +78,15 @@
     </ul>
     <p>SPA, microservicios, personalización, Forms y Commerce quedan fuera salvo que el proyecto real los requiera.</p>
 
-    <h2 id="evaluacion">Evaluación y exposiciones</h2>
+    <h2 id="evaluacion">Evaluación y revisión</h2>
     <ul>
       <li>Antes del Día 1: diagnóstico asíncrono sin calificación.</li>
-      <li>Cada viernes: recuperación, presentación, artefacto técnico y explicación, 30 minutos.</li>
-      <li>Semanas 2, 4 y 6: checkpoint del proyecto.</li>
-      <li>Semana 8: tarea individual, demo grupal y defensa técnica.</li>
+      <li>Cada viernes: recuperación, dos demos rotativas, hallazgos comunes y comprobación técnica, 30 minutos.</li>
+      <li>Las seis entregas se revisan asíncronamente antes de la sesión.</li>
+      <li>Semana 8: capstone individual, demo y defensa técnica.</li>
     </ul>
     <p><strong>Rúbrica:</strong> funcionamiento 30%, authorability/modelado 20%, calidad y seguridad 20%, explicación 15%, colaboración y entrega 15%.</p>
-    <p>Cada viernes presenta una persona: 8 minutos de explicación y 7 de preguntas. La presentación muestra un ejemplo, una decisión y un error frecuente sobre algo ya practicado.</p>
+    <p>La revisión del viernes usa 3 minutos de recuperación, 12 para dos demos, 10 para hallazgos y una variación técnica, y 5 para feedback y siguiente reto.</p>
 
     <h2 id="evidencia">Evidencia individual</h2>
     <p>Cada persona deja tres evidencias por semana:</p>
@@ -96,16 +96,16 @@
       <li><strong>Explicación:</strong> revisión, demo o defensa de una decisión y su riesgo.</li>
     </ol>
     <p>El arquitecto registra <em>no demostrado</em>, <em>con apoyo</em>, <em>independiente</em> o <em>puede guiar</em> en la <a href="../reference/seguimiento-evidencias.html">hoja de seguimiento</a>. Asistencia, cámara, tiempo conectado y cantidad de commits no demuestran aprendizaje.</p>
-    <p>Los enlaces se entregan antes del jueves al cierre. El arquitecto dedica unos cinco minutos por persona a revisarlos; el viernes sólo comprueba una muestra y aclara lo dudoso.</p>
+    <p>Los enlaces se entregan el jueves antes del cierre. El arquitecto dedica unos cinco minutos por persona a revisarlos; el viernes discute patrones, observa dos demos rotativas y comprueba lo dudoso.</p>
 
     <h2 id="reuniones">Reuniones mínimas</h2>
     <ul>
-      <li><strong>Lunes · 30 min:</strong> objetivo semanal, microlección, demo y ejercicio.</li>
+      <li><strong>Lunes · 30 min:</strong> objetivo semanal, microlección, demo y publicación de la práctica.</li>
       <li><strong>Martes–jueves · 30 min:</strong> recuperación, microlección, demo y práctica posterior.</li>
-      <li><strong>Viernes · 30 min:</strong> recuperación, presentación, evidencia y siguiente reto.</li>
+      <li><strong>Viernes · 30 min:</strong> recuperación, dos demos rotativas, hallazgos comunes, comprobación y cierre.</li>
       <li><strong>Opcional:</strong> un bloque de oficina de 30 min por semana.</li>
     </ul>
-    <p>No hay daily adicional, reunión de estatus ni breakout rooms. El repositorio, el tablero y las evidencias muestran el avance; las revisiones se hacen en PR.</p>
+    <p>No hay board adicional, daily, reunión de estatus ni breakout rooms. Cada PR y la hoja de evidencias muestran el avance.</p>
 
     <h2 id="manana">Primera sesión · 30 minutos</h2>
     <ol class="timeline">

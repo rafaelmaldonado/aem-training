@@ -23,7 +23,7 @@ By the end of the course, participants will be able to:
 2. Local SDK, Maven and repository modules: `core`, `ui.apps`, `ui.content`, `ui.config`, `all`, `dispatcher`.
 3. JCR, nodes, properties, resources and the separation of `/apps`, `/content` and `/conf`.
 4. Sling resolution: URL → resource → resource type → script.
-5. Concept integration and first technical diagnosis.
+5. Weekly practice review: baseline and first technical diagnosis.
 
 ### Week 2 — Maintainable authoring
 
@@ -31,7 +31,7 @@ By the end of the course, participants will be able to:
 7. Policies, allowed components, the Style System and author responsibilities.
 8. Components, Granite UI dialogs and property persistence.
 9. Assets, references, the Image Component, responsive images and alternative text.
-10. Authoring and content modeling checkpoint.
+10. Weekly practice review: authoring and content modeling.
 
 ### Week 3 — Frontend development in AEM
 
@@ -39,7 +39,7 @@ By the end of the course, participants will be able to:
 12. Client Libraries: categories, dependencies, embed, loading and debugging.
 13. Core Components and the proxy pattern; `sling:resourceSuperType`.
 14. Responsive behavior, accessibility, states and the empty author experience.
-15. Vertical frontend integration.
+15. Weekly practice review: vertical frontend integration.
 
 ### Week 4 — Essential backend for frontend developers
 
@@ -47,7 +47,7 @@ By the end of the course, participants will be able to:
 17. Sling Models: adaptables, injection, optionality, getters and boundaries.
 18. OSGi services and environment-specific configuration.
 19. Resource API, servlets and when not to create an endpoint.
-20. Sling Model unit testing and backend checkpoint.
+20. Weekly practice review: Sling Model testing and backend behavior.
 
 ### Week 5 — Maintenance and investigation
 
@@ -55,15 +55,15 @@ By the end of the course, participants will be able to:
 22. Logs, bundles, components, configurations and diagnostic tools.
 23. Workflows, launchers, jobs and cloud limitations.
 24. Search, QueryBuilder/Oak, indexes and signs of an expensive query.
-25. Maintenance simulation.
+25. Weekly practice review: maintenance simulation.
 
 ### Week 6 — Delivery on AEM as a Cloud Service
 
-26. Programs, environments, services, repositories and the team's Git workflow.
+26. Programs, environments, services, repositories and the delivery Git workflow.
 27. Cloud Manager, pipelines, quality gates and log analysis.
 28. Dispatcher: virtual hosts, filters, rewrites and caching.
 29. CDN, headers, invalidation and the path of a cache miss.
-30. Deployment and recovery rehearsal.
+30. Weekly practice review: deployment and recovery rehearsal.
 
 ### Week 7 — Production quality
 
@@ -71,16 +71,20 @@ By the end of the course, participants will be able to:
 32. Output security, validation, CSRF/XSS and secrets.
 33. Accessibility, SEO and semantics in authorable components.
 34. Performance and testing: unit, integration, UI and smoke tests.
-35. Production review.
+35. Weekly practice review: production readiness.
 
 ### Week 8 — Capstone and knowledge transfer
 
-36. Plan the final increment and divide work without obscuring ownership.
+36. Plan an individually owned final increment with observable acceptance criteria.
 37. Capstone implementation.
 38. Review, defects and hardening.
 39. Individual practical assessment.
-40. Demo, technical defense, retrospective and 30-day plan.
+40. Final practice review: demo, technical defense, retrospective and 30-day plan.
 
 ## Scope
 
 Traditional AEM Sites on AEM as a Cloud Service. Edge Delivery Services, Headless, Forms and Commerce are outside the core curriculum.
+
+## Practice model
+
+Every developer completes the same weekly practice in an individual repository and local AEM SDK created from one read-only baseline. The brief is released Monday, evidence is due Thursday and Friday is a review session. Cloud deployment is demonstrated or rehearsed from supplied evidence when no shared environment is available. Completion requires working code, a reproducible check and a short technical explanation; code similarity is a review signal, not proof of copying.

@@ -33,7 +33,7 @@
 - [WKND tutorial — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-learn/getting-started-wknd-tutorial-develop/overview)
   Tutorial práctico oficial para contrastar el proyecto del curso con una implementación conocida.
 - [WKND full-stack repository — Adobe](https://github.com/adobe/aem-guides-wknd)
-  Base del proyecto de mantenimiento. Fijar un commit de la rama principal al comenzar y trabajar sobre un fork del equipo.
+  Base del proyecto de mantenimiento. Fijar un commit de la rama principal y trabajar sobre un fork o repositorio individual.
 
 ## Wisdom (Communities)
 

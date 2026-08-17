@@ -4,7 +4,7 @@
 - Modalidad: equipo completamente remoto; el usuario es el arquitecto y también conduce el entrenamiento.
 - Restricción remota: no depender de breakout rooms; usar chat, preguntas dirigidas, demos y trabajo individual posterior.
 - Duración: ocho semanas, lunes a viernes; sesión en línea de 30 minutos y ejercicios asíncronos posteriores.
-- Preferencias: proyecto integrador, diagnóstico inicial, evaluaciones periódicas y exposiciones de participantes.
+- Preferencias: mismo proyecto en repositorios y ambientes individuales; ocho prácticas semanales, publicadas el lunes, entregadas el jueves y revisadas el viernes.
 - Presentación: materiales en HTML, accesibles desde `index.html`, con estilo compartido e impresión limpia.
 - Preferencia para slides: contenido completo con bullets, ejemplos concretos, diagramas e imágenes; no limitarse a una descripción breve.
 - Flujo de presentación: publicar las slides en GitHub Pages y copiarlas como una imagen completa a PowerPoint para conservar el formato; no generar un `.pptx` aparte.
@@ -14,6 +14,7 @@
 - Publicación prevista: GitHub Pages; mantener navegación con rutas relativas y `index.html` como overview de planeación.
 - Prioridad: aprendizaje aplicable y seguimiento con pocas reuniones.
 - Evidencia requerida: progreso individual verificable mediante recuperación, artefactos técnicos y explicación; asistencia o cámara no cuentan como aprendizaje.
+- Revisión: la similitud de código es una señal para preguntar, no una prueba; confirmar comprensión con explicación, ejecución y un cambio pequeño en vivo.
 - Supuesto provisional: mantenimiento de AEM Sites tradicional sobre AEM as a Cloud Service.
 - Alcance confirmado: AEM Sites tradicional sobre AEM as a Cloud Service; no incluir EDS, Headless ni Forms en el núcleo.
 - Acceso probable: SDK y repositorio.

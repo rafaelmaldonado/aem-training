@@ -1,0 +1,321 @@
+{
+  "deck_name": "lesson-02",
+  "language": "English",
+  "goal": "Teach frontend-oriented AEM developers to understand the local development system, route a change to the correct WKND module, and distinguish build validation from installation and runtime verification.",
+  "deck_context": {
+    "source_summary": "Class 2 of an eight-week AEM Sites training course. The audience is learning traditional AEM Sites on AEM as a Cloud Service through the WKND project. This class focuses on the local SDK, Maven reactor and repository module responsibilities.",
+    "core_claim": "Before editing a file, name the change, identify the module that owns its lifecycle, then verify the assembled result.",
+    "canonical_terms": [
+      "WKND source project",
+      "AEM SDK",
+      "Dispatcher Tools",
+      "Maven reactor",
+      "core",
+      "ui.apps",
+      "ui.content",
+      "ui.config",
+      "dispatcher",
+      "all",
+      "Local Author"
+    ]
+  },
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 3,
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved third sample prompt in the Codex conversation; detailed annotated repository map",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "origin_image/slide_07.png",
+    "input_context_preparation": "Use the approved sample PNG as a style-only local reference; inspect it visually before generation.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "style": {
+    "name": "Detailed AEM repository atlas",
+    "visual_direction": "Information-rich technical blueprint blended with professional academic courseware. Each slide should feel specific to AEM and WKND, with credible repository paths, build artifacts, precise annotations and meaningful connectors instead of generic corporate cards.",
+    "color_palette": "Warm off-white drafting-paper background; deep navy typography; faint square grid; semantic blue for Java/application code, violet for AEM presentation code, green for configuration, orange for Dispatcher/delivery and slate for package aggregation.",
+    "typography": "Crisp modern sans serif headings and labels; true monospace appearance for module names, commands, paths and artifacts; strong hierarchy readable on a projected slide.",
+    "texture_and_finish": "Flat 2D technical drawing with fine rules, restrained colored headers, precise folder/file glyphs and subtle drafting-grid texture. No gradients, neon, glass, 3D icons or photography.",
+    "deck_consistency": "Match the approved sample's palette, typography, annotation density, line weight, grid texture and AEM-specific technical precision while varying composition by slide role."
+  },
+  "approved_style_reference": {
+    "path": "origin_image/slide_07.png",
+    "role": "approved sample slide style reference",
+    "fidelity": "Match style, palette, typography, density and technical precision only; do not copy the exact repository-map layout."
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Know where a change belongs.",
+      "role": "cover",
+      "intent": "Frame the class around one practical routing question and visually connect repository structure to a running local AEM environment.",
+      "key_points": [
+        "LOCAL SDK + WKND PROJECT STRUCTURE",
+        "From source folder to running AEM",
+        "Juan Maldonado"
+      ],
+      "speaker_focus": "Open with the question: before touching a file, what evidence tells us where the change belongs?",
+      "layout": {
+        "composition": "Editorial technical cover. Large title on the left; on the right, a detailed cutaway illustration of a WKND repository tree flowing through a Maven package into a local Author window. Include the exact eyebrow 'CLASS 2 · WEEK 1 · DAY 2'.",
+        "content_zones": "Left title block, right technical hero diagram, small presenter line at lower left.",
+        "relationship_to_previous_slide": "Opening page; establish the visual system without reusing slide 07's five-column map.",
+        "spacing": "Generous title whitespace with a richly annotated but compact hero diagram."
+      },
+      "visual_elements": {
+        "main_visual": "Repository folders labelled core, ui.apps, ui.config, dispatcher and all converge into a package, then a precise arrow enters Local Author.",
+        "supporting_elements": "Faint drafting grid, file-tree rules, small build glyphs and one semantic-color legend."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as 'CLASS 2 · WEEK 1 · DAY 2'.",
+        "Keep the title dominant and all technical labels correctly spelled.",
+        "Do not turn the cover into a generic laptop illustration."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Local development has three moving parts.",
+      "role": "concept explanation",
+      "intent": "Separate the source project, local runtime and delivery tooling so learners do not confuse the SDK with the project.",
+      "key_points": [
+        "WKND source project — versioned implementation",
+        "AEM SDK — local Author runtime",
+        "Dispatcher Tools — local delivery model",
+        "Today: source project + Author"
+      ],
+      "speaker_focus": "Explain what each part models and explicitly state that Dispatcher Tools are not required for today's build exercise.",
+      "local_context": {
+        "required_background": "The source project is edited and versioned. The SDK runs local Author. Dispatcher Tools emulate delivery configuration locally; they are introduced here but not required in this session."
+      },
+      "layout": {
+        "composition": "Detailed developer-workbench map with three asymmetrical zones: repository/files at left, local Author runtime in the center, Dispatcher configuration and request lane at right. Show connections and boundaries, not three equal cards. Include exact eyebrow '02 · LOCAL DEVELOPMENT SYSTEM'.",
+        "content_zones": "Compact title top; large system map center; scope callout at bottom.",
+        "relationship_to_previous_slide": "Move from cover metaphor to a concrete system boundary map.",
+        "spacing": "Dense annotated center with a clean title area and one clear scope note."
+      },
+      "visual_elements": {
+        "main_visual": "A developer workbench showing source folders, terminal build output, AEM Author process and Dispatcher configuration connected by labelled arrows.",
+        "supporting_elements": "Boundary labels 'EDIT', 'RUN' and 'MODEL DELIVERY'; small 'required today' markers only on source and Author."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '02 · LOCAL DEVELOPMENT SYSTEM'.",
+        "Do not imply that Dispatcher Tools are part of the AEM SDK process.",
+        "Use the exact product term 'Dispatcher Tools'."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Maven coordinates one product.",
+      "role": "process",
+      "intent": "Show the root POM as the coordinator of module order, tests and packaging rather than treating modules as unrelated folders.",
+      "key_points": [
+        "root pom.xml — versions, modules, build order",
+        "reactor — coordinated compile, test and package",
+        "one failed module stops the trustworthy package"
+      ],
+      "speaker_focus": "Walk left to right through the reactor and use one failure marker to explain why a partial build is not a complete product.",
+      "local_context": {
+        "required_background": "A Maven multi-module reactor reads the root POM, builds modules in dependency order and produces coordinated artifacts. A failed module means the complete application package is not trustworthy."
+      },
+      "layout": {
+        "composition": "Annotated Maven reactor blueprint. Place root pom.xml as the control document at left, a dependency graph in the center and target artifacts at right. Show a red failure branch interrupting the final all package. Include exact eyebrow '03 · MAVEN REACTOR'.",
+        "content_zones": "Title top; large horizontal reactor diagram; failure explanation inset; small command strip at bottom.",
+        "relationship_to_previous_slide": "Zoom from system parts into the source project's build coordinator.",
+        "spacing": "Technical density in the graph with high contrast for the single failure path."
+      },
+      "visual_elements": {
+        "main_visual": "root pom.xml fans into core, ui.apps, ui.content, ui.config, dispatcher and all, with arrows representing build order and package aggregation.",
+        "supporting_elements": "Small command chip 'mvn clean verify', check marks on successful modules and one explicit failure stop before the final package."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '03 · MAVEN REACTOR'.",
+        "Render the command exactly as 'mvn clean verify'.",
+        "Do not invent Maven phases or imply failed output is deployable."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "One component can cross two code modules.",
+      "role": "comparison",
+      "intent": "Connect a visible Guide Card component to server-side Java in core and authoring/rendering files in ui.apps.",
+      "key_points": [
+        "core — Java, Sling Models, OSGi services",
+        "ui.apps — components, dialogs, HTL, clientlib definitions",
+        "one visitor result, two ownership boundaries"
+      ],
+      "speaker_focus": "Trace one authored title from dialog storage through a Sling Model getter into HTL output.",
+      "local_context": {
+        "required_background": "A WKND Guide Card may use a Sling Model in core while its component definition, dialog and HTL live in ui.apps. The slide should illustrate the boundary without suggesting every component must have Java."
+      },
+      "layout": {
+        "composition": "Detailed vertical cutaway of a Guide Card. Left half is a blue core file tree; right half is a violet ui.apps file tree; the middle is the data handoff from authored property to model getter to HTL to rendered card. Include exact eyebrow '04 · CODE OWNERSHIP'.",
+        "content_zones": "Title top; split code trees and central trace; caveat callout at bottom right.",
+        "relationship_to_previous_slide": "Change from build-wide graph to one component's vertical implementation slice.",
+        "spacing": "Balanced split with the central data trace as the strongest visual."
+      },
+      "visual_elements": {
+        "main_visual": "GuideCardImpl.java and getter on the core side; _cq_dialog/.content.xml, guide-card.html and clientlib definition on the ui.apps side; arrows terminate in a small rendered Guide Card preview.",
+        "supporting_elements": "Labels 'server-side preparation', 'authoring contract' and 'view rendering'; a small note 'Java only when the requirement needs it'."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '04 · CODE OWNERSHIP'.",
+        "Keep AEM names and paths correctly spelled.",
+        "Do not imply that HTL belongs in core."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Location communicates lifecycle.",
+      "role": "architecture",
+      "intent": "Distinguish content, runtime configuration, delivery rules and package aggregation by ownership and deployment responsibility.",
+      "key_points": [
+        "ui.content — project-managed content",
+        "ui.config — environment-aware OSGi configuration",
+        "dispatcher — filters, rewrites, virtual hosts, cache rules",
+        "all — deployable application aggregation"
+      ],
+      "speaker_focus": "Compare what changes, who owns it and where it becomes effective for each module.",
+      "local_context": {
+        "required_background": "ui.content packages project-managed content, ui.config carries environment-aware OSGi configuration, dispatcher contains delivery configuration and all aggregates the deployable application. Module placement signals lifecycle and ownership."
+      },
+      "layout": {
+        "composition": "Four-lane technical lifecycle map, not four equal cards. Each lane begins with a representative source path, passes through a deployment artifact and ends at the runtime area it affects. Use distinct semantic colors and exact eyebrow '05 · LIFECYCLE BY LOCATION'.",
+        "content_zones": "Title and thesis top; four horizontal lanes; cross-lane ownership legend and one warning callout.",
+        "relationship_to_previous_slide": "Widen from two code modules to four modules with different operational lifecycles.",
+        "spacing": "High information density with aligned lane stops and compact path labels."
+      },
+      "visual_elements": {
+        "main_visual": "Paths under ui.content, ui.config, dispatcher and all flow to repository content, OSGi runtime config, delivery tier and deployable package respectively.",
+        "supporting_elements": "Ownership labels 'project content', 'runtime config', 'delivery rules', 'aggregation'; one warning: 'Correct file, wrong module = wrong lifecycle'."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '05 · LIFECYCLE BY LOCATION'.",
+        "Keep module names monospace and lowercase.",
+        "Do not depict ui.content as arbitrary author-generated production content."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Verify first. Install second.",
+      "role": "process",
+      "intent": "Separate build evidence, installation evidence and functional runtime evidence.",
+      "key_points": [
+        "mvn clean verify — compile, test, package",
+        "approved install profile — deploy to Local Author",
+        "BUILD SUCCESS ≠ correct page behavior",
+        "repository README overrides generic commands"
+      ],
+      "speaker_focus": "Use the three evidence gates to stop learners from treating BUILD SUCCESS as proof that the feature works.",
+      "local_context": {
+        "required_background": "The generic validation command is mvn clean verify. Installation uses the repository-approved profile, whose exact name must come from the README. After installation, a runtime check is still required."
+      },
+      "layout": {
+        "composition": "Detailed three-gate pipeline on a drafting board: VERIFY, INSTALL and RUNTIME CHECK. Under VERIFY show compile/test/package evidence; under INSTALL show package manager and Local Author; under RUNTIME CHECK show the actual WKND page and browser request. Include exact eyebrow '06 · THREE EVIDENCE GATES'.",
+        "content_zones": "Title top; pipeline center; command and evidence rows below each gate; README authority note at bottom.",
+        "relationship_to_previous_slide": "Turn the module map into an executable validation sequence.",
+        "spacing": "Strong left-to-right flow with enough annotation to distinguish artifacts from outcomes."
+      },
+      "visual_elements": {
+        "main_visual": "Terminal command enters verify gate, an all package enters install gate, and a Guide page plus response check completes runtime evidence.",
+        "supporting_elements": "Evidence tags 'tests pass', 'package installed', 'behavior observed'; an inequality symbol between BUILD SUCCESS and functional proof."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '06 · THREE EVIDENCE GATES'.",
+        "Render 'mvn clean verify' and 'BUILD SUCCESS ≠ correct page behavior' exactly.",
+        "Do not invent an install profile name."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Route the change before opening the editor.",
+      "role": "application",
+      "intent": "Apply the repository model to five concrete change requests.",
+      "key_points": [
+        "Java formatting rule → core",
+        "Dialog field or HTL markup → ui.apps",
+        "Environment-specific endpoint → ui.config",
+        "Dispatcher filter → dispatcher",
+        "Complete deployable package → all"
+      ],
+      "speaker_focus": "Ask the audience to choose each owner before revealing the route.",
+      "layout": {
+        "composition": "Approved detailed annotated repository map sample.",
+        "content_zones": "Use the existing approved final image unchanged.",
+        "relationship_to_previous_slide": "Apply the build and ownership model to concrete examples.",
+        "spacing": "Already approved."
+      },
+      "visual_elements": {
+        "main_visual": "Existing approved sample at origin_image/slide_07.png.",
+        "supporting_elements": "No regeneration."
+      },
+      "constraints": [
+        "Reuse the approved sample unchanged."
+      ],
+      "sample_approved": true
+    },
+    {
+      "number": 8,
+      "title": "Key takeaways",
+      "role": "summary",
+      "intent": "Compress the session into a reusable decision framework learners can recall during practice.",
+      "key_points": [
+        "Local = source + runtime + delivery model",
+        "Maven coordinates the complete product",
+        "Module boundaries encode lifecycle",
+        "Build, install and behavior are separate evidence"
+      ],
+      "speaker_focus": "Use retrieval: cover each takeaway and ask learners to reconstruct it from the diagram before revealing the wording.",
+      "local_context": {
+        "required_background": "The four takeaways summarize slides 2 through 7. The final reusable rule is: name the change, find its owner, verify the assembled result."
+      },
+      "layout": {
+        "composition": "A detailed one-page system blueprint rather than four summary cards. Place a simplified repository-to-runtime spine in the center and attach four numbered takeaway annotations around it. Include exact eyebrow '08 · KEY TAKEAWAYS'.",
+        "content_zones": "Title top; central system spine; four annotated conclusions; bottom decision rule.",
+        "relationship_to_previous_slide": "Zoom out from the detailed repository map into one integrated mental model.",
+        "spacing": "Balanced synthesis with dense visual relationships but only four principal statements."
+      },
+      "visual_elements": {
+        "main_visual": "Source project flows through Maven, all package and Local Author, with Dispatcher Tools as a separate delivery-model branch.",
+        "supporting_elements": "Numbered annotation lines 1–4 and bottom rule 'Name → owner → evidence'."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '08 · KEY TAKEAWAYS'.",
+        "Render all four takeaways exactly and prominently.",
+        "Do not use four identical cards."
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Questions & next move",
+      "role": "Q&A",
+      "intent": "Close the concept section and transition directly into the build demo and asynchronous routing exercise.",
+      "key_points": [
+        "Retrieval: Which flow changes when a Java class changes?",
+        "Demo: build WKND and locate the all package",
+        "Practice: route six change scenarios",
+        "Acceptance: BUILD SUCCESS + five justified module choices"
+      ],
+      "speaker_focus": "Invite one question, then set the exact next action and evidence standard.",
+      "local_context": {
+        "required_background": "This closing slide should still feel technically complete. The demo uses the WKND build and locates the all package. Practice is individual and requires justified routing decisions."
+      },
+      "layout": {
+        "composition": "Workshop handoff sheet. Use a large question mark formed from a repository branch at left and a detailed three-step execution checklist at right: DEMO, PRACTICE, ACCEPTANCE. Include exact eyebrow '09 · QUESTIONS + NEXT MOVE'.",
+        "content_zones": "Compact close title, visual question mark, technical next-step checklist and evidence strip.",
+        "relationship_to_previous_slide": "Shift from synthesis to action without becoming an empty thank-you page.",
+        "spacing": "Open enough for a closing slide, detailed enough to guide the next 60–90 minutes."
+      },
+      "visual_elements": {
+        "main_visual": "A repository branch bends into a question mark and terminates in a terminal prompt; the right side shows build, locate package and route scenarios.",
+        "supporting_elements": "Acceptance evidence strip with BUILD SUCCESS and 5/6 justified routes."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '09 · QUESTIONS + NEXT MOVE'.",
+        "Do not use a generic thank-you layout.",
+        "Keep BUILD SUCCESS uppercase."
+      ]
+    }
+  ]
+}

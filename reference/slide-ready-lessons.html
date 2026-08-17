@@ -12,9 +12,9 @@
     <a class="brand" href="../index.html">AEM Training</a>
     <ul>
       <li><a href="../index.html">Overview</a></li>
-      <li><a href="eight-week-syllabus.html">Syllabus</a></li>
+      <li><a href="aem-course-topics.html">Syllabus</a></li>
       <li><a href="slide-ready-lessons.html" aria-current="page">Slides</a></li>
-      <li><a href="wknd-project-backlog.html">Project</a></li>
+      <li><a href="wknd-project-backlog.html">Practices</a></li>
       <li><a href="initial-setup.html">Setup</a></li>
       <li><a href="seguimiento-evidencias.html">Evidence</a></li>
     </ul>
@@ -45,6 +45,7 @@
 
     <details><summary>Day 2 · Local SDK and WKND project structure</summary>
       <p><strong>Retrieval question:</strong> Which flow changes when a Java class changes: content or code?</p>
+      <p><a href="../lessons/0004-local-sdk-project-structure.html">Open the complete illustrated nine-slide deck →</a></p>
       <ol class="slides">
         <li><strong>Slide 1 — Three parts of local development.</strong> The WKND source project, the AEM SDK runtime and Dispatcher Tools model different parts of the cloud solution. <em>Speaker cue: today only Author and the source project are required.</em></li>
         <li><strong>Slide 2 — Maven coordinates the build.</strong> The root POM controls modules, dependency versions, tests and packaging. <em>Speaker cue: a reactor build is one coordinated product, not unrelated folders.</em></li>
@@ -79,7 +80,7 @@
       <p><strong>Demo:</strong> trace a WKND HTML URL to its HTL script. <strong>Assignment:</strong> repeat the trace for another component and one selector. <strong>Acceptance:</strong> every transition includes evidence.</p>
     </details>
 
-    <details><summary>Day 5 · Diagnose by layer</summary>
+    <details><summary>Day 5 · Weekly review: diagnose by layer</summary>
       <p><strong>Retrieval question:</strong> What is the cheapest evidence that could disprove your current hypothesis?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Reproduce before changing.</strong> Record URL, service, user, steps, expected result and actual result. <em>Speaker cue: a ticket title is not a reproduction.</em></li>
@@ -142,7 +143,7 @@
       <p><strong>Demo:</strong> author a WKND image and inspect responsive markup. <strong>Assignment:</strong> prepare three Guide assets and classify their alternative text. <strong>Acceptance:</strong> metadata and rendered behavior match image purpose.</p>
     </details>
 
-    <details><summary>Day 10 · Authoring checkpoint</summary>
+    <details><summary>Day 10 · Weekly review: authoring and content model</summary>
       <p><strong>Retrieval question:</strong> Name one requirement that belongs in a template, one in a policy and one in a component.</p>
       <ol class="slides">
         <li><strong>Slide 1 — Start with the author outcome.</strong> An author must create a valid Guide Page without developer intervention. <em>Speaker cue: evaluate the task, not whether the screen looks familiar.</em></li>
@@ -205,7 +206,7 @@
       <p><strong>Demo:</strong> test Guide Card with keyboard, narrow viewport and no content. <strong>Assignment:</strong> record and fix the highest-risk failure. <strong>Acceptance:</strong> keyboard, 200% zoom, long title and empty state pass.</p>
     </details>
 
-    <details><summary>Day 15 · Vertical frontend ticket</summary>
+    <details><summary>Day 15 · Weekly review: vertical frontend practice</summary>
       <p><strong>Retrieval question:</strong> What evidence proves that a component is authorable, not only renderable?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Start with observable acceptance.</strong> Describe what an author configures and what a visitor receives. <em>Speaker cue: file changes are implementation, not the outcome.</em></li>
@@ -214,7 +215,7 @@
         <li><strong>Slide 4 — Prove important states.</strong> Configured, empty, long content, responsive and keyboard states belong in the ticket. <em>Speaker cue: acceptance criteria choose tests.</em></li>
         <li><strong>Slide 5 — Present the decision, not a file tour.</strong> Explain the selected extension point, rejected alternative and remaining risk. <em>Speaker cue: reviewers can inspect files after understanding intent.</em></li>
       </ol>
-      <p><strong>Demo:</strong> decompose one Guide Card story into the vertical trace. <strong>Assignment:</strong> complete the frontend slice and open a PR. <strong>Acceptance:</strong> author and visitor evidence, state checks and a concise design explanation.</p>
+      <p><strong>Demo:</strong> decompose the Guide Card practice into the vertical trace. <strong>Assignment:</strong> complete the frontend slice and open a PR. <strong>Acceptance:</strong> author and visitor evidence, state checks and a concise design explanation.</p>
     </details>
     <p><strong>Official reading:</strong> <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/getting-started-wknd-tutorial-develop/project-archetype/custom-component">WKND Custom Component — Adobe</a>.</p>
 
@@ -268,7 +269,7 @@
       <p><strong>Demo:</strong> compare model and servlet solutions for Guide List. <strong>Assignment:</strong> decide the minimum solution for three cases. <strong>Acceptance:</strong> each decision names capability, security surface and reason.</p>
     </details>
 
-    <details><summary>Day 20 · Unit testing Sling Models and services</summary>
+    <details><summary>Day 20 · Weekly review: Sling Model tests</summary>
       <p><strong>Retrieval question:</strong> What behavior should fail if the fallback implementation is removed?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Test observable behavior.</strong> Inputs, outputs and fallbacks matter more than private methods or injection mechanics. <em>Speaker cue: a refactor should not rewrite every test.</em></li>
@@ -331,7 +332,7 @@
       <p><strong>Demo:</strong> compare an unbounded query with a path/type-constrained Guide query. <strong>Assignment:</strong> implement Guide List and capture explain output. <strong>Acceptance:</strong> no traversal and the query returns only intended pages.</p>
     </details>
 
-    <details><summary>Day 25 · Maintenance simulation</summary>
+    <details><summary>Day 25 · Weekly review: maintenance simulation</summary>
       <p><strong>Retrieval question:</strong> What information in a bug report describes the symptom but not the cause?</p>
       <ol class="slides">
         <li><strong>Slide 1 — The ticket is not the diagnosis.</strong> User language identifies impact; it does not identify the failing layer. <em>Speaker cue: preserve the report while testing its assumptions.</em></li>
@@ -355,7 +356,7 @@
         <li><strong>Slide 4 — Small PRs reduce delivery risk.</strong> One coherent outcome is easier to review, test and diagnose. <em>Speaker cue: rollback is conceptual in an immutable deployment model.</em></li>
         <li><strong>Slide 5 — Promote the validated artifact.</strong> Stage and Production should receive what passed earlier gates, not handcrafted differences. <em>Speaker cue: rebuild drift undermines evidence.</em></li>
       </ol>
-      <p><strong>Demo:</strong> trace a WKND commit to Development using real access or an anonymized example. <strong>Assignment:</strong> diagram the team's actual flow. <strong>Acceptance:</strong> owners, repository, branch, gates, services and environments are named.</p>
+      <p><strong>Demo:</strong> trace a WKND commit to Development using an anonymized example. <strong>Assignment:</strong> contrast the supplied cloud flow with the learner's local repository flow. <strong>Acceptance:</strong> repository, branch, gates, services and environments are named without claiming a deployment that was not performed.</p>
     </details>
 
     <details><summary>Day 27 · Cloud Manager pipelines and quality gates</summary>
@@ -394,7 +395,7 @@
       <p><strong>Demo:</strong> compare two requests and a publication event. <strong>Assignment:</strong> diagnose hit/miss behavior for Guide pages. <strong>Acceptance:</strong> evidence distinguishes browser, CDN, Dispatcher and Publish.</p>
     </details>
 
-    <details><summary>Day 30 · Deployment rehearsal</summary>
+    <details><summary>Day 30 · Weekly review: deployment rehearsal</summary>
       <p><strong>Retrieval question:</strong> Which two user journeys should a post-deployment smoke test include?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Preflight removes cheap failures.</strong> Run clean build, focused tests, diff review and configuration checks before starting a pipeline. <em>Speaker cue: a cloud pipeline is not a substitute for local feedback.</em></li>
@@ -457,7 +458,7 @@
       <p><strong>Demo:</strong> select tests for five Guide failures. <strong>Assignment:</strong> build a risk-to-test matrix and improve one measured issue. <strong>Acceptance:</strong> baseline, change and equivalent after measurement are supplied.</p>
     </details>
 
-    <details><summary>Day 35 · Production-readiness review</summary>
+    <details><summary>Day 35 · Weekly review: production readiness</summary>
       <p><strong>Retrieval question:</strong> What can pass functional testing but still make a component unsafe for production?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Verify behavior and states.</strong> Acceptance, empty, error and regression paths must be observable. <em>Speaker cue: “works on my page” is one state, not readiness.</em></li>
@@ -475,13 +476,13 @@
     <details><summary>Day 36 · Plan the final increment</summary>
       <p><strong>Retrieval question:</strong> What outcome can one contributor deliver and demonstrate independently?</p>
       <ol class="slides">
-        <li><strong>Slide 1 — Start from user outcome.</strong> Describe what an author or visitor can do when the increment is complete. <em>Speaker cue: avoid backlog items named only after modules.</em></li>
+        <li><strong>Slide 1 — Start from user outcome.</strong> Describe what an author or visitor can do when the increment is complete. <em>Speaker cue: avoid practices named only after modules.</em></li>
         <li><strong>Slide 2 — Slice vertically.</strong> A ticket should reach observable behavior through the required layers. <em>Speaker cue: horizontal “all dialogs” work delays feedback.</em></li>
         <li><strong>Slide 3 — Preserve individual ownership.</strong> One contributor must explain, modify and verify each item even when reviews are collaborative. <em>Speaker cue: group output cannot hide individual gaps.</em></li>
         <li><strong>Slide 4 — Order real dependencies.</strong> Template, policy, model, frontend, configuration and deployment constraints shape sequence. <em>Speaker cue: distinguish dependency from preferred order.</em></li>
         <li><strong>Slide 5 — Write acceptance before implementation.</strong> Include happy path, empty state, security and evidence expectations. <em>Speaker cue: acceptance defines the stopping point.</em></li>
       </ol>
-      <p><strong>Demo:</strong> split a large Weekend Guides story into six slices. <strong>Assignment:</strong> refine the final backlog. <strong>Acceptance:</strong> six independently owned, testable tickets with explicit dependencies.</p>
+      <p><strong>Demo:</strong> refine one Weekend Guides outcome into a vertical increment. <strong>Assignment:</strong> refine the learner's final practice. <strong>Acceptance:</strong> one independently owned, testable increment with observable acceptance and explicit dependencies.</p>
     </details>
 
     <details><summary>Day 37 · Implement the capstone</summary>
@@ -520,7 +521,7 @@
       <p><strong>Demo:</strong> explain assessment rules without revealing the solution. <strong>Assignment:</strong> complete a timed individual maintenance ticket. <strong>Acceptance:</strong> working behavior, relevant check and technical defense.</p>
     </details>
 
-    <details><summary>Day 40 · Demo, defense and the next 30 days</summary>
+    <details><summary>Day 40 · Final review: demo, defense and the next 30 days</summary>
       <p><strong>Retrieval question:</strong> What evidence best demonstrates the capability you improved most?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Demonstrate outcomes.</strong> Show the author task, visitor experience and evidence rather than navigating source folders. <em>Speaker cue: begin from the acceptance criterion.</em></li>
