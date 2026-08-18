@@ -26,10 +26,10 @@
     <ul class="meta"><li>Released Monday</li><li>Due Thursday</li><li>Reviewed Friday</li></ul>
   </header>
   <main id="content">
-    <section class="callout"><strong>Delivery constraint:</strong> no shared deployment environment or Cloud Manager access is required. Each developer owns a repository and local SDK created from the same read-only baseline. Cloud Manager is studied from supplied diagrams and anonymized evidence; hands-on checks run locally.</section>
+    <section class="callout"><strong>Delivery constraint:</strong> no shared deployment environment or Cloud Manager access is required. Each developer owns a repository and local SDK created with the same selected starting method. Cloud Manager is studied from supplied diagrams and anonymized evidence; hands-on checks run locally.</section>
 
     <h2>Product scenario</h2>
-    <p>Each developer inherits the same WKND baseline and adds a <strong>Weekend Guides</strong> area. Authors must create guide pages and reusable cards without code changes. Visitors must browse accessible, responsive content. The implementation must be testable, cache-safe and compatible with an AEMaaCS pipeline.</p>
+    <p>Each developer starts from the same selected WKND source and adds a <strong>Weekend Guides</strong> area. Authors must create guide pages and reusable cards without code changes. Visitors must browse accessible, responsive content. The implementation must be testable, cache-safe and compatible with an AEMaaCS pipeline.</p>
     <ul class="checklist">
       <li>An editable Guide Page template with controlled policies.</li>
       <li>A Guide Card proxy component with configured and empty states.</li>
@@ -40,12 +40,12 @@
 
     <h2>Repository model</h2>
     <ol>
-      <li>The architect publishes one read-only baseline generated with the command in the <a href="initial-setup.html">setup guide</a> and tags it <code>training-baseline</code>.</li>
-      <li>Each developer creates a private fork or repository from that baseline and runs an individual local Author SDK.</li>
+      <li>Before Week 1, the instructor selects one starting method from the <a href="initial-setup.html">setup guide</a>: clone the public Adobe WKND repository or generate a clean project with the AEM Project Archetype.</li>
+      <li>Each developer creates an empty personal repository, publishes the untouched starting project there and tags that commit <code>training-baseline</code>. The tag is a Git reference, not a separate repository or branch.</li>
       <li>Every developer completes the same weekly practice; there are no dependencies on another learner's branch or environment.</li>
       <li>Each practice uses <code>practice/week-&lt;number&gt;-short-name</code> and one PR into that developer's own <code>main</code>.</li>
       <li>A peer may review the PR, but only the repository owner implements, fixes and demonstrates the practice.</li>
-      <li>Do not copy commits or cherry-pick another learner's implementation. Official documentation and the supplied baseline are allowed sources.</li>
+      <li>Do not copy commits or cherry-pick another learner's implementation. Official documentation and the selected starting source are allowed.</li>
     </ol>
 
     <h2>Weekly delivery rhythm</h2>
@@ -80,8 +80,16 @@
 
     <h2 id="practice-1">Week 1 practice · Establish the individual baseline</h2>
     <p><strong>Goal:</strong> create a reproducible WKND repository and local SDK, then explain how one page maps to the project.</p>
+    <p><strong>Starting point:</strong> there is no custom baseline repository to request. The instructor announces one common option for the group: <strong>A)</strong> start from the public <a href="https://github.com/adobe/aem-guides-wknd">Adobe WKND repository</a>, or <strong>B)</strong> generate a clean project with the AEM Project Archetype command in the <a href="initial-setup.html">setup guide</a>.</p>
     <ul>
-      <li>Fork or create the repository from <code>training-baseline</code>.</li>
+      <li>Follow the selected setup option and publish the untouched result to an empty repository owned by you.</li>
+      <li>Before changing code, confirm that <code>origin</code> points to your repository and that the starting commit has the tag <code>training-baseline</code>:</li>
+    </ul>
+    <pre><code>git remote -v
+git tag --list training-baseline</code></pre>
+    <p>The setup guide creates the tag before any practice change. Once it is visible, create the Week 1 branch:</p>
+    <pre><code>git switch -c practice/week-1-baseline</code></pre>
+    <ul>
       <li>Build and install the project on local Author.</li>
       <li>Map <code>core</code>, <code>ui.apps</code>, <code>ui.content</code>, <code>ui.config</code>, <code>dispatcher</code> and <code>all</code>.</li>
       <li>Trace one page URL to its resource type and HTL script.</li>
@@ -241,7 +249,7 @@
     <h2 id="practice-7">Week 7 practice · Deliver and defend the individual capstone</h2>
     <p><strong>Goal:</strong> deliver one complete Weekend Guides increment and demonstrate independent AEM ownership from authoring to operation.</p>
     <ul>
-      <li>Choose one observable author or visitor outcome not implemented in the supplied baseline.</li>
+      <li>Choose one observable author or visitor outcome not implemented in the selected starting project.</li>
       <li>Refine acceptance criteria, dependencies and risks before coding.</li>
       <li>Implement in coherent commits and harden against review findings.</li>
       <li>Demonstrate authoring, visitor behavior, tests and operational checks.</li>

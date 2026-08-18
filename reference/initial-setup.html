@@ -47,12 +47,12 @@
     <ul class="checklist">
       <li>Adobe ID added to the correct Adobe organization.</li>
       <li>Permission to download the AEM as a Cloud Service SDK.</li>
-      <li>Read access to the training baseline and permission to create your own training repository.</li>
+      <li>Permission to create an empty personal training repository in the approved Git host.</li>
       <li>Development AEM Author URL and user access, if already available.</li>
       <li>Cloud Manager access is not required; the course uses supplied diagrams and anonymized evidence.</li>
       <li>VPN, proxy, certificate, and artifact-repository instructions from your organization.</li>
     </ul>
-    <p>Ask the architect for the read-only baseline URL and create your own private training repository from it. Do not copy an SDK archive or credentials into Git or a shared chat.</p>
+    <p>The instructor chooses one common starting method for the group: the public Adobe WKND repository or a project generated with the AEM Project Archetype. No custom baseline URL is required. Do not copy an SDK archive or credentials into Git or a shared chat.</p>
 
     <h2>2. Install and verify the development tools</h2>
     <p>Install the versions from the baseline using your organization's approved method. The repository remains authoritative when it pins a compatible version.</p>
@@ -91,11 +91,23 @@ Set-Location "$env:USERPROFILE\aem-sdk\author"
 java -jar aem-author-p4502.jar</code></pre>
     <p>When prompted, use <code>admin</code> as the local-only administrator password unless the architect specifies another value. First startup can take several minutes. Open <a href="http://localhost:4502">http://localhost:4502</a>.</p>
 
-    <h2>4. Create or clone the WKND Project Archetype project</h2>
-    <section class="callout"><strong>Use one shared baseline, then work independently:</strong> the architect performs option A once and publishes a read-only baseline. Every learner uses option B to create an individual repository and works against an individual local SDK.</section>
+    <h2>4. Create your individual WKND repository</h2>
+    <section class="callout"><strong>Choose one option for the whole group:</strong> option A starts from Adobe's public WKND implementation; option B generates a clean project with the AEM Project Archetype. Every developer follows the same option in an individual repository and local SDK.</section>
 
-    <h3>Option A · Architect only: generate the starter project</h3>
-    <p>Generate the traditional AEM Sites project used by the WKND learning path with <a href="https://github.com/adobe/aem-project-archetype/tree/aem-project-archetype-57">AEM Project Archetype 57</a>:</p>
+    <h3>Option A · Start from the public Adobe WKND repository</h3>
+    <p>Create an empty personal repository in the approved Git host without a README or generated files. Then clone Adobe WKND, retain Adobe as the reference remote and publish the unchanged starting commit to your repository:</p>
+    <pre><code>git clone https://github.com/adobe/aem-guides-wknd.git
+cd aem-guides-wknd
+git remote rename origin adobe
+git tag training-baseline
+git remote add origin &lt;your-empty-training-repository-url&gt;
+git push -u origin HEAD:main
+git push origin training-baseline
+git rev-parse training-baseline</code></pre>
+    <p>The instructor records the expected commit returned by the final command. Everyone using option A must begin from that same commit.</p>
+
+    <h3>Option B · Generate a clean project from the archetype</h3>
+    <p>Generate the traditional AEM Sites project with <a href="https://github.com/adobe/aem-project-archetype/tree/aem-project-archetype-57">AEM Project Archetype 57</a>:</p>
     <pre><code>mvn -B org.apache.maven.plugins:maven-archetype-plugin:3.3.1:generate \
   -DarchetypeGroupId=com.adobe.aem \
   -DarchetypeArtifactId=aem-project-archetype \
@@ -114,13 +126,19 @@ java -jar aem-author-p4502.jar</code></pre>
   -Dlanguage="en" \
   -Dcountry="us" \
   -DsingleCountry="y"</code></pre>
-    <p>Review the generated files. Create <code>.cloudmanager/java-version</code> with only <code>21</code>, or verify that it already contains that value. Commit the clean baseline, tag it <code>training-baseline</code> and publish it as a read-only template or source repository. The <a href="https://github.com/adobe/aem-guides-wknd">finished Adobe WKND repository</a> is a reference implementation, not the repository learners modify.</p>
+    <p>Review the generated files. Create <code>.cloudmanager/java-version</code> with only <code>21</code>, or verify that it already contains that value. Then create an empty personal repository and publish the generated project:</p>
+    <pre><code>cd aem-guides-wknd
+git init
+git add .
+git commit -m "Create WKND training baseline"
+git branch -M main
+git tag training-baseline
+git remote add origin &lt;your-empty-training-repository-url&gt;
+git push -u origin main
+git push origin training-baseline</code></pre>
 
-    <h3>Option B · Learners: create and clone an individual repository</h3>
-    <p>Fork or import the architect's baseline into a repository owned by you, then clone your repository:</p>
-    <pre><code>git clone &lt;your-training-repository-url&gt;
-cd aem-guides-wknd
-git tag --list training-baseline
+    <h3>Build either option</h3>
+    <pre><code>git tag --list training-baseline
 git status</code></pre>
     <p>With AEM Author running, build and install the complete project:</p>
     <pre><code>mvn clean install -PautoInstallSinglePackage</code></pre>
