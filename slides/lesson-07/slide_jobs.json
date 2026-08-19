@@ -1,0 +1,363 @@
+{
+  "run_status": "slides_recorded",
+  "deck_name": "lesson-07",
+  "selected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Day 7 policy-mapping sample prompt generated in conversation",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-07/origin_image/slide_03.png",
+    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "max_concurrent_slides": 3,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "Govern authoring choices without changing component code.",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-07/origin_image/slide_03.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact repository-trace layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_01_fix",
+        "agent_nickname": "Erdos",
+        "prompt": "prompts/slide_01.json",
+        "prompt_sha256": "954d779832f6cbf251d966326599e6c5ac70b64ffd5e1dd377443ac8c2ef8865",
+        "dispatched_at": "2026-08-19T12:37:22Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_01_fix",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017bd-8384-7ef0-b7be-7bd5d21ed6df/exec-597aadbd-7461-426a-b101-f96be1d92ddf.png",
+        "selected_source_sha256": "549823b8986258c82cd6f043feaad39ae9e5c9a19446fb1b6153106939faa023",
+        "final_image": "origin_image/slide_01.png",
+        "final_image_sha256": "549823b8986258c82cd6f043feaad39ae9e5c9a19446fb1b6153106939faa023",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Title and class metadata are legible; the capability-policy-author chain is clear and style matches the approved sample.",
+        "recorded_at": "2026-08-19T12:39:31Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "A policy configures capability by context.",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-07/origin_image/slide_03.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact repository-trace layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_08",
+        "agent_nickname": "Curie",
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "dc877532d90f531ec1e1df572138a8743ae5d825fa4ec0ebdcf68e44cd03c8ac",
+        "dispatched_at": "2026-08-19T12:37:22Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_08",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017ba-9cb9-7ff2-be60-e8ea5d5777c7/exec-cebff855-820a-4ccd-b4da-7ca5c089d313.png",
+        "selected_source_sha256": "fdd667f76be61e9d73bfffa62007c1120348e72b7ef9c2528777480fc98b4b7a",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "fdd667f76be61e9d73bfffa62007c1120348e72b7ef9c2528777480fc98b4b7a",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "One implementation branches clearly into distinct Guide and Article policies; all required labels and the shared-policy warning are legible.",
+        "recorded_at": "2026-08-19T12:39:31Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "Follow the policy mapping before editing code.",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-07/origin_image/slide_03.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact repository-trace layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "accepted",
+      "dispatch": null,
+      "result": {
+        "final_image": "origin_image/slide_03.png",
+        "accepted_sample": true
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "Allowed Components belongs to the container policy.",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-07/origin_image/slide_03.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact repository-trace layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_09",
+        "agent_nickname": "Volta",
+        "prompt": "prompts/slide_04.json",
+        "prompt_sha256": "3225d6d74667b53ef5a3e6109dae5f5b93d1784daa6c4f5056ced1b6463e4208",
+        "dispatched_at": "2026-08-19T12:37:22Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017bb-1b09-7c73-b744-56fe71ac6857/exec-8bf05f64-f24b-4e9d-841e-335c567c3cc8.png",
+        "selected_source_sha256": "9a09933daeef0334c28821be613bae822b863a388550663dfed5c7ca17f858bf",
+        "final_image": "origin_image/slide_04.png",
+        "final_image_sha256": "9a09933daeef0334c28821be613bae822b863a388550663dfed5c7ca17f858bf",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "The installed-versus-allowed distinction is unambiguous; Title, Text and Image pass while Carousel remains installed but disallowed.",
+        "recorded_at": "2026-08-19T12:39:31Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "Policy defaults are not authored instance values.",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-07/origin_image/slide_03.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact repository-trace layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_01_fix",
+        "agent_nickname": "Erdos",
+        "prompt": "prompts/slide_05.json",
+        "prompt_sha256": "cbe35ab989a66f9e43e550f664dd317b09668285625d65d68f94b37ab174b4f2",
+        "dispatched_at": "2026-08-19T12:40:07Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_01_fix",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017bd-8384-7ef0-b7be-7bd5d21ed6df/exec-c7467f52-e670-466b-a19b-bf36928bc2b9.png",
+        "selected_source_sha256": "42aea51c2179e836094bbe3ebe6a7b07c45a56937f08ca5672212ab4825cbd96",
+        "final_image": "origin_image/slide_05.png",
+        "final_image_sha256": "42aea51c2179e836094bbe3ebe6a7b07c45a56937f08ca5672212ab4825cbd96",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "The /conf versus /content ownership comparison is accurate and legible; representative policy categories and shared-policy impact are clearly qualified.",
+        "recorded_at": "2026-08-19T12:42:37Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "Style System maps semantic choices to deployed CSS.",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-07/origin_image/slide_03.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact repository-trace layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_08",
+        "agent_nickname": "Curie",
+        "prompt": "prompts/slide_06.json",
+        "prompt_sha256": "7c648d67e9cd2f6d903dc27522485760f8614c629b0079365c4d19a97e173187",
+        "dispatched_at": "2026-08-19T12:40:07Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_08",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017ba-9cb9-7ff2-be60-e8ea5d5777c7/exec-3ba893f1-0b99-453f-88c8-041339270169.png",
+        "selected_source_sha256": "7dc060fc26870c8dfcbb3af3ef334a0ed7f257d5ee1c78574c9f3ceb07c89e3c",
+        "final_image": "origin_image/slide_06.png",
+        "final_image_sha256": "7dc060fc26870c8dfcbb3af3ef334a0ed7f257d5ee1c78574c9f3ceb07c89e3c",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "The five-stage Style System chain is clear; owner labels, exact class token and CSS warning are legible and accurate.",
+        "recorded_at": "2026-08-19T12:42:37Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "Define a small Guide Page authoring contract.",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-07/origin_image/slide_03.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact repository-trace layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_09",
+        "agent_nickname": "Volta",
+        "prompt": "prompts/slide_07.json",
+        "prompt_sha256": "5fef0ecaaacbcdd363fb42b2bede93324d535facf523f56bd526f36de6df880c",
+        "dispatched_at": "2026-08-19T12:40:07Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017bb-1b09-7c73-b744-56fe71ac6857/exec-16ddb32d-84c2-470e-b1ee-ddc397754b7d.png",
+        "selected_source_sha256": "758a85c1afffa2af047fbb61c962db873cce1d23dc2036e6c4f96da4ed94c68a",
+        "final_image": "origin_image/slide_07.png",
+        "final_image_sha256": "758a85c1afffa2af047fbb61c962db873cce1d23dc2036e6c4f96da4ed94c68a",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "The Guide Page contract is legible and uses only safe repository roots, explicitly noting that the policy-definition suffix is component-dependent.",
+        "recorded_at": "2026-08-19T12:45:40Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "Key takeaways",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-07/origin_image/slide_03.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact repository-trace layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_01_fix",
+        "agent_nickname": "Erdos",
+        "prompt": "prompts/slide_08.json",
+        "prompt_sha256": "71ed086b1b432571796aa54f035d0def7071214e1457eb235e5387de845db174",
+        "dispatched_at": "2026-08-19T12:43:16Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_01_fix",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017bd-8384-7ef0-b7be-7bd5d21ed6df/exec-19e30241-4f12-4255-b24b-d91494c91ea3.png",
+        "selected_source_sha256": "030f802e6100610ad043359478322fea0f1c7a82afabc5c1cdfb4da9d13f2c8a",
+        "final_image": "origin_image/slide_08.png",
+        "final_image_sha256": "030f802e6100610ad043359478322fea0f1c7a82afabc5c1cdfb4da9d13f2c8a",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "All five ordered takeaways and the governing principle are legible, connected and free of assignment or demo text.",
+        "recorded_at": "2026-08-19T12:45:40Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Questions",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-07/origin_image/slide_03.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact repository-trace layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_08",
+        "agent_nickname": "Curie",
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "61de78d40f1d3d64a9dff749aaa623cfa75165a10e889a6934881e2d12a895cd",
+        "dispatched_at": "2026-08-19T12:43:16Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_08",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017ba-9cb9-7ff2-be60-e8ea5d5777c7/exec-a8abb906-06f7-47da-a97a-8c18d55bc59b.png",
+        "selected_source_sha256": "6096fbeaaaff29672b9a767a02745eed621b6bf1be37dba018708b19a9d08d49",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "6096fbeaaaff29672b9a767a02745eed621b6bf1be37dba018708b19a9d08d49",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Exactly three questions are clear and unobstructed around the simplified policy map with appropriate discussion whitespace.",
+        "recorded_at": "2026-08-19T12:45:40Z"
+      },
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-08-19T12:45:40Z"
+}

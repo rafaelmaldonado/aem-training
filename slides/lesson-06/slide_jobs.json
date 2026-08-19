@@ -1,0 +1,363 @@
+{
+  "run_status": "slides_recorded",
+  "deck_name": "lesson-06",
+  "selected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Day 6 initial-content timeline sample prompt",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_06.png",
+    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "max_concurrent_slides": 3,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "Design the authoring contract before the page.",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_06.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact timeline layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_01_fix",
+        "agent_nickname": "day6_slide_01_fix",
+        "prompt": "prompts/slide_01.json",
+        "prompt_sha256": "33581a8fc50ecbca7953b5abc3256d4a246eaf77a8d6de9ef99925ce35342cfe",
+        "dispatched_at": "2026-08-19T01:58:23Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_01_fix",
+        "backend_used": "built-in image tool (image_gen, generate mode)",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017bd-8384-7ef0-b7be-7bd5d21ed6df/exec-3dad5724-6b09-4925-8b00-2db7c88a0cdf.png",
+        "selected_source_sha256": "1e5a64fcca83a22a2705d734bdd7cdc5f145a0a2c44d5b00e0366c2858a9392f",
+        "final_image": "origin_image/slide_01.png",
+        "final_image_sha256": "1e5a64fcca83a22a2705d734bdd7cdc5f145a0a2c44d5b00e0366c2858a9392f",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Passed visual QA; exact metadata and paths are legible, template type supplies starting structure and initial content, copy-once semantics are clear, editable-template structure stays connected, and page-owned content is separate under /content.",
+        "recorded_at": "2026-08-19T02:00:28Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "A page instance points to both template and renderer.",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_06.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact timeline layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_02",
+        "agent_nickname": "day6_slide_02",
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "8fafb12e7cae38cf05eafe57780c230b859d2bafa854d9cb8fba880156e4cae2",
+        "dispatched_at": "2026-08-19T01:57:54Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_02.png",
+        "selected_source_sha256": "2b85396bbbc805e90b90e0e4550e11fc5ff7598c52acd88a183392ca70a3feef",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "2b85396bbbc805e90b90e0e4550e11fc5ff7598c52acd88a183392ca70a3feef",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Exact property values are legible; cq:template and sling:resourceType responsibilities are separated.",
+        "recorded_at": "2026-08-19T01:57:54Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "A template type seeds the editable template once.",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_06.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact timeline layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_03",
+        "agent_nickname": "day6_slide_03",
+        "prompt": "prompts/slide_03.json",
+        "prompt_sha256": "a7899b40b055d43a886cddbdbc1fa0997cd809eef393eb7b260d2cd78bbde862",
+        "dispatched_at": "2026-08-19T01:57:54Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_03.png",
+        "selected_source_sha256": "114ca9dbdd75888a9f0017b0ace7fed224179c1f04eed63d48c2824956aa7484",
+        "final_image": "origin_image/slide_03.png",
+        "final_image_sha256": "114ca9dbdd75888a9f0017b0ace7fed224179c1f04eed63d48c2824956aa7484",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Exact repository paths, copy-at-creation boundary and diverging later edits are clear.",
+        "recorded_at": "2026-08-19T01:57:55Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "One editable template has distinct branches.",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_06.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact timeline layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_04",
+        "agent_nickname": "day6_slide_04",
+        "prompt": "prompts/slide_04.json",
+        "prompt_sha256": "93f50d82beb0388b2240c609f2884abfe189cb1ac0d43fa2eedef1dc1b256269",
+        "dispatched_at": "2026-08-19T01:57:55Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_04",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_04.png",
+        "selected_source_sha256": "97f3b6efa2f0b7cf0793c7865d9fefacc32ad9cbd9bc1a02d266a026d2fe2bf9",
+        "final_image": "origin_image/slide_04.png",
+        "final_image_sha256": "97f3b6efa2f0b7cf0793c7865d9fefacc32ad9cbd9bc1a02d266a026d2fe2bf9",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Exact template root and four sibling branches are legible; page instances are excluded.",
+        "recorded_at": "2026-08-19T01:57:55Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "Structure remains connected to every page.",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_06.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact timeline layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_05",
+        "agent_nickname": "day6_slide_05",
+        "prompt": "prompts/slide_05.json",
+        "prompt_sha256": "802fe78f1b0780fdbfa546d97204a6bd8cabd0aa825a84a1294d2ca294803319",
+        "dispatched_at": "2026-08-19T01:57:55Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_05",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_05.png",
+        "selected_source_sha256": "397e6195d9b11d3a6661a9c2afc5a0c3ed83360056f14b2ab8de62d3316fba57",
+        "final_image": "origin_image/slide_05.png",
+        "final_image_sha256": "397e6195d9b11d3a6661a9c2afc5a0c3ed83360056f14b2ab8de62d3316fba57",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Locked header propagation and distinct page-owned content are shown accurately.",
+        "recorded_at": "2026-08-19T01:57:56Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "Initial content is copied only when the page is created.",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_06.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact timeline layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "accepted",
+      "dispatch": null,
+      "result": {
+        "final_image": "origin_image/slide_06.png",
+        "accepted_sample": true
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "Classify the Guide Page contract by lifecycle.",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_06.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact timeline layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_07",
+        "agent_nickname": "day6_slide_07",
+        "prompt": "prompts/slide_07.json",
+        "prompt_sha256": "56204461089dc7687041af8aadf4cb9811fc50bd0dac0d604fefbc2bc6d0de91",
+        "dispatched_at": "2026-08-19T01:57:56Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_07",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_07.png",
+        "selected_source_sha256": "fe412e2942df675cd898610885808396ba9b681d28c8d547e9f6956c018ddd4c",
+        "final_image": "origin_image/slide_07.png",
+        "final_image_sha256": "fe412e2942df675cd898610885808396ba9b681d28c8d547e9f6956c018ddd4c",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "All five Guide Page classifications and lifecycle destinations are legible.",
+        "recorded_at": "2026-08-19T01:57:56Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "Key takeaways",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_06.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact timeline layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_08",
+        "agent_nickname": "day6_slide_08",
+        "prompt": "prompts/slide_08.json",
+        "prompt_sha256": "32174c6f7d9afb2c19533ccfb1a5469e56e38b5b6764de9addaa0e4bb760f8b4",
+        "dispatched_at": "2026-08-19T01:57:57Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_08",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_08.png",
+        "selected_source_sha256": "2d496650c8f25c7bd67abc77dae92ca6ddb1495bb32544927148d67be495e70b",
+        "final_image": "origin_image/slide_08.png",
+        "final_image_sha256": "2d496650c8f25c7bd67abc77dae92ca6ddb1495bb32544927148d67be495e70b",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "All five takeaways are exact, ordered and legible.",
+        "recorded_at": "2026-08-19T01:57:57Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Questions",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_06.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact timeline layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_09",
+        "agent_nickname": "day6_slide_09",
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "8282535f804d2e355a985240c9b932c803259ce50e028b26b73ee0669ba4b90a",
+        "dispatched_at": "2026-08-19T01:57:57Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_09.png",
+        "selected_source_sha256": "bdc15a3dc8be122433356aa99964e37d177f7b3365d8a2360382eb49ffb61786",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "bdc15a3dc8be122433356aa99964e37d177f7b3365d8a2360382eb49ffb61786",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Exact three questions are legible with no prohibited extra content.",
+        "recorded_at": "2026-08-19T01:57:57Z"
+      },
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-08-19T02:00:28Z"
+}

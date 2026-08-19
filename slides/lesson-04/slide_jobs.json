@@ -1,0 +1,363 @@
+{
+  "run_status": "slides_recorded",
+  "deck_name": "lesson-04",
+  "selected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Day 4 read-only request trace sample prompt",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-04/origin_image/slide_07.png",
+    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "max_concurrent_slides": 3,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "Follow the request, not a guess.",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-04/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, annotation density, evidence-tag language and technical precision only; do not copy the exact six-checkpoint layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day4_slide_01",
+        "agent_nickname": "day4_slide_01",
+        "prompt": "prompts/slide_01.json",
+        "prompt_sha256": "08a3c6cbe5a6d3a51264ac3d960326e40457a30392383ae0556e6235293069f5",
+        "dispatched_at": "2026-08-19T00:51:31Z"
+      },
+      "result": {
+        "agent_id": "/root/day4_slide_01",
+        "backend_used": "built-in image_gen (generate mode)",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-04/origin_image/slide_01.png",
+        "selected_source_sha256": "805ccd57429ef989113b293aeca59baa59bf0a7843f130296c6b93c9a8bbc919",
+        "final_image": "origin_image/slide_01.png",
+        "final_image_sha256": "805ccd57429ef989113b293aeca59baa59bf0a7843f130296c6b93c9a8bbc919",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Repaired and visually verified request /content/wknd/us/en/guide.html and resolved Resource /content/wknd/us/en/guide.",
+        "recorded_at": "2026-08-19T00:51:31Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "Sling resolves a Resource before rendering code.",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-04/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, annotation density, evidence-tag language and technical precision only; do not copy the exact six-checkpoint layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day4_slide_02",
+        "agent_nickname": "day4_slide_02",
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "69ce89441f66f718f246eaf7826c0f3b20da40c482bb250272d86b9466ebb816",
+        "dispatched_at": "2026-08-19T00:51:31Z"
+      },
+      "result": {
+        "agent_id": "/root/day4_slide_02",
+        "backend_used": "built-in image_gen (generate mode)",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-04/origin_image/slide_02.png",
+        "selected_source_sha256": "66acf6753156d39e05c09764a37d84105efa5a07c1bd24e7e038dadc08a32b1a",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "66acf6753156d39e05c09764a37d84105efa5a07c1bd24e7e038dadc08a32b1a",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Resource resolves before handler selection; URL does not directly select HTL.",
+        "recorded_at": "2026-08-19T00:51:32Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "The resource path determines URL decomposition.",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-04/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, annotation density, evidence-tag language and technical precision only; do not copy the exact six-checkpoint layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day4_slide_03",
+        "agent_nickname": "day4_slide_03",
+        "prompt": "prompts/slide_03.json",
+        "prompt_sha256": "22c9a69860ac26e6526f0293f167b97104bf15add69641fe6cb397309ac36f35",
+        "dispatched_at": "2026-08-19T00:51:32Z"
+      },
+      "result": {
+        "agent_id": "/root/day4_slide_03",
+        "backend_used": "built-in image tool (image_gen, generate mode)",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-04/origin_image/slide_03.png",
+        "selected_source_sha256": "3cba5cc696386b27f5b64600d40c1a6a64667876d1b8d3b464988ca3e344d491",
+        "final_image": "origin_image/slide_03.png",
+        "final_image_sha256": "3cba5cc696386b27f5b64600d40c1a6a64667876d1b8d3b464988ca3e344d491",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Verified longest resolvable resource path, selectors print.a4, extension html, suffix /chapter-1, and method separate from RequestPathInfo.",
+        "recorded_at": "2026-08-19T00:51:32Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "sling:resourceType names rendering capability.",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-04/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, annotation density, evidence-tag language and technical precision only; do not copy the exact six-checkpoint layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day4_slide_04",
+        "agent_nickname": "day4_slide_04",
+        "prompt": "prompts/slide_04.json",
+        "prompt_sha256": "864b663015ca26dcfa29e69c0cb7eca6cc17783ee5c7fc7fbe010112d6cc1cc7",
+        "dispatched_at": "2026-08-19T00:51:32Z"
+      },
+      "result": {
+        "agent_id": "/root/day4_slide_04",
+        "backend_used": "built-in image_gen",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-04/origin_image/slide_04.png",
+        "selected_source_sha256": "b94e8d209c1a47e1a4f7faf4e66bf5ebea76d4cbd60277457b9d24df9c21cc71",
+        "final_image": "origin_image/slide_04.png",
+        "final_image_sha256": "b94e8d209c1a47e1a4f7faf4e66bf5ebea76d4cbd60277457b9d24df9c21cc71",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Verified exact content path, relative sling:resourceType value, and matching project component path under /apps.",
+        "recorded_at": "2026-08-19T00:51:33Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "Resource super types delegate instead of copying.",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-04/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, annotation density, evidence-tag language and technical precision only; do not copy the exact six-checkpoint layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day4_slide_05",
+        "agent_nickname": "day4_slide_05",
+        "prompt": "prompts/slide_05.json",
+        "prompt_sha256": "60e07e960adfba8c1031da0c530e91c1fe36771a5004db891fe9e96959401956",
+        "dispatched_at": "2026-08-19T00:51:33Z"
+      },
+      "result": {
+        "agent_id": "/root/day4_slide_05",
+        "backend_used": "built-in image_gen, generate mode",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-04/origin_image/slide_05.png",
+        "selected_source_sha256": "c938473ac82f507b1ce2ab00d364bbbe42f42c598fdf9e98113fc6ae91c1bdcd",
+        "final_image": "origin_image/slide_05.png",
+        "final_image_sha256": "c938473ac82f507b1ce2ab00d364bbbe42f42c598fdf9e98113fc6ae91c1bdcd",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Verified proxy type, sling:resourceSuperType, Core teaser super type, delegation, and no copied parent files.",
+        "recorded_at": "2026-08-19T00:51:33Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "Request details narrow the handler candidates.",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-04/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, annotation density, evidence-tag language and technical precision only; do not copy the exact six-checkpoint layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day4_slide_06",
+        "agent_nickname": "day4_slide_06",
+        "prompt": "prompts/slide_06.json",
+        "prompt_sha256": "0a4cc73c9c595308c1897c5a696af3208128b11667def6e35019ff5feb65fbfe",
+        "dispatched_at": "2026-08-19T00:51:33Z"
+      },
+      "result": {
+        "agent_id": "/root/day4_slide_06",
+        "backend_used": "built-in image_gen, generate mode",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0177c-43fd-7621-bc03-f491b84d80ad/exec-e75b84a7-2da3-4a09-9901-51512247a4a5.png",
+        "selected_source_sha256": "cded72b92f15201049dc247fa9a6721d143e5f9d2b2a48d062fdd7f3aee53bb0",
+        "final_image": "origin_image/slide_06.png",
+        "final_image_sha256": "cded72b92f15201049dc247fa9a6721d143e5f9d2b2a48d062fdd7f3aee53bb0",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Repaired and verified exact two-node hierarchy, four filters, separate HTTP method, illustrative script and servlet candidates, and no invented Java path.",
+        "recorded_at": "2026-08-19T00:51:34Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "Follow one Sling request with evidence.",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-04/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, annotation density, evidence-tag language and technical precision only; do not copy the exact six-checkpoint layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "accepted",
+      "dispatch": null,
+      "result": {
+        "final_image": "origin_image/slide_07.png",
+        "accepted_sample": true
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "Key takeaways",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-04/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, annotation density, evidence-tag language and technical precision only; do not copy the exact six-checkpoint layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day4_slide_08",
+        "agent_nickname": "day4_slide_08",
+        "prompt": "prompts/slide_08.json",
+        "prompt_sha256": "44d389ef028fbaafb59450f9f351f7e5fc0f91c431278901aab16a86f26baeb9",
+        "dispatched_at": "2026-08-19T00:51:34Z"
+      },
+      "result": {
+        "agent_id": "/root/day4_slide_08",
+        "backend_used": "built-in image_gen (generate mode)",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-04/origin_image/slide_08.png",
+        "selected_source_sha256": "094ca8a7908b498ed309160cd576eb6ca88016a475090f80b4c53d895f87790c",
+        "final_image": "origin_image/slide_08.png",
+        "final_image_sha256": "094ca8a7908b498ed309160cd576eb6ca88016a475090f80b4c53d895f87790c",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "All five takeaways are exact, legible, and ordered.",
+        "recorded_at": "2026-08-19T00:51:34Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Questions",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-04/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, annotation density, evidence-tag language and technical precision only; do not copy the exact six-checkpoint layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day4_slide_09",
+        "agent_nickname": "day4_slide_09",
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "c34bda35638b993a947c972d7dee4579669f3acee5e48083bda0be664f84ade8",
+        "dispatched_at": "2026-08-19T00:51:34Z"
+      },
+      "result": {
+        "agent_id": "/root/day4_slide_09",
+        "backend_used": "built-in image_gen (generate)",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-04/origin_image/slide_09.png",
+        "selected_source_sha256": "e30e1b70ab29d6003c69d87bdacaa81f8c612f32547f4775ca986f0450771759",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "e30e1b70ab29d6003c69d87bdacaa81f8c612f32547f4775ca986f0450771759",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Exact eyebrow, title, and three questions rendered with no prohibited next-step text.",
+        "recorded_at": "2026-08-19T00:51:35Z"
+      },
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-08-19T00:51:35Z"
+}

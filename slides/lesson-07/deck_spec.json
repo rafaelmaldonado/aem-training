@@ -1,0 +1,315 @@
+{
+  "deck_name": "lesson-07",
+  "language": "English",
+  "goal": "Teach frontend-oriented AEM developers how content policies govern component capability by template context, how Allowed Components and policy defaults shape authoring, and how the Style System connects semantic author choices to deployed CSS.",
+  "deck_context": {
+    "source_summary": "Class 7 of a seven-week AEM Sites course, delivered Tuesday, August 25, 2026. The audience understands JCR Resources, Sling request resolution and editable-template structure versus initial content. This class completes the technical foundation for the individual Week 2 Guide Page authoring practice.",
+    "core_claim": "A safe AEM authoring contract combines reusable component code with narrowly scoped content policies, explicit container permissions and a small set of semantic styles whose CSS is deployed and tested.",
+    "canonical_facts": [
+      "Component code defines technical capability; a content policy configures capability for a template context.",
+      "Policy mappings for editable-template component locations are stored below /conf/<site>/settings/wcm/templates/<template>/policies/jcr:content.",
+      "The cq:policy property holds a relative reference to a policy definition below /conf/<site>/settings/wcm/policies.",
+      "A layout container policy determines which components authors may insert in that container.",
+      "Policy defaults configure a reusable context; dialog values are authored on individual component instances below /content.",
+      "The Style System maps author-facing style names to CSS classes configured in a content policy.",
+      "Developers implement style classes in deployed client libraries; AEM applies selected classes to the component decoration wrapper."
+    ],
+    "canonical_terms": [
+      "content policy",
+      "cq:policy",
+      "Allowed Components",
+      "policy defaults",
+      "authored instance values",
+      "Style System",
+      "Style Name",
+      "CSS Classes",
+      "client library",
+      "decoration wrapper",
+      "/conf",
+      "/content"
+    ]
+  },
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 3,
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Day 7 policy-mapping sample prompt generated in conversation",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-07/origin_image/slide_03.png",
+    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "style": {
+    "name": "技术图谱课件风",
+    "visual_direction": "Sober, information-rich technical atlas blended with academic courseware. Use exact repository paths, properties, authoring boundaries and responsibility connectors rather than generic corporate cards.",
+    "color_palette": "Warm ivory drafting-paper background, deep navy typography, faint square grid, blue for authored content and editor states, green for policies and configuration, violet for mappings and CSS, restrained orange for warnings.",
+    "typography": "Large bold modern sans serif headings; crisp sans serif body copy; true monospace appearance for paths, properties, node names, classes and values.",
+    "texture_and_finish": "Flat 2D technical diagrams with fine rules, precise repository, policy, container, editor and CSS icons. No gradients, neon, glass, 3D or photography.",
+    "deck_consistency": "Match the approved sample's palette, typography, grid, density, semantic colors, evidence tags and line weight while varying composition by slide role."
+  },
+  "approved_style_reference": {
+    "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-07/origin_image/slide_03.png",
+    "role": "approved sample slide style reference",
+    "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact repository-trace layout."
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Govern authoring choices without changing component code.",
+      "role": "cover",
+      "intent": "Frame policies as the layer that turns reusable components into a controlled authoring experience.",
+      "key_points": [
+        "Class 7 · Week 2 · Day 7 · August 25, 2026",
+        "Content policies, Allowed Components and Style System",
+        "Component capability → content policy → author choice",
+        "Juan Maldonado"
+      ],
+      "local_context": {
+        "required_background": "Show one reusable component capability passing through a policy control layer and emerging as a focused Page Editor choice. This is an opening synthesis, not a title-only page."
+      },
+      "layout": {
+        "composition": "Editorial technical cover with one central three-layer control diagram and exact class metadata aligned below the title.",
+        "intent": "Introduce the complete capability-to-choice chain without repeating the sample's repository trace."
+      },
+      "visual_elements": {
+        "main_visual": "Component implementation, content policy and Page Editor author choice as three nested technical layers."
+      },
+      "constraints": [
+        "Render all class metadata exactly.",
+        "Do not imply that content authors modify component code.",
+        "Do not include assignment or demo instructions."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "A policy configures capability by context.",
+      "role": "conceptual model",
+      "intent": "Separate technical component capability from the configuration permitted in one template location.",
+      "key_points": [
+        "Component code defines what is technically possible",
+        "Content policy configures what is available in one template context",
+        "The same component can use different policies in different locations",
+        "Authors use the resulting choices without editing code",
+        "A shared policy change can affect every referencing location"
+      ],
+      "local_context": {
+        "required_background": "Use one Image component implementation feeding a Guide Page context and an Article Page context. The Guide policy exposes a narrower choice set; the Article policy exposes a different set. Keep the implementation identical."
+      },
+      "layout": {
+        "composition": "One component capability block branches into two contrasting template contexts, each with its own policy and author-facing results.",
+        "intent": "Use controlled branching to make context-specific configuration unmistakable."
+      },
+      "visual_elements": {
+        "main_visual": "One implementation, two policies, two authoring outcomes."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '02 · POLICY CONTEXT'.",
+        "Label implementation, policy and author choice separately.",
+        "Do not show duplicated component code.",
+        "State that shared policy changes can have multiple consumers."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Follow the policy mapping before editing code.",
+      "role": "repository trace",
+      "intent": "Make policy resolution concrete enough to diagnose a missing or unexpectedly configured component.",
+      "sample_approved": true,
+      "key_points": [
+        "Start at the component path in the editable template",
+        "Find the matching node under policies/jcr:content",
+        "Read cq:policy and follow its relative reference",
+        "Inspect the resolved definition below /conf/wknd/settings/wcm/policies",
+        "Verify the mapping before changing rendering code"
+      ],
+      "local_context": {
+        "required_background": "Approved sample. It traces /conf/wknd/settings/wcm/templates/guide-page/policies/jcr:content/root/main through cq:policy to a component-dependent definition below /conf/wknd/settings/wcm/policies/... ."
+      },
+      "layout": {
+        "composition": "Approved three-stage repository resolution trace.",
+        "intent": "Use the approved sample unchanged."
+      },
+      "visual_elements": {
+        "main_visual": "Approved sample image at origin_image/slide_03.png."
+      },
+      "constraints": [
+        "Reuse the approved sample image without regeneration."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Allowed Components belongs to the container policy.",
+      "role": "authoring control",
+      "intent": "Explain why an installed component may still be unavailable in the component browser.",
+      "key_points": [
+        "Container policy controls which components authors may insert",
+        "Installed does not mean allowed in this container",
+        "Expose a small purpose-specific set",
+        "Missing selector entry usually points to policy or mapping",
+        "Validate one allowed and one disallowed state"
+      ],
+      "local_context": {
+        "required_background": "The Guide Page main container allows Title, Text and Image. An unrelated Carousel is installed but unavailable in this container. Show the component browser result as policy evidence, not a rendering result."
+      },
+      "layout": {
+        "composition": "A central container-policy funnel separates the installed catalog on the left from the author-visible component browser on the right, with a rejected component below.",
+        "intent": "Show the difference between deployment availability and authoring permission."
+      },
+      "visual_elements": {
+        "main_visual": "Installed catalog → container policy → allowed editor choices, plus a clearly disallowed Carousel."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '04 · ALLOWED COMPONENTS'.",
+        "Show Title, Text and Image as allowed.",
+        "Show Carousel as installed but disallowed.",
+        "Do not imply that disallowed means uninstalled or broken."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Policy defaults are not authored instance values.",
+      "role": "configuration comparison",
+      "intent": "Distinguish reusable design configuration from content stored on an individual component instance.",
+      "key_points": [
+        "Policy defaults configure a reusable template context",
+        "Authored dialog values belong to one component instance",
+        "Policy configuration lives under /conf",
+        "Instance content lives under /content",
+        "Check policy reuse before changing a shared default"
+      ],
+      "local_context": {
+        "required_background": "Compare an Image policy under /conf that permits widths and enables lazy loading with one Image component instance under /content that stores fileReference and alt text. Do not claim every Core Image property is necessarily a policy property; present these as representative categories."
+      },
+      "layout": {
+        "composition": "Mirrored two-column repository inspectors with a narrow center divider labeled reusable context versus one authored instance; a reuse-impact callout spans the bottom.",
+        "intent": "Use repository ownership and scope to prevent configuration/content confusion."
+      },
+      "visual_elements": {
+        "main_visual": "Policy values under /conf contrasted with authored values under /content."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '05 · DEFAULTS VS VALUES'.",
+        "Render /conf and /content exactly.",
+        "Use fileReference and alt text only on the authored-instance side.",
+        "Include a warning that one shared policy can have multiple consumers."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Style System maps semantic choices to deployed CSS.",
+      "role": "end-to-end pipeline",
+      "intent": "Show every dependency between an author-facing style name and the rendered result.",
+      "key_points": [
+        "Template author maps Style Name to CSS Classes in policy",
+        "Featured → cmp-guide--featured",
+        "Developer implements the class in a deployed client library",
+        "Content author selects the style in Page Editor",
+        "AEM applies the class to the component decoration wrapper"
+      ],
+      "local_context": {
+        "required_background": "The Style System exposes a user-friendly Style Name while CSS class names remain implementation-oriented. CSS and optional JavaScript must already be deployed. The selected class is applied to the component decoration wrapper; Style System does not generate CSS."
+      },
+      "layout": {
+        "composition": "A five-stage horizontal pipeline with distinct owner labels above each step and an exact class token flowing through to a simplified DOM wrapper at the end.",
+        "intent": "Make ownership and implementation dependencies visible in the order they execute."
+      },
+      "visual_elements": {
+        "main_visual": "Style Name → policy mapping → client library → author selection → wrapper class."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '06 · STYLE SYSTEM'.",
+        "Render Featured and cmp-guide--featured exactly.",
+        "State that Style System does not generate CSS.",
+        "Label Developer, Template author and Content author responsibilities accurately."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Define a small Guide Page authoring contract.",
+      "role": "practice specification",
+      "intent": "Translate policy mechanics into evidence developers can implement and explain this week.",
+      "key_points": [
+        "Responsive main container allows only Title, Text and Image",
+        "One intentional policy default is visible and explainable",
+        "Style choices are Standard and Featured",
+        "Developer, template author and content author have distinct ownership",
+        "Evidence shows allowed, disallowed, styled and repository states"
+      ],
+      "local_context": {
+        "required_background": "Create a contract sheet, not a tutorial. Required evidence: Title available, Carousel unavailable, one visible policy default, Featured style selected and exact repository locations under /conf. Developer owns proxy components and CSS; template author owns policy choices; content author selects approved options."
+      },
+      "layout": {
+        "composition": "Guide Page wireframe with numbered evidence hotspots on the left; a compact contract matrix on the right maps choice, owner, repository scope and proof.",
+        "intent": "Connect this week's individual practice to observable implementation evidence."
+      },
+      "visual_elements": {
+        "main_visual": "Authoring contract sheet with editor states, owners and repository evidence."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '07 · GUIDE PAGE CONTRACT'.",
+        "Show Title, Text and Image as allowed and Carousel as disallowed.",
+        "Show Standard and Featured as semantic style names.",
+        "Do not turn the slide into step-by-step setup instructions."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Key takeaways",
+      "role": "summary",
+      "intent": "Retrieve the five distinctions developers need before completing the Guide Page practice.",
+      "key_points": [
+        "Component code defines capability; policy configures it by context",
+        "cq:policy connects template location to policy definition",
+        "Container policy controls Allowed Components",
+        "Policy defaults differ from authored instance values",
+        "Semantic style choices require deployed, tested CSS"
+      ],
+      "local_context": {
+        "required_background": "Summarize only the five exact course distinctions. Include the principle that fewer meaningful choices are easier to govern, but do not add practice instructions or a demo."
+      },
+      "layout": {
+        "composition": "Five connected control checkpoints arranged as a compact capability-to-author-choice system, each with one exact takeaway and icon.",
+        "intent": "End the teaching sequence with one retrievable system rather than five unrelated cards."
+      },
+      "visual_elements": {
+        "main_visual": "Five linked policy-control checkpoints with a small governing-principle banner."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '08 · KEY TAKEAWAYS'.",
+        "Render all five takeaways clearly and in order.",
+        "Include 'Fewer meaningful choices are easier to govern.'",
+        "Do not include assignment, demo or next-step text."
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Questions",
+      "role": "Q&A",
+      "intent": "Close without requiring a live demonstration.",
+      "key_points": [
+        "Which Guide Page capability belongs in policy rather than component code?",
+        "What evidence would explain a component missing from the editor?",
+        "Which semantic style choices are worth supporting and testing?"
+      ],
+      "local_context": {
+        "required_background": "Present exactly three discussion questions. Keep enough negative space for conversation and use one simplified policy map as supporting context."
+      },
+      "layout": {
+        "composition": "Three large question zones orbit a simplified policy map, with more whitespace than the technical content slides.",
+        "intent": "Signal discussion while retaining the deck's technical visual identity."
+      },
+      "visual_elements": {
+        "main_visual": "Simplified component-policy-author map with three highlighted decision points."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '09 · QUESTIONS'.",
+        "Render all three questions exactly.",
+        "Do not include a demo, practice, assignment or thank-you message."
+      ]
+    }
+  ]
+}

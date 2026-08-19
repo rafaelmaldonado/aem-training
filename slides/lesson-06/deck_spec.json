@@ -1,0 +1,313 @@
+{
+  "deck_name": "lesson-06",
+  "language": "English",
+  "goal": "Teach frontend-oriented AEM developers how editable templates define the authoring contract for pages, while separating template type, structure, initial content, policy and page-owned content by lifecycle.",
+  "deck_context": {
+    "source_summary": "Class 6 of a seven-week AEM Sites course, delivered Monday, August 24, 2026. The audience already understands JCR Resources, repository boundaries and Sling request resolution. This class begins Week 2 and prepares the individual Guide Page authoring practice.",
+    "core_claim": "A reliable AEM authoring contract places shared structure, creation-time defaults, design policy and page-owned content in different repository branches according to ownership and synchronization behavior.",
+    "canonical_facts": [
+      "Page content lives below /content and a page jcr:content Resource can store both cq:template and sling:resourceType.",
+      "cq:template records the editable template; sling:resourceType selects the page component used for rendering.",
+      "A template type is copied when an editable template is created; the remaining reference is informational rather than dynamic inheritance.",
+      "Editable template definitions live below /conf/<site>/settings/wcm/templates.",
+      "Structure changes remain connected to pages created from the template.",
+      "Initial content is copied when a page is created and later initial-content changes do not update existing pages.",
+      "Policies define design and authoring rules and are explored in Day 7."
+    ],
+    "canonical_terms": [
+      "cq:template",
+      "sling:resourceType",
+      "template type",
+      "editable template",
+      "structure",
+      "initial content",
+      "content policy",
+      "page component",
+      "/conf",
+      "/content",
+      "/apps"
+    ]
+  },
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 3,
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Day 6 initial-content timeline sample prompt",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_06.png",
+    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "style": {
+    "name": "技术图谱课件风",
+    "visual_direction": "Sober, information-rich technical atlas blended with academic courseware. Use exact repository paths, properties, lifecycle boundaries and synchronization connectors rather than generic corporate cards.",
+    "color_palette": "Warm ivory drafting-paper background, deep navy typography, faint square grid, blue for page and authored content, green for template/configuration, violet for lifecycle and code, restrained orange for warnings.",
+    "typography": "Large bold modern sans serif headings; crisp sans serif body copy; true monospace appearance for paths, properties, node names, types and values.",
+    "texture_and_finish": "Flat 2D technical diagrams with fine rules, precise repository, page, template, lock and copy icons. No gradients, neon, glass, 3D or photography.",
+    "deck_consistency": "Match the approved sample's palette, typography, grid, density, semantic colors, evidence tags and line weight while varying composition by slide role."
+  },
+  "approved_style_reference": {
+    "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_06.png",
+    "role": "approved sample slide style reference",
+    "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact timeline layout."
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Design the authoring contract before the page.",
+      "role": "cover",
+      "intent": "Position the editable template as a reusable authoring contract rather than a visual screenshot.",
+      "key_points": [
+        "Class 6 · Week 2 · Day 6 · August 24, 2026",
+        "Pages and editable templates",
+        "Template type → editable template → page instance",
+        "Juan Maldonado"
+      ],
+      "local_context": {
+        "required_background": "Show that one editable-template contract can create several page instances. Shared structure remains connected, while page content is owned by each page."
+      },
+      "layout": {
+        "composition": "Editorial cover with one template blueprint feeding three page instances; a dark footer summarizes the ownership chain.",
+        "intent": "Open with the complete lifecycle without using a title-only cover."
+      },
+      "visual_elements": {
+        "main_visual": "Template type, editable template and page-instance flow with shared-structure and page-owned-content annotations."
+      },
+      "constraints": [
+        "Render all class metadata exactly.",
+        "Do not imply that a page instance is stored under /conf.",
+        "Do not imply that the template directly renders the page."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "A page instance points to both template and renderer.",
+      "role": "page anatomy",
+      "intent": "Connect Sling rendering to the editable-template authoring model without merging their responsibilities.",
+      "key_points": [
+        "Page content: /content/wknd/us/en/guides/my-guide/jcr:content",
+        "cq:template = /conf/wknd/settings/wcm/templates/guide-page",
+        "sling:resourceType = wknd/components/page",
+        "cq:template identifies the authoring contract",
+        "sling:resourceType identifies the rendering capability"
+      ],
+      "local_context": {
+        "required_background": "Both properties belong on the selected page jcr:content Resource. The template definition is under /conf. The page component implementation resolves under /apps through Sling search paths."
+      },
+      "layout": {
+        "composition": "Central page jcr:content inspector with two distinct property bridges: green to the editable template under /conf and violet to the page component under /apps.",
+        "intent": "Make the two references and their separate responsibilities unmistakable."
+      },
+      "visual_elements": {
+        "main_visual": "A selected page Resource with exact cq:template and sling:resourceType properties."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '02 · PAGE ANATOMY'.",
+        "Render both property names, values and paths exactly.",
+        "Do not label cq:template as the renderer.",
+        "Do not store the sling:resourceType value with a leading /apps prefix."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "A template type seeds the editable template once.",
+      "role": "lifecycle process",
+      "intent": "Explain creation-time reuse without implying ongoing inheritance from the template type.",
+      "key_points": [
+        "Template type supplies starting structure, initial content and page component resource type",
+        "Create guide-page by copying the approved starting definition",
+        "The editable template can evolve independently after creation",
+        "The remaining template-type reference is informational",
+        "This is copy-at-creation, not dynamic inheritance"
+      ],
+      "local_context": {
+        "required_background": "Use example source /conf/wknd/settings/wcm/template-types/page and destination /conf/wknd/settings/wcm/templates/guide-page. Do not imply that later changes to the type update the template."
+      },
+      "layout": {
+        "composition": "A left-to-right copy-at-creation process with a prominent copy boundary; after the boundary, type and editable-template timelines diverge.",
+        "intent": "Use diverging timelines to distinguish a seed from inheritance."
+      },
+      "visual_elements": {
+        "main_visual": "Template type snapshot copied into an editable template with independent later edits."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '03 · TEMPLATE TYPE'.",
+        "Render both repository paths exactly.",
+        "State 'copy at creation' and 'not dynamic inheritance'.",
+        "Do not show continuing synchronization from template type to editable template."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "One editable template has distinct branches.",
+      "role": "repository anatomy",
+      "intent": "Make the editable-template definition inspectable as a repository structure.",
+      "key_points": [
+        "Root: /conf/wknd/settings/wcm/templates/guide-page",
+        "jcr:content stores metadata and status: draft, enabled or disabled",
+        "structure/jcr:content defines shared page structure",
+        "initial/jcr:content defines starting content for new pages",
+        "policies/jcr:content connects design rules covered in Day 7"
+      ],
+      "local_context": {
+        "required_background": "Show the template root and its sibling branches as a repository tree. Keep branch ownership and behavior separate; do not place page instances inside this tree."
+      },
+      "layout": {
+        "composition": "Repository-tree close-up on the left and a four-row behavior inspector on the right with branch, purpose, owner and synchronization labels.",
+        "intent": "Translate the console concept into exact repository anatomy."
+      },
+      "visual_elements": {
+        "main_visual": "Editable-template repository tree with metadata, structure, initial and policies branches."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '04 · TEMPLATE ANATOMY'.",
+        "Render every branch and path exactly.",
+        "Do not show page content under the template root.",
+        "Keep policy details introductory; Day 7 covers them."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Structure remains connected to every page.",
+      "role": "synchronization model",
+      "intent": "Show which editable-template changes continue to affect existing pages.",
+      "key_points": [
+        "Structure defines components and layout shared by pages",
+        "Locked components cannot be moved or deleted by page authors",
+        "An unlocked container exposes a page-authoring area",
+        "Later structure changes are reflected on existing pages",
+        "Use structure for elements that must remain consistent"
+      ],
+      "local_context": {
+        "required_background": "Use a locked site header and an unlocked main container. Show one template structure connected to Page A, Page B and Page C. A header change propagates to all three while page-owned content remains different."
+      },
+      "layout": {
+        "composition": "Template structure at top fans out to three page wireframes; a before-and-after header update highlights propagation, while unlocked page areas retain distinct content.",
+        "intent": "Show an active ongoing connection rather than a one-time copy."
+      },
+      "visual_elements": {
+        "main_visual": "Shared locked header plus unlocked content container across three page instances."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '05 · STRUCTURE'.",
+        "Use lock and unlock states accurately.",
+        "State that structure changes affect existing pages.",
+        "Do not imply that page-authored content is overwritten."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Initial content is copied only when the page is created.",
+      "role": "before-and-after timeline",
+      "intent": "Prevent initial content from being mistaken for synchronization or migration.",
+      "sample_approved": true,
+      "key_points": [
+        "Initial content gives a new page an editable starting point",
+        "At creation, it is merged with structure and copied below the page",
+        "Authors can edit or remove eligible copied content",
+        "Changing initial content affects future pages, not existing pages",
+        "Existing content needs an explicit migration"
+      ],
+      "local_context": {
+        "required_background": "Approved sample. Page A is created before the template initial value changes and retains 'Start here'. Page B is created after the change and receives 'Updated starter'."
+      },
+      "layout": {
+        "composition": "Approved left-to-right T0–T3 creation timeline comparing template initial content, Page A, a template edit and Page B.",
+        "intent": "Use time and copy boundaries to make creation-time behavior explicit."
+      },
+      "visual_elements": {
+        "main_visual": "Approved sample image at origin_image/slide_06.png."
+      },
+      "constraints": [
+        "Reuse the approved sample image without regeneration."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Classify the Guide Page contract by lifecycle.",
+      "role": "decision exercise",
+      "intent": "Bridge the model into the Week 2 individual Guide Page practice.",
+      "key_points": [
+        "Shared locked site header → template structure",
+        "Main authoring container → template structure, unlocked",
+        "Editable introductory placeholder → initial content",
+        "Allowed components and design defaults → content policy",
+        "Guide text, images and metadata → page content under /content"
+      ],
+      "local_context": {
+        "required_background": "Classify each example by lifecycle and owner. Policies are only identified as the correct destination; detailed policy configuration belongs to Day 7."
+      },
+      "layout": {
+        "composition": "Guide Page wireframe on the left with five numbered hotspots; each connects to a repository destination and a short lifecycle justification on the right.",
+        "intent": "Turn abstract branches into a concrete design decision."
+      },
+      "visual_elements": {
+        "main_visual": "Annotated Guide Page wireframe mapped to structure, initial content, policy and page content."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '07 · GUIDE PAGE CONTRACT'.",
+        "Render all five classifications exactly.",
+        "Do not place mutable authored content under /conf.",
+        "Do not turn this slide into a step-by-step assignment."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Key takeaways",
+      "role": "summary",
+      "intent": "Retrieve the five distinctions needed before beginning the Guide Page practice.",
+      "key_points": [
+        "The page stores content; the page component renders it",
+        "The editable template governs how pages begin and what remains shared",
+        "The template type is copied at template creation; it is not dynamic inheritance",
+        "Structure stays connected; initial content is copied once",
+        "Choose structure, initial content, policy or page content by lifecycle and owner"
+      ],
+      "local_context": {
+        "required_background": "Keep the five takeaways in this exact order and preserve the distinction between storage, rendering, seeding, synchronization and ownership."
+      },
+      "layout": {
+        "composition": "A central page-contract blueprint surrounded by five numbered lifecycle decisions; one concise statement per branch.",
+        "intent": "Summarize relationships without repeating the slide 6 timeline."
+      },
+      "visual_elements": {
+        "main_visual": "Five-part technical recap around an editable-template blueprint."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '08 · KEY TAKEAWAYS'.",
+        "Render all five takeaways exactly and legibly.",
+        "Do not add a practice, demo or next step."
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Questions",
+      "role": "Q&A",
+      "intent": "Close without requiring a live demonstration.",
+      "key_points": [
+        "Which Guide Page element is hardest to classify?",
+        "What should update existing pages when the template changes?",
+        "Which value controls rendering, and which value records the template?"
+      ],
+      "local_context": {
+        "required_background": "Questions only. Use the visual language of template, page and lifecycle decisions, but include no answer, task, demo or acceptance text."
+      },
+      "layout": {
+        "composition": "Large technical question mark assembled from a page, template, lock, copy and property path; three questions aligned with generous whitespace.",
+        "intent": "Create a calm close that invites discussion."
+      },
+      "visual_elements": {
+        "main_visual": "Technical question mark with three exact questions."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '09 · QUESTIONS'.",
+        "Render the title and three questions exactly.",
+        "Do not include demo, practice, assignment, command, next step, answer or acceptance content."
+      ]
+    }
+  ]
+}

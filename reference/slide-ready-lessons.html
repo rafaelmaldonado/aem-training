@@ -75,26 +75,26 @@
 
     <details><summary>Day 4 · How Sling resolves a request</summary>
       <p><strong>Retrieval question:</strong> What connects a content resource to the component that renders it?</p>
+      <p><a href="../lessons/0006-sling-request-resolution.html">Open the complete illustrated nine-slide deck →</a></p>
       <ol class="slides">
-        <li><strong>Slide 1 — Sling starts with a resource.</strong> It resolves the request path before choosing rendering code. <em>Speaker cue: AEM is content-first, not controller-route-first.</em></li>
-        <li><strong>Slide 2 — Resource type selects capability.</strong> <code>sling:resourceType</code> names the component responsible for the resource. <em>Speaker cue: show the value on a WKND component instance.</em></li>
-        <li><strong>Slide 3 — Request parts guide script selection.</strong> Selectors, extension and HTTP method help Sling choose a script or servlet. <em>Speaker cue: use a simple <code>.html</code> request before adding selectors.</em></li>
-        <li><strong>Slide 4 — Super types enable reuse.</strong> <code>sling:resourceSuperType</code> delegates behavior without copying the parent implementation. <em>Speaker cue: connect this to Core Component proxies.</em></li>
-        <li><strong>Slide 5 — Use one repeatable trace.</strong> URL → resource → resource type → script/model → response. <em>Speaker cue: every arrow must have a path or observable value.</em></li>
+        <li><strong>Slide 1 — Follow the request, not a guess.</strong> Introduce the ordered evidence chain from URL to response.</li>
+        <li><strong>Slide 2 — Sling resolves a Resource before rendering code.</strong> Replace a controller-route-first assumption with the resource-first model.</li>
+        <li><strong>Slide 3 — The resource path determines URL decomposition.</strong> Separate resource path, selectors, extension and suffix using one exact request.</li>
+        <li><strong>Slide 4 — <code>sling:resourceType</code> names rendering capability.</strong> Connect content to project implementation without merging their repository paths.</li>
+        <li><strong>Slide 5 — Resource super types delegate instead of copying.</strong> Show proxy reuse through <code>sling:resourceSuperType</code>.</li>
+        <li><strong>Slide 6 — Request details narrow the handler candidates.</strong> Combine type hierarchy, selectors, extension and HTTP method without assuming one rigid filename formula.</li>
+        <li><strong>Slide 7 — Follow one Sling request with evidence.</strong> Trace six read-only checkpoints from request to response.</li>
+        <li><strong>Slide 8 — Key takeaways.</strong> Preserve the five-step diagnostic order.</li>
+        <li><strong>Slide 9 — Questions.</strong> Close on checkpoints, request values and inherited behavior.</li>
       </ol>
-      <p><strong>Demo:</strong> trace a WKND HTML URL to its HTL script. <strong>Assignment:</strong> repeat the trace for another component and one selector. <strong>Acceptance:</strong> every transition includes evidence.</p>
+      <p><strong>Inspection:</strong> trace a supplied request snapshot; use local Author only if available. <strong>Evidence:</strong> exact request, Resource path, request information, resource type hierarchy, selected script or servlet and observed response.</p>
     </details>
 
-    <details><summary>Day 5 · Weekly review: diagnose by layer</summary>
+    <details><summary>Day 5 · Weekly practice review · no slide deck</summary>
       <p><strong>Retrieval question:</strong> What is the cheapest evidence that could disprove your current hypothesis?</p>
-      <ol class="slides">
-        <li><strong>Slide 1 — Reproduce before changing.</strong> Record URL, service, user, steps, expected result and actual result. <em>Speaker cue: a ticket title is not a reproduction.</em></li>
-        <li><strong>Slide 2 — Reduce the responsible layer.</strong> Test content, configuration, render, frontend, delivery and access separately. <em>Speaker cue: change one variable at a time.</em></li>
-        <li><strong>Slide 3 — State a falsifiable hypothesis.</strong> “The policy excludes the component” is testable; “AEM is broken” is not. <em>Speaker cue: pair each hypothesis with one cheap check.</em></li>
-        <li><strong>Slide 4 — Prefer evidence over authority.</strong> A stored property, request, log line, effective configuration or diff can support a conclusion. <em>Speaker cue: screenshots without context rarely identify cause.</em></li>
-        <li><strong>Slide 5 — Fix the shared cause.</strong> Find callers, change the smallest common source and test adjacent behavior. <em>Speaker cue: a local workaround creates the next incident.</em></li>
-      </ol>
-      <p><strong>Demo:</strong> diagnose a component hidden by template policy. <strong>Assignment:</strong> investigate a seeded WKND symptom. <strong>Acceptance:</strong> reproduction, hypothesis, check, conclusion and remaining risk are recorded.</p>
+      <p><a href="weekly-practice-review-instructions.html">Open the printable weekly review instructions →</a></p>
+      <p><strong>Format:</strong> every developer submits the practice evidence by Thursday; two developers present for six minutes each on Friday. The remaining time is used for common findings, one understanding check and actionable feedback.</p>
+      <p><strong>Fallback:</strong> if local Author is unavailable, the presenter uses the submitted screenshots, recording and annotated trace instead of troubleshooting during the session.</p>
     </details>
     <p><strong>Official reading:</strong> <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/getting-started-wknd-tutorial-develop/project-archetype/project-setup">WKND Project Setup — Adobe</a>.</p>
 
@@ -102,38 +102,51 @@
 
     <details><summary>Day 6 · Pages and editable templates</summary>
       <p><strong>Retrieval question:</strong> Which parts of a page should be shared across every instance?</p>
+      <p><a href="../lessons/0007-pages-editable-templates.html">Open the complete illustrated nine-slide deck →</a></p>
       <ol class="slides">
-        <li><strong>Slide 1 — A template defines page capability.</strong> It establishes the initial structure, allowed authoring surface and page component. <em>Speaker cue: a template is not merely a visual screenshot.</em></li>
-        <li><strong>Slide 2 — Template type is the technical foundation.</strong> It provides the starting structure used to create editable templates. <em>Speaker cue: developers maintain the type; template authors configure the template.</em></li>
-        <li><strong>Slide 3 — Structure is shared.</strong> Locked or shared elements update consistently across pages using the template. <em>Speaker cue: navigation or global containers often belong here.</em></li>
-        <li><strong>Slide 4 — Initial content is copied once.</strong> It helps authors start but does not keep existing pages synchronized. <em>Speaker cue: changing initial content is not a migration strategy.</em></li>
-        <li><strong>Slide 5 — Page content belongs to each page.</strong> Authors control local component instances within policy boundaries. <em>Speaker cue: classify by who changes it and how often.</em></li>
+        <li><strong>Slide 1 — Design the authoring contract before the page.</strong> Frame template type, editable template and page instance as one lifecycle.</li>
+        <li><strong>Slide 2 — A page instance points to both template and renderer.</strong> Separate <code>cq:template</code> from <code>sling:resourceType</code>.</li>
+        <li><strong>Slide 3 — A template type seeds the editable template once.</strong> Show copy-at-creation rather than dynamic inheritance.</li>
+        <li><strong>Slide 4 — One editable template has distinct branches.</strong> Inspect metadata, structure, initial content and policies under <code>/conf</code>.</li>
+        <li><strong>Slide 5 — Structure remains connected to every page.</strong> Contrast locked shared elements with unlocked page-authoring areas.</li>
+        <li><strong>Slide 6 — Initial content is copied only when the page is created.</strong> Compare pages created before and after a default changes.</li>
+        <li><strong>Slide 7 — Classify the Guide Page contract by lifecycle.</strong> Place five concrete elements according to owner and synchronization behavior.</li>
+        <li><strong>Slide 8 — Key takeaways.</strong> Retrieve storage, rendering, seeding, synchronization and ownership.</li>
+        <li><strong>Slide 9 — Questions.</strong> Close on classification, template changes and rendering properties.</li>
       </ol>
-      <p><strong>Demo:</strong> compare WKND template structure with initial content. <strong>Assignment:</strong> classify elements for the new Guide Page. <strong>Acceptance:</strong> every element is placed according to its lifecycle.</p>
+      <p><strong>Inspection:</strong> classify a supplied Guide Page wireframe; local Author is optional. <strong>Practice bridge:</strong> begin the Week 2 Guide Page authoring contract and continue policy configuration in Day 7.</p>
     </details>
 
     <details><summary>Day 7 · Policies and Style System</summary>
       <p><strong>Retrieval question:</strong> A component is installed but unavailable in the editor. What should you inspect first?</p>
       <ol class="slides">
-        <li><strong>Slide 1 — Policy configures capability by context.</strong> It controls what authors can use without changing component code. <em>Speaker cue: policy is a product decision expressed as configuration.</em></li>
-        <li><strong>Slide 2 — Allowed Components protect consistency.</strong> A missing component selector entry is commonly a policy issue, not a rendering defect. <em>Speaker cue: demonstrate the before and after.</em></li>
-        <li><strong>Slide 3 — Design properties provide defaults.</strong> They let template owners control behavior across many component instances. <em>Speaker cue: avoid duplicating defaults in every dialog.</em></li>
-        <li><strong>Slide 4 — Style System exposes semantic choices.</strong> Author-facing labels map controlled options to CSS classes. <em>Speaker cue: use “Featured” rather than “Red background.”</em></li>
-        <li><strong>Slide 5 — Fewer meaningful choices are safer.</strong> Governance reduces inconsistent content and support cost. <em>Speaker cue: every option becomes a state that must be tested.</em></li>
+        <li><strong>Slide 1 — Govern authoring choices without changing component code.</strong> Frame component capability, policy control and author choice as separate layers.</li>
+        <li><strong>Slide 2 — A policy configures capability by context.</strong> One implementation can expose different choices in different template locations.</li>
+        <li><strong>Slide 3 — Follow the policy mapping before editing code.</strong> Trace the template location through <code>cq:policy</code> to the resolved definition under <code>/conf</code>.</li>
+        <li><strong>Slide 4 — Allowed Components belongs to the container policy.</strong> Separate installed capability from permission in the current component browser.</li>
+        <li><strong>Slide 5 — Policy defaults are not authored instance values.</strong> Compare reusable configuration under <code>/conf</code> with one component instance under <code>/content</code>.</li>
+        <li><strong>Slide 6 — Style System maps semantic choices to deployed CSS.</strong> Follow Style Name, policy mapping, client library, author selection and wrapper class.</li>
+        <li><strong>Slide 7 — Define a small Guide Page authoring contract.</strong> Connect allowed, disallowed, styled and repository evidence to the Week 2 practice.</li>
+        <li><strong>Slide 8 — Key takeaways.</strong> Retrieve the five policy distinctions and the value of fewer meaningful choices.</li>
+        <li><strong>Slide 9 — Questions.</strong> Close on policy placement, missing editor components and testable semantic styles.</li>
       </ol>
-      <p><strong>Demo:</strong> enable a WKND component and style through policy. <strong>Assignment:</strong> design three semantic Guide Card styles. <strong>Acceptance:</strong> names describe intent and all states are testable.</p>
+      <p><strong>Inspection:</strong> follow supplied policy and editor evidence; local Author is optional. <strong>Practice bridge:</strong> complete the Week 2 Guide Page authoring contract with one allowed state, one disallowed state, one semantic style and the corresponding repository locations.</p>
     </details>
 
     <details><summary>Day 8 · Dialogs and persistence</summary>
       <p><strong>Retrieval question:</strong> What does a dialog field named <code>./title</code> create?</p>
       <ol class="slides">
-        <li><strong>Slide 1 — A dialog is an authoring contract.</strong> It collects only the information required to express the component's intent. <em>Speaker cue: every field creates authoring and compatibility cost.</em></li>
-        <li><strong>Slide 2 — Granite UI describes the interface.</strong> Dialog fields are resources composed from reusable UI components. <em>Speaker cue: inspect a WKND dialog definition in source.</em></li>
-        <li><strong>Slide 3 — Field names define persistence.</strong> A relative name such as <code>./title</code> stores a property on the component resource. <em>Speaker cue: trace field → property → render.</em></li>
-        <li><strong>Slide 4 — Validation guides authors.</strong> Required fields, descriptions and useful constraints prevent avoidable invalid states. <em>Speaker cue: server-side code still treats stored content as untrusted.</em></li>
-        <li><strong>Slide 5 — New code must tolerate old content.</strong> Missing or legacy properties need explicit fallbacks. <em>Speaker cue: deployments update code before every page is re-authored.</em></li>
+        <li><strong>Slide 1 — Design the storage contract before adding dialog fields.</strong> Frame field, request, property and output as one durable contract.</li>
+        <li><strong>Slide 2 — One component spans code, authoring UI and stored content.</strong> Separate component definition, <code>cq:dialog</code> and authored instance.</li>
+        <li><strong>Slide 3 — Granite UI renders the dialog from a Resource tree.</strong> Inspect the server-rendered resource-type-driven dialog definition.</li>
+        <li><strong>Slide 4 — The field name defines the persistence target.</strong> Trace <code>./title</code> through Sling POST, JCR and HTL.</li>
+        <li><strong>Slide 5 — A field change can become a content migration.</strong> Show why renaming or reshaping stored fields requires compatibility work.</li>
+        <li><strong>Slide 6 — Validation guides authors but does not guarantee stored content.</strong> Separate authoring feedback from runtime resilience.</li>
+        <li><strong>Slide 7 — Verify configured, legacy and empty states end to end.</strong> Connect stored evidence to author and visitor output.</li>
+        <li><strong>Slide 8 — Key takeaways.</strong> Retrieve the five contracts required for a safe dialog change.</li>
+        <li><strong>Slide 9 — Questions.</strong> Close on persistence, migration and authorable empty states.</li>
       </ol>
-      <p><strong>Demo:</strong> follow a WKND field from dialog to JCR and HTL. <strong>Assignment:</strong> implement the Guide Card dialog contract. <strong>Acceptance:</strong> labels, stored names, validation and fallback behavior agree.</p>
+      <p><strong>Inspection:</strong> follow supplied source, request, repository and output evidence; local Author is optional. <strong>Practice bridge:</strong> add one field-to-browser trace to the Week 2 Guide Page evidence without requiring a new custom component.</p>
     </details>
 
     <details><summary>Day 9 · Assets and accessible images</summary>

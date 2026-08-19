@@ -1,0 +1,318 @@
+{
+  "deck_name": "lesson-08",
+  "language": "English",
+  "goal": "Teach frontend-oriented AEM developers how a Granite UI dialog becomes a persistence contract, how relative field names write properties through Sling POST, and how to preserve authoring and rendering behavior across validation, legacy and empty states.",
+  "deck_context": {
+    "source_summary": "Class 8 of a seven-week AEM Sites course, delivered Wednesday, August 26, 2026. The audience understands Resources, Sling resolution, editable templates and content policies. This class traces component authoring from dialog definition through stored content and prepares developers to review the field-to-browser path used by later component work.",
+    "core_claim": "A safe dialog change treats the field name and stored value shape as a durable content contract, keeps dialog definition separate from authored Resources, and designs runtime behavior for configured, legacy and empty content.",
+    "canonical_facts": [
+      "A project component definition is a cq:Component below /apps and can contain a cq:dialog child.",
+      "cq:dialog is an nt:unstructured Resource tree rendered server-side from sling:resourceType-driven Granite UI components.",
+      "An authored component instance lives below /content, stores content properties and retains a sling:resourceType that selects rendering capability.",
+      "A field named ./title addresses a title property relative to the Resource targeted by the form submission.",
+      "Sling POST can use @TypeHint control parameters when a specific JCR property type or multi-value shape is required.",
+      "Renaming a dialog field does not migrate properties already stored on existing component instances.",
+      "Granite UI validation improves authoring feedback but runtime code must still handle content created by older dialogs, packages, APIs or other tooling.",
+      "An empty component should remain visible and selectable to authors through an edit or preview placeholder while visitor output remains safe."
+    ],
+    "canonical_terms": [
+      "cq:Component",
+      "cq:dialog",
+      "nt:unstructured",
+      "Granite UI",
+      "sling:resourceType",
+      "name = ./title",
+      "Sling POST",
+      "@TypeHint",
+      "JCR property",
+      "authored component instance",
+      "legacy property",
+      "author placeholder",
+      "/apps",
+      "/content"
+    ]
+  },
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 3,
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Day 8 corrected field-persistence sample prompt generated in conversation",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-08/origin_image/slide_04.png",
+    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "style": {
+    "name": "技术图谱课件风",
+    "visual_direction": "Sober, information-rich technical atlas blended with academic courseware. Use exact repository paths, dialog properties, POST parameters, JCR values and rendering states rather than generic corporate cards.",
+    "color_palette": "Warm ivory drafting-paper background, deep navy typography, faint square grid, blue for authoring and output, green for Resources and persisted content, violet for request or compatibility flows, restrained orange for warnings.",
+    "typography": "Large bold modern sans serif headings; crisp sans serif body copy; true monospace appearance for paths, properties, resource types, request parameters, HTL and values.",
+    "texture_and_finish": "Flat 2D technical diagrams with fine rules, precise repository, form, POST, database, compatibility and browser icons. No gradients, neon, glass, 3D or photography.",
+    "deck_consistency": "Match the approved sample's palette, typography, grid, density, semantic colors, evidence tags and line weight while varying composition by slide role."
+  },
+  "approved_style_reference": {
+    "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-08/origin_image/slide_04.png",
+    "role": "approved sample slide style reference",
+    "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact five-stage persistence layout."
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Design the storage contract before adding dialog fields.",
+      "role": "cover",
+      "intent": "Position a dialog change as a content-schema decision rather than merely a form-layout task.",
+      "key_points": [
+        "Class 8 · Week 2 · Day 8 · August 26, 2026",
+        "Dialogs, Granite UI and property persistence",
+        "Dialog field → POST parameter → JCR property → rendered output",
+        "Juan Maldonado"
+      ],
+      "local_context": {
+        "required_background": "Show one field traveling through four technical layers inside a durable storage-contract boundary. Use My first AEM project as the example value. This is a technical synthesis cover, not a title-only page."
+      },
+      "layout": {
+        "composition": "Editorial technical cover with a compact dialog-to-browser lifecycle diagram and exact class metadata aligned below the title.",
+        "intent": "Introduce the complete storage contract without repeating the sample's five-column trace."
+      },
+      "visual_elements": {
+        "main_visual": "Dialog field, POST request, JCR Resource and browser output as one protected contract."
+      },
+      "constraints": [
+        "Render all class metadata exactly.",
+        "Use My first AEM project as the example value.",
+        "Do not imply that dialog fields store content under /apps."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "One component spans code, authoring UI and stored content.",
+      "role": "component anatomy",
+      "intent": "Separate the component definition, its edit dialog and one authored component instance.",
+      "key_points": [
+        "Component definition below /apps identifies rendering capability",
+        "cq:dialog is a child of the cq:Component definition",
+        "Authored instance below /content stores its own properties",
+        "sling:resourceType connects the instance to rendering capability",
+        "Runtime reads instance properties, not values from cq:dialog"
+      ],
+      "local_context": {
+        "required_background": "Use example component /apps/wknd/components/guide-card, dialog /apps/wknd/components/guide-card/cq:dialog and instance /content/wknd/us/en/guides/merida/jcr:content/root/guide_card. The instance stores sling:resourceType = wknd/components/guide-card and title = My first AEM project."
+      },
+      "layout": {
+        "composition": "Three repository inspectors form a triangle: component definition, dialog Resource tree and authored instance; only the instance flows into the runtime output.",
+        "intent": "Make the three Resource responsibilities and one runtime dependency unmistakable."
+      },
+      "visual_elements": {
+        "main_visual": "Component definition, cq:dialog and authored component Resource linked by ownership and runtime arrows."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '02 · COMPONENT ANATOMY'.",
+        "Render all example paths and sling:resourceType values exactly.",
+        "Do not show authored content stored on cq:dialog.",
+        "Do not show the renderer reading fieldLabel, required or other dialog metadata."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Granite UI renders the dialog from a Resource tree.",
+      "role": "repository anatomy",
+      "intent": "Make the dialog inspectable as server-rendered Sling Resources rather than client-side form markup.",
+      "key_points": [
+        "cq:dialog is an nt:unstructured child of the component",
+        "Dialog shell uses cq/gui/components/authoring/dialog",
+        "Nested content/items Resources define layout and fields",
+        "Text field uses granite/ui/components/coral/foundation/form/textfield",
+        "Field properties configure label, name, guidance and validation"
+      ],
+      "local_context": {
+        "required_background": "Show a JCR repository tree rooted at /apps/wknd/components/guide-card/cq:dialog. The title field is at content/items/title and has sling:resourceType = granite/ui/components/coral/foundation/form/textfield, fieldLabel = Title, name = ./title, required = true, emptyText = Enter a concise title and maxlength = 80. Do not use _cq_dialog or .content.xml because this page is the repository view."
+      },
+      "layout": {
+        "composition": "Repository tree on the left, exact selected-node properties in the center and a generic rendered dialog preview on the right.",
+        "intent": "Resolve a Resource tree into authoring UI without presenting handwritten HTML."
+      },
+      "visual_elements": {
+        "main_visual": "cq:dialog Resource tree → sling:resourceType resolution → Granite UI text field."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '03 · GRANITE UI'.",
+        "Render cq:dialog, nt:unstructured and both resource types exactly.",
+        "Never show _cq_dialog, .content.xml or jcr_root.",
+        "State that Granite UI dialog Resources are rendered server-side as Sling components."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "The field name defines the persistence target.",
+      "role": "end-to-end persistence trace",
+      "intent": "Answer exactly what a field named ./title creates and where it is stored.",
+      "sample_approved": true,
+      "key_points": [
+        "name = ./title is relative to the target component Resource",
+        "Sling POST submits ./title=My%20first%20AEM%20project",
+        "The Resource gains title = My first AEM project",
+        "sling:resourceType remains the rendering link",
+        "HTL reads ${properties.title}"
+      ],
+      "local_context": {
+        "required_background": "Approved sample. It traces the exact value My first AEM project from /apps/wknd/components/guide-card/cq:dialog/content/items/title through a POST to /content/wknd/us/en/guides/merida/jcr:content/root/guide_card and into rendered output."
+      },
+      "layout": {
+        "composition": "Approved five-stage field-persistence trace.",
+        "intent": "Use the approved sample unchanged."
+      },
+      "visual_elements": {
+        "main_visual": "Approved sample image at origin_image/slide_04.png."
+      },
+      "constraints": [
+        "Reuse the approved sample image without regeneration."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "A field change can become a content migration.",
+      "role": "compatibility timeline",
+      "intent": "Show why renaming or reshaping a field affects content that already exists.",
+      "key_points": [
+        "Existing instances retain properties written by the old dialog",
+        "Changing ./title to ./heading does not rename stored title properties",
+        "Reading only heading makes legacy instances appear empty",
+        "Read new, fall back to legacy, migrate, verify, then retire fallback",
+        "Changing property shape requires the same explicit decision"
+      ],
+      "local_context": {
+        "required_background": "At T0, Page A stores title = My first AEM project. At T1, the dialog field becomes name = ./heading. At T2, Page B stores heading = My first AEM project. A compatibility adapter resolves heading first, then legacy title. Later migration copies title to heading and only verified completion permits fallback removal."
+      },
+      "layout": {
+        "composition": "A T0–T4 deployment and migration timeline compares old and new instances, with a central compatibility adapter protecting both states.",
+        "intent": "Use time and stored evidence to distinguish a dialog edit from a content migration."
+      },
+      "visual_elements": {
+        "main_visual": "Old title property and new heading property converge through an explicit fallback and migration sequence."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '05 · SCHEMA EVOLUTION'.",
+        "Render ./title, ./heading, title and heading exactly.",
+        "State 'renaming the field does not migrate existing content'.",
+        "Do not show old content being automatically rewritten at deployment."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Validation guides authors but does not guarantee stored content.",
+      "role": "defense layers",
+      "intent": "Distinguish helpful dialog constraints from runtime validation and compatibility responsibilities.",
+      "key_points": [
+        "required, maxlength, emptyText and validators improve authoring feedback",
+        "Labels and descriptions explain intent and expected format",
+        "Existing, packaged or API-created content may bypass the current dialog",
+        "Model and rendering code handle missing, malformed or legacy values",
+        "Stored content is input, not proof that current validation ran"
+      ],
+      "local_context": {
+        "required_background": "Authoring gate example: Title field has required = true, maxlength = 80, emptyText = Enter a concise title and a named validator. Runtime inputs include current valid content, a legacy title, missing title and an overlong packaged value. Show that dialog validation reduces preventable errors but does not sanitize repository history."
+      },
+      "layout": {
+        "composition": "Two sequential gates: authoring guidance filters new dialog input, then runtime resilience evaluates every stored state; bypass routes feed directly into runtime.",
+        "intent": "Show why client-side authoring rules and safe runtime handling solve different problems."
+      },
+      "visual_elements": {
+        "main_visual": "Dialog validation gate, bypass inputs and runtime resilience gate with explicit responsibilities."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '06 · VALIDATION LAYERS'.",
+        "Render required, maxlength, emptyText and validation exactly.",
+        "Do not imply client-side dialog validation validates packages, APIs or existing content.",
+        "Include the exact warning 'Stored content is input, not proof that current validation ran.'"
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Verify configured, legacy and empty states end to end.",
+      "role": "review evidence matrix",
+      "intent": "Turn the session into an observable field-to-browser review that does not require a live demo.",
+      "key_points": [
+        "Configured: current property renders intended DOM",
+        "Legacy: previous property uses a temporary supported fallback",
+        "Empty: no usable property yields safe visitor output",
+        "Edit or preview mode keeps the empty component author-visible",
+        "Evidence connects definition, POST name, JCR, render decision and output"
+      ],
+      "local_context": {
+        "required_background": "Use three rows. Configured stores heading = My first AEM project and renders an h2. Legacy stores title = My first AEM project and the compatibility fallback renders the same h2. Empty stores neither property, renders no empty h2 to visitors, but edit or preview mode shows a cq-placeholder using data-emptytext. Keep the placeholder conceptual and accurate."
+      },
+      "layout": {
+        "composition": "Three-row evidence matrix with columns for persisted Resource, resolution decision, author view and visitor DOM; status colors show supported versus transitional behavior.",
+        "intent": "Make every required state reviewable from source to observable output."
+      },
+      "visual_elements": {
+        "main_visual": "Configured, legacy and empty state matrix with exact stored properties and output evidence."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '07 · STATE EVIDENCE'.",
+        "Render heading and title property names accurately.",
+        "Show the empty author placeholder only in edit or preview mode.",
+        "Do not render an empty visitor heading or broken control."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Key takeaways",
+      "role": "summary",
+      "intent": "Retrieve the five contracts required to change an AEM dialog safely.",
+      "key_points": [
+        "Component definition, dialog and instance are separate Resources",
+        "Granite UI renders cq:dialog from a sling:resourceType-driven tree",
+        "Relative field name controls Sling POST persistence",
+        "Stored-field changes require compatibility and migration decisions",
+        "Runtime handles configured, legacy and empty content"
+      ],
+      "local_context": {
+        "required_background": "Summarize only the five exact course distinctions. Add one concise governing principle: Every field creates an authoring and compatibility cost. Do not include assignment or demo instructions."
+      },
+      "layout": {
+        "composition": "Five linked storage-contract checkpoints from component definition to resilient output, each with one exact takeaway and technical icon.",
+        "intent": "End the teaching sequence with one retrievable system rather than unrelated cards."
+      },
+      "visual_elements": {
+        "main_visual": "Five connected contract checkpoints with one restrained cost banner."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '08 · KEY TAKEAWAYS'.",
+        "Render all five takeaways clearly and in order.",
+        "Include 'Every field creates an authoring and compatibility cost.'",
+        "Do not include assignment, demo or next-step text."
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Questions",
+      "role": "Q&A",
+      "intent": "Close without requiring a live demonstration.",
+      "key_points": [
+        "What exactly does name = ./title create?",
+        "Which dialog change would require a content migration?",
+        "What evidence proves that an empty component remains authorable and safe?"
+      ],
+      "local_context": {
+        "required_background": "Present exactly three discussion questions around a simplified dialog-to-browser trace. Keep more whitespace than technical content slides."
+      },
+      "layout": {
+        "composition": "Three large question zones orbit a simplified dialog, Resource and browser chain.",
+        "intent": "Signal discussion while retaining the deck's technical visual identity."
+      },
+      "visual_elements": {
+        "main_visual": "Simplified dialog-to-browser flow with three highlighted contract decisions."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '09 · QUESTIONS'.",
+        "Render all three questions exactly.",
+        "Do not include a demo, practice, assignment or thank-you message."
+      ]
+    }
+  ]
+}

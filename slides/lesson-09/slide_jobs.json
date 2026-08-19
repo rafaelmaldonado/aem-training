@@ -1,0 +1,363 @@
+{
+  "run_status": "slides_recorded",
+  "deck_name": "lesson-09",
+  "selected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Day 9 alternative-text decision sample prompt generated in conversation and finalized with localized image_gen corrections",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-09/origin_image/slide_04.png",
+    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "max_concurrent_slides": 3,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "Treat every image as content, delivery and accessibility.",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-09/origin_image/slide_04.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-branch decision-tree layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_01_fix",
+        "agent_nickname": "Erdos",
+        "prompt": "prompts/slide_01.json",
+        "prompt_sha256": "fccbfbf5d7c55b2a76e1b2c94946a62d6779bbbe528782d890fc6ad927b5a95b",
+        "dispatched_at": "2026-08-19T13:51:17Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_01_fix",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017bd-8384-7ef0-b7be-7bd5d21ed6df/exec-0824984a-c1b9-4515-a875-b7cf8ea12e6b.png",
+        "selected_source_sha256": "92989a741d3d06defb49136b942b853352d31224eeb7d0a8bf4d3fec959c9abb",
+        "final_image": "origin_image/slide_01.png",
+        "final_image_sha256": "92989a741d3d06defb49136b942b853352d31224eeb7d0a8bf4d3fec959c9abb",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "All cover metadata is exact and legible; the asset-to-browser contract is clear and the decorative outcome now uses unambiguous wording.",
+        "recorded_at": "2026-08-19T13:56:54Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "An authored image is a reference, not a copied binary.",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-09/origin_image/slide_04.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-branch decision-tree layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_08",
+        "agent_nickname": "Curie",
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "be2457ea8fe8be3dc3a9ad737ac5b54ad5d5240db2413995410435bcc1464757",
+        "dispatched_at": "2026-08-19T13:51:17Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_08",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017ba-9cb9-7ff2-be60-e8ea5d5777c7/exec-5141b96b-9148-4d16-a0cc-ce61f1fecc61.png",
+        "selected_source_sha256": "58c60d330d8f42f81d5d2e95bf28cc59c6797616294b89daee8e8e37a774e233",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "58c60d330d8f42f81d5d2e95bf28cc59c6797616294b89daee8e8e37a774e233",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Both example paths and the complete fileReference are accurate and legible; ownership, page context and incoming-reference impact remain distinct.",
+        "recorded_at": "2026-08-19T13:53:47Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "Use the Core Image capability before custom markup.",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-09/origin_image/slide_04.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-branch decision-tree layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_09",
+        "agent_nickname": "Volta",
+        "prompt": "prompts/slide_03.json",
+        "prompt_sha256": "d48519d034c282666cfc23206ea6afa231e8540b254a4a1bfd00f612e6513c7f",
+        "dispatched_at": "2026-08-19T13:51:18Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017bb-1b09-7c73-b744-56fe71ac6857/exec-d162be98-57ca-42e4-8ffc-60b1a7442cfb.png",
+        "selected_source_sha256": "5f31f443bf7c1e5b0f95f950838e27c1315369192bab80cc6e0942d1158e55ce",
+        "final_image": "origin_image/slide_03.png",
+        "final_image_sha256": "5f31f443bf7c1e5b0f95f950838e27c1315369192bab80cc6e0942d1158e55ce",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Exact proxy path and full sling:resourceSuperType are legible; policy, ownership and Core Image capability boundaries are accurate with no overlap.",
+        "recorded_at": "2026-08-19T13:53:23Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "Alternative text describes purpose in context.",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-09/origin_image/slide_04.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-branch decision-tree layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "accepted",
+      "dispatch": null,
+      "result": {
+        "final_image": "origin_image/slide_04.png",
+        "accepted_sample": true
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "DAM metadata is a source, not the final decision.",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-09/origin_image/slide_04.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-branch decision-tree layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_09",
+        "agent_nickname": "Volta",
+        "prompt": "prompts/slide_05.json",
+        "prompt_sha256": "8f7fc01898a8c2358f78d8036c4d0602990079bd5724a036c592110788fab8b8",
+        "dispatched_at": "2026-08-19T13:54:18Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017bb-1b09-7c73-b744-56fe71ac6857/exec-4cfec0c1-2d7c-4796-a781-f858ea26c190.png",
+        "selected_source_sha256": "063703aa9dc9027cc2360770dc22228e4e90028b226d1ae646fb98229146cba3",
+        "final_image": "origin_image/slide_05.png",
+        "final_image_sha256": "063703aa9dc9027cc2360770dc22228e4e90028b226d1ae646fb98229146cba3",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "The shared DAM path and metadata are accurate; informative, decorative and functional contexts render distinct, legible alternative-text outcomes.",
+        "recorded_at": "2026-08-19T14:01:29Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "Responsive delivery lets the browser choose appropriate bytes.",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-09/origin_image/slide_04.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-branch decision-tree layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_08",
+        "agent_nickname": "Curie",
+        "prompt": "prompts/slide_06.json",
+        "prompt_sha256": "ee451ddc6ca47382ea0196193503a5965e182ef77142fe640f8e2a9a14bb02a8",
+        "dispatched_at": "2026-08-19T13:54:18Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_08",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017ba-9cb9-7ff2-be60-e8ea5d5777c7/exec-1bde25e8-8f32-4ac1-a8b8-675def163073.png",
+        "selected_source_sha256": "5731c39569b3ec766be5759881e3e4ca9e2b23504bbe15f6a8b63a7a48518cee",
+        "final_image": "origin_image/slide_06.png",
+        "final_image_sha256": "5731c39569b3ec766be5759881e3e4ca9e2b23504bbe15f6a8b63a7a48518cee",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Policy widths, browser-density caveat, local Adaptive Image Servlet evidence and the AEM as a Cloud Service-only WebP option are accurate and legible.",
+        "recorded_at": "2026-08-19T14:00:33Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "Verify the Guide Page image contract with evidence.",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-09/origin_image/slide_04.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-branch decision-tree layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_01_fix",
+        "agent_nickname": "Erdos",
+        "prompt": "prompts/slide_07.json",
+        "prompt_sha256": "4e4c9fa1238ca13a4694fdbfb79dcfe11bc7a03abefa42fcfe131721d92f8ac9",
+        "dispatched_at": "2026-08-19T13:57:27Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_01_fix",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017bd-8384-7ef0-b7be-7bd5d21ed6df/exec-2c6b1139-d928-41cb-9974-81fdb19dd2e7.png",
+        "selected_source_sha256": "4d2cc6bab22ebaa39ba56d18201de43fbb8314b03962b608268338a7d03d93ea",
+        "final_image": "origin_image/slide_07.png",
+        "final_image_sha256": "4d2cc6bab22ebaa39ba56d18201de43fbb8314b03962b608268338a7d03d93ea",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "The evidence matrix uses the intended DAM path, accurate informative and decorative alt states, neutral selected-candidate evidence and safe missing-state behavior.",
+        "recorded_at": "2026-08-19T14:06:29Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "Key takeaways",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-09/origin_image/slide_04.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-branch decision-tree layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_08",
+        "agent_nickname": "Curie",
+        "prompt": "prompts/slide_08.json",
+        "prompt_sha256": "098d0503dce1eadfb744f97b673f01a4cf2ac445d50a8f8bae24d8d78a42ba09",
+        "dispatched_at": "2026-08-19T14:01:05Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_08",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017ba-9cb9-7ff2-be60-e8ea5d5777c7/exec-ea2a6044-c7b4-41c7-a085-e40c29fc0b04.png",
+        "selected_source_sha256": "ea3fb23dcd6d95fe96d9e564de216bb8d5a55ce0d34e7979a5205b96a0d52726",
+        "final_image": "origin_image/slide_08.png",
+        "final_image_sha256": "ea3fb23dcd6d95fe96d9e564de216bb8d5a55ce0d34e7979a5205b96a0d52726",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "All five takeaways and the governing principle are exact and legible in a single connected review path without invented paths or endpoints.",
+        "recorded_at": "2026-08-19T14:06:30Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Questions",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-09/origin_image/slide_04.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-branch decision-tree layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/day6_slide_09",
+        "agent_nickname": "Volta",
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "c3a84a7fb53167feb895749fdf8f69899e5e9ea59b370d75b2c7c489dd857dc1",
+        "dispatched_at": "2026-08-19T14:01:48Z"
+      },
+      "result": {
+        "agent_id": "/root/day6_slide_09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017bb-1b09-7c73-b744-56fe71ac6857/exec-e09a51da-be78-417e-99a7-ec6c0a27ee50.png",
+        "selected_source_sha256": "67dae94fe50c79083eb37804bcfb891d8b18420374c253c50a5d7e685fb63521",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "67dae94fe50c79083eb37804bcfb891d8b18420374c253c50a5d7e685fb63521",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Exactly three discussion questions are legible around the asset-to-browser recall path, with no demo, assignment or extra closing content.",
+        "recorded_at": "2026-08-19T14:04:46Z"
+      },
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-08-19T14:06:30Z"
+}

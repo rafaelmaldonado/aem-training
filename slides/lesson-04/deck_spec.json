@@ -1,0 +1,299 @@
+{
+  "deck_name": "lesson-04",
+  "language": "English",
+  "goal": "Teach frontend-oriented AEM developers to trace a Sling request from URL to resolved Resource, request information, resource type hierarchy, selected script or servlet and response using observable evidence.",
+  "deck_context": {
+    "source_summary": "Class 4 of a seven-week AEM Sites training course, delivered Thursday, August 20, 2026. The audience already knows JCR nodes, properties, Sling Resources and the responsibilities of /content, /conf and /apps. This class focuses on the resource-first Sling request model, URL decomposition after resource resolution, resource types, super types and handler selection. Supplied evidence can replace a live environment.",
+    "core_claim": "A reliable Sling request trace follows evidence in order: request URL and method, resolved Resource, RequestPathInfo, resource type hierarchy, selected handler and response.",
+    "canonical_terms": [
+      "SlingHttpServletRequest",
+      "Resource",
+      "ResourceResolver",
+      "RequestPathInfo",
+      "resource path",
+      "selectors",
+      "extension",
+      "suffix",
+      "HTTP method",
+      "sling:resourceType",
+      "sling:resourceSuperType",
+      "HTL script",
+      "servlet"
+    ]
+  },
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 3,
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Day 4 read-only request trace sample prompt",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-04/origin_image/slide_07.png",
+    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "style": {
+    "name": "技术图谱课件风",
+    "visual_direction": "Sober, information-rich technical atlas blended with academic courseware. Use exact request values, paths, properties, candidate labels and meaningful connectors rather than generic corporate cards.",
+    "color_palette": "Warm ivory drafting-paper background, deep navy typography, faint square grid, blue for request and Resource evidence, green for resolution or properties, violet for component code and inheritance, restrained slate for neutral metadata.",
+    "typography": "Large bold modern sans serif headings; crisp sans serif body copy; true monospace appearance for URLs, paths, properties, methods, types and handler names.",
+    "texture_and_finish": "Flat 2D technical diagrams with fine rules, restrained headers, precise folder, request, resource and code icons. No gradients, neon, glass, 3D or photography.",
+    "deck_consistency": "Match the approved sample's palette, typography, grid, density, semantic colors, evidence tags and line weight while varying the composition by slide role."
+  },
+  "approved_style_reference": {
+    "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-04/origin_image/slide_07.png",
+    "role": "approved sample slide style reference",
+    "fidelity": "Match palette, typography, grid, annotation density, evidence-tag language and technical precision only; do not copy the exact six-checkpoint layout."
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Follow the request, not a guess.",
+      "role": "cover",
+      "intent": "Open with the evidence chain used to explain every Sling request in the session.",
+      "key_points": [
+        "Class 4 · Week 1 · Day 4 · August 20, 2026",
+        "How Sling resolves a request",
+        "URL → resource → resource type → script or servlet → response",
+        "Juan Maldonado"
+      ],
+      "local_context": {
+        "required_background": "The audience already understands Sling Resources. The outcome is to justify each resolution transition with an observable request value, path or property."
+      },
+      "layout": {
+        "composition": "Editorial opener with one browser request entering a five-checkpoint technical path and a dark evidence-chain footer.",
+        "intent": "Make the ordered request trace memorable without using a generic title-only cover."
+      },
+      "visual_elements": {
+        "main_visual": "Browser URL flowing through Resource, resource type, handler and HTML response checkpoints."
+      },
+      "constraints": [
+        "Render all class metadata exactly.",
+        "Keep the cover detailed but projection-readable.",
+        "Do not imply that rendering code is selected before the Resource."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Sling resolves a Resource before rendering code.",
+      "role": "concept explanation",
+      "intent": "Replace a controller-route-first assumption with Sling's resource-first request model.",
+      "key_points": [
+        "Resolve the request URI against the resource tree",
+        "The resolved Resource becomes the subject of the request",
+        "Its resource type guides script or servlet selection",
+        "Select rendering code only after resource resolution"
+      ],
+      "local_context": {
+        "required_background": "The sequence is request URI → ResourceResolver → Resource → resource type → servlet or script → response. Make Resource the dominant checkpoint."
+      },
+      "layout": {
+        "composition": "A left-to-right pipeline with a large central Resource card, contrasted against a crossed-out controller-route-first shortcut.",
+        "intent": "Explain order and dependency rather than show equal independent cards."
+      },
+      "visual_elements": {
+        "main_visual": "Ordered request-processing pipeline with evidence labels at each arrow."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '02 · RESOURCE FIRST'.",
+        "Use Resource and ResourceResolver precisely.",
+        "Do not claim that the URL directly selects an HTL file."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "The resource path determines URL decomposition.",
+      "role": "anatomy",
+      "intent": "Teach RequestPathInfo using one exact request and the longest resolvable resource-path boundary.",
+      "key_points": [
+        "Request: /content/wknd/us/en/guide.print.a4.html/chapter-1",
+        "Resource path: /content/wknd/us/en/guide",
+        "Selectors: print.a4",
+        "Extension: html",
+        "Suffix: /chapter-1"
+      ],
+      "local_context": {
+        "required_background": "Assume /content/wknd/us/en/guide exists. The resource path is the longest resolvable match. HTTP method is separate and must not be presented as a RequestPathInfo field."
+      },
+      "layout": {
+        "composition": "Large URL ruler segmented by semantic color, with a RequestPathInfo inspector and a longest-existing-match callout.",
+        "intent": "Make the parsing boundary visible and warn against splitting at the first dot."
+      },
+      "visual_elements": {
+        "main_visual": "Color-coded URL anatomy with exact labels for resource path, selectors, extension and suffix."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '03 · URL ANATOMY'.",
+        "Render every URL segment exactly.",
+        "State that the resource path is the longest resolvable match.",
+        "Do not include HTTP method inside RequestPathInfo."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "sling:resourceType names rendering capability.",
+      "role": "translation",
+      "intent": "Connect a content Resource to project component implementation without merging their ownership or paths.",
+      "key_points": [
+        "The property belongs to the resolved content Resource",
+        "sling:resourceType = wknd/components/guide",
+        "Relative resource types are resolved through Sling search paths",
+        "Project implementation: /apps/wknd/components/guide",
+        "Content and implementation remain separate"
+      ],
+      "local_context": {
+        "required_background": "Use a component instance at /content/wknd/us/en/guide/jcr:content/root/container/guide. The resource type value is relative and maps to project capability under /apps; it is not an absolute repository path stored on content."
+      },
+      "layout": {
+        "composition": "Content Resource inspector on the left, exact property bridge in the center and project component tree under /apps on the right.",
+        "intent": "Show the property as the explicit connection while preserving lifecycle boundaries."
+      },
+      "visual_elements": {
+        "main_visual": "A selected content Resource connected by a property tag to a component tree."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '04 · RESOURCE TYPE'.",
+        "Render sling:resourceType and both paths exactly.",
+        "Do not show the property value with a leading /apps prefix."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Resource super types delegate instead of copying.",
+      "role": "architecture",
+      "intent": "Explain resource type inheritance and the proxy-component reuse pattern.",
+      "key_points": [
+        "A project component can declare sling:resourceSuperType",
+        "Resolution can continue through the resource type hierarchy",
+        "A proxy inherits Core Component behavior",
+        "The project owns only its configuration and deliberate overrides",
+        "Do not copy the parent implementation"
+      ],
+      "local_context": {
+        "required_background": "Use project type wknd/components/guide and example super type core/wcm/components/teaser/v2/teaser. Show a narrow direct override and inherited behavior separately."
+      },
+      "layout": {
+        "composition": "Vertical inheritance ladder from content Resource to project proxy to Core Component capability, with inherited and overridden areas visually separated.",
+        "intent": "Make delegation and fallback visible without implying code duplication."
+      },
+      "visual_elements": {
+        "main_visual": "A resource-type hierarchy with one narrow project override and a larger inherited capability block."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '05 · RESOURCE TYPE INHERITANCE'.",
+        "Render sling:resourceSuperType and both type values exactly.",
+        "Do not show copied files from the Core Component."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Request details narrow the handler candidates.",
+      "role": "process",
+      "intent": "Explain how resource type hierarchy, selectors, extension and HTTP method participate in servlet or script resolution.",
+      "key_points": [
+        "Resource type and its hierarchy define where Sling looks",
+        "Selectors and extension describe the representation",
+        "HTTP method distinguishes request handling behavior",
+        "The most specific matching candidate wins",
+        "Fallback continues through the resource type hierarchy"
+      ],
+      "local_context": {
+        "required_background": "Avoid a rigid filename formula. Use one plain GET + html example and one selector example only as candidate evidence. Emphasize that multiple candidates may exist and resolution chooses the closest specific match."
+      },
+      "layout": {
+        "composition": "A candidate-resolution board: request evidence enters from the left, nonmatching candidates are filtered out and one selected handler exits right; an inheritance fallback lane runs below.",
+        "intent": "Show narrowing and fallback, not a simplistic direct filename lookup."
+      },
+      "visual_elements": {
+        "main_visual": "Evidence filters for resource type, selectors, extension and method feeding a selected handler."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '06 · HANDLER RESOLUTION'.",
+        "Do not imply that HTTP method belongs to RequestPathInfo.",
+        "Do not claim every request resolves to HTL; scripts and servlets are both valid handlers."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Follow one Sling request with evidence.",
+      "role": "worked example",
+      "intent": "Apply the complete evidence chain to one direct component request without requiring a live demonstration.",
+      "key_points": [
+        "GET /content/wknd/us/en/guide/jcr:content/root/container/guide.html",
+        "Resolved Resource without .html",
+        "No selectors; extension html; no suffix; method GET",
+        "sling:resourceType = wknd/components/guide",
+        "/apps/wknd/components/guide → guide.html → HTML response"
+      ],
+      "local_context": {
+        "required_background": "Use the already approved sample image exactly as the final slide."
+      },
+      "layout": {
+        "composition": "Approved six-checkpoint read-only request trace."
+      },
+      "visual_elements": {
+        "main_visual": "Approved sample at /Users/juanmaldonado/Projects/aem-training/slides/lesson-04/origin_image/slide_07.png."
+      },
+      "constraints": [
+        "Do not regenerate the approved sample."
+      ],
+      "sample_approved": true
+    },
+    {
+      "number": 8,
+      "title": "Key takeaways",
+      "role": "summary",
+      "intent": "Consolidate the five evidence checkpoints before questions.",
+      "key_points": [
+        "Resolve the Resource before selecting rendering code",
+        "Decompose the URL after identifying the resource path",
+        "Use sling:resourceType and sling:resourceSuperType to follow capability",
+        "Use selectors, extension and method to explain handler selection",
+        "Attach observable evidence to every transition"
+      ],
+      "local_context": {
+        "required_background": "Use exact canonical terms and connect every takeaway to one link in the request-resolution chain. Do not introduce dispatcher, caching or deployment concepts."
+      },
+      "layout": {
+        "composition": "Central request-to-response chain with five numbered takeaway branches and compact evidence tags.",
+        "intent": "Retrieve the complete model in the same order used during diagnosis."
+      },
+      "visual_elements": {
+        "main_visual": "Five-link resolution chain surrounded by concise takeaway callouts."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '08 · KEY TAKEAWAYS'.",
+        "Keep all five takeaways legible.",
+        "Do not introduce new technical concepts."
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Questions",
+      "role": "Q&A",
+      "intent": "Close with three retrieval questions and no live-demo or assignment dependency.",
+      "key_points": [
+        "Which checkpoint is still unclear?",
+        "Which request value would you inspect first?",
+        "Where could resolution fall back to inherited behavior?"
+      ],
+      "local_context": {
+        "required_background": "This is a questions-only closing slide."
+      },
+      "layout": {
+        "composition": "A request path bends into a technical question mark on the left; three restrained evidence questions align on the right.",
+        "intent": "Provide a calm close that still reinforces the request-resolution mental model."
+      },
+      "visual_elements": {
+        "main_visual": "A question mark built from Resource, resource type and handler checkpoints."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '09 · QUESTIONS'.",
+        "Do not mention a demo, practice, command, assignment, acceptance, evidence submission or next step."
+      ]
+    }
+  ]
+}

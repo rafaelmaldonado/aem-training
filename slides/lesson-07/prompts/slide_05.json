@@ -1,0 +1,43 @@
+{
+  "slide": 5,
+  "title": "Policy defaults are not authored instance values.",
+  "prompt": "# Codex PPT Slide Image Prompt\n\n## Canvas\n{\n  \"type\": \"16:9 full-slide PowerPoint image\",\n  \"language\": \"English\",\n  \"slide_number\": 5,\n  \"render_slide_number\": false\n}\n\n## Deck Goal\nTeach frontend-oriented AEM developers how content policies govern component capability by template context, how Allowed Components and policy defaults shape authoring, and how the Style System connects semantic author choices to deployed CSS.\n\n## Required Background\n{\n  \"deck_context\": {\n    \"source_summary\": \"Class 7 of a seven-week AEM Sites course, delivered Tuesday, August 25, 2026. The audience understands JCR Resources, Sling request resolution and editable-template structure versus initial content. This class completes the technical foundation for the individual Week 2 Guide Page authoring practice.\",\n    \"core_claim\": \"A safe AEM authoring contract combines reusable component code with narrowly scoped content policies, explicit container permissions and a small set of semantic styles whose CSS is deployed and tested.\",\n    \"canonical_facts\": [\n      \"Component code defines technical capability; a content policy configures capability for a template context.\",\n      \"Policy mappings for editable-template component locations are stored below /conf/<site>/settings/wcm/templates/<template>/policies/jcr:content.\",\n      \"The cq:policy property holds a relative reference to a policy definition below /conf/<site>/settings/wcm/policies.\",\n      \"A layout container policy determines which components authors may insert in that container.\",\n      \"Policy defaults configure a reusable context; dialog values are authored on individual component instances below /content.\",\n      \"The Style System maps author-facing style names to CSS classes configured in a content policy.\",\n      \"Developers implement style classes in deployed client libraries; AEM applies selected classes to the component decoration wrapper.\"\n    ],\n    \"canonical_terms\": [\n      \"content policy\",\n      \"cq:policy\",\n      \"Allowed Components\",\n      \"policy defaults\",\n      \"authored instance values\",\n      \"Style System\",\n      \"Style Name\",\n      \"CSS Classes\",\n      \"client library\",\n      \"decoration wrapper\",\n      \"/conf\",\n      \"/content\"\n    ]\n  },\n  \"slide_local_context\": {\n    \"required_background\": \"Compare an Image policy under /conf that permits widths and enables lazy loading with one Image component instance under /content that stores fileReference and alt text. Do not claim every Core Image property is necessarily a policy property; present these as representative categories.\"\n  }\n}\n\n## Global Style\n{\n  \"name\": \"技术图谱课件风\",\n  \"visual_direction\": \"Sober, information-rich technical atlas blended with academic courseware. Use exact repository paths, properties, authoring boundaries and responsibility connectors rather than generic corporate cards.\",\n  \"color_palette\": \"Warm ivory drafting-paper background, deep navy typography, faint square grid, blue for authored content and editor states, green for policies and configuration, violet for mappings and CSS, restrained orange for warnings.\",\n  \"typography\": \"Large bold modern sans serif headings; crisp sans serif body copy; true monospace appearance for paths, properties, node names, classes and values.\",\n  \"texture_and_finish\": \"Flat 2D technical diagrams with fine rules, precise repository, policy, container, editor and CSS icons. No gradients, neon, glass, 3D or photography.\",\n  \"deck_consistency\": \"Match the approved sample's palette, typography, grid, density, semantic colors, evidence tags and line weight while varying composition by slide role.\"\n}\n\n## Input Images\n\n- Image 1: /Users/juanmaldonado/Projects/aem-training/slides/lesson-07/origin_image/slide_03.png — approved sample slide style reference; Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact repository-trace layout.\n\n\n## Slide\n{\n  \"number\": 5,\n  \"title\": \"Policy defaults are not authored instance values.\",\n  \"role\": \"configuration comparison\",\n  \"intent\": \"Distinguish reusable design configuration from content stored on an individual component instance.\"\n}\n\n## Text\n{\n  \"title\": \"Policy defaults are not authored instance values.\",\n  \"key_points\": [\n    \"Policy defaults configure a reusable template context\",\n    \"Authored dialog values belong to one component instance\",\n    \"Policy configuration lives under /conf\",\n    \"Instance content lives under /content\",\n    \"Check policy reuse before changing a shared default\"\n  ],\n  \"speaker_focus\": null\n}\n\n## Layout\n{\n  \"composition\": \"Mirrored two-column repository inspectors with a narrow center divider labeled reusable context versus one authored instance; a reuse-impact callout spans the bottom.\",\n  \"intent\": \"Use repository ownership and scope to prevent configuration/content confusion.\"\n}\n\n## Visual Elements\n{\n  \"main_visual\": \"Policy values under /conf contrasted with authored values under /content.\"\n}\n\n## Constraints\n[\n  \"Render the eyebrow exactly as '05 · DEFAULTS VS VALUES'.\",\n  \"Render /conf and /content exactly.\",\n  \"Use fileReference and alt text only on the authored-instance side.\",\n  \"Include a warning that one shared policy can have multiple consumers.\"\n]\n\n## Style Reference Rule\nUse Image 1 as the approved sample-slide style reference. Match its palette, typography mood, density, texture, and overall visual identity. Do not copy its exact layout unless this slide's layout explicitly asks for it.\n\n## Input Image Handling Rules\nFor any input image marked as a strict input asset, include it visibly and preserve its content. Do not redraw, replace, relabel, or invent a similar figure. Scale and crop only as needed for composition while keeping the important labels, arrows, data, and relationships recognizable.\n\n## Universal Constraints\n- The final image itself must contain the title and key points.\n- Render Chinese text exactly and legibly; avoid garbled characters.\n- Keep the confirmed deck style consistent while varying layout by slide role.\n- No watermark, unrelated logo, or extra slide number.\n",
+  "out": "slide_05.png",
+  "input_images": [
+    {
+      "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-07/origin_image/slide_03.png",
+      "role": "approved sample slide style reference",
+      "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact repository-trace layout."
+    }
+  ],
+  "requires_context_images": true,
+  "expected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Day 7 policy-mapping sample prompt generated in conversation",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-07/origin_image/slide_03.png",
+    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "generation_contract": {
+    "must_use_selected_image_backend": true,
+    "must_match_sample_generation_method": true,
+    "forbidden_final_image_methods": [
+      "local drawing/rendering scripts",
+      "Pillow-generated slides",
+      "SVG/HTML/CSS/canvas screenshots",
+      "python-pptx/PptxGenJS/native PPT layout screenshots",
+      "manually composited text/image overlays"
+    ],
+    "must_return": [
+      "backend_used",
+      "selected_source",
+      "qa_note"
+    ]
+  }
+}

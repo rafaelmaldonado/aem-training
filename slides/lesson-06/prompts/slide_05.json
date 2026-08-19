@@ -1,0 +1,43 @@
+{
+  "slide": 5,
+  "title": "Structure remains connected to every page.",
+  "prompt": "# Codex PPT Slide Image Prompt\n\n## Canvas\n{\n  \"type\": \"16:9 full-slide PowerPoint image\",\n  \"language\": \"English\",\n  \"slide_number\": 5,\n  \"render_slide_number\": false\n}\n\n## Deck Goal\nTeach frontend-oriented AEM developers how editable templates define the authoring contract for pages, while separating template type, structure, initial content, policy and page-owned content by lifecycle.\n\n## Required Background\n{\n  \"deck_context\": {\n    \"source_summary\": \"Class 6 of a seven-week AEM Sites course, delivered Monday, August 24, 2026. The audience already understands JCR Resources, repository boundaries and Sling request resolution. This class begins Week 2 and prepares the individual Guide Page authoring practice.\",\n    \"core_claim\": \"A reliable AEM authoring contract places shared structure, creation-time defaults, design policy and page-owned content in different repository branches according to ownership and synchronization behavior.\",\n    \"canonical_facts\": [\n      \"Page content lives below /content and a page jcr:content Resource can store both cq:template and sling:resourceType.\",\n      \"cq:template records the editable template; sling:resourceType selects the page component used for rendering.\",\n      \"A template type is copied when an editable template is created; the remaining reference is informational rather than dynamic inheritance.\",\n      \"Editable template definitions live below /conf/<site>/settings/wcm/templates.\",\n      \"Structure changes remain connected to pages created from the template.\",\n      \"Initial content is copied when a page is created and later initial-content changes do not update existing pages.\",\n      \"Policies define design and authoring rules and are explored in Day 7.\"\n    ],\n    \"canonical_terms\": [\n      \"cq:template\",\n      \"sling:resourceType\",\n      \"template type\",\n      \"editable template\",\n      \"structure\",\n      \"initial content\",\n      \"content policy\",\n      \"page component\",\n      \"/conf\",\n      \"/content\",\n      \"/apps\"\n    ]\n  },\n  \"slide_local_context\": {\n    \"required_background\": \"Use a locked site header and an unlocked main container. Show one template structure connected to Page A, Page B and Page C. A header change propagates to all three while page-owned content remains different.\"\n  }\n}\n\n## Global Style\n{\n  \"name\": \"技术图谱课件风\",\n  \"visual_direction\": \"Sober, information-rich technical atlas blended with academic courseware. Use exact repository paths, properties, lifecycle boundaries and synchronization connectors rather than generic corporate cards.\",\n  \"color_palette\": \"Warm ivory drafting-paper background, deep navy typography, faint square grid, blue for page and authored content, green for template/configuration, violet for lifecycle and code, restrained orange for warnings.\",\n  \"typography\": \"Large bold modern sans serif headings; crisp sans serif body copy; true monospace appearance for paths, properties, node names, types and values.\",\n  \"texture_and_finish\": \"Flat 2D technical diagrams with fine rules, precise repository, page, template, lock and copy icons. No gradients, neon, glass, 3D or photography.\",\n  \"deck_consistency\": \"Match the approved sample's palette, typography, grid, density, semantic colors, evidence tags and line weight while varying composition by slide role.\"\n}\n\n## Input Images\n\n- Image 1: /Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_06.png — approved sample slide style reference; Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact timeline layout.\n\n\n## Slide\n{\n  \"number\": 5,\n  \"title\": \"Structure remains connected to every page.\",\n  \"role\": \"synchronization model\",\n  \"intent\": \"Show which editable-template changes continue to affect existing pages.\"\n}\n\n## Text\n{\n  \"title\": \"Structure remains connected to every page.\",\n  \"key_points\": [\n    \"Structure defines components and layout shared by pages\",\n    \"Locked components cannot be moved or deleted by page authors\",\n    \"An unlocked container exposes a page-authoring area\",\n    \"Later structure changes are reflected on existing pages\",\n    \"Use structure for elements that must remain consistent\"\n  ],\n  \"speaker_focus\": null\n}\n\n## Layout\n{\n  \"composition\": \"Template structure at top fans out to three page wireframes; a before-and-after header update highlights propagation, while unlocked page areas retain distinct content.\",\n  \"intent\": \"Show an active ongoing connection rather than a one-time copy.\"\n}\n\n## Visual Elements\n{\n  \"main_visual\": \"Shared locked header plus unlocked content container across three page instances.\"\n}\n\n## Constraints\n[\n  \"Render the eyebrow exactly as '05 · STRUCTURE'.\",\n  \"Use lock and unlock states accurately.\",\n  \"State that structure changes affect existing pages.\",\n  \"Do not imply that page-authored content is overwritten.\"\n]\n\n## Style Reference Rule\nUse Image 1 as the approved sample-slide style reference. Match its palette, typography mood, density, texture, and overall visual identity. Do not copy its exact layout unless this slide's layout explicitly asks for it.\n\n## Input Image Handling Rules\nFor any input image marked as a strict input asset, include it visibly and preserve its content. Do not redraw, replace, relabel, or invent a similar figure. Scale and crop only as needed for composition while keeping the important labels, arrows, data, and relationships recognizable.\n\n## Universal Constraints\n- The final image itself must contain the title and key points.\n- Render Chinese text exactly and legibly; avoid garbled characters.\n- Keep the confirmed deck style consistent while varying layout by slide role.\n- No watermark, unrelated logo, or extra slide number.\n",
+  "out": "slide_05.png",
+  "input_images": [
+    {
+      "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_06.png",
+      "role": "approved sample slide style reference",
+      "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact timeline layout."
+    }
+  ],
+  "requires_context_images": true,
+  "expected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Day 6 initial-content timeline sample prompt",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-06/origin_image/slide_06.png",
+    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "generation_contract": {
+    "must_use_selected_image_backend": true,
+    "must_match_sample_generation_method": true,
+    "forbidden_final_image_methods": [
+      "local drawing/rendering scripts",
+      "Pillow-generated slides",
+      "SVG/HTML/CSS/canvas screenshots",
+      "python-pptx/PptxGenJS/native PPT layout screenshots",
+      "manually composited text/image overlays"
+    ],
+    "must_return": [
+      "backend_used",
+      "selected_source",
+      "qa_note"
+    ]
+  }
+}

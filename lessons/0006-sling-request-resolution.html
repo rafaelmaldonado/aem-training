@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class 4 · How Sling resolves a request</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="brand" href="../index.html">AEM Training</a>
+    <ul>
+      <li><a href="../index.html">Overview</a></li>
+      <li><a href="../reference/aem-course-topics.html">Syllabus</a></li>
+      <li><a href="../reference/slide-ready-lessons.html">Slides</a></li>
+      <li><a href="../reference/wknd-project-backlog.html">Practices</a></li>
+      <li><a href="../reference/initial-setup.html">Setup</a></li>
+      <li><a href="../reference/seguimiento-evidencias.html">Evidence</a></li>
+    </ul>
+  </nav>
+  <header>
+    <p class="eyebrow">Class 4 · Week 1 · Day 4 · August 20, 2026</p>
+    <h1>Follow the request, not a guess.</h1>
+    <p class="lede">Trace a Sling request from URL to resolved Resource, request information, resource type hierarchy, selected handler and response.</p>
+    <ul class="meta"><li>30 minutes online</li><li>Evidence-led inspection</li><li>Local Author optional</li></ul>
+  </header>
+  <main id="content">
+    <section class="callout"><strong>Observable outcome:</strong> each developer can justify every transition in a Sling request trace with an exact URL segment, Resource path, property or handler candidate.</section>
+
+    <h2>Architect preparation</h2>
+    <ul class="checklist">
+      <li>Prepare a captured request and matching repository evidence for one WKND page or component.</li>
+      <li>Include the resolved Resource path, <code>RequestPathInfo</code>, <code>sling:resourceType</code> and any <code>sling:resourceSuperType</code>.</li>
+      <li>Include the matching project component path and selected script or servlet.</li>
+      <li>Use local Author only if it is already available; the lesson must work from supplied evidence.</li>
+    </ul>
+
+    <h2>Learning objectives</h2>
+    <ul>
+      <li>explain why Sling resolves a Resource before selecting rendering code;</li>
+      <li>decompose a request into resource path, selectors, extension and suffix;</li>
+      <li>follow <code>sling:resourceType</code> and <code>sling:resourceSuperType</code> through the resource type hierarchy;</li>
+      <li>justify why a script or servlet is the most specific matching candidate.</li>
+    </ul>
+
+    <h2>30-minute agenda</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Time</th><th>Activity</th><th>Facilitation</th></tr></thead>
+      <tbody>
+        <tr><td>0–3</td><td>Retrieval</td><td>Ask: “What connects a content Resource to the component that renders it?”</td></tr>
+        <tr><td>3–17</td><td>Slides 1–6</td><td>Build the resource-first model, URL anatomy, type hierarchy and handler selection.</td></tr>
+        <tr><td>17–24</td><td>Slide 7</td><td>Trace one supplied read-only request using exact observable evidence.</td></tr>
+        <tr><td>24–27</td><td>Slide 8</td><td>Retrieve the five checkpoints in order.</td></tr>
+        <tr><td>27–30</td><td>Slide 9</td><td>Questions only; no live demonstration dependency.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2>Complete slide deck</h2>
+    <p class="section-intro">Choose <strong>Copy slide as image</strong> and paste it into PowerPoint, or download the PNG.</p>
+    <div class="web-deck">
+      <article class="web-slide" data-slide-src="../slides/lesson-04/origin_image/slide_01.png">
+        <img class="web-slide-image" src="../slides/lesson-04/origin_image/slide_01.png" alt="Class 4 cover showing the evidence chain from URL through Resource and handler to response.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-04/origin_image/slide_01.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <p class="presenter-note"><strong>Open:</strong> “Which checkpoint can you prove first from the request alone?”</p>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-04/origin_image/slide_02.png">
+        <img class="web-slide-image" src="../slides/lesson-04/origin_image/slide_02.png" alt="A resource-first Sling pipeline resolves a Resource before selecting rendering code.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-04/origin_image/slide_02.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <p class="presenter-note"><strong>Emphasize:</strong> the URL does not directly name an HTL file.</p>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-04/origin_image/slide_03.png">
+        <img class="web-slide-image" src="../slides/lesson-04/origin_image/slide_03.png" alt="An exact Sling request is segmented into resource path, selectors, extension and suffix.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-04/origin_image/slide_03.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <p class="presenter-note"><strong>Ask:</strong> “Where does the longest resolvable Resource path end?”</p>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-04/origin_image/slide_04.png">
+        <img class="web-slide-image" src="../slides/lesson-04/origin_image/slide_04.png" alt="A content Resource uses sling resource type to name project rendering capability under apps.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-04/origin_image/slide_04.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <p class="presenter-note"><strong>Say explicitly:</strong> the stored resource type is relative; it is not an absolute <code>/apps</code> path.</p>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-04/origin_image/slide_05.png">
+        <img class="web-slide-image" src="../slides/lesson-04/origin_image/slide_05.png" alt="A resource type inheritance ladder delegates project behavior to a Core Component super type.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-04/origin_image/slide_05.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <p class="presenter-note"><strong>Emphasize:</strong> the proxy owns deliberate overrides and inherits the remaining capability.</p>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-04/origin_image/slide_06.png">
+        <img class="web-slide-image" src="../slides/lesson-04/origin_image/slide_06.png" alt="Resource type, selectors, extension and HTTP method narrow handler candidates with inheritance fallback.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-04/origin_image/slide_06.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <p class="presenter-note"><strong>Emphasize:</strong> scripts and servlets can both be valid candidates.</p>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-04/origin_image/slide_07.png">
+        <img class="web-slide-image" src="../slides/lesson-04/origin_image/slide_07.png" alt="A six-checkpoint read-only trace follows a request to Resource, request information, type, handler and response.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-04/origin_image/slide_07.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <p class="presenter-note"><strong>Trace:</strong> require one observable value at every arrow.</p>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-04/origin_image/slide_08.png">
+        <img class="web-slide-image" src="../slides/lesson-04/origin_image/slide_08.png" alt="Five key takeaways preserve the evidence order for a Sling request trace.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-04/origin_image/slide_08.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <p class="presenter-note"><strong>Key takeaways:</strong> retrieve the checkpoints in order and attach evidence to each transition.</p>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-04/origin_image/slide_09.png">
+        <img class="web-slide-image" src="../slides/lesson-04/origin_image/slide_09.png" alt="Three closing questions about request values, resolution checkpoints and inherited behavior.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-04/origin_image/slide_09.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <p class="presenter-note"><strong>Close:</strong> invite questions; do not depend on a live demonstration.</p>
+      </article>
+    </div>
+
+    <h2>Suggested speaking script</h2>
+    <p>The complete talk track is available in <a href="../slides/lesson-04/speech.md">speech.md</a>.</p>
+
+    <h2>Guided read-only request trace</h2>
+    <ol>
+      <li>Record the request URL and HTTP method.</li>
+      <li>Identify the resolved Resource path and decompose the remaining request information.</li>
+      <li>Read <code>sling:resourceType</code> and any <code>sling:resourceSuperType</code>.</li>
+      <li>List the relevant script or servlet candidates and identify the selected handler.</li>
+      <li>Connect the handler to the observed response.</li>
+    </ol>
+    <p><strong>Evidence:</strong> one annotated trace containing the exact request, Resource path, request information, resource type hierarchy, selected handler and response.</p>
+  </main>
+  <footer><a href="../index.html">Training overview</a></footer>
+  <script src="../assets/copy-slide.js"></script>
+</body>
+</html>

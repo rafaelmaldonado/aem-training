@@ -1,0 +1,43 @@
+{
+  "slide": 4,
+  "title": "Alternative text describes purpose in context.",
+  "prompt": "# Codex PPT Slide Image Prompt\n\n## Canvas\n{\n  \"type\": \"16:9 full-slide PowerPoint image\",\n  \"language\": \"English\",\n  \"slide_number\": 4,\n  \"render_slide_number\": false\n}\n\n## Deck Goal\nTeach frontend-oriented AEM developers how an authored image connects a DAM asset, the Core Image Component, responsive delivery and context-specific alternative text, then define the evidence required to review that contract on the Week 2 Guide Page.\n\n## Required Background\n{\n  \"deck_context\": {\n    \"source_summary\": \"Class 9 of a seven-week AEM Sites course, delivered Thursday, August 27, 2026. The audience understands Resources, Sling resolution, editable templates, policies, dialogs and persisted properties. This class connects the Week 2 Guide Page practice to asset references, Core Image behavior, accessible alternatives and browser delivery evidence.\",\n    \"core_claim\": \"A reliable AEM image is a managed DAM reference delivered through proven component capability, given alternative text according to its purpose in the current context, and verified in the repository, rendered HTML and browser network trace.\",\n    \"canonical_facts\": [\n      \"A DAM asset below /content/dam owns its binary, renditions and reusable metadata.\",\n      \"An authored Image component below /content stores a fileReference to the DAM asset instead of copying the binary.\",\n      \"A project proxy can inherit Core Image v3 with sling:resourceSuperType = core/wcm/components/image/v3/image when that version is installed.\",\n      \"Core Image v3 provides browser-native responsive image delivery, lazy loading and authoring controls.\",\n      \"Template authors configure allowed responsive widths and relevant defaults in the component policy or design dialog.\",\n      \"Alternative text depends on the image's purpose in the current page context.\",\n      \"Informative images need a meaningful non-empty alternative; decorative images require an explicit empty alt value.\",\n      \"A missing alt attribute is not equivalent to an explicit empty alt value.\",\n      \"Functional image alternatives describe the action or destination; complex images need a short alternative plus a detailed equivalent nearby.\",\n      \"CSS sizing alone does not reduce transferred image bytes.\",\n      \"Web-Optimized Image Delivery is an AEM as a Cloud Service option; local verification can use the Adaptive Image Servlet and browser network evidence.\",\n      \"Incoming references should be inspected before moving, replacing, unpublishing or deleting a managed asset.\"\n    ],\n    \"canonical_terms\": [\n      \"DAM asset\",\n      \"/content/dam\",\n      \"fileReference\",\n      \"Core Image Component v3\",\n      \"core/wcm/components/image/v3/image\",\n      \"component policy\",\n      \"responsive candidates\",\n      \"Adaptive Image Servlet\",\n      \"Web-Optimized Image Delivery\",\n      \"alt\",\n      \"informative\",\n      \"decorative\",\n      \"functional\",\n      \"complex\",\n      \"incoming references\"\n    ]\n  },\n  \"slide_local_context\": {\n    \"required_background\": \"Approved sample slide. Reuse origin_image/slide_04.png unchanged.\"\n  }\n}\n\n## Global Style\n{\n  \"name\": \"技术图谱课件风\",\n  \"visual_direction\": \"Sober, information-rich technical atlas blended with academic courseware. Use exact repository paths, component properties, responsive candidates, rendered HTML and evidence states instead of generic corporate cards.\",\n  \"color_palette\": \"Warm ivory drafting-paper background, deep navy typography, faint square grid, blue for authoring and output, green for valid content, violet for decision or reference flows, restrained orange for warnings.\",\n  \"typography\": \"Large bold modern sans serif headings; crisp sans serif body copy; true monospace appearance for paths, properties, resource types, HTML and request values.\",\n  \"texture_and_finish\": \"Flat 2D technical diagrams with fine rules, precise repository, asset, component, browser, accessibility and network icons. No gradients, neon, glass, 3D or photography.\",\n  \"deck_consistency\": \"Match the approved sample's palette, typography, grid, density, semantic colors, evidence tags and line weight while varying composition by slide role.\"\n}\n\n## Input Images\n\n- Image 1: /Users/juanmaldonado/Projects/aem-training/slides/lesson-09/origin_image/slide_04.png — approved sample slide style reference; Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-branch decision-tree layout.\n\n\n## Slide\n{\n  \"number\": 4,\n  \"title\": \"Alternative text describes purpose in context.\",\n  \"role\": \"accessibility decision tree\",\n  \"intent\": \"Choose alternative-text behavior from the image's job on the page, not from its filename.\"\n}\n\n## Text\n{\n  \"title\": \"Alternative text describes purpose in context.\",\n  \"key_points\": [\n    \"Informative: describe essential meaning\",\n    \"Decorative: render an explicit empty alt value\",\n    \"Functional: describe the action or destination\",\n    \"Complex: short alternative plus detailed equivalent nearby\",\n    \"Purpose before wording; never default to the filename\"\n  ],\n  \"speaker_focus\": null\n}\n\n## Layout\n{\n  \"composition\": \"Approved four-branch accessibility decision tree.\",\n  \"intent\": \"Use the approved sample unchanged.\"\n}\n\n## Visual Elements\n{\n  \"main_visual\": \"Approved sample image at origin_image/slide_04.png.\"\n}\n\n## Constraints\n[\n  \"Reuse the approved sample image without regeneration.\"\n]\n\n## Style Reference Rule\nUse Image 1 as the approved sample-slide style reference. Match its palette, typography mood, density, texture, and overall visual identity. Do not copy its exact layout unless this slide's layout explicitly asks for it.\n\n## Input Image Handling Rules\nFor any input image marked as a strict input asset, include it visibly and preserve its content. Do not redraw, replace, relabel, or invent a similar figure. Scale and crop only as needed for composition while keeping the important labels, arrows, data, and relationships recognizable.\n\n## Universal Constraints\n- The final image itself must contain the title and key points.\n- Render Chinese text exactly and legibly; avoid garbled characters.\n- Keep the confirmed deck style consistent while varying layout by slide role.\n- No watermark, unrelated logo, or extra slide number.\n",
+  "out": "slide_04.png",
+  "input_images": [
+    {
+      "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-09/origin_image/slide_04.png",
+      "role": "approved sample slide style reference",
+      "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-branch decision-tree layout."
+    }
+  ],
+  "requires_context_images": true,
+  "expected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Day 9 alternative-text decision sample prompt generated in conversation and finalized with localized image_gen corrections",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-09/origin_image/slide_04.png",
+    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "generation_contract": {
+    "must_use_selected_image_backend": true,
+    "must_match_sample_generation_method": true,
+    "forbidden_final_image_methods": [
+      "local drawing/rendering scripts",
+      "Pillow-generated slides",
+      "SVG/HTML/CSS/canvas screenshots",
+      "python-pptx/PptxGenJS/native PPT layout screenshots",
+      "manually composited text/image overlays"
+    ],
+    "must_return": [
+      "backend_used",
+      "selected_source",
+      "qa_note"
+    ]
+  }
+}
