@@ -13,8 +13,9 @@ Preparar en siete semanas a un equipo remoto y heterogéneo para colaborar y ent
 - Siete semanas, de lunes a viernes, con una sesión remota diaria de 30 minutos y práctica posterior.
 - Seis desarrolladores con experiencia principalmente en frontend y authoring; el desarrollo técnico de AEM comienza desde fundamentos.
 - El instructor es también el arquitecto y el equipo trabaja de forma remota.
-- Ruta provisional: mantenimiento de AEM Sites tradicional; se confirmará con el responsable del proyecto durante la primera semana.
-- Cada participante necesita su propio SDK y repositorio a partir de un baseline común; Cloud Manager se cubre de forma teórica y no requiere acceso.
+- Plataforma confirmada: mantenimiento de AEM Sites tradicional sobre AEM as a Cloud Service.
+- El equipo tiene acceso al AEM as a Cloud Service SDK; cada participante trabaja en un repositorio individual creado al clonar WKND o ejecutar AEM Project Archetype.
+- Cloud Manager se cubre de forma teórica y no requiere acceso.
 
 ## Out of scope
 - Especialización profunda en todas las soluciones de Experience Cloud.

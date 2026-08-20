@@ -40,7 +40,7 @@
 - [Experience League Community: Adobe Experience Manager](https://experienceleaguecommunities.adobe.com/t5/adobe-experience-manager/ct-p/adobe-experience-manager-community)
   Para contrastar decisiones, investigar problemas reales y practicar preguntas técnicas de calidad.
 
-## Gaps
+## Scope guardrails
 
-- Confirmar la versión, modalidad de entrega y productos AEM que usará el equipo en su trabajo real.
+- La plataforma confirmada es AEM Sites tradicional sobre AEM as a Cloud Service y el equipo tiene acceso al SDK.
 - Añadir sólo las fuentes específicas de Edge Delivery, Headless, Assets o Forms que el alcance confirmado requiera.

@@ -16,9 +16,9 @@
 - Prioridad: aprendizaje aplicable y seguimiento con pocas reuniones.
 - Evidencia requerida: progreso individual verificable mediante recuperación, artefactos técnicos y explicación; asistencia o cámara no cuentan como aprendizaje.
 - Revisión: la similitud de código es una señal para preguntar, no una prueba; confirmar comprensión con explicación, ejecución y un cambio pequeño en vivo.
-- Supuesto provisional: mantenimiento de AEM Sites tradicional sobre AEM as a Cloud Service.
-- Alcance confirmado: AEM Sites tradicional sobre AEM as a Cloud Service; no incluir EDS, Headless ni Forms en el núcleo.
-- Acceso probable: SDK y repositorio.
+- Plataforma confirmada: AEM Sites tradicional sobre AEM as a Cloud Service; no incluir EDS, Headless ni Forms en el núcleo.
+- Acceso confirmado: AEM as a Cloud Service SDK disponible para el entrenamiento; Cloud Manager no es requisito.
+- Inicio del repositorio confirmado: cada participante puede clonar el tutorial público WKND o generar el proyecto con AEM Project Archetype; ambas rutas son válidas y terminan en un repositorio individual.
 - Cloud Manager: contenido teórico con diagramas y evidencia anonimizada; no pedir acceso ni despliegues.
-- Pendiente de confirmar: perfiles individuales, versión/plataforma real y alcance del proyecto mantenido.
+- Pendiente de levantar: perfiles individuales y dos o tres tipos de cambio habituales que deberá resolver el equipo.
 - No se esperan interrupciones relevantes durante las siete semanas restantes.

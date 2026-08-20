@@ -41,7 +41,7 @@
       </tbody>
     </table></div>
 
-    <h2>1. Request access before installing anything</h2>
+    <h2>1. Confirm the available access</h2>
     <ul class="checklist">
       <li>Adobe ID added to the correct Adobe organization.</li>
       <li>Permission to download the AEM as a Cloud Service SDK.</li>
@@ -50,7 +50,7 @@
       <li>Cloud Manager access is not required; the course uses supplied diagrams and anonymized evidence.</li>
       <li>VPN, proxy, certificate, and artifact-repository instructions from your organization.</li>
     </ul>
-    <p>The instructor chooses one common starting method for the group: the public Adobe WKND repository or a project generated with the AEM Project Archetype. No custom baseline URL is required. Do not copy an SDK archive or credentials into Git or a shared chat.</p>
+    <p>Each developer may choose either approved starting method: clone the public Adobe WKND tutorial repository or generate a project with the AEM Project Archetype. No custom baseline URL is required. Do not copy an SDK archive or credentials into Git or a shared chat.</p>
 
     <h2>2. Install and verify the development tools</h2>
     <p>Install the versions from the baseline using your organization's approved method. The repository remains authoritative when it pins a compatible version.</p>
@@ -90,7 +90,7 @@ java -jar aem-author-p4502.jar</code></pre>
     <p>When prompted, use <code>admin</code> as the local-only administrator password unless the architect specifies another value. First startup can take several minutes. Open <a href="http://localhost:4502">http://localhost:4502</a>.</p>
 
     <h2>4. Create your individual WKND repository</h2>
-    <section class="callout"><strong>Choose one option for the whole group:</strong> option A starts from Adobe's public WKND implementation; option B generates a clean project with the AEM Project Archetype. Every developer follows the same option in an individual repository and local SDK.</section>
+    <section class="callout"><strong>Choose either option:</strong> option A starts from Adobe's public WKND tutorial implementation; option B generates a clean project with the AEM Project Archetype. Both are valid for the course and must be published to the developer's individual repository.</section>
 
     <h3>Option A · Start from the public Adobe WKND repository</h3>
     <p>Create an empty personal repository in the approved Git host without a README or generated files. Then clone Adobe WKND, retain Adobe as the reference remote and publish the unchanged starting commit to your repository:</p>

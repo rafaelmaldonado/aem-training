@@ -52,7 +52,7 @@ Mantener y extender el repositorio oficial WKND con una sección `Weekend Guides
 - permisos, caché, accesibilidad, pruebas y compatibilidad con el pipeline;
 - README operativo corto y demo final.
 
-Cada persona parte del mismo baseline de sólo lectura y completa la misma práctica semanal en su propio repositorio y SDK. La práctica se publica el lunes, se entrega el jueves y se revisa el viernes, sin dependencias entre participantes. Evitar microservicios, SPA, personalización, Forms o Commerce salvo que el trabajo real los necesite.
+Cada persona elige uno de dos baselines aprobados —clonar el tutorial público WKND o generar el proyecto con AEM Project Archetype— y completa la misma práctica semanal en su propio repositorio y SDK. La práctica se publica el lunes, se entrega el jueves y se revisa el viernes, sin dependencias entre participantes. Evitar microservicios, SPA, personalización, Forms o Commerce salvo que el trabajo real los necesite.
 
 La guía de siete prácticas individuales está en `reference/wknd-project-backlog.html`.
 
@@ -97,9 +97,9 @@ No hay breakout rooms, daily adicional ni reunión de estatus separada. La colab
 
 La primera clase construye el mapa Author → distribución → Publish → Dispatcher/CDN → navegador y lo contrasta con Git → pipeline → AEM. Incluye recuperación, contenido listo para slides, demo, ejercicio y exit prompt. El guion completo está en `lessons/0003-aem-foundations.html`.
 
-## Confirmaciones de la primera semana
+## Condiciones confirmadas e información por levantar
 
 1. Identificar la especialidad y experiencia real de cada participante mediante el diagnóstico.
-2. Verificar acceso al SDK y repositorio; Cloud Manager no es requisito del entrenamiento.
-3. Confirmar que el trabajo es mantenimiento de AEM Sites tradicional y conocer la versión/plataforma del proyecto.
+2. Usar el AEM as a Cloud Service SDK ya disponible; Cloud Manager no es requisito del entrenamiento.
+3. Crear el repositorio individual desde una de las dos rutas aprobadas: clonar WKND o ejecutar AEM Project Archetype.
 4. Obtener dos o tres tipos de cambio reales que el equipo deberá resolver después del entrenamiento.

@@ -24,10 +24,10 @@
     <ul class="meta"><li>Released Monday</li><li>Due Thursday</li><li>Reviewed Friday</li></ul>
   </header>
   <main id="content">
-    <section class="callout"><strong>Delivery constraint:</strong> no shared deployment environment or Cloud Manager access is required. Each developer owns a repository and local SDK created with the same selected starting method. Cloud Manager is studied from supplied diagrams and anonymized evidence; hands-on checks run locally.</section>
+    <section class="callout"><strong>Delivery constraint:</strong> no shared deployment environment or Cloud Manager access is required. Each developer owns a repository and local SDK created from either approved starting method. Cloud Manager is studied from supplied diagrams and anonymized evidence; hands-on checks run locally.</section>
 
     <h2>Product scenario</h2>
-    <p>Each developer starts from the same selected WKND source and adds a <strong>Weekend Guides</strong> area. Authors must create guide pages and reusable cards without code changes. Visitors must browse accessible, responsive content. The implementation must be testable, cache-safe and compatible with an AEMaaCS pipeline.</p>
+    <p>Each developer starts from either approved WKND source—the public tutorial repository or a project generated with AEM Project Archetype—and adds a <strong>Weekend Guides</strong> area. Authors must create guide pages and reusable cards without code changes. Visitors must browse accessible, responsive content. The implementation must be testable, cache-safe and compatible with an AEMaaCS pipeline.</p>
     <ul class="checklist">
       <li>An editable Guide Page template with controlled policies.</li>
       <li>A Guide Card proxy component with configured and empty states.</li>
@@ -40,7 +40,7 @@
 
     <h2>Repository model</h2>
     <ol>
-      <li>Before Week 1, the instructor selects one starting method from the <a href="initial-setup.html">setup guide</a>: clone the public Adobe WKND repository or generate a clean project with the AEM Project Archetype.</li>
+      <li>Before Week 1, each developer chooses one starting method from the <a href="initial-setup.html">setup guide</a>: clone the public Adobe WKND tutorial repository or generate a clean project with the AEM Project Archetype.</li>
       <li>Each developer creates an empty personal repository, publishes the untouched starting project there and tags that commit <code>training-baseline</code>. The tag is a Git reference, not a separate repository or branch.</li>
       <li>Every developer completes the same weekly practice; there are no dependencies on another learner's branch or environment.</li>
       <li>Each practice uses <code>practice/week-&lt;number&gt;-short-name</code> and one PR into that developer's own <code>main</code>.</li>
@@ -80,9 +80,9 @@
 
     <h2 id="practice-1">Week 1 practice · Establish the individual baseline</h2>
     <p><strong>Goal:</strong> create a reproducible WKND repository and local SDK, then explain how one page maps to the project.</p>
-    <p><strong>Starting point:</strong> there is no custom baseline repository to request. The instructor announces one common option for the group: <strong>A)</strong> start from the public <a href="https://github.com/adobe/aem-guides-wknd">Adobe WKND repository</a>, or <strong>B)</strong> generate a clean project with the AEM Project Archetype command in the <a href="initial-setup.html">setup guide</a>.</p>
+    <p><strong>Starting point:</strong> there is no custom baseline repository to request. Each developer chooses <strong>A)</strong> clone the public <a href="https://github.com/adobe/aem-guides-wknd">Adobe WKND tutorial repository</a>, or <strong>B)</strong> generate a clean project with the AEM Project Archetype command in the <a href="initial-setup.html">setup guide</a>.</p>
     <ul>
-      <li>Follow the selected setup option and publish the untouched result to an empty repository owned by you.</li>
+      <li>Follow either approved setup option and publish the untouched result to an empty repository owned by you.</li>
       <li>Before changing code, confirm that <code>origin</code> points to your repository and that the starting commit has the tag <code>training-baseline</code>:</li>
     </ul>
     <pre><code>git remote -v
