@@ -1,53 +1,173 @@
-## Slide 1: Design the storage contract before adding dialog fields.
+# Class 8 · Detailed speaker notes
 
-A dialog field is not only a control on a screen. Its name becomes part of the stored-content contract that code, migrations and future dialog versions must understand. Today we will follow one value from a Granite UI field, through Sling POST, into a component Resource and finally into the rendered browser output.
+## How to use these notes
 
-The main question is not simply whether an author can enter a value. It is whether the value is stored predictably and whether configured, legacy and empty component instances remain safe after the code changes.
+- Keep one field—`./title` or `./heading`—as the thread through all nine slides.
+- Separate three Resources verbally every time: component definition, dialog definition and authored instance.
+- Present the dialog as a storage contract, not as a collection of UI widgets.
+- Spend extra time on Slides 4–7; that is where persistence, compatibility and runtime safety become concrete.
 
-## Slide 2: One component spans code, authoring UI and stored content.
+## Slide 1: Design the storage contract before adding dialog fields
 
-Keep these three Resources separate. The component definition under `/apps` identifies the rendering capability. Its `cq:dialog` child defines the editing interface. An authored instance below `/content` stores the values entered for one use of the component.
+- **What it means**
+  - A dialog field name becomes part of the persisted schema consumed by HTL, models, migrations and integrations.
+  - Adding or renaming a field creates maintenance cost beyond the editor screen.
+- **How to present it**
+  - Follow one value from author input → Sling POST → JCR property → rendered output.
+  - Point out that every arrow needs observable evidence.
+- **Say explicitly**
+  - “The field label is presentation; the field name is storage behavior.”
+  - “A dialog that saves once is not enough evidence of a safe content contract.”
+- **Ask the group**
+  - “Who will still depend on this property name two years from now?”
+- **Common confusion**
+  - Do not treat the dialog definition itself as the runtime content source.
+- **Transition**
+  - “First separate the three Resources involved.”
 
-The authored Resource carries `sling:resourceType`, which connects it back to the implementation. HTL or a model then reads the instance properties. It does not read `fieldLabel`, `required` or entered values from the dialog definition. The dialog influences submission; the persisted Resource is the runtime input.
+## Slide 2: One component spans code, authoring UI and stored content
 
-## Slide 3: Granite UI renders the dialog from a Resource tree.
+- **What it means**
+  - `/apps/.../component` defines capability.
+  - `/apps/.../component/cq:dialog` defines the editor interface.
+  - `/content/.../instance` stores values for one authored use.
+- **How to present it**
+  - Point to each path and ask who changes it: developer or author.
+  - Follow `sling:resourceType` from the content instance back to the implementation.
+- **Say explicitly**
+  - “HTL reads the authored Resource; it does not read values from `cq:dialog`.”
+  - “The dialog controls submission, while stored content controls runtime behavior.”
+- **Ask the group**
+  - “If the dialog label changes, should existing rendered pages change?”
+- **Common confusion**
+  - `fieldLabel`, `required` and `emptyText` configure authoring UI; they are not automatically persisted as component values.
+- **Transition**
+  - “The dialog itself is also rendered from a Sling Resource tree.”
 
-The dialog is itself a Sling Resource tree. At the root, `cq:dialog` is an `nt:unstructured` node. Its `sling:resourceType` selects the authoring dialog shell. Nested `content/items` Resources define layout, containers and individual fields.
+## Slide 3: Granite UI renders the dialog from a Resource tree
 
-For the Title field, the textfield resource type supplies the control, while properties such as `fieldLabel`, `name`, `required`, `emptyText` and `maxlength` configure its behavior. AEM renders these Resources server-side as Granite UI components; we are describing a resource structure, not writing the visitor-facing form markup by hand.
+- **What it means**
+  - Granite UI fields and containers are server-side components selected through `sling:resourceType`.
+  - Nested `content/items` nodes describe layout and controls.
+- **How to present it**
+  - Read the tree from `cq:dialog` to the specific textfield.
+  - Separate the field’s component type from its configuration properties.
+- **Say explicitly**
+  - “We configure a tree of authoring Resources; we do not hand-code the resulting Coral UI markup.”
+  - “The field resource type creates the control; properties configure that control.”
+- **Ask the group**
+  - “Which property changes the stored target, and which property changes only the visible label?”
+- **Common confusion**
+  - Avoid mixing Granite UI resource types with visitor-facing component resource types.
+- **Transition**
+  - “The most consequential field property is `name`.”
 
-## Slide 4: The field name defines the persistence target.
+## Slide 4: The field name defines the persistence target
 
-Read this trace from left to right. The field name is `./title`. Dot-slash means that the property path is relative to the component Resource targeted by the form. When the author saves “My first AEM project,” the submitted parameter carries the same relative name and value.
+- **What it means**
+  - `name="./title"` submits a property relative to the selected component Resource.
+  - Sling POST writes `title` on that instance below `/content`.
+- **How to present it**
+  - Trace the exact string `./title` across dialog definition, request parameter, stored property and HTL expression.
+  - Show where the dot-slash resolves; do not describe it as a global repository path.
+- **Say explicitly**
+  - “The name is relative to the form’s target Resource.”
+  - “The authored value is stored beside `sling:resourceType`, not under `/apps`.”
+- **Ask the group**
+  - “What exact property should appear after saving ‘My first AEM project’?”
+- **Evidence to show**
+  - Dialog field definition.
+  - POST parameter in Network tools when practical.
+  - JCR property on the instance.
+  - HTL or model consumer.
+- **Transition**
+  - “Because code depends on that name, renaming it is a schema change.”
 
-Sling POST writes a `title` property on the selected component Resource. The Resource keeps its `sling:resourceType`, which remains the link to the Guide Card implementation. HTL then reads `${properties.title}`. The key point is location: the value belongs to the component instance below `/content`, not to the dialog definition below `/apps`.
+## Slide 5: A field change can become a content migration
 
-## Slide 5: A field change can become a content migration.
+- **What it means**
+  - Changing `./title` to `./heading` affects future saves only.
+  - Existing content continues storing `title` until explicitly migrated or re-authored.
+- **How to present it**
+  - Compare Page A before and after deployment; keep the old property visible.
+  - Then show the safe sequence: read new → fallback old → migrate → remove fallback after verification.
+- **Say explicitly**
+  - “Deploying a new dialog does not rewrite stored content.”
+  - “A silent field rename can make valid legacy content appear empty.”
+- **Ask the group**
+  - “What would fail if the new HTL reads only `heading`?”
+- **Common migration cases**
+  - Rename a property.
+  - Change scalar to multi-value.
+  - Move a property into a child Resource.
+  - Change the expected type or format.
+- **Transition**
+  - “Dialog validation helps new authoring, but it cannot guarantee old content.”
 
-Suppose the original dialog writes `./title` and Page A already stores a `title` property. A later dialog version writes `./heading`. That change only affects future submissions. It does not rename the property on Page A.
+## Slide 6: Validation guides authors but does not guarantee stored content
 
-If new code reads only `heading`, Page A now looks empty even though its content still exists. A safe rollout reads the new property first, temporarily falls back to the legacy property, migrates stored content and verifies the result before removing the fallback. The same reasoning applies when a single property becomes multi-valued or moves into a nested structure.
+- **What it means**
+  - `required`, `maxlength`, labels and validators improve the current authoring path.
+  - Stored content may bypass those controls or predate them.
+- **How to present it**
+  - Separate authoring-time prevention from runtime resilience.
+  - Give three bypass examples: old content, package import and API/tooling.
+- **Say explicitly**
+  - “Dialog validation is not a repository constraint.”
+  - “Authenticated author input is still runtime input and must be handled safely.”
+- **Ask the group**
+  - “Can the runtime assume `required=true` has always been enforced?”
+- **Common confusion**
+  - A mandatory UI field does not make model injection safely mandatory for every existing Resource.
+- **Transition**
+  - “The acceptance cases must therefore include configured, legacy and empty content.”
 
-## Slide 6: Validation guides authors but does not guarantee stored content.
+## Slide 7: Verify configured, legacy and empty states end to end
 
-Properties such as `required`, `maxlength` and `emptyText` make the authoring experience clearer. A named validator can prevent a known invalid value from being submitted through the current dialog. Good labels and descriptions also explain the intent of the field instead of forcing authors to infer it.
-
-Those controls do not prove that every stored Resource satisfies the latest rules. Content may predate the validation, arrive through a package or API, or be created by other tooling. Runtime code must still handle missing, malformed and legacy values. Stored content is input, not evidence that the current dialog validation ran.
-
-## Slide 7: Verify configured, legacy and empty states end to end.
-
-Review three states. In the configured state, the current `heading` property renders the intended heading. In the legacy state, the old `title` property still renders through the temporary compatibility rule. In the empty state, neither property is usable.
-
-Visitor markup should not contain an empty heading or broken control. In edit or preview mode, however, an empty component needs an author-visible placeholder so it remains selectable. The evidence should connect the field definition, POST name, stored Resource, resolution decision and observable output for every row.
+- **What it means**
+  - Configured state uses the current property.
+  - Legacy state uses a temporary compatibility path.
+  - Empty state renders safe visitor output while remaining selectable in author mode.
+- **How to present it**
+  - Walk one matrix row at a time from stored properties to rendered result.
+  - Ask the group to predict the output before revealing it.
+- **Say explicitly**
+  - “Visitor safety and author usability are different empty-state requirements.”
+  - “A placeholder can appear in edit mode without leaking meaningless markup to Publish.”
+- **Evidence to request**
+  - Stored current/legacy properties.
+  - Resolution or fallback rule.
+  - Author placeholder.
+  - Visitor DOM without empty heading or broken control.
+- **Common confusion**
+  - Do not verify only the configured happy path.
+- **Transition**
+  - “These states summarize the complete storage contract.”
 
 ## Slide 8: Key takeaways
 
-There are five contracts to remember. Component definition, dialog and instance are separate Resources. Granite UI renders the dialog from a resource-type-driven tree. A relative field name controls persistence. Changing the stored name or shape requires an explicit compatibility decision. Runtime behavior must cover configured, legacy and empty states.
-
-Every field creates authoring and compatibility cost. The smallest useful property set is usually easier to explain, migrate, test and support than a dialog filled with speculative options.
+- **How to present it**
+  - Ask participants to reconstruct the trace: dialog field → POST parameter → JCR property → model/HTL → browser.
+  - Ask which changes require compatibility or migration.
+- **Say explicitly**
+  - “Component, dialog and instance are separate Resources.”
+  - “Relative field names control persistence.”
+  - “Runtime code must handle stored content that did not pass today’s dialog.”
+  - “Every new field becomes another contract to maintain.”
+- **Quick check**
+  - Ask whether changing `fieldLabel` or changing `name` is the schema change, and why.
+- **Transition**
+  - “Use the final questions to test the trace without looking at the diagram.”
 
 ## Slide 9: Questions
 
-Use these questions to check the complete mental model. What does `name="./title"` create, and relative to which Resource? Which dialog changes are harmless presentation edits, and which ones change the stored schema? Finally, what evidence shows that an empty component is still authorable without producing unsafe visitor markup?
-
-The goal is to review the whole storage contract, not only whether the dialog opens and saves once.
+- **Ask in this order**
+  - “What does `name="./title"` create, and where?”
+  - “Which Resource does HTL read at runtime?”
+  - “Why does renaming the field not migrate Page A?”
+  - “What should an empty component show to an author and to a visitor?”
+- **Push vague answers**
+  - Ask for the exact repository path and property name.
+  - Ask which evidence comes from Network, repository and rendered DOM.
+- **Close with**
+  - “Review a dialog change as a schema change whenever it alters the stored name, shape or type.”

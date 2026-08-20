@@ -4,7 +4,7 @@
 
 Enable frontend-oriented developers to maintain, extend, test, prepare for delivery and troubleshoot traditional AEM Sites solutions on AEM as a Cloud Service.
 
-**Course dates:** Monday through Friday, August 17–October 2, 2026. Dates assume regular weekdays; move a session within its week if a local holiday applies.
+**Course dates:** Monday through Friday, August 17–October 2, 2026. Move a session within its week if a local holiday applies.
 
 ## Learning outcomes
 
@@ -13,6 +13,7 @@ By the end of the course, participants will be able to:
 - Explain how content and code travel from Author to the browser.
 - Read an AEM project structure and locate a change in the correct module.
 - Modify authorable components with HTL, dialogs, client libraries and Sling Models.
+- Trace and maintain reusable content across Experience Fragments, Content Fragments and MSM live relationships.
 - Build, test and review changes compatible with AEM as a Cloud Service.
 - Troubleshoot foundational AEM, Dispatcher and caching issues, and interpret supplied pipeline evidence.
 - Demonstrate individual proficiency through working artifacts and technical explanation.
@@ -39,41 +40,41 @@ By the end of the course, participants will be able to:
 
 11. Mon, Aug 31 — HTL: expressions, attributes, conditions, lists, templates and context-aware escaping.
 12. Tue, Sep 1 — Client Libraries: categories, dependencies, embed, loading and debugging.
-13. Wed, Sep 2 — Core Components and the proxy pattern; `sling:resourceSuperType`.
+13. Wed, Sep 2 — Core Components, the proxy pattern, `sling:resourceSuperType` and the Adobe Client Data Layer contract.
 14. Thu, Sep 3 — Responsive behavior, accessibility, states and the empty author experience.
 15. Fri, Sep 4 — Weekly practice review: vertical frontend integration.
 
 ### Week 4 — Essential backend for frontend developers — September 7–11, 2026
 
 16. Mon, Sep 7 — Java and OSGi in AEM: bundles, services, components and lifecycle.
-17. Tue, Sep 8 — Sling Models: adaptables, injection, optionality, getters and boundaries.
+17. Tue, Sep 8 — Sling Models: adaptables, injection, optionality, delegation, getters and boundaries.
 18. Wed, Sep 9 — OSGi services and environment-specific configuration.
-19. Thu, Sep 10 — Resource API, servlets and when not to create an endpoint.
-20. Fri, Sep 11 — Weekly practice review: Sling Model testing and backend behavior.
+19. Thu, Sep 10 — Resource API, Sling Model Exporter, servlets and when not to create an endpoint.
+20. Fri, Sep 11 — Weekly practice review: JUnit 5, AEM Mocks and Sling Model behavior.
 
-### Week 5 — Maintenance and investigation — September 14–18, 2026
+### Week 5 — Content reuse and maintenance — September 14–18, 2026
 
-21. Mon, Sep 14 — Cloud-compatible structure: mutable content, immutable code and packages.
-22. Tue, Sep 15 — Logs, bundles, components, configurations and diagnostic tools.
-23. Wed, Sep 16 — Workflows, launchers, jobs and cloud limitations.
-24. Thu, Sep 17 — Search, QueryBuilder/Oak, indexes and signs of an expensive query.
-25. Fri, Sep 18 — Weekly practice review: maintenance simulation.
+21. Mon, Sep 14 — MSM foundations: language masters, blueprints, live copies, inheritance, rollout and localization boundaries.
+22. Tue, Sep 15 — Cloud-compatible structure: mutable content, immutable code, packages and filter modes.
+23. Wed, Sep 16 — Runtime diagnostics and asynchronous processing: logs, bundles, components, configurations, workflows, launchers and jobs.
+24. Thu, Sep 17 — Experience Fragments and Content Fragments for traditional Sites: models, variations, references, rendering and publication dependencies; GraphQL excluded.
+25. Fri, Sep 18 — Weekly practice review: content reuse and maintenance simulation.
 
 ### Week 6 — Production quality and delivery constraints — September 21–25, 2026
 
-26. Mon, Sep 21 — Cloud delivery mental model: programs, environments, repositories, pipelines and quality gates; theory from supplied evidence.
-27. Tue, Sep 22 — Local Dispatcher and caching lab: virtual hosts, filters, rewrites, headers and invalidation.
-28. Wed, Sep 23 — Permissions, service users, output security, validation and secrets.
-29. Thu, Sep 24 — Accessibility, SEO, performance measurement and risk-based testing.
+26. Mon, Sep 21 — Search, tags and taxonomy, QueryBuilder/Oak, indexes and signs of an expensive query.
+27. Tue, Sep 22 — Cloud delivery mental model: programs, environments, repositories, pipelines and quality gates; theory from supplied evidence.
+28. Wed, Sep 23 — Local Dispatcher and caching lab: virtual hosts, vanity paths, redirects, rewrites, filters, headers and invalidation.
+29. Thu, Sep 24 — ACLs, service users, Repo Init, output security, validation and secrets.
 30. Fri, Sep 25 — Weekly practice review: local production readiness and theoretical delivery defense.
 
-### Week 7 — Capstone and knowledge transfer — September 28–October 2, 2026
+### Week 7 — Production quality and capstone — September 28–October 2, 2026
 
-31. Mon, Sep 28 — Plan an individually owned final increment with observable acceptance criteria.
-32. Tue, Sep 29 — Capstone implementation using established HTL, Sling Model and Core Component patterns.
-33. Wed, Sep 30 — Review, defects, regression testing and hardening.
-34. Thu, Oct 1 — Individual practical assessment with a small live variation.
-35. Fri, Oct 2 — Final practice review: demo, technical defense, retrospective and 30-day plan.
+31. Mon, Sep 28 — Accessibility, SEO, performance measurement and risk-based testing.
+32. Tue, Sep 29 — Plan an individually owned final increment with observable acceptance criteria.
+33. Wed, Sep 30 — Capstone implementation using established HTL, Sling Model and Core Component patterns.
+34. Thu, Oct 1 — Review, defects, regression testing and hardening.
+35. Fri, Oct 2 — Weekly and final practice review: demo, technical defense, retrospective and 30-day plan.
 
 ## Scope
 

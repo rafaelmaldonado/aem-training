@@ -13,10 +13,8 @@
     <ul>
       <li><a href="../index.html">Overview</a></li>
       <li><a href="../reference/aem-course-topics.html">Syllabus</a></li>
-      <li><a href="../reference/slide-ready-lessons.html">Slides</a></li>
       <li><a href="../reference/wknd-project-backlog.html">Practices</a></li>
-      <li><a href="../reference/initial-setup.html">Setup</a></li>
-      <li><a href="../reference/seguimiento-evidencias.html">Evidence</a></li>
+      <li><a href="../reference/index.html">References</a></li>
     </ul>
   </nav>
   <header>
@@ -27,6 +25,18 @@
   </header>
   <main id="content">
     <section class="callout"><strong>Observable outcome:</strong> each developer can explain what <code>name="./title"</code> creates, locate the stored property and describe the behavior of configured, legacy and empty component states.</section>
+
+    <h2>Topic summary</h2>
+    <p>An AEM component dialog is more than an authoring form: it is the interface through which authors create durable repository content. A field’s label affects the editor experience, but its <code>name</code> determines the property or child Resource that Sling POST persists and that HTL, Sling Models and integrations must continue to understand.</p>
+    <p>For that reason, changing a field’s stored name, type or shape is a schema change. A safe implementation traces one value from the dialog definition through the HTTP request and JCR persistence to the rendered output, then verifies current, legacy and empty states instead of testing only a successful save.</p>
+    <ul>
+      <li><strong>Three Resources:</strong> the component under <code>/apps</code> defines capability, <code>cq:dialog</code> defines the authoring UI, and the component instance under <code>/content</code> stores authored values.</li>
+      <li><strong>Granite UI:</strong> dialog fields and containers are Sling Resources selected by <code>sling:resourceType</code>; their properties configure the server-rendered authoring controls.</li>
+      <li><strong>Relative persistence:</strong> a field named <code>./title</code> submits <code>title</code> relative to the selected component Resource, so the property is stored beside its <code>sling:resourceType</code>.</li>
+      <li><strong>Runtime contract:</strong> HTL and Sling Models read the authored Resource, not the dialog definition. The persisted property name is therefore part of the component API.</li>
+      <li><strong>Compatibility:</strong> renaming <code>title</code> to <code>heading</code> does not migrate existing content. Safe evolution may require a fallback, an explicit migration and later removal of the legacy path.</li>
+      <li><strong>Resilience:</strong> dialog validation helps new authoring but cannot constrain old, imported or programmatically created content; runtime code must handle missing and unexpected values safely.</li>
+    </ul>
 
     <h2>Architect preparation</h2>
     <ul class="checklist">
@@ -57,57 +67,99 @@
     </table></div>
 
     <h2>Complete slide deck</h2>
-    <p class="section-intro">Choose <strong>Copy slide as image</strong> and paste it into PowerPoint, or download the PNG.</p>
+    <p class="section-intro">Study each slide with its detailed presenter notes, then copy it into PowerPoint or download the PNG.</p>
     <div class="web-deck">
       <article class="web-slide" data-slide-src="../slides/lesson-08/origin_image/slide_01.png">
         <img class="web-slide-image" src="../slides/lesson-08/origin_image/slide_01.png" alt="Class 8 cover showing the dialog-field to rendered-output storage contract.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-08/origin_image/slide_01.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Open:</strong> “Which part of a dialog field becomes a durable content contract?”</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> a field name becomes persisted schema consumed by HTL, models, migrations and integrations.</li>
+          <li><strong>Present:</strong> follow author input → Sling POST → JCR property → rendered output.</li>
+          <li><strong>Say:</strong> “The label is presentation; the field name is storage behavior.”</li>
+          <li><strong>Ask:</strong> “Who may still depend on this property name two years from now?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-08/origin_image/slide_02.png">
         <img class="web-slide-image" src="../slides/lesson-08/origin_image/slide_02.png" alt="Component definition, dialog and authored instance are separate Resources with different responsibilities.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-08/origin_image/slide_02.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Separate:</strong> the dialog influences submission; the authored Resource is the runtime input.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> component definition, dialog definition and authored instance are separate Resources.</li>
+          <li><strong>Present:</strong> point to each path, name who changes it and trace the instance’s <code>sling:resourceType</code>.</li>
+          <li><strong>Say:</strong> “The dialog controls submission; stored content controls runtime behavior.”</li>
+          <li><strong>Ask:</strong> “If only the dialog label changes, should existing rendered pages change?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-08/origin_image/slide_03.png">
         <img class="web-slide-image" src="../slides/lesson-08/origin_image/slide_03.png" alt="A cq dialog Resource tree resolves Granite UI components into an authoring form field.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-08/origin_image/slide_03.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Inspect:</strong> read the dialog as server-rendered Sling Resources, not visitor markup.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> Granite UI fields are server-side components selected with <code>sling:resourceType</code>.</li>
+          <li><strong>Present:</strong> read the Resource tree from <code>cq:dialog</code> to the text field and separate type from configuration.</li>
+          <li><strong>Say:</strong> “We configure authoring Resources; we do not hand-code the resulting Coral markup.”</li>
+          <li><strong>Ask:</strong> “Which property changes storage, and which changes only the visible label?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-08/origin_image/slide_04.png">
         <img class="web-slide-image" src="../slides/lesson-08/origin_image/slide_04.png" alt="The value My first AEM project moves from a Granite UI field through Sling POST to a JCR property and HTL output.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-08/origin_image/slide_04.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Trace:</strong> <code>./title</code> writes <code>title</code> relative to the component Resource.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> <code>name="./title"</code> submits a property relative to the selected component Resource.</li>
+          <li><strong>Present:</strong> trace the same string across field definition, request parameter, stored property and HTL expression.</li>
+          <li><strong>Say:</strong> “The value is stored beside <code>sling:resourceType</code>, not under <code>/apps</code>.”</li>
+          <li><strong>Evidence:</strong> show the dialog field, POST parameter, JCR property and consumer.</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-08/origin_image/slide_05.png">
         <img class="web-slide-image" src="../slides/lesson-08/origin_image/slide_05.png" alt="A compatibility timeline shows why changing title to heading requires migration and fallback behavior.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-08/origin_image/slide_05.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Warn:</strong> changing the field name does not migrate existing properties.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> renaming <code>./title</code> to <code>./heading</code> affects future saves, not existing content.</li>
+          <li><strong>Present:</strong> show the safe sequence: read new → fallback old → migrate → remove fallback after verification.</li>
+          <li><strong>Say:</strong> “Deploying a new dialog does not rewrite stored content.”</li>
+          <li><strong>Ask:</strong> “What fails if the new HTL reads only <code>heading</code>?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-08/origin_image/slide_06.png">
         <img class="web-slide-image" src="../slides/lesson-08/origin_image/slide_06.png" alt="Authoring validation and runtime resilience are shown as separate protection layers.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-08/origin_image/slide_06.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Distinguish:</strong> dialog validation improves feedback but does not validate repository history.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> dialog validation improves the current authoring path but is not a repository constraint.</li>
+          <li><strong>Present:</strong> separate prevention from resilience; cite old content, package imports and APIs as bypasses.</li>
+          <li><strong>Say:</strong> “Authenticated author input is still runtime input and must be handled safely.”</li>
+          <li><strong>Ask:</strong> “Can runtime assume <code>required=true</code> was always enforced?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-08/origin_image/slide_07.png">
         <img class="web-slide-image" src="../slides/lesson-08/origin_image/slide_07.png" alt="Configured, legacy and empty states are compared from persisted Resource through author and visitor output.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-08/origin_image/slide_07.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Verify:</strong> empty visitor output remains safe while edit mode keeps the component selectable.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> acceptance covers configured, legacy and empty states end to end.</li>
+          <li><strong>Present:</strong> walk each matrix row from persisted properties to author and visitor output.</li>
+          <li><strong>Say:</strong> “Visitor safety and author usability are different empty-state requirements.”</li>
+          <li><strong>Evidence:</strong> current/legacy properties, fallback rule, author placeholder and clean visitor DOM.</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-08/origin_image/slide_08.png">
         <img class="web-slide-image" src="../slides/lesson-08/origin_image/slide_08.png" alt="Five key takeaways summarize dialog Resources, persistence, migration, validation and runtime states.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-08/origin_image/slide_08.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Retrieve:</strong> ask which contract one proposed field change would affect.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Present:</strong> reconstruct dialog field → POST → JCR property → model/HTL → browser.</li>
+          <li><strong>Say:</strong> “Relative field names control persistence.”</li>
+          <li><strong>Reinforce:</strong> runtime must support content that did not pass today’s dialog.</li>
+          <li><strong>Check:</strong> ask whether changing <code>fieldLabel</code> or changing <code>name</code> is the schema change.</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-08/origin_image/slide_09.png">
         <img class="web-slide-image" src="../slides/lesson-08/origin_image/slide_09.png" alt="Three closing questions about field persistence, migration and authorable empty states.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-08/origin_image/slide_09.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Close:</strong> review the storage contract rather than only whether the dialog saves once.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Ask:</strong> what does <code>name="./title"</code> create, where is it stored and which Resource does HTL read?</li>
+          <li><strong>Probe:</strong> why does a rename not migrate Page A, and what should an empty component show?</li>
+          <li><strong>Push precision:</strong> require exact path, property and evidence from Network, repository and DOM.</li>
+          <li><strong>Close:</strong> “Treat changes to the stored name, shape or type as schema changes.”</li>
+        </ul></details>
       </article>
     </div>
-
-    <h2>Suggested speaking script</h2>
-    <p>The complete talk track is available in <a href="../slides/lesson-08/speech.md">speech.md</a>.</p>
 
     <h2>Field-to-browser review</h2>
     <ol>

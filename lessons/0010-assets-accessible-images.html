@@ -13,10 +13,8 @@
     <ul>
       <li><a href="../index.html">Overview</a></li>
       <li><a href="../reference/aem-course-topics.html">Syllabus</a></li>
-      <li><a href="../reference/slide-ready-lessons.html">Slides</a></li>
       <li><a href="../reference/wknd-project-backlog.html">Practices</a></li>
-      <li><a href="../reference/initial-setup.html">Setup</a></li>
-      <li><a href="../reference/seguimiento-evidencias.html">Evidence</a></li>
+      <li><a href="../reference/index.html">References</a></li>
     </ul>
   </nav>
   <header>
@@ -27,6 +25,18 @@
   </header>
   <main id="content">
     <section class="callout"><strong>Observable outcome:</strong> each developer can trace a Guide Page image from <code>fileReference</code> to its DAM asset, justify its alternative-text state and show responsive-delivery evidence in the browser.</section>
+
+    <h2>Topic summary</h2>
+    <p>A complete AEM image implementation connects three related contracts: a managed asset in DAM, the meaning of that asset in the current page and the bytes delivered to the browser. An image that looks correct may still reference the wrong asset, expose incorrect alternative text or transfer an unnecessarily large rendition.</p>
+    <p>The preferred implementation starts with a thin project proxy to the Core Image Component and configures supported behavior through policy. Verification then follows the same image from its stored <code>fileReference</code> through rendered HTML and accessibility semantics to the selected Network request.</p>
+    <ul>
+      <li><strong>Asset ownership:</strong> DAM owns the original binary, renditions and reusable metadata. The page component stores a <code>fileReference</code> rather than copying the binary.</li>
+      <li><strong>Reuse before customization:</strong> a project proxy preserves the site-specific resource type while inheriting tested behavior from the installed Core Image version.</li>
+      <li><strong>Contextual accessibility:</strong> informative, decorative, functional and complex images need different alternative-text behavior. The image’s purpose on this page—not its filename—drives the decision.</li>
+      <li><strong>Metadata boundary:</strong> DAM metadata can provide a useful default, but it cannot determine whether the same asset is informative, decorative or functional in every context.</li>
+      <li><strong>Responsive delivery:</strong> policy defines candidate widths, markup exposes them and the browser chooses a source based on layout and device density. CSS dimensions alone do not prove efficient transfer.</li>
+      <li><strong>Lifecycle evidence:</strong> before moving, deleting or unpublishing an asset, inspect incoming references and verify the required asset and delivery behavior on Publish—not only in Author preview.</li>
+    </ul>
 
     <h2>Architect preparation</h2>
     <ul class="checklist">
@@ -58,57 +68,99 @@
     </table></div>
 
     <h2>Complete slide deck</h2>
-    <p class="section-intro">Choose <strong>Copy slide as image</strong> and paste it into PowerPoint, download an individual PNG, or <a href="../slides/lesson-09/lesson-09.pptx">download the complete PPTX</a>.</p>
+    <p class="section-intro">Study each slide with its detailed presenter notes, then copy it into PowerPoint, download its PNG or <a href="../slides/lesson-09/lesson-09.pptx">download the complete PPTX</a>.</p>
     <div class="web-deck">
       <article class="web-slide" data-slide-src="../slides/lesson-09/origin_image/slide_01.png">
         <img class="web-slide-image" src="../slides/lesson-09/origin_image/slide_01.png" alt="Class 9 cover connecting a DAM asset and Core Image contract to browser, rendered-image and accessibility outcomes.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-09/origin_image/slide_01.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Open:</strong> an authored image is simultaneously managed content, transferred bytes and accessible meaning.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> an AEM image combines DAM ownership, page reference, responsive delivery and contextual alternative text.</li>
+          <li><strong>Present:</strong> follow DAM asset → Image component → browser request → accessible DOM.</li>
+          <li><strong>Say:</strong> “The image is not finished when it looks correct.”</li>
+          <li><strong>Ask:</strong> “Which of these contracts can a screenshot actually prove?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-09/origin_image/slide_02.png">
         <img class="web-slide-image" src="../slides/lesson-09/origin_image/slide_02.png" alt="A page Image component references a managed DAM asset through fileReference without copying the binary.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-09/origin_image/slide_02.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Separate:</strong> the DAM asset owns binary and metadata; the page Resource owns contextual properties.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> DAM owns the binary and metadata; the component stores <code>fileReference</code>, not another copy.</li>
+          <li><strong>Present:</strong> point first to the asset, then to the component instance and its property.</li>
+          <li><strong>Say:</strong> “Moving or replacing one asset may affect every incoming reference.”</li>
+          <li><strong>Evidence:</strong> show <code>fileReference</code>, the asset and its known consuming pages.</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-09/origin_image/slide_03.png">
         <img class="web-slide-image" src="../slides/lesson-09/origin_image/slide_03.png" alt="A thin project proxy inherits Core Image version 3 below the Guide Page policy.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-09/origin_image/slide_03.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Reuse:</strong> keep the project proxy thin and extend only for a verified requirement gap.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> a project proxy preserves site ownership while delegating image behavior to Core Image.</li>
+          <li><strong>Present:</strong> trace project resource type → <code>sling:resourceSuperType</code> → installed Core Image version.</li>
+          <li><strong>Say:</strong> “Verify the installed version before selecting a versioned super type.”</li>
+          <li><strong>Ask:</strong> “Which verified requirement cannot be handled by Core Image plus policy?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-09/origin_image/slide_04.png">
         <img class="web-slide-image" src="../slides/lesson-09/origin_image/slide_04.png" alt="A decision tree maps informative, decorative, functional and complex image purposes to alternative-text behavior.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-09/origin_image/slide_04.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Decide:</strong> begin with the image's purpose on this page, not its filename.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> informative, decorative, functional and complex images require different alternative-text behavior.</li>
+          <li><strong>Present:</strong> reuse one image in four contexts and ask how its accessible meaning changes.</li>
+          <li><strong>Say:</strong> “Missing <code>alt</code> and <code>alt=""</code> are not equivalent.”</li>
+          <li><strong>Ask:</strong> “If the image is the only content in a link, what should its accessible name communicate?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-09/origin_image/slide_05.png">
         <img class="web-slide-image" src="../slides/lesson-09/origin_image/slide_05.png" alt="One DAM image produces informative, decorative and functional alternatives in three page contexts.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-09/origin_image/slide_05.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Compare:</strong> metadata proposes a value; page purpose determines the final alternative.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> shared DAM metadata can suggest a description, but page context determines the final decision.</li>
+          <li><strong>Present:</strong> compare the same asset as hero, decorative background and linked card.</li>
+          <li><strong>Say:</strong> “Metadata proposes; page purpose decides.”</li>
+          <li><strong>Ask:</strong> “Which use can safely inherit the DAM description unchanged?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-09/origin_image/slide_06.png">
         <img class="web-slide-image" src="../slides/lesson-09/origin_image/slide_06.png" alt="Component-policy widths become responsive candidates selected by the browser and verified in the network panel.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-09/origin_image/slide_06.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Inspect:</strong> CSS controls layout, while candidates and network requests determine transferred bytes.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> policy defines candidates, markup exposes them and the browser selects bytes for layout and density.</li>
+          <li><strong>Present:</strong> compare candidate widths, rendered dimensions and the selected Network request.</li>
+          <li><strong>Say:</strong> “CSS can display a large downloaded image at a small size.”</li>
+          <li><strong>Ask:</strong> “What evidence proves we did not transfer the largest rendition?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-09/origin_image/slide_07.png">
         <img class="web-slide-image" src="../slides/lesson-09/origin_image/slide_07.png" alt="An evidence matrix compares informative, decorative and missing image states across repository, HTML, accessibility and network results.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-09/origin_image/slide_07.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Verify:</strong> connect repository, HTML, accessibility and network evidence instead of relying on screenshots alone.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> each state links stored reference, rendered alternative, browser-selected source and author behavior.</li>
+          <li><strong>Present:</strong> walk informative, decorative and invalid rows; demand one artifact for every column.</li>
+          <li><strong>Say:</strong> “Correct <code>fileReference</code> does not prove accessible text or efficient delivery.”</li>
+          <li><strong>Evidence:</strong> reference, asset path, <code>alt</code> state, selected request and safe empty state.</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-09/origin_image/slide_08.png">
         <img class="web-slide-image" src="../slides/lesson-09/origin_image/slide_08.png" alt="Five linked checkpoints summarize managed references, Core Image proxying, contextual alternatives, responsive delivery and review evidence.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-09/origin_image/slide_08.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Retrieve:</strong> follow the five checkpoints from managed asset to verified browser output.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Present:</strong> ask for all five checkpoints before reading them; attach repository, DOM, Network and References tools.</li>
+          <li><strong>Say:</strong> “Reference the asset, proxy Core Image, choose alt from context and verify transferred bytes.”</li>
+          <li><strong>Reinforce:</strong> inspect incoming references before moving, deleting or unpublishing an asset.</li>
+          <li><strong>Check:</strong> ask how one asset can correctly yield meaningful and empty alternatives on different pages.</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-09/origin_image/slide_09.png">
         <img class="web-slide-image" src="../slides/lesson-09/origin_image/slide_09.png" alt="Three closing questions about image purpose, DAM reference evidence and responsive candidate delivery.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-09/origin_image/slide_09.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Close:</strong> use purpose, repository evidence and browser evidence in each answer.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Ask:</strong> classify the image, identify <code>fileReference</code>, prove the <code>alt</code> decision and name the selected request.</li>
+          <li><strong>Probe:</strong> what breaks if the asset moves or is unpublished?</li>
+          <li><strong>Push precision:</strong> separate rendered dimensions from transferred bytes.</li>
+          <li><strong>Close:</strong> “A complete review connects asset ownership, page purpose and browser delivery.”</li>
+        </ul></details>
       </article>
     </div>
-
-    <h2>Suggested speaking script</h2>
-    <p>The complete English talk track is available in <a href="../slides/lesson-09/speech.md">speech.md</a>.</p>
 
     <h2>Guide Page image review</h2>
     <ol>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Temario de siete semanas · AEM Training</title>
+  <title>Temario de 35 sesiones · AEM Training</title>
   <link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body>
@@ -13,10 +13,8 @@
     <ul>
       <li><a href="../index.html">Overview</a></li>
       <li><a href="eight-week-syllabus.html" aria-current="page">Temario</a></li>
-      <li><a href="slide-ready-lessons.html">Slides</a></li>
       <li><a href="wknd-project-backlog.html">Prácticas</a></li>
-      <li><a href="initial-setup.html">Setup</a></li>
-      <li><a href="seguimiento-evidencias.html">Evidencias</a></li>
+      <li><a href="index.html">Referencias</a></li>
     </ul>
   </nav>
   <header>
@@ -39,6 +37,7 @@
       <li>Explain how content and code travel from Author to the browser.</li>
       <li>Read an AEM project structure and locate a change in the correct module.</li>
       <li>Modify authorable components with HTL, dialogs, client libraries and Sling Models.</li>
+      <li>Trace and maintain reusable content across Experience Fragments, Content Fragments and MSM live relationships.</li>
       <li>Build, test and review changes compatible with AEM as a Cloud Service.</li>
       <li>Troubleshoot foundational AEM, Dispatcher and caching issues, and interpret supplied pipeline evidence.</li>
       <li>Demonstrate individual proficiency through working artifacts and technical explanation.</li>
@@ -77,7 +76,7 @@
       <tbody>
         <tr><td>11</td><td>HTL: expressions, attributes, conditions, lists, templates and context-aware escaping</td><td>Renderizar propiedades con salida segura</td><td>HTL y explicación del contexto</td></tr>
         <tr><td>12</td><td>Client Libraries: categories, dependencies, embed, loading and debugging</td><td>Modificar CSS/JS y comprobar inclusión</td><td>Red de dependencias clientlib</td></tr>
-        <tr><td>13</td><td>Core Components and the proxy pattern; <code>sling:resourceSuperType</code></td><td>Crear/extender un proxy sin copiar implementación</td><td>Diff mínimo y razón de extensión</td></tr>
+        <tr><td>13</td><td>Core Components, proxy pattern, <code>sling:resourceSuperType</code> and the Adobe Client Data Layer contract</td><td>Crear/extender un proxy sin copiar implementación</td><td>Diff mínimo, razón de extensión y contrato observable</td></tr>
         <tr><td>14</td><td>Responsive behavior, accessibility, states and the empty author experience</td><td>Probar teclado, viewport y estado sin contenido</td><td>Lista de pruebas y corrección</td></tr>
         <tr><td>15</td><td>Weekly practice review: vertical frontend integration</td><td>Demostrar el recorrido desde diálogo hasta navegador</td><td>PR y demo individual breve</td></tr>
       </tbody>
@@ -89,23 +88,23 @@
       <thead><tr><th>Día</th><th>Objective and topics</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
       <tbody>
         <tr><td>16</td><td>Java and OSGi in AEM: bundles, services, components and lifecycle</td><td>Localizar bundle y clases del proyecto</td><td>Mapa código → bundle → runtime</td></tr>
-        <tr><td>17</td><td>Sling Models: adaptables, injection, optionality, getters and boundaries</td><td>Exponer un valor calculado a HTL</td><td>Modelo funcional y decisión de fallback</td></tr>
+        <tr><td>17</td><td>Sling Models: adaptables, injection, optionality, delegation, getters and boundaries</td><td>Exponer un valor calculado a HTL</td><td>Modelo funcional y decisión de fallback</td></tr>
         <tr><td>18</td><td>OSGi services and environment-specific configuration</td><td>Consumir una configuración desde un servicio sencillo</td><td>Configuración sin secretos en Git</td></tr>
-        <tr><td>19</td><td>Resource API, servlets and when not to create an endpoint</td><td>Resolver un caso primero con recursos/modelo; servlet sólo si procede</td><td>Decisión y superficie de seguridad</td></tr>
-        <tr><td>20</td><td>Weekly practice review: Sling Model testing and backend behavior</td><td>Ejecutar una prueba que falla antes del fix</td><td>Test, implementación y resultado</td></tr>
+        <tr><td>19</td><td>Resource API, Sling Model Exporter, servlets and when not to create an endpoint</td><td>Comparar HTML, <code>.model.json</code> y servlet; elegir la menor superficie</td><td>Contrato, decisión y superficie de seguridad</td></tr>
+        <tr><td>20</td><td>Weekly practice review: JUnit 5, AEM Mocks and Sling Model behavior</td><td>Ejecutar una prueba que falla antes del fix</td><td>Test red → green, implementación y resultado</td></tr>
       </tbody>
     </table></div>
 
-    <h2 class="week" id="semana-5">Week 5 · Maintenance and investigation · September 14–18</h2>
-    <p><strong>Entrega semanal:</strong> ticket desconocido diagnosticado y corregido con evidencia.</p>
+    <h2 class="week" id="semana-5">Week 5 · Content reuse and maintenance · September 14–18</h2>
+    <p><strong>Entrega semanal:</strong> relación de contenido o ticket desconocido diagnosticado y corregido con evidencia.</p>
     <div class="table-wrap"><table>
       <thead><tr><th>Día</th><th>Objective and topics</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
       <tbody>
-        <tr><td>21</td><td>Cloud-compatible structure: mutable content, immutable code and packages</td><td>Clasificar rutas y módulos de un cambio</td><td>Ubicación correcta y riesgo</td></tr>
-        <tr><td>22</td><td>Logs, bundles, components, configurations and diagnostic tools</td><td>Encontrar la causa de un bundle o servicio inactivo</td><td>Hipótesis → prueba → conclusión</td></tr>
-        <tr><td>23</td><td>Workflows, launchers, jobs and cloud limitations</td><td>Inspeccionar un flujo existente y sus efectos</td><td>Diagrama de evento y responsabilidad</td></tr>
-        <tr><td>24</td><td>Search, QueryBuilder/Oak, indexes and signs of an expensive query</td><td>Evaluar una consulta sin crear índices especulativos</td><td>Resultado y recomendación</td></tr>
-        <tr><td>25</td><td>Weekly practice review: maintenance simulation</td><td>Defender causa, corrección y prueba de regresión</td><td>Informe corto con PR</td></tr>
+        <tr><td>21</td><td>MSM foundations: language masters, blueprints, live copies, inheritance, rollout and localization boundaries</td><td>Trazar y modificar de forma controlada una relación master/live copy</td><td>Matriz origen → herencia → acción → resultado</td></tr>
+        <tr><td>22</td><td>Cloud-compatible structure: mutable content, immutable code, packages and filter modes</td><td>Clasificar rutas y módulos de un cambio</td><td>Ubicación correcta y riesgo</td></tr>
+        <tr><td>23</td><td>Runtime diagnostics and asynchronous processing: logs, bundles, components, configurations, workflows, launchers and jobs</td><td>Seguir un fallo o evento desde el runtime hasta su responsable</td><td>Hipótesis → evidencia → conclusión</td></tr>
+        <tr><td>24</td><td>Experience Fragments and Content Fragments for traditional Sites: models, variations, references, rendering and publication dependencies; GraphQL excluded</td><td>Inspeccionar un XF y un CF y justificar cuál resuelve cada necesidad</td><td>Dos trazas de autoría → almacenamiento → consumo</td></tr>
+        <tr><td>25</td><td>Weekly practice review: content reuse and maintenance simulation</td><td>Defender relación, causa, corrección y prueba de regresión</td><td>Informe corto con PR</td></tr>
       </tbody>
     </table></div>
 
@@ -114,24 +113,24 @@
     <div class="table-wrap"><table>
       <thead><tr><th>Día</th><th>Objective and topics</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
       <tbody>
-        <tr><td>26</td><td>Cloud delivery mental model: programs, environments, repositories, pipelines and quality gates</td><td>Interpretar un flujo y log suministrados, sin acceso a Cloud Manager</td><td>Mapa teórico y primera causa accionable</td></tr>
-        <tr><td>27</td><td>Local Dispatcher and caching lab: virtual hosts, filters, rewrites, headers and invalidation</td><td>Probar localmente requests permitidos, bloqueados y cacheables</td><td>Regla exacta y evidencia local</td></tr>
-        <tr><td>28</td><td>Permissions, service users, output security, validation and secrets</td><td>Threat review y matriz de acceso del Guide feature</td><td>Riesgo, control y comprobación</td></tr>
-        <tr><td>29</td><td>Accessibility, SEO, performance measurement and risk-based testing</td><td>Medir, auditar y elegir la prueba más barata para cada riesgo</td><td>Matriz riesgo → evidencia</td></tr>
+        <tr><td>26</td><td>Search, tags and taxonomy, QueryBuilder/Oak, indexes and signs of an expensive query</td><td>Evaluar una consulta por tags sin crear índices especulativos</td><td>Resultado, explain y recomendación</td></tr>
+        <tr><td>27</td><td>Cloud delivery mental model: programs, environments, repositories, pipelines and quality gates</td><td>Interpretar un flujo y log suministrados, sin acceso a Cloud Manager</td><td>Mapa teórico y primera causa accionable</td></tr>
+        <tr><td>28</td><td>Local Dispatcher and caching lab: virtual hosts, vanity paths, redirects, rewrites, filters, headers and invalidation</td><td>Trazar una URL y probar requests permitidos, bloqueados y cacheables</td><td>Regla exacta y evidencia local</td></tr>
+        <tr><td>29</td><td>ACLs, service users, Repo Init, output security, validation and secrets</td><td>Aplicar least privilege y hacer threat review del Guide feature</td><td>Matriz de acceso, regla versionada y comprobación</td></tr>
         <tr><td>30</td><td>Weekly practice review: local production readiness and theoretical delivery defense</td><td>Demostrar el fix local y explicar el flujo cloud suministrado</td><td>Matriz, PR y defensa técnica</td></tr>
       </tbody>
     </table></div>
 
-    <h2 class="week" id="semana-7">Week 7 · Capstone and knowledge transfer · September 28–October 2</h2>
+    <h2 class="week" id="semana-7">Week 7 · Production quality and capstone · September 28–October 2</h2>
     <p><strong>Entrega semanal:</strong> capstone individual, demo, defensa técnica y plan de crecimiento.</p>
     <div class="table-wrap"><table>
       <thead><tr><th>Día</th><th>Objective and topics</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
       <tbody>
-        <tr><td>31</td><td>Plan an individually owned final increment with observable acceptance criteria</td><td>Refinar outcome, riesgos y criterios de aceptación</td><td>Incremento propio explicado</td></tr>
-        <tr><td>32</td><td>Capstone implementation using established AEM patterns</td><td>Desarrollar en el repo propio con commits pequeños</td><td>Artefacto propio verificable</td></tr>
-        <tr><td>33</td><td>Review, defects, regression testing and hardening</td><td>Recibir review y corregir un hallazgo en el repo propio</td><td>Review y respuesta técnica</td></tr>
-        <tr><td>34</td><td>Individual practical assessment with a small live variation</td><td>Resolver una variante nueva sin ayuda directa</td><td>Resultado, prueba y explicación</td></tr>
-        <tr><td>35</td><td>Final practice review: demo, technical defense, retrospective and 30-day plan</td><td>Demostrar el sistema y responder escenarios</td><td>Nivel final y siguiente objetivo</td></tr>
+        <tr><td>31</td><td>Accessibility, SEO, performance measurement and risk-based testing</td><td>Medir, auditar y elegir la prueba más barata para cada riesgo</td><td>Matriz riesgo → evidencia</td></tr>
+        <tr><td>32</td><td>Plan an individually owned final increment with observable acceptance criteria</td><td>Refinar outcome, riesgos y criterios de aceptación</td><td>Incremento propio explicado</td></tr>
+        <tr><td>33</td><td>Capstone implementation using established AEM patterns</td><td>Desarrollar en el repo propio con commits pequeños</td><td>Artefacto propio verificable</td></tr>
+        <tr><td>34</td><td>Review, defects, regression testing and hardening</td><td>Recibir review y corregir un hallazgo en el repo propio</td><td>Review y respuesta técnica</td></tr>
+        <tr><td>35</td><td>Weekly and final practice review: demo, technical defense, retrospective and 30-day plan</td><td>Demostrar el sistema y compartir hallazgos</td><td>Capstone, feedback y siguiente objetivo</td></tr>
       </tbody>
     </table></div>
 
@@ -146,6 +145,9 @@
       <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/getting-started-wknd-tutorial-develop/overview">WKND Sites tutorial — Adobe</a></li>
       <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/aem-project-content-package-structure">AEM Cloud project structure — Adobe</a></li>
       <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-core-components/using/introduction">Core Components — Adobe</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm/overview">Multi-Site Manager — Adobe</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/authoring/fragments/experience-fragments">Experience Fragments — Adobe</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/authoring/fragments/content-fragments">Content Fragments — Adobe</a></li>
       <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/overview">Content delivery flow — Adobe</a></li>
     </ul>
     <p class="callout no-print">Este temario fija la secuencia, no la profundidad. Usa las evidencias del viernes para reducir o ampliar la práctica de la semana siguiente.</p>

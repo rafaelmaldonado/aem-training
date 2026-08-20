@@ -13,10 +13,8 @@
     <ul>
       <li><a href="../index.html">Overview</a></li>
       <li><a href="aem-course-topics.html">Syllabus</a></li>
-      <li><a href="slide-ready-lessons.html" aria-current="page">Slides</a></li>
       <li><a href="wknd-project-backlog.html">Practices</a></li>
-      <li><a href="initial-setup.html">Setup</a></li>
-      <li><a href="seguimiento-evidencias.html">Evidence</a></li>
+      <li><a href="index.html" aria-current="page">References</a></li>
     </ul>
   </nav>
   <header>
@@ -200,16 +198,16 @@
       <p><strong>Demo:</strong> change WKND frontend source, build and find the resulting clientlib request. <strong>Assignment:</strong> add Guide Card styling through the existing pipeline. <strong>Acceptance:</strong> source is versioned, generated output is not and the browser receives one intended asset.</p>
     </details>
 
-    <details><summary>Day 13 · Core Components and the proxy pattern</summary>
+    <details><summary>Day 13 · Core Components, proxy pattern and Data Layer</summary>
       <p><strong>Retrieval question:</strong> What is lost when product component code is copied into the project?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Core Components are production capabilities.</strong> They provide tested authoring, markup, accessibility and versioned behavior. <em>Speaker cue: begin every component request by checking existing capability.</em></li>
         <li><strong>Slide 2 — A proxy gives the site ownership.</strong> The project defines its own resource type, title, group and policy surface. <em>Speaker cue: authors see the project component, not the product path.</em></li>
         <li><strong>Slide 3 — The super type delegates implementation.</strong> <code>sling:resourceSuperType</code> reuses the Core Component without copying it. <em>Speaker cue: inherited behavior can receive product fixes.</em></li>
         <li><strong>Slide 4 — Customize at the narrowest extension point.</strong> Policy, style, dialog extension, model delegation or markup override have different costs. <em>Speaker cue: choose the first point that meets the requirement.</em></li>
-        <li><strong>Slide 5 — Version compatibility is explicit.</strong> A proxy must target a supported Core Component version and preserve existing authored content. <em>Speaker cue: an upgrade is a tested change, not a string replacement.</em></li>
+        <li><strong>Slide 5 — Runtime contracts remain observable.</strong> Version compatibility, rendered markup and the Adobe Client Data Layer must survive a proxy customization. <em>Speaker cue: an upgrade is a tested contract change, not a string replacement.</em></li>
       </ol>
-      <p><strong>Demo:</strong> inspect a WKND proxy and its super type. <strong>Assignment:</strong> implement the Guide Card with the smallest viable extension. <strong>Acceptance:</strong> no copied product implementation and the customization decision is justified.</p>
+      <p><strong>Demo:</strong> inspect a WKND proxy, its super type and its Data Layer state. <strong>Assignment:</strong> implement the Guide Card with the smallest viable extension. <strong>Acceptance:</strong> no copied product implementation and the customization and exposed contract are justified.</p>
     </details>
 
     <details><summary>Day 14 · Responsive, accessible and empty states</summary>
@@ -251,13 +249,13 @@
       <p><strong>Demo:</strong> locate a WKND class, its bundle and component state. <strong>Assignment:</strong> map three project classes to runtime responsibilities. <strong>Acceptance:</strong> bundle, component/service role and lifecycle are correct.</p>
     </details>
 
-    <details><summary>Day 17 · Sling Models</summary>
+    <details><summary>Day 17 · Sling Models and delegation</summary>
       <p><strong>Retrieval question:</strong> When should a model adapt from a resource rather than a request?</p>
       <ol class="slides">
         <li><strong>Slide 1 — The adaptable defines available context.</strong> A resource model is portable; a request model is appropriate when request-specific objects are required. <em>Speaker cue: choose the narrowest context.</em></li>
         <li><strong>Slide 2 — Injection maps AEM data.</strong> Properties, child resources and services can be injected with explicit optionality. <em>Speaker cue: invisible injection failure becomes an empty page.</em></li>
         <li><strong>Slide 3 — The model is a view contract.</strong> Getters expose values already prepared for HTL. <em>Speaker cue: HTL should not know repository fallbacks or formatting rules.</em></li>
-        <li><strong>Slide 4 — Fallbacks protect legacy content.</strong> Missing properties must produce safe behavior rather than exceptions. <em>Speaker cue: deploy code without assuming every component was re-authored.</em></li>
+        <li><strong>Slide 4 — Delegate existing component behavior.</strong> Extend a Core Component model through its public contract instead of copying implementation. <em>Speaker cue: add only the project-owned value or override.</em></li>
         <li><strong>Slide 5 — Services own reusable orchestration.</strong> Large queries, integrations or shared logic do not belong in getters. <em>Speaker cue: a model coordinates the view; it is not the entire application.</em></li>
       </ol>
       <p><strong>Demo:</strong> implement a Guide title with a fallback. <strong>Assignment:</strong> connect a Sling Model to Guide Card HTL. <strong>Acceptance:</strong> configured, missing and legacy values render without exceptions.</p>
@@ -275,19 +273,19 @@
       <p><strong>Demo:</strong> configure a Guide URL service with a non-secret base path. <strong>Assignment:</strong> implement typed configuration and a safe fallback. <strong>Acceptance:</strong> environment variation requires no hardcoded conditional and no secret reaches Git.</p>
     </details>
 
-    <details><summary>Day 19 · Resource API and servlets</summary>
+    <details><summary>Day 19 · Resource API, Model Exporter and servlets</summary>
       <p><strong>Retrieval question:</strong> What existing AEM capability could eliminate the need for a new endpoint?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Prefer the Resource API for content.</strong> It expresses paths, properties and children without unnecessary JCR coupling. <em>Speaker cue: use JCR APIs only for JCR-specific requirements.</em></li>
         <li><strong>Slide 2 — Respect resolver ownership.</strong> Close resolvers created by your service; never close a resolver received from a request or model. <em>Speaker cue: leaks and premature closes both become production faults.</em></li>
-        <li><strong>Slide 3 — Resource-type servlets bind to domain resources.</strong> They avoid global path endpoints and participate in Sling resolution. <em>Speaker cue: a path servlet expands unaudited public surface.</em></li>
+        <li><strong>Slide 3 — Model Exporter can provide an existing JSON contract.</strong> A registered selector such as <code>.model.json</code> serializes an eligible Sling Model without a custom endpoint. <em>Speaker cue: inspect the available contract before adding a servlet.</em></li>
         <li><strong>Slide 4 — Every endpoint is a trust boundary.</strong> Validate method, input, permissions, response type and caching behavior. <em>Speaker cue: “internal” URLs still receive untrusted requests.</em></li>
         <li><strong>Slide 5 — The best servlet may be no servlet.</strong> A model, Core Component or existing JSON exporter can meet many requirements with less code and risk. <em>Speaker cue: require evidence for adding a new API.</em></li>
       </ol>
-      <p><strong>Demo:</strong> compare model and servlet solutions for Guide List. <strong>Assignment:</strong> decide the minimum solution for three cases. <strong>Acceptance:</strong> each decision names capability, security surface and reason.</p>
+      <p><strong>Demo:</strong> compare Guide HTML, <code>.model.json</code> and a servlet proposal. <strong>Assignment:</strong> decide the minimum solution for three cases. <strong>Acceptance:</strong> each decision names contract, capability, security surface and reason.</p>
     </details>
 
-    <details><summary>Day 20 · Weekly review: Sling Model tests</summary>
+    <details><summary>Day 20 · Weekly review: JUnit 5 and AEM Mocks</summary>
       <p><strong>Retrieval question:</strong> What behavior should fail if the fallback implementation is removed?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Test observable behavior.</strong> Inputs, outputs and fallbacks matter more than private methods or injection mechanics. <em>Speaker cue: a refactor should not rewrite every test.</em></li>
@@ -300,9 +298,21 @@
     </details>
     <p><strong>Official reading:</strong> <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/getting-started-wknd-tutorial-develop/project-archetype/unit-testing">WKND Unit Testing — Adobe</a>.</p>
 
-    <h2 id="week-5">Week 5 · Maintenance and investigation</h2>
+    <h2 id="week-5">Week 5 · Content reuse and maintenance</h2>
 
-    <details><summary>Day 21 · Cloud-compatible project structure</summary>
+    <details><summary>Day 21 · Multi-Site Management foundations</summary>
+      <p><strong>Retrieval question:</strong> Which value is inherited from the language master, and which value belongs only to the live copy?</p>
+      <ol class="slides">
+        <li><strong>Slide 1 — A language master owns reusable source content.</strong> Site structures can derive local experiences without copying disconnected pages. <em>Speaker cue: reuse requires an observable relationship.</em></li>
+        <li><strong>Slide 2 — A Live Copy records inheritance.</strong> Blueprint, source and live relationship explain where content originates. <em>Speaker cue: similar paths do not prove an MSM relationship.</em></li>
+        <li><strong>Slide 3 — Inheritance can vary by component.</strong> A local market may cancel inheritance for one component while preserving the rest. <em>Speaker cue: local ownership must be deliberate and visible.</em></li>
+        <li><strong>Slide 4 — Synchronize pulls; rollout pushes.</strong> Predict direction, scope and rollout configuration before executing either action. <em>Speaker cue: never use rollout as an unexplained refresh button.</em></li>
+        <li><strong>Slide 5 — Localization has separate concerns.</strong> MSM relationships, translated page content and component UI dictionaries solve different problems. <em>Speaker cue: name the layer before diagnosing stale language.</em></li>
+      </ol>
+      <p><strong>Demo:</strong> trace language master → Live Copy, cancel inheritance on one component and run a controlled rollout. <strong>Assignment:</strong> record source, inherited/local state, action and result for one page. <strong>Acceptance:</strong> the intended inherited value changes and the local override remains intact.</p>
+    </details>
+
+    <details><summary>Day 22 · Cloud-compatible project structure</summary>
       <p><strong>Retrieval question:</strong> Which repository paths may change operationally, and which are deployed as immutable code?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Application code is immutable.</strong> <code>/apps</code> and product code are replaced through deployment, not edited on a cloud runtime. <em>Speaker cue: CRXDE inspection is diagnostic, not a production development workflow.</em></li>
@@ -314,43 +324,31 @@
       <p><strong>Demo:</strong> trace WKND packages inside <code>all</code> and inspect sample-content filters. <strong>Assignment:</strong> classify ten paths and make sample deployment safe. <strong>Acceptance:</strong> rebuild does not overwrite authored Guide content.</p>
     </details>
 
-    <details><summary>Day 22 · Runtime diagnostic tools</summary>
+    <details><summary>Day 23 · Runtime diagnostics and asynchronous processing</summary>
       <p><strong>Retrieval question:</strong> Which runtime view would you inspect for an unsatisfied service reference?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Logs provide a timed execution record.</strong> Narrow by service, request, correlation detail and root exception. <em>Speaker cue: the first cause is often above the final summary.</em></li>
         <li><strong>Slide 2 — Bundle state reveals package resolution.</strong> Installed or resolved bundles may have missing imports even when Maven passed. <em>Speaker cue: compare symbolic name, version and imported package.</em></li>
-        <li><strong>Slide 3 — Components reveal service satisfaction.</strong> Inspect activation state and required references before changing annotations. <em>Speaker cue: one inactive dependency can cascade to many consumers.</em></li>
+        <li><strong>Slide 3 — Choose the asynchronous mechanism by responsibility.</strong> Workflows expose business process state, launchers react to repository events and jobs queue retryable work. <em>Speaker cue: do not use three mechanisms for one event.</em></li>
         <li><strong>Slide 4 — Effective configuration beats assumptions.</strong> Confirm the active PID, values and run mode on the affected service. <em>Speaker cue: the committed file may not be the selected configuration.</em></li>
-        <li><strong>Slide 5 — Repository tools are read-first diagnostics.</strong> Use Repository Browser or CRXDE to confirm content and paths, not to create untracked fixes. <em>Speaker cue: the durable fix belongs in Git or authoring workflow.</em></li>
+        <li><strong>Slide 5 — Retry requires idempotency.</strong> Trace payload, state and duplicate risk before rerunning a failed workflow or job. <em>Speaker cue: repeated processing must not repeat destructive side effects.</em></li>
       </ol>
-      <p><strong>Demo:</strong> diagnose an inactive Guide service caused by a missing reference. <strong>Assignment:</strong> resolve a seeded runtime failure. <strong>Acceptance:</strong> exact evidence, cause, source fix and verification are recorded.</p>
+      <p><strong>Demo:</strong> trace a Guide event through logs, configuration and its workflow or job state. <strong>Assignment:</strong> resolve a seeded runtime or asynchronous failure. <strong>Acceptance:</strong> exact evidence, responsible mechanism, cause and verification are recorded.</p>
     </details>
 
-    <details><summary>Day 23 · Workflows, launchers and jobs</summary>
-      <p><strong>Retrieval question:</strong> Which mechanism represents a business process with visible steps and state?</p>
+    <details><summary>Day 24 · Experience Fragments and Content Fragments</summary>
+      <p><strong>Retrieval question:</strong> Does the requirement reuse structured content or a composed visual experience?</p>
       <ol class="slides">
-        <li><strong>Slide 1 — A workflow models a managed process.</strong> It has a payload, steps, participants and observable state. <em>Speaker cue: do not use a workflow merely to run arbitrary background code.</em></li>
-        <li><strong>Slide 2 — A launcher reacts to repository events.</strong> Paths, node types, event types and exclusions must be narrow. <em>Speaker cue: broad launchers create event storms and duplicate work.</em></li>
-        <li><strong>Slide 3 — A job represents asynchronous work.</strong> It can be queued, retried and processed by an appropriate instance. <em>Speaker cue: manually creating threads is not cloud-safe scheduling.</em></li>
-        <li><strong>Slide 4 — Idempotency makes retries safe.</strong> Processing the same payload twice must not duplicate destructive side effects. <em>Speaker cue: define the stable key and completed state.</em></li>
-        <li><strong>Slide 5 — Cloud execution is distributed.</strong> Code must tolerate multiple instances, restarts and delayed processing. <em>Speaker cue: local memory cannot coordinate a cluster.</em></li>
+        <li><strong>Slide 1 — Content Fragments model presentation-neutral content.</strong> A model defines fields; fragment instances and variations provide structured values independent of page layout. <em>Speaker cue: this course consumes CFs in traditional Sites, not GraphQL.</em></li>
+        <li><strong>Slide 2 — Experience Fragments reuse composed experiences.</strong> Components, content and layout form variations that can be referenced across pages. <em>Speaker cue: an XF is more than a structured record.</em></li>
+        <li><strong>Slide 3 — Storage reveals ownership.</strong> CFs are assets governed by models; XFs are page-like structures governed by editable templates. <em>Speaker cue: inspect the repository before assuming lifecycle.</em></li>
+        <li><strong>Slide 4 — References connect fragments to Sites.</strong> A page component can render a CF or XF without copying its authored content. <em>Speaker cue: reuse is a reference, not duplicated markup.</em></li>
+        <li><strong>Slide 5 — Publication includes dependencies.</strong> Fragment, model/template, referenced assets and consuming page must be considered together. <em>Speaker cue: an Author preview does not prove Publish completeness.</em></li>
       </ol>
-      <p><strong>Demo:</strong> trace event → launcher → workflow/job for a Guide Page. <strong>Assignment:</strong> review filters, permissions and retry behavior. <strong>Acceptance:</strong> duplicate risk and idempotency strategy are explicit.</p>
+      <p><strong>Demo:</strong> inspect one CF and one XF from authoring through repository storage, reference and rendered page. <strong>Assignment:</strong> model one reusable Guide requirement with each option and select the fitting one. <strong>Acceptance:</strong> both traces are correct, the selection is justified and no GraphQL implementation is added.</p>
     </details>
 
-    <details><summary>Day 24 · Search and indexes</summary>
-      <p><strong>Retrieval question:</strong> Why is a repository traversal warning a design signal rather than harmless noise?</p>
-      <ol class="slides">
-        <li><strong>Slide 1 — A query should express a narrow intent.</strong> Path, primary type and required properties reduce the search space. <em>Speaker cue: a broad query makes every future content increase more expensive.</em></li>
-        <li><strong>Slide 2 — Traversal does not scale.</strong> Reading many nodes to return a few results consumes shared runtime resources. <em>Speaker cue: small local content can hide the problem.</em></li>
-        <li><strong>Slide 3 — Indexes serve real query shapes.</strong> Add or change an index only from measured queries and requirements. <em>Speaker cue: one index per developer intuition creates cost without benefit.</em></li>
-        <li><strong>Slide 4 — Explain shows the selected plan.</strong> Verify which index or traversal the repository will use before claiming optimization. <em>Speaker cue: evidence is the plan, not only faster local timing.</em></li>
-        <li><strong>Slide 5 — Cloud indexes deploy as coordinated code.</strong> Definitions and query changes must be versioned and rolled out safely. <em>Speaker cue: index work is a deployment decision, not an author fix.</em></li>
-      </ol>
-      <p><strong>Demo:</strong> compare an unbounded query with a path/type-constrained Guide query. <strong>Assignment:</strong> implement Guide List and capture explain output. <strong>Acceptance:</strong> no traversal and the query returns only intended pages.</p>
-    </details>
-
-    <details><summary>Day 25 · Weekly review: maintenance simulation</summary>
+    <details><summary>Day 25 · Weekly review: content reuse and maintenance</summary>
       <p><strong>Retrieval question:</strong> What information in a bug report describes the symptom but not the cause?</p>
       <ol class="slides">
         <li><strong>Slide 1 — The ticket is not the diagnosis.</strong> User language identifies impact; it does not identify the failing layer. <em>Speaker cue: preserve the report while testing its assumptions.</em></li>
@@ -359,13 +357,25 @@
         <li><strong>Slide 4 — Leave a regression check.</strong> The smallest test or repeatable check must fail when the defect returns. <em>Speaker cue: a fix without a check becomes tribal memory.</em></li>
         <li><strong>Slide 5 — Communicate operationally.</strong> State cause, change, evidence and remaining risk in language another maintainer can act on. <em>Speaker cue: five precise lines beat a chronological diary.</em></li>
       </ol>
-      <p><strong>Demo:</strong> investigate a misleading WKND Guide symptom. <strong>Assignment:</strong> resolve a timed individual maintenance ticket. <strong>Acceptance:</strong> root-cause fix, regression proof and concise incident note.</p>
+      <p><strong>Demo:</strong> investigate a misleading WKND Guide symptom involving a reference or inheritance boundary. <strong>Assignment:</strong> resolve a timed individual maintenance ticket. <strong>Acceptance:</strong> root-cause fix, regression proof and concise incident note.</p>
     </details>
-    <p><strong>Official reading:</strong> <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/aem-project-content-package-structure">AEM Project Structure — Adobe</a>.</p>
+    <p><strong>Official reading:</strong> <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm/overview">Multi-Site Manager — Adobe</a>; <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/authoring/fragments/experience-fragments">Experience Fragments — Adobe</a>; <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/authoring/fragments/content-fragments">Content Fragments — Adobe</a>.</p>
 
     <h2 id="week-6">Week 6 · Production quality and delivery constraints</h2>
 
-    <details><summary>Day 26 · Cloud delivery model · theory</summary>
+    <details><summary>Day 26 · Search, tags and indexes</summary>
+      <p><strong>Retrieval question:</strong> Why is a repository traversal warning a design signal rather than harmless noise?</p>
+      <ol class="slides">
+        <li><strong>Slide 1 — Taxonomy is an authoring contract.</strong> Tags provide governed classification that queries and components can reuse. <em>Speaker cue: free-text categories become inconsistent query inputs.</em></li>
+        <li><strong>Slide 2 — A query should express a narrow intent.</strong> Path, primary type, tags and required properties reduce the search space. <em>Speaker cue: a broad query makes every content increase more expensive.</em></li>
+        <li><strong>Slide 3 — Traversal does not scale.</strong> Reading many nodes to return a few results consumes shared runtime resources. <em>Speaker cue: small local content can hide the problem.</em></li>
+        <li><strong>Slide 4 — Explain shows the selected plan.</strong> Verify which index or traversal Oak will use before claiming optimization. <em>Speaker cue: evidence is the plan, not only faster local timing.</em></li>
+        <li><strong>Slide 5 — Indexes serve measured query shapes.</strong> Definitions and query changes deploy together; do not add indexes speculatively. <em>Speaker cue: an index is shared operational cost.</em></li>
+      </ol>
+      <p><strong>Demo:</strong> compare an unbounded query with a path/type/tag-constrained Guide query. <strong>Assignment:</strong> implement Guide List and capture explain output. <strong>Acceptance:</strong> no traversal and the query returns only intended pages.</p>
+    </details>
+
+    <details><summary>Day 27 · Cloud delivery model · theory</summary>
       <p><strong>Retrieval question:</strong> Which artifact should move from validation toward production without manual rebuilding?</p>
       <ol class="slides">
         <li><strong>Slide 1 — A Cloud Manager program groups delivery.</strong> It contains repositories, environments and pipelines for an initiative. <em>Speaker cue: distinguish the Adobe organization from the program.</em></li>
@@ -377,40 +387,28 @@
       <p><strong>Demo:</strong> trace a WKND commit through supplied, anonymized Cloud Manager evidence. <strong>Assignment:</strong> annotate repository, branch, gates, services, environments and one failed stage. <strong>Acceptance:</strong> the model and first actionable error are correct; no login, pipeline execution or deployment is requested.</p>
     </details>
 
-    <details><summary>Day 27 · Local Dispatcher and cache lab</summary>
+    <details><summary>Day 28 · Local Dispatcher and cache lab</summary>
       <p><strong>Retrieval question:</strong> Which rule decides whether a request may reach Publish, and which rule decides whether its response may be cached?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Dispatcher protects and accelerates Publish.</strong> Filters control request reachability; cache rules control reusable responses. <em>Speaker cue: neither replaces application authorization.</em></li>
         <li><strong>Slide 2 — Deny first, then allow narrowly.</strong> Methods, paths, selectors and extensions must match an explicit public requirement. <em>Speaker cue: test the exact host and URL shape.</em></li>
-        <li><strong>Slide 3 — Rewrites and virtual hosts shape routing.</strong> Trace the external URL to the internal path before blaming content or code. <em>Speaker cue: a rewrite should not hide broken content architecture.</em></li>
+        <li><strong>Slide 3 — URL ownership must be explicit.</strong> Trace vanity paths, redirects, virtual hosts and rewrites from the external URL to content. <em>Speaker cue: choose one responsible layer instead of stacking redirects.</em></li>
         <li><strong>Slide 4 — Cache only safe shared responses.</strong> Stable public GET responses are candidates; personalized or mutable operations are not. <em>Speaker cue: speed never overrides privacy or correctness.</em></li>
         <li><strong>Slide 5 — Headers make cache behavior observable.</strong> Repeat controlled requests and compare status, age, cache indicators and content version. <em>Speaker cue: preserve evidence before clearing every cache.</em></li>
       </ol>
       <p><strong>Demo:</strong> validate one Guide URL with local Dispatcher Tools and repeated requests. <strong>Assignment:</strong> test allowed, denied, hit and miss cases. <strong>Acceptance:</strong> each result cites the exact local rule and captured evidence.</p>
     </details>
 
-    <details><summary>Day 28 · Permissions and application security</summary>
+    <details><summary>Day 29 · ACLs, service users and application security</summary>
       <p><strong>Retrieval question:</strong> Which identity and privilege does the Guide backend actually require?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Least privilege bounds impact.</strong> Grant the exact actions on the exact repository paths needed by the capability. <em>Speaker cue: administrator access is not a development shortcut.</em></li>
-        <li><strong>Slide 2 — Service users identify backend code.</strong> Resource resolver mappings and Repo Init make access explicit, versioned and reviewable. <em>Speaker cue: verify effective privileges, not only syntax.</em></li>
+        <li><strong>Slide 2 — Service users identify backend code.</strong> Resource resolver mappings and Repo Init make users, groups and ACLs explicit, versioned and reviewable. <em>Speaker cue: verify effective privileges, not only syntax.</em></li>
         <li><strong>Slide 3 — Treat content and requests as untrusted.</strong> Dialog values, parameters, headers and external responses require limits. <em>Speaker cue: authenticated authors can still store unsafe data.</em></li>
         <li><strong>Slide 4 — Encode for the output context.</strong> HTML text, attributes, URIs and scripts need different protections. <em>Speaker cue: prefer HTL context-aware escaping.</em></li>
         <li><strong>Slide 5 — Protect mutation and secrets.</strong> Use correct methods and CSRF controls; keep credentials out of Git, logs and rendered output. <em>Speaker cue: Dispatcher adds defense in depth.</em></li>
       </ol>
       <p><strong>Demo:</strong> threat-review the Guide service, HTL output and public request surface. <strong>Assignment:</strong> produce an access matrix and three risk/control checks. <strong>Acceptance:</strong> no admin, wildcard or hardcoded secret; every control is observable.</p>
-    </details>
-
-    <details><summary>Day 29 · Accessibility, performance and test strategy</summary>
-      <p><strong>Retrieval question:</strong> What is the cheapest check that observes the user or operational risk?</p>
-      <ol class="slides">
-        <li><strong>Slide 1 — Semantic HTML and authoring work together.</strong> Native elements, useful labels and safe defaults prevent defects before publication. <em>Speaker cue: authorability is part of accessibility.</em></li>
-        <li><strong>Slide 2 — Keyboard and zoom expose interaction failures.</strong> Order, visible focus, activation and reflow must work without a pointer. <em>Speaker cue: demonstrate the complete Guide journey.</em></li>
-        <li><strong>Slide 3 — Metadata must describe the rendered page.</strong> Title, description, canonical URL, headings and alternative text need human review. <em>Speaker cue: inspect output, not only dialog fields.</em></li>
-        <li><strong>Slide 4 — Measure before optimizing.</strong> Compare the same URL, content, cache state and environment; inspect bytes, requests, rendering and backend work. <em>Speaker cue: intuition chooses a question, not an answer.</em></li>
-        <li><strong>Slide 5 — Match test cost to failure risk.</strong> Unit, integration, UI and smoke checks provide different speed and confidence. <em>Speaker cue: keep the lowest-cost check that sees the real failure.</em></li>
-      </ol>
-      <p><strong>Demo:</strong> audit one Guide journey and select checks for five failures. <strong>Assignment:</strong> fix one measured accessibility, SEO or performance issue. <strong>Acceptance:</strong> comparable before/after evidence and a regression check are supplied.</p>
     </details>
 
     <details><summary>Day 30 · Weekly review: production readiness</summary>
@@ -424,11 +422,23 @@
       </ol>
       <p><strong>Demo:</strong> review one Guide PR with the five lenses and supplied cloud evidence. <strong>Assignment:</strong> fix the highest-risk local finding. <strong>Acceptance:</strong> before/after proof, regression evidence and an accurate theoretical delivery explanation.</p>
     </details>
+
+    <h2 id="week-7">Week 7 · Production quality and capstone</h2>
+
+    <details><summary>Day 31 · Accessibility, performance and test strategy</summary>
+      <p><strong>Retrieval question:</strong> What is the cheapest check that observes the user or operational risk?</p>
+      <ol class="slides">
+        <li><strong>Slide 1 — Semantic HTML and authoring work together.</strong> Native elements, useful labels and safe defaults prevent defects before publication. <em>Speaker cue: authorability is part of accessibility.</em></li>
+        <li><strong>Slide 2 — Keyboard and zoom expose interaction failures.</strong> Order, visible focus, activation and reflow must work without a pointer. <em>Speaker cue: demonstrate the complete Guide journey.</em></li>
+        <li><strong>Slide 3 — Metadata must describe the rendered page.</strong> Title, description, canonical URL, headings and alternative text need human review. <em>Speaker cue: inspect output, not only dialog fields.</em></li>
+        <li><strong>Slide 4 — Measure before optimizing.</strong> Compare the same URL, content, cache state and environment; inspect bytes, requests, rendering and backend work. <em>Speaker cue: intuition chooses a question, not an answer.</em></li>
+        <li><strong>Slide 5 — Match test cost to failure risk.</strong> Unit, integration, UI and smoke checks provide different speed and confidence. <em>Speaker cue: keep the lowest-cost check that sees the real failure.</em></li>
+      </ol>
+      <p><strong>Demo:</strong> audit one Guide journey and select checks for five failures. <strong>Assignment:</strong> fix one measured accessibility, SEO or performance issue. <strong>Acceptance:</strong> comparable before/after evidence and a regression check are supplied.</p>
+    </details>
     <p><strong>Official reading:</strong> <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/development-guidelines">AEMaaCS Development Guidelines — Adobe</a>.</p>
 
-    <h2 id="week-7">Week 7 · Capstone and transfer</h2>
-
-    <details><summary>Day 31 · Plan the final increment</summary>
+    <details><summary>Day 32 · Plan the final increment</summary>
       <p><strong>Retrieval question:</strong> What outcome can one contributor deliver and demonstrate independently?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Start from user outcome.</strong> Describe what an author or visitor can do when the increment is complete. <em>Speaker cue: avoid practices named only after modules.</em></li>
@@ -440,7 +450,7 @@
       <p><strong>Demo:</strong> refine one Weekend Guides outcome into a vertical increment. <strong>Assignment:</strong> refine the learner's final practice. <strong>Acceptance:</strong> one independently owned, testable increment with observable acceptance and explicit dependencies.</p>
     </details>
 
-    <details><summary>Day 32 · Implement the capstone</summary>
+    <details><summary>Day 33 · Implement the capstone</summary>
       <p><strong>Retrieval question:</strong> Which existing WKND pattern is closest to your increment?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Begin with the acceptance check.</strong> Write the test or repeatable checklist before the implementation changes. <em>Speaker cue: this exposes missing assumptions early.</em></li>
@@ -452,7 +462,7 @@
       <p><strong>Demo:</strong> implement the instructor's first thin slice. <strong>Assignment:</strong> deliver the owned capstone increment. <strong>Acceptance:</strong> draft PR shows working behavior, current checks and an explicit remaining task.</p>
     </details>
 
-    <details><summary>Day 33 · Hardening and defects</summary>
+    <details><summary>Day 34 · Hardening and defects</summary>
       <p><strong>Retrieval question:</strong> Which boundary condition is most likely to invalidate your implementation assumption?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Cross-review challenges assumptions.</strong> The reviewer attempts to reproduce edge cases, not merely confirm style. <em>Speaker cue: constructive review includes evidence and impact.</em></li>
@@ -464,19 +474,7 @@
       <p><strong>Demo:</strong> turn a vague comment into a reproducible finding. <strong>Assignment:</strong> review and harden one peer increment. <strong>Acceptance:</strong> traceable review, prioritized fix and regression evidence.</p>
     </details>
 
-    <details><summary>Day 34 · Individual practical assessment</summary>
-      <p><strong>Retrieval question:</strong> What process will you follow before touching code in an unfamiliar change?</p>
-      <ol class="slides">
-        <li><strong>Slide 1 — The case is new but the pattern is familiar.</strong> Assessment uses a variation of practiced work, not trivia. <em>Speaker cue: success is transfer, not memorization.</em></li>
-        <li><strong>Slide 2 — Documentation is allowed; direct implementation help is not.</strong> Real developers consult authoritative sources while owning the decision. <em>Speaker cue: record when and why a source was used.</em></li>
-        <li><strong>Slide 3 — The process is observable.</strong> Reproduce, locate, hypothesize, change and verify in a deliberate sequence. <em>Speaker cue: a correct result with no explainable path is incomplete evidence.</em></li>
-        <li><strong>Slide 4 — Decisions require alternatives and risk.</strong> Explain why the selected approach is smaller or safer and what remains uncertain. <em>Speaker cue: confidence must match evidence.</em></li>
-        <li><strong>Slide 5 — Use the common proficiency scale.</strong> Not demonstrated, with support, independent or can guide describes current evidence. <em>Speaker cue: the level is per capability, not a permanent label.</em></li>
-      </ol>
-      <p><strong>Demo:</strong> explain assessment rules without revealing the solution. <strong>Assignment:</strong> complete a timed individual maintenance change. <strong>Acceptance:</strong> working behavior, relevant check and technical defense.</p>
-    </details>
-
-    <details><summary>Day 35 · Final review: demo, defense and the next 30 days</summary>
+    <details><summary>Day 35 · Weekly and final review: demo, defense and the next 30 days</summary>
       <p><strong>Retrieval question:</strong> What evidence best demonstrates the capability you improved most?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Demonstrate outcomes.</strong> Show the author task, visitor experience and evidence rather than navigating source folders. <em>Speaker cue: begin from the acceptance criterion.</em></li>
@@ -485,7 +483,7 @@
         <li><strong>Slide 4 — Retrospect on learning behavior.</strong> Identify which practice to keep, change or remove based on evidence. <em>Speaker cue: separate course mechanics from individual capability.</em></li>
         <li><strong>Slide 5 — Commit to one 30-day outcome.</strong> Each contributor chooses a real work goal and the evidence that will prove it. <em>Speaker cue: a concrete artifact is stronger than “learn more AEM.”</em></li>
       </ol>
-      <p><strong>Demo:</strong> present the completed Weekend Guides increment. <strong>Assignment:</strong> answer an assigned technical scenario and publish the 30-day goal. <strong>Acceptance:</strong> final proficiency is evidence-based and each next action is observable.</p>
+      <p><strong>Demo:</strong> present the completed Weekend Guides increment. <strong>Assignment:</strong> share the capstone evidence, retrospective and 30-day goal. <strong>Acceptance:</strong> demonstrated capabilities, feedback and each next action are recorded.</p>
     </details>
     <p><strong>Official reading:</strong> <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service">AEM as a Cloud Service documentation — Adobe</a>.</p>
 

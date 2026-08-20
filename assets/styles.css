@@ -161,6 +161,9 @@ summary { cursor: pointer; font-weight: 700; }
 .slide-actions button:disabled { cursor: wait; opacity: .55; }
 .slide-actions span { color: var(--muted); font-size: .88rem; }
 .presenter-note { max-width: none; margin: .75rem 0 0; padding: .8rem 1rem; color: var(--muted); background: var(--wash); font-size: .88rem; }
+.presenter-note summary { cursor: pointer; color: var(--ink); font-weight: 750; }
+.presenter-note ul { margin: .65rem 0 .15rem; padding-left: 1.25rem; }
+.presenter-note li + li { margin-top: .4rem; }
 .practice-details { margin: 1.25rem 0 2.5rem; padding: 1rem 1.25rem; border: 1px solid var(--line); border-left: .25rem solid var(--accent); background: var(--wash); }
 .practice-details h3 { margin: .9rem 0 .35rem; font-size: 1.05rem; }
 .practice-details h3:first-child { margin-top: 0; }

@@ -13,10 +13,8 @@
     <ul>
       <li><a href="../index.html">Overview</a></li>
       <li><a href="../reference/aem-course-topics.html">Syllabus</a></li>
-      <li><a href="../reference/slide-ready-lessons.html">Slides</a></li>
       <li><a href="../reference/wknd-project-backlog.html">Practices</a></li>
-      <li><a href="../reference/initial-setup.html">Setup</a></li>
-      <li><a href="../reference/seguimiento-evidencias.html">Evidence</a></li>
+      <li><a href="../reference/index.html">References</a></li>
     </ul>
   </nav>
   <header>
@@ -27,6 +25,18 @@
   </header>
   <main id="content">
     <section class="callout"><strong>Observable outcome:</strong> each developer can explain why a component is available or unavailable, trace its <code>cq:policy</code> mapping and show one semantic style backed by deployed CSS.</section>
+
+    <h2>Topic summary</h2>
+    <p>Content policies are the governance layer between reusable component code and the choices available to authors in a particular template context. The component provides capability; the policy decides how much of that capability is exposed, which components may be inserted and which defaults or semantic styles apply.</p>
+    <p>This separation lets the same component implementation support different authoring contracts without forks. It also gives developers a precise diagnostic path: when a component works in one template but not another, trace the policy mapping under <code>/conf</code> before changing HTL, Java or client libraries.</p>
+    <ul>
+      <li><strong>Capability versus governance:</strong> component code defines what is technically possible; policy controls how that capability may be used at one template location.</li>
+      <li><strong>Policy resolution:</strong> the template’s policy tree mirrors its component structure, and <code>cq:policy</code> points from a component location to the policy definition under <code>/conf</code>.</li>
+      <li><strong>Allowed Components:</strong> deployment makes a component available to AEM, but the container policy determines whether authors may insert it there. Installed does not mean authorable everywhere.</li>
+      <li><strong>Scope:</strong> a policy may affect many component instances and templates, so its consumers must be understood before changing it.</li>
+      <li><strong>Configuration versus content:</strong> reusable defaults belong under <code>/conf</code>; values that describe one authored instance belong under <code>/content</code>.</li>
+      <li><strong>Style System:</strong> a policy exposes a semantic Style Name and maps it to a CSS class. A loaded client library must still implement that class, and the rendered DOM is the evidence that the complete chain works.</li>
+    </ul>
 
     <h2>Architect preparation</h2>
     <ul class="checklist">
@@ -57,57 +67,99 @@
     </table></div>
 
     <h2>Complete slide deck</h2>
-    <p class="section-intro">Choose <strong>Copy slide as image</strong> and paste it into PowerPoint, or download the PNG.</p>
+    <p class="section-intro">Study each slide with its detailed presenter notes, then copy it into PowerPoint or download the PNG.</p>
     <div class="web-deck">
       <article class="web-slide" data-slide-src="../slides/lesson-07/origin_image/slide_01.png">
         <img class="web-slide-image" src="../slides/lesson-07/origin_image/slide_01.png" alt="Class 7 cover showing component capability, content policy and author choice as one control chain.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-07/origin_image/slide_01.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Open:</strong> “Which choices should authors receive without changing component code?”</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> policy governs how reusable component capability is exposed in a template context.</li>
+          <li><strong>Present:</strong> read component → policy → author and name what the developer, template author and content author own.</li>
+          <li><strong>Say:</strong> “A policy narrows capability; it does not implement the component.”</li>
+          <li><strong>Ask:</strong> “If Guide Pages allow Image but Article Pages do not, should we fork Image?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-07/origin_image/slide_02.png">
         <img class="web-slide-image" src="../slides/lesson-07/origin_image/slide_02.png" alt="One component implementation uses different content policies in Guide Page and Article Page contexts.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-07/origin_image/slide_02.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Contrast:</strong> implementation capability is reusable; policy configuration is contextual.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> one implementation can use different policies, while a shared policy affects every consumer.</li>
+          <li><strong>Present:</strong> follow both branches from the same component and compare Guide and Article author choices.</li>
+          <li><strong>Say:</strong> “Implementation is shared; configuration is contextual.”</li>
+          <li><strong>Ask:</strong> “When does policy reuse help, and when does it create accidental coupling?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-07/origin_image/slide_03.png">
         <img class="web-slide-image" src="../slides/lesson-07/origin_image/slide_03.png" alt="A repository trace follows cq policy from the editable-template location to its resolved definition under conf.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-07/origin_image/slide_03.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Inspect first:</strong> verify the template path, <code>cq:policy</code> value and resolved definition.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> the template policy tree maps a component location through <code>cq:policy</code> to a definition under <code>/conf</code>.</li>
+          <li><strong>Present:</strong> trace location → mapping value → resolved policy before discussing code.</li>
+          <li><strong>Say:</strong> “The value is a reference, not the complete policy object.”</li>
+          <li><strong>Diagnose:</strong> confirm template, relative component path, <code>cq:policy</code> and resolved values in that order.</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-07/origin_image/slide_04.png">
         <img class="web-slide-image" src="../slides/lesson-07/origin_image/slide_04.png" alt="A container policy allows Title, Text and Image while keeping an installed Carousel unavailable.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-07/origin_image/slide_04.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Validate both states:</strong> one intended component is available and one unrelated component is not.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> deployment provides capability; the current container policy decides what authors may insert.</li>
+          <li><strong>Present:</strong> show installed components, the policy filter and the resulting editor list.</li>
+          <li><strong>Say:</strong> “Installed does not mean authorable everywhere.”</li>
+          <li><strong>Verify:</strong> one allowed component visible and one disallowed component absent prove both sides of the boundary.</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-07/origin_image/slide_05.png">
         <img class="web-slide-image" src="../slides/lesson-07/origin_image/slide_05.png" alt="Policy defaults under conf are compared with authored component-instance values under content.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-07/origin_image/slide_05.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Scope:</strong> one instance value is local; a reused policy default can affect many consumers.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> policy values under <code>/conf</code> configure a context; instance values under <code>/content</code> describe one component.</li>
+          <li><strong>Present:</strong> compare permitted image widths with the asset selected by a particular author.</li>
+          <li><strong>Say:</strong> “A shared policy change is broad and needs consumer evidence.”</li>
+          <li><strong>Ask:</strong> “Does alternative text belong to policy or to this image’s use on this page?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-07/origin_image/slide_06.png">
         <img class="web-slide-image" src="../slides/lesson-07/origin_image/slide_06.png" alt="The Style System maps a semantic Style Name to a deployed CSS class and rendered wrapper.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-07/origin_image/slide_06.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Trace:</strong> Style Name → policy mapping → client library → author choice → wrapper class.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> policy exposes a semantic name, AEM applies its class and a clientlib implements the visual behavior.</li>
+          <li><strong>Present:</strong> trace Style Name → CSS class → wrapper → clientlib selector → rendered result.</li>
+          <li><strong>Say:</strong> “AEM applies the class; it does not invent the CSS.”</li>
+          <li><strong>Diagnose:</strong> first check the DOM class, then selector scope and clientlib loading.</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-07/origin_image/slide_07.png">
         <img class="web-slide-image" src="../slides/lesson-07/origin_image/slide_07.png" alt="A Guide Page authoring contract maps allowed components, styles, owners and repository evidence.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-07/origin_image/slide_07.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Evidence:</strong> show allowed, disallowed, styled and repository states.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> the smallest useful contract permits Title, Text and Image, excludes Carousel and exposes Standard/Featured intent.</li>
+          <li><strong>Present:</strong> treat every row as acceptance criteria and name editor, repository and browser evidence.</li>
+          <li><strong>Say:</strong> “Every author choice becomes something the team must explain, test and preserve.”</li>
+          <li><strong>Ask:</strong> “Which additional option has a real author requirement today?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-07/origin_image/slide_08.png">
         <img class="web-slide-image" src="../slides/lesson-07/origin_image/slide_08.png" alt="Five key takeaways summarize policy context, mapping, allowed components, defaults and semantic styles.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-07/origin_image/slide_08.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Retrieve:</strong> ask which control point explains one authoring behavior.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Present:</strong> rebuild code → <code>cq:policy</code> → definition → editor choice → rendered result.</li>
+          <li><strong>Say:</strong> “Capability comes from code; permission to insert comes from the container policy.”</li>
+          <li><strong>Reinforce:</strong> policy defaults are contextual; instance values remain content; Style System still needs CSS.</li>
+          <li><strong>Check:</strong> ask where to look when a component is missing only from one template.</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-07/origin_image/slide_09.png">
         <img class="web-slide-image" src="../slides/lesson-07/origin_image/slide_09.png" alt="Three closing questions about policy placement, missing editor components and semantic styles.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-07/origin_image/slide_09.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Close:</strong> discuss the smallest reliable Guide Page authoring contract.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Ask:</strong> which Guide capability belongs in policy, and which path proves the selected policy?</li>
+          <li><strong>Probe:</strong> require two observations for Allowed Components and a DOM check before blaming CSS.</li>
+          <li><strong>Push precision:</strong> ask for the component path and exact <code>cq:policy</code> value.</li>
+          <li><strong>Close:</strong> “Use the smallest policy that lets authors succeed consistently.”</li>
+        </ul></details>
       </article>
     </div>
-
-    <h2>Suggested speaking script</h2>
-    <p>The complete talk track is available in <a href="../slides/lesson-07/speech.md">speech.md</a>.</p>
 
     <h2>Guide Page policy check</h2>
     <ol>

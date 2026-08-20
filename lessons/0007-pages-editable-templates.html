@@ -13,10 +13,8 @@
     <ul>
       <li><a href="../index.html">Overview</a></li>
       <li><a href="../reference/aem-course-topics.html">Syllabus</a></li>
-      <li><a href="../reference/slide-ready-lessons.html">Slides</a></li>
       <li><a href="../reference/wknd-project-backlog.html">Practices</a></li>
-      <li><a href="../reference/initial-setup.html">Setup</a></li>
-      <li><a href="../reference/seguimiento-evidencias.html">Evidence</a></li>
+      <li><a href="../reference/index.html">References</a></li>
     </ul>
   </nav>
   <header>
@@ -27,6 +25,18 @@
   </header>
   <main id="content">
     <section class="callout"><strong>Observable outcome:</strong> each developer can classify a Guide Page element as template structure, initial content, policy or page content and justify the choice through ownership and synchronization behavior.</section>
+
+    <h2>Topic summary</h2>
+    <p>Editable templates define the authoring contract shared by a family of pages. They determine which structural elements remain controlled by the template, where authors may add content, which components and styles are permitted, and what starter content appears when a page is created. They do not replace the page component that renders the request, and they do not own every value authored on every page.</p>
+    <p>The central design question is ownership over time: who may change an element, and should a later template change update existing pages? That answer determines whether the element belongs in template structure, initial content, a content policy or the page’s own content tree.</p>
+    <ul>
+      <li><strong>Page references:</strong> <code>cq:template</code> identifies the authoring contract used by the page, while <code>sling:resourceType</code> selects the page component responsible for rendering.</li>
+      <li><strong>Template type:</strong> it supplies the approved starting definition when an editable template is created. The relationship is a one-time seed, not continuous inheritance.</li>
+      <li><strong>Structure:</strong> structural components stay connected to existing pages. Locked components remain template-controlled; an unlocked structural container may still hold page-owned children.</li>
+      <li><strong>Initial content:</strong> starter values are copied into a new page and then become page-owned. Changing initial content affects future pages, not pages that already exist.</li>
+      <li><strong>Policies:</strong> policies govern authoring choices and component behavior for a template context; they are shared configuration rather than business content.</li>
+      <li><strong>Placement rule:</strong> choose the repository branch by owner and propagation behavior—not by where the element appears visually on the page.</li>
+    </ul>
 
     <h2>Architect preparation</h2>
     <ul class="checklist">
@@ -57,57 +67,99 @@
     </table></div>
 
     <h2>Complete slide deck</h2>
-    <p class="section-intro">Choose <strong>Copy slide as image</strong> and paste it into PowerPoint, or download the PNG.</p>
+    <p class="section-intro">Study each slide with its detailed presenter notes, then copy it into PowerPoint or download the PNG.</p>
     <div class="web-deck">
       <article class="web-slide" data-slide-src="../slides/lesson-06/origin_image/slide_01.png">
         <img class="web-slide-image" src="../slides/lesson-06/origin_image/slide_01.png" alt="Class 6 cover showing template type, editable template and page instances as an authoring lifecycle.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-06/origin_image/slide_01.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Open:</strong> “Which parts of a page should remain shared across every instance?”</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> an editable template is a reusable authoring contract, not a finished page or a visual mockup.</li>
+          <li><strong>Present:</strong> follow template type → editable template → page instances; name each arrow as creation, reuse or ongoing connection.</li>
+          <li><strong>Say:</strong> “We are deciding what every Guide Page starts with and what authors may change.”</li>
+          <li><strong>Ask:</strong> “What becomes inconsistent if every author builds the page skeleton manually?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-06/origin_image/slide_02.png">
         <img class="web-slide-image" src="../slides/lesson-06/origin_image/slide_02.png" alt="A page jcr content Resource points separately to an editable template and a page rendering component.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-06/origin_image/slide_02.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Emphasize:</strong> <code>cq:template</code> identifies the authoring contract; <code>sling:resourceType</code> identifies rendering capability.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> <code>cq:template</code> records the authoring contract; <code>sling:resourceType</code> selects the page renderer.</li>
+          <li><strong>Present:</strong> start at <code>/content/.../jcr:content</code>, then trace separately to <code>/conf</code> and <code>/apps</code>.</li>
+          <li><strong>Say:</strong> “Following <code>cq:template</code> to explain HTL execution is the wrong trace.”</li>
+          <li><strong>Ask:</strong> “Rendering is wrong but authoring options are correct—which property do we follow first?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-06/origin_image/slide_03.png">
         <img class="web-slide-image" src="../slides/lesson-06/origin_image/slide_03.png" alt="A template type is copied once to seed an editable template whose lifecycle then diverges.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-06/origin_image/slide_03.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Say explicitly:</strong> the template-type reference is informational, not dynamic inheritance.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> a template type seeds an editable template once; existing templates do not inherit its later changes.</li>
+          <li><strong>Present:</strong> describe the arrow as a copy and contrast “created from” with “kept synchronized with.”</li>
+          <li><strong>Say:</strong> “The retained reference describes origin; it is not live inheritance.”</li>
+          <li><strong>Ask:</strong> “Where would you change something intended only for the Guide Page template?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-06/origin_image/slide_04.png">
         <img class="web-slide-image" src="../slides/lesson-06/origin_image/slide_04.png" alt="An editable-template repository tree separates metadata, structure, initial content and policy branches.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-06/origin_image/slide_04.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Inspect:</strong> read each branch as a different lifecycle contract, not merely a console tab.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> <code>structure</code>, <code>initial</code> and <code>policies</code> belong to different lifecycles.</li>
+          <li><strong>Present:</strong> read the tree top to bottom and name each branch’s owner, behavior and typical failure symptom.</li>
+          <li><strong>Say:</strong> “These branches appear in one editor, but they are not synchronized in the same way.”</li>
+          <li><strong>Ask:</strong> “Which branch would you inspect when a component is missing from the component browser?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-06/origin_image/slide_05.png">
         <img class="web-slide-image" src="../slides/lesson-06/origin_image/slide_05.png" alt="Template structure remains connected to three pages while unlocked page-owned content stays distinct.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-06/origin_image/slide_05.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Contrast:</strong> a locked header propagates; content inside the unlocked container remains page-owned.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> structural components stay template-controlled; locking determines whether page authors can change them.</li>
+          <li><strong>Present:</strong> point to the shared header across pages, then contrast it with page-owned children inside the unlocked container.</li>
+          <li><strong>Say:</strong> “Locked means the template retains control; it does not mean invisible.”</li>
+          <li><strong>Ask:</strong> “Should an author delete the site header? Should they add content in the main container?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-06/origin_image/slide_06.png">
         <img class="web-slide-image" src="../slides/lesson-06/origin_image/slide_06.png" alt="A timeline shows initial content copied into Page A and Page B at creation without updating existing pages.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-06/origin_image/slide_06.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Rule:</strong> changing initial content affects future pages, not existing pages.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> initial content is copied at page creation and becomes page-owned.</li>
+          <li><strong>Present:</strong> walk the timeline slowly and ask participants to predict Page A before revealing Page B.</li>
+          <li><strong>Say:</strong> “Initial content is a default, not a synchronization mechanism.”</li>
+          <li><strong>Ask:</strong> “Why would silently overwriting Page A be dangerous?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-06/origin_image/slide_07.png">
         <img class="web-slide-image" src="../slides/lesson-06/origin_image/slide_07.png" alt="A Guide Page wireframe maps shared header, authoring container, introductory content, policy and authored content by lifecycle.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-06/origin_image/slide_07.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Classify:</strong> use owner plus synchronization behavior, not visual position.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> shared header is structure, starter copy is initial content, constraints are policy and authored values live under <code>/content</code>.</li>
+          <li><strong>Present:</strong> take one row at a time; ask “owner?” and “future propagation?” before naming its branch.</li>
+          <li><strong>Say:</strong> “Screen position does not determine repository placement; lifecycle does.”</li>
+          <li><strong>Ask:</strong> “Where does a default Title belong if each author can replace it independently?”</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-06/origin_image/slide_08.png">
         <img class="web-slide-image" src="../slides/lesson-06/origin_image/slide_08.png" alt="Five key takeaways summarize page storage, rendering, template seeding, synchronization and ownership.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-06/origin_image/slide_08.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Retrieve:</strong> ask which branch should own one new Guide Page element and why.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> page content, renderer, template type, structure and initial content have distinct ownership.</li>
+          <li><strong>Present:</strong> let participants complete each statement and connect it to <code>/content</code>, <code>/apps</code> or <code>/conf</code>.</li>
+          <li><strong>Say:</strong> “Structure stays connected; initial content is copied.”</li>
+          <li><strong>Check:</strong> give one element—header, main container or starter text—and ask where it belongs.</li>
+        </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-06/origin_image/slide_09.png">
         <img class="web-slide-image" src="../slides/lesson-06/origin_image/slide_09.png" alt="Three closing questions about Guide Page classification, template updates and rendering properties.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-06/origin_image/slide_09.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <p class="presenter-note"><strong>Close:</strong> invite questions without requiring a live environment.</p>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Purpose:</strong> use this slide for retrieval, not a new lecture.</li>
+          <li><strong>Ask:</strong> have one person distinguish structure from initial content and another trace both page properties.</li>
+          <li><strong>Probe:</strong> “Should this update existing pages?” and “Is this governance or rendering?”</li>
+          <li><strong>Close:</strong> “Decide owner and propagation first; the repository branch follows.”</li>
+        </ul></details>
       </article>
     </div>
-
-    <h2>Suggested speaking script</h2>
-    <p>The complete talk track is available in <a href="../slides/lesson-06/speech.md">speech.md</a>.</p>
 
     <h2>Guide Page classification check</h2>
     <ol>

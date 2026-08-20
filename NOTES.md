@@ -3,9 +3,10 @@
 - Audiencia: seis desarrolladores con experiencia principalmente en frontend y authoring; enseñar desarrollo AEM desde cero.
 - Modalidad: equipo completamente remoto; el usuario es el arquitecto y también conduce el entrenamiento.
 - Restricción remota: no depender de breakout rooms; usar chat, preguntas dirigidas, demos y trabajo individual posterior.
-- Duración: siete semanas, lunes a viernes; sesión en línea de 30 minutos y ejercicios asíncronos posteriores.
+- Duración: siete semanas, lunes a viernes; 35 sesiones en línea de 30 minutos y ejercicios asíncronos posteriores.
 - Preferencias: mismo proyecto en repositorios y ambientes individuales; siete prácticas semanales, publicadas el lunes, entregadas el jueves y revisadas el viernes.
 - Presentación: materiales en HTML, accesibles desde `index.html`, con estilo compartido e impresión limpia.
+- Estructura de cada lección: incluir al inicio un resumen sustancial pero escaneable —dos párrafos conceptuales y entre cinco y seis puntos fundamentales— antes de la agenda y las slides.
 - Preferencia para slides: contenido completo con bullets, ejemplos concretos, diagramas e imágenes; no limitarse a una descripción breve.
 - Flujo de presentación: publicar las slides en GitHub Pages y copiarlas como una imagen completa a PowerPoint para conservar el formato; no generar un `.pptx` aparte.
 - Estilo visual de slides: fondo azul marino, iluminación azul hielo, tarjetas tipo vidrio, bordes cian, trama de puntos y curvas concéntricas sutiles; usar la referencia visual más reciente proporcionada el 2026-08-13.

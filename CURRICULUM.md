@@ -26,10 +26,10 @@ Después de la sesión, cada participante dedica 60–120 minutos al ejercicio e
 | 1. Orientación y base | Diagnóstico; arquitectura Author/Publish; repositorio JCR; Sling; OSGi; ciclo petición–contenido–render; diferencias relevantes de AEM Cloud | Entorno listo, recorrido de contenido y alcance de mantenimiento confirmado con el proyecto real |
 | 2. Autoría y modelado | Sites, Assets, páginas, templates editables, políticas, componentes y modelo de contenido | Los alumnos construyen una sección authorable sin código innecesario y explican la experiencia del autor |
 | 3. Frontend AEM | HTL, Core Components y proxy pattern, client libraries, diálogos, estilos, accesibilidad, responsive y frontend testing | Primer componente vertical integrado y authorable |
-| 4. Backend AEM | Sling Models, servlets sólo cuando hagan falta, servicios OSGi, configuración, Resource API, inyección y pruebas unitarias | Componente con lógica de servidor, configuración por ambiente y prueba pequeña |
-| 5. Mantenimiento e integraciones | Workflows, búsqueda, Content Fragments cuando apliquen, APIs, autenticación, caché e integración segura | Cambio de mantenimiento real e integración con contrato probado |
-| 6. Calidad y restricciones de entrega | Cloud Manager teórico, Dispatcher/caché local, seguridad, permisos, accesibilidad, rendimiento y pruebas | Auditoría local, corrección prioritaria y defensa del flujo cloud suministrado |
-| 7. Entrega y transferencia | Capstone, hardening, regresión, documentación mínima, demo y retrospectiva | Capstone individual, demo y defensa técnica |
+| 4. Backend AEM | Sling Models, delegación, Model Exporter, servlets sólo cuando hagan falta, servicios OSGi, configuración, Resource API, inyección, JUnit 5 y AEM Mocks | Componente con lógica de servidor, configuración por ambiente y prueba pequeña |
+| 5. Reutilización y mantenimiento | MSM, Experience Fragments, Content Fragments para Sites tradicional, paquetes, diagnóstico, workflows/jobs y publicación de referencias | Relación de contenido y cambio de mantenimiento diagnosticados con evidencia |
+| 6. Calidad y restricciones de entrega | Búsqueda/tags, Cloud Manager teórico, Dispatcher/caché local, ACLs, service users, Repo Init y seguridad | Auditoría local, corrección prioritaria y defensa del flujo cloud suministrado |
+| 7. Entrega y transferencia | Accesibilidad, rendimiento, pruebas por riesgo, capstone, hardening, regresión, documentación mínima, demo y retrospectiva | Capstone individual, demo y defensa técnica |
 
 ## Rutas por perfil
 
