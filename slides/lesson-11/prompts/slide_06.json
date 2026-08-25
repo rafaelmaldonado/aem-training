@@ -1,0 +1,43 @@
+{
+  "slide": 6,
+  "title": "Trace one Guide Card from Resource to DOM.",
+  "prompt": "# Codex PPT Slide Image Prompt\n\n## Canvas\n{\n  \"type\": \"16:9 full-slide PowerPoint image\",\n  \"language\": \"English\",\n  \"slide_number\": 6,\n  \"render_slide_number\": false\n}\n\n## Deck Goal\nTeach frontend-oriented AEM developers to keep HTL readable, markup-focused and context-safe while rendering configured and missing Guide Card data.\n\n## Required Background\n{\n  \"deck_context\": {\n    \"source_summary\": \"Class 11 of a seven-week AEM Sites course, delivered Monday, August 31, 2026. The audience understands Resources, Sling resolution, editable templates, policies, dialogs, persisted properties and accessible image delivery. This class begins Week 3 by connecting authored Guide Card data to safe, readable HTL and observable DOM states.\",\n    \"core_claim\": \"HTL should expose a small view contract: prepared values enter, semantic markup and deliberate states are rendered, and each expression is escaped for the context where its output lands.\",\n    \"canonical_facts\": [\n      \"HTL is AEM's preferred server-side template language for HTML.\",\n      \"HTL expressions use ${...}; block statements use data-sly-* attributes.\",\n      \"HTL owns direct markup production while complex business logic belongs in Java such as a Sling Model or service.\",\n      \"data-sly-test conditionally keeps or removes an element.\",\n      \"data-sly-list repeats markup for a collection.\",\n      \"Use an existing semantic HTML element for block statements when possible; use sly only when no suitable element exists.\",\n      \"data-sly-template and data-sly-call reuse small markup fragments with explicit inputs.\",\n      \"HTL automatically applies context-aware escaping for HTML text, attributes and known URI attributes.\",\n      \"URI values such as href and src are validated and unsafe values can be removed.\",\n      \"Expressions inside JavaScript and CSS require explicit display contexts such as scriptString and styleString.\",\n      \"context='unsafe' disables XSS protection and must not be used as a shortcut.\",\n      \"The Guide Card review covers configured, empty-author and empty-visitor outcomes.\"\n    ],\n    \"canonical_terms\": [\n      \"HTL\",\n      \"data-sly-use\",\n      \"data-sly-test\",\n      \"data-sly-list\",\n      \"data-sly-template\",\n      \"data-sly-call\",\n      \"Sling Model\",\n      \"Resource properties\",\n      \"context-aware escaping\",\n      \"text\",\n      \"attribute\",\n      \"uri\",\n      \"scriptString\",\n      \"styleString\",\n      \"context='unsafe'\",\n      \"configured state\",\n      \"empty state\"\n    ]\n  },\n  \"slide_local_context\": {\n    \"required_background\": \"Use exact Resource path /content/wknd/us/en/guides/merida/jcr:content/root/guidecard. Stored properties: title='Weekend in Mérida', link='/content/wknd/us/en/guides/merida.html', imageReference='/content/dam/wknd/guides/merida/card.jpg'. The trace must end in a semantic anchor containing image and title, plus a separate safe empty result.\"\n  }\n}\n\n## Global Style\n{\n  \"name\": \"technical atlas courseware\",\n  \"visual_direction\": \"Sober, information-rich technical atlas blended with academic courseware. Use exact HTL expressions, Resource properties, view contracts, DOM states and escaping evidence instead of generic corporate cards.\",\n  \"color_palette\": \"Warm ivory drafting-paper background, deep navy typography, faint square grid, cobalt blue for syntax and flow, green for safe valid output, violet for reuse or view boundaries and restrained orange for warnings.\",\n  \"typography\": \"Large bold modern sans serif headings; crisp sans serif body copy; true monospace appearance for HTL, property names, contexts and DOM values.\",\n  \"texture_and_finish\": \"Flat 2D technical diagrams with fine rules, precise code, Resource, model, template, browser and security icons. No gradients, neon, glass, 3D or photography.\",\n  \"deck_consistency\": \"Match the approved sample's palette, typography, grid, density, semantic colors, monospace code treatment and line weight while varying composition by slide role.\"\n}\n\n## Input Images\n\n- Image 1: /Users/juanmaldonado/Projects/aem-training/slides/lesson-11/origin_image/slide_07.png — approved sample slide style reference; Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact output-context matrix layout.\n\n\n## Slide\n{\n  \"number\": 6,\n  \"title\": \"Trace one Guide Card from Resource to DOM.\",\n  \"role\": \"end-to-end code trace\",\n  \"intent\": \"Combine prepared values, conditions, attributes and the empty state in one inspectable example.\"\n}\n\n## Text\n{\n  \"title\": \"Trace one Guide Card from Resource to DOM.\",\n  \"key_points\": [\n    \"Authored Resource provides title, link and image reference\",\n    \"data-sly-use.card exposes a small view contract\",\n    \"data-sly-test selects configured or empty output\",\n    \"Link URI and visible text render in their correct contexts\",\n    \"Evidence connects properties, getters, HTL and final DOM\"\n  ],\n  \"speaker_focus\": null\n}\n\n## Layout\n{\n  \"composition\": \"Four-column technical trace from Resource inspector to view contract to HTL fragment to rendered DOM, using the same exact values throughout; an empty-state rail runs beneath it.\",\n  \"intent\": \"Provide one end-to-end review artifact rather than separate code samples.\"\n}\n\n## Visual Elements\n{\n  \"main_visual\": \"Resource → GuideCard view contract → HTL → semantic configured DOM, with safe empty outcome.\"\n}\n\n## Constraints\n[\n  \"Render the eyebrow exactly as '06 · GUIDE CARD TRACE'.\",\n  \"Render the Resource path, data-sly-use.card and data-sly-test exactly.\",\n  \"Keep the three stored property values consistent across every checkpoint.\"\n]\n\n## Style Reference Rule\nUse Image 1 as the approved sample-slide style reference. Match its palette, typography mood, density, texture, and overall visual identity. Do not copy its exact layout unless this slide's layout explicitly asks for it.\n\n## Input Image Handling Rules\nFor any input image marked as a strict input asset, include it visibly and preserve its content. Do not redraw, replace, relabel, or invent a similar figure. Scale and crop only as needed for composition while keeping the important labels, arrows, data, and relationships recognizable.\n\n## Universal Constraints\n- The final image itself must contain the title and key points.\n- Render Chinese text exactly and legibly; avoid garbled characters.\n- Keep the confirmed deck style consistent while varying layout by slide role.\n- No watermark, unrelated logo, or extra slide number.\n",
+  "out": "slide_06.png",
+  "input_images": [
+    {
+      "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-11/origin_image/slide_07.png",
+      "role": "approved sample slide style reference",
+      "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact output-context matrix layout."
+    }
+  ],
+  "requires_context_images": true,
+  "expected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Day 11 output-context matrix prompt generated from the approved outline and the Day 9 visual reference",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-11/origin_image/slide_07.png",
+    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "generation_contract": {
+    "must_use_selected_image_backend": true,
+    "must_match_sample_generation_method": true,
+    "forbidden_final_image_methods": [
+      "local drawing/rendering scripts",
+      "Pillow-generated slides",
+      "SVG/HTML/CSS/canvas screenshots",
+      "python-pptx/PptxGenJS/native PPT layout screenshots",
+      "manually composited text/image overlays"
+    ],
+    "must_return": [
+      "backend_used",
+      "selected_source",
+      "qa_note"
+    ]
+  }
+}

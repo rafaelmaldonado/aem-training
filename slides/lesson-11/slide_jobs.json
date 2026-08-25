@@ -1,0 +1,363 @@
+{
+  "run_status": "slides_recorded",
+  "deck_name": "lesson-11",
+  "selected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Day 11 output-context matrix prompt generated from the approved outline and the Day 9 visual reference",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-11/origin_image/slide_07.png",
+    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "max_concurrent_slides": 3,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "HTL turns prepared values into safe HTML.",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-11/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact output-context matrix layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_01",
+        "agent_nickname": "slide_01",
+        "prompt": "prompts/slide_01.json",
+        "prompt_sha256": "ccca60116ff5db1a389e2241042494e58121e9ca22ae03a51812785ac797787f",
+        "dispatched_at": "2026-08-25T14:59:09Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0396e-9865-7081-85f2-084afecd1313/exec-34e9ce7d-248a-449e-bb3d-d4509ef1ef36.png",
+        "selected_source_sha256": "6c10cfa407eec9f756714a6cee7c9a853e88b80f4b3077e8e7411ac071f5e97c",
+        "final_image": "origin_image/slide_01.png",
+        "final_image_sha256": "6c10cfa407eec9f756714a6cee7c9a853e88b80f4b3077e8e7411ac071f5e97c",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Exact title and class metadata are readable; the Resource-to-HTL-to-DOM cover flow matches the approved technical-atlas style without overlap.",
+        "recorded_at": "2026-08-25T15:01:02Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "Keep the template boundary narrow.",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-11/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact output-context matrix layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_02",
+        "agent_nickname": "slide_02",
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "a47c0b5ff671c2dad533e6defaa55437992868b40ddbfcb8a04729157f639c7f",
+        "dispatched_at": "2026-08-25T14:59:25Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0396e-db55-7781-859a-6ae3dbe6ffef/exec-22ec52cf-5ada-471b-b96c-a9054c248cde.png",
+        "selected_source_sha256": "88792845f00a13b0b81c6be1a0e1f28c0ed2e557cfd26d7a5d7de19aa72bbb49",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "88792845f00a13b0b81c6be1a0e1f28c0ed2e557cfd26d7a5d7de19aa72bbb49",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Three responsibility lanes, required labels and boundary rule are exact, readable and consistent with the approved sample.",
+        "recorded_at": "2026-08-25T15:01:15Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "Expressions read values where the markup needs them.",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-11/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact output-context matrix layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_03",
+        "agent_nickname": "slide_03",
+        "prompt": "prompts/slide_03.json",
+        "prompt_sha256": "de6cfafb1ce166d609e0436392da239c00749fdf8d4af559c078cddbafa59043",
+        "dispatched_at": "2026-08-25T14:59:42Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0396f-15d9-75e1-80ed-270956f6b4c6/exec-016a74b3-faa1-4b0a-979d-62769e6fc128.png",
+        "selected_source_sha256": "7f828cb571e0910b2e68c1f78949b4149c6a4d367320bf40e8626d2fc4d81235",
+        "final_image": "origin_image/slide_03.png",
+        "final_image_sha256": "7f828cb571e0910b2e68c1f78949b4149c6a4d367320bf40e8626d2fc4d81235",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Expressions, source values and text-versus-URI context labels are now technically consistent and fully readable.",
+        "recorded_at": "2026-08-25T15:04:36Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "Conditions and lists should make every state visible.",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-11/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact output-context matrix layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_04",
+        "agent_nickname": "slide_04",
+        "prompt": "prompts/slide_04.json",
+        "prompt_sha256": "32044f762f808b9c557c47fdc366f205b256ae4bcb2a379c29bb00c53f12cd26",
+        "dispatched_at": "2026-08-25T15:02:14Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_04",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03971-5f43-7851-92fc-842e8ab88529/exec-b05950fb-d726-4cf2-9393-a89a6fac8b8b.png",
+        "selected_source_sha256": "792da922bdce2e11d44ffea3baae255ddbe4e8d11a1522ec5846e801900aebfd",
+        "final_image": "origin_image/slide_04.png",
+        "final_image_sha256": "792da922bdce2e11d44ffea3baae255ddbe4e8d11a1522ec5846e801900aebfd",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Configured, empty-author and empty-visitor branches are clear; data-sly-test and data-sly-list expressions are syntactically correct after repair.",
+        "recorded_at": "2026-08-25T15:07:00Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "Templates and calls reuse small markup contracts.",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-11/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact output-context matrix layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_05",
+        "agent_nickname": "slide_05",
+        "prompt": "prompts/slide_05.json",
+        "prompt_sha256": "80bed08cfa4146a4ed3466db9117d79a61137f8112a008840501b349f1b023e6",
+        "dispatched_at": "2026-08-25T15:02:29Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_05",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03971-9dfd-7531-9f30-7c6ca884fc14/exec-1f04ee6a-f828-401b-b4e1-e5e32081fe36.png",
+        "selected_source_sha256": "0c9ac022764b08b97a614e2bd2f0052a9c8fa0ecebddd90d7077b7cf0cead189",
+        "final_image": "origin_image/slide_05.png",
+        "final_image_sha256": "0c9ac022764b08b97a614e2bd2f0052a9c8fa0ecebddd90d7077b7cf0cead189",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Simplified regeneration preserves the five reuse rules and renders the template declaration and both data-sly-call expressions exactly.",
+        "recorded_at": "2026-08-25T15:12:54Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "Trace one Guide Card from Resource to DOM.",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-11/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact output-context matrix layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_06",
+        "agent_nickname": "slide_06",
+        "prompt": "prompts/slide_06.json",
+        "prompt_sha256": "afe42114837a7e91503400edcb2c4e33e99de477c07837a5adbe72d3b8435bfd",
+        "dispatched_at": "2026-08-25T15:04:52Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_06",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03973-d4de-7c93-8ad0-b7685491dae9/exec-03d6b899-914b-49c4-8d06-5deeda24a13f.png",
+        "selected_source_sha256": "bf0e8e5e43f93259ccec87a9e2354e217172abedc75ccba9e154017edbf1b98c",
+        "final_image": "origin_image/slide_06.png",
+        "final_image_sha256": "bf0e8e5e43f93259ccec87a9e2354e217172abedc75ccba9e154017edbf1b98c",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Resource path and three values stay consistent through getters, HTL and DOM; configured and empty outcomes are readable and technically sound.",
+        "recorded_at": "2026-08-25T15:10:24Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "Output context is part of the security contract.",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-11/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact output-context matrix layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "accepted",
+      "dispatch": null,
+      "result": {
+        "final_image": "origin_image/slide_07.png",
+        "accepted_sample": true
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "Key takeaways",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-11/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact output-context matrix layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_08",
+        "agent_nickname": "slide_08",
+        "prompt": "prompts/slide_08.json",
+        "prompt_sha256": "86f74d83a834073ca04bbd4567584969ceada4ce3ecf5b2ad77570579977cca3",
+        "dispatched_at": "2026-08-25T15:07:14Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_08",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03975-fca5-7f82-adf6-0488ea0df964/exec-9453af3a-9794-4cd8-95f8-609b46904e3a.png",
+        "selected_source_sha256": "f85c2963ee54e5a8fdd0cfb4b46ec260cda69dc671bf2c69b5567ac8272311f2",
+        "final_image": "origin_image/slide_08.png",
+        "final_image_sha256": "f85c2963ee54e5a8fdd0cfb4b46ec260cda69dc671bf2c69b5567ac8272311f2",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "All five takeaways and the governing principle are readable; the template-call example is syntactically correct after repair.",
+        "recorded_at": "2026-08-25T15:12:33Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Questions",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-11/origin_image/slide_07.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact output-context matrix layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_09",
+        "agent_nickname": "slide_09",
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "e3acc1d84f93e661bb97912656719e36e6c4fa3983c6aa4024170cad0e4610a2",
+        "dispatched_at": "2026-08-25T15:10:42Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03979-196a-76e1-8739-f651b1834004/exec-3832dfa6-b245-46a8-8d7f-9ab821c7101c.png",
+        "selected_source_sha256": "03d203c1c6b47fc3da673ca13f1d06d5a9f319dcbf80e8dee2a8f5d0c500401d",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "03d203c1c6b47fc3da673ca13f1d06d5a9f319dcbf80e8dee2a8f5d0c500401d",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "The three closing questions are exact and readable, with the Resource-to-DOM recall scaffold and no extra assignment or thanks copy.",
+        "recorded_at": "2026-08-25T15:12:54Z"
+      },
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-08-25T15:12:54Z"
+}

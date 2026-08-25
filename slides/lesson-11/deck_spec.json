@@ -1,0 +1,320 @@
+{
+  "deck_name": "lesson-11",
+  "language": "English",
+  "goal": "Teach frontend-oriented AEM developers to keep HTL readable, markup-focused and context-safe while rendering configured and missing Guide Card data.",
+  "deck_context": {
+    "source_summary": "Class 11 of a seven-week AEM Sites course, delivered Monday, August 31, 2026. The audience understands Resources, Sling resolution, editable templates, policies, dialogs, persisted properties and accessible image delivery. This class begins Week 3 by connecting authored Guide Card data to safe, readable HTL and observable DOM states.",
+    "core_claim": "HTL should expose a small view contract: prepared values enter, semantic markup and deliberate states are rendered, and each expression is escaped for the context where its output lands.",
+    "canonical_facts": [
+      "HTL is AEM's preferred server-side template language for HTML.",
+      "HTL expressions use ${...}; block statements use data-sly-* attributes.",
+      "HTL owns direct markup production while complex business logic belongs in Java such as a Sling Model or service.",
+      "data-sly-test conditionally keeps or removes an element.",
+      "data-sly-list repeats markup for a collection.",
+      "Use an existing semantic HTML element for block statements when possible; use sly only when no suitable element exists.",
+      "data-sly-template and data-sly-call reuse small markup fragments with explicit inputs.",
+      "HTL automatically applies context-aware escaping for HTML text, attributes and known URI attributes.",
+      "URI values such as href and src are validated and unsafe values can be removed.",
+      "Expressions inside JavaScript and CSS require explicit display contexts such as scriptString and styleString.",
+      "context='unsafe' disables XSS protection and must not be used as a shortcut.",
+      "The Guide Card review covers configured, empty-author and empty-visitor outcomes."
+    ],
+    "canonical_terms": [
+      "HTL",
+      "data-sly-use",
+      "data-sly-test",
+      "data-sly-list",
+      "data-sly-template",
+      "data-sly-call",
+      "Sling Model",
+      "Resource properties",
+      "context-aware escaping",
+      "text",
+      "attribute",
+      "uri",
+      "scriptString",
+      "styleString",
+      "context='unsafe'",
+      "configured state",
+      "empty state"
+    ]
+  },
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 3,
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Day 11 output-context matrix prompt generated from the approved outline and the Day 9 visual reference",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-11/origin_image/slide_07.png",
+    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "style": {
+    "name": "technical atlas courseware",
+    "visual_direction": "Sober, information-rich technical atlas blended with academic courseware. Use exact HTL expressions, Resource properties, view contracts, DOM states and escaping evidence instead of generic corporate cards.",
+    "color_palette": "Warm ivory drafting-paper background, deep navy typography, faint square grid, cobalt blue for syntax and flow, green for safe valid output, violet for reuse or view boundaries and restrained orange for warnings.",
+    "typography": "Large bold modern sans serif headings; crisp sans serif body copy; true monospace appearance for HTL, property names, contexts and DOM values.",
+    "texture_and_finish": "Flat 2D technical diagrams with fine rules, precise code, Resource, model, template, browser and security icons. No gradients, neon, glass, 3D or photography.",
+    "deck_consistency": "Match the approved sample's palette, typography, grid, density, semantic colors, monospace code treatment and line weight while varying composition by slide role."
+  },
+  "approved_style_reference": {
+    "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-11/origin_image/slide_07.png",
+    "role": "approved sample slide style reference",
+    "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact output-context matrix layout."
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "HTL turns prepared values into safe HTML.",
+      "role": "cover",
+      "intent": "Frame HTL as the view layer between an AEM Resource or model and the browser DOM.",
+      "key_points": [
+        "Class 11 · Week 3 · Day 11 · August 31, 2026",
+        "Safe and readable HTL",
+        "Resource or model → HTL → valid, context-aware HTML",
+        "Juan Maldonado"
+      ],
+      "local_context": {
+        "required_background": "Create a technical synthesis cover rather than a title-only slide. Show one Guide Card Resource and a small prepared view contract entering HTL, then configured and empty DOM outcomes leaving it."
+      },
+      "layout": {
+        "composition": "Editorial technical cover with title and exact class metadata on the left and a compact Resource-or-model to HTL to DOM flow on the right.",
+        "intent": "Establish the complete view-layer contract without copying the approved sample's matrix."
+      },
+      "visual_elements": {
+        "main_visual": "Guide Card Resource or prepared model → thin HTL view → valid configured and empty browser DOM."
+      },
+      "constraints": [
+        "Render all class metadata exactly.",
+        "Render the phrase Resource or model → HTL → valid, context-aware HTML exactly.",
+        "Do not imply that HTL owns business orchestration."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Keep the template boundary narrow.",
+      "role": "responsibility boundary",
+      "intent": "Separate data preparation from direct markup production.",
+      "key_points": [
+        "HTL owns elements, attributes, conditions and iteration",
+        "Resource properties and model getters provide view values",
+        "Sling Models or services own complex preparation and business rules",
+        "Readable HTL makes the rendered contract easy to review",
+        "Extract logic only when the view would otherwise become hard to explain or repeat"
+      ],
+      "local_context": {
+        "required_background": "Use three exact lanes: Resource / Model data, HTL view, Browser DOM. Put mapping, orchestration and business rules outside the HTL lane; keep elements, attributes, conditions and iteration inside it."
+      },
+      "layout": {
+        "composition": "Three unequal responsibility lanes connected left to right, with a narrow HTL lane and an orange rejected-logic detour outside the view.",
+        "intent": "Make the boundary and rejected responsibilities visible without using a generic card grid."
+      },
+      "visual_elements": {
+        "main_visual": "Resource and Sling Model inputs pass through a thin HTL rendering boundary into semantic browser DOM."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '02 · VIEW BOUNDARY'.",
+        "Label the three lanes exactly as 'RESOURCE / MODEL', 'HTL VIEW' and 'BROWSER DOM'.",
+        "Include 'Prepare values before the template becomes difficult to explain.'"
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Expressions read values where the markup needs them.",
+      "role": "expression anatomy",
+      "intent": "Teach concise value access while keeping names aligned with the rendered HTML.",
+      "key_points": [
+        "${properties.title} reads the current Resource property",
+        "${card.title} reads a prepared getter exposed through data-sly-use",
+        "Text, ordinary attributes and URI attributes are different contexts",
+        "Meaningful identifiers make templates easier to review",
+        "A direct expression is clearer than a temporary variable with no purpose"
+      ],
+      "local_context": {
+        "required_background": "Use a Guide Card fragment with title='Weekend in Mérida', link='/content/wknd/us/en/guides/merida.html' and label='Open guide'. Annotate ${properties.title}, ${card.title} and ${card.link} with source value and final DOM position."
+      },
+      "layout": {
+        "composition": "One large annotated HTL fragment sits between a Resource inspector and a rendered Guide Card DOM inspector; fine callout lines identify each expression and context.",
+        "intent": "Explain expressions in place rather than presenting disconnected syntax cards."
+      },
+      "visual_elements": {
+        "main_visual": "Source value → exact HTL expression → text, attribute or URI location in the DOM."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '03 · EXPRESSIONS'.",
+        "Render ${properties.title}, ${card.title} and ${card.link} exactly.",
+        "Keep all example values and punctuation legible."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Conditions and lists should make every state visible.",
+      "role": "rendering-state flow",
+      "intent": "Use HTL block statements for structure while defining the missing-data outcome explicitly.",
+      "key_points": [
+        "data-sly-test keeps or removes an element",
+        "data-sly-list repeats markup without Java scriptlets",
+        "Annotate an existing semantic element when possible",
+        "Use sly only when no suitable element exists",
+        "Configured, empty-author and empty-visitor outcomes are acceptance states"
+      ],
+      "local_context": {
+        "required_background": "Show one exact decision: has required title and link? YES renders a semantic linked Guide Card; NO branches to an author-visible placeholder in edit mode and no broken visitor markup outside edit mode. Include a small list example for three Guide tags."
+      },
+      "layout": {
+        "composition": "A central HTL decision branches into three distinct DOM outcomes, with a narrow iteration rail showing three Guide tags below.",
+        "intent": "Make state behavior observable as a flow, not as repeated generic panels."
+      },
+      "visual_elements": {
+        "main_visual": "data-sly-test decision for configured and empty outcomes plus a compact data-sly-list iteration trace."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '04 · CONDITIONS + LISTS'.",
+        "Render data-sly-test and data-sly-list exactly.",
+        "Include 'The empty state is part of the rendering contract.'",
+        "Do not render a broken empty anchor or image."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Templates and calls reuse small markup contracts.",
+      "role": "reuse comparison",
+      "intent": "Prevent repetition without creating a private component framework inside HTL.",
+      "key_points": [
+        "data-sly-template declares a fragment with explicit parameters",
+        "data-sly-call invokes it with named values",
+        "Reuse one stable purpose with a small input contract",
+        "Keep component responsibility visible at the call site",
+        "Repeat simple markup when an abstraction would hide the output"
+      ],
+      "local_context": {
+        "required_background": "Use two repeated metadata rows, Duration and Region, converging on one template named metadataRow with parameters label and value. Contrast this with a crossed-out chain of generic nested templates."
+      },
+      "layout": {
+        "composition": "A before-and-after comparison: two repeated metadata rows on the left converge on one small named template and two explicit calls on the right; a small warning branch rejects nested generic templates.",
+        "intent": "Show the size and purpose of useful reuse without repeating the approved sample matrix."
+      },
+      "visual_elements": {
+        "main_visual": "Duration and Region markup reuse through metadataRow(label, value), with a visible call-site contract."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '05 · TEMPLATE REUSE'.",
+        "Render data-sly-template, data-sly-call, metadataRow, label and value exactly.",
+        "Include 'Reuse one stable purpose—not every repeated tag.'"
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Trace one Guide Card from Resource to DOM.",
+      "role": "end-to-end code trace",
+      "intent": "Combine prepared values, conditions, attributes and the empty state in one inspectable example.",
+      "key_points": [
+        "Authored Resource provides title, link and image reference",
+        "data-sly-use.card exposes a small view contract",
+        "data-sly-test selects configured or empty output",
+        "Link URI and visible text render in their correct contexts",
+        "Evidence connects properties, getters, HTL and final DOM"
+      ],
+      "local_context": {
+        "required_background": "Use exact Resource path /content/wknd/us/en/guides/merida/jcr:content/root/guidecard. Stored properties: title='Weekend in Mérida', link='/content/wknd/us/en/guides/merida.html', imageReference='/content/dam/wknd/guides/merida/card.jpg'. The trace must end in a semantic anchor containing image and title, plus a separate safe empty result."
+      },
+      "layout": {
+        "composition": "Four-column technical trace from Resource inspector to view contract to HTL fragment to rendered DOM, using the same exact values throughout; an empty-state rail runs beneath it.",
+        "intent": "Provide one end-to-end review artifact rather than separate code samples."
+      },
+      "visual_elements": {
+        "main_visual": "Resource → GuideCard view contract → HTL → semantic configured DOM, with safe empty outcome."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '06 · GUIDE CARD TRACE'.",
+        "Render the Resource path, data-sly-use.card and data-sly-test exactly.",
+        "Keep the three stored property values consistent across every checkpoint."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Output context is part of the security contract.",
+      "role": "context-aware escaping matrix",
+      "intent": "Show what HTL infers automatically and where an explicit display context is mandatory.",
+      "sample_approved": true,
+      "key_points": [
+        "HTL automatically escapes HTML text and ordinary attributes",
+        "href and src use URI validation",
+        "JavaScript and CSS require explicit display contexts",
+        "context='html' filters allowed markup",
+        "Never use context='unsafe' as an escaping shortcut"
+      ],
+      "local_context": {
+        "required_background": "Approved sample slide. Reuse origin_image/slide_07.png unchanged."
+      },
+      "layout": {
+        "composition": "Approved output-context evidence matrix.",
+        "intent": "Use the approved sample unchanged."
+      },
+      "visual_elements": {
+        "main_visual": "Approved sample image at origin_image/slide_07.png."
+      },
+      "constraints": [
+        "Reuse the approved sample image without regeneration."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Key takeaways",
+      "role": "summary",
+      "intent": "Retrieve the five rules for maintainable HTL.",
+      "key_points": [
+        "HTL renders the view; models and services prepare complex values",
+        "Direct expressions keep the source-to-markup relationship visible",
+        "Conditions and lists include a deliberate empty outcome",
+        "Templates reuse small markup contracts, not speculative frameworks",
+        "Output context matches where the value is rendered"
+      ],
+      "local_context": {
+        "required_background": "Use five exact checkpoints: narrow view boundary, direct expressions, deliberate states, small template reuse and correct output context. Governing principle: Prepared values in; semantic and context-safe HTML out."
+      },
+      "layout": {
+        "composition": "Five linked checkpoints form a compact technical path from Resource or model input to verified DOM, ending in the governing principle.",
+        "intent": "Summarize the session as one reusable review sequence."
+      },
+      "visual_elements": {
+        "main_visual": "A numbered five-checkpoint path with concise HTL evidence tags and one governing-principle callout."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '08 · KEY TAKEAWAYS'.",
+        "Render all five takeaways and the governing principle exactly.",
+        "Keep every takeaway readable without shrinking body text excessively."
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Questions",
+      "role": "Q&A",
+      "intent": "Close with discussion prompts and no dependency on a live demonstration.",
+      "key_points": [
+        "Which layer should prepare a derived Guide Card value?",
+        "What should author and visitor receive when required data is missing?",
+        "Which context applies to the card link, visible title and inline script value?"
+      ],
+      "local_context": {
+        "required_background": "Use the complete Resource → Sling Model → HTL → DOM path as a subtle recall scaffold. Highlight three decisions: responsibility boundary, empty-state outcome and output context."
+      },
+      "layout": {
+        "composition": "Three large numbered question anchors surround a simplified Resource-to-DOM path with generous discussion space.",
+        "intent": "Use visual recall cues while keeping the page open enough for discussion."
+      },
+      "visual_elements": {
+        "main_visual": "Simplified Resource → model → HTL → DOM path with three highlighted decision points."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '09 · QUESTIONS'.",
+        "Render the three questions exactly.",
+        "Do not include a live demo, assignment, practice, thanks message or decorative page number."
+      ]
+    }
+  ]
+}
