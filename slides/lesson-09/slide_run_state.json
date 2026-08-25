@@ -18,7 +18,25 @@
       "to": "slides_recorded",
       "at": "2026-08-19T14:06:30Z",
       "note": "all slide images recorded"
+    },
+    {
+      "from": "slides_recorded",
+      "to": "jobs_prepared",
+      "at": "2026-08-25T20:47:16Z",
+      "note": "prepared slide prompt jobs"
+    },
+    {
+      "from": "jobs_prepared",
+      "to": "slides_dispatched",
+      "at": "2026-08-25T20:50:42Z",
+      "note": "all slide jobs dispatched"
+    },
+    {
+      "from": "slides_dispatched",
+      "to": "slides_recorded",
+      "at": "2026-08-25T20:53:59Z",
+      "note": "all slide images recorded"
     }
   ],
-  "updated_at": "2026-08-19T14:06:30Z"
+  "updated_at": "2026-08-25T20:53:59Z"
 }

@@ -7,17 +7,18 @@
 **Visual direction:** reuse the approved sober, detailed technical-atlas style from Days 6–9.  
 **Required source images:** none. HTL source, prepared values, rendered DOM and escaping behavior will be represented as precise technical diagrams.
 
-## Slide 1 — HTL turns prepared values into safe HTML.
+## Slide 1 — Safe and readable HTL
 
-**Role:** cover  
-**Intent:** frame HTL as the view layer between an AEM Resource or model and the browser DOM.
+**Role:** opening overview
+**Intent:** identify the session, presenter and date while previewing the three learning threads.
 
 - Class 11 · Week 3 · Day 11 · August 31, 2026.
 - Safe and readable HTL.
-- Resource or model → HTL → valid, context-aware HTML.
+- Today: the view boundary, structural HTL statements, and context-aware output.
+- 30-minute technical session.
 - Juan Maldonado.
 
-**Visual idea:** a Guide Card Resource and prepared view values pass through a thin HTL layer into configured and empty browser outcomes.
+**Visual idea:** a strong title block with presenter and date, plus three compact visual anchors for prepared values, readable template structure and safe browser output.
 
 ## Slide 2 — Keep the template boundary narrow.
 
@@ -113,13 +114,13 @@
 ## Slide 9 — Questions
 
 **Role:** Q&A  
-**Intent:** close with review prompts tied to the Guide Card exercise.
+**Intent:** invite questions raised by participants and close the session without introducing another exercise.
 
-- Which layer should prepare a derived Guide Card value?
-- What should the visitor and author receive when required data is missing?
-- Which output context applies to the card link, visible title and inline script value?
+- Questions.
+- Thank you.
+- No scripted prompts or review exercise.
 
-**Visual idea:** a simplified Resource → model → HTL → DOM path with three highlighted decision points and generous discussion space.
+**Visual idea:** a quiet closing composition with a subtle Resource-to-DOM line motif and generous open space; no prompts, numbered questions or technical callouts.
 
 ## Session use
 

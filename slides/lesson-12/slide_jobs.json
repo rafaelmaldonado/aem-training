@@ -1,0 +1,283 @@
+{
+  "run_status": "slides_recorded",
+  "deck_name": "lesson-12",
+  "selected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Day 12 source-to-clientlib build-pipeline sample prompt generated from the approved outline and Day 11 style reference, then corrected with image_gen edit for the editable-source boundary",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-12/origin_image/slide_03.png",
+    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "max_concurrent_slides": 3,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "Client Libraries and frontend workflow",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-12/origin_image/slide_03.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-stage build-pipeline layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_09",
+        "agent_nickname": "Russell",
+        "prompt": "prompts/slide_01.json",
+        "prompt_sha256": "3363f23482e63fb1e8f1752e81882482b27360495a9a9c18a7c6a9077077b23a",
+        "dispatched_at": "2026-08-25T20:52:18Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03979-196a-76e1-8739-f651b1834004/exec-a9b3e5df-35b9-4651-b859-71b926510fad.png",
+        "selected_source_sha256": "b7b56f395b506db110860a8984d741f777a6d6bc7a89d8e6ba420701214f12a7",
+        "final_image": "origin_image/slide_01.png",
+        "final_image_sha256": "b7b56f395b506db110860a8984d741f777a6d6bc7a89d8e6ba420701214f12a7",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "All required text is exact and readable, with no overlap or clipping; the opening layout matches the approved technical-atlas style without becoming a detailed pipeline.",
+        "recorded_at": "2026-08-25T20:54:29Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "A clientlib category is the runtime contract.",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-12/origin_image/slide_03.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-stage build-pipeline layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_08",
+        "agent_nickname": "Kant",
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "a039d3cb5018ab1d7e39281da0525f46c25d61f25cd39eb8e4e84393b2734a72",
+        "dispatched_at": "2026-08-25T20:54:05Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_08",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03975-fca5-7f82-adf6-0488ea0df964/exec-0d08c741-a9b8-496f-b20f-488596faa106.png",
+        "selected_source_sha256": "6019ba32760c4971355d147f55ecd39ce2dac90bcd7b44d52b29ff13433de3d8",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "6019ba32760c4971355d147f55ecd39ce2dac90bcd7b44d52b29ff13433de3d8",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "All required clientlib terms, properties, manifests, category mapping, and proxied request are exact, readable, unclipped, non-overlapping, and style-consistent.",
+        "recorded_at": "2026-08-25T20:56:57Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "Source and generated clientlib output are different artifacts.",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-12/origin_image/slide_03.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-stage build-pipeline layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "accepted",
+      "dispatch": null,
+      "result": {
+        "final_image": "origin_image/slide_03.png",
+        "accepted_sample": true
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "Dependencies load; embeds combine.",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-12/origin_image/slide_03.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-stage build-pipeline layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_09",
+        "agent_nickname": "Russell",
+        "prompt": "prompts/slide_04.json",
+        "prompt_sha256": "4ac90b67307151fbf0296b825fc7be1c2c6a7ed35ae8ccf12cbbef8b48581ae8",
+        "dispatched_at": "2026-08-25T20:54:43Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03979-196a-76e1-8739-f651b1834004/exec-f03f1cc5-7c7c-47b0-8806-de4f6bb3c76f.png",
+        "selected_source_sha256": "10b95243237bdb0424e0874f20fca0b2ec27d7bbcd7c19486e92200f66289a51",
+        "final_image": "origin_image/slide_04.png",
+        "final_image_sha256": "10b95243237bdb0424e0874f20fca0b2ec27d7bbcd7c19486e92200f66289a51",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "All required text, category names, and output labels are exact and readable, with no overlap or clipping; the mirrored comparison matches the approved technical-atlas style.",
+        "recorded_at": "2026-08-25T20:56:57Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "Load shared assets once; scope component assets narrowly.",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-12/origin_image/slide_03.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-stage build-pipeline layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_05",
+        "agent_nickname": "Franklin",
+        "prompt": "prompts/slide_05.json",
+        "prompt_sha256": "7edafc8a2537b4320178a745f3e0b9d52f02318b13e828dfe71b56245a236302",
+        "dispatched_at": "2026-08-25T20:55:14Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_05",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03971-9dfd-7531-9f30-7c6ca884fc14/exec-70b43442-b78b-4be6-8e2a-209a6ffe2861.png",
+        "selected_source_sha256": "2916bb453786be6893b8782ee0faf66824e25fa1d614f2c56d5f792d2d975530",
+        "final_image": "origin_image/slide_05.png",
+        "final_image_sha256": "2916bb453786be6893b8782ee0faf66824e25fa1d614f2c56d5f792d2d975530",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Required title, eyebrow, key points, wknd.site, and .cmp-guide-card are readable and correctly rendered; the single-inclusion architecture, scoped ownership zones, and warning fit without overlap or clipping.",
+        "recorded_at": "2026-08-25T20:57:42Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "Debug the artifact the browser actually received.",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-12/origin_image/slide_03.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-stage build-pipeline layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_08",
+        "agent_nickname": "Kant",
+        "prompt": "prompts/slide_06.json",
+        "prompt_sha256": "d4d2fdae4d0eb693368c76ecb2f7752c40ff427e8efe1e097966caad8f28dab6",
+        "dispatched_at": "2026-08-25T20:57:07Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_08",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03975-fca5-7f82-adf6-0488ea0df964/exec-59de4cdf-c095-4990-bff8-c47206dc5938.png",
+        "selected_source_sha256": "40948709bba2352e7db21f646928db416dde703b19ebc8cc07f8e7d989f58ba9",
+        "final_image": "origin_image/slide_06.png",
+        "final_image_sha256": "40948709bba2352e7db21f646928db416dde703b19ebc8cc07f8e7d989f58ba9",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "All six evidence rungs, /etc.clientlibs/, the stop rule, and cache warning are exact, readable, unclipped, non-overlapping, and style-consistent.",
+        "recorded_at": "2026-08-25T20:59:43Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "Questions",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-12/origin_image/slide_03.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-stage build-pipeline layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_09",
+        "agent_nickname": "Russell",
+        "prompt": "prompts/slide_07.json",
+        "prompt_sha256": "1cacef27754a8c2e06609943b0a5f5ebb5a86017b1e7893165326181ced6075a",
+        "dispatched_at": "2026-08-25T20:57:07Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03979-196a-76e1-8739-f651b1834004/exec-32ee0162-312e-4d9c-9d03-307407ba08fc.png",
+        "selected_source_sha256": "3b53a17b5b49220be7649bd5b04da33ec240e0a65279ebaacdbaa863fc3905c7",
+        "final_image": "origin_image/slide_07.png",
+        "final_image_sha256": "3b53a17b5b49220be7649bd5b04da33ec240e0a65279ebaacdbaa863fc3905c7",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Only the exact eyebrow, Questions, and Thank you. appear; all are readable and unclipped, with a restrained unlabeled motif matching the approved style.",
+        "recorded_at": "2026-08-25T20:58:44Z"
+      },
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-08-25T20:59:43Z"
+}

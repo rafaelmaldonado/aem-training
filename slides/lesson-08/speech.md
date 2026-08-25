@@ -2,19 +2,19 @@
 
 ## How to use these notes
 
-- Keep one field—`./title` or `./heading`—as the thread through all nine slides.
+- Keep one field—`./title` or `./heading`—as the thread through all eight slides.
 - Separate three Resources verbally every time: component definition, dialog definition and authored instance.
 - Present the dialog as a storage contract, not as a collection of UI widgets.
 - Spend extra time on Slides 4–7; that is where persistence, compatibility and runtime safety become concrete.
 
-## Slide 1: Design the storage contract before adding dialog fields
+## Slide 1: Dialogs, Granite UI and property persistence
 
 - **What it means**
-  - A dialog field name becomes part of the persisted schema consumed by HTL, models, migrations and integrations.
-  - Adding or renaming a field creates maintenance cost beyond the editor screen.
+  - Introduce the session’s three threads: Granite UI Resource trees, field-to-property persistence and safe evolution of stored content.
+  - Identify the class, date, presenter and 30-minute scope before following the technical trace.
 - **How to present it**
-  - Follow one value from author input → Sling POST → JCR property → rendered output.
-  - Point out that every arrow needs observable evidence.
+  - Preview one value moving from author input → Sling POST → JCR property → rendered output.
+  - Name the three topics without teaching the full pipeline yet.
 - **Say explicitly**
   - “The field label is presentation; the field name is storage behavior.”
   - “A dialog that saves once is not enough evidence of a safe content contract.”
@@ -144,30 +144,6 @@
 - **Transition**
   - “These states summarize the complete storage contract.”
 
-## Slide 8: Key takeaways
+## Slide 8: Questions
 
-- **How to present it**
-  - Ask participants to reconstruct the trace: dialog field → POST parameter → JCR property → model/HTL → browser.
-  - Ask which changes require compatibility or migration.
-- **Say explicitly**
-  - “Component, dialog and instance are separate Resources.”
-  - “Relative field names control persistence.”
-  - “Runtime code must handle stored content that did not pass today’s dialog.”
-  - “Every new field becomes another contract to maintain.”
-- **Quick check**
-  - Ask whether changing `fieldLabel` or changing `name` is the schema change, and why.
-- **Transition**
-  - “Use the final questions to test the trace without looking at the diagram.”
-
-## Slide 9: Questions
-
-- **Ask in this order**
-  - “What does `name="./title"` create, and where?”
-  - “Which Resource does HTL read at runtime?”
-  - “Why does renaming the field not migrate Page A?”
-  - “What should an empty component show to an author and to a visitor?”
-- **Push vague answers**
-  - Ask for the exact repository path and property name.
-  - Ask which evidence comes from Network, repository and rendered DOM.
-- **Close with**
-  - “Review a dialog change as a schema change whenever it alters the stored name, shape or type.”
+That completes the session. Thank the audience and leave the floor open for questions they want to raise. Do not introduce review prompts or another exercise.

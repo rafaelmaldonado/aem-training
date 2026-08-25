@@ -7,17 +7,18 @@
 **Visual direction:** reuse the approved sober, detailed technical-atlas style from Days 6–8.  
 **Required source images:** none. Asset references, responsive candidates, alternative-text decisions and review evidence will be represented as precise technical diagrams.
 
-## Slide 1 — Treat every image as content, delivery and accessibility.
+## Slide 1 — Assets, Core Image and accessible delivery
 
-**Role:** cover  
-**Intent:** frame an image as a complete delivery contract rather than a decorative binary.
+**Role:** opening overview
+**Intent:** identify the session, presenter and date while previewing the three learning threads.
 
 - Class 9 · Week 2 · Day 9 · August 27, 2026.
 - Assets, Core Image and accessible delivery.
-- DAM reference → responsive source → accessible meaning.
+- Today: managed DAM references, context-specific alternatives, and responsive browser delivery.
+- 30-minute technical session.
 - Juan Maldonado.
 
-**Visual idea:** one DAM asset flows through a component contract into three observable outcomes: the browser request, the rendered image and the accessibility tree.
+**Visual idea:** a strong title block with presenter and date, plus three compact visual anchors for DAM ownership, accessible meaning and responsive delivery.
 
 ## Slide 2 — An authored image is a reference, not a copied binary.
 
@@ -84,7 +85,20 @@
 
 **Visual idea:** one asset becomes 480, 768 and 1200 pixel candidates; a browser request selects one while a separate CSS box makes the distinction between layout size and transfer size visible.
 
-## Slide 7 — Verify the Guide Page image contract with evidence.
+## Slide 7 — Asset references turn maintenance into a dependency decision.
+
+**Role:** lifecycle dependency radius
+**Intent:** give reference impact the dedicated treatment required by asset moves, replacement and publication.
+
+- Every `fileReference` creates an incoming dependency on the managed DAM asset.
+- Replacing an asset can change every consuming page even when their component content remains unchanged.
+- Moving, unpublishing or deleting an asset can break references or public delivery.
+- Inspect incoming references and affected publication state before a lifecycle change.
+- Record the impacted pages and verification plan as part of the change evidence.
+
+**Visual idea:** one DAM asset sits at the center of a dependency-radius map; several consuming pages expose the impact of replace, move, unpublish and delete operations.
+
+## Slide 8 — Verify the Guide Page image contract with evidence.
 
 **Role:** practice evidence matrix  
 **Intent:** turn the session into a repeatable review of the Week 2 practice without depending on a live demo.
@@ -98,31 +112,16 @@
 
 **Visual idea:** a three-row informative/decorative/missing-state matrix crosses repository reference, rendered HTML, accessibility result and network evidence.
 
-## Slide 8 — Key takeaways
-
-**Role:** summary  
-**Intent:** retrieve the five decisions required for a reliable and accessible image implementation.
-
-1. Page components reference DAM assets; they do not copy the managed binary.
-2. Proxy the Core Image Component instead of rebuilding proven image behavior.
-3. Alternative text follows the image's purpose in the current context.
-4. Responsive delivery requires multiple candidates; CSS sizing alone does not reduce transfer bytes.
-5. Verify the repository reference, rendered alternative-text state and browser-selected source.
-
-**Governing principle:** the same asset can require different accessible meaning in different page contexts.
-
-**Visual idea:** five linked checkpoints move from managed asset to component capability, contextual meaning, responsive request and review evidence.
-
 ## Slide 9 — Questions
 
 **Role:** Q&A  
-**Intent:** close with discussion prompts and no dependency on a live demonstration.
+**Intent:** invite questions raised by participants and close the session without introducing another exercise.
 
-- When is the Guide Page image informative rather than decorative?
-- Which evidence proves that the page references the intended DAM asset?
-- What shows that the browser received an appropriate responsive candidate?
+- Questions.
+- Thank you.
+- No scripted prompts or review exercise.
 
-**Visual idea:** a simplified asset-to-browser path with the accessibility, reference and delivery decisions highlighted and generous space for discussion.
+**Visual idea:** a quiet closing composition with a subtle asset-to-browser line motif and generous open space; no prompts, numbered questions or technical callouts.
 
 ## Source anchors
 

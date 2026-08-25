@@ -7,14 +7,14 @@
 - Avoid presenting accessibility as a dialog checkbox or responsive behavior as a CSS-only concern.
 - Spend extra time on Slides 4–7; they contain the decisions participants must demonstrate.
 
-## Slide 1: Treat every image as content, delivery and accessibility
+## Slide 1: Assets, Core Image and accessible delivery
 
 - **What it means**
-  - An AEM image involves DAM ownership, a page reference, responsive delivery and contextual alternative text.
-  - A screenshot proves appearance only; it does not prove those contracts.
+  - Introduce the session’s three threads: managed DAM references, Core Image delivery and accessible meaning in context.
+  - Identify the class, date, presenter and 30-minute scope before examining evidence.
 - **How to present it**
-  - Follow the pipeline: DAM asset → Image component → browser request → accessible DOM.
-  - Name the evidence available at each checkpoint.
+  - Preview the pipeline: DAM asset → Image component → browser request → accessible DOM.
+  - Name the three topics without expanding the evidence matrix yet.
 - **Say explicitly**
   - “The image is not finished when it looks correct.”
   - “We must verify what is referenced, what bytes were sent and what meaning was exposed.”
@@ -125,7 +125,21 @@
 - **Transition**
   - “Combine repository, DOM and Network evidence in one review matrix.”
 
-## Slide 7: Verify the Guide Page image contract with evidence
+## Slide 7: Asset references turn maintenance into a dependency decision
+
+- **What it means**
+  - Moving, replacing, unpublishing or deleting a DAM asset can affect every page that references it.
+  - Lifecycle decisions should begin with incoming-reference evidence and end with consumer verification.
+- **How to present it**
+  - Follow the reference from one DAM asset to multiple Guide Pages.
+  - Compare the safe sequence—inspect, assess, change and verify—with a direct destructive change.
+- **Say explicitly**
+  - “The asset path is a dependency contract, not just a filing location.”
+  - “Reference inspection reduces risk; consumer verification proves the change.”
+- **Transition**
+  - “Now combine ownership, accessibility and delivery in one evidence matrix.”
+
+## Slide 8: Verify the Guide Page image contract with evidence
 
 - **What it means**
   - Each state must connect stored reference, rendered alternative, browser-selected source and author behavior.
@@ -136,42 +150,13 @@
   - “A correct `fileReference` does not prove correct alternative text or efficient delivery.”
   - “An Author preview does not prove the asset and required rendition are available on Publish.”
 - **Evidence to request**
-  - Component `fileReference`.
-  - Asset path and incoming reference.
+  - Component `fileReference` and asset path.
   - Rendered `alt` state.
   - Selected image request and dimensions.
   - Safe empty or invalid state.
-- **Maintenance check**
-  - Before move, delete or unpublish, inspect references and consuming pages.
 - **Transition**
-  - “The matrix reduces the lesson to five reusable checkpoints.”
-
-## Slide 8: Key takeaways
-
-- **How to present it**
-  - Ask the group to state the five checkpoints before reading them.
-  - Attach one tool to each: repository, component hierarchy, DOM, Network and References.
-- **Say explicitly**
-  - “Reference the managed asset; do not duplicate it.”
-  - “Proxy Core Image before customizing delivery.”
-  - “Choose alternative text from context.”
-  - “Verify transferred bytes, not only CSS size.”
-  - “Inspect incoming references before lifecycle changes.”
-- **Quick check**
-  - Ask how one asset can correctly produce both meaningful alternative text and an empty alternative on different pages.
-- **Transition**
-  - “Use the closing questions to connect purpose, storage and delivery.”
+  - “That completes the session. I’ll leave the final slide open for your questions.”
 
 ## Slide 9: Questions
 
-- **Ask in this order**
-  - “Is the Guide image informative, decorative, functional or complex?”
-  - “Which property proves the page references the intended DAM asset?”
-  - “Which DOM evidence proves the accessibility decision?”
-  - “Which Network evidence proves the selected responsive candidate?”
-  - “What could break if the asset is moved or unpublished?”
-- **Push vague answers**
-  - Ask for the exact `fileReference`, `alt` state and requested URL.
-  - Ask participants to separate rendered dimensions from transferred bytes.
-- **Close with**
-  - “A complete image review connects asset ownership, page purpose and browser delivery in one trace.”
+That completes the session. Thank the audience and leave the floor open for questions they want to raise. Do not introduce review prompts or another exercise.

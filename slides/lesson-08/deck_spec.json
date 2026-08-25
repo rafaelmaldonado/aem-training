@@ -62,33 +62,35 @@
   "slides": [
     {
       "number": 1,
-      "title": "Design the storage contract before adding dialog fields.",
-      "role": "cover",
-      "intent": "Position a dialog change as a content-schema decision rather than merely a form-layout task.",
+      "title": "Dialogs, Granite UI and property persistence",
+      "role": "opening overview",
+      "intent": "Identify the session, presenter and date while previewing the three learning threads.",
       "key_points": [
         "Class 8 · Week 2 · Day 8 · August 26, 2026",
         "Dialogs, Granite UI and property persistence",
-        "Dialog field → POST parameter → JCR property → rendered output",
+        "Today: dialog Resources, field-to-JCR persistence, and compatibility across configured, legacy and empty content",
+        "30-minute technical session",
         "Juan Maldonado"
       ],
       "local_context": {
-        "required_background": "Show one field traveling through four technical layers inside a durable storage-contract boundary. Use My first AEM project as the example value. This is a technical synthesis cover, not a title-only page."
+        "required_background": "Create an opening overview. Present three compact topic anchors: dialog Resources, the field-to-JCR persistence path, and compatibility across configured, legacy and empty content."
       },
       "layout": {
-        "composition": "Editorial technical cover with a compact dialog-to-browser lifecycle diagram and exact class metadata aligned below the title.",
-        "intent": "Introduce the complete storage contract without repeating the sample's five-column trace."
+        "composition": "Strong title block with class metadata, presenter and date on the left; three compact topic anchors on the right.",
+        "intent": "Orient the audience before technical detail without turning the opening into another process slide."
       },
       "visual_elements": {
-        "main_visual": "Dialog field, POST request, JCR Resource and browser output as one protected contract."
+        "main_visual": "Three concise icons for dialog anatomy, persistence flow and resilient content states."
       },
       "constraints": [
         "Render all class metadata exactly.",
-        "Use My first AEM project as the example value.",
-        "Do not imply that dialog fields store content under /apps."
+        "Render the three Today topics clearly.",
+        "Do not add a detailed persistence trace to the opening slide."
       ]
     },
     {
       "number": 2,
+      "approved_sample": true,
       "title": "One component spans code, authoring UI and stored content.",
       "role": "component anatomy",
       "intent": "Separate the component definition, its edit dialog and one authored component instance.",
@@ -118,6 +120,7 @@
     },
     {
       "number": 3,
+      "approved_sample": true,
       "title": "Granite UI renders the dialog from a Resource tree.",
       "role": "repository anatomy",
       "intent": "Make the dialog inspectable as server-rendered Sling Resources rather than client-side form markup.",
@@ -174,6 +177,7 @@
     },
     {
       "number": 5,
+      "approved_sample": true,
       "title": "A field change can become a content migration.",
       "role": "compatibility timeline",
       "intent": "Show why renaming or reshaping a field affects content that already exists.",
@@ -203,6 +207,7 @@
     },
     {
       "number": 6,
+      "approved_sample": true,
       "title": "Validation guides authors but does not guarantee stored content.",
       "role": "defense layers",
       "intent": "Distinguish helpful dialog constraints from runtime validation and compatibility responsibilities.",
@@ -232,6 +237,7 @@
     },
     {
       "number": 7,
+      "approved_sample": true,
       "title": "Verify configured, legacy and empty states end to end.",
       "role": "review evidence matrix",
       "intent": "Turn the session into an observable field-to-browser review that does not require a live demo.",
@@ -261,57 +267,26 @@
     },
     {
       "number": 8,
-      "title": "Key takeaways",
-      "role": "summary",
-      "intent": "Retrieve the five contracts required to change an AEM dialog safely.",
-      "key_points": [
-        "Component definition, dialog and instance are separate Resources",
-        "Granite UI renders cq:dialog from a sling:resourceType-driven tree",
-        "Relative field name controls Sling POST persistence",
-        "Stored-field changes require compatibility and migration decisions",
-        "Runtime handles configured, legacy and empty content"
-      ],
-      "local_context": {
-        "required_background": "Summarize only the five exact course distinctions. Add one concise governing principle: Every field creates an authoring and compatibility cost. Do not include assignment or demo instructions."
-      },
-      "layout": {
-        "composition": "Five linked storage-contract checkpoints from component definition to resilient output, each with one exact takeaway and technical icon.",
-        "intent": "End the teaching sequence with one retrievable system rather than unrelated cards."
-      },
-      "visual_elements": {
-        "main_visual": "Five connected contract checkpoints with one restrained cost banner."
-      },
-      "constraints": [
-        "Render the eyebrow exactly as '08 · KEY TAKEAWAYS'.",
-        "Render all five takeaways clearly and in order.",
-        "Include 'Every field creates an authoring and compatibility cost.'",
-        "Do not include assignment, demo or next-step text."
-      ]
-    },
-    {
-      "number": 9,
       "title": "Questions",
       "role": "Q&A",
-      "intent": "Close without requiring a live demonstration.",
+      "intent": "Invite questions raised by participants and close the session without introducing another exercise.",
       "key_points": [
-        "What exactly does name = ./title create?",
-        "Which dialog change would require a content migration?",
-        "What evidence proves that an empty component remains authorable and safe?"
+        "Thank you."
       ],
       "local_context": {
-        "required_background": "Present exactly three discussion questions around a simplified dialog-to-browser trace. Keep more whitespace than technical content slides."
+        "required_background": "This is a passive closing slide. Participants may ask their own questions; the presenter must not ask scripted questions or introduce a review exercise."
       },
       "layout": {
-        "composition": "Three large question zones orbit a simplified dialog, Resource and browser chain.",
-        "intent": "Signal discussion while retaining the deck's technical visual identity."
+        "composition": "Large Questions title, small Thank you subtitle, generous open space and one subtle decorative dialog-to-browser line motif.",
+        "intent": "Signal the end of the session while retaining the deck's technical visual identity."
       },
       "visual_elements": {
-        "main_visual": "Simplified dialog-to-browser flow with three highlighted contract decisions."
+        "main_visual": "A restrained decorative dialog-to-browser line motif with no labels or decision points."
       },
       "constraints": [
-        "Render the eyebrow exactly as '09 · QUESTIONS'.",
-        "Render all three questions exactly.",
-        "Do not include a demo, practice, assignment or thank-you message."
+        "Render the eyebrow exactly as '08 · QUESTIONS'.",
+        "Render only the title 'Questions' and the subtitle 'Thank you.'.",
+        "Do not include prompts, numbered questions, exercises, technical callouts, a demo, practice or assignment."
       ]
     }
   ]

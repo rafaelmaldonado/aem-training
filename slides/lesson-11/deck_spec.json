@@ -69,33 +69,35 @@
   "slides": [
     {
       "number": 1,
-      "title": "HTL turns prepared values into safe HTML.",
-      "role": "cover",
-      "intent": "Frame HTL as the view layer between an AEM Resource or model and the browser DOM.",
+      "title": "Safe and readable HTL",
+      "role": "opening overview",
+      "intent": "Identify the session, presenter and date while previewing the three learning threads.",
       "key_points": [
         "Class 11 · Week 3 · Day 11 · August 31, 2026",
         "Safe and readable HTL",
-        "Resource or model → HTL → valid, context-aware HTML",
+        "Today: the view boundary, structural HTL statements, and context-aware output",
+        "30-minute technical session",
         "Juan Maldonado"
       ],
       "local_context": {
-        "required_background": "Create a technical synthesis cover rather than a title-only slide. Show one Guide Card Resource and a small prepared view contract entering HTL, then configured and empty DOM outcomes leaving it."
+        "required_background": "Create an opening overview. Present three compact topic anchors: the view boundary, structural HTL statements, and context-aware output."
       },
       "layout": {
-        "composition": "Editorial technical cover with title and exact class metadata on the left and a compact Resource-or-model to HTL to DOM flow on the right.",
-        "intent": "Establish the complete view-layer contract without copying the approved sample's matrix."
+        "composition": "Strong title block with class metadata, presenter and date on the left; three compact topic anchors on the right.",
+        "intent": "Orient the audience before technical detail without turning the opening into another process slide."
       },
       "visual_elements": {
-        "main_visual": "Guide Card Resource or prepared model → thin HTL view → valid configured and empty browser DOM."
+        "main_visual": "Three concise icons for prepared values, readable template structure and safe browser output."
       },
       "constraints": [
         "Render all class metadata exactly.",
-        "Render the phrase Resource or model → HTL → valid, context-aware HTML exactly.",
-        "Do not imply that HTL owns business orchestration."
+        "Render the three Today topics clearly.",
+        "Do not add a detailed Resource-to-DOM trace to the opening slide."
       ]
     },
     {
       "number": 2,
+      "approved_sample": true,
       "title": "Keep the template boundary narrow.",
       "role": "responsibility boundary",
       "intent": "Separate data preparation from direct markup production.",
@@ -124,6 +126,7 @@
     },
     {
       "number": 3,
+      "approved_sample": true,
       "title": "Expressions read values where the markup needs them.",
       "role": "expression anatomy",
       "intent": "Teach concise value access while keeping names aligned with the rendered HTML.",
@@ -152,6 +155,7 @@
     },
     {
       "number": 4,
+      "approved_sample": true,
       "title": "Conditions and lists should make every state visible.",
       "role": "rendering-state flow",
       "intent": "Use HTL block statements for structure while defining the missing-data outcome explicitly.",
@@ -181,6 +185,7 @@
     },
     {
       "number": 5,
+      "approved_sample": true,
       "title": "Templates and calls reuse small markup contracts.",
       "role": "reuse comparison",
       "intent": "Prevent repetition without creating a private component framework inside HTL.",
@@ -209,6 +214,7 @@
     },
     {
       "number": 6,
+      "approved_sample": true,
       "title": "Trace one Guide Card from Resource to DOM.",
       "role": "end-to-end code trace",
       "intent": "Combine prepared values, conditions, attributes and the empty state in one inspectable example.",
@@ -264,6 +270,7 @@
     },
     {
       "number": 8,
+      "approved_sample": true,
       "title": "Key takeaways",
       "role": "summary",
       "intent": "Retrieve the five rules for maintainable HTL.",
@@ -292,28 +299,27 @@
     },
     {
       "number": 9,
+      "approved_sample": true,
       "title": "Questions",
       "role": "Q&A",
-      "intent": "Close with discussion prompts and no dependency on a live demonstration.",
+      "intent": "Invite questions raised by participants and close the session without introducing another exercise.",
       "key_points": [
-        "Which layer should prepare a derived Guide Card value?",
-        "What should author and visitor receive when required data is missing?",
-        "Which context applies to the card link, visible title and inline script value?"
+        "Thank you."
       ],
       "local_context": {
-        "required_background": "Use the complete Resource → Sling Model → HTL → DOM path as a subtle recall scaffold. Highlight three decisions: responsibility boundary, empty-state outcome and output context."
+        "required_background": "This is a passive closing slide. Participants may ask their own questions; the presenter must not ask scripted questions or introduce a review exercise."
       },
       "layout": {
-        "composition": "Three large numbered question anchors surround a simplified Resource-to-DOM path with generous discussion space.",
-        "intent": "Use visual recall cues while keeping the page open enough for discussion."
+        "composition": "Large Questions title, small Thank you subtitle, generous open space and one subtle decorative Resource-to-DOM line motif.",
+        "intent": "Signal the end of the session while retaining the deck's technical visual identity."
       },
       "visual_elements": {
-        "main_visual": "Simplified Resource → model → HTL → DOM path with three highlighted decision points."
+        "main_visual": "A restrained decorative Resource-to-DOM line motif with no labels or decision points."
       },
       "constraints": [
         "Render the eyebrow exactly as '09 · QUESTIONS'.",
-        "Render the three questions exactly.",
-        "Do not include a live demo, assignment, practice, thanks message or decorative page number."
+        "Render only the title 'Questions' and the subtitle 'Thank you.'.",
+        "Do not include prompts, numbered questions, exercises, technical callouts, a demo, practice or assignment."
       ]
     }
   ]

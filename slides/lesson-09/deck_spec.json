@@ -67,33 +67,35 @@
   "slides": [
     {
       "number": 1,
-      "title": "Treat every image as content, delivery and accessibility.",
-      "role": "cover",
-      "intent": "Frame an image as a complete delivery contract rather than a decorative binary.",
+      "title": "Assets, Core Image and accessible delivery",
+      "role": "opening overview",
+      "intent": "Identify the session, presenter and date while previewing the three learning threads.",
       "key_points": [
         "Class 9 · Week 2 · Day 9 · August 27, 2026",
         "Assets, Core Image and accessible delivery",
-        "DAM reference → responsive source → accessible meaning",
+        "Today: managed DAM references, context-specific alternatives, and responsive browser delivery",
+        "30-minute technical session",
         "Juan Maldonado"
       ],
       "local_context": {
-        "required_background": "Create a technical synthesis cover, not a title-only page. One DAM asset should pass through a Core Image contract and become three observable outcomes: a browser request, rendered image and accessibility meaning."
+        "required_background": "Create an opening overview. Present three compact topic anchors: managed DAM references, context-specific alternatives, and responsive browser delivery."
       },
       "layout": {
-        "composition": "Editorial technical cover with the title and exact class metadata on the left, plus a compact asset-to-browser contract diagram on the right.",
-        "intent": "Establish the complete image contract without repeating the sample's four-branch decision tree."
+        "composition": "Strong title block with class metadata, presenter and date on the left; three compact topic anchors on the right.",
+        "intent": "Orient the audience before technical detail without turning the opening into another process slide."
       },
       "visual_elements": {
-        "main_visual": "DAM asset → Core Image contract → browser request, rendered image and accessibility tree."
+        "main_visual": "Three concise icons for DAM ownership, accessible meaning and responsive delivery."
       },
       "constraints": [
         "Render all class metadata exactly.",
-        "Render the phrase DAM reference → responsive source → accessible meaning exactly.",
-        "Do not imply that the page stores a duplicate binary."
+        "Render the three Today topics clearly.",
+        "Do not add a detailed asset-to-browser trace to the opening slide."
       ]
     },
     {
       "number": 2,
+      "approved_sample": true,
       "title": "An authored image is a reference, not a copied binary.",
       "role": "repository anatomy",
       "intent": "Separate the managed DAM asset from the component instance that uses it.",
@@ -123,6 +125,7 @@
     },
     {
       "number": 3,
+      "approved_sample": true,
       "title": "Use the Core Image capability before custom markup.",
       "role": "capability stack",
       "intent": "Show the smallest project-owned implementation that retains product-provided behavior.",
@@ -179,6 +182,7 @@
     },
     {
       "number": 5,
+      "approved_sample": true,
       "title": "DAM metadata is a source, not the final decision.",
       "role": "context comparison",
       "intent": "Distinguish reusable asset metadata from the meaning required by a particular page.",
@@ -208,6 +212,7 @@
     },
     {
       "number": 6,
+      "approved_sample": true,
       "title": "Responsive delivery lets the browser choose appropriate bytes.",
       "role": "delivery pipeline",
       "intent": "Connect policy widths, generated candidates and the source selected by the browser.",
@@ -238,6 +243,35 @@
     },
     {
       "number": 7,
+      "title": "Asset references turn maintenance into a dependency decision.",
+      "role": "lifecycle dependency radius",
+      "intent": "Give reference impact dedicated treatment before asset moves, replacement and publication changes.",
+      "key_points": [
+        "Every fileReference creates an incoming dependency",
+        "Replacing an asset can change every consuming page",
+        "Move, unpublish or delete can break references or delivery",
+        "Inspect incoming references and publication state first",
+        "Record impacted pages and the verification plan"
+      ],
+      "local_context": {
+        "required_background": "Use asset /content/dam/wknd/guides/merida/guide-hero.jpg at the center. Show several incoming page references and four lifecycle actions: replace, move, unpublish and delete. Make impact radius and verification ownership explicit."
+      },
+      "layout": {
+        "composition": "A central DAM asset with incoming page-reference spokes on the left and a four-action lifecycle risk rail on the right.",
+        "intent": "Make the dependency radius visible without repeating the repository anatomy slide."
+      },
+      "visual_elements": {
+        "main_visual": "DAM asset dependency-radius map with consuming pages, lifecycle actions and evidence checkpoints."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '07 · REFERENCE IMPACT'.",
+        "Render replace, move, unpublish and delete exactly.",
+        "Do not imply that references are automatically repaired after an asset move.",
+        "Include 'Inspect references before lifecycle changes.'"
+      ]
+    },
+    {
+      "number": 8,
       "title": "Verify the Guide Page image contract with evidence.",
       "role": "practice evidence matrix",
       "intent": "Turn the session into a repeatable review of the Week 2 practice without depending on a live demo.",
@@ -249,74 +283,45 @@
         "Browser: candidates, selected request and rendered dimensions"
       ],
       "local_context": {
-        "required_background": "Build a three-row evidence matrix. Informative row: intended fileReference, non-empty alt and responsive request. Decorative row: same valid reference, explicit empty alt and responsive request. Missing or invalid row: authoring guidance plus safe output, never a missing alt attribute. Columns must be Repository, Rendered HTML, Accessibility result and Network evidence. Add a maintenance checkpoint to inspect incoming references before asset lifecycle changes."
+        "required_background": "Build a three-row evidence matrix. Informative row: intended fileReference, non-empty alt and responsive request. Decorative row: same valid reference, explicit empty alt and responsive request. Missing or invalid row: authoring guidance plus safe output, never a missing alt attribute. Columns must be Repository, Rendered HTML, Accessibility result and Network evidence."
       },
       "layout": {
-        "composition": "A wide three-row evidence matrix with exact status chips and a narrow maintenance checkpoint rail below it.",
+        "composition": "A wide three-row evidence matrix with exact status chips and a narrow evidence principle rail below it.",
         "intent": "Make the Week 2 Guide Page review executable from artifacts rather than a live demonstration."
       },
       "visual_elements": {
         "main_visual": "Informative, decorative and missing-or-invalid states crossed with repository, HTML, accessibility and network evidence."
       },
       "constraints": [
-        "Render the eyebrow exactly as '07 · PRACTICE EVIDENCE'.",
+        "Render the eyebrow exactly as '08 · PRACTICE EVIDENCE'.",
         "Show explicit alt states accurately.",
         "Include 'Evidence, not screenshots alone.'",
         "Do not require Cloud Manager or a shared deployment environment."
       ]
     },
     {
-      "number": 8,
-      "title": "Key takeaways",
-      "role": "summary",
-      "intent": "Retrieve the five decisions required for a reliable and accessible image implementation.",
-      "key_points": [
-        "Page components reference DAM assets; they do not copy the managed binary",
-        "Proxy Core Image instead of rebuilding proven image behavior",
-        "Alternative text follows purpose in the current context",
-        "Responsive delivery needs candidates; CSS sizing alone is insufficient",
-        "Verify repository reference, rendered alt state and selected source"
-      ],
-      "local_context": {
-        "required_background": "Use five exact checkpoints: managed reference, Core Image proxy, contextual alternative text, responsive candidates and evidence. Governing principle: 'The same asset can require different accessible meaning in different page contexts.'"
-      },
-      "layout": {
-        "composition": "Five linked checkpoints form a compact technical path from DAM asset to verified browser outcome, ending in a highlighted governing principle.",
-        "intent": "Summarize the session as one reusable review sequence rather than five disconnected cards."
-      },
-      "visual_elements": {
-        "main_visual": "A numbered five-checkpoint path with concise evidence tags and one governing-principle callout."
-      },
-      "constraints": [
-        "Render the eyebrow exactly as '08 · KEY TAKEAWAYS'.",
-        "Render all five takeaways and the governing principle exactly.",
-        "Keep every takeaway readable without shrinking body text excessively."
-      ]
-    },
-    {
       "number": 9,
+      "approved_sample": true,
       "title": "Questions",
       "role": "Q&A",
-      "intent": "Close with discussion prompts and no dependency on a live demonstration.",
+      "intent": "Invite questions raised by participants and close the session without introducing another exercise.",
       "key_points": [
-        "When is the Guide Page image informative rather than decorative?",
-        "Which evidence proves that the page references the intended DAM asset?",
-        "What shows that the browser received an appropriate responsive candidate?"
+        "Thank you."
       ],
       "local_context": {
-        "required_background": "Close on the same asset-to-browser contract introduced on the cover. Highlight the accessibility, repository-reference and responsive-delivery decision points. This is questions only: no demo, assignment, practice instructions, thanks message or new technical content."
+        "required_background": "This is a passive closing slide. Participants may ask their own questions; the presenter must not ask scripted questions or introduce a review exercise."
       },
       "layout": {
-        "composition": "Three large numbered question anchors around a simplified asset-to-browser path with generous discussion space.",
-        "intent": "Use visual recall cues while keeping the page open enough for discussion."
+        "composition": "Large Questions title, small Thank you subtitle, generous open space and one subtle decorative asset-to-browser line motif.",
+        "intent": "Signal the end of the session while retaining the deck's technical visual identity."
       },
       "visual_elements": {
-        "main_visual": "Simplified DAM reference → Core Image → browser path with three highlighted decision points."
+        "main_visual": "A restrained decorative asset-to-browser line motif with no labels or decision points."
       },
       "constraints": [
         "Render the eyebrow exactly as '09 · QUESTIONS'.",
-        "Render the three questions exactly.",
-        "Do not include a live demo, assignment, practice, thanks message or slide number."
+        "Render only the title 'Questions' and the subtitle 'Thank you.'.",
+        "Do not include prompts, numbered questions, exercises, technical callouts, a demo, practice or assignment."
       ]
     }
   ]

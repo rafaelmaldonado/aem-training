@@ -19,7 +19,7 @@
   </nav>
   <header>
     <p class="eyebrow">Class 8 · Week 2 · Day 8 · August 26, 2026</p>
-    <h1>Design the storage contract before adding dialog fields.</h1>
+    <h1>Dialogs, Granite UI and property persistence</h1>
     <p class="lede">Follow one value from a Granite UI Resource through Sling POST, JCR persistence and resilient rendering.</p>
     <ul class="meta"><li>30 minutes online</li><li>Field-to-browser trace</li><li>Local Author optional</li></ul>
   </header>
@@ -61,22 +61,20 @@
         <tr><td>0–3</td><td>Retrieval</td><td>Ask: “What does a dialog field named <code>./title</code> create?”</td></tr>
         <tr><td>3–18</td><td>Slides 1–5</td><td>Separate the Resources, inspect Granite UI and trace persistence and schema evolution.</td></tr>
         <tr><td>18–25</td><td>Slides 6–7</td><td>Compare authoring validation with configured, legacy and empty runtime evidence.</td></tr>
-        <tr><td>25–27</td><td>Slide 8</td><td>Retrieve the five storage contracts.</td></tr>
-        <tr><td>27–30</td><td>Slide 9</td><td>Questions only; no live demonstration dependency.</td></tr>
+        <tr><td>25–30</td><td>Slide 8</td><td>Questions only; no review exercise or live demonstration dependency.</td></tr>
       </tbody>
     </table></div>
 
     <h2>Complete slide deck</h2>
-    <p class="section-intro">Study each slide with its detailed presenter notes, then copy it into PowerPoint or download the PNG.</p>
+    <p class="section-intro">Study each slide with its detailed presenter notes, then copy it into PowerPoint, download its PNG or <a href="../slides/lesson-08/lesson-08.pptx">download the complete PPTX</a>.</p>
     <div class="web-deck">
       <article class="web-slide" data-slide-src="../slides/lesson-08/origin_image/slide_01.png">
-        <img class="web-slide-image" src="../slides/lesson-08/origin_image/slide_01.png" alt="Class 8 cover showing the dialog-field to rendered-output storage contract.">
+        <img class="web-slide-image" src="../slides/lesson-08/origin_image/slide_01.png" alt="Class 8 opening overview for dialog Resources, field-to-JCR persistence and compatibility across configured, legacy and empty content.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-08/origin_image/slide_01.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
         <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
-          <li><strong>Meaning:</strong> a field name becomes persisted schema consumed by HTL, models, migrations and integrations.</li>
-          <li><strong>Present:</strong> follow author input → Sling POST → JCR property → rendered output.</li>
-          <li><strong>Say:</strong> “The label is presentation; the field name is storage behavior.”</li>
-          <li><strong>Ask:</strong> “Who may still depend on this property name two years from now?”</li>
+          <li><strong>Present:</strong> identify the session, presenter, date and 30-minute scope.</li>
+          <li><strong>Preview:</strong> dialog Resources, field-to-JCR persistence and compatibility across configured, legacy and empty content.</li>
+          <li><strong>Transition:</strong> begin the technical model by separating the component, dialog and authored instance.</li>
         </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-08/origin_image/slide_02.png">
@@ -140,23 +138,11 @@
         </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-08/origin_image/slide_08.png">
-        <img class="web-slide-image" src="../slides/lesson-08/origin_image/slide_08.png" alt="Five key takeaways summarize dialog Resources, persistence, migration, validation and runtime states.">
+        <img class="web-slide-image" src="../slides/lesson-08/origin_image/slide_08.png" alt="Passive Questions closing slide with a Thank you message.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-08/origin_image/slide_08.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
         <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
-          <li><strong>Present:</strong> reconstruct dialog field → POST → JCR property → model/HTL → browser.</li>
-          <li><strong>Say:</strong> “Relative field names control persistence.”</li>
-          <li><strong>Reinforce:</strong> runtime must support content that did not pass today’s dialog.</li>
-          <li><strong>Check:</strong> ask whether changing <code>fieldLabel</code> or changing <code>name</code> is the schema change.</li>
-        </ul></details>
-      </article>
-      <article class="web-slide" data-slide-src="../slides/lesson-08/origin_image/slide_09.png">
-        <img class="web-slide-image" src="../slides/lesson-08/origin_image/slide_09.png" alt="Three closing questions about field persistence, migration and authorable empty states.">
-        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-08/origin_image/slide_09.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
-        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
-          <li><strong>Ask:</strong> what does <code>name="./title"</code> create, where is it stored and which Resource does HTL read?</li>
-          <li><strong>Probe:</strong> why does a rename not migrate Page A, and what should an empty component show?</li>
-          <li><strong>Push precision:</strong> require exact path, property and evidence from Network, repository and DOM.</li>
-          <li><strong>Close:</strong> “Treat changes to the stored name, shape or type as schema changes.”</li>
+          <li><strong>Close:</strong> thank the audience and leave the floor open for questions they want to raise.</li>
+          <li><strong>Boundary:</strong> do not introduce prompts, a review exercise or another activity.</li>
         </ul></details>
       </article>
     </div>

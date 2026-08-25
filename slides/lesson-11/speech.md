@@ -7,11 +7,11 @@
 - Ask for the responsible layer before suggesting a Sling Model or service.
 - Spend extra time on Slides 4, 6 and 7; they contain the state and security decisions participants must demonstrate.
 
-## Slide 1: HTL turns prepared values into safe HTML
+## Slide 1: Safe and readable HTL
 
-This week moves from authoring configuration into frontend implementation. The input remains an AEM Resource or a small view contract; the output is browser markup. HTL is the narrow layer between them. It should make that transformation easy to inspect.
+Introduce the session’s three threads: the HTL responsibility boundary, explicit rendering states and context-aware output. Identify Class 11, Week 3, Day 11, August 31, 2026, Juan Maldonado and the 30-minute scope before entering the technical detail.
 
-Follow the diagram from left to right. A configured Guide Card produces semantic markup with a link, image and title. Missing required data produces a deliberate empty outcome rather than a broken card. The central claim for the session is simple: prepared values enter HTL; valid, context-aware HTML leaves it.
+Preview the flow from prepared values through HTL to browser markup. A configured Guide Card produces semantic markup; missing required data produces a deliberate empty outcome. Keep this as an orientation slide and defer the responsibility model to Slide 2.
 
 Ask: “If a value requires several repository lookups or business decisions, should that work happen inside this template?” Use the answer to move into the responsibility boundary.
 
@@ -69,12 +69,8 @@ Use the five checkpoints as a review order. First identify the view boundary. Th
 
 Ask participants to state one piece of evidence for each checkpoint: the Resource or getter, the HTL expression, the empty DOM result, the template call and the context-sensitive output. This turns the summary into a reusable PR-review sequence rather than a list to memorize.
 
-Close on the governing principle: prepared values in; semantic and context-safe HTML out. Use the questions slide to test whether the group can apply it without looking back at the examples.
+Close on the governing principle: prepared values in; semantic and context-safe HTML out. Then move to the final slide and leave the floor open for questions from participants.
 
 ## Slide 9: Questions
 
-Ask the responsibility question first. A derived value that requires business rules belongs behind a small model or service boundary; HTL should render the result. Ask what makes that boundary necessary rather than assuming every component needs Java.
-
-Next, ask for both missing-data outcomes. The author needs guidance; the visitor needs safe markup without a broken control. Require an observable result for each.
-
-Finish with output context. The visible title is text, the card link is a URI and a value inside JavaScript requires an explicit script context. Push vague answers by asking for the exact HTL position and rendered DOM evidence. Close with: “Readable HTL lets another developer predict the browser result before running the page.”
+That completes the session. Thank the audience and leave the floor open for questions they want to raise. Do not introduce review prompts or another exercise.

@@ -1,0 +1,264 @@
+{
+  "deck_name": "lesson-12",
+  "language": "English",
+  "goal": "Teach frontend-oriented AEM developers how versioned frontend source becomes browser-delivered clientlibs, how categories, dependencies and embeds form runtime contracts, and how to debug the artifact the browser actually received.",
+  "deck_context": {
+    "source_summary": "Class 12 of a seven-week AEM Sites course, delivered Tuesday, September 1, 2026. The audience understands AEM Resources, dialogs, persisted properties, HTL and browser evidence. This class connects the Week 3 Guide Card frontend source to the AEM clientlib build and delivery path.",
+    "core_claim": "A frontend change is complete only when versioned source is compiled into the intended clientlib category, included once by the correct owner and verified in the browser-delivered artifact.",
+    "canonical_facts": [
+      "A client library is a cq:ClientLibraryFolder that organizes CSS, JavaScript and supporting resources.",
+      "The categories property provides logical runtime names used by pages and other clientlibs.",
+      "A clientlib below /apps uses allowProxy=true to be delivered through /etc.clientlibs.",
+      "css.txt and js.txt define ordered clientlib source entries.",
+      "WKND frontend source is edited below ui.frontend/src/main/webpack.",
+      "Webpack produces optimized output below ui.frontend/dist.",
+      "aem-clientlib-generator transforms distribution output into clientlibs below ui.apps.",
+      "Maven orchestrates the frontend build and deployable AEM package.",
+      "dependencies loads another category as a separate runtime contract.",
+      "embed combines selected library content into the current clientlib output.",
+      "The WKND archetype includes site and dependency categories through editable-template Page Policy.",
+      "Shared site assets should load once while Guide Card CSS and optional JavaScript remain narrowly scoped.",
+      "Browser debugging follows source import, build output, clientlib category, page inclusion, network response, cache and console evidence."
+    ],
+    "canonical_terms": [
+      "cq:ClientLibraryFolder",
+      "categories",
+      "dependencies",
+      "embed",
+      "allowProxy",
+      "css.txt",
+      "js.txt",
+      "ui.frontend/src/main/webpack",
+      "ui.frontend/dist",
+      "aem-clientlib-generator",
+      "ui.apps",
+      "/etc.clientlibs/",
+      "Page Policy",
+      "clientlib-site",
+      "clientlib-dependencies"
+    ]
+  },
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 3,
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Day 12 source-to-clientlib build-pipeline sample prompt generated from the approved outline and Day 11 style reference, then corrected with image_gen edit for the editable-source boundary",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-12/origin_image/slide_03.png",
+    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "style": {
+    "name": "technical atlas courseware",
+    "visual_direction": "Sober, information-rich technical atlas blended with academic courseware. Use exact clientlib properties, paths, category graphs, build stages and browser evidence instead of generic corporate cards.",
+    "color_palette": "Warm ivory drafting-paper background, deep navy typography, faint square grid, cobalt blue for source and delivery flows, green for valid inclusion and browser evidence, violet for dependency relationships and restrained orange for generated-output or duplication warnings.",
+    "typography": "Large bold modern sans serif headings; crisp sans serif body copy; true monospace appearance for paths, properties, category names, manifests and request URLs.",
+    "texture_and_finish": "Flat 2D technical diagrams with fine rules and precise source-folder, build, clientlib, page-policy, network and browser icons. No gradients, neon, glass, 3D or photography.",
+    "deck_consistency": "Match the approved sample's palette, typography, grid, technical density, semantic colors, monospace treatment and line weight while varying composition by slide role."
+  },
+  "approved_style_reference": {
+    "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-12/origin_image/slide_03.png",
+    "role": "approved sample slide style reference",
+    "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-stage build-pipeline layout."
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Client Libraries and frontend workflow",
+      "role": "opening overview",
+      "intent": "Identify the session, presenter and date while previewing the three learning threads.",
+      "key_points": [
+        "Class 12 · Week 3 · Day 12 · September 1, 2026",
+        "Client Libraries and frontend workflow",
+        "Today: category contracts, source-to-clientlib builds, and browser-delivery debugging",
+        "30-minute technical session",
+        "Juan Maldonado"
+      ],
+      "local_context": {
+        "required_background": "Create an opening overview. Present three compact topic anchors: category contracts, source-to-clientlib builds, and browser-delivery debugging."
+      },
+      "layout": {
+        "composition": "Strong title block with class metadata, presenter and date on the left; three compact topic anchors on the right.",
+        "intent": "Orient the audience before technical detail without turning the opening into another process slide."
+      },
+      "visual_elements": {
+        "main_visual": "Three concise icons for categories, frontend build and browser evidence."
+      },
+      "constraints": [
+        "Render all class metadata exactly.",
+        "Render the three Today topics clearly.",
+        "Do not add a detailed build pipeline to the opening slide."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "A clientlib category is the runtime contract.",
+      "role": "concept anatomy",
+      "intent": "Separate a category name from its repository location and generated files.",
+      "key_points": [
+        "cq:ClientLibraryFolder organizes CSS, JavaScript and resources",
+        "categories provides the logical runtime name",
+        "Consumers request a category, not a file path below /apps",
+        "allowProxy=true enables delivery through /etc.clientlibs/",
+        "css.txt and js.txt define ordered entries"
+      ],
+      "local_context": {
+        "required_background": "Use example node /apps/wknd/clientlibs/clientlib-site with jcr:primaryType = cq:ClientLibraryFolder, categories = wknd.site and allowProxy = true. Show css.txt and js.txt as ordered manifests. Map the category to one public /etc.clientlibs/wknd/clientlibs/clientlib-site request."
+      },
+      "layout": {
+        "composition": "Large clientlib node anatomy on the left and category-to-public-request mapping on the right, linked by one runtime-contract rail.",
+        "intent": "Make logical identity, repository storage and public delivery distinct."
+      },
+      "visual_elements": {
+        "main_visual": "cq:ClientLibraryFolder node with properties, manifests and a proxied browser request."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '02 · CATEGORY CONTRACT'.",
+        "Render cq:ClientLibraryFolder, categories, allowProxy, css.txt and js.txt exactly.",
+        "Do not show a page requesting a raw file path below /apps."
+      ]
+    },
+    {
+      "number": 3,
+      "sample_approved": true,
+      "title": "Source and generated clientlib output are different artifacts.",
+      "role": "build pipeline",
+      "intent": "Make the full-stack WKND asset path explicit and establish which files developers should edit.",
+      "key_points": [
+        "Edit and version ui.frontend source and build configuration",
+        "Webpack creates ui.frontend/dist",
+        "aem-clientlib-generator creates ui.apps clientlib output",
+        "Maven packages and deploys the generated artifacts",
+        "The browser receives /etc.clientlibs/ requests"
+      ],
+      "local_context": {
+        "required_background": "Reuse the approved slide_03.png image exactly. The editable boundary is between ui.frontend/src/main/webpack and ui.frontend/dist."
+      },
+      "layout": {
+        "composition": "Approved four-stage source-to-delivery pipeline.",
+        "intent": "Use the approved sample unchanged."
+      },
+      "visual_elements": {
+        "main_visual": "Approved sample image at origin_image/slide_03.png."
+      },
+      "constraints": [
+        "Reuse the approved sample image without regeneration."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Dependencies load; embeds combine.",
+      "role": "relationship comparison",
+      "intent": "Distinguish two clientlib graph operations and their browser-delivery effect.",
+      "key_points": [
+        "dependencies loads required categories as separate contracts",
+        "embed combines selected library content into the current output",
+        "Use dependency when the other category remains independently delivered",
+        "Use embed when one owner intentionally assembles one delivery unit",
+        "Keep graphs small to avoid duplicates and hidden ordering"
+      ],
+      "local_context": {
+        "required_background": "Compare category wknd.site depending on vendor.base versus wknd.site embedding component.common. In the dependency example, show two delivered category outputs. In the embed example, show one wknd.site output containing both contents. Do not claim that embed merely changes load order."
+      },
+      "layout": {
+        "composition": "Two mirrored category graphs: dependency on the left with separate outputs; embed on the right with one consolidated output. Add a narrow duplication-warning rail below.",
+        "intent": "Make the delivery consequence visible instead of presenting property definitions as text only."
+      },
+      "visual_elements": {
+        "main_visual": "Dependency graph versus embed graph with separate and combined browser artifacts."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '04 · DEPENDENCY GRAPH'.",
+        "Render dependencies and embed exactly.",
+        "Label separate output and combined output clearly.",
+        "Do not imply that every dependency should be embedded."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Load shared assets once; scope component assets narrowly.",
+      "role": "inclusion and ownership architecture",
+      "intent": "Connect category inclusion to the narrowest owner of each frontend responsibility.",
+      "key_points": [
+        "WKND site categories can be included through editable-template Page Policy",
+        "HTL helper can request CSS, JavaScript or both by category",
+        "Site shell, typography and tokens belong to the site bundle",
+        "Guide Card selectors begin at a project-owned component class",
+        "Avoid repeated global tags; add JavaScript only when native HTML and CSS are insufficient"
+      ],
+      "local_context": {
+        "required_background": "Show one Page Policy including wknd.site once for a page that renders three Guide Card instances. Separate site-level shell, typography and tokens from .cmp-guide-card scoped CSS and optional instance-safe JavaScript. Contrast with a crossed-out repeated script/link injection per component instance."
+      },
+      "layout": {
+        "composition": "One page-policy inclusion rail feeds a page with three Guide Cards; concentric ownership zones distinguish site bundle, scoped CSS and optional JavaScript.",
+        "intent": "Combine inclusion and scope because both answer who owns and loads the asset."
+      },
+      "visual_elements": {
+        "main_visual": "Page Policy → one category request → three scoped Guide Card instances, with a crossed-out duplicate-inclusion pattern."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '05 · LOAD ONCE, SCOPE NARROWLY'.",
+        "Render wknd.site and .cmp-guide-card exactly.",
+        "Show one shared inclusion, not one request per component instance.",
+        "Do not make JavaScript mandatory for a static Guide Card."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Debug the artifact the browser actually received.",
+      "role": "evidence ladder",
+      "intent": "Provide a repeatable diagnostic path for source that does not appear in the page.",
+      "key_points": [
+        "Source file changed and is imported by the entry point",
+        "Compiled output and generated clientlib contain the change",
+        "Expected category is included by Page Policy or HTL",
+        "Page source and Network show the /etc.clientlibs/ request",
+        "Response content, cache and console explain the browser result"
+      ],
+      "local_context": {
+        "required_background": "Use one CSS change to .cmp-guide-card. Build a six-rung evidence ladder: Git source, import/entry point, ui.frontend/dist, ui.apps clientlib/category, page source plus /etc.clientlibs request, response/cache/console result. Each rung must have one observable pass/fail artifact."
+      },
+      "layout": {
+        "composition": "Ascending six-rung diagnostic ladder with exact artifact labels and one stop rule: do not change configuration before identifying the failing rung.",
+        "intent": "Turn troubleshooting into an evidence sequence rather than random configuration edits."
+      },
+      "visual_elements": {
+        "main_visual": "Git → import → dist → clientlib/category → page request → browser result, with pass/fail evidence chips."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '06 · DELIVERY DEBUGGING'.",
+        "Render /etc.clientlibs/ exactly.",
+        "Include 'Find the failing rung before changing configuration.'",
+        "Do not diagnose every failure as browser cache."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Questions",
+      "role": "Q&A",
+      "intent": "Invite questions raised by participants and close the session without introducing another exercise.",
+      "key_points": [
+        "Thank you."
+      ],
+      "local_context": {
+        "required_background": "This is a passive closing slide. Participants may ask their own questions; the presenter must not ask scripted questions or introduce a review exercise."
+      },
+      "layout": {
+        "composition": "Large Questions title, small Thank you subtitle, generous open space and one subtle decorative source-to-browser line motif.",
+        "intent": "Signal the end of the session while retaining the deck's technical visual identity."
+      },
+      "visual_elements": {
+        "main_visual": "A restrained decorative source-to-browser line motif with no labels or decision points."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '07 · QUESTIONS'.",
+        "Render only the title 'Questions' and the subtitle 'Thank you.'.",
+        "Do not include prompts, numbered questions, exercises, technical callouts, a demo, practice or assignment."
+      ]
+    }
+  ]
+}

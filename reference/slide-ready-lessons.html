@@ -134,15 +134,14 @@
     <details><summary>Day 8 · Dialogs and persistence</summary>
       <p><strong>Retrieval question:</strong> What does a dialog field named <code>./title</code> create?</p>
       <ol class="slides">
-        <li><strong>Slide 1 — Design the storage contract before adding dialog fields.</strong> Frame field, request, property and output as one durable contract.</li>
+        <li><strong>Slide 1 — Dialogs, Granite UI and property persistence.</strong> Preview dialog Resources, field-to-JCR persistence and compatibility across stored states.</li>
         <li><strong>Slide 2 — One component spans code, authoring UI and stored content.</strong> Separate component definition, <code>cq:dialog</code> and authored instance.</li>
         <li><strong>Slide 3 — Granite UI renders the dialog from a Resource tree.</strong> Inspect the server-rendered resource-type-driven dialog definition.</li>
         <li><strong>Slide 4 — The field name defines the persistence target.</strong> Trace <code>./title</code> through Sling POST, JCR and HTL.</li>
         <li><strong>Slide 5 — A field change can become a content migration.</strong> Show why renaming or reshaping stored fields requires compatibility work.</li>
         <li><strong>Slide 6 — Validation guides authors but does not guarantee stored content.</strong> Separate authoring feedback from runtime resilience.</li>
         <li><strong>Slide 7 — Verify configured, legacy and empty states end to end.</strong> Connect stored evidence to author and visitor output.</li>
-        <li><strong>Slide 8 — Key takeaways.</strong> Retrieve the five contracts required for a safe dialog change.</li>
-        <li><strong>Slide 9 — Questions.</strong> Close on persistence, migration and authorable empty states.</li>
+        <li><strong>Slide 8 — Questions.</strong> End the session and leave the floor open for audience questions.</li>
       </ol>
       <p><strong>Inspection:</strong> follow supplied source, request, repository and output evidence; local Author is optional. <strong>Practice bridge:</strong> add one field-to-browser trace to the Week 2 Guide Page evidence without requiring a new custom component.</p>
     </details>
@@ -150,11 +149,15 @@
     <details><summary>Day 9 · Assets and accessible images</summary>
       <p><strong>Retrieval question:</strong> When should an image have an empty alternative text value?</p>
       <ol class="slides">
-        <li><strong>Slide 1 — DAM assets are managed content.</strong> AEM Assets stores binaries plus metadata, references and processing results. <em>Speaker cue: do not treat DAM as a static public folder.</em></li>
-        <li><strong>Slide 2 — Use the Core Image capability.</strong> It provides responsive delivery and authoring behavior that custom markup would need to rebuild. <em>Speaker cue: extend only for a verified gap.</em></li>
-        <li><strong>Slide 3 — Context determines alternative text.</strong> Informative images need meaning; decorative images need an empty alternative. <em>Speaker cue: file names are not descriptions.</em></li>
-        <li><strong>Slide 4 — Responsive images reduce waste.</strong> The browser should receive an appropriate rendition for viewport and density. <em>Speaker cue: visual dimensions alone do not reduce downloaded bytes.</em></li>
-        <li><strong>Slide 5 — References affect maintenance.</strong> Moving, publishing or replacing an asset can affect many pages. <em>Speaker cue: inspect references before destructive changes.</em></li>
+        <li><strong>Slide 1 — Assets, Core Image and accessible delivery.</strong> Preview managed references, contextual alternatives and responsive delivery.</li>
+        <li><strong>Slide 2 — An authored image is a reference, not a copied binary.</strong> Separate the DAM owner from the consuming page instance.</li>
+        <li><strong>Slide 3 — Use the Core Image capability before custom markup.</strong> Preserve project ownership through a thin proxy.</li>
+        <li><strong>Slide 4 — Alternative text describes purpose in context.</strong> Map informative, decorative, functional and complex uses to the correct behavior.</li>
+        <li><strong>Slide 5 — DAM metadata is a source, not the final decision.</strong> Let page purpose decide how shared metadata is used.</li>
+        <li><strong>Slide 6 — Responsive delivery lets the browser choose appropriate bytes.</strong> Verify candidates, selected requests and rendered dimensions.</li>
+        <li><strong>Slide 7 — Asset references turn maintenance into a dependency decision.</strong> Inspect incoming references before lifecycle changes.</li>
+        <li><strong>Slide 8 — Verify the Guide Page image contract with evidence.</strong> Connect repository, HTML, accessibility and Network results.</li>
+        <li><strong>Slide 9 — Questions.</strong> End the session and leave the floor open for audience questions.</li>
       </ol>
       <p><strong>Demo:</strong> author a WKND image and inspect responsive markup. <strong>Assignment:</strong> prepare three Guide assets and classify their alternative text. <strong>Acceptance:</strong> metadata and rendered behavior match image purpose.</p>
     </details>
@@ -171,11 +174,15 @@
     <details><summary>Day 11 · Safe and readable HTL</summary>
       <p><strong>Retrieval question:</strong> Which layer should prepare data, and which layer should render it?</p>
       <ol class="slides">
-        <li><strong>Slide 1 — HTL is the view layer.</strong> It renders prepared values into HTML and should not contain business orchestration. <em>Speaker cue: complex logic belongs in a Sling Model or service.</em></li>
-        <li><strong>Slide 2 — Expressions read values.</strong> Use concise expressions for properties and model getters; keep naming meaningful to the markup. <em>Speaker cue: readable templates are easier to review for security.</em></li>
-        <li><strong>Slide 3 — Conditions and lists express structure.</strong> <code>data-sly-test</code> and <code>data-sly-list</code> control output without Java scriptlets. <em>Speaker cue: always define the empty state.</em></li>
-        <li><strong>Slide 4 — Templates and calls prevent repetition.</strong> Reuse small markup patterns while preserving clear inputs. <em>Speaker cue: do not create a private framework inside HTL.</em></li>
-        <li><strong>Slide 5 — Output context is a security control.</strong> HTML, attribute, URI and script contexts require different handling; HTL applies context-aware escaping. <em>Speaker cue: explicit context is required when automatic inference is impossible.</em></li>
+        <li><strong>Slide 1 — Safe and readable HTL.</strong> Preview the view boundary, structural statements and context-aware output.</li>
+        <li><strong>Slide 2 — Keep the template boundary narrow.</strong> Separate value preparation, direct markup decisions and browser output.</li>
+        <li><strong>Slide 3 — Expressions read values where the markup needs them.</strong> Keep the source-to-output relationship visible.</li>
+        <li><strong>Slide 4 — Conditions and lists should make every state visible.</strong> Define configured, empty-author and empty-visitor results.</li>
+        <li><strong>Slide 5 — Templates and calls reuse small markup contracts.</strong> Remove stable repetition without hiding the final markup.</li>
+        <li><strong>Slide 6 — Trace one Guide Card from Resource to DOM.</strong> Connect stored values, getters, HTL and browser evidence.</li>
+        <li><strong>Slide 7 — Output context is part of the security contract.</strong> Match escaping to the position where each value lands.</li>
+        <li><strong>Slide 8 — Key takeaways.</strong> Preserve the five HTL review checkpoints.</li>
+        <li><strong>Slide 9 — Questions.</strong> End the session and leave the floor open for audience questions.</li>
       </ol>
       <p><strong>Demo:</strong> render Guide Card properties, condition and empty state. <strong>Assignment:</strong> create safe HTL for configured and missing data. <strong>Acceptance:</strong> valid markup, no business logic and correct output contexts.</p>
     </details>
@@ -183,11 +190,13 @@
     <details><summary>Day 12 · Client Libraries and frontend workflow</summary>
       <p><strong>Retrieval question:</strong> Why can a CSS source change exist in Git but not appear in the browser?</p>
       <ol class="slides">
-        <li><strong>Slide 1 — Clientlibs package browser assets.</strong> Categories identify CSS and JavaScript that AEM can include on a page. <em>Speaker cue: category names are the runtime contract.</em></li>
-        <li><strong>Slide 2 — Source and generated output differ.</strong> WKND frontend source is compiled and embedded into AEM clientlibs during Maven build. <em>Speaker cue: do not edit generated clientlib output.</em></li>
-        <li><strong>Slide 3 — Dependencies and embeds serve different goals.</strong> Dependencies load another category; embeds combine content into the current clientlib. <em>Speaker cue: careless graphs create duplicates and ordering bugs.</em></li>
-        <li><strong>Slide 4 — Scope assets deliberately.</strong> Site-level assets belong in the site bundle; component behavior should remain small and isolated. <em>Speaker cue: global CSS is a shared production dependency.</em></li>
-        <li><strong>Slide 5 — Debug the delivered result.</strong> Inspect page source, network requests, generated files and browser console before changing configuration. <em>Speaker cue: verify which artifact the browser actually received.</em></li>
+        <li><strong>Slide 1 — Client Libraries and frontend workflow.</strong> Preview category contracts, source-to-clientlib builds and browser-delivery debugging.</li>
+        <li><strong>Slide 2 — A clientlib category is the runtime contract.</strong> Connect the category, ordered text files and proxied request.</li>
+        <li><strong>Slide 3 — Source and generated clientlib output are different artifacts.</strong> Preserve the edit boundary across the build pipeline.</li>
+        <li><strong>Slide 4 — Dependencies load; embeds combine.</strong> Compare separate and combined browser delivery.</li>
+        <li><strong>Slide 5 — Load shared assets once; scope component assets narrowly.</strong> Assign one owner and one intended delivery path.</li>
+        <li><strong>Slide 6 — Debug the artifact the browser actually received.</strong> Follow the evidence ladder from page include to source and build logs.</li>
+        <li><strong>Slide 7 — Questions.</strong> End the session and leave the floor open for audience questions.</li>
       </ol>
       <p><strong>Demo:</strong> change WKND frontend source, build and find the resulting clientlib request. <strong>Assignment:</strong> add Guide Card styling through the existing pipeline. <strong>Acceptance:</strong> source is versioned, generated output is not and the browser receives one intended asset.</p>
     </details>

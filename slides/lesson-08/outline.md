@@ -7,17 +7,18 @@
 **Visual direction:** reuse the approved sober, detailed technical-atlas style from Days 6–7.  
 **Required source images:** none. Dialog resources, POST parameters, JCR properties and rendering states will be represented as precise technical diagrams.
 
-## Slide 1 — Design the storage contract before adding dialog fields.
+## Slide 1 — Dialogs, Granite UI and property persistence
 
-**Role:** cover  
-**Intent:** position a dialog change as a content-schema decision, not merely a form-layout task.
+**Role:** opening overview
+**Intent:** identify the session, presenter and date while previewing the three learning threads.
 
 - Class 8 · Week 2 · Day 8 · August 26, 2026.
 - Dialogs, Granite UI and property persistence.
-- Dialog field → POST parameter → JCR property → rendered output.
+- Today: dialog Resources, field-to-JCR persistence, and compatibility across configured, legacy and empty content.
+- 30-minute technical session.
 - Juan Maldonado.
 
-**Visual idea:** one field travels through four technical layers while a storage-contract boundary encloses the complete path.
+**Visual idea:** a strong title block with presenter and date, plus three compact visual anchors for dialog anatomy, persistence flow and resilient content states.
 
 ## Slide 2 — One component spans code, authoring UI and stored content.
 
@@ -97,29 +98,16 @@
 
 **Visual idea:** a three-row state matrix crosses source definition, persisted Resource, rendering decision, author view and visitor DOM.
 
-## Slide 8 — Key takeaways
-
-**Role:** summary  
-**Intent:** retrieve the five contracts required to change an AEM dialog safely.
-
-1. A component definition, dialog and authored instance are separate Resources.
-2. Granite UI renders `cq:dialog` from a `sling:resourceType`-driven Resource tree.
-3. A relative field name determines where Sling POST persists the value.
-4. Renaming or reshaping a stored field is a compatibility and migration decision.
-5. Dialog validation helps authors; runtime code still handles configured, legacy and empty states.
-
-**Visual idea:** five linked checkpoints from component definition to resilient browser output.
-
-## Slide 9 — Questions
+## Slide 8 — Questions
 
 **Role:** Q&A  
-**Intent:** close without requiring a live demonstration.
+**Intent:** invite questions raised by participants and close the session without introducing another exercise.
 
-- What exactly does `name="./title"` create?
-- Which dialog change would require a content migration?
-- What evidence proves that an empty component remains authorable and safe?
+- Questions.
+- Thank you.
+- No scripted prompts or review exercise.
 
-**Visual idea:** a simplified dialog-to-browser trace with three highlighted decision points and generous discussion space.
+**Visual idea:** a quiet closing composition with a subtle dialog-to-browser line motif and generous open space; no prompts, numbered questions or technical callouts.
 
 ## Source anchors
 

@@ -19,7 +19,7 @@
     {
       "slide_id": "slide_01",
       "number": 1,
-      "title": "Design the storage contract before adding dialog fields.",
+      "title": "Dialogs, Granite UI and property persistence",
       "job": "prompts/slide_01.json",
       "out": "origin_image/slide_01.png",
       "input_images": [
@@ -32,27 +32,27 @@
       "requires_context_images": true,
       "status": "recorded",
       "dispatch": {
-        "agent_id": "/root/day6_slide_01_fix",
-        "agent_nickname": "Erdos",
+        "agent_id": "/root/slide_05",
+        "agent_nickname": "Franklin",
         "prompt": "prompts/slide_01.json",
-        "prompt_sha256": "d91eedead6813326afa93391f82fe0e604faaa3609265fd9757df435f1d9a683",
-        "dispatched_at": "2026-08-19T13:13:34Z"
+        "prompt_sha256": "35c4314ab558a5a7a2a9e743c46fea02c83b91b7d8bef6c0a70ece5c389b4f93",
+        "dispatched_at": "2026-08-25T20:47:52Z"
       },
       "result": {
-        "agent_id": "/root/day6_slide_01_fix",
+        "agent_id": "/root/slide_05",
         "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017bd-8384-7ef0-b7be-7bd5d21ed6df/exec-30cdb690-0edf-4cd3-a790-eabd4e2893ea.png",
-        "selected_source_sha256": "a6a826f4ac3b8a6bfbe7b120a83d1bc3285b3e8ebf4028dd276f261f3ba24412",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03971-9dfd-7531-9f30-7c6ca884fc14/exec-695d0674-e06b-4b9b-9c79-b398eb5a85cb.png",
+        "selected_source_sha256": "fedc3cc424193eebde87acbf82e3c9811c73a40081cfecd57a10d53813328dcf",
         "final_image": "origin_image/slide_01.png",
-        "final_image_sha256": "a6a826f4ac3b8a6bfbe7b120a83d1bc3285b3e8ebf4028dd276f261f3ba24412",
+        "final_image_sha256": "fedc3cc424193eebde87acbf82e3c9811c73a40081cfecd57a10d53813328dcf",
         "expected_backend": "built-in image tool",
         "expected_backend_labels": [
           "built-in image tool",
           "image_gen"
         ],
         "sample_generation_method_matched": true,
-        "qa_note": "Cover metadata and example value are legible; the four-layer storage contract clearly separates /apps definitions from /content persistence.",
-        "recorded_at": "2026-08-19T13:16:20Z"
+        "qa_note": "All required text is exact and readable; the three compact anchors avoid a detailed persistence trace, with no overlap, clipping, or style inconsistency.",
+        "recorded_at": "2026-08-25T20:51:17Z"
       },
       "blocker": null
     },
@@ -70,29 +70,11 @@
         }
       ],
       "requires_context_images": true,
-      "status": "recorded",
-      "dispatch": {
-        "agent_id": "/root/day6_slide_08",
-        "agent_nickname": "Curie",
-        "prompt": "prompts/slide_02.json",
-        "prompt_sha256": "7569949412030fccb1772281b7ed39f4efd97c3d322b4d17e551822e9355a783",
-        "dispatched_at": "2026-08-19T13:13:34Z"
-      },
+      "status": "accepted",
+      "dispatch": null,
       "result": {
-        "agent_id": "/root/day6_slide_08",
-        "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017ba-9cb9-7ff2-be60-e8ea5d5777c7/exec-7c235f8c-d78a-47f6-b071-e554b8845606.png",
-        "selected_source_sha256": "0f8bf4bb21b6d687d85af427bb59f34bf95815a5e4d7c7b1773e5995458f4ece",
         "final_image": "origin_image/slide_02.png",
-        "final_image_sha256": "0f8bf4bb21b6d687d85af427bb59f34bf95815a5e4d7c7b1773e5995458f4ece",
-        "expected_backend": "built-in image tool",
-        "expected_backend_labels": [
-          "built-in image tool",
-          "image_gen"
-        ],
-        "sample_generation_method_matched": true,
-        "qa_note": "All paths and values are legible; component definition, dialog and authored instance responsibilities remain distinct and only instance properties feed runtime output.",
-        "recorded_at": "2026-08-19T13:16:20Z"
+        "accepted_sample": true
       },
       "blocker": null
     },
@@ -110,29 +92,11 @@
         }
       ],
       "requires_context_images": true,
-      "status": "recorded",
-      "dispatch": {
-        "agent_id": "/root/day6_slide_09",
-        "agent_nickname": "Volta",
-        "prompt": "prompts/slide_03.json",
-        "prompt_sha256": "546d4ef3c9d9543be4b414e7e1f94c5226ff242bb1c6bdc214fb6e59912fe0cf",
-        "dispatched_at": "2026-08-19T13:13:34Z"
-      },
+      "status": "accepted",
+      "dispatch": null,
       "result": {
-        "agent_id": "/root/day6_slide_09",
-        "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017bb-1b09-7c73-b744-56fe71ac6857/exec-035ff600-57d2-4d89-9b6b-d3ff8d65bca9.png",
-        "selected_source_sha256": "0861e2c61deb4e58b39de72007dc11c7cfd04489f4ca5aafed65739110b46a4a",
         "final_image": "origin_image/slide_03.png",
-        "final_image_sha256": "0861e2c61deb4e58b39de72007dc11c7cfd04489f4ca5aafed65739110b46a4a",
-        "expected_backend": "built-in image tool",
-        "expected_backend_labels": [
-          "built-in image tool",
-          "image_gen"
-        ],
-        "sample_generation_method_matched": true,
-        "qa_note": "The repository tree, Granite UI resource types, field properties and server-side Sling rendering statement are accurate and legible.",
-        "recorded_at": "2026-08-19T13:16:20Z"
+        "accepted_sample": true
       },
       "blocker": null
     },
@@ -172,29 +136,11 @@
         }
       ],
       "requires_context_images": true,
-      "status": "recorded",
-      "dispatch": {
-        "agent_id": "/root/day6_slide_01_fix",
-        "agent_nickname": "Erdos",
-        "prompt": "prompts/slide_05.json",
-        "prompt_sha256": "1d667d3744bb2c7e0f56fe426140aff425d681f2202137d7ed15aee864c9c9b3",
-        "dispatched_at": "2026-08-19T13:17:16Z"
-      },
+      "status": "accepted",
+      "dispatch": null,
       "result": {
-        "agent_id": "/root/day6_slide_01_fix",
-        "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017bd-8384-7ef0-b7be-7bd5d21ed6df/exec-bad6fb3c-820b-479f-a04e-0b41e74fa621.png",
-        "selected_source_sha256": "979e79782aae770551e37300263e7a825499f8ed6b8068d1a20735feeb76b4c7",
         "final_image": "origin_image/slide_05.png",
-        "final_image_sha256": "979e79782aae770551e37300263e7a825499f8ed6b8068d1a20735feeb76b4c7",
-        "expected_backend": "built-in image tool",
-        "expected_backend_labels": [
-          "built-in image tool",
-          "image_gen"
-        ],
-        "sample_generation_method_matched": true,
-        "qa_note": "The T0–T4 timeline clearly shows that a dialog rename does not migrate content and that fallback retirement follows explicit migration and verification.",
-        "recorded_at": "2026-08-19T13:19:36Z"
+        "accepted_sample": true
       },
       "blocker": null
     },
@@ -212,29 +158,11 @@
         }
       ],
       "requires_context_images": true,
-      "status": "recorded",
-      "dispatch": {
-        "agent_id": "/root/day6_slide_08",
-        "agent_nickname": "Curie",
-        "prompt": "prompts/slide_06.json",
-        "prompt_sha256": "068da9c69e2972215715049d2c2f6a2082b5ff77a6be8401887f8bf4cfe2396d",
-        "dispatched_at": "2026-08-19T13:17:16Z"
-      },
+      "status": "accepted",
+      "dispatch": null,
       "result": {
-        "agent_id": "/root/day6_slide_08",
-        "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017ba-9cb9-7ff2-be60-e8ea5d5777c7/exec-61c1545d-1d74-4180-88cf-0b10f667e466.png",
-        "selected_source_sha256": "dc4e8a0366bbc9608edbe6964a90460c203c6ea6c76e9cbd9d747a7b3bbe3d7f",
         "final_image": "origin_image/slide_06.png",
-        "final_image_sha256": "dc4e8a0366bbc9608edbe6964a90460c203c6ea6c76e9cbd9d747a7b3bbe3d7f",
-        "expected_backend": "built-in image tool",
-        "expected_backend_labels": [
-          "built-in image tool",
-          "image_gen"
-        ],
-        "sample_generation_method_matched": true,
-        "qa_note": "Dialog validation, bypass routes and runtime resilience are separated accurately; exact field properties and warning remain legible.",
-        "recorded_at": "2026-08-19T13:19:36Z"
+        "accepted_sample": true
       },
       "blocker": null
     },
@@ -252,36 +180,18 @@
         }
       ],
       "requires_context_images": true,
-      "status": "recorded",
-      "dispatch": {
-        "agent_id": "/root/day6_slide_09",
-        "agent_nickname": "Volta",
-        "prompt": "prompts/slide_07.json",
-        "prompt_sha256": "6b44ce78588ef386cbe97a3ea96c033b2c1404bb269d292f599cb698056556b9",
-        "dispatched_at": "2026-08-19T13:17:16Z"
-      },
+      "status": "accepted",
+      "dispatch": null,
       "result": {
-        "agent_id": "/root/day6_slide_09",
-        "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017bb-1b09-7c73-b744-56fe71ac6857/exec-386b6f7e-78ee-4dbf-a293-fcce4ad172f3.png",
-        "selected_source_sha256": "2ccb01882535e4cd487474d2d03480981e222c030b2ea69a7b1c845c31b7db9e",
         "final_image": "origin_image/slide_07.png",
-        "final_image_sha256": "2ccb01882535e4cd487474d2d03480981e222c030b2ea69a7b1c845c31b7db9e",
-        "expected_backend": "built-in image tool",
-        "expected_backend_labels": [
-          "built-in image tool",
-          "image_gen"
-        ],
-        "sample_generation_method_matched": true,
-        "qa_note": "Configured, legacy and empty states are accurate; the author-only placeholder is separated from safe visitor output without an empty heading.",
-        "recorded_at": "2026-08-19T13:19:36Z"
+        "accepted_sample": true
       },
       "blocker": null
     },
     {
       "slide_id": "slide_08",
       "number": 8,
-      "title": "Key takeaways",
+      "title": "Questions",
       "job": "prompts/slide_08.json",
       "out": "origin_image/slide_08.png",
       "input_images": [
@@ -294,70 +204,30 @@
       "requires_context_images": true,
       "status": "recorded",
       "dispatch": {
-        "agent_id": "/root/day6_slide_01_fix",
-        "agent_nickname": "Erdos",
+        "agent_id": "/root/slide_08",
+        "agent_nickname": "Kant",
         "prompt": "prompts/slide_08.json",
-        "prompt_sha256": "a52d82d6f088d8748ecc9036d43a58484e01ed7b969617e7af7743df52706151",
-        "dispatched_at": "2026-08-19T13:20:20Z"
+        "prompt_sha256": "31a6bd02595687992fd0f76f80e566fa56e6d6b6f94e643059ac0b35563a6562",
+        "dispatched_at": "2026-08-25T20:47:53Z"
       },
       "result": {
-        "agent_id": "/root/day6_slide_01_fix",
+        "agent_id": "/root/slide_08",
         "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017bd-8384-7ef0-b7be-7bd5d21ed6df/exec-f7b75560-d451-4a98-9f1a-c1ea77e51595.png",
-        "selected_source_sha256": "ab52994ea10a68b78922a8ef7cf6aeb5ede2f6d69a663072c03993e70ccac288",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03975-fca5-7f82-adf6-0488ea0df964/exec-f55b29dc-4160-48dd-b4e2-363cd7fe954a.png",
+        "selected_source_sha256": "9a35402685c78d66dc7dbd0f522a7f29cdcee7fbf52093a86cab556f855cfa90",
         "final_image": "origin_image/slide_08.png",
-        "final_image_sha256": "ab52994ea10a68b78922a8ef7cf6aeb5ede2f6d69a663072c03993e70ccac288",
+        "final_image_sha256": "9a35402685c78d66dc7dbd0f522a7f29cdcee7fbf52093a86cab556f855cfa90",
         "expected_backend": "built-in image tool",
         "expected_backend_labels": [
           "built-in image tool",
           "image_gen"
         ],
         "sample_generation_method_matched": true,
-        "qa_note": "The regenerated summary contains only the five exact takeaways and cost principle, with no invented endpoint, resource type value or schema detail.",
-        "recorded_at": "2026-08-19T13:24:56Z"
-      },
-      "blocker": null
-    },
-    {
-      "slide_id": "slide_09",
-      "number": 9,
-      "title": "Questions",
-      "job": "prompts/slide_09.json",
-      "out": "origin_image/slide_09.png",
-      "input_images": [
-        {
-          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-08/origin_image/slide_04.png",
-          "role": "approved sample slide style reference",
-          "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact five-stage persistence layout."
-        }
-      ],
-      "requires_context_images": true,
-      "status": "recorded",
-      "dispatch": {
-        "agent_id": "/root/day6_slide_08",
-        "agent_nickname": "Curie",
-        "prompt": "prompts/slide_09.json",
-        "prompt_sha256": "af0256f6992123a748ff3ed6b62adee45b26246de8c9630f9311d650533749ec",
-        "dispatched_at": "2026-08-19T13:20:20Z"
-      },
-      "result": {
-        "agent_id": "/root/day6_slide_08",
-        "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a017ba-9cb9-7ff2-be60-e8ea5d5777c7/exec-5a8753cb-ef02-413b-9e18-e49ddc2db745.png",
-        "selected_source_sha256": "6676558e80a627d651f378d54f7d8989aba28df21b7f527ecede50bb85203be7",
-        "final_image": "origin_image/slide_09.png",
-        "final_image_sha256": "6676558e80a627d651f378d54f7d8989aba28df21b7f527ecede50bb85203be7",
-        "expected_backend": "built-in image tool",
-        "expected_backend_labels": [
-          "built-in image tool",
-          "image_gen"
-        ],
-        "sample_generation_method_matched": true,
-        "qa_note": "Exactly three questions are legible around a simplified dialog-to-Resource-to-browser trace with no extra activity or closing text.",
-        "recorded_at": "2026-08-19T13:22:43Z"
+        "qa_note": "Exact title and subtitle are clear; the passive unlabeled motif adds no technical copy, prompts, exercises, overlap, or clipping and matches the approved style.",
+        "recorded_at": "2026-08-25T20:50:37Z"
       },
       "blocker": null
     }
   ],
-  "updated_at": "2026-08-19T13:24:56Z"
+  "updated_at": "2026-08-25T20:51:17Z"
 }
