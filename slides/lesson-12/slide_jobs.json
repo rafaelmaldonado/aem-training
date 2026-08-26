@@ -30,29 +30,11 @@
         }
       ],
       "requires_context_images": true,
-      "status": "recorded",
-      "dispatch": {
-        "agent_id": "/root/slide_09",
-        "agent_nickname": "Russell",
-        "prompt": "prompts/slide_01.json",
-        "prompt_sha256": "3363f23482e63fb1e8f1752e81882482b27360495a9a9c18a7c6a9077077b23a",
-        "dispatched_at": "2026-08-25T20:52:18Z"
-      },
+      "status": "accepted",
+      "dispatch": null,
       "result": {
-        "agent_id": "/root/slide_09",
-        "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03979-196a-76e1-8739-f651b1834004/exec-a9b3e5df-35b9-4651-b859-71b926510fad.png",
-        "selected_source_sha256": "b7b56f395b506db110860a8984d741f777a6d6bc7a89d8e6ba420701214f12a7",
         "final_image": "origin_image/slide_01.png",
-        "final_image_sha256": "b7b56f395b506db110860a8984d741f777a6d6bc7a89d8e6ba420701214f12a7",
-        "expected_backend": "built-in image tool",
-        "expected_backend_labels": [
-          "built-in image tool",
-          "image_gen"
-        ],
-        "sample_generation_method_matched": true,
-        "qa_note": "All required text is exact and readable, with no overlap or clipping; the opening layout matches the approved technical-atlas style without becoming a detailed pipeline.",
-        "recorded_at": "2026-08-25T20:54:29Z"
+        "accepted_sample": true
       },
       "blocker": null
     },
@@ -70,29 +52,11 @@
         }
       ],
       "requires_context_images": true,
-      "status": "recorded",
-      "dispatch": {
-        "agent_id": "/root/slide_08",
-        "agent_nickname": "Kant",
-        "prompt": "prompts/slide_02.json",
-        "prompt_sha256": "a039d3cb5018ab1d7e39281da0525f46c25d61f25cd39eb8e4e84393b2734a72",
-        "dispatched_at": "2026-08-25T20:54:05Z"
-      },
+      "status": "accepted",
+      "dispatch": null,
       "result": {
-        "agent_id": "/root/slide_08",
-        "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03975-fca5-7f82-adf6-0488ea0df964/exec-0d08c741-a9b8-496f-b20f-488596faa106.png",
-        "selected_source_sha256": "6019ba32760c4971355d147f55ecd39ce2dac90bcd7b44d52b29ff13433de3d8",
         "final_image": "origin_image/slide_02.png",
-        "final_image_sha256": "6019ba32760c4971355d147f55ecd39ce2dac90bcd7b44d52b29ff13433de3d8",
-        "expected_backend": "built-in image tool",
-        "expected_backend_labels": [
-          "built-in image tool",
-          "image_gen"
-        ],
-        "sample_generation_method_matched": true,
-        "qa_note": "All required clientlib terms, properties, manifests, category mapping, and proxied request are exact, readable, unclipped, non-overlapping, and style-consistent.",
-        "recorded_at": "2026-08-25T20:56:57Z"
+        "accepted_sample": true
       },
       "blocker": null
     },
@@ -132,29 +96,11 @@
         }
       ],
       "requires_context_images": true,
-      "status": "recorded",
-      "dispatch": {
-        "agent_id": "/root/slide_09",
-        "agent_nickname": "Russell",
-        "prompt": "prompts/slide_04.json",
-        "prompt_sha256": "4ac90b67307151fbf0296b825fc7be1c2c6a7ed35ae8ccf12cbbef8b48581ae8",
-        "dispatched_at": "2026-08-25T20:54:43Z"
-      },
+      "status": "accepted",
+      "dispatch": null,
       "result": {
-        "agent_id": "/root/slide_09",
-        "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03979-196a-76e1-8739-f651b1834004/exec-f03f1cc5-7c7c-47b0-8806-de4f6bb3c76f.png",
-        "selected_source_sha256": "10b95243237bdb0424e0874f20fca0b2ec27d7bbcd7c19486e92200f66289a51",
         "final_image": "origin_image/slide_04.png",
-        "final_image_sha256": "10b95243237bdb0424e0874f20fca0b2ec27d7bbcd7c19486e92200f66289a51",
-        "expected_backend": "built-in image tool",
-        "expected_backend_labels": [
-          "built-in image tool",
-          "image_gen"
-        ],
-        "sample_generation_method_matched": true,
-        "qa_note": "All required text, category names, and output labels are exact and readable, with no overlap or clipping; the mirrored comparison matches the approved technical-atlas style.",
-        "recorded_at": "2026-08-25T20:56:57Z"
+        "accepted_sample": true
       },
       "blocker": null
     },
@@ -172,29 +118,11 @@
         }
       ],
       "requires_context_images": true,
-      "status": "recorded",
-      "dispatch": {
-        "agent_id": "/root/slide_05",
-        "agent_nickname": "Franklin",
-        "prompt": "prompts/slide_05.json",
-        "prompt_sha256": "7edafc8a2537b4320178a745f3e0b9d52f02318b13e828dfe71b56245a236302",
-        "dispatched_at": "2026-08-25T20:55:14Z"
-      },
+      "status": "accepted",
+      "dispatch": null,
       "result": {
-        "agent_id": "/root/slide_05",
-        "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03971-9dfd-7531-9f30-7c6ca884fc14/exec-70b43442-b78b-4be6-8e2a-209a6ffe2861.png",
-        "selected_source_sha256": "2916bb453786be6893b8782ee0faf66824e25fa1d614f2c56d5f792d2d975530",
         "final_image": "origin_image/slide_05.png",
-        "final_image_sha256": "2916bb453786be6893b8782ee0faf66824e25fa1d614f2c56d5f792d2d975530",
-        "expected_backend": "built-in image tool",
-        "expected_backend_labels": [
-          "built-in image tool",
-          "image_gen"
-        ],
-        "sample_generation_method_matched": true,
-        "qa_note": "Required title, eyebrow, key points, wknd.site, and .cmp-guide-card are readable and correctly rendered; the single-inclusion architecture, scoped ownership zones, and warning fit without overlap or clipping.",
-        "recorded_at": "2026-08-25T20:57:42Z"
+        "accepted_sample": true
       },
       "blocker": null
     },
@@ -212,36 +140,18 @@
         }
       ],
       "requires_context_images": true,
-      "status": "recorded",
-      "dispatch": {
-        "agent_id": "/root/slide_08",
-        "agent_nickname": "Kant",
-        "prompt": "prompts/slide_06.json",
-        "prompt_sha256": "d4d2fdae4d0eb693368c76ecb2f7752c40ff427e8efe1e097966caad8f28dab6",
-        "dispatched_at": "2026-08-25T20:57:07Z"
-      },
+      "status": "accepted",
+      "dispatch": null,
       "result": {
-        "agent_id": "/root/slide_08",
-        "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03975-fca5-7f82-adf6-0488ea0df964/exec-59de4cdf-c095-4990-bff8-c47206dc5938.png",
-        "selected_source_sha256": "40948709bba2352e7db21f646928db416dde703b19ebc8cc07f8e7d989f58ba9",
         "final_image": "origin_image/slide_06.png",
-        "final_image_sha256": "40948709bba2352e7db21f646928db416dde703b19ebc8cc07f8e7d989f58ba9",
-        "expected_backend": "built-in image tool",
-        "expected_backend_labels": [
-          "built-in image tool",
-          "image_gen"
-        ],
-        "sample_generation_method_matched": true,
-        "qa_note": "All six evidence rungs, /etc.clientlibs/, the stop rule, and cache warning are exact, readable, unclipped, non-overlapping, and style-consistent.",
-        "recorded_at": "2026-08-25T20:59:43Z"
+        "accepted_sample": true
       },
       "blocker": null
     },
     {
       "slide_id": "slide_07",
       "number": 7,
-      "title": "Questions",
+      "title": "Key takeaways",
       "job": "prompts/slide_07.json",
       "out": "origin_image/slide_07.png",
       "input_images": [
@@ -257,16 +167,56 @@
         "agent_id": "/root/slide_09",
         "agent_nickname": "Russell",
         "prompt": "prompts/slide_07.json",
-        "prompt_sha256": "1cacef27754a8c2e06609943b0a5f5ebb5a86017b1e7893165326181ced6075a",
-        "dispatched_at": "2026-08-25T20:57:07Z"
+        "prompt_sha256": "a00e37d46911f79ae75f4d442e1f0755679b507af2439d7ae8ebada4f656e34c",
+        "dispatched_at": "2026-08-26T01:55:59Z"
       },
       "result": {
         "agent_id": "/root/slide_09",
         "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03979-196a-76e1-8739-f651b1834004/exec-32ee0162-312e-4d9c-9d03-307407ba08fc.png",
-        "selected_source_sha256": "3b53a17b5b49220be7649bd5b04da33ec240e0a65279ebaacdbaa863fc3905c7",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03979-196a-76e1-8739-f651b1834004/exec-cc181a13-8907-44eb-9189-9904706d0346.png",
+        "selected_source_sha256": "ce22b583ee0bf0955d1b45b9c9fc297478c7f56e4942f2281d24016d47b534ca",
         "final_image": "origin_image/slide_07.png",
-        "final_image_sha256": "3b53a17b5b49220be7649bd5b04da33ec240e0a65279ebaacdbaa863fc3905c7",
+        "final_image_sha256": "ce22b583ee0bf0955d1b45b9c9fc297478c7f56e4942f2281d24016d47b534ca",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "The exact eyebrow, title, five numbered takeaways, and governing principle are readable and unclipped, with no overlap and a style consistent with the approved sample.",
+        "recorded_at": "2026-08-26T01:59:33Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "Questions",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-12/origin_image/slide_03.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-stage build-pipeline layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_09",
+        "agent_nickname": "Russell",
+        "prompt": "prompts/slide_08.json",
+        "prompt_sha256": "6ef202258e5108d5ba9e380b16353d73f4aa5c61d88dfffed2271064ebfcd162",
+        "dispatched_at": "2026-08-26T01:59:44Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03979-196a-76e1-8739-f651b1834004/exec-8be3424b-6139-4d83-932f-2aaf19722eed.png",
+        "selected_source_sha256": "f4fcb9bbb264b4db714faf2c71f2d3e325b812677f1a4a47e28c2fc55ee39aa2",
+        "final_image": "origin_image/slide_08.png",
+        "final_image_sha256": "f4fcb9bbb264b4db714faf2c71f2d3e325b812677f1a4a47e28c2fc55ee39aa2",
         "expected_backend": "built-in image tool",
         "expected_backend_labels": [
           "built-in image tool",
@@ -274,10 +224,10 @@
         ],
         "sample_generation_method_matched": true,
         "qa_note": "Only the exact eyebrow, Questions, and Thank you. appear; all are readable and unclipped, with a restrained unlabeled motif matching the approved style.",
-        "recorded_at": "2026-08-25T20:58:44Z"
+        "recorded_at": "2026-08-26T02:01:57Z"
       },
       "blocker": null
     }
   ],
-  "updated_at": "2026-08-25T20:59:43Z"
+  "updated_at": "2026-08-26T02:01:57Z"
 }

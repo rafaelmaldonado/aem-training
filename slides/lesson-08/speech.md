@@ -144,6 +144,14 @@
 - **Transition**
   - “These states summarize the complete storage contract.”
 
-## Slide 8: Questions
+## Slide 8: Key takeaways
+
+Use these five bullets as the final review sequence. First separate the component definition, dialog definition and authored instance. Then identify the field name that controls relative persistence and the consumers that treat the stored property as a runtime contract.
+
+Emphasize that renaming or reshaping this contract can require fallback behavior and migration. Close the summary by checking configured, legacy and empty states with evidence; current dialog validation cannot prove the history or shape of every stored Resource.
+
+The governing principle is: treat stored content as a durable contract. Then move to the final slide and leave the floor open for questions.
+
+## Slide 9: Questions
 
 That completes the session. Thank the audience and leave the floor open for questions they want to raise. Do not introduce review prompts or another exercise.

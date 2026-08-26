@@ -30,29 +30,11 @@
         }
       ],
       "requires_context_images": true,
-      "status": "recorded",
-      "dispatch": {
-        "agent_id": "/root/slide_09",
-        "agent_nickname": "Russell",
-        "prompt": "prompts/slide_01.json",
-        "prompt_sha256": "2bac02d0461de80c6cf8d6d5edacfb88dd8b1c39793692ab9b9cfdf8ce0e338a",
-        "dispatched_at": "2026-08-25T20:47:53Z"
-      },
+      "status": "accepted",
+      "dispatch": null,
       "result": {
-        "agent_id": "/root/slide_09",
-        "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03979-196a-76e1-8739-f651b1834004/exec-cfe097ae-0078-4b3f-aa92-fc88529a31d4.png",
-        "selected_source_sha256": "f57e144e279003d2e6e671649f2220c8270561d7874fe844b49fab3fb2827df5",
         "final_image": "origin_image/slide_01.png",
-        "final_image_sha256": "f57e144e279003d2e6e671649f2220c8270561d7874fe844b49fab3fb2827df5",
-        "expected_backend": "built-in image tool",
-        "expected_backend_labels": [
-          "built-in image tool",
-          "image_gen"
-        ],
-        "sample_generation_method_matched": true,
-        "qa_note": "All required text is exact and readable, with no overlap or clipping; the 16:9 composition matches the approved technical-atlas style.",
-        "recorded_at": "2026-08-25T20:50:08Z"
+        "accepted_sample": true
       },
       "blocker": null
     },
@@ -180,29 +162,11 @@
         }
       ],
       "requires_context_images": true,
-      "status": "recorded",
-      "dispatch": {
-        "agent_id": "/root/slide_09",
-        "agent_nickname": "Russell",
-        "prompt": "prompts/slide_07.json",
-        "prompt_sha256": "07111c340674ff2b3a08122f1d4da5523432f9b5012d0cd9cc8303656be54917",
-        "dispatched_at": "2026-08-25T20:50:15Z"
-      },
+      "status": "accepted",
+      "dispatch": null,
       "result": {
-        "agent_id": "/root/slide_09",
-        "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03979-196a-76e1-8739-f651b1834004/exec-d631df70-ee21-4b1b-909b-16a799d6a2c0.png",
-        "selected_source_sha256": "b0a3e503e838b05f90c936c85a4658ffbc90c71dbb865008b96e129e79143a74",
         "final_image": "origin_image/slide_07.png",
-        "final_image_sha256": "b0a3e503e838b05f90c936c85a4658ffbc90c71dbb865008b96e129e79143a74",
-        "expected_backend": "built-in image tool",
-        "expected_backend_labels": [
-          "built-in image tool",
-          "image_gen"
-        ],
-        "sample_generation_method_matched": true,
-        "qa_note": "All required text and lifecycle labels are exact and readable, with no overlap or clipping; the dependency-radius layout matches the approved technical-atlas style.",
-        "recorded_at": "2026-08-25T20:52:09Z"
+        "accepted_sample": true
       },
       "blocker": null
     },
@@ -220,36 +184,18 @@
         }
       ],
       "requires_context_images": true,
-      "status": "recorded",
-      "dispatch": {
-        "agent_id": "/root/slide_08",
-        "agent_nickname": "Kant",
-        "prompt": "prompts/slide_08.json",
-        "prompt_sha256": "82b5a0c70383150f93beebeb565a78d22f12a1b6916dc36b8fcd84a69c493fd7",
-        "dispatched_at": "2026-08-25T20:50:42Z"
-      },
+      "status": "accepted",
+      "dispatch": null,
       "result": {
-        "agent_id": "/root/slide_08",
-        "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03975-fca5-7f82-adf6-0488ea0df964/exec-2fde3f45-dbeb-41df-8cb2-410af4d776c8.png",
-        "selected_source_sha256": "136bb643c63a8f6d86b7d117fef445eac3e126f7ed1d3fe0f2207a3d55a10884",
         "final_image": "origin_image/slide_08.png",
-        "final_image_sha256": "136bb643c63a8f6d86b7d117fef445eac3e126f7ed1d3fe0f2207a3d55a10884",
-        "expected_backend": "built-in image tool",
-        "expected_backend_labels": [
-          "built-in image tool",
-          "image_gen"
-        ],
-        "sample_generation_method_matched": true,
-        "qa_note": "All required evidence states, exact alt examples, principle text, and local-only note are readable, unclipped, non-overlapping, and consistent with the approved style.",
-        "recorded_at": "2026-08-25T20:53:59Z"
+        "accepted_sample": true
       },
       "blocker": null
     },
     {
       "slide_id": "slide_09",
       "number": 9,
-      "title": "Questions",
+      "title": "Key takeaways",
       "job": "prompts/slide_09.json",
       "out": "origin_image/slide_09.png",
       "input_images": [
@@ -260,14 +206,72 @@
         }
       ],
       "requires_context_images": true,
-      "status": "accepted",
-      "dispatch": null,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_08",
+        "agent_nickname": "Kant",
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "c7e09eab140dd412e0d4ec6be1a8d027a773dbe1977d0c6a13442e0f6054e667",
+        "dispatched_at": "2026-08-26T01:55:59Z"
+      },
       "result": {
+        "agent_id": "/root/slide_08",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03975-fca5-7f82-adf6-0488ea0df964/exec-b49c0b55-0752-41d0-b9dd-0797c18eee22.png",
+        "selected_source_sha256": "c5564cca8ec73dd9ee85f7238a310cc8d02d3dcf9a3fd33aacbc4d451cd096be",
         "final_image": "origin_image/slide_09.png",
-        "accepted_sample": true
+        "final_image_sha256": "c5564cca8ec73dd9ee85f7238a310cc8d02d3dcf9a3fd33aacbc4d451cd096be",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "The accessibility note now exactly states Missing alt is not the same as an explicit empty alt.; all five takeaways and the governing principle remain readable, unclipped, and style-consistent.",
+        "recorded_at": "2026-08-26T02:03:52Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_10",
+      "number": 10,
+      "title": "Questions",
+      "job": "prompts/slide_10.json",
+      "out": "origin_image/slide_10.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-09/origin_image/slide_04.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-branch decision-tree layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_09",
+        "agent_nickname": "Russell",
+        "prompt": "prompts/slide_10.json",
+        "prompt_sha256": "a362cb753e17c9ac3e991144cd7678d59be5949980992db617e328941da337c9",
+        "dispatched_at": "2026-08-26T02:02:14Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03979-196a-76e1-8739-f651b1834004/exec-c82f06b1-ff82-4064-8a3e-7554e53c95da.png",
+        "selected_source_sha256": "fec459e326d768f9b9672eed1bdbaa5c5be414aa1573a38190b921208cf62697",
+        "final_image": "origin_image/slide_10.png",
+        "final_image_sha256": "fec459e326d768f9b9672eed1bdbaa5c5be414aa1573a38190b921208cf62697",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Only the exact eyebrow, Questions, and Thank you. appear; all are readable and unclipped, with a restrained unlabeled asset-to-browser motif matching the approved style.",
+        "recorded_at": "2026-08-26T02:04:17Z"
       },
       "blocker": null
     }
   ],
-  "updated_at": "2026-08-25T20:53:59Z"
+  "updated_at": "2026-08-26T02:04:17Z"
 }

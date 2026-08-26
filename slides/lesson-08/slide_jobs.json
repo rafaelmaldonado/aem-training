@@ -30,29 +30,11 @@
         }
       ],
       "requires_context_images": true,
-      "status": "recorded",
-      "dispatch": {
-        "agent_id": "/root/slide_05",
-        "agent_nickname": "Franklin",
-        "prompt": "prompts/slide_01.json",
-        "prompt_sha256": "35c4314ab558a5a7a2a9e743c46fea02c83b91b7d8bef6c0a70ece5c389b4f93",
-        "dispatched_at": "2026-08-25T20:47:52Z"
-      },
+      "status": "accepted",
+      "dispatch": null,
       "result": {
-        "agent_id": "/root/slide_05",
-        "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03971-9dfd-7531-9f30-7c6ca884fc14/exec-695d0674-e06b-4b9b-9c79-b398eb5a85cb.png",
-        "selected_source_sha256": "fedc3cc424193eebde87acbf82e3c9811c73a40081cfecd57a10d53813328dcf",
         "final_image": "origin_image/slide_01.png",
-        "final_image_sha256": "fedc3cc424193eebde87acbf82e3c9811c73a40081cfecd57a10d53813328dcf",
-        "expected_backend": "built-in image tool",
-        "expected_backend_labels": [
-          "built-in image tool",
-          "image_gen"
-        ],
-        "sample_generation_method_matched": true,
-        "qa_note": "All required text is exact and readable; the three compact anchors avoid a detailed persistence trace, with no overlap, clipping, or style inconsistency.",
-        "recorded_at": "2026-08-25T20:51:17Z"
+        "accepted_sample": true
       },
       "blocker": null
     },
@@ -191,7 +173,7 @@
     {
       "slide_id": "slide_08",
       "number": 8,
-      "title": "Questions",
+      "title": "Key takeaways",
       "job": "prompts/slide_08.json",
       "out": "origin_image/slide_08.png",
       "input_images": [
@@ -204,30 +186,70 @@
       "requires_context_images": true,
       "status": "recorded",
       "dispatch": {
-        "agent_id": "/root/slide_08",
-        "agent_nickname": "Kant",
+        "agent_id": "/root/slide_05",
+        "agent_nickname": "Franklin",
         "prompt": "prompts/slide_08.json",
-        "prompt_sha256": "31a6bd02595687992fd0f76f80e566fa56e6d6b6f94e643059ac0b35563a6562",
-        "dispatched_at": "2026-08-25T20:47:53Z"
+        "prompt_sha256": "f0534a4ac6365de2eb07a094cd7a1c9b86c3e719f12a8cb7c0b1d0dc6d2ab191",
+        "dispatched_at": "2026-08-26T01:55:59Z"
       },
       "result": {
-        "agent_id": "/root/slide_08",
+        "agent_id": "/root/slide_05",
         "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03975-fca5-7f82-adf6-0488ea0df964/exec-f55b29dc-4160-48dd-b4e2-363cd7fe954a.png",
-        "selected_source_sha256": "9a35402685c78d66dc7dbd0f522a7f29cdcee7fbf52093a86cab556f855cfa90",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03971-9dfd-7531-9f30-7c6ca884fc14/exec-aa15c8ce-2818-4ff0-9cea-53ed59deae60.png",
+        "selected_source_sha256": "4969b4a96504b5d48c6c8759698d5d9cce39a4984e16ec470439d5bdc84978c6",
         "final_image": "origin_image/slide_08.png",
-        "final_image_sha256": "9a35402685c78d66dc7dbd0f522a7f29cdcee7fbf52093a86cab556f855cfa90",
+        "final_image_sha256": "4969b4a96504b5d48c6c8759698d5d9cce39a4984e16ec470439d5bdc84978c6",
         "expected_backend": "built-in image tool",
         "expected_backend_labels": [
           "built-in image tool",
           "image_gen"
         ],
         "sample_generation_method_matched": true,
-        "qa_note": "Exact title and subtitle are clear; the passive unlabeled motif adds no technical copy, prompts, exercises, overlap, or clipping and matches the approved style.",
-        "recorded_at": "2026-08-25T20:50:37Z"
+        "qa_note": "Eyebrow, title, all five single-numbered takeaways, and the governing principle are exact and readable, with no added concepts, overlap, clipping, or style mismatch.",
+        "recorded_at": "2026-08-26T02:01:04Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Questions",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-08/origin_image/slide_04.png",
+          "role": "approved sample slide style reference",
+          "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact five-stage persistence layout."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_05",
+        "agent_nickname": "Franklin",
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "f34a3900534e7e46fa09b0bdfedc508ae6eac2fc3af8b36df1ad7f3f73bef99a",
+        "dispatched_at": "2026-08-26T02:01:16Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_05",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03971-9dfd-7531-9f30-7c6ca884fc14/exec-351a1df5-5c58-416c-99cd-06944e1056b3.png",
+        "selected_source_sha256": "23c849249a902285966e3c12fbe0fe8e5384ee36f0178c098ee866c4cf7f57f6",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "23c849249a902285966e3c12fbe0fe8e5384ee36f0178c098ee866c4cf7f57f6",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "The slide contains only the exact eyebrow, Questions, and Thank you. with a restrained unlabeled motif, ample whitespace, and no overlap, clipping, or style mismatch.",
+        "recorded_at": "2026-08-26T02:03:07Z"
       },
       "blocker": null
     }
   ],
-  "updated_at": "2026-08-25T20:51:17Z"
+  "updated_at": "2026-08-26T02:03:07Z"
 }

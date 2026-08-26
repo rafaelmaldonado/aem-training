@@ -60,9 +60,10 @@
     "fidelity": "Match palette, typography, grid, technical density, semantic colors and evidence-tag language only; do not copy the exact five-stage persistence layout."
   },
   "slides": [
-    {
-      "number": 1,
-      "title": "Dialogs, Granite UI and property persistence",
+  {
+    "number": 1,
+    "approved_sample": true,
+    "title": "Dialogs, Granite UI and property persistence",
       "role": "opening overview",
       "intent": "Identify the session, presenter and date while previewing the three learning threads.",
       "key_points": [
@@ -265,9 +266,38 @@
         "Do not render an empty visitor heading or broken control."
       ]
     },
-    {
-      "number": 8,
-      "title": "Questions",
+  {
+    "number": 8,
+    "title": "Key takeaways",
+    "role": "summary",
+    "intent": "Consolidate the five durable rules for safe dialog and persistence changes.",
+    "key_points": [
+      "Component definition, cq:dialog and authored instance are separate Resources",
+      "A Granite UI field name defines the relative persistence target",
+      "Persisted property names become runtime contracts",
+      "Renaming or reshaping stored content may require compatibility and migration",
+      "Review configured, legacy and empty states; dialog validation is not a repository constraint"
+    ],
+    "local_context": {
+      "required_background": "Summarize exactly five rules: separate component/dialog/instance Resources; field name controls relative persistence; stored property names are runtime contracts; schema changes need compatibility or migration; configured, legacy and empty states require evidence beyond dialog validation."
+    },
+    "layout": {
+      "composition": "Five numbered checkpoints connect dialog Resource, field name, stored property, compatibility and state evidence; end with one concise governing principle.",
+      "intent": "Provide a readable bullet-based summary instead of another detailed process diagram."
+    },
+    "visual_elements": {
+      "main_visual": "Five compact bullet checkpoints with small technical icons and a short principle callout."
+    },
+    "constraints": [
+      "Render the eyebrow exactly as '08 · KEY TAKEAWAYS'.",
+      "Render all five takeaways as concise readable bullets.",
+      "Include the principle 'Treat stored content as a durable contract.'.",
+      "Do not add questions, exercises, assignments or new technical concepts."
+    ]
+  },
+  {
+    "number": 9,
+    "title": "Questions",
       "role": "Q&A",
       "intent": "Invite questions raised by participants and close the session without introducing another exercise.",
       "key_points": [
@@ -284,7 +314,7 @@
         "main_visual": "A restrained decorative dialog-to-browser line motif with no labels or decision points."
       },
       "constraints": [
-        "Render the eyebrow exactly as '08 · QUESTIONS'.",
+      "Render the eyebrow exactly as '09 · QUESTIONS'.",
         "Render only the title 'Questions' and the subtitle 'Thank you.'.",
         "Do not include prompts, numbered questions, exercises, technical callouts, a demo, practice or assignment."
       ]

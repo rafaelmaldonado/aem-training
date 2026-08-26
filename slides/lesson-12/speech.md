@@ -41,6 +41,14 @@ Walk the evidence ladder in order: confirm the page includes the intended catego
 
 This order avoids editing configuration while the browser is receiving a cached or different artifact. A source diff is evidence of intent; the response body is evidence of delivery.
 
-## Slide 7: Questions
+## Slide 7: Key takeaways
+
+Use these five bullets as the operational checklist for clientlib work. The category is the runtime contract. Editable source is versioned, while generated output is replaced by the build. Dependencies and embeds express different delivery relationships and should remain small and intentional.
+
+Give every shared or component asset one clear owner and include shared assets once. When a change does not appear, follow the evidence to the browser response before changing configuration.
+
+The governing principle is: version source; verify the artifact delivered to the browser. Then move to the final slide and leave the floor open.
+
+## Slide 8: Questions
 
 That completes the session. Thank the audience and leave the floor open for questions they want to raise. Do not introduce prompts, a review activity, practice or an assignment.

@@ -85,7 +85,20 @@
 
 **Visual idea:** an evidence ladder moves from Git source to import, build artifact, installed category, page request and browser result; each rung has a pass/fail observation.
 
-## Slide 7 — Questions
+## Slide 7 — Key takeaways
+
+**Role:** summary
+**Intent:** consolidate the five operational rules for predictable clientlib delivery.
+
+- A clientlib category is the runtime contract used by consumers.
+- Edit and version frontend source; generated output is replaced by the next build.
+- Dependencies load separate categories; embeds combine content into one output.
+- Include shared assets once and scope component behavior to a clear owner.
+- Debug the delivered response through evidence before changing configuration.
+
+**Visual idea:** five concise checkpoints trace category, source, relationship, ownership and browser evidence.
+
+## Slide 8 — Questions
 
 **Role:** Q&A  
 **Intent:** invite questions raised by participants and close the session without introducing another exercise.

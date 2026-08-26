@@ -98,7 +98,20 @@
 
 **Visual idea:** a three-row state matrix crosses source definition, persisted Resource, rendering decision, author view and visitor DOM.
 
-## Slide 8 — Questions
+## Slide 8 — Key takeaways
+
+**Role:** summary
+**Intent:** consolidate the five durable rules for safe dialog and persistence changes.
+
+- Component definition, `cq:dialog` and authored instance are separate Resources.
+- A Granite UI field `name` defines the relative persistence target.
+- Persisted property names become runtime contracts for HTL, models and integrations.
+- Renaming or reshaping stored content may require compatibility and migration.
+- Review configured, legacy and empty states; dialog validation is not a repository constraint.
+
+**Visual idea:** five concise numbered checkpoints connect dialog Resource, field name, stored property, compatibility and state evidence.
+
+## Slide 9 — Questions
 
 **Role:** Q&A  
 **Intent:** invite questions raised by participants and close the session without introducing another exercise.

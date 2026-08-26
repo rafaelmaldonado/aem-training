@@ -65,9 +65,10 @@
     "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-branch decision-tree layout."
   },
   "slides": [
-    {
-      "number": 1,
-      "title": "Assets, Core Image and accessible delivery",
+  {
+    "number": 1,
+    "approved_sample": true,
+    "title": "Assets, Core Image and accessible delivery",
       "role": "opening overview",
       "intent": "Identify the session, presenter and date while previewing the three learning threads.",
       "key_points": [
@@ -241,9 +242,10 @@
         "Do not promise that the browser always chooses the smallest candidate."
       ]
     },
-    {
-      "number": 7,
-      "title": "Asset references turn maintenance into a dependency decision.",
+  {
+    "number": 7,
+    "approved_sample": true,
+    "title": "Asset references turn maintenance into a dependency decision.",
       "role": "lifecycle dependency radius",
       "intent": "Give reference impact dedicated treatment before asset moves, replacement and publication changes.",
       "key_points": [
@@ -270,9 +272,10 @@
         "Include 'Inspect references before lifecycle changes.'"
       ]
     },
-    {
-      "number": 8,
-      "title": "Verify the Guide Page image contract with evidence.",
+  {
+    "number": 8,
+    "approved_sample": true,
+    "title": "Verify the Guide Page image contract with evidence.",
       "role": "practice evidence matrix",
       "intent": "Turn the session into a repeatable review of the Week 2 practice without depending on a live demo.",
       "key_points": [
@@ -299,10 +302,38 @@
         "Do not require Cloud Manager or a shared deployment environment."
       ]
     },
-    {
-      "number": 9,
-      "approved_sample": true,
-      "title": "Questions",
+  {
+    "number": 9,
+    "title": "Key takeaways",
+    "role": "summary",
+    "intent": "Consolidate the five review rules for managed, accessible and efficiently delivered images.",
+    "key_points": [
+      "Store a fileReference to the managed DAM asset instead of copying the binary",
+      "Start with a project proxy to Core Image before custom delivery markup",
+      "Choose alternative-text behavior from purpose in page context",
+      "Verify responsive candidates and the selected request, not only CSS size",
+      "Inspect incoming references and publication state before lifecycle changes"
+    ],
+    "local_context": {
+      "required_background": "Summarize exactly five rules: managed DAM reference, Core Image proxy first, contextual alternative text, responsive browser evidence, and lifecycle reference inspection."
+    },
+    "layout": {
+      "composition": "Five numbered bullet checkpoints connect DAM ownership, Core Image, contextual alternatives, responsive evidence and lifecycle safety; end with one concise governing principle.",
+      "intent": "Provide a readable summary without repeating the practice evidence matrix."
+    },
+    "visual_elements": {
+      "main_visual": "Five compact bullet checkpoints with small asset, accessibility, browser and reference icons."
+    },
+    "constraints": [
+      "Render the eyebrow exactly as '09 · KEY TAKEAWAYS'.",
+      "Render all five takeaways as concise readable bullets.",
+      "Include the principle 'Meaning, bytes and references all need evidence.'.",
+      "Do not add questions, exercises, assignments or new technical concepts."
+    ]
+  },
+  {
+    "number": 10,
+    "title": "Questions",
       "role": "Q&A",
       "intent": "Invite questions raised by participants and close the session without introducing another exercise.",
       "key_points": [
@@ -319,7 +350,7 @@
         "main_visual": "A restrained decorative asset-to-browser line motif with no labels or decision points."
       },
       "constraints": [
-        "Render the eyebrow exactly as '09 · QUESTIONS'.",
+      "Render the eyebrow exactly as '10 · QUESTIONS'.",
         "Render only the title 'Questions' and the subtitle 'Thank you.'.",
         "Do not include prompts, numbered questions, exercises, technical callouts, a demo, practice or assignment."
       ]

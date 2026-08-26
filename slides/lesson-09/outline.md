@@ -112,7 +112,20 @@
 
 **Visual idea:** a three-row informative/decorative/missing-state matrix crosses repository reference, rendered HTML, accessibility result and network evidence.
 
-## Slide 9 — Questions
+## Slide 9 — Key takeaways
+
+**Role:** summary
+**Intent:** consolidate the five review rules for managed, accessible and efficiently delivered images.
+
+- Store a `fileReference` to the managed DAM asset instead of copying the binary.
+- Start with a project proxy to Core Image before custom delivery markup.
+- Choose alternative-text behavior from the image purpose in its page context.
+- Verify responsive candidates and the selected request, not only rendered CSS size.
+- Inspect incoming references and publication state before asset lifecycle changes.
+
+**Visual idea:** five concise checkpoints connect DAM ownership, Core Image, contextual alternatives, responsive evidence and lifecycle safety.
+
+## Slide 10 — Questions
 
 **Role:** Q&A  
 **Intent:** invite questions raised by participants and close the session without introducing another exercise.

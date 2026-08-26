@@ -1,0 +1,311 @@
+{
+  "deck_name": "lesson-13",
+  "title": "Core Components, proxy pattern and Data Layer",
+  "language": "English",
+  "aspect_ratio": "16:9",
+  "style": {
+    "name": "technical atlas courseware",
+    "visual_direction": "Sober, information-rich technical atlas blended with academic courseware. Use exact AEM resource types, inheritance chains, extension points, version boundaries and browser evidence instead of generic corporate cards.",
+    "color_palette": "Warm ivory drafting-paper background, deep navy typography, faint square grid, cobalt blue for resource and delegation flows, green for valid inheritance and observable evidence, violet for model and contract relationships, and restrained orange for overrides or upgrade risk.",
+    "typography": "Large bold modern sans serif headings; crisp sans serif body copy; true monospace appearance for resource paths, properties, component versions, HTL and browser objects.",
+    "texture_and_finish": "Flat 2D technical diagrams with fine rules and precise component, repository, inheritance, browser and Data Layer icons. No gradients, neon, glass, 3D or photography.",
+    "deck_consistency": "Match the approved sample's palette, typography, grid, technical density, semantic colors, monospace treatment and line weight while varying composition by slide role."
+  },
+  "deck_context": {
+    "source_summary": "Class 13 of a seven-week AEM Sites course, delivered Wednesday, September 2, 2026. The audience already understands AEM Resources, dialogs, HTL, client libraries and browser evidence. This class connects a project-owned Guide Card proxy to a versioned Core Component implementation and its observable Adobe Client Data Layer contract.",
+    "core_claim": "A safe AEM customization gives the project a stable proxy resource type, delegates to a versioned Core Component, changes only the narrowest necessary extension point and preserves observable runtime contracts.",
+    "canonical_facts": [
+      "Core Components package authoring dialogs, Sling Models, HTL markup, accessibility and client-side behavior as reusable production capabilities.",
+      "Public Core Component versions protect existing sites from incompatible implementation changes.",
+      "Content should reference a site-specific sling:resourceType rather than a Core Component path directly.",
+      "A project proxy owns the author-facing title, component group and policy surface.",
+      "sling:resourceSuperType delegates missing scripts and resources to an explicit versioned Core Component parent.",
+      "A fully inherited proxy can be almost empty and should not copy product implementation.",
+      "Customization options increase in maintenance cost from policy/style through dialog, scoped assets, model delegation and HTL override.",
+      "Changing a component super type version is a contract change that can affect authoring, models, markup, CSS hooks, client behavior and Data Layer output.",
+      "Core Components integrate with the Adobe Client Data Layer to expose standardized component data and events when enabled.",
+      "A proxy customization should preserve inherited identifiers, semantic markup, accessibility, supported Data Layer values and browser-observable behavior unless a requirement deliberately changes them."
+    ],
+    "canonical_terms": [
+      "Core Components",
+      "proxy component",
+      "sling:resourceType",
+      "sling:resourceSuperType",
+      "/apps/wknd/components/guide-card",
+      "core/wcm/components/teaser/v2/teaser",
+      "Style System",
+      "Sling Model delegation",
+      "HTL override",
+      "Adobe Client Data Layer",
+      "data-cmp-data-layer",
+      "adobeDataLayer"
+    ]
+  },
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Day 13 extension-ladder sample prompt generated from the approved outline and Day 12 technical-atlas style reference, then corrected with image_gen edit to place the STOP HERE marker at HTL OVERRIDE",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-13/origin_image/slide_05.png",
+    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Core Components, proxy pattern and Data Layer",
+      "role": "opening overview",
+      "intent": "Identify the session, presenter and date while previewing the three learning threads.",
+      "key_points": [
+        "Class 13 · Week 3 · Day 13 · September 2, 2026",
+        "Core Components, proxy pattern and Data Layer",
+        "Today: production capabilities, thin project proxies and observable runtime contracts",
+        "30-minute technical session",
+        "Juan Maldonado"
+      ],
+      "local_context": {
+        "required_background": "Create an opening overview. Present three compact topic anchors: production capabilities, thin project proxies and observable runtime contracts."
+      },
+      "layout": {
+        "composition": "Strong title block with class metadata, presenter and date on the left; three connected technical layers on the right.",
+        "intent": "Orient the audience before technical detail without turning the opening into another inheritance diagram."
+      },
+      "visual_elements": {
+        "main_visual": "Three connected layers labeled Core capability, project ownership and browser contract."
+      },
+      "constraints": [
+        "Render all class metadata exactly.",
+        "Render the three Today topics clearly.",
+        "Do not add a detailed implementation chain to the opening slide."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Core Components are versioned production capabilities.",
+      "role": "capability map",
+      "intent": "Establish what the project receives before any custom implementation is considered.",
+      "key_points": [
+        "Tested authoring, Sling Models, HTL, accessibility and client behavior",
+        "Public component versions protect existing sites",
+        "Policies and the Style System often satisfy variation requirements",
+        "Inspect installed version, documented features and rendered contract",
+        "Custom code must justify the capability gap"
+      ],
+      "local_context": {
+        "required_background": "Show one Core Component capability capsule exposing five production surfaces: authoring dialog, Sling Model, HTL markup, accessibility and client behavior. Place an inspection gate before custom code: installed version, documented feature and rendered contract. Do not imply that every Core Component supports every feature."
+      },
+      "layout": {
+        "composition": "Large versioned Core Component capsule in the center, five capability ports around it and a compact inspection gate before a small custom-code boundary.",
+        "intent": "Frame reuse as the default and custom implementation as a justified exception."
+      },
+      "visual_elements": {
+        "main_visual": "Versioned capability capsule with authoring, model, markup, accessibility and behavior ports."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '02 · PRODUCTION CAPABILITY'.",
+        "Render Sling Models, HTL and Style System exactly.",
+        "Include 'Inspect before you implement.'.",
+        "Do not show a custom component as the default starting point."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "A proxy gives the site ownership.",
+      "role": "ownership architecture",
+      "intent": "Distinguish the project resource type referenced by content from the reusable product implementation.",
+      "key_points": [
+        "Content references a stable site-specific sling:resourceType",
+        "The proxy owns title, component group and policy surface",
+        "Sites can evolve independently while sharing implementation",
+        "A fully inherited proxy can remain almost empty",
+        "The boundary avoids later content refactoring"
+      ],
+      "local_context": {
+        "required_background": "Use authored content with sling:resourceType=/apps/wknd/components/guide-card. Show that the thin proxy owns jcr:title, componentGroup and the project policy surface, while the product implementation remains downstream. Contrast stable content references with a crossed-out direct Core Component reference."
+      },
+      "layout": {
+        "composition": "Authored content on the left connects to a thin WKND proxy in the center; ownership badges surround the proxy while a shared product implementation sits to the right.",
+        "intent": "Make content identity and implementation ownership visibly separate."
+      },
+      "visual_elements": {
+        "main_visual": "Content resource → project proxy → shared implementation, with title, group and policy owned at the proxy."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '03 · PROJECT OWNERSHIP'.",
+        "Render sling:resourceType and /apps/wknd/components/guide-card exactly.",
+        "Label the middle node 'THIN PROXY'.",
+        "Do not show authored content pointing directly to the Core Component."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "sling:resourceSuperType delegates implementation.",
+      "role": "inheritance trace",
+      "intent": "Make runtime lookup explicit and contrast delegation with copying product code.",
+      "key_points": [
+        "The proxy declares an explicit versioned Core Component parent",
+        "Sling resolves missing scripts and resources through the super-type chain",
+        "The project reuses implementation without duplicating it",
+        "Inherited behavior can receive compatible product fixes",
+        "Copied product code becomes a project-owned fork"
+      ],
+      "local_context": {
+        "required_background": "Trace content resource → /apps/wknd/components/guide-card → core/wcm/components/teaser/v2/teaser. Show sling:resourceSuperType on the proxy. Missing HTL, model and behavior resolve through the parent. Contrast this with a copied /apps/wknd implementation fork labeled project maintenance debt."
+      },
+      "layout": {
+        "composition": "Vertical inheritance spine on the left with exact resource labels; inherited capability streams converge into the proxy; a smaller orange copied-code fork branches to the right.",
+        "intent": "Explain resolution and maintenance consequences in one trace."
+      },
+      "visual_elements": {
+        "main_visual": "Content-to-proxy-to-versioned-parent resolution chain versus copied implementation fork."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '04 · IMPLEMENTATION DELEGATION'.",
+        "Render sling:resourceSuperType exactly.",
+        "Render core/wcm/components/teaser/v2/teaser exactly.",
+        "Include 'INHERIT, DO NOT COPY'."
+      ]
+    },
+    {
+      "number": 5,
+      "sample_approved": true,
+      "title": "Customize at the narrowest extension point.",
+      "role": "decision ladder",
+      "intent": "Order common extension mechanisms by responsibility and maintenance cost.",
+      "key_points": [
+        "Policy or Style System for allowed options and visual variation",
+        "Dialog only for required author input",
+        "Scoped CSS before JavaScript",
+        "Sling Model delegation for changed data with preserved contract",
+        "HTL override only when earlier extension points cannot meet the requirement"
+      ],
+      "local_context": {
+        "required_background": "Reuse the approved slide_05.png image exactly. The five rungs are Policy / Style, Dialog, Scoped CSS / JS, Model Delegation and HTL Override. STOP HERE is connected to HTL Override."
+      },
+      "layout": {
+        "composition": "Approved five-rung extension ladder.",
+        "intent": "Use the approved sample unchanged."
+      },
+      "visual_elements": {
+        "main_visual": "Approved sample image at origin_image/slide_05.png."
+      },
+      "constraints": [
+        "Reuse the approved sample image without regeneration."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "A version upgrade is a contract change to test.",
+      "role": "compatibility boundary",
+      "intent": "Connect explicit component versioning to evidence-based upgrades.",
+      "key_points": [
+        "The proxy pins a specific Core Component resource type version",
+        "A new parent version can alter authoring, models, markup, CSS hooks, behavior or Data Layer",
+        "Compare current and target component documentation",
+        "Test configured and empty states across runtime surfaces",
+        "Keep the project diff small and responsibility visible"
+      ],
+      "local_context": {
+        "required_background": "Compare core/wcm/components/teaser/v1/teaser and core/wcm/components/teaser/v2/teaser across an upgrade gate. The gate must list six observable surfaces: authoring, model output, markup, CSS hooks, client behavior and Data Layer. Add configured and empty states below as required tests. Do not imply that changing only the version string proves compatibility."
+      },
+      "layout": {
+        "composition": "Current and target version capsules sit on opposite sides of a central test gate; six contract surfaces form a checklist and two state cards anchor the bottom.",
+        "intent": "Treat an upgrade as a deliberate compatibility decision rather than a path edit."
+      },
+      "visual_elements": {
+        "main_visual": "v1 → contract test gate → v2 with observable surface checklist and state evidence."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '06 · VERSION CONTRACT'.",
+        "Render both teaser resource type paths exactly.",
+        "Include 'TEST THE CONTRACT, NOT THE STRING.'.",
+        "Do not mark the upgrade successful without observable evidence."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Keep the Data Layer contract observable.",
+      "role": "browser evidence trace",
+      "intent": "Show how to verify that proxy customization preserves analytics-ready component data.",
+      "key_points": [
+        "Core Components expose standardized component data and events when enabled",
+        "Rendered markup identifies Data Layer payload available in the browser",
+        "Preserve inherited identifiers, semantics and supported component data",
+        "Inspect the element, data-cmp-data-layer and matching browser state",
+        "Add custom tracking data only for a stated requirement"
+      ],
+      "local_context": {
+        "required_background": "Trace one Guide Card proxy through three evidence zones: rendered component element with id=guide-card-123 and data-cmp-data-layer; the matching component object in browser state; and adobeDataLayer event/state access. Use compact illustrative values, not a full JSON dump. Make clear that Data Layer must be enabled and that the proxy preserves the inherited contract unless deliberately extended."
+      },
+      "layout": {
+        "composition": "A left-to-right evidence trace moves from rendered component markup to a compact Data Layer object and finally browser inspection, with matching IDs highlighted in green.",
+        "intent": "Make preservation verifiable through browser evidence rather than an inheritance assumption."
+      },
+      "visual_elements": {
+        "main_visual": "Rendered element → matching Data Layer payload → adobeDataLayer browser evidence."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '07 · OBSERVABLE DATA CONTRACT'.",
+        "Render data-cmp-data-layer and adobeDataLayer exactly.",
+        "Use the same illustrative ID guide-card-123 in markup and browser state.",
+        "Do not imply that the Data Layer is active when it has not been enabled."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Key takeaways",
+      "role": "summary",
+      "intent": "Consolidate the five rules for safe Core Component reuse.",
+      "key_points": [
+        "Verify the existing Core Component capability and version before custom code",
+        "Use a project proxy without copying product implementation",
+        "Make reuse explicit with sling:resourceSuperType",
+        "Customize narrowly and test upgrades as contract changes",
+        "Preserve observable markup, accessibility, behavior and Data Layer evidence"
+      ],
+      "local_context": {
+        "required_background": "Summarize exactly five rules: inspect capability/version, own a thin proxy, delegate through sling:resourceSuperType, choose the narrowest extension point and preserve observable contracts."
+      },
+      "layout": {
+        "composition": "Five numbered bullet checkpoints connect capability, ownership, delegation, extension and browser evidence; end with one concise governing principle.",
+        "intent": "Provide a readable bullet summary without repeating the detailed diagrams."
+      },
+      "visual_elements": {
+        "main_visual": "Five compact bullet checkpoints with capability, proxy, inheritance, extension and evidence icons."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '08 · KEY TAKEAWAYS'.",
+        "Render all five takeaways as concise readable bullets.",
+        "Include the principle 'Own the proxy; preserve the contract.'.",
+        "Do not add questions, exercises, assignments or new technical concepts."
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Questions",
+      "role": "Q&A",
+      "intent": "Invite questions raised by participants and close the session without introducing another exercise.",
+      "key_points": [
+        "Thank you."
+      ],
+      "local_context": {
+        "required_background": "This is a passive closing slide. Participants may ask their own questions; the presenter must not ask scripted questions or introduce a review exercise."
+      },
+      "layout": {
+        "composition": "Large Questions title, small Thank you subtitle, generous open space and one subtle proxy-to-browser line motif.",
+        "intent": "Signal the end of the session while retaining the deck's technical visual identity."
+      },
+      "visual_elements": {
+        "main_visual": "A restrained decorative proxy-to-browser line motif with no labels or decision points."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '09 · QUESTIONS'.",
+        "Render only the title 'Questions' and the subtitle 'Thank you.'.",
+        "Do not include prompts, numbered questions, exercises, technical callouts, a demo, practice or assignment."
+      ]
+    }
+  ]
+}

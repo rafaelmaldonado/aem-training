@@ -141,7 +141,8 @@
         <li><strong>Slide 5 — A field change can become a content migration.</strong> Show why renaming or reshaping stored fields requires compatibility work.</li>
         <li><strong>Slide 6 — Validation guides authors but does not guarantee stored content.</strong> Separate authoring feedback from runtime resilience.</li>
         <li><strong>Slide 7 — Verify configured, legacy and empty states end to end.</strong> Connect stored evidence to author and visitor output.</li>
-        <li><strong>Slide 8 — Questions.</strong> End the session and leave the floor open for audience questions.</li>
+        <li><strong>Slide 8 — Key takeaways.</strong> Summarize Resource ownership, persistence, runtime contracts, migration and state evidence.</li>
+        <li><strong>Slide 9 — Questions.</strong> End the session and leave the floor open for audience questions.</li>
       </ol>
       <p><strong>Inspection:</strong> follow supplied source, request, repository and output evidence; local Author is optional. <strong>Practice bridge:</strong> add one field-to-browser trace to the Week 2 Guide Page evidence without requiring a new custom component.</p>
     </details>
@@ -157,7 +158,8 @@
         <li><strong>Slide 6 — Responsive delivery lets the browser choose appropriate bytes.</strong> Verify candidates, selected requests and rendered dimensions.</li>
         <li><strong>Slide 7 — Asset references turn maintenance into a dependency decision.</strong> Inspect incoming references before lifecycle changes.</li>
         <li><strong>Slide 8 — Verify the Guide Page image contract with evidence.</strong> Connect repository, HTML, accessibility and Network results.</li>
-        <li><strong>Slide 9 — Questions.</strong> End the session and leave the floor open for audience questions.</li>
+        <li><strong>Slide 9 — Key takeaways.</strong> Summarize DAM references, Core Image reuse, contextual alternatives, responsive evidence and lifecycle safety.</li>
+        <li><strong>Slide 10 — Questions.</strong> End the session and leave the floor open for audience questions.</li>
       </ol>
       <p><strong>Demo:</strong> author a WKND image and inspect responsive markup. <strong>Assignment:</strong> prepare three Guide assets and classify their alternative text. <strong>Acceptance:</strong> metadata and rendered behavior match image purpose.</p>
     </details>
@@ -196,7 +198,8 @@
         <li><strong>Slide 4 — Dependencies load; embeds combine.</strong> Compare separate and combined browser delivery.</li>
         <li><strong>Slide 5 — Load shared assets once; scope component assets narrowly.</strong> Assign one owner and one intended delivery path.</li>
         <li><strong>Slide 6 — Debug the artifact the browser actually received.</strong> Follow the evidence ladder from page include to source and build logs.</li>
-        <li><strong>Slide 7 — Questions.</strong> End the session and leave the floor open for audience questions.</li>
+        <li><strong>Slide 7 — Key takeaways.</strong> Summarize category contracts, source boundaries, dependency semantics, ownership and browser evidence.</li>
+        <li><strong>Slide 8 — Questions.</strong> End the session and leave the floor open for audience questions.</li>
       </ol>
       <p><strong>Demo:</strong> change WKND frontend source, build and find the resulting clientlib request. <strong>Assignment:</strong> add Guide Card styling through the existing pipeline. <strong>Acceptance:</strong> source is versioned, generated output is not and the browser receives one intended asset.</p>
     </details>
@@ -204,11 +207,15 @@
     <details><summary>Day 13 · Core Components, proxy pattern and Data Layer</summary>
       <p><strong>Retrieval question:</strong> What is lost when product component code is copied into the project?</p>
       <ol class="slides">
-        <li><strong>Slide 1 — Core Components are production capabilities.</strong> They provide tested authoring, markup, accessibility and versioned behavior. <em>Speaker cue: begin every component request by checking existing capability.</em></li>
-        <li><strong>Slide 2 — A proxy gives the site ownership.</strong> The project defines its own resource type, title, group and policy surface. <em>Speaker cue: authors see the project component, not the product path.</em></li>
-        <li><strong>Slide 3 — The super type delegates implementation.</strong> <code>sling:resourceSuperType</code> reuses the Core Component without copying it. <em>Speaker cue: inherited behavior can receive product fixes.</em></li>
-        <li><strong>Slide 4 — Customize at the narrowest extension point.</strong> Policy, style, dialog extension, model delegation or markup override have different costs. <em>Speaker cue: choose the first point that meets the requirement.</em></li>
-        <li><strong>Slide 5 — Runtime contracts remain observable.</strong> Version compatibility, rendered markup and the Adobe Client Data Layer must survive a proxy customization. <em>Speaker cue: an upgrade is a tested contract change, not a string replacement.</em></li>
+        <li><strong>Slide 1 — Core Components, proxy pattern and Data Layer.</strong> Preview production capabilities, project ownership and observable runtime contracts.</li>
+        <li><strong>Slide 2 — Core Components are versioned production capabilities.</strong> Inspect authoring, model, markup, accessibility and client behavior before adding code.</li>
+        <li><strong>Slide 3 — A proxy gives the site ownership.</strong> Give content a stable project resource type and keep authoring identity in the site.</li>
+        <li><strong>Slide 4 — <code>sling:resourceSuperType</code> delegates implementation.</strong> Reuse an explicit Core Component version without copying product code.</li>
+        <li><strong>Slide 5 — Customize at the narrowest extension point.</strong> Compare policy, dialog, scoped assets, model delegation and HTL override by maintenance cost.</li>
+        <li><strong>Slide 6 — A version upgrade is a contract change to test.</strong> Verify authoring, models, markup, styling, client behavior and Data Layer output.</li>
+        <li><strong>Slide 7 — Keep the Data Layer contract observable.</strong> Match rendered component identifiers and payloads to browser state.</li>
+        <li><strong>Slide 8 — Key takeaways.</strong> Summarize capability inspection, proxy ownership, explicit delegation, narrow customization and browser evidence.</li>
+        <li><strong>Slide 9 — Questions.</strong> End the session and leave the floor open for audience questions.</li>
       </ol>
       <p><strong>Demo:</strong> inspect a WKND proxy, its super type and its Data Layer state. <strong>Assignment:</strong> implement the Guide Card with the smallest viable extension. <strong>Acceptance:</strong> no copied product implementation and the customization and exposed contract are justified.</p>
     </details>

@@ -157,6 +157,14 @@
 - **Transition**
   - “That completes the session. I’ll leave the final slide open for your questions.”
 
-## Slide 9: Questions
+## Slide 9: Key takeaways
+
+Use the bullets as a compact image-review sequence. Start with the managed DAM reference, then confirm that the project reuses Core Image before adding custom delivery behavior. Decide alternative text from the image’s purpose in this page context.
+
+Next, verify the candidates and the browser-selected request rather than relying on rendered CSS size. Before any replace, move, unpublish or delete action, inspect incoming references and publication state.
+
+The governing principle is: meaning, bytes and references all need evidence. Then move to the passive Questions slide.
+
+## Slide 10: Questions
 
 That completes the session. Thank the audience and leave the floor open for questions they want to raise. Do not introduce review prompts or another exercise.

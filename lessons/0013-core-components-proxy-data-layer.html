@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class 13 · Core Components, proxy pattern and Data Layer</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="brand" href="../index.html">AEM Training</a>
+    <ul>
+      <li><a href="../index.html">Overview</a></li>
+      <li><a href="../reference/aem-course-topics.html">Syllabus</a></li>
+      <li><a href="../reference/wknd-project-backlog.html">Practices</a></li>
+      <li><a href="../reference/index.html">References</a></li>
+    </ul>
+  </nav>
+  <header>
+    <p class="eyebrow">Class 13 · Week 3 · Day 13 · September 2, 2026</p>
+    <h1>Core Components, proxy pattern and Data Layer</h1>
+    <p class="lede">Own a stable project resource type, delegate implementation and preserve observable runtime contracts.</p>
+    <ul class="meta"><li>30 minutes online</li><li>Guide Card proxy</li><li>Browser evidence</li></ul>
+  </header>
+  <main id="content">
+    <section class="callout"><strong>Observable outcome:</strong> each developer can explain a project proxy and its explicit super type, justify the narrowest customization point and verify the inherited markup and Data Layer contract in the browser.</section>
+
+    <h2>Topic summary</h2>
+    <p>Core Components are versioned production capabilities. A project-owned proxy gives authored content a stable site-specific resource type while <code>sling:resourceSuperType</code> delegates the implementation to an explicit Core Component version.</p>
+    <p>Customization starts at the narrowest extension point that meets the requirement. Version changes, rendered markup, accessibility, client behavior and Adobe Client Data Layer values remain contracts that must be observed and tested.</p>
+
+    <h2>30-minute agenda</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Time</th><th>Activity</th><th>Facilitation</th></tr></thead>
+      <tbody>
+        <tr><td>0–3</td><td>Opening</td><td>Preview production capability, project ownership and browser contracts.</td></tr>
+        <tr><td>3–9</td><td>Slide 2</td><td>Inspect the existing Core Component capability and public version.</td></tr>
+        <tr><td>9–15</td><td>Slides 3–4</td><td>Trace content through the project proxy and explicit super type.</td></tr>
+        <tr><td>15–20</td><td>Slide 5</td><td>Walk the extension-cost ladder from policy to HTL override.</td></tr>
+        <tr><td>20–26</td><td>Slides 6–7</td><td>Test a version change and inspect the Data Layer contract.</td></tr>
+        <tr><td>26–28</td><td>Slide 8</td><td>Summarize the five safe-reuse rules.</td></tr>
+        <tr><td>28–30</td><td>Slide 9</td><td>Questions only; no review exercise or assignment handoff.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2>Complete slide deck</h2>
+    <p class="section-intro">Study each slide with its presenter notes, then copy it into PowerPoint or download its PNG.</p>
+    <div class="web-deck">
+      <article class="web-slide" data-slide-src="../slides/lesson-13/origin_image/slide_01.png">
+        <img class="web-slide-image" src="../slides/lesson-13/origin_image/slide_01.png" alt="Class 13 opening overview for Core Components, project proxies and observable browser contracts.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-13/origin_image/slide_01.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Present:</strong> identify the session, presenter, date and 30-minute scope.</li>
+          <li><strong>Preview:</strong> production capabilities, thin project proxies and observable runtime contracts.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-13/origin_image/slide_02.png">
+        <img class="web-slide-image" src="../slides/lesson-13/origin_image/slide_02.png" alt="A versioned Core Component exposes tested authoring, model, markup, accessibility and client behavior capabilities.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-13/origin_image/slide_02.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> inspect the production capability before adding project code.</li>
+          <li><strong>Gate:</strong> verify installed version, documented features and rendered contract.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-13/origin_image/slide_03.png">
+        <img class="web-slide-image" src="../slides/lesson-13/origin_image/slide_03.png" alt="Authored content references a thin project proxy that owns authoring identity and policy surface.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-13/origin_image/slide_03.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> content references the stable project resource type, not the product component directly.</li>
+          <li><strong>Ownership:</strong> the proxy owns title, group and policy surface.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-13/origin_image/slide_04.png">
+        <img class="web-slide-image" src="../slides/lesson-13/origin_image/slide_04.png" alt="The sling resource super type chain delegates a WKND proxy to a versioned Core Component without copying implementation.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-13/origin_image/slide_04.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Trace:</strong> content resource → WKND proxy → versioned Core Component.</li>
+          <li><strong>Contrast:</strong> inheritance receives compatible maintenance; copied code becomes a project fork.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-13/origin_image/slide_05.png">
+        <img class="web-slide-image" src="../slides/lesson-13/origin_image/slide_05.png" alt="An extension ladder rises from policy and style configuration to an HTL override as maintenance cost increases.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-13/origin_image/slide_05.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Decision:</strong> choose the narrowest extension point that actually meets the requirement.</li>
+          <li><strong>Cost:</strong> an HTL override makes markup comparison part of project upgrade work.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-13/origin_image/slide_06.png">
+        <img class="web-slide-image" src="../slides/lesson-13/origin_image/slide_06.png" alt="A Core Component version upgrade crosses a test gate covering authoring, models, markup, styling, behavior and Data Layer output.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-13/origin_image/slide_06.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Meaning:</strong> a parent-version change can alter several observable surfaces.</li>
+          <li><strong>Evidence:</strong> test configured and empty states instead of validating only the path string.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-13/origin_image/slide_07.png">
+        <img class="web-slide-image" src="../slides/lesson-13/origin_image/slide_07.png" alt="A browser evidence trace connects rendered component markup to matching Adobe Client Data Layer state.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-13/origin_image/slide_07.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Trace:</strong> match the rendered identifier and Data Layer attribute to browser state.</li>
+          <li><strong>Boundary:</strong> add custom tracking data only for a stated requirement.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-13/origin_image/slide_08.png">
+        <img class="web-slide-image" src="../slides/lesson-13/origin_image/slide_08.png" alt="Five key takeaways summarize capability inspection, proxy ownership, delegation, narrow customization and observable contracts.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-13/origin_image/slide_08.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Review:</strong> inspect capability, own a proxy, delegate explicitly and customize narrowly.</li>
+          <li><strong>Reinforce:</strong> preserve markup, accessibility, behavior and Data Layer evidence.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-13/origin_image/slide_09.png">
+        <img class="web-slide-image" src="../slides/lesson-13/origin_image/slide_09.png" alt="Passive Questions closing slide with a Thank you message.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-13/origin_image/slide_09.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Close:</strong> thank the audience and leave the floor open for questions they want to raise.</li>
+          <li><strong>Boundary:</strong> do not introduce prompts, a review exercise or another activity.</li>
+        </ul></details>
+      </article>
+    </div>
+
+    <h2>Proxy contract trace</h2>
+    <ol>
+      <li>Locate the content resource and record its project-owned <code>sling:resourceType</code>.</li>
+      <li>Inspect the proxy and its explicit versioned <code>sling:resourceSuperType</code>.</li>
+      <li>Justify each local dialog, model, HTL, CSS or JavaScript change.</li>
+      <li>Verify configured and empty states, rendered markup and Data Layer evidence in the browser.</li>
+    </ol>
+    <p><strong>Acceptance:</strong> no copied product implementation; the chosen customization is justified and the inherited runtime contract remains observable.</p>
+
+    <h2>Official reading</h2>
+    <ul>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-core-components/using/developing/guidelines">Component Guidelines — Adobe Experience Manager Core Components</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-core-components/using/get-started/using">Using Core Components — Adobe Experience Manager</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-core-components/using/developing/data-layer/overview">Using the Adobe Client Data Layer with the Core Components</a></li>
+    </ul>
+  </main>
+  <footer><a href="../index.html">Training overview</a></footer>
+  <script src="../assets/copy-slide.js"></script>
+</body>
+</html>

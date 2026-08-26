@@ -66,9 +66,10 @@
     "fidelity": "Match palette, typography, grid, technical density, semantic colors, monospace code treatment and fine-line icon language only; do not copy the exact four-stage build-pipeline layout."
   },
   "slides": [
-    {
-      "number": 1,
-      "title": "Client Libraries and frontend workflow",
+  {
+    "number": 1,
+    "approved_sample": true,
+    "title": "Client Libraries and frontend workflow",
       "role": "opening overview",
       "intent": "Identify the session, presenter and date while previewing the three learning threads.",
       "key_points": [
@@ -94,9 +95,10 @@
         "Do not add a detailed build pipeline to the opening slide."
       ]
     },
-    {
-      "number": 2,
-      "title": "A clientlib category is the runtime contract.",
+  {
+    "number": 2,
+    "approved_sample": true,
+    "title": "A clientlib category is the runtime contract.",
       "role": "concept anatomy",
       "intent": "Separate a category name from its repository location and generated files.",
       "key_points": [
@@ -149,9 +151,10 @@
         "Reuse the approved sample image without regeneration."
       ]
     },
-    {
-      "number": 4,
-      "title": "Dependencies load; embeds combine.",
+  {
+    "number": 4,
+    "approved_sample": true,
+    "title": "Dependencies load; embeds combine.",
       "role": "relationship comparison",
       "intent": "Distinguish two clientlib graph operations and their browser-delivery effect.",
       "key_points": [
@@ -178,9 +181,10 @@
         "Do not imply that every dependency should be embedded."
       ]
     },
-    {
-      "number": 5,
-      "title": "Load shared assets once; scope component assets narrowly.",
+  {
+    "number": 5,
+    "approved_sample": true,
+    "title": "Load shared assets once; scope component assets narrowly.",
       "role": "inclusion and ownership architecture",
       "intent": "Connect category inclusion to the narrowest owner of each frontend responsibility.",
       "key_points": [
@@ -207,9 +211,10 @@
         "Do not make JavaScript mandatory for a static Guide Card."
       ]
     },
-    {
-      "number": 6,
-      "title": "Debug the artifact the browser actually received.",
+  {
+    "number": 6,
+    "approved_sample": true,
+    "title": "Debug the artifact the browser actually received.",
       "role": "evidence ladder",
       "intent": "Provide a repeatable diagnostic path for source that does not appear in the page.",
       "key_points": [
@@ -236,9 +241,38 @@
         "Do not diagnose every failure as browser cache."
       ]
     },
-    {
-      "number": 7,
-      "title": "Questions",
+  {
+    "number": 7,
+    "title": "Key takeaways",
+    "role": "summary",
+    "intent": "Consolidate the five operational rules for predictable clientlib delivery.",
+    "key_points": [
+      "A clientlib category is the runtime contract used by consumers",
+      "Edit and version source; generated output is replaced by the next build",
+      "Dependencies load separate categories; embeds combine content",
+      "Include shared assets once and scope component behavior to a clear owner",
+      "Debug the delivered response through evidence before changing configuration"
+    ],
+    "local_context": {
+      "required_background": "Summarize exactly five rules: category contract, source/generated boundary, dependencies versus embeds, one clear inclusion owner, and browser-response evidence."
+    },
+    "layout": {
+      "composition": "Five numbered bullet checkpoints trace category, source, relationship, ownership and browser evidence; end with one concise governing principle.",
+      "intent": "Provide a readable summary without repeating the detailed build or debugging diagrams."
+    },
+    "visual_elements": {
+      "main_visual": "Five compact bullet checkpoints with small category, source, dependency, ownership and browser icons."
+    },
+    "constraints": [
+      "Render the eyebrow exactly as '07 · KEY TAKEAWAYS'.",
+      "Render all five takeaways as concise readable bullets.",
+      "Include the principle 'Version source; verify the artifact delivered to the browser.'.",
+      "Do not add questions, exercises, assignments or new technical concepts."
+    ]
+  },
+  {
+    "number": 8,
+    "title": "Questions",
       "role": "Q&A",
       "intent": "Invite questions raised by participants and close the session without introducing another exercise.",
       "key_points": [
@@ -255,7 +289,7 @@
         "main_visual": "A restrained decorative source-to-browser line motif with no labels or decision points."
       },
       "constraints": [
-        "Render the eyebrow exactly as '07 · QUESTIONS'.",
+      "Render the eyebrow exactly as '08 · QUESTIONS'.",
         "Render only the title 'Questions' and the subtitle 'Thank you.'.",
         "Do not include prompts, numbered questions, exercises, technical callouts, a demo, practice or assignment."
       ]

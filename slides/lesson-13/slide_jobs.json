@@ -1,0 +1,309 @@
+{
+  "run_status": "slides_recorded",
+  "deck_name": "lesson-13",
+  "selected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Day 13 extension-ladder sample prompt generated from the approved outline and Day 12 technical-atlas style reference, then corrected with image_gen edit to place the STOP HERE marker at HTL OVERRIDE",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-13/origin_image/slide_05.png",
+    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "max_concurrent_slides": 6,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "Core Components, proxy pattern and Data Layer",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_05",
+        "agent_nickname": "Franklin",
+        "prompt": "prompts/slide_01.json",
+        "prompt_sha256": "874b0d94e9f5505485d29b99878b9d88987b9fdf7464bf850756dc425f79a8f3",
+        "dispatched_at": "2026-08-26T02:52:03Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_05",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03971-9dfd-7531-9f30-7c6ca884fc14/exec-c44979e7-c31f-429e-8d14-894568b9f196.png",
+        "selected_source_sha256": "a464c9f35e63bc85d0c44274871a9740662a6ab4e4881280d5e31c829bd4d076",
+        "final_image": "origin_image/slide_01.png",
+        "final_image_sha256": "a464c9f35e63bc85d0c44274871a9740662a6ab4e4881280d5e31c829bd4d076",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Opening metadata and three topic anchors are exact, readable, unclipped, and consistent with the approved technical-atlas sample.",
+        "recorded_at": "2026-08-26T02:54:38Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "Core Components are versioned production capabilities.",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_08",
+        "agent_nickname": "Kant",
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "730eec0afb8b6ecc17f1ba8f21837d89b911c7bb4b88e0be0aa37cd29153d2c9",
+        "dispatched_at": "2026-08-26T02:52:03Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_08",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03975-fca5-7f82-adf6-0488ea0df964/exec-35dea266-7a2e-4164-92ae-781c383f0c79.png",
+        "selected_source_sha256": "841bb1a13907ae41788871e37a62cd9e8ea058106f633173c931c55d26db43eb",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "841bb1a13907ae41788871e37a62cd9e8ea058106f633173c931c55d26db43eb",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Five capability surfaces, inspection gate, terms, and custom-code boundary are legible, complete, and style-consistent.",
+        "recorded_at": "2026-08-26T02:54:38Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "A proxy gives the site ownership.",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_09",
+        "agent_nickname": "Russell",
+        "prompt": "prompts/slide_03.json",
+        "prompt_sha256": "de4d2c2899351c5feeb6f185cead1d62269f601c63297bcb602630d3e5c5c551",
+        "dispatched_at": "2026-08-26T02:52:03Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03979-196a-76e1-8739-f651b1834004/exec-3b71ed57-c4b8-43fb-84f9-204d4a703e60.png",
+        "selected_source_sha256": "2cbd80ca97b2111a0b6b89fd2029a7d0a53abb47256bd47bd81e4862996a6a4b",
+        "final_image": "origin_image/slide_03.png",
+        "final_image_sha256": "2cbd80ca97b2111a0b6b89fd2029a7d0a53abb47256bd47bd81e4862996a6a4b",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Project resource type, thin proxy ownership, shared implementation, and direct-reference warning are exact, readable, and style-consistent.",
+        "recorded_at": "2026-08-26T02:56:43Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "sling:resourceSuperType delegates implementation.",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_05",
+        "agent_nickname": "Franklin",
+        "prompt": "prompts/slide_04.json",
+        "prompt_sha256": "41247070c6a7792f0d9c87d6850c08dac5c74a1a1512d57cc89b1e31dfa98f30",
+        "dispatched_at": "2026-08-26T02:55:10Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_05",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03971-9dfd-7531-9f30-7c6ca884fc14/exec-bbbc0109-8158-4d4f-a9f9-4d2abfd37cb6.png",
+        "selected_source_sha256": "504481b3847026b0ee9498236cfbe4cb803273f547ff8ba9116de3b6ede2df94",
+        "final_image": "origin_image/slide_04.png",
+        "final_image_sha256": "504481b3847026b0ee9498236cfbe4cb803273f547ff8ba9116de3b6ede2df94",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Inheritance chain, exact super-type path, inherited surfaces, and copied-code maintenance fork are complete, legible, and style-consistent.",
+        "recorded_at": "2026-08-26T02:57:45Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "Customize at the narrowest extension point.",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "accepted",
+      "dispatch": null,
+      "result": {
+        "final_image": "origin_image/slide_05.png",
+        "accepted_sample": true
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "A version upgrade is a contract change to test.",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_08",
+        "agent_nickname": "Kant",
+        "prompt": "prompts/slide_06.json",
+        "prompt_sha256": "ab43f26700293e1e209853324142874d14bfc6f18b0488476404683384901289",
+        "dispatched_at": "2026-08-26T02:55:10Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_08",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03975-fca5-7f82-adf6-0488ea0df964/exec-ba3171ae-888b-4704-933c-26849dd8d7b9.png",
+        "selected_source_sha256": "533acb83cd9ee3e66a17b982dc10bb5d29ae3d727ba48cfe6f8c5d9bd914cc0b",
+        "final_image": "origin_image/slide_06.png",
+        "final_image_sha256": "533acb83cd9ee3e66a17b982dc10bb5d29ae3d727ba48cfe6f8c5d9bd914cc0b",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Current and target paths, six contract surfaces, two runtime states, and upgrade principle are exact, readable, and style-consistent.",
+        "recorded_at": "2026-08-26T02:58:25Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "Keep the Data Layer contract observable.",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_09",
+        "agent_nickname": "Russell",
+        "prompt": "prompts/slide_07.json",
+        "prompt_sha256": "c7ccf20c11bce65f843169dd7844f13a01b2e83761eb8a345e583e8b18539c78",
+        "dispatched_at": "2026-08-26T02:57:02Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03979-196a-76e1-8739-f651b1834004/exec-0ff8d999-675c-4937-a1bd-718dccb36a2f.png",
+        "selected_source_sha256": "6c7f3fbe7c71ee6a3acb0256dc3f08409d53d18ec1b6abcce22a1ff99adadd36",
+        "final_image": "origin_image/slide_07.png",
+        "final_image_sha256": "6c7f3fbe7c71ee6a3acb0256dc3f08409d53d18ec1b6abcce22a1ff99adadd36",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Rendered element, matching payload, browser state, enablement warning, exact terms, and shared identifier are readable and style-consistent.",
+        "recorded_at": "2026-08-26T02:59:38Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "Key takeaways",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_05",
+        "agent_nickname": "Franklin",
+        "prompt": "prompts/slide_08.json",
+        "prompt_sha256": "5f4d63e1c7efa0ae5f80b11966801d9cc9733834e0686650baf17d3f49cbd17e",
+        "dispatched_at": "2026-08-26T02:58:04Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_05",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03971-9dfd-7531-9f30-7c6ca884fc14/exec-cb9c8c52-b9da-4d90-83fa-d9097feda096.png",
+        "selected_source_sha256": "aa3dc377afce386e77dc87ebdd5d19e1c3396cdb6564942c72b73048c8677d1f",
+        "final_image": "origin_image/slide_08.png",
+        "final_image_sha256": "aa3dc377afce386e77dc87ebdd5d19e1c3396cdb6564942c72b73048c8677d1f",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Five numbered takeaways, exact sling:resourceSuperType term, and governing principle are complete, readable, and style-consistent.",
+        "recorded_at": "2026-08-26T03:01:07Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Questions",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_08",
+        "agent_nickname": "Kant",
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "25d40ccf725e135ab3db151e012fcd1d7b7ca4bb636aacd6689b9749195be509",
+        "dispatched_at": "2026-08-26T02:58:46Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_08",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03975-fca5-7f82-adf6-0488ea0df964/exec-e6a6cec6-2803-4773-8790-4f683065008b.png",
+        "selected_source_sha256": "f400337a24c9da061412afae24b60285ed6df61b1b9078e7e9e7c2563ebaf587",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "f400337a24c9da061412afae24b60285ed6df61b1b9078e7e9e7c2563ebaf587",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Passive Questions closing contains only the required eyebrow, title, and Thank you text with an unlabeled style-consistent motif.",
+        "recorded_at": "2026-08-26T03:00:36Z"
+      },
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-08-26T03:01:07Z"
+}
