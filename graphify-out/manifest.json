@@ -1,0 +1,128 @@
+{
+  "deck_spec.json": {
+    "mtime": 1787750317.0278335,
+    "seen": 1787770175.303915,
+    "ast_hash": "aad7d6b2e398f7dd97e2b96dc1ea4e9e",
+    "semantic_hash": "aad7d6b2e398f7dd97e2b96dc1ea4e9e"
+  },
+  "prompts/slide_01.json": {
+    "mtime": 1787750327.2888079,
+    "seen": 1787770175.303921,
+    "ast_hash": "3693806a219a7f3facb8dbe8939ccec9",
+    "semantic_hash": "3693806a219a7f3facb8dbe8939ccec9"
+  },
+  "prompts/slide_02.json": {
+    "mtime": 1787750327.2897327,
+    "seen": 1787770175.303924,
+    "ast_hash": "4baa291eda55c0c31a9d1f0e6f3ff415",
+    "semantic_hash": "4baa291eda55c0c31a9d1f0e6f3ff415"
+  },
+  "prompts/slide_03.json": {
+    "mtime": 1787750327.290598,
+    "seen": 1787770175.303925,
+    "ast_hash": "a86e1e3186c1879df91773fee14f99ca",
+    "semantic_hash": "a86e1e3186c1879df91773fee14f99ca"
+  },
+  "prompts/slide_04.json": {
+    "mtime": 1787750327.2914898,
+    "seen": 1787770175.303927,
+    "ast_hash": "9a7f8dee00921db01c7d0040798bbc58",
+    "semantic_hash": "9a7f8dee00921db01c7d0040798bbc58"
+  },
+  "prompts/slide_05.json": {
+    "mtime": 1787750327.2923336,
+    "seen": 1787770175.3039281,
+    "ast_hash": "fb0ed26a89698967e8617c56bd0df43f",
+    "semantic_hash": "fb0ed26a89698967e8617c56bd0df43f"
+  },
+  "prompts/slide_06.json": {
+    "mtime": 1787750327.2933567,
+    "seen": 1787770175.303929,
+    "ast_hash": "75afa391e2e08383849c0cdbe3198c70",
+    "semantic_hash": "75afa391e2e08383849c0cdbe3198c70"
+  },
+  "prompts/slide_07.json": {
+    "mtime": 1787750327.294199,
+    "seen": 1787770175.30393,
+    "ast_hash": "335acc93335c5f586a92669078bcaf2f",
+    "semantic_hash": "335acc93335c5f586a92669078bcaf2f"
+  },
+  "prompts/slide_08.json": {
+    "mtime": 1787750327.2950306,
+    "seen": 1787770175.303939,
+    "ast_hash": "b085510d52c94023bfe95900942f0830",
+    "semantic_hash": "b085510d52c94023bfe95900942f0830"
+  },
+  "slide_jobs.json": {
+    "mtime": 1787750962.4604752,
+    "seen": 1787770175.30394,
+    "ast_hash": "f00f67596b41b3fa8206fedfdff01d13",
+    "semantic_hash": "f00f67596b41b3fa8206fedfdff01d13"
+  },
+  "slide_run_state.json": {
+    "mtime": 1787750962.4617662,
+    "seen": 1787770175.303941,
+    "ast_hash": "ba1794a2134d51a49ee29fec4546fc24",
+    "semantic_hash": "ba1794a2134d51a49ee29fec4546fc24"
+  },
+  "outline.md": {
+    "mtime": 1787747740.3027823,
+    "seen": 1787770175.303943,
+    "ast_hash": "0e9f21419043d8c6f9421bccd648683a",
+    "semantic_hash": "0e9f21419043d8c6f9421bccd648683a"
+  },
+  "speech.md": {
+    "mtime": 1787750431.3982756,
+    "seen": 1787770175.3039439,
+    "ast_hash": "ba803b78cfd13262eb0e76b28300e2f7",
+    "semantic_hash": "ba803b78cfd13262eb0e76b28300e2f7"
+  },
+  "origin_image/slide_01.png": {
+    "mtime": 1787750437.476972,
+    "seen": 1787770175.303945,
+    "ast_hash": "d6c1a4eeb43028b3925b3cfa7e3ac458",
+    "semantic_hash": "d6c1a4eeb43028b3925b3cfa7e3ac458"
+  },
+  "origin_image/slide_02.png": {
+    "mtime": 1787750495.226396,
+    "seen": 1787770175.303946,
+    "ast_hash": "f93f1537129d2d1ce1589d3b72355c9c",
+    "semantic_hash": "f93f1537129d2d1ce1589d3b72355c9c"
+  },
+  "origin_image/slide_03.png": {
+    "mtime": 1787750521.3113837,
+    "seen": 1787770175.303947,
+    "ast_hash": "9d0bd75e1530bbc81031ba1cecf5d1df",
+    "semantic_hash": "9d0bd75e1530bbc81031ba1cecf5d1df"
+  },
+  "origin_image/slide_04.png": {
+    "mtime": 1787750720.848175,
+    "seen": 1787770175.303948,
+    "ast_hash": "567547bb3a26555b4954a40b3d62443a",
+    "semantic_hash": "567547bb3a26555b4954a40b3d62443a"
+  },
+  "origin_image/slide_05.png": {
+    "mtime": 1787748796.5409172,
+    "seen": 1787770175.303949,
+    "ast_hash": "23c53d67fba0bf4ddafbf13eb4bdcce4",
+    "semantic_hash": "23c53d67fba0bf4ddafbf13eb4bdcce4"
+  },
+  "origin_image/slide_06.png": {
+    "mtime": 1787750838.2733495,
+    "seen": 1787770175.303951,
+    "ast_hash": "873fab0d6a14c23b398a8f43a8def12d",
+    "semantic_hash": "873fab0d6a14c23b398a8f43a8def12d"
+  },
+  "origin_image/slide_07.png": {
+    "mtime": 1787750727.6142087,
+    "seen": 1787770175.303952,
+    "ast_hash": "0986f8d36eb27e46f494deeb599c1043",
+    "semantic_hash": "0986f8d36eb27e46f494deeb599c1043"
+  },
+  "origin_image/slide_08.png": {
+    "mtime": 1787750902.5092642,
+    "seen": 1787770175.303953,
+    "ast_hash": "6ae244b55f06987565b71df33cf86b5d",
+    "semantic_hash": "6ae244b55f06987565b71df33cf86b5d"
+  }
+}

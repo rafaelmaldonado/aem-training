@@ -77,7 +77,7 @@
         <tr><td>11</td><td>HTL: expressions, attributes, conditions, lists, templates and context-aware escaping</td><td>Renderizar propiedades con salida segura</td><td>HTL y explicación del contexto</td></tr>
         <tr><td>12</td><td>Client Libraries: categories, dependencies, embed, loading and debugging</td><td>Modificar CSS/JS y comprobar inclusión</td><td>Red de dependencias clientlib</td></tr>
         <tr><td>13</td><td>Core Components, proxy pattern, <code>sling:resourceSuperType</code> and the Adobe Client Data Layer contract</td><td>Crear/extender un proxy sin copiar implementación</td><td>Diff mínimo, razón de extensión y contrato observable</td></tr>
-        <tr><td>14</td><td>Responsive behavior, accessibility, states and the empty author experience</td><td>Probar teclado, viewport y estado sin contenido</td><td>Lista de pruebas y corrección</td></tr>
+        <tr><td>14</td><td>Responsive layout in AEM: Layout Container, Layout Mode, breakpoints, responsive-grid output and browser delivery</td><td>Crear un layout de dos columnas y verificar su reflow</td><td>Traza Author → repositorio → DOM → CSS → Network</td></tr>
         <tr><td>15</td><td>Weekly practice review: vertical frontend integration</td><td>Demostrar el recorrido desde diálogo hasta navegador</td><td>PR y demo individual breve</td></tr>
       </tbody>
     </table></div>
@@ -87,11 +87,11 @@
     <div class="table-wrap"><table>
       <thead><tr><th>Día</th><th>Objective and topics</th><th>Práctica</th><th>Evidencia individual</th></tr></thead>
       <tbody>
-        <tr><td>16</td><td>Java and OSGi in AEM: bundles, services, components and lifecycle</td><td>Localizar bundle y clases del proyecto</td><td>Mapa código → bundle → runtime</td></tr>
-        <tr><td>17</td><td>Sling Models: adaptables, injection, optionality, delegation, getters and boundaries</td><td>Exponer un valor calculado a HTL</td><td>Modelo funcional y decisión de fallback</td></tr>
-        <tr><td>18</td><td>OSGi services and environment-specific configuration</td><td>Consumir una configuración desde un servicio sencillo</td><td>Configuración sin secretos en Git</td></tr>
-        <tr><td>19</td><td>Resource API, Sling Model Exporter, servlets and when not to create an endpoint</td><td>Comparar HTML, <code>.model.json</code> y servlet; elegir la menor superficie</td><td>Contrato, decisión y superficie de seguridad</td></tr>
-        <tr><td>20</td><td>Weekly practice review: JUnit 5, AEM Mocks and Sling Model behavior</td><td>Ejecutar una prueba que falla antes del fix</td><td>Test red → green, implementación y resultado</td></tr>
+        <tr><td>16</td><td>Java, OSGi and Resource API foundations in AEM</td><td>Localizar una clase, su bundle y el recurso que consume</td><td>Mapa recurso → código → bundle → runtime</td></tr>
+        <tr><td>17</td><td>Sling Models: adaptables, injection, optionality, delegation, getters and Model Exporter</td><td>Exponer un valor calculado a HTL y revisar <code>.model.json</code></td><td>Modelo funcional, fallback y contrato exportado</td></tr>
+        <tr><td>18</td><td>OSGi services, environment-specific configuration and servlet boundaries</td><td>Configurar un servicio y decidir si hace falta un endpoint</td><td>Configuración segura y decisión de superficie</td></tr>
+        <tr><td>19</td><td>Testing Sling Models and services with JUnit 5 and AEM Mocks</td><td>Probar entradas configuradas, ausentes e inválidas</td><td>Test red → green y regresión protegida</td></tr>
+        <tr><td>20</td><td>Weekly practice review: quick recap and team presentation</td><td>Presentar la práctica semanal y su evidencia</td><td>Demo, decisión técnica y resultado verificable</td></tr>
       </tbody>
     </table></div>
 

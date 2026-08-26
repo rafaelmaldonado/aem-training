@@ -41,16 +41,16 @@ By the end of the course, participants will be able to:
 11. Mon, Aug 31 — HTL: expressions, attributes, conditions, lists, templates and context-aware escaping.
 12. Tue, Sep 1 — Client Libraries: categories, dependencies, embed, loading and debugging.
 13. Wed, Sep 2 — Core Components, the proxy pattern, `sling:resourceSuperType` and the Adobe Client Data Layer contract.
-14. Thu, Sep 3 — Responsive behavior, accessibility, states and the empty author experience.
+14. Thu, Sep 3 — Responsive layout in AEM: Layout Container, Layout Mode, breakpoints, responsive-grid output and browser delivery.
 15. Fri, Sep 4 — Weekly practice review: vertical frontend integration.
 
 ### Week 4 — Essential backend for frontend developers — September 7–11, 2026
 
-16. Mon, Sep 7 — Java and OSGi in AEM: bundles, services, components and lifecycle.
-17. Tue, Sep 8 — Sling Models: adaptables, injection, optionality, delegation, getters and boundaries.
-18. Wed, Sep 9 — OSGi services and environment-specific configuration.
-19. Thu, Sep 10 — Resource API, Sling Model Exporter, servlets and when not to create an endpoint.
-20. Fri, Sep 11 — Weekly practice review: JUnit 5, AEM Mocks and Sling Model behavior.
+16. Mon, Sep 7 — Java, OSGi and Resource API foundations in AEM.
+17. Tue, Sep 8 — Sling Models: adaptables, injection, optionality, delegation, getters and Model Exporter.
+18. Wed, Sep 9 — OSGi services, environment-specific configuration and servlet boundaries.
+19. Thu, Sep 10 — Testing Sling Models and services with JUnit 5 and AEM Mocks.
+20. Fri, Sep 11 — Weekly practice review: quick recap and team presentation.
 
 ### Week 5 — Content reuse and maintenance — September 14–18, 2026
 

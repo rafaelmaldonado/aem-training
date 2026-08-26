@@ -6,12 +6,12 @@
     "backend_used": "built-in image tool",
     "tool_name": "image_gen",
     "mode": "generate",
-    "prompt_source": "approved Day 14 dual-empty-state sample prompt generated from the approved outline and Day 13 technical-atlas style reference",
+    "prompt_source": "approved Class 14 Layout Mode sample prompt derived from slides/lesson-14/outline.md",
     "size": "1672x941, 16:9 landscape",
     "quality": "built-in default",
     "model": "built-in default",
-    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-14/origin_image/slide_05.png",
-    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-14/origin_image/slide_04.png",
+    "input_context_preparation": "Inspect slide_04.png with view_image and pass it to image_gen as a style-only referenced image.",
     "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
   },
   "max_concurrent_slides": 6,
@@ -19,257 +19,325 @@
     {
       "slide_id": "slide_01",
       "number": 1,
-      "title": "Responsive, accessible and empty states",
+      "title": "Responsive layout in AEM",
       "job": "prompts/slide_01.json",
       "out": "origin_image/slide_01.png",
       "input_images": [],
       "requires_context_images": false,
       "status": "recorded",
       "dispatch": {
-        "agent_id": "/root/slide_05",
-        "agent_nickname": "Franklin",
+        "agent_id": "/root/lesson14_slide01",
+        "agent_nickname": "lesson14_slide01",
         "prompt": "prompts/slide_01.json",
-        "prompt_sha256": "cc9dbca975ed16324c334f45e69573296497d319c1ee835ed10b707118c34e9b",
-        "dispatched_at": "2026-08-26T13:19:53Z"
+        "prompt_sha256": "d356801980adf6993d42836906eb64553acea7895f8c014e51e89434210e4cfe",
+        "dispatched_at": "2026-08-26T22:28:19Z"
       },
       "result": {
-        "agent_id": "/root/slide_05",
+        "agent_id": "/root/lesson14_slide01",
         "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03971-9dfd-7531-9f30-7c6ca884fc14/exec-ee6a723e-1c85-4eaa-a9c2-fe2ded0f95e3.png",
-        "selected_source_sha256": "7663966314e88026f240137739abc323e01b05f23e4c5395f254940d8d79f1a0",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a04030-1c73-79c1-82e6-8d00f6b5f7aa/exec-21e85a2e-6c03-41d6-a426-ea1457e3e864.png",
+        "selected_source_sha256": "a8b65e6766c06afad0657a4a12d27df49b4992ead237555cd4467001ae4bae00",
         "final_image": "origin_image/slide_01.png",
-        "final_image_sha256": "7663966314e88026f240137739abc323e01b05f23e4c5395f254940d8d79f1a0",
+        "final_image_sha256": "a8b65e6766c06afad0657a4a12d27df49b4992ead237555cd4467001ae4bae00",
         "expected_backend": "built-in image tool",
         "expected_backend_labels": [
           "built-in image tool",
           "image_gen"
         ],
         "sample_generation_method_matched": true,
-        "qa_note": "Opening metadata and three topic anchors are exact, readable, unclipped, and consistent with the approved technical-atlas sample.",
-        "recorded_at": "2026-08-26T13:22:36Z"
+        "qa_note": "Revised cover; exact metadata, readable hierarchy, simple editor-to-grid-to-browser path.",
+        "recorded_at": "2026-08-26T22:31:59Z"
       },
       "blocker": null
     },
     {
       "slide_id": "slide_02",
       "number": 2,
-      "title": "Responsive means behavior under constraints.",
+      "title": "Responsiveness has several owners.",
       "job": "prompts/slide_02.json",
       "out": "origin_image/slide_02.png",
       "input_images": [],
       "requires_context_images": false,
       "status": "recorded",
       "dispatch": {
-        "agent_id": "/root/slide_08",
-        "agent_nickname": "Kant",
+        "agent_id": "/root/lesson14_slide02",
+        "agent_nickname": "lesson14_slide02",
         "prompt": "prompts/slide_02.json",
-        "prompt_sha256": "294eaafb0cca97bf98a1e918113f8bd7f4b69e705c62d6171f630a497aa3b6af",
-        "dispatched_at": "2026-08-26T13:19:53Z"
+        "prompt_sha256": "5bfee6041ec9cdd527a4173a35f839858fdea1ce1493fbb4779732dd58625b04",
+        "dispatched_at": "2026-08-26T22:28:38Z"
       },
       "result": {
-        "agent_id": "/root/slide_08",
+        "agent_id": "/root/lesson14_slide02",
         "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03975-fca5-7f82-adf6-0488ea0df964/exec-0ca2f172-4786-4be1-b84a-8cff0a3937f6.png",
-        "selected_source_sha256": "f594249d17e6b9d1b88b38792d6f733bf4f20d3d0195d48e217aba415060bc3d",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a04030-686a-7fe2-b8c7-69ac79c59aa0/exec-6637eb6d-2ac2-4638-b80e-fc465198aee8.png",
+        "selected_source_sha256": "448ae094fd658b2a5f6dc14151c3f90b725f4c850f76c0eedcf7a900dcf37592",
         "final_image": "origin_image/slide_02.png",
-        "final_image_sha256": "f594249d17e6b9d1b88b38792d6f733bf4f20d3d0195d48e217aba415060bc3d",
+        "final_image_sha256": "448ae094fd658b2a5f6dc14151c3f90b725f4c850f76c0eedcf7a900dcf37592",
         "expected_backend": "built-in image tool",
         "expected_backend_labels": [
           "built-in image tool",
           "image_gen"
         ],
         "sample_generation_method_matched": true,
-        "qa_note": "Four constraint frames preserve title, action, order, and focus while the failure strip and five rules remain readable and style-consistent.",
-        "recorded_at": "2026-08-26T13:22:36Z"
+        "qa_note": "Responsibility chain is complete, readable, and visually consistent with approved sample.",
+        "recorded_at": "2026-08-26T22:31:59Z"
       },
       "blocker": null
     },
     {
       "slide_id": "slide_03",
       "number": 3,
-      "title": "Native semantics provide behavior before ARIA.",
+      "title": "Layout Container creates the responsive grid.",
       "job": "prompts/slide_03.json",
       "out": "origin_image/slide_03.png",
       "input_images": [],
       "requires_context_images": false,
       "status": "recorded",
       "dispatch": {
-        "agent_id": "/root/slide_09",
-        "agent_nickname": "Russell",
+        "agent_id": "/root/lesson14_slide03",
+        "agent_nickname": "lesson14_slide03",
         "prompt": "prompts/slide_03.json",
-        "prompt_sha256": "2268a0352c615502a6a81ddaacb8a67fae0add6309149d7a9d3b793379d9eb67",
-        "dispatched_at": "2026-08-26T13:19:53Z"
+        "prompt_sha256": "36a106bfca82d30719d4c4f33fdfc40523075038a97a28b49c07149c81402f52",
+        "dispatched_at": "2026-08-26T22:28:56Z"
       },
       "result": {
-        "agent_id": "/root/slide_09",
+        "agent_id": "/root/lesson14_slide03",
         "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03979-196a-76e1-8739-f651b1834004/exec-0a8457b7-cfde-4420-9d19-eb6776b12f09.png",
-        "selected_source_sha256": "2084fa226540eb881e21a2e8bf479e56660222c2f0f04eb00a775fa288e3c6b1",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a04030-b05f-72a3-9582-1b6e50956b00/exec-34941ccf-d033-4af0-9419-4fb30d0c5606.png",
+        "selected_source_sha256": "9ac46979a952e4a07fe014ac2a9682f3422f173767894d0317d2101cd15c94e5",
         "final_image": "origin_image/slide_03.png",
-        "final_image_sha256": "2084fa226540eb881e21a2e8bf479e56660222c2f0f04eb00a775fa288e3c6b1",
+        "final_image_sha256": "9ac46979a952e4a07fe014ac2a9682f3422f173767894d0317d2101cd15c94e5",
         "expected_backend": "built-in image tool",
         "expected_backend_labels": [
           "built-in image tool",
           "image_gen"
         ],
         "sample_generation_method_matched": true,
-        "qa_note": "Native HTML, compensation path, capability ledger, exact code terms, and ARIA principle are complete, readable, and style-consistent.",
-        "recorded_at": "2026-08-26T13:23:03Z"
+        "qa_note": "Template, content resource, and rendered DOM are connected with no clipping or overlap.",
+        "recorded_at": "2026-08-26T22:32:00Z"
       },
       "blocker": null
     },
     {
       "slide_id": "slide_04",
       "number": 4,
-      "title": "Keyboard operation is an end-to-end contract.",
+      "title": "Layout Mode authors a layout per breakpoint.",
       "job": "prompts/slide_04.json",
       "out": "origin_image/slide_04.png",
       "input_images": [],
       "requires_context_images": false,
-      "status": "recorded",
-      "dispatch": {
-        "agent_id": "/root/slide_05",
-        "agent_nickname": "Franklin",
-        "prompt": "prompts/slide_04.json",
-        "prompt_sha256": "fa748bf4bdacf813039aa7e0554d39d5cd31c3382beffd68662560dec8fcdd1e",
-        "dispatched_at": "2026-08-26T13:24:04Z"
-      },
+      "status": "accepted",
+      "dispatch": null,
       "result": {
-        "agent_id": "/root/slide_05",
-        "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03971-9dfd-7531-9f30-7c6ca884fc14/exec-5a692341-f3ad-41a6-949a-0f6db4adeca5.png",
-        "selected_source_sha256": "70e69b10d17cc7235e963b72b2824263942a76a70acc054c9706419dbe02d6f6",
         "final_image": "origin_image/slide_04.png",
-        "final_image_sha256": "70e69b10d17cc7235e963b72b2824263942a76a70acc054c9706419dbe02d6f6",
-        "expected_backend": "built-in image tool",
-        "expected_backend_labels": [
-          "built-in image tool",
-          "image_gen"
-        ],
-        "sample_generation_method_matched": true,
-        "qa_note": "Five-step Tab path, visible focus, activation, safe exit, evidence checklist, and mouse-untouched rule are complete and readable.",
-        "recorded_at": "2026-08-26T13:26:26Z"
+        "accepted_sample": true
       },
       "blocker": null
     },
     {
       "slide_id": "slide_05",
       "number": 5,
-      "title": "Empty states serve authors and visitors differently.",
+      "title": "Breakpoint configuration and CSS must agree.",
       "job": "prompts/slide_05.json",
       "out": "origin_image/slide_05.png",
       "input_images": [],
       "requires_context_images": false,
-      "status": "accepted",
-      "dispatch": null,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson14_slide05",
+        "agent_nickname": "lesson14_slide05",
+        "prompt": "prompts/slide_05.json",
+        "prompt_sha256": "281ac825a7b9832cf6e0eb9b184fec8203ec80d19f8e65339796657ac18ef0e5",
+        "dispatched_at": "2026-08-26T22:32:32Z"
+      },
       "result": {
+        "agent_id": "/root/lesson14_slide05",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a04033-bb6b-71c2-83e3-0292eeca485f/exec-2c412c09-a050-45a2-b4bd-5afa3fe38ac3.png",
+        "selected_source_sha256": "9ec4c2fa70565937d0e19e695c01a130cf9f927f663e7be9cd2ed4a776d1ea05",
         "final_image": "origin_image/slide_05.png",
-        "accepted_sample": true
+        "final_image_sha256": "9ec4c2fa70565937d0e19e695c01a130cf9f927f663e7be9cd2ed4a776d1ea05",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Breakpoint rails, mismatch and runtime consequence are readable with no clipping.",
+        "recorded_at": "2026-08-26T22:36:25Z"
       },
       "blocker": null
     },
     {
       "slide_id": "slide_06",
       "number": 6,
-      "title": "Test content extremes, not only the happy path.",
+      "title": "Persisted layout becomes DOM evidence.",
       "job": "prompts/slide_06.json",
       "out": "origin_image/slide_06.png",
       "input_images": [],
       "requires_context_images": false,
       "status": "recorded",
       "dispatch": {
-        "agent_id": "/root/slide_08",
-        "agent_nickname": "Kant",
+        "agent_id": "/root/lesson14_slide06",
+        "agent_nickname": "lesson14_slide06",
         "prompt": "prompts/slide_06.json",
-        "prompt_sha256": "2f2ac34b72975926dab0849b0d6ef2111cb2f4e58551409ad3a73f537b9bd24b",
-        "dispatched_at": "2026-08-26T13:24:05Z"
+        "prompt_sha256": "3cf73cc4969074e5c989652d12ae9584ff01ac8d118686f19dd189d60201dbac",
+        "dispatched_at": "2026-08-26T22:32:32Z"
       },
       "result": {
-        "agent_id": "/root/slide_08",
+        "agent_id": "/root/lesson14_slide06",
         "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03975-fca5-7f82-adf6-0488ea0df964/exec-d3ab8784-ff20-4ccc-8991-b53e790b6ffa.png",
-        "selected_source_sha256": "09c48c3f896e0db8b82a219a895a45f18a064a16f9fb45c55da64642a4dbbcf6",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a04033-e317-76f0-a632-92e77e941126/exec-9ca4dd75-47bb-4784-a62c-0a8f44033ed4.png",
+        "selected_source_sha256": "9855cd0e7512956a41d4fefa73680b69ebcefa875e7a1da61f01f4fedd22bdeb",
         "final_image": "origin_image/slide_06.png",
-        "final_image_sha256": "09c48c3f896e0db8b82a219a895a45f18a064a16f9fb45c55da64642a4dbbcf6",
+        "final_image_sha256": "9855cd0e7512956a41d4fefa73680b69ebcefa875e7a1da61f01f4fedd22bdeb",
         "expected_backend": "built-in image tool",
         "expected_backend_labels": [
           "built-in image tool",
           "image_gen"
         ],
         "sample_generation_method_matched": true,
-        "qa_note": "Five-by-five matrix contains one illustrated failure, exact constraints, a narrow CSS correction, and a green rerun with readable evidence.",
-        "recorded_at": "2026-08-26T13:28:17Z"
+        "qa_note": "Five-stage persisted-state trace is coherent, exact, and legible.",
+        "recorded_at": "2026-08-26T22:36:25Z"
       },
       "blocker": null
     },
     {
       "slide_id": "slide_07",
       "number": 7,
-      "title": "Key takeaways",
+      "title": "Components must cooperate with the grid.",
       "job": "prompts/slide_07.json",
       "out": "origin_image/slide_07.png",
       "input_images": [],
       "requires_context_images": false,
       "status": "recorded",
       "dispatch": {
-        "agent_id": "/root/slide_09",
-        "agent_nickname": "Russell",
+        "agent_id": "/root/lesson14_slide07",
+        "agent_nickname": "lesson14_slide07",
         "prompt": "prompts/slide_07.json",
-        "prompt_sha256": "19f3e094e40226c13e12b54ce57bccc6edfe4dddf2b314ab153e4161f0eb52a1",
-        "dispatched_at": "2026-08-26T13:24:05Z"
+        "prompt_sha256": "a5079ca4cd4edd212be70a217410291ef175a820f7064a836e556413c7f5b11a",
+        "dispatched_at": "2026-08-26T22:32:33Z"
       },
       "result": {
-        "agent_id": "/root/slide_09",
+        "agent_id": "/root/lesson14_slide07",
         "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03979-196a-76e1-8739-f651b1834004/exec-47684827-1478-485c-854d-66439d3cbf55.png",
-        "selected_source_sha256": "020e8b46e1d90f036ca02dade72aed04423baabe760bb6b435d5735f9a913b13",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a04033-fd7e-7f83-bd20-0827a5314e1d/exec-68b31865-2256-459a-b58d-192b0942a71f.png",
+        "selected_source_sha256": "db65b12c882a8b07bd43fc4438f65e690fec7e4f32bc4dd56695b50fd4f6d1ac",
         "final_image": "origin_image/slide_07.png",
-        "final_image_sha256": "020e8b46e1d90f036ca02dade72aed04423baabe760bb6b435d5735f9a913b13",
+        "final_image_sha256": "db65b12c882a8b07bd43fc4438f65e690fec7e4f32bc4dd56695b50fd4f6d1ac",
         "expected_backend": "built-in image tool",
         "expected_backend_labels": [
           "built-in image tool",
           "image_gen"
         ],
         "sample_generation_method_matched": true,
-        "qa_note": "Five bullet takeaways and the governing behavior-not-screenshots principle are exact, readable, unclipped, and style-consistent.",
-        "recorded_at": "2026-08-26T13:26:26Z"
+        "qa_note": "Passing and failing component-width examples are clear and consistent with the approved style.",
+        "recorded_at": "2026-08-26T22:36:25Z"
       },
       "blocker": null
     },
     {
       "slide_id": "slide_08",
       "number": 8,
-      "title": "Questions",
+      "title": "Layout width and image delivery are related, not identical.",
       "job": "prompts/slide_08.json",
       "out": "origin_image/slide_08.png",
       "input_images": [],
       "requires_context_images": false,
       "status": "recorded",
       "dispatch": {
-        "agent_id": "/root/slide_05",
-        "agent_nickname": "Franklin",
+        "agent_id": "/root/lesson14_slide08",
+        "agent_nickname": "lesson14_slide08",
         "prompt": "prompts/slide_08.json",
-        "prompt_sha256": "b01550cef0329c9dba5d3693b8b81ac688bbd13127de755f7f6e0d8dc47dfb12",
-        "dispatched_at": "2026-08-26T13:26:54Z"
+        "prompt_sha256": "51a4dcc4010c580ac91da9c97d21f616c9e6d7e79a251d55b2bc22b097f21431",
+        "dispatched_at": "2026-08-26T22:36:57Z"
       },
       "result": {
-        "agent_id": "/root/slide_05",
+        "agent_id": "/root/lesson14_slide08",
         "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a03971-9dfd-7531-9f30-7c6ca884fc14/exec-9a3daa1a-994a-4e58-8230-e20095363b3f.png",
-        "selected_source_sha256": "2c88603c796c663379b3c4d5e98177e2e0c20a8d7ea133f5bd4e3cf97c677a96",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a04037-cc18-7881-988f-3f2d2604533a/exec-23153436-98fb-4d6a-8904-c2ad7e1a932c.png",
+        "selected_source_sha256": "02c8ed0844f6aaed97e26f18d78c0a1fe92c23121a421e15a8f48bfa9d12c13f",
         "final_image": "origin_image/slide_08.png",
-        "final_image_sha256": "2c88603c796c663379b3c4d5e98177e2e0c20a8d7ea133f5bd4e3cf97c677a96",
+        "final_image_sha256": "02c8ed0844f6aaed97e26f18d78c0a1fe92c23121a421e15a8f48bfa9d12c13f",
         "expected_backend": "built-in image tool",
         "expected_backend_labels": [
           "built-in image tool",
           "image_gen"
         ],
         "sample_generation_method_matched": true,
-        "qa_note": "Passive Questions closing contains only the required eyebrow, title, and Thank you text with a restrained unlabeled motif.",
-        "recorded_at": "2026-08-26T13:29:22Z"
+        "qa_note": "Grid span, rendered size, Core Image candidates and Network request remain distinct and readable.",
+        "recorded_at": "2026-08-26T22:38:49Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Key takeaways",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson14_slide09",
+        "agent_nickname": "lesson14_slide09",
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "044d0c32f90bba32d99ea670f166c3c211e7ae44243343d726b2ffb3fc287829",
+        "dispatched_at": "2026-08-26T22:36:57Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson14_slide09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a04037-e764-7e83-985e-7f8cab444596/exec-29945e8a-d5f0-4c83-b2e8-7f3054c56dda.png",
+        "selected_source_sha256": "7065136d821fe904b70bf111ce9c6d290eb515a35e44b515e0daf269eca8dc8a",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "7065136d821fe904b70bf111ce9c6d290eb515a35e44b515e0daf269eca8dc8a",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Five required bullet takeaways and final trace principle are complete and legible.",
+        "recorded_at": "2026-08-26T22:38:49Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_10",
+      "number": 10,
+      "title": "Questions",
+      "job": "prompts/slide_10.json",
+      "out": "origin_image/slide_10.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson14_slide10",
+        "agent_nickname": "lesson14_slide10",
+        "prompt": "prompts/slide_10.json",
+        "prompt_sha256": "d9ccee6a05f1c3488dc6ad20437eb43d0db78d30219bf5ab6994ac2745206dd3",
+        "dispatched_at": "2026-08-26T22:36:57Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson14_slide10",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a04038-03b6-71b1-9411-79d7b181ba22/exec-a1a407d8-d4b5-4e45-b8a6-2969fc655323.png",
+        "selected_source_sha256": "56dd194375d8b7989970c82c9396ffe8abe7578abafa057cdc01aa6a1438ee1c",
+        "final_image": "origin_image/slide_10.png",
+        "final_image_sha256": "56dd194375d8b7989970c82c9396ffe8abe7578abafa057cdc01aa6a1438ee1c",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Passive Questions and Thank you close only; no prompts, exercise, or clipping.",
+        "recorded_at": "2026-08-26T22:37:59Z"
       },
       "blocker": null
     }
   ],
-  "updated_at": "2026-08-26T13:29:22Z"
+  "updated_at": "2026-08-26T22:38:49Z"
 }

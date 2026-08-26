@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Class 14 · Responsive, accessible and empty states</title>
+  <title>Class 14 · Responsive layout in AEM</title>
   <link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body>
@@ -19,115 +19,164 @@
   </nav>
   <header>
     <p class="eyebrow">Class 14 · Week 3 · Day 14 · September 3, 2026</p>
-    <h1>Responsive, accessible and empty states</h1>
-    <p class="lede">Verify the Guide Card under width, zoom, keyboard and incomplete-content constraints.</p>
-    <ul class="meta"><li>30 minutes online</li><li>Keyboard-only trace</li><li>Author and Publish evidence</li></ul>
+    <h1>Responsive layout in AEM</h1>
+    <p class="lede">Trace a layout from the template and Layout Mode to persisted state, responsive-grid CSS and the browser result.</p>
+    <ul class="meta"><li>30 minutes online</li><li>AEM-specific layout trace</li><li>Repository, DOM, CSS and Network evidence</li></ul>
   </header>
   <main id="content">
-    <section class="callout"><strong>Observable outcome:</strong> each developer can execute a repeatable Guide Card check across narrow width, 200% zoom, keyboard-only operation, long content and separate Author and Publish empty states.</section>
+    <section class="callout"><strong>Observable outcome:</strong> each developer can author a responsive Guide Page and explain the result through its template, Layout Container, breakpoint configuration, persisted responsive state, rendered grid classes, active CSS and selected image request.</section>
 
     <h2>Topic summary</h2>
-    <p>Responsive quality means preserving information and functionality under real constraints. Narrow width, zoom and long localized content are different checks, and the browser result matters more than a collection of screenshots.</p>
-    <p>Accessibility begins with native semantics and continues through logical keyboard order, visible focus and expected activation. AEM’s author placeholder keeps an empty component discoverable in the editor while Publish remains free of author-only or meaningless markup.</p>
+    <p>AEM responsiveness is a contract shared by several layers. The editable template establishes the authoring boundary; the Layout Container owns the responsive grid; configured breakpoints and Layout Mode let authors compose a page for available widths; and AEM persists those decisions so the renderer can expose them as grid-column classes. The Page Editor is therefore one stage in the workflow, not the runtime authority.</p>
+    <p>In the browser, responsive-grid CSS must agree with the editor’s breakpoint configuration, while each component remains responsible for behavior inside its assigned columns. Fluid media, wrapping and shrinkable flex or grid children preserve that boundary. Image efficiency is related but separate: the grid determines the rendered box, while Core Image policy and the browser determine which source is transferred.</p>
+    <ul>
+      <li>Enable the responsive authoring boundary in the template and policy.</li>
+      <li>Use Layout Container and Layout Mode for page composition.</li>
+      <li>Keep editor breakpoints and responsive-grid media queries aligned.</li>
+      <li>Trace authored choices through repository state, DOM classes and computed CSS.</li>
+      <li>Keep component CSS inside the component contract; do not override the global grid.</li>
+      <li>Verify rendered image size and the selected Network request together.</li>
+    </ul>
 
     <h2>30-minute agenda</h2>
     <div class="table-wrap"><table>
-      <thead><tr><th>Time</th><th>Activity</th><th>Facilitation</th></tr></thead>
+      <thead><tr><th>Time</th><th>Slide</th><th>Facilitation</th></tr></thead>
       <tbody>
-        <tr><td>0–3</td><td>Opening</td><td>Preview reflow, keyboard behavior and dual empty states.</td></tr>
-        <tr><td>3–9</td><td>Slide 2</td><td>Compare the same Guide Card under width, zoom and content pressure.</td></tr>
-        <tr><td>9–15</td><td>Slides 3–4</td><td>Start from native semantics and trace the complete keyboard task.</td></tr>
-        <tr><td>15–21</td><td>Slide 5</td><td>Separate useful Author guidance from clean Publish output.</td></tr>
-        <tr><td>21–26</td><td>Slide 6</td><td>Use the extreme-content evidence matrix and rerun one correction.</td></tr>
-        <tr><td>26–28</td><td>Slide 7</td><td>Summarize the five resilient-component rules.</td></tr>
-        <tr><td>28–30</td><td>Slide 8</td><td>Questions only; no review exercise or assignment handoff.</td></tr>
+        <tr><td>0–3</td><td>1 · Opening</td><td>Preview the editor-to-browser trace and establish the session scope.</td></tr>
+        <tr><td>3–6</td><td>2 · Owners</td><td>Assign each responsive responsibility to its AEM or frontend layer.</td></tr>
+        <tr><td>6–10</td><td>3 · Layout Container</td><td>Connect template structure, content resources and responsive-grid DOM.</td></tr>
+        <tr><td>10–14</td><td>4 · Layout Mode</td><td>Follow one composition across desktop, tablet and phone views.</td></tr>
+        <tr><td>14–18</td><td>5 · Breakpoints</td><td>Compare editor widths with the project clientlib’s media queries.</td></tr>
+        <tr><td>18–21</td><td>6 · Persisted evidence</td><td>Trace one authored resize through repository, DOM and computed CSS.</td></tr>
+        <tr><td>21–24</td><td>7 · Component CSS</td><td>Separate page-grid ownership from internal component behavior.</td></tr>
+        <tr><td>24–27</td><td>8 · Image delivery</td><td>Distinguish the rendered image box from the transferred source.</td></tr>
+        <tr><td>27–28</td><td>9 · Key takeaways</td><td>Summarize the five evidence checkpoints.</td></tr>
+        <tr><td>28–30</td><td>10 · Questions</td><td>Questions from the audience only; no review exercise.</td></tr>
       </tbody>
     </table></div>
 
     <h2>Complete slide deck</h2>
-    <p class="section-intro">Study each slide with its presenter notes, then copy it into PowerPoint or download its PNG.</p>
+    <p class="section-intro">Study each slide with its presenter notes, then copy or download the PNG.</p>
     <div class="web-deck">
       <article class="web-slide" data-slide-src="../slides/lesson-14/origin_image/slide_01.png">
-        <img class="web-slide-image" src="../slides/lesson-14/origin_image/slide_01.png" alt="Class 14 opening overview for responsive constraints, keyboard behavior and Author versus Publish states.">
+        <img class="web-slide-image" src="../slides/lesson-14/origin_image/slide_01.png" alt="Class 14 opening slide showing the path from the AEM Page Editor through a responsive grid to the browser.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-14/origin_image/slide_01.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
         <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
-          <li><strong>Present:</strong> identify the session, presenter, date and 30-minute scope.</li>
-          <li><strong>Preview:</strong> reflow, native keyboard behavior and dual empty states.</li>
+          <li><strong>Frame:</strong> this is an AEM layout session, not a general media-query introduction.</li>
+          <li><strong>Preview:</strong> follow one Guide Page from its template and editor state to responsive-grid output and browser delivery.</li>
+          <li><strong>Principle:</strong> no single file owns the result; trace the handoffs before changing CSS.</li>
+          <li><strong>Thread:</strong> keep the same Teaser, Guide Card and Core Image visible throughout the session.</li>
         </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-14/origin_image/slide_02.png">
-        <img class="web-slide-image" src="../slides/lesson-14/origin_image/slide_02.png" alt="The same Guide Card preserves information and actions across width, zoom and long localized content.">
+        <img class="web-slide-image" src="../slides/lesson-14/origin_image/slide_02.png" alt="Responsibility chain from template and Layout Container through persisted state, DOM, component CSS and browser behavior.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-14/origin_image/slide_02.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
         <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
-          <li><strong>Meaning:</strong> responsive quality is preserved behavior, not named device screenshots.</li>
-          <li><strong>Verify:</strong> narrow width and 200% zoom as separate constraints.</li>
+          <li><strong>Read left to right:</strong> template, Layout Container, breakpoints and Layout Mode, persisted state, rendered DOM, then component and browser.</li>
+          <li><strong>Ask for evidence:</strong> template structure, editor behavior, repository state, grid classes, computed CSS and Network requests prove different stages.</li>
+          <li><strong>Avoid:</strong> do not repair missing page-grid configuration inside a component clientlib.</li>
+          <li><strong>Transition:</strong> begin the detailed trace with the structural owner of the grid.</li>
         </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-14/origin_image/slide_03.png">
-        <img class="web-slide-image" src="../slides/lesson-14/origin_image/slide_03.png" alt="A semantic comparison shows native headings, links and buttons before ARIA and compensating JavaScript.">
+        <img class="web-slide-image" src="../slides/lesson-14/origin_image/slide_03.png" alt="Template, content resource and rendered DOM inspectors show how the Layout Container creates the responsive grid.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-14/origin_image/slide_03.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
         <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
-          <li><strong>Meaning:</strong> native controls provide semantics, focusability and expected keyboard behavior.</li>
-          <li><strong>Boundary:</strong> an ARIA role is a promise; it does not implement the interaction.</li>
+          <li><strong>Define:</strong> a Layout Container is a grid paragraph system, not a decorative wrapper.</li>
+          <li><strong>Show:</strong> <code>layout = responsiveGrid</code> connects the template or content resource to <code>aem-Grid</code> and <code>aem-GridColumn</code> output.</li>
+          <li><strong>Boundary:</strong> allowing a component in policy does not configure the full responsive grid.</li>
+          <li><strong>Design rule:</strong> keep nested responsive grids exceptional and as flat as the requirement permits.</li>
         </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-14/origin_image/slide_04.png">
-        <img class="web-slide-image" src="../slides/lesson-14/origin_image/slide_04.png" alt="A keyboard trace follows logical Tab order, visible focus, activation and safe exit through the Guide Card.">
+        <img class="web-slide-image" src="../slides/lesson-14/origin_image/slide_04.png" alt="The AEM Layout Mode workflow composes the same content differently for desktop, tablet and phone breakpoints.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-14/origin_image/slide_04.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
         <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
-          <li><strong>Trace:</strong> follow the task from the previous control through the card to a safe exit.</li>
-          <li><strong>Evidence:</strong> logical order, visible unobscured focus and expected activation.</li>
+          <li><strong>Demonstrate:</strong> select a configured breakpoint, enter Layout Mode and resize with snap-to-grid handles.</li>
+          <li><strong>Compare:</strong> use an intentional desktop split, tablet spans and phone stack while preserving component content.</li>
+          <li><strong>Qualify:</strong> device names and pixel boundaries are project configuration, not universal AEM defaults.</li>
+          <li><strong>Verify:</strong> leave Layout Mode and check Preview and Publish; an editor canvas is not runtime proof.</li>
         </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-14/origin_image/slide_05.png">
-        <img class="web-slide-image" src="../slides/lesson-14/origin_image/slide_05.png" alt="One empty Guide Card resource produces a selectable Author placeholder and clean Publish output.">
+        <img class="web-slide-image" src="../slides/lesson-14/origin_image/slide_05.png" alt="Breakpoint configuration and responsive-grid CSS rails align, with a mismatch illustrating editor and browser drift.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-14/origin_image/slide_05.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
         <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
-          <li><strong>Author:</strong> keep an empty component visible and selectable with useful guidance.</li>
-          <li><strong>Publish:</strong> omit the placeholder, broken controls and meaningless wrappers.</li>
+          <li><strong>Compare:</strong> <code>cq:responsive/breakpoints</code> drives editor views while the responsive-grid clientlib drives runtime media queries.</li>
+          <li><strong>Failure:</strong> different boundaries create an authoring preview visitors cannot reproduce at the same viewport.</li>
+          <li><strong>Ownership:</strong> record who changes each rail so configuration and CSS stay one contract.</li>
+          <li><strong>Test:</strong> inspect immediately below, exactly at and immediately above every boundary.</li>
         </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-14/origin_image/slide_06.png">
-        <img class="web-slide-image" src="../slides/lesson-14/origin_image/slide_06.png" alt="An evidence matrix crosses content states with narrow width, zoom, keyboard, focus and Author or Publish output.">
+        <img class="web-slide-image" src="../slides/lesson-14/origin_image/slide_06.png" alt="A five-stage trace connects an authored resize to repository metadata, DOM classes, active CSS and rendered layout.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-14/origin_image/slide_06.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
         <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
-          <li><strong>Matrix:</strong> cross configured, empty, long, localized and unexpected content with each constraint.</li>
-          <li><strong>Correction:</strong> observe the failure, fix the narrowest layer and rerun the same check.</li>
+          <li><strong>Trace:</strong> resize one Guide Card to four columns, then locate its responsive metadata and breakpoint-specific grid class.</li>
+          <li><strong>DevTools:</strong> inspect the outer grid item, the matching CSS rule, offset if present and computed width.</li>
+          <li><strong>Diagnose:</strong> distinguish missing author state, wrong rendered classes, an unloaded grid clientlib and internal component overflow.</li>
+          <li><strong>Rule:</strong> do not add a high-specificity override until Author → repository → DOM → CSS → layout is intact.</li>
         </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-14/origin_image/slide_07.png">
-        <img class="web-slide-image" src="../slides/lesson-14/origin_image/slide_07.png" alt="Five key takeaways summarize responsive behavior, semantics, keyboard operation, empty states and evidence.">
+        <img class="web-slide-image" src="../slides/lesson-14/origin_image/slide_07.png" alt="A Guide Card that cooperates with twelve, eight and four column spans is compared with a fixed-width failing implementation.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-14/origin_image/slide_07.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
         <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
-          <li><strong>Review:</strong> preserve behavior, start with native semantics and test keyboard operation end to end.</li>
-          <li><strong>Reinforce:</strong> separate Author from Publish and record browser-visible evidence.</li>
+          <li><strong>Separate owners:</strong> the page grid assigns space; component CSS controls behavior inside that space.</li>
+          <li><strong>Passing pattern:</strong> fluid media, wrapping and <code>min-width: 0</code> let flex or grid children shrink.</li>
+          <li><strong>Failure pattern:</strong> fixed widths, fixed heights and unbreakable content contradict the authored span.</li>
+          <li><strong>Scope:</strong> correct the project component; never patch a local defect by overriding global <code>.aem-GridColumn</code> rules.</li>
         </ul></details>
       </article>
       <article class="web-slide" data-slide-src="../slides/lesson-14/origin_image/slide_08.png">
-        <img class="web-slide-image" src="../slides/lesson-14/origin_image/slide_08.png" alt="Passive Questions closing slide with a Thank you message.">
+        <img class="web-slide-image" src="../slides/lesson-14/origin_image/slide_08.png" alt="Responsive grid span, rendered image box, Core Image candidates and selected browser request are shown as distinct evidence.">
         <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-14/origin_image/slide_08.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
         <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Distinguish:</strong> a four-column span sets the image box; it does not determine transferred bytes by itself.</li>
+          <li><strong>Connect:</strong> Core Image policy exposes candidate widths and the browser selects a source for layout size and density.</li>
+          <li><strong>Environment:</strong> use Adaptive Image Servlet evidence locally; cloud projects may enable Web-Optimized Image Delivery.</li>
+          <li><strong>Record:</strong> capture the grid span, rendered dimensions and selected Network request together.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-14/origin_image/slide_09.png">
+        <img class="web-slide-image" src="../slides/lesson-14/origin_image/slide_09.png" alt="Five key takeaways summarize the responsive AEM trace from template through image delivery.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-14/origin_image/slide_09.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Review:</strong> template and policy expose the boundary; Layout Container, breakpoints and Layout Mode author the composition.</li>
+          <li><strong>Evidence:</strong> persisted state must explain rendered grid classes and active browser CSS.</li>
+          <li><strong>Component rule:</strong> cooperate with assigned columns and keep local fixes out of global AEM grid selectors.</li>
+          <li><strong>Media rule:</strong> prove both layout size and the selected image request. Trace the layout; do not guess.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-14/origin_image/slide_10.png">
+        <img class="web-slide-image" src="../slides/lesson-14/origin_image/slide_10.png" alt="Quiet Questions and Thank you closing slide.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-14/origin_image/slide_10.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
           <li><strong>Close:</strong> thank the audience and leave the floor open for questions they want to raise.</li>
-          <li><strong>Boundary:</strong> do not introduce prompts, a review exercise or another activity.</li>
+          <li><strong>Boundary:</strong> do not introduce prompts, an exercise, an assignment or another concept.</li>
         </ul></details>
       </article>
     </div>
 
-    <h2>Guide Card constraint check</h2>
+    <h2>Responsive layout trace</h2>
     <ol>
-      <li>Load configured and empty Author states, then inspect the equivalent Publish output.</li>
-      <li>Test narrow width and 200% zoom independently.</li>
-      <li>Complete the interaction with keyboard only and record focus order and activation.</li>
-      <li>Repeat with a long localized title and capture the DOM and browser result.</li>
+      <li>Confirm that the page template includes a Layout Container configured for <code>responsiveGrid</code>.</li>
+      <li>Select a configured breakpoint and author a two-column desktop composition in Layout Mode.</li>
+      <li>Create an intentional stack at the narrower breakpoint, then verify Preview and Publish.</li>
+      <li>Inspect the component resource and record its persisted responsive layout state.</li>
+      <li>Use DevTools to connect the rendered grid-column classes to the active responsive-grid rule and computed width.</li>
+      <li>For the Core Image, record rendered dimensions and the selected Network request.</li>
     </ol>
-    <p><strong>Acceptance:</strong> keyboard, 200% zoom, long title and empty Author and visitor states pass with observable evidence.</p>
+    <p><strong>Acceptance:</strong> editor and browser layouts agree at the tested boundaries; the component has no global grid override; repository, DOM, CSS and Network evidence explain the result.</p>
 
     <h2>Official reading</h2>
     <ul>
-      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-core-components/using/responsive">Responsive Design of the Core Components — Adobe Experience Manager</a></li>
-      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-65/content/implementing/developing/components/components-basics#component-placeholders">Component Placeholders — Adobe Experience Manager</a></li>
-      <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/reflow.html">Understanding Reflow — W3C Web Accessibility Initiative</a></li>
-      <li><a href="https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/">ARIA Authoring Practices: Read Me First — W3C WAI</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/site-creation/responsive-layout">Configuring the Layout Container and Layout Mode — Adobe Experience League</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/authoring/page-editor/responsive-layout">Responsive Layout for content authors — Adobe Experience League</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/full-stack/responsive-design">Responsive Design for AEM developers — Adobe Experience League</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/sites/developing/responsive-breakpoints">Responsive breakpoints — Adobe Experience League</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-core-components/using/wcm-components/image">Core Image Component — Adobe Experience League</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-core-components/using/developing/web-optimized-image-delivery">Web-Optimized Image Delivery — Adobe Experience League</a></li>
     </ul>
   </main>
   <footer><a href="../index.html">Training overview</a></footer>

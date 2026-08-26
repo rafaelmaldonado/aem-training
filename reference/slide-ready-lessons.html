@@ -220,19 +220,21 @@
       <p><strong>Demo:</strong> inspect a WKND proxy, its super type and its Data Layer state. <strong>Assignment:</strong> implement the Guide Card with the smallest viable extension. <strong>Acceptance:</strong> no copied product implementation and the customization and exposed contract are justified.</p>
     </details>
 
-    <details><summary>Day 14 · Responsive, accessible and empty states</summary>
-      <p><strong>Retrieval question:</strong> Which component state is visible to an author before any content is configured?</p>
+    <details><summary>Day 14 · Responsive layout in AEM</summary>
+      <p><strong>Retrieval question:</strong> Which layer owns the page grid, and which layer owns behavior inside a component’s assigned columns?</p>
       <ol class="slides">
-        <li><strong>Slide 1 — Responsive, accessible and empty states.</strong> Preview reflow under constraints, native keyboard behavior and Author-versus-Publish states.</li>
-        <li><strong>Slide 2 — Responsive means behavior under constraints.</strong> Preserve information and functionality across width, zoom and content pressure.</li>
-        <li><strong>Slide 3 — Native semantics provide behavior before ARIA.</strong> Compare native headings, links and buttons with reconstructed interaction.</li>
-        <li><strong>Slide 4 — Keyboard operation is an end-to-end contract.</strong> Trace logical order, visible focus, activation and safe exit without a mouse.</li>
-        <li><strong>Slide 5 — Empty states serve authors and visitors differently.</strong> Keep Author guidance visible without leaking placeholders or meaningless markup to Publish.</li>
-        <li><strong>Slide 6 — Test content extremes, not only the happy path.</strong> Cross content states with width, zoom, keyboard, focus and Author or Publish output.</li>
-        <li><strong>Slide 7 — Key takeaways.</strong> Summarize responsive behavior, semantic foundations, keyboard operation, empty states and evidence.</li>
-        <li><strong>Slide 8 — Questions.</strong> End the session and leave the floor open for audience questions.</li>
+        <li><strong>Slide 1 — Responsive layout in AEM.</strong> Preview Layout Container, Layout Mode, breakpoints and browser delivery.</li>
+        <li><strong>Slide 2 — Responsiveness has several owners.</strong> Map template, editor, persisted state, grid output, component CSS and browser evidence.</li>
+        <li><strong>Slide 3 — Layout Container creates the responsive grid.</strong> Connect template structure, <code>responsiveGrid</code> and rendered grid classes.</li>
+        <li><strong>Slide 4 — Layout Mode authors a layout per breakpoint.</strong> Resize and place the same components across configured views.</li>
+        <li><strong>Slide 5 — Breakpoint configuration and CSS must agree.</strong> Align editor device groups with responsive-grid media boundaries.</li>
+        <li><strong>Slide 6 — Persisted layout becomes DOM evidence.</strong> Trace one resize from Author through repository state, classes and computed CSS.</li>
+        <li><strong>Slide 7 — Components must cooperate with the grid.</strong> Keep internal CSS fluid and avoid global AEM grid overrides.</li>
+        <li><strong>Slide 8 — Layout width and image delivery are related, not identical.</strong> Connect the rendered box to Core Image candidates and Network evidence.</li>
+        <li><strong>Slide 9 — Key takeaways.</strong> Summarize the responsive authoring and runtime contract.</li>
+        <li><strong>Slide 10 — Questions.</strong> End the session and leave the floor open for audience questions.</li>
       </ol>
-      <p><strong>Demo:</strong> test Guide Card with keyboard, narrow viewport and no content. <strong>Assignment:</strong> record and fix the highest-risk failure. <strong>Acceptance:</strong> keyboard, 200% zoom, long title and empty state pass.</p>
+      <p><strong>Demo:</strong> resize a Guide Card and Core Image in Layout Mode, then trace persisted layout, grid classes, computed CSS and the selected image request. <strong>Assignment:</strong> create a two-column desktop layout that stacks intentionally at a narrower breakpoint. <strong>Acceptance:</strong> editor and browser layouts agree and repository, DOM, CSS and Network evidence explain the result.</p>
     </details>
 
     <details><summary>Day 15 · Weekly review: vertical frontend practice · no slide deck</summary>
@@ -244,7 +246,7 @@
 
     <h2 id="week-4">Week 4 · Essential backend development</h2>
 
-    <details><summary>Day 16 · Java and OSGi inside AEM</summary>
+    <details><summary>Day 16 · Java, OSGi and Resource API foundations</summary>
       <p><strong>Retrieval question:</strong> What turns compiled Java classes into an active capability inside AEM?</p>
       <ol class="slides">
         <li><strong>Slide 1 — An OSGi bundle is a managed JAR.</strong> Metadata declares exported packages, imports and runtime identity. <em>Speaker cue: successful compilation does not guarantee resolved runtime dependencies.</em></li>
@@ -252,11 +254,12 @@
         <li><strong>Slide 3 — Services publish contracts.</strong> Consumers depend on a focused capability rather than a concrete implementation. <em>Speaker cue: do not create an interface when there is no useful boundary.</em></li>
         <li><strong>Slide 4 — Runtime state is diagnostic evidence.</strong> Active, satisfied, resolved and installed states point to different dependency problems. <em>Speaker cue: inspect state before reinstalling the same package.</em></li>
         <li><strong>Slide 5 — Cloud instances are replaceable.</strong> Durable state must not depend on local memory or filesystem. <em>Speaker cue: design every service for restart and multiple instances.</em></li>
+        <li><strong>Slide 6 — The Resource API is the default content boundary.</strong> Resources expose paths, properties and children without unnecessary JCR coupling. <em>Speaker cue: use JCR APIs only for JCR-specific requirements.</em></li>
       </ol>
-      <p><strong>Demo:</strong> locate a WKND class, its bundle and component state. <strong>Assignment:</strong> map three project classes to runtime responsibilities. <strong>Acceptance:</strong> bundle, component/service role and lifecycle are correct.</p>
+      <p><strong>Demo:</strong> trace a WKND resource to the Java class, bundle and component state that consume it. <strong>Assignment:</strong> map three project classes to resources and runtime responsibilities. <strong>Acceptance:</strong> resource boundary, bundle, component/service role and lifecycle are correct.</p>
     </details>
 
-    <details><summary>Day 17 · Sling Models and delegation</summary>
+    <details><summary>Day 17 · Sling Models, delegation and Model Exporter</summary>
       <p><strong>Retrieval question:</strong> When should a model adapt from a resource rather than a request?</p>
       <ol class="slides">
         <li><strong>Slide 1 — The adaptable defines available context.</strong> A resource model is portable; a request model is appropriate when request-specific objects are required. <em>Speaker cue: choose the narrowest context.</em></li>
@@ -264,11 +267,12 @@
         <li><strong>Slide 3 — The model is a view contract.</strong> Getters expose values already prepared for HTL. <em>Speaker cue: HTL should not know repository fallbacks or formatting rules.</em></li>
         <li><strong>Slide 4 — Delegate existing component behavior.</strong> Extend a Core Component model through its public contract instead of copying implementation. <em>Speaker cue: add only the project-owned value or override.</em></li>
         <li><strong>Slide 5 — Services own reusable orchestration.</strong> Large queries, integrations or shared logic do not belong in getters. <em>Speaker cue: a model coordinates the view; it is not the entire application.</em></li>
+        <li><strong>Slide 6 — Model Exporter can expose an existing JSON contract.</strong> An eligible Sling Model can support selectors such as <code>.model.json</code> without a custom endpoint. <em>Speaker cue: inspect the existing contract before adding a servlet.</em></li>
       </ol>
-      <p><strong>Demo:</strong> implement a Guide title with a fallback. <strong>Assignment:</strong> connect a Sling Model to Guide Card HTL. <strong>Acceptance:</strong> configured, missing and legacy values render without exceptions.</p>
+      <p><strong>Demo:</strong> implement a Guide title with a fallback and inspect its exported contract. <strong>Assignment:</strong> connect a Sling Model to Guide Card HTL and compare the HTML with <code>.model.json</code>. <strong>Acceptance:</strong> configured, missing and legacy values render without exceptions and the exported contract is understood.</p>
     </details>
 
-    <details><summary>Day 18 · OSGi services and configuration</summary>
+    <details><summary>Day 18 · OSGi services, configuration and servlet boundaries</summary>
       <p><strong>Retrieval question:</strong> Which values may vary by environment without changing application code?</p>
       <ol class="slides">
         <li><strong>Slide 1 — Create a service for reusable behavior.</strong> A service should have one capability needed by a real consumer. <em>Speaker cue: avoid a service layer that only forwards a getter.</em></li>
@@ -276,28 +280,29 @@
         <li><strong>Slide 3 — Run modes select environment values.</strong> Author/Publish and dev/stage/prod configurations remain separate from Java conditionals. <em>Speaker cue: inspect the effective value, not only the source file.</em></li>
         <li><strong>Slide 4 — Secrets do not belong in Git.</strong> Use approved secret environment configuration and never expose values in logs or screenshots. <em>Speaker cue: a placeholder name can be versioned; the secret cannot.</em></li>
         <li><strong>Slide 5 — Missing configuration fails safely.</strong> Choose a secure fallback or disable the capability with a useful diagnostic. <em>Speaker cue: silent partial behavior is hard to operate.</em></li>
+        <li><strong>Slide 6 — The best servlet may be no servlet.</strong> Prefer HTL, a Sling Model, a Core Component or an existing exporter unless the consumer needs a separate endpoint contract. <em>Speaker cue: every endpoint adds validation, permission and caching responsibilities.</em></li>
       </ol>
-      <p><strong>Demo:</strong> configure a Guide URL service with a non-secret base path. <strong>Assignment:</strong> implement typed configuration and a safe fallback. <strong>Acceptance:</strong> environment variation requires no hardcoded conditional and no secret reaches Git.</p>
+      <p><strong>Demo:</strong> configure a Guide URL service, then compare HTL, <code>.model.json</code> and a servlet proposal. <strong>Assignment:</strong> implement typed configuration and choose the minimum delivery surface. <strong>Acceptance:</strong> configuration is safe and the endpoint decision names its consumer, contract and security surface.</p>
     </details>
 
-    <details><summary>Day 19 · Resource API, Model Exporter and servlets</summary>
-      <p><strong>Retrieval question:</strong> What existing AEM capability could eliminate the need for a new endpoint?</p>
+    <details><summary>Day 19 · JUnit 5 and AEM Mocks</summary>
+      <p><strong>Retrieval question:</strong> Which observable behavior should fail when a Sling Model fallback is removed?</p>
       <ol class="slides">
-        <li><strong>Slide 1 — Prefer the Resource API for content.</strong> It expresses paths, properties and children without unnecessary JCR coupling. <em>Speaker cue: use JCR APIs only for JCR-specific requirements.</em></li>
-        <li><strong>Slide 2 — Respect resolver ownership.</strong> Close resolvers created by your service; never close a resolver received from a request or model. <em>Speaker cue: leaks and premature closes both become production faults.</em></li>
-        <li><strong>Slide 3 — Model Exporter can provide an existing JSON contract.</strong> A registered selector such as <code>.model.json</code> serializes an eligible Sling Model without a custom endpoint. <em>Speaker cue: inspect the available contract before adding a servlet.</em></li>
-        <li><strong>Slide 4 — Every endpoint is a trust boundary.</strong> Validate method, input, permissions, response type and caching behavior. <em>Speaker cue: “internal” URLs still receive untrusted requests.</em></li>
-        <li><strong>Slide 5 — The best servlet may be no servlet.</strong> A model, Core Component or existing JSON exporter can meet many requirements with less code and risk. <em>Speaker cue: require evidence for adding a new API.</em></li>
+        <li><strong>Slide 1 — A unit test protects behavior, not implementation shape.</strong> Arrange representative content, execute the public contract and assert the observable result. <em>Speaker cue: avoid tests coupled to private methods.</em></li>
+        <li><strong>Slide 2 — JUnit 5 provides the test lifecycle.</strong> Focused setup, test methods and assertions make failures small enough to diagnose. <em>Speaker cue: one behavior per test keeps the failure readable.</em></li>
+        <li><strong>Slide 3 — AEM Mocks supplies an in-memory AEM context.</strong> Register models and services, load content and adapt representative resources without starting the SDK. <em>Speaker cue: mock only the platform boundary the test needs.</em></li>
+        <li><strong>Slide 4 — Test configured, missing and invalid content.</strong> Happy paths alone do not protect the authoring fallbacks that keep HTL safe. <em>Speaker cue: name each state in the test.</em></li>
+        <li><strong>Slide 5 — Red → green proves the regression check.</strong> Observe the focused test fail without the behavior, implement the minimum fix and rerun the same command. <em>Speaker cue: a test that was never seen failing may assert the wrong thing.</em></li>
       </ol>
-      <p><strong>Demo:</strong> compare Guide HTML, <code>.model.json</code> and a servlet proposal. <strong>Assignment:</strong> decide the minimum solution for three cases. <strong>Acceptance:</strong> each decision names contract, capability, security surface and reason.</p>
+      <p><strong>Demo:</strong> write and run a failing AEM Mocks test for the Guide Card fallback, apply the minimum implementation and rerun it green. <strong>Assignment:</strong> test configured, missing and invalid input. <strong>Acceptance:</strong> focused tests pass and at least one is proven to detect the missing behavior.</p>
     </details>
 
-    <details><summary>Day 20 · Weekly review: JUnit 5 and AEM Mocks · no slide deck</summary>
-      <p><strong>Retrieval question:</strong> What behavior should fail if the fallback implementation is removed?</p>
+    <details><summary>Day 20 · Weekly practice review · no slide deck</summary>
+      <p><strong>Quick recap:</strong> Java and OSGi, the Resource API, Sling Models and Model Exporter, services and configuration, servlet boundaries, JUnit 5 and AEM Mocks.</p>
       <p><a href="weekly-practice-review-instructions.html">Open the printable weekly review instructions →</a></p>
-      <p><strong>Demo:</strong> red test → minimal implementation → green test for Guide Card. <strong>Assignment:</strong> test configured, missing and invalid input. <strong>Acceptance:</strong> focused tests pass and at least one is proven to detect the missing behavior.</p>
+      <p><strong>Team presentation:</strong> demonstrate the Week 4 practice with its implementation, test evidence and technical decisions. <strong>Acceptance:</strong> the team shows a working result, explains the responsible boundary and answers questions using observable evidence.</p>
     </details>
-    <p><strong>Official reading:</strong> <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/getting-started-wknd-tutorial-develop/project-archetype/unit-testing">WKND Unit Testing — Adobe</a>.</p>
+    <p><strong>Week 4 practice reading:</strong> <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/getting-started-wknd-tutorial-develop/project-archetype/unit-testing">WKND Unit Testing — Adobe</a>.</p>
 
     <h2 id="week-5">Week 5 · Content reuse and maintenance</h2>
 

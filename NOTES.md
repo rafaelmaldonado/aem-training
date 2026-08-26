@@ -9,6 +9,7 @@
 - Estructura de cada lección: incluir al inicio un resumen sustancial pero escaneable —dos párrafos conceptuales y entre cinco y seis puntos fundamentales— antes de la agenda y las slides.
 - Preferencia para slides: contenido completo con bullets, ejemplos concretos, diagramas e imágenes; no limitarse a una descripción breve.
 - Cierre de cada sesión con deck: incluir una slide de **Key takeaways** con bullets que resuman los puntos importantes, seguida únicamente por la slide pasiva **Questions / Thank you.**; los días 5, 10, 15, 20, 25, 30 y 35 no llevan slides.
+- Formato de las sesiones semanales: el arquitecto da un quick recap y el equipo presenta la práctica con evidencia; no son sesiones para introducir un tema técnico nuevo.
 - Flujo de presentación: publicar las slides en GitHub Pages y copiarlas como una imagen completa a PowerPoint para conservar el formato; no conservar ni generar archivos `.pptx` para sesiones existentes o futuras.
 - Estilo visual de slides: fondo azul marino, iluminación azul hielo, tarjetas tipo vidrio, bordes cian, trama de puntos y curvas concéntricas sutiles; usar la referencia visual más reciente proporcionada el 2026-08-13.
 - Estilo visual del sitio: aplicar el mismo tema azul marino y azul hielo de las slides a todas las páginas mediante la hoja de estilos compartida.

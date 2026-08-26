@@ -2,53 +2,65 @@
 
 ## How to use these notes
 
-- Keep one Guide Card as the thread across width, zoom, keyboard and empty-state checks.
-- Describe observable behavior before discussing implementation details.
-- Separate Author guidance from Publish output every time.
-- Close with audience questions only; do not turn the final slide into an exercise.
+- Keep one Guide Page with a Teaser, Guide Card and Core Image as the thread through the session.
+- Explain each AEM responsibility before showing its repository or browser evidence.
+- Distinguish authoring configuration from runtime CSS and browser behavior every time.
+- Use the final slide only for questions raised by the audience.
 
-## Slide 1: Responsive, accessible and empty states
+## Slide 1: Responsive layout in AEM
 
-Introduce the session’s three threads: reflow under real constraints, native keyboard behavior, and intentional states for authors and visitors. Identify Class 14, Week 3, Day 14, September 3, 2026, Juan Maldonado and the 30-minute scope.
+Today we are narrowing the word responsive to the mechanisms that AEM actually gives us. This is not another general introduction to media queries. We will follow a page from the template and Layout Container, through the author’s Layout Mode choices, into the grid classes and browser requests that prove the result.
 
-The Guide Card is complete only when it remains usable outside the ideal screenshot. Today we will change width, zoom, input method and content state, then observe what the browser and AEM editor actually do.
+The important idea is that no single file controls the whole experience. A template enables the structure, an author chooses a composition, AEM persists that choice, client libraries implement the grid, and each component must behave inside the width it receives. By the end, you should be able to trace a layout instead of guessing which CSS rule to change. We will use the same Guide Page throughout so every diagram refers to one observable implementation.
 
-## Slide 2: Responsive means behavior under constraints
+## Slide 2: Responsiveness has several owners
 
-Use the four frames to make one distinction clear: responsive quality is preserved information and functionality, not a set of device screenshots. The same title, action and reading order must survive a narrower container, enlarged content and a longer localized label.
+Start at the left and read this as a responsibility chain. The template decides whether the page has a responsive authoring boundary. The Layout Container supplies the grid paragraph system. Breakpoint configuration and Layout Mode give the author named views in which components can be positioned and resized. Those choices then become persisted responsive state and rendered grid classes.
 
-Test narrow width and 200% zoom independently. A layout can fit a small viewport yet fail when browser zoom changes available CSS pixels or enlarges text. Look for overlap, clipping, hidden actions and page-level horizontal scrolling, then verify that the project’s clientlib solves the behavior in the actual page context.
+Only after that handoff does project CSS take responsibility for the behavior inside a component. This distinction prevents two common mistakes: trying to repair a missing page-grid configuration inside a component clientlib, or overriding global AEM grid classes because one card has a fixed-width child. Ask which artifact would prove each stage: template structure, editor behavior, repository state, DOM classes, computed CSS or Network request. The next slide starts with the structural owner of the page grid: the Layout Container.
 
-## Slide 3: Native semantics provide behavior before ARIA
+## Slide 3: Layout Container creates the responsive grid
 
-Read the native path first: a heading structures the card, a link navigates and a button performs an action. These elements already participate in focus order, expose platform semantics and provide their expected keyboard interaction.
+A Layout Container is more than a wrapper around child markup. It provides a paragraph system whose children participate in an AEM responsive grid. Depending on the page design, it can be the main content container built into the template, an additional component authors can insert, or both. For the Core Container Component, `layout = responsiveGrid` is the key choice that makes the container own responsive-layout behavior.
 
-The generic-element path must reconstruct those guarantees with roles, focusability and JavaScript. An ARIA role is a promise to implement the full interaction model; it does not create that behavior. Start with native HTML and add ARIA only for relationships or states the native language cannot express.
+Follow the same object across the three inspectors. The template establishes the container, content resources sit below it, and the rendered browser output adds `aem-Grid` and `aem-GridColumn` classes that describe placement. Enabling the component in a policy is necessary for authoring but does not configure the whole mechanism by itself. Also call out the nesting warning: nested grids can be valid, but every level increases the layout contract developers and authors must understand. Keep the structure flat unless the requirement truly needs another grid.
 
-## Slide 4: Keyboard operation is an end-to-end contract
+## Slide 4: Layout Mode authors a layout per breakpoint
 
-Follow the Tab path from the previous page element through the Guide Card and onward to the next control. The order should match the visual and reading sequence. At every stop, focus must remain visible and must not be hidden by sticky content or overlap.
+This is the author-facing workflow. First select a breakpoint that the project has configured, then enter Layout Mode. The resize handles snap components to the grid, so the author changes placement and span without changing the Teaser or Guide Card content. In the illustrated desktop layout the two components use an eight-plus-four split; tablet uses two equal spans; phone stacks both components at full width.
 
-Activate the link and button with their expected keys, verify that focus does not jump unexpectedly, and confirm there is a safe exit from the component. The meaningful test is the complete task with the mouse untouched, not an isolated `:focus-visible` rule in DevTools.
+The exact device names and boundaries belong to the project, so treat the numbers on this sample as an implementation example, not an AEM global standard. The key behavior is that each configured view can have an intentional composition. After authoring, leave Layout Mode and verify Preview and Publish. A clean editor canvas does not prove that the runtime clientlib, nested content or component CSS will behave the same way. That runtime agreement depends on the breakpoint contract shown next.
 
-## Slide 5: Empty states serve authors and visitors differently
+## Slide 5: Breakpoint configuration and CSS must agree
 
-Start from the shared Guide Card Resource and the single `isEmpty` decision. In Author edit or preview mode, an otherwise invisible component needs a useful `cq-placeholder` so the author can find, select and configure it.
+There are two rails on this slide because two systems must describe the same boundary. The `cq:responsive/breakpoints` configuration gives the Page Editor and emulator the project’s device groups. The responsive-grid clientlib supplies the CSS media queries that actually rearrange the browser output. These values are project examples; there is no universal tablet width that every AEM site must copy.
 
-Publish has a different responsibility. It should omit the author placeholder and avoid broken links, empty headings or wrappers with no meaning. Verify configured Author, empty Author and empty visitor output as separate states even though they share one emptiness contract.
+Use the orange mismatch to explain a common failure. If the editor changes from desktop to tablet at one width but the CSS changes at another, authors see a composition that visitors cannot reproduce at the same viewport. Fixing only the emulator or only the stylesheet leaves the contract split. Record who owns these values and test on both sides of each boundary: just below it, exactly at it and just above it. Once the boundaries align, we can trace one authored resize into repository and DOM evidence.
 
-## Slide 6: Test content extremes, not only the happy path
+## Slide 6: Persisted layout becomes DOM evidence
 
-Read the matrix by row and then by constraint. Configured and empty content are only the beginning; long titles, localized labels and unexpected values expose fixed-height, nowrap and assumption-heavy implementations quickly.
+Here we take one concrete author gesture—a Guide Card resized to four of twelve columns—and follow it to the browser. The editor gesture is only the start. AEM stores responsive metadata with the component resource. During rendering, that state contributes grid-column classes such as `aem-GridColumn--default--4`, and the active responsive-grid CSS turns the class into an actual span.
 
-When one intersection fails, record the DOM and interaction evidence, fix the narrowest responsible layer, and rerun that same check. A screenshot alone cannot prove focus order, activation or clean visitor markup. Acceptance should include keyboard, zoom, long-title and empty-state evidence.
+In DevTools, select the component’s outer grid item rather than only its internal `.cmp-` markup. Confirm the breakpoint-specific class, any offset, the matching CSS rule and the computed width. This evidence tells us whether the problem is missing author state, unexpected rendered classes, an unloaded grid clientlib or internal component CSS. Do not add a high-specificity override until this chain is intact. The preferred diagnostic is always Author action → repository state → DOM class → active CSS → rendered layout.
 
-## Slide 7: Key takeaways
+## Slide 7: Components must cooperate with the grid
 
-Use the five bullets as the review checklist. Responsive quality preserves information and functionality under width, zoom and content pressure. Native semantics give the component the correct interaction foundation. Keyboard testing covers order, visible focus, activation and a safe exit.
+The page grid controls how much space a component receives; it does not guarantee that everything inside the component can shrink. Compare the same Guide Card inside twelve, eight and four columns. The passing version uses fluid media, wrapping and a shrinkable content area. In flex or grid layouts, `min-width: 0` is often the small missing rule that allows a child to become narrower than its intrinsic content.
 
-Keep author placeholders useful and keep them out of Publish. Finally, test configured, empty, long and localized content with browser-visible evidence. The governing principle is: test behavior, not screenshots.
+The failing version encodes assumptions such as `width: 680px`, a fixed height or an unbreakable label. Those decisions contradict the authored span. The worst repair is a global override against `.aem-GridColumn`, because it changes every component sharing the grid contract. Scope the correction to the project component and preserve the AEM layout output. Core Component client libraries provide a useful starting point, but the project still owns how its composition behaves with real content in the actual page.
 
-## Slide 8: Questions
+## Slide 8: Layout width and image delivery are related, not identical
 
-That completes the session. Thank the audience and leave the floor open for questions they want to raise. Do not introduce prompts, a review activity, practice or an assignment.
+This slide reconnects the layout lesson to the Core Image work from Class 9. A four-column span determines the rendered image box, but CSS width alone does not determine how many bytes the browser transfers. The Image Component policy defines candidate widths, and Core Image v3 exposes browser-native responsive sources so the browser can select an appropriate candidate for layout size and device density.
+
+Read the chain from left to right: authored span, rendered box, configured candidates and selected Network request. The example shows a 360-pixel box and a 640-pixel candidate, but the exact selection depends on browser conditions; do not teach “always choose the smallest.” In the local SDK, the Adaptive Image Servlet provides useful request evidence. In AEM as a Cloud Service, Web-Optimized Image Delivery may be enabled through policy. In either case, record both rendered dimensions and the transferred source.
+
+## Slide 9: Key takeaways
+
+Use these five bullets as the review path for any responsive AEM change. First, verify that the template and policy expose the intended authoring boundary. Second, confirm that Layout Container, configured breakpoints and Layout Mode produce the required composition. Third, trace the persisted choice into grid classes and active browser CSS instead of judging only the editor screenshot.
+
+Then review the component boundary. Internal CSS must cooperate with its assigned columns and should never repair a local defect by overriding the global AEM grid. Finally, treat responsive media as a separate but connected proof: the page layout determines the rendered box, while Core Image and the browser determine the requested source. The governing habit is simple: trace the layout, do not guess. That trace tells you which layer owns the correction and what evidence proves it.
+
+## Slide 10: Questions
+
+That completes the session. Thank the audience and leave the floor open for questions they want to raise. Do not introduce prompts, a review exercise, practice instructions or another technical concept on this closing slide.
