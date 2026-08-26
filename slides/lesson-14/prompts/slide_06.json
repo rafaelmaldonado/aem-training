@@ -1,0 +1,37 @@
+{
+  "slide": 6,
+  "title": "Test content extremes, not only the happy path.",
+  "prompt": "# Codex PPT Slide Image Prompt\n\n## Canvas\n{\n  \"type\": \"16:9 full-slide PowerPoint image\",\n  \"language\": \"English\",\n  \"slide_number\": 6,\n  \"render_slide_number\": false\n}\n\n## Required Background\n{\n  \"deck_context\": {\n    \"source_summary\": \"Class 14 of a seven-week AEM Sites course, delivered Thursday, September 3, 2026. The audience already understands HTL, client libraries, project proxies, Core Components and browser evidence. This class validates the Week 3 Guide Card across responsive constraints, native semantics, keyboard operation and separate author and visitor empty states.\",\n    \"core_claim\": \"A resilient AEM component preserves information, functionality, interaction and useful state behavior under narrow width, zoom, keyboard-only use and incomplete or extreme content.\",\n    \"canonical_facts\": [\n      \"Responsive quality is observable behavior under constraints, not a collection of device screenshots.\",\n      \"Narrow viewport and 200 percent text or browser zoom are separate checks and neither proves the other.\",\n      \"Content and functionality should reflow without overlap, clipping or unnecessary page-level two-dimensional scrolling.\",\n      \"Core Component client libraries provide a responsive starting point, while the implementing project owns detailed behavior in context.\",\n      \"Native headings, links and buttons provide semantics and expected platform behavior before ARIA is added.\",\n      \"An ARIA role is a promise and does not create the keyboard behavior of the native control it imitates.\",\n      \"Keyboard evidence includes logical focus order, visible unobscured focus, expected activation, no trap and a safe next focus target.\",\n      \"An empty AEM component needs an author-visible placeholder in edit or preview mode when it otherwise has no visible output.\",\n      \"AEM author placeholders commonly use cq-placeholder and data-emptytext.\",\n      \"Publish output should omit author-only placeholders and avoid broken links, empty headings and meaningless wrappers.\",\n      \"Configured, empty, long, localized and unexpected values should be crossed with narrow width, zoom, keyboard use and focus evidence.\"\n    ],\n    \"canonical_terms\": [\n      \"responsive behavior\",\n      \"reflow\",\n      \"200% zoom\",\n      \"native semantics\",\n      \"accessible name\",\n      \"ARIA role\",\n      \"Tab order\",\n      \":focus-visible\",\n      \"keyboard trap\",\n      \"cq-placeholder\",\n      \"data-emptytext\",\n      \"isEmpty\",\n      \"Author\",\n      \"Publish\"\n    ]\n  },\n  \"slide_local_context\": {\n    \"required_background\": \"Build a matrix with rows CONFIGURED, EMPTY, LONG TITLE, LOCALIZED and UNEXPECTED VALUE. Use columns NARROW WIDTH, 200% ZOOM, KEYBOARD, VISIBLE FOCUS and AUTHOR / PUBLISH. Show mostly green passes and one orange failure: LONG TITLE × NARROW WIDTH causes a clipped action. Trace that failure to a narrowly scoped CSS correction, then show the rerun passing.\"\n  }\n}\n\n## Global Style\n{\n  \"name\": \"technical atlas courseware\",\n  \"visual_direction\": \"Sober, information-rich technical atlas blended with academic courseware. Use exact responsive constraints, semantic HTML, keyboard focus paths, AEM author placeholders and browser evidence instead of generic accessibility cards.\",\n  \"color_palette\": \"Warm ivory drafting-paper background, deep navy typography, faint square grid, cobalt blue for structure and test flows, green for passing behavior, violet for author and focus states, and restrained orange for failures or leaked author-only output.\",\n  \"typography\": \"Large bold modern sans serif headings; crisp sans serif body copy; true monospace appearance for HTML elements, ARIA attributes, CSS states, WCM modes and test values.\",\n  \"texture_and_finish\": \"Flat 2D technical diagrams with fine rules and precise viewport, semantic element, keyboard, focus, AEM Author and browser icons. No gradients, neon, glass, 3D or photography.\",\n  \"deck_consistency\": \"Match the approved sample's palette, typography, grid, technical density, semantic colors, monospace treatment and line weight while varying composition by slide role.\"\n}\n\n## Slide\n{\n  \"number\": 6,\n  \"title\": \"Test content extremes, not only the happy path.\",\n  \"role\": \"evidence matrix\",\n  \"intent\": \"Turn responsive and accessibility expectations into a compact repeatable verification set.\"\n}\n\n## Text\n{\n  \"title\": \"Test content extremes, not only the happy path.\",\n  \"key_points\": [\n    \"Exercise configured, empty, long, localized and unexpected-value states\",\n    \"Cross states with narrow width, 200% zoom, keyboard-only use and visible focus\",\n    \"Inspect rendered DOM and interaction results, not only screenshots or declarations\",\n    \"Fix the narrowest responsible layer and rerun the same failing check\",\n    \"Acceptance includes keyboard, zoom, long-title and empty-state evidence\"\n  ],\n  \"speaker_focus\": null\n}\n\n## Layout\n{\n  \"composition\": \"Large state-by-constraint matrix on the left; one selected failure expands into evidence, narrow fix and rerun on the right.\",\n  \"intent\": \"Make acceptance repeatable and connect a failure to the smallest responsible correction.\"\n}\n\n## Visual Elements\n{\n  \"main_visual\": \"Five-by-five evidence matrix with a failure-to-fix-to-rerun trace.\"\n}\n\n## Constraints\n[\n  \"Render the eyebrow exactly as '06 · EXTREME-STATE EVIDENCE'.\",\n  \"Render '200% ZOOM' and 'AUTHOR / PUBLISH' exactly.\",\n  \"Include 'OBSERVE → FIX NARROWLY → RERUN'.\",\n  \"Do not mark every state as passing before the illustrated correction.\"\n]\n\n## Universal Constraints\n- The final image itself must contain the title and key points.\n- Render Chinese text exactly and legibly; avoid garbled characters.\n- Keep the confirmed deck style consistent while varying layout by slide role.\n- No watermark, unrelated logo, or extra slide number.\n",
+  "out": "slide_06.png",
+  "input_images": [],
+  "requires_context_images": false,
+  "expected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Day 14 dual-empty-state sample prompt generated from the approved outline and Day 13 technical-atlas style reference",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-14/origin_image/slide_05.png",
+    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "generation_contract": {
+    "must_use_selected_image_backend": true,
+    "must_match_sample_generation_method": true,
+    "forbidden_final_image_methods": [
+      "local drawing/rendering scripts",
+      "Pillow-generated slides",
+      "SVG/HTML/CSS/canvas screenshots",
+      "python-pptx/PptxGenJS/native PPT layout screenshots",
+      "manually composited text/image overlays"
+    ],
+    "must_return": [
+      "backend_used",
+      "selected_source",
+      "qa_note"
+    ]
+  }
+}

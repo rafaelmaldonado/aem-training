@@ -223,11 +223,14 @@
     <details><summary>Day 14 · Responsive, accessible and empty states</summary>
       <p><strong>Retrieval question:</strong> Which component state is visible to an author before any content is configured?</p>
       <ol class="slides">
-        <li><strong>Slide 1 — Responsive means behavior, not screenshots.</strong> Content and controls must remain usable across width, zoom and long text. <em>Speaker cue: test at boundaries, not only three device presets.</em></li>
-        <li><strong>Slide 2 — Native semantics come first.</strong> Correct headings, links, buttons and landmarks provide behavior before ARIA is added. <em>Speaker cue: ARIA cannot repair the wrong interaction model.</em></li>
-        <li><strong>Slide 3 — Keyboard operation is required.</strong> Focus order, visible focus and activation must work without a pointer. <em>Speaker cue: perform the demo without touching the mouse.</em></li>
-        <li><strong>Slide 4 — Empty states serve two audiences.</strong> Authors need guidance in edit mode; visitors should not receive broken or meaningless markup. <em>Speaker cue: author placeholders must not leak to Publish.</em></li>
-        <li><strong>Slide 5 — Test content extremes.</strong> Missing, long, localized and unexpected values reveal assumptions earlier than the happy path. <em>Speaker cue: use real text, not repeated lorem ipsum.</em></li>
+        <li><strong>Slide 1 — Responsive, accessible and empty states.</strong> Preview reflow under constraints, native keyboard behavior and Author-versus-Publish states.</li>
+        <li><strong>Slide 2 — Responsive means behavior under constraints.</strong> Preserve information and functionality across width, zoom and content pressure.</li>
+        <li><strong>Slide 3 — Native semantics provide behavior before ARIA.</strong> Compare native headings, links and buttons with reconstructed interaction.</li>
+        <li><strong>Slide 4 — Keyboard operation is an end-to-end contract.</strong> Trace logical order, visible focus, activation and safe exit without a mouse.</li>
+        <li><strong>Slide 5 — Empty states serve authors and visitors differently.</strong> Keep Author guidance visible without leaking placeholders or meaningless markup to Publish.</li>
+        <li><strong>Slide 6 — Test content extremes, not only the happy path.</strong> Cross content states with width, zoom, keyboard, focus and Author or Publish output.</li>
+        <li><strong>Slide 7 — Key takeaways.</strong> Summarize responsive behavior, semantic foundations, keyboard operation, empty states and evidence.</li>
+        <li><strong>Slide 8 — Questions.</strong> End the session and leave the floor open for audience questions.</li>
       </ol>
       <p><strong>Demo:</strong> test Guide Card with keyboard, narrow viewport and no content. <strong>Assignment:</strong> record and fix the highest-risk failure. <strong>Acceptance:</strong> keyboard, 200% zoom, long title and empty state pass.</p>
     </details>

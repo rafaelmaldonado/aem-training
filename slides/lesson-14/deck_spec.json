@@ -1,0 +1,285 @@
+{
+  "deck_name": "lesson-14",
+  "title": "Responsive, accessible and empty states",
+  "language": "English",
+  "aspect_ratio": "16:9",
+  "style": {
+    "name": "technical atlas courseware",
+    "visual_direction": "Sober, information-rich technical atlas blended with academic courseware. Use exact responsive constraints, semantic HTML, keyboard focus paths, AEM author placeholders and browser evidence instead of generic accessibility cards.",
+    "color_palette": "Warm ivory drafting-paper background, deep navy typography, faint square grid, cobalt blue for structure and test flows, green for passing behavior, violet for author and focus states, and restrained orange for failures or leaked author-only output.",
+    "typography": "Large bold modern sans serif headings; crisp sans serif body copy; true monospace appearance for HTML elements, ARIA attributes, CSS states, WCM modes and test values.",
+    "texture_and_finish": "Flat 2D technical diagrams with fine rules and precise viewport, semantic element, keyboard, focus, AEM Author and browser icons. No gradients, neon, glass, 3D or photography.",
+    "deck_consistency": "Match the approved sample's palette, typography, grid, technical density, semantic colors, monospace treatment and line weight while varying composition by slide role."
+  },
+  "deck_context": {
+    "source_summary": "Class 14 of a seven-week AEM Sites course, delivered Thursday, September 3, 2026. The audience already understands HTL, client libraries, project proxies, Core Components and browser evidence. This class validates the Week 3 Guide Card across responsive constraints, native semantics, keyboard operation and separate author and visitor empty states.",
+    "core_claim": "A resilient AEM component preserves information, functionality, interaction and useful state behavior under narrow width, zoom, keyboard-only use and incomplete or extreme content.",
+    "canonical_facts": [
+      "Responsive quality is observable behavior under constraints, not a collection of device screenshots.",
+      "Narrow viewport and 200 percent text or browser zoom are separate checks and neither proves the other.",
+      "Content and functionality should reflow without overlap, clipping or unnecessary page-level two-dimensional scrolling.",
+      "Core Component client libraries provide a responsive starting point, while the implementing project owns detailed behavior in context.",
+      "Native headings, links and buttons provide semantics and expected platform behavior before ARIA is added.",
+      "An ARIA role is a promise and does not create the keyboard behavior of the native control it imitates.",
+      "Keyboard evidence includes logical focus order, visible unobscured focus, expected activation, no trap and a safe next focus target.",
+      "An empty AEM component needs an author-visible placeholder in edit or preview mode when it otherwise has no visible output.",
+      "AEM author placeholders commonly use cq-placeholder and data-emptytext.",
+      "Publish output should omit author-only placeholders and avoid broken links, empty headings and meaningless wrappers.",
+      "Configured, empty, long, localized and unexpected values should be crossed with narrow width, zoom, keyboard use and focus evidence."
+    ],
+    "canonical_terms": [
+      "responsive behavior",
+      "reflow",
+      "200% zoom",
+      "native semantics",
+      "accessible name",
+      "ARIA role",
+      "Tab order",
+      ":focus-visible",
+      "keyboard trap",
+      "cq-placeholder",
+      "data-emptytext",
+      "isEmpty",
+      "Author",
+      "Publish"
+    ]
+  },
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Day 14 dual-empty-state sample prompt generated from the approved outline and Day 13 technical-atlas style reference",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-14/origin_image/slide_05.png",
+    "input_context_preparation": "Inspect the approved sample with view_image, then pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Responsive, accessible and empty states",
+      "role": "opening overview",
+      "intent": "Identify the session, presenter and date while previewing the three learning threads.",
+      "key_points": [
+        "Class 14 · Week 3 · Day 14 · September 3, 2026",
+        "Responsive, accessible and empty states",
+        "Today: reflow under constraints, native keyboard behavior and author-versus-visitor states",
+        "30-minute technical session",
+        "Juan Maldonado"
+      ],
+      "local_context": {
+        "required_background": "Create an opening overview. Present three compact topic anchors: responsive reflow, native keyboard behavior and author-versus-visitor states."
+      },
+      "layout": {
+        "composition": "Strong title block with class metadata, presenter and date on the left; three compact topic anchors on the right.",
+        "intent": "Orient the audience before technical detail without turning the opening into a test matrix."
+      },
+      "visual_elements": {
+        "main_visual": "Three concise icons for responsive reflow, keyboard focus and an Author/Publish state split."
+      },
+      "constraints": [
+        "Render all class metadata exactly.",
+        "Render the three Today topics clearly.",
+        "Do not add detailed WCAG criteria or implementation code to the opening slide."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Responsive means behavior under constraints.",
+      "role": "constraint comparison",
+      "intent": "Replace device-screenshot thinking with observable behavior across width, zoom and content pressure.",
+      "key_points": [
+        "Preserve information and functionality as the container narrows",
+        "Test narrow width and 200% zoom as separate constraints",
+        "Reflow without overlap, clipping or page-level two-dimensional scrolling",
+        "Long and localized content must not hide actions or change meaning",
+        "The project owns detailed responsive behavior in context"
+      ],
+      "local_context": {
+        "required_background": "Use one Guide Card across four test frames: DEFAULT WIDTH at 100%, NARROW WIDTH, 200% ZOOM and LONG LOCALIZED TITLE. In every passing frame, preserve the same title, action, reading order and visible focus target. Contrast with a narrow crossed-out strip of failures: clipped action, overlap and horizontal page scroll. Do not imply that a mobile screenshot proves zoom behavior."
+      },
+      "layout": {
+        "composition": "Four aligned Guide Card test frames form the main visual; a constraint rail above names width, zoom and content pressure, while a small failure strip sits below.",
+        "intent": "Make responsive quality a comparison of preserved behavior, not a gallery of device sizes."
+      },
+      "visual_elements": {
+        "main_visual": "One Guide Card reflowing through four constraints with stable content and controls."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '02 · RESPONSIVE CONSTRAINTS'.",
+        "Render 'NARROW WIDTH' and '200% ZOOM' exactly.",
+        "Include 'PRESERVE INFORMATION + FUNCTIONALITY'.",
+        "Do not present named phone or tablet models."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Native semantics provide behavior before ARIA.",
+      "role": "semantic comparison",
+      "intent": "Connect correct HTML elements to built-in roles, names and interaction behavior.",
+      "key_points": [
+        "Use headings for structure, links for navigation and buttons for actions",
+        "Native controls provide focusability, keyboard behavior and platform semantics",
+        "role=button on a div does not create button behavior",
+        "Accessible names describe visible actions and remain meaningful out of context",
+        "Add ARIA only when native HTML cannot express the relationship or state"
+      ],
+      "local_context": {
+        "required_background": "Compare a native Guide Card path using h3, a and button against a generic div path using div role=button plus compensating tabindex and JavaScript. Show a capability ledger: semantics, focusability, keyboard activation and accessible name. Mark native elements as the preferred starting point. State 'A ROLE IS A PROMISE.' Do not claim ARIA is never needed."
+      },
+      "layout": {
+        "composition": "Two-column semantic comparison with native HTML on the left, generic elements plus compensating behavior on the right, and a compact capability ledger between them.",
+        "intent": "Expose the hidden behavior cost created by replacing native controls."
+      },
+      "visual_elements": {
+        "main_visual": "Native semantic path versus ARIA-and-JavaScript reconstruction path."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '03 · SEMANTIC STARTING POINT'.",
+        "Render <h3>, <a>, <button>, role=button and tabindex exactly.",
+        "Include 'A ROLE IS A PROMISE.'.",
+        "Do not imply that adding an ARIA role creates keyboard behavior."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Keyboard operation is an end-to-end contract.",
+      "role": "interaction trace",
+      "intent": "Define the evidence required to operate the component without a pointer.",
+      "key_points": [
+        "Interactive elements enter a logical sequential focus order",
+        "Focus remains visible and is not hidden by overlapping content",
+        "Native links and buttons use their expected keyboard activation",
+        "Focus does not become trapped or jump unexpectedly",
+        "Test the complete task with the mouse untouched"
+      ],
+      "local_context": {
+        "required_background": "Trace a five-step keyboard path: previous page link → Guide Card title link → Guide Card action button → next page control → safe exit. Highlight visible :focus-visible rings at steps 2 and 3. Label Enter on the link and expected native button activation on the button. Include checks for logical order, visible and unobscured focus, activation, no trap and safe exit."
+      },
+      "layout": {
+        "composition": "A numbered horizontal Tab path crosses a simplified page and Guide Card; a right-side evidence checklist records focus, activation and exit behavior.",
+        "intent": "Show keyboard accessibility as one continuous user task rather than isolated CSS states."
+      },
+      "visual_elements": {
+        "main_visual": "Tab sequence with focus rings, activation keys and a safe next focus target."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '04 · KEYBOARD CONTRACT'.",
+        "Render Tab, Enter and :focus-visible exactly.",
+        "Include 'TEST WITH THE MOUSE UNTOUCHED.'.",
+        "Do not show focus ending inside the component."
+      ]
+    },
+    {
+      "number": 5,
+      "sample_approved": true,
+      "title": "Empty states serve authors and visitors differently.",
+      "role": "dual-state architecture",
+      "intent": "Separate editor discoverability from clean Publish output while keeping one emptiness contract.",
+      "key_points": [
+        "Empty components remain visible and selectable in Author edit or preview mode",
+        "Author placeholders use cq-placeholder and useful data-emptytext",
+        "One explicit isEmpty decision controls the state",
+        "Publish omits author-only and meaningless markup",
+        "Verify configured author, empty author and empty visitor states"
+      ],
+      "local_context": {
+        "required_background": "Reuse the approved slide_05.png image exactly. It shows one Guide Card Resource with isEmpty=true branching to an Author placeholder and clean Publish output."
+      },
+      "layout": {
+        "composition": "Approved dual Author/Publish empty-state diagram.",
+        "intent": "Use the approved sample unchanged."
+      },
+      "visual_elements": {
+        "main_visual": "Approved sample image at origin_image/slide_05.png."
+      },
+      "constraints": [
+        "Reuse the approved sample image without regeneration."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Test content extremes, not only the happy path.",
+      "role": "evidence matrix",
+      "intent": "Turn responsive and accessibility expectations into a compact repeatable verification set.",
+      "key_points": [
+        "Exercise configured, empty, long, localized and unexpected-value states",
+        "Cross states with narrow width, 200% zoom, keyboard-only use and visible focus",
+        "Inspect rendered DOM and interaction results, not only screenshots or declarations",
+        "Fix the narrowest responsible layer and rerun the same failing check",
+        "Acceptance includes keyboard, zoom, long-title and empty-state evidence"
+      ],
+      "local_context": {
+        "required_background": "Build a matrix with rows CONFIGURED, EMPTY, LONG TITLE, LOCALIZED and UNEXPECTED VALUE. Use columns NARROW WIDTH, 200% ZOOM, KEYBOARD, VISIBLE FOCUS and AUTHOR / PUBLISH. Show mostly green passes and one orange failure: LONG TITLE × NARROW WIDTH causes a clipped action. Trace that failure to a narrowly scoped CSS correction, then show the rerun passing."
+      },
+      "layout": {
+        "composition": "Large state-by-constraint matrix on the left; one selected failure expands into evidence, narrow fix and rerun on the right.",
+        "intent": "Make acceptance repeatable and connect a failure to the smallest responsible correction."
+      },
+      "visual_elements": {
+        "main_visual": "Five-by-five evidence matrix with a failure-to-fix-to-rerun trace."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '06 · EXTREME-STATE EVIDENCE'.",
+        "Render '200% ZOOM' and 'AUTHOR / PUBLISH' exactly.",
+        "Include 'OBSERVE → FIX NARROWLY → RERUN'.",
+        "Do not mark every state as passing before the illustrated correction."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Key takeaways",
+      "role": "summary",
+      "intent": "Consolidate the five rules for resilient component behavior.",
+      "key_points": [
+        "Responsive quality preserves information and functionality under real constraints",
+        "Native semantics provide the correct starting roles and keyboard behavior",
+        "Keyboard testing covers order, visible focus, activation and safe exit",
+        "Author placeholders remain useful without leaking into Publish output",
+        "Test configured, empty, long and localized content with browser-visible evidence"
+      ],
+      "local_context": {
+        "required_background": "Summarize exactly five rules: behavior under constraints, native semantic starting point, end-to-end keyboard operation, separate Author/Publish empty states and repeatable extreme-content evidence."
+      },
+      "layout": {
+        "composition": "Five numbered bullet checkpoints connect reflow, semantics, focus, dual empty states and an evidence matrix; end with one concise governing principle.",
+        "intent": "Provide a readable bullet summary without repeating detailed test diagrams."
+      },
+      "visual_elements": {
+        "main_visual": "Five compact bullet checkpoints with viewport, semantic HTML, keyboard, Author/Publish and matrix icons."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '07 · KEY TAKEAWAYS'.",
+        "Render all five takeaways as concise readable bullets.",
+        "Include the principle 'TEST BEHAVIOR, NOT SCREENSHOTS.'.",
+        "Do not add questions, exercises, assignments or new technical concepts."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Questions",
+      "role": "Q&A",
+      "intent": "Invite questions raised by participants and close the session without introducing another exercise.",
+      "key_points": [
+        "Thank you."
+      ],
+      "local_context": {
+        "required_background": "This is a passive closing slide. Participants may ask their own questions; the presenter must not ask scripted questions or introduce a review exercise."
+      },
+      "layout": {
+        "composition": "Large Questions title, small Thank you subtitle, generous open space and one subtle viewport-to-focus-to-state motif.",
+        "intent": "Signal the end of the session while retaining the deck's technical visual identity."
+      },
+      "visual_elements": {
+        "main_visual": "A restrained decorative viewport-to-focus-to-state line motif with no labels or decision points."
+      },
+      "constraints": [
+        "Render the eyebrow exactly as '08 · QUESTIONS'.",
+        "Render only the title 'Questions' and the subtitle 'Thank you.'.",
+        "Do not include prompts, numbered questions, exercises, technical callouts, a demo, practice or assignment."
+      ]
+    }
+  ]
+}
