@@ -247,16 +247,21 @@
     <h2 id="week-4">Week 4 · Essential backend development</h2>
 
     <details><summary>Day 16 · Java, OSGi and Resource API foundations</summary>
-      <p><strong>Retrieval question:</strong> What turns compiled Java classes into an active capability inside AEM?</p>
+      <p><strong>Retrieval question:</strong> What must happen after Java compilation before a class becomes an active AEM capability?</p>
       <ol class="slides">
-        <li><strong>Slide 1 — An OSGi bundle is a managed JAR.</strong> Metadata declares exported packages, imports and runtime identity. <em>Speaker cue: successful compilation does not guarantee resolved runtime dependencies.</em></li>
-        <li><strong>Slide 2 — OSGi creates components.</strong> Declarative Services manages lifecycle, activation and references; application code should not manually instantiate them. <em>Speaker cue: the container provides collaboration.</em></li>
-        <li><strong>Slide 3 — Services publish contracts.</strong> Consumers depend on a focused capability rather than a concrete implementation. <em>Speaker cue: do not create an interface when there is no useful boundary.</em></li>
-        <li><strong>Slide 4 — Runtime state is diagnostic evidence.</strong> Active, satisfied, resolved and installed states point to different dependency problems. <em>Speaker cue: inspect state before reinstalling the same package.</em></li>
-        <li><strong>Slide 5 — Cloud instances are replaceable.</strong> Durable state must not depend on local memory or filesystem. <em>Speaker cue: design every service for restart and multiple instances.</em></li>
-        <li><strong>Slide 6 — The Resource API is the default content boundary.</strong> Resources expose paths, properties and children without unnecessary JCR coupling. <em>Speaker cue: use JCR APIs only for JCR-specific requirements.</em></li>
+        <li><strong>Slide 1 — Java, OSGi and Resource API foundations in AEM.</strong> Preview the source-to-runtime-to-content trace.</li>
+        <li><strong>Slide 2 — Java crosses several boundaries before AEM can use it.</strong> Separate source, compilation, bundle packaging, Felix resolution and component activation.</li>
+        <li><strong>Slide 3 — An OSGi bundle is a managed JAR.</strong> Connect manifest imports and exports to runtime package wiring.</li>
+        <li><strong>Slide 4 — Bundle, component and service are different runtime objects.</strong> Establish the vocabulary required for backend diagnostics.</li>
+        <li><strong>Slide 5 — Declarative Services activates only satisfied components.</strong> Trace annotations, references and container-owned lifecycle.</li>
+        <li><strong>Slide 6 — Runtime state tells you which boundary failed.</strong> Separate bundle states from component states and local from cloud evidence.</li>
+        <li><strong>Slide 7 — The Resource API is the default content boundary.</strong> Inspect path, resource type, properties, children and adaptation.</li>
+        <li><strong>Slide 8 — Choose the highest useful API.</strong> Prefer AEM and Sling abstractions while keeping lower-level APIs intentional.</li>
+        <li><strong>Slide 9 — Trace one capability from content to runtime.</strong> Connect repository, Java source, bundle identity and component evidence.</li>
+        <li><strong>Slide 10 — Key takeaways.</strong> Summarize the minimum runtime vocabulary and diagnostic habits.</li>
+        <li><strong>Slide 11 — Questions.</strong> End the session and leave the floor open for audience questions.</li>
       </ol>
-      <p><strong>Demo:</strong> trace a WKND resource to the Java class, bundle and component state that consume it. <strong>Assignment:</strong> map three project classes to resources and runtime responsibilities. <strong>Acceptance:</strong> resource boundary, bundle, component/service role and lifecycle are correct.</p>
+      <p><strong>Demo:</strong> trace one WKND content resource to the Java class that reads it, the <code>core</code> bundle that contains the class and the runtime state that proves availability. <strong>Assignment:</strong> map three project Java classes to their bundle, Resource API inputs and OSGi role. <strong>Acceptance:</strong> each map identifies resource boundary, source class, bundle identity, component or service role and runtime evidence.</p>
     </details>
 
     <details><summary>Day 17 · Sling Models, delegation and Model Exporter</summary>

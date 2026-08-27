@@ -1,0 +1,377 @@
+{
+  "run_status": "slides_recorded",
+  "deck_name": "lesson-16",
+  "selected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Class 16 runtime vocabulary sample prompt derived from slides/lesson-16/outline.md",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-16/origin_image/slide_04.png",
+    "input_context_preparation": "Inspect slide_04.png with view_image and pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "max_concurrent_slides": 6,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "Java, OSGi and Resource API foundations in AEM",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide01",
+        "agent_nickname": "lesson16_slide01",
+        "prompt": "prompts/slide_01.json",
+        "prompt_sha256": "8b31567c93d87352f1eeae1b4ec83f5047bfe4387eb9219d40ba6ce7c74ac936",
+        "dispatched_at": "2026-08-27T00:48:53Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040b0-5c37-7de1-8d73-3e0752f966ae/exec-ac58b784-1907-41ba-9d08-49b9bcd1923e.png",
+        "selected_source_sha256": "d4d0d6d0dc87dffb449328818f6cfe5627e40783fdd3596aa5f2d9359f47f517",
+        "final_image": "origin_image/slide_01.png",
+        "final_image_sha256": "d4d0d6d0dc87dffb449328818f6cfe5627e40783fdd3596aa5f2d9359f47f517",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Exact cover metadata, readable source-to-resource path, and approved technical-atlas style.",
+        "recorded_at": "2026-08-27T00:50:04Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "Java crosses several boundaries before AEM can use it.",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide02",
+        "agent_nickname": "lesson16_slide02",
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "1dd510e1bd95dbfd9627d23593bda917c834910e956969cab960ba7f11d1349f",
+        "dispatched_at": "2026-08-27T00:48:54Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040b0-9734-73d2-88b0-b10aeae73652/exec-49113735-1aaf-4bf0-9bc7-493a4ced7a38.png",
+        "selected_source_sha256": "14d206384bf496590e0b35f5a44063e541e4071640b6721a3260287cc5470313",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "14d206384bf496590e0b35f5a44063e541e4071640b6721a3260287cc5470313",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Corrected resource example; six-stage source-to-runtime pipeline is accurate and legible.",
+        "recorded_at": "2026-08-27T00:54:13Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "An OSGi bundle is a managed JAR.",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide03",
+        "agent_nickname": "lesson16_slide03",
+        "prompt": "prompts/slide_03.json",
+        "prompt_sha256": "1027cae47019eea84b3a450ddf799556c9dd07f113fefef33c9fd448a1571876",
+        "dispatched_at": "2026-08-27T00:48:54Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040b0-c74c-7610-ae80-7f988d2caa9c/exec-33dbdcd4-4c50-48ce-a3dd-33cb8143663b.png",
+        "selected_source_sha256": "66e45c3556b6ccb9836aec82d9986c9b7569dfd2fca54fa12a7f8dd36d8cbb26",
+        "final_image": "origin_image/slide_03.png",
+        "final_image_sha256": "66e45c3556b6ccb9836aec82d9986c9b7569dfd2fca54fa12a7f8dd36d8cbb26",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Corrected clearly fictional version mismatch; manifest and package-wiring evidence remain exact.",
+        "recorded_at": "2026-08-27T00:54:13Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "Bundle, component and service are different runtime objects.",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "accepted",
+      "dispatch": null,
+      "result": {
+        "final_image": "origin_image/slide_04.png",
+        "accepted_sample": true
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "Declarative Services activates only satisfied components.",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide05",
+        "agent_nickname": "lesson16_slide05",
+        "prompt": "prompts/slide_05.json",
+        "prompt_sha256": "0e11834da980fcae101f18bdb72be504490bca5e43c22ab6d3a5c1b764a50af8",
+        "dispatched_at": "2026-08-27T00:52:53Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide05",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040b4-6622-7cf2-8d9a-1c2e128da4a1/exec-0be3da0d-f5f3-468d-913d-fc567f5eeab5.png",
+        "selected_source_sha256": "5c62e91ea03526b24b259032732a219487c2c205f76f99f9324a2f0c9b362944",
+        "final_image": "origin_image/slide_05.png",
+        "final_image_sha256": "5c62e91ea03526b24b259032732a219487c2c205f76f99f9324a2f0c9b362944",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Correct minimal @Component/@Reference example and clear container-owned lifecycle with no service-registration claim.",
+        "recorded_at": "2026-08-27T00:57:51Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "Runtime state tells you which boundary failed.",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide06",
+        "agent_nickname": "lesson16_slide06",
+        "prompt": "prompts/slide_06.json",
+        "prompt_sha256": "90de0a8cdbc3f018eb56a0fe1ba2cad5c9c29657022148d4d4858dfb3e4b25a7",
+        "dispatched_at": "2026-08-27T00:54:56Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide06",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040b6-093a-78f3-a469-a8a3c71e294f/exec-b2055b58-0916-4b45-91f2-1aa38e3ea63f.png",
+        "selected_source_sha256": "4a8574d7c0754dd7b2d56de3641261a8b3ebf7909678a43a8cdfbe21a89ed00b",
+        "final_image": "origin_image/slide_06.png",
+        "final_image_sha256": "4a8574d7c0754dd7b2d56de3641261a8b3ebf7909678a43a8cdfbe21a89ed00b",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Bundle and component state rails are accurate, distinct, and paired with correct local/cloud inspection boundaries.",
+        "recorded_at": "2026-08-27T00:56:53Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "The Resource API is the default content boundary.",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide07",
+        "agent_nickname": "lesson16_slide07",
+        "prompt": "prompts/slide_07.json",
+        "prompt_sha256": "f981207bd4c86d98640764a13c0a8c394dd2945ca768c2684c67afb2f70cc519",
+        "dispatched_at": "2026-08-27T00:54:57Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide07",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040b6-4dfc-7bf2-a57e-16b68abb6af0/exec-039ef34f-ede6-40c2-84f5-05529254166b.png",
+        "selected_source_sha256": "994ccb9d1146c99a2dbe20f8f7f581de7713b6b94aeff79e124e1d9400fe1f02",
+        "final_image": "origin_image/slide_07.png",
+        "final_image_sha256": "994ccb9d1146c99a2dbe20f8f7f581de7713b6b94aeff79e124e1d9400fe1f02",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Correct Resource tree, exact API methods, safe ValueMap adaptation, and no fabricated model class.",
+        "recorded_at": "2026-08-27T01:04:43Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "Choose the highest useful API.",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide08",
+        "agent_nickname": "lesson16_slide08",
+        "prompt": "prompts/slide_08.json",
+        "prompt_sha256": "f69ebe13d959041303db66d614a6ab1e496157979340756eab98cd87cac0333e",
+        "dispatched_at": "2026-08-27T00:57:15Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide08",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040b8-72d5-7a50-84a2-415cd3cc4352/exec-9d250a6f-f4ed-493f-b3e0-c99b3b119f87.png",
+        "selected_source_sha256": "bc495fc308ee4de34725c230c911b3ef80a2d775c25ee1282f9b61a1fccbe965",
+        "final_image": "origin_image/slide_08.png",
+        "final_image_sha256": "bc495fc308ee4de34725c230c911b3ef80a2d775c25ee1282f9b61a1fccbe965",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Correct AEM-to-OSGi API preference order and safe scoped ResourceResolver ownership boundary.",
+        "recorded_at": "2026-08-27T01:00:10Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Trace one capability from content to runtime.",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide09",
+        "agent_nickname": "lesson16_slide09",
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "d0023204e9328609c1356d68c52753252e99d1c66d63a5b0e39da81f2f05af7d",
+        "dispatched_at": "2026-08-27T00:58:12Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040b9-558f-7c33-afd0-2cd2eda6b1f6/exec-2e113041-2be1-4ae7-98df-12845eb33a20.png",
+        "selected_source_sha256": "42fc41535fe122345c17d1c51653715031c18243537a77c6eb4f60fa6e51c8a6",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "42fc41535fe122345c17d1c51653715031c18243537a77c6eb4f60fa6e51c8a6",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Corrected five-stage trace with exact resource path, safe Java reads, bundle identity, minimal DS declaration, and runtime evidence.",
+        "recorded_at": "2026-08-27T01:06:17Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_10",
+      "number": 10,
+      "title": "Key takeaways",
+      "job": "prompts/slide_10.json",
+      "out": "origin_image/slide_10.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide10",
+        "agent_nickname": "lesson16_slide10",
+        "prompt": "prompts/slide_10.json",
+        "prompt_sha256": "be26930026db7fddca3ec12075025f616fb6109fc76a25fa8dc86c1522224a29",
+        "dispatched_at": "2026-08-27T01:00:36Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide10",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040bb-76a6-7051-8388-2883290f005a/exec-d2ed6ad2-7e4b-4a0a-a751-41cba8172938.png",
+        "selected_source_sha256": "d36da759830b5a7a297446af51bf626de7224db8cb984fd6b697af20ad95b62f",
+        "final_image": "origin_image/slide_10.png",
+        "final_image_sha256": "d36da759830b5a7a297446af51bf626de7224db8cb984fd6b697af20ad95b62f",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Corrected key-takeaway visuals; exact five summaries and trace conclusion remain readable.",
+        "recorded_at": "2026-08-27T01:07:31Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_11",
+      "number": 11,
+      "title": "Questions",
+      "job": "prompts/slide_11.json",
+      "out": "origin_image/slide_11.png",
+      "input_images": [],
+      "requires_context_images": false,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide11",
+        "agent_nickname": "lesson16_slide11",
+        "prompt": "prompts/slide_11.json",
+        "prompt_sha256": "3c1197adc084887ef0ddcc63dece58dcd7fd32d700aebb516b8c5617231ac30b",
+        "dispatched_at": "2026-08-27T01:05:44Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide11",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040c0-2af1-7892-87fd-7d33f4c069b3/exec-aaa6b127-277c-4f9d-b057-b7f50169c09b.png",
+        "selected_source_sha256": "95c7b7169b4f9fb03cd732831d68ba6513a31f8767413b5dad432c63c6bdea5b",
+        "final_image": "origin_image/slide_11.png",
+        "final_image_sha256": "95c7b7169b4f9fb03cd732831d68ba6513a31f8767413b5dad432c63c6bdea5b",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Passive closing slide contains only Questions and Thank you with no prompts or slide number.",
+        "recorded_at": "2026-08-27T01:07:31Z"
+      },
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-08-27T01:07:31Z"
+}

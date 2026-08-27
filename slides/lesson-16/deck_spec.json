@@ -1,0 +1,373 @@
+{
+  "deck_name": "lesson-16",
+  "title": "Class 16 · Java, OSGi and Resource API foundations in AEM",
+  "language": "English",
+  "aspect_ratio": "16:9",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Class 16 runtime vocabulary sample prompt derived from slides/lesson-16/outline.md",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-16/origin_image/slide_04.png",
+    "input_context_preparation": "Inspect slide_04.png with view_image and pass it to image_gen as a style-only referenced image.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode and return a blocker if unavailable."
+  },
+  "style": {
+    "name": "technical atlas courseware",
+    "visual_direction": "Sober, information-rich technical atlas blended with academic courseware. Use exact Maven modules, OSGi metadata, Declarative Services lifecycle states, resource-tree objects and diagnostic evidence instead of generic cloud or code illustrations.",
+    "color_palette": "Warm ivory drafting-paper background, deep navy typography, faint square grid, cobalt blue for source and bundle traces, green for satisfied or active runtime behavior, violet for contracts and content abstractions, and restrained orange for unresolved or unsafe states.",
+    "typography": "Large bold modern sans serif headings; crisp sans serif body copy; true monospace appearance for Java annotations, manifest headers, package names, paths, runtime states and API calls.",
+    "texture_and_finish": "Flat 2D technical diagrams with fine rules and precise IDE, JAR, manifest, lifecycle, registry, resource-tree and console icons. No gradients, neon, glass, 3D or photography.",
+    "deck_consistency": "Match the approved slide_04 sample palette, typography, drafting grid, technical density, semantic colors, monospace treatment and line weight while varying composition by slide role."
+  },
+  "deck_context": {
+    "source_summary": "Class 16 begins Week 4 of a traditional AEM Sites course for frontend-oriented developers. It builds the minimum Java runtime vocabulary needed before Sling Models: core module, OSGi bundle, Declarative Services component, service contract, runtime states and Sling Resource API.",
+    "core_claim": "Compiled Java becomes an AEM capability only after bundle packaging and resolution, Declarative Services lifecycle requirements and a correct content boundary; diagnose each handoff with observable runtime evidence.",
+    "canonical_facts": [
+      "The Maven core module produces the project's OSGi bundle JAR.",
+      "A bundle manifest declares symbolic identity, version, imported packages and exported packages.",
+      "Successful Java compilation does not prove that Apache Felix can resolve runtime package imports.",
+      "A bundle, a Declarative Services component and a registered service are different runtime objects.",
+      "A plain Java class inside a bundle is not automatically an OSGi component or service.",
+      "@Component declares a Declarative Services component and @Reference expresses a service dependency.",
+      "Required references and required configuration must be satisfied before a component can activate.",
+      "A bundle can be Active while a contained component remains unsatisfied.",
+      "The local AEM SDK exposes the Web Console; cloud environments expose read-only runtime evidence through Developer Console.",
+      "A Resource exposes a path, name, resource type, properties and children without requiring direct JCR Node use.",
+      "ValueMap supports typed property access and adaptTo bridges a Resource to supported higher-level abstractions.",
+      "Prefer AEM product APIs, then Sling abstractions; use JCR only for JCR-specific needs and OSGi for container concerns.",
+      "Administrative repository access is not allowed; background access uses a scoped service user and a correctly closed ResourceResolver.",
+      "AEM as a Cloud Service treats deployed code and configuration as immutable at runtime."
+    ],
+    "canonical_terms": [
+      "core",
+      "OSGi bundle",
+      "Apache Felix",
+      "MANIFEST.MF",
+      "Bundle-SymbolicName",
+      "Import-Package",
+      "Export-Package",
+      "Declarative Services",
+      "@Component",
+      "@Reference",
+      "service registry",
+      "Installed",
+      "Resolved",
+      "Active",
+      "unsatisfied",
+      "Resource",
+      "ValueMap",
+      "ResourceResolver",
+      "adaptTo"
+    ]
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Java, OSGi and Resource API foundations in AEM",
+      "role": "opening overview",
+      "intent": "Identify the session and preview the complete source-to-runtime-to-content trace.",
+      "key_points": [
+        "Class 16 · Week 4 · Day 16 · September 7, 2026",
+        "Java, OSGi and Resource API foundations in AEM",
+        "Today: core, bundles, components, services, runtime evidence and resources",
+        "30-minute technical session",
+        "Juan Maldonado"
+      ],
+      "local_context": {
+        "required_background": "Create an opening overview with a compact path from Java source in the core module to an OSGi bundle, a managed runtime component and an AEM content resource."
+      },
+      "layout": {
+        "composition": "Strong title and metadata block on the left; concise source-to-bundle-to-component-to-resource path on the right.",
+        "intent": "Orient the audience without turning the cover into a detailed architecture page."
+      },
+      "visual_elements": {
+        "main_visual": "IDE source file connected to a managed JAR, a DS lifecycle node and an AEM Resource tree."
+      },
+      "constraints": [
+        "Render all class metadata exactly.",
+        "Render the Today line exactly.",
+        "Do not add implementation code or extra agenda items."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Java crosses several boundaries before AEM can use it.",
+      "role": "process",
+      "intent": "Prevent successful compilation from being treated as proof that AEM can execute the class.",
+      "key_points": [
+        "Java source lives in the Maven core module.",
+        "Compilation produces bytecode; bundle packaging adds OSGi metadata.",
+        "Apache Felix resolves runtime package dependencies.",
+        "Declarative Services creates eligible components and binds references.",
+        "Application code then consumes AEM or Sling objects such as Resource."
+      ],
+      "local_context": {
+        "required_background": "Show exactly six stages: SOURCE, COMPILE, BUNDLE JAR, FELIX RESOLUTION, DS COMPONENT, RESOURCE-BACKED BEHAVIOR. Under them show evidence: .java, .class, MANIFEST.MF, package wiring, component state, Resource path/properties. Conclude BUILD SUCCESS IS ONLY ONE CHECKPOINT."
+      },
+      "layout": {
+        "composition": "One horizontal six-stage pipeline with an evidence rail below and one strong conclusion banner.",
+        "intent": "Make the runtime handoffs visible as a sequence."
+      },
+      "visual_elements": {
+        "main_visual": "Source-to-runtime evidence pipeline."
+      },
+      "constraints": [
+        "Use the exact six stage names from local_context.",
+        "Keep each stage to one concise evidence label.",
+        "Do not introduce Sling Model injection."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "An OSGi bundle is a managed JAR.",
+      "role": "architecture anatomy",
+      "intent": "Distinguish a normal JAR from an OSGi module whose runtime contracts are enforced.",
+      "key_points": [
+        "Bundle-SymbolicName and Bundle-Version create runtime identity.",
+        "Import-Package declares packages required at runtime.",
+        "Export-Package publishes intended cross-bundle contracts.",
+        "Compilation may succeed while Felix cannot resolve an import.",
+        "Keep implementation packages private."
+      ],
+      "local_context": {
+        "required_background": "Use a fictional wknd.core bundle. Show exact manifest labels Bundle-SymbolicName: com.adobe.aem.guides.wknd.core, Bundle-Version, Import-Package, Export-Package. Contrast COMPILE PASS with RUNTIME UNRESOLVED when one required package provider is missing or incompatible."
+      },
+      "layout": {
+        "composition": "Large bundle cutaway on the left, manifest contract in the center and compile-versus-runtime comparison on the right.",
+        "intent": "Connect bundle contents and manifest wiring to a concrete failure."
+      },
+      "visual_elements": {
+        "main_visual": "Managed JAR cutaway plus package-wiring sockets."
+      },
+      "constraints": [
+        "Spell all manifest headers exactly.",
+        "Do not imply every package should be exported.",
+        "Use only one concise fictional package mismatch."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Bundle, component and service are different runtime objects.",
+      "role": "concept comparison",
+      "intent": "Establish the three runtime concepts developers must keep separate.",
+      "key_points": [
+        "A bundle is a managed JAR and class-loading boundary.",
+        "A component is an object managed by Declarative Services.",
+        "A service is a capability published by contract.",
+        "One bundle can contain many components.",
+        "One component may publish zero, one or many services."
+      ],
+      "local_context": {
+        "required_background": "This is the approved sample slide. Preserve it exactly and do not regenerate it."
+      },
+      "layout": {
+        "composition": "Three synchronized technical panels plus relationship rail.",
+        "intent": "Use direct visual comparison to prevent vocabulary confusion."
+      },
+      "visual_elements": {
+        "main_visual": "Bundle cutaway, DS lifecycle and service registry."
+      },
+      "constraints": [
+        "Do not regenerate this approved sample.",
+        "Use the existing slide_04.png as final."
+      ],
+      "sample_approved": true
+    },
+    {
+      "number": 5,
+      "title": "Declarative Services activates only satisfied components.",
+      "role": "lifecycle",
+      "intent": "Explain why runtime collaboration is declared instead of manually constructed.",
+      "key_points": [
+        "@Component declares a class for Declarative Services.",
+        "@Reference expresses a dependency on a service contract.",
+        "Required references and configuration must be satisfied before activation.",
+        "Activation and deactivation belong to the container lifecycle.",
+        "Do not keep durable business state in the component instance."
+      ],
+      "local_context": {
+        "required_background": "Show one GuideCatalog component with @Component and one required @Reference to GuideRepository. The component remains UNSATISFIED until the service is registered, then becomes SATISFIED and ACTIVE. Show deactivate on bundle stop. Do not teach OSGi configuration details; that belongs to Class 18."
+      },
+      "layout": {
+        "composition": "Lifecycle gate across the center, declared annotations on the left and container-owned callbacks on the right.",
+        "intent": "Make dependency satisfaction the cause of activation."
+      },
+      "visual_elements": {
+        "main_visual": "UNSATISFIED → reference bound → ACTIVE → deactivate lifecycle."
+      },
+      "constraints": [
+        "Render @Component and @Reference exactly.",
+        "Do not show new GuideCatalog() or manual service lookup as the recommended path.",
+        "Keep configuration as a required input label only."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Runtime state tells you which boundary failed.",
+      "role": "diagnostic evidence",
+      "intent": "Turn bundle and component states into evidence-driven troubleshooting.",
+      "key_points": [
+        "Installed commonly points to unresolved package requirements.",
+        "Resolved means wiring exists but the bundle is not active.",
+        "Active bundle does not prove every component is satisfied.",
+        "Unsatisfied component points to a missing reference or required configuration.",
+        "Use Web Console locally and Developer Console in cloud environments."
+      ],
+      "local_context": {
+        "required_background": "Create two separate diagnostic rails. Bundle rail: INSTALLED → inspect missing imports; RESOLVED → inspect start state; ACTIVE → bundle lifecycle is available. Component rail: UNSATISFIED → inspect missing references or required configuration; ACTIVE → component is available. Bottom environment split: LOCAL SDK /system/console is interactive; CLOUD Developer Console is read-only evidence."
+      },
+      "layout": {
+        "composition": "Two state rails with symptom/evidence/action rows, then a local-versus-cloud inspection footer.",
+        "intent": "Prevent bundle state and component state from being conflated."
+      },
+      "visual_elements": {
+        "main_visual": "Runtime diagnostic matrix with state lights and console inspectors."
+      },
+      "constraints": [
+        "Keep bundle and component states in separate labeled sections.",
+        "Do not claim Developer Console can mutate production runtime state.",
+        "Do not recommend reinstalling before inspecting evidence."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "The Resource API is the default content boundary.",
+      "role": "content abstraction anatomy",
+      "intent": "Connect Java runtime foundations to the primary content object used next.",
+      "key_points": [
+        "Resource represents an addressable item in Sling's resource tree.",
+        "It exposes path, name, resource type, properties and children.",
+        "ValueMap provides typed property access with explicit defaults.",
+        "Child navigation follows known content structure.",
+        "adaptTo bridges to supported higher-level abstractions."
+      ],
+      "local_context": {
+        "required_background": "Use one Guide Card at /content/wknd/us/en/guides/jcr:content/root/guide-card. Show getPath(), getName(), getResourceType(), getValueMap(), getChild(\"items\") and adaptTo(...). Include one exact typed read: valueMap.get(\"title\", \"Untitled guide\"). Conclude RESOURCE FIRST; JCR NODE ONLY WHEN REQUIRED."
+      },
+      "layout": {
+        "composition": "Central resource inspector with five API ports and a small Resource-versus-Node boundary callout.",
+        "intent": "Make the Resource a concrete navigable object rather than an abstract definition."
+      },
+      "visual_elements": {
+        "main_visual": "Guide Card resource tree connected to path, type, ValueMap, child and adaptation evidence."
+      },
+      "constraints": [
+        "Spell all API method names exactly.",
+        "Use the exact path and typed property example from local_context.",
+        "Do not introduce Sling Model injection annotations."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Choose the highest useful API.",
+      "role": "decision ladder",
+      "intent": "Avoid coupling ordinary component code to lower-level repository or container APIs.",
+      "key_points": [
+        "Prefer an AEM product abstraction when it directly models the requirement.",
+        "Otherwise prefer Sling resources and requests.",
+        "Use JCR only for JCR-specific capabilities.",
+        "Use OSGi for container concerns.",
+        "Background access uses a scoped service user and a correctly closed ResourceResolver."
+      ],
+      "local_context": {
+        "required_background": "Show the preferred order AEM → Sling → JCR → OSGi. Examples: PageManager/Page; Resource/ValueMap; Session/Node for access control or JCR-specific needs; @Component/@Reference for container lifecycle. Add forbidden path: administrative resolver/session. Add safe background path: scoped service user → try-with-resources ResourceResolver → close."
+      },
+      "layout": {
+        "composition": "Descending four-level decision ladder with examples, plus safe-versus-forbidden resolver access strip.",
+        "intent": "Turn API preference into a practical choice rather than a hierarchy to memorize."
+      },
+      "visual_elements": {
+        "main_visual": "AEM-to-OSGi decision ladder and resolver ownership strip."
+      },
+      "constraints": [
+        "Render the order AEM → Sling → JCR → OSGi exactly.",
+        "Do not imply JCR or OSGi APIs are universally forbidden.",
+        "Explicitly mark administrative access as forbidden."
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Trace one capability from content to runtime.",
+      "role": "integrated case study",
+      "intent": "Combine repository, source, bundle and runtime evidence in one repeatable WKND trace.",
+      "key_points": [
+        "Record the Guide Card resource path and resource type.",
+        "Locate the Java consumer in core and identify Resource API reads.",
+        "Find the bundle symbolic name and inspect package wiring and state.",
+        "Identify DS component descriptors, service contracts and references.",
+        "Explain behavior with evidence, not build success alone."
+      ],
+      "local_context": {
+        "required_background": "Create five synchronized inspectors labeled 1 REPOSITORY, 2 IDE / core, 3 BUNDLE MANIFEST, 4 DS COMPONENT, 5 RUNTIME EVIDENCE. Use the Guide Card resource path from slide 7, a fictional GuideCatalog.java consumer, bundle symbolic name com.adobe.aem.guides.wknd.core, @Component/@Reference evidence and final ACTIVE states. End with REPOSITORY → SOURCE → BUNDLE → COMPONENT → RUNTIME."
+      },
+      "layout": {
+        "composition": "Five-stage evidence trace with a continuous highlighted Guide Card thread and a concise acceptance footer.",
+        "intent": "Integrate the concepts into a diagnostic workflow developers can repeat."
+      },
+      "visual_elements": {
+        "main_visual": "Repository, IDE, manifest, component and console inspectors."
+      },
+      "constraints": [
+        "Keep the same fictional Guide Card identity through all stages.",
+        "Do not claim the browser alone proves backend activation.",
+        "Do not introduce Model Exporter or servlet endpoints."
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Key takeaways",
+      "role": "summary",
+      "intent": "Consolidate the minimum backend vocabulary and diagnostic habits needed next.",
+      "key_points": [
+        "core source becomes usable only after compilation, bundle resolution and component activation.",
+        "Bundle, component and service describe different runtime responsibilities.",
+        "Declarative Services owns lifecycle and reference binding.",
+        "Runtime state narrows the failing boundary before code is changed or redeployed.",
+        "Prefer AEM and Sling abstractions; use Resource API for ordinary content access."
+      ],
+      "local_context": {
+        "required_background": "Create exactly five numbered checkpoints: SOURCE TO RUNTIME, RUNTIME VOCABULARY, DECLARATIVE SERVICES, DIAGNOSTIC EVIDENCE, RESOURCE FIRST. Conclude TRACE THE RUNTIME, DO NOT GUESS."
+      },
+      "layout": {
+        "composition": "Five numbered checkpoints connected by one evidence line and a large conclusion banner.",
+        "intent": "Make the review easy to scan without introducing new content."
+      },
+      "visual_elements": {
+        "main_visual": "Source, bundle, component, console and resource icons connected in order."
+      },
+      "constraints": [
+        "Render all five bullet takeaways as concise visible text.",
+        "Use the exact conclusion TRACE THE RUNTIME, DO NOT GUESS.",
+        "Do not add an assignment or quiz."
+      ]
+    },
+    {
+      "number": 11,
+      "title": "Questions",
+      "role": "Q&A",
+      "intent": "Invite questions raised by participants and close without adding another exercise.",
+      "key_points": [
+        "Questions",
+        "Thank you"
+      ],
+      "local_context": {
+        "required_background": "Create a quiet closing composition with only Questions and Thank you. Use a subtle source-to-bundle-to-resource motif and generous open space."
+      },
+      "layout": {
+        "composition": "Large Questions title and smaller Thank you message with a restrained technical motif.",
+        "intent": "Close passively and leave space for audience questions."
+      },
+      "visual_elements": {
+        "main_visual": "Subtle Java source, managed JAR and Resource tree line motif."
+      },
+      "constraints": [
+        "Render only Questions and Thank you as visible words.",
+        "Do not add prompts, numbered questions, an exercise, an assignment, a slide number or a footer."
+      ]
+    }
+  ]
+}

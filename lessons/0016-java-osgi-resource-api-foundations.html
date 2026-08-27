@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class 16 · Java, OSGi and Resource API foundations in AEM</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="brand" href="../index.html">AEM Training</a>
+    <ul>
+      <li><a href="../index.html">Overview</a></li>
+      <li><a href="../reference/aem-course-topics.html">Syllabus</a></li>
+      <li><a href="../reference/wknd-project-backlog.html">Practices</a></li>
+      <li><a href="../reference/index.html">References</a></li>
+    </ul>
+  </nav>
+  <header>
+    <p class="eyebrow">Class 16 · Week 4 · Day 16 · September 7, 2026</p>
+    <h1>Java, OSGi and Resource API foundations in AEM</h1>
+    <p class="lede">Trace Java from the <code>core</code> module through bundle resolution and component activation to a Resource-backed capability.</p>
+    <ul class="meta"><li>30 minutes online</li><li>Backend foundations for frontend developers</li><li>Source, bundle, component and content evidence</li></ul>
+  </header>
+  <main id="content">
+    <section class="callout"><strong>Observable outcome:</strong> each developer can locate a project Java class, identify its bundle and OSGi role, inspect the relevant runtime state and explain the Resource API boundary it consumes.</section>
+
+    <h2>Topic summary</h2>
+    <p>Java source does not become an AEM capability at compilation. The Maven <code>core</code> module packages classes and OSGi metadata into a managed bundle; Apache Felix resolves its package requirements; and Declarative Services creates eligible components only when mandatory references and configuration are satisfied. Bundle, component and service therefore describe different runtime objects and require different diagnostic evidence.</p>
+    <p>Once the runtime boundary is available, ordinary component code should begin with the highest useful abstraction. AEM product APIs model product concepts, while Sling’s Resource API exposes paths, resource types, typed properties and children without unnecessary JCR coupling. Lower-level JCR and OSGi APIs remain appropriate for repository-specific and container-specific requirements, but they should be intentional rather than habitual.</p>
+    <ul>
+      <li>Separate compilation, bundle resolution and component activation.</li>
+      <li>Use manifest imports and exports as explicit runtime contracts.</li>
+      <li>Distinguish bundle, managed component and published service.</li>
+      <li>Use bundle and component states to identify the failing boundary.</li>
+      <li>Prefer AEM and Sling abstractions for ordinary application work.</li>
+      <li>Trace repository, source, bundle and runtime evidence together.</li>
+    </ul>
+
+    <h2>30-minute agenda</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Time</th><th>Slide</th><th>Facilitation</th></tr></thead>
+      <tbody>
+        <tr><td>0–3</td><td>1 · Opening</td><td>Preview the source-to-runtime-to-content trace.</td></tr>
+        <tr><td>3–6</td><td>2 · Java boundaries</td><td>Separate compilation, packaging, resolution and activation evidence.</td></tr>
+        <tr><td>6–9</td><td>3 · Bundle anatomy</td><td>Connect manifest headers to runtime package wiring.</td></tr>
+        <tr><td>9–12</td><td>4 · Runtime vocabulary</td><td>Distinguish bundle, component and service.</td></tr>
+        <tr><td>12–16</td><td>5 · Declarative Services</td><td>Follow one required reference through component activation.</td></tr>
+        <tr><td>16–20</td><td>6 · Runtime evidence</td><td>Diagnose bundle and component states locally and in cloud environments.</td></tr>
+        <tr><td>20–23</td><td>7 · Resource API</td><td>Inspect one Resource, its ValueMap, children and adaptation boundary.</td></tr>
+        <tr><td>23–25</td><td>8 · API choice</td><td>Apply the AEM → Sling → JCR → OSGi preference ladder.</td></tr>
+        <tr><td>25–27</td><td>9 · Integrated trace</td><td>Connect repository, source, bundle and component evidence.</td></tr>
+        <tr><td>27–28</td><td>10 · Key takeaways</td><td>Summarize the five backend checkpoints.</td></tr>
+        <tr><td>28–30</td><td>11 · Questions</td><td>Questions from the audience only; no review exercise.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2>Complete slide deck</h2>
+    <p class="section-intro">Study each slide with its presenter notes, then copy or download the PNG.</p>
+    <div class="web-deck">
+      <article class="web-slide" data-slide-src="../slides/lesson-16/origin_image/slide_01.png">
+        <img class="web-slide-image" src="../slides/lesson-16/origin_image/slide_01.png" alt="Class 16 opening slide tracing Java source through an OSGi bundle and DS component to a Resource.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-16/origin_image/slide_01.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Frame:</strong> Week 4 moves behind HTL and adds the runtime map for project Java.</li>
+          <li><strong>Preview:</strong> follow source in <code>core</code> through bundle resolution, component activation and Resource access.</li>
+          <li><strong>Boundary:</strong> this session establishes foundations; Sling Models, configuration, servlets and tests follow later.</li>
+          <li><strong>Outcome:</strong> identify which evidence proves each handoff instead of treating “Java works” as one claim.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-16/origin_image/slide_02.png">
+        <img class="web-slide-image" src="../slides/lesson-16/origin_image/slide_02.png" alt="Six-stage pipeline from Java source and compilation to bundle resolution, component activation and Resource-backed behavior.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-16/origin_image/slide_02.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Read left to right:</strong> source, compile, bundle JAR, Felix resolution, DS component and Resource-backed behavior.</li>
+          <li><strong>Evidence:</strong> map each stage to <code>.java</code>, bytecode, manifest, package wiring, component state and content input.</li>
+          <li><strong>Avoid:</strong> build success proves compilation and packaging, not runtime resolution or activation.</li>
+          <li><strong>Transition:</strong> open the bundle artifact that carries Java into the managed runtime.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-16/origin_image/slide_03.png">
+        <img class="web-slide-image" src="../slides/lesson-16/origin_image/slide_03.png" alt="Managed JAR cutaway showing bundle identity, imported packages, exported contracts and unresolved runtime wiring.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-16/origin_image/slide_03.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Identity:</strong> <code>Bundle-SymbolicName</code> and version give the module a stable runtime identity.</li>
+          <li><strong>Contracts:</strong> imports declare required packages; exports publish only supported cross-bundle packages.</li>
+          <li><strong>Failure:</strong> a dependency may exist on the build classpath but remain unavailable or incompatible in Felix.</li>
+          <li><strong>Design rule:</strong> keep implementation packages private unless another bundle needs a genuine contract.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-16/origin_image/slide_04.png">
+        <img class="web-slide-image" src="../slides/lesson-16/origin_image/slide_04.png" alt="Comparison of an OSGi bundle, a Declarative Services component and a registered service capability.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-16/origin_image/slide_04.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Bundle:</strong> deployable module and class-loading boundary containing classes and descriptors.</li>
+          <li><strong>Component:</strong> managed object whose lifecycle belongs to Declarative Services.</li>
+          <li><strong>Service:</strong> capability a component may publish by contract for managed consumers.</li>
+          <li><strong>Relationship:</strong> one bundle may contain many components; a component may publish zero, one or several services.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-16/origin_image/slide_05.png">
+        <img class="web-slide-image" src="../slides/lesson-16/origin_image/slide_05.png" alt="Declarative Services component waits for a required service reference before activation and later deactivates with the container lifecycle.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-16/origin_image/slide_05.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Declare:</strong> <code>@Component</code> makes the class eligible for DS management; <code>@Reference</code> declares a service dependency.</li>
+          <li><strong>Gate:</strong> the GuideCatalog remains unsatisfied until its required GuideRepository service is available.</li>
+          <li><strong>Ownership:</strong> the container binds references and owns activation and deactivation.</li>
+          <li><strong>Cloud rule:</strong> keep activation fast and do not treat component fields as durable business storage.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-16/origin_image/slide_06.png">
+        <img class="web-slide-image" src="../slides/lesson-16/origin_image/slide_06.png" alt="Diagnostic matrix separates bundle states from component states and local Web Console from cloud Developer Console evidence.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-16/origin_image/slide_06.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Bundle rail:</strong> Installed suggests unresolved requirements; Resolved has wiring; Active confirms bundle lifecycle.</li>
+          <li><strong>Component rail:</strong> unsatisfied points to missing references or required configuration; active proves that managed object is available.</li>
+          <li><strong>Distinction:</strong> an Active bundle can still contain an unsatisfied component.</li>
+          <li><strong>Environment:</strong> inspect interactively in the local SDK Web Console and use read-only Developer Console evidence in cloud.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-16/origin_image/slide_07.png">
+        <img class="web-slide-image" src="../slides/lesson-16/origin_image/slide_07.png" alt="Guide Card Resource exposes path, resource type, typed properties, child resources and supported adaptation.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-16/origin_image/slide_07.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Object:</strong> a Resource represents an addressable item in Sling’s resource tree.</li>
+          <li><strong>Properties:</strong> use <code>ValueMap</code> for typed reads with explicit defaults.</li>
+          <li><strong>Structure:</strong> navigate known children through the Resource contract and adapt only to supported abstractions.</li>
+          <li><strong>Boundary:</strong> start resource-first; use direct JCR objects only for a JCR-specific requirement.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-16/origin_image/slide_08.png">
+        <img class="web-slide-image" src="../slides/lesson-16/origin_image/slide_08.png" alt="Decision ladder prefers AEM and Sling APIs before JCR and OSGi, with safe scoped ResourceResolver ownership.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-16/origin_image/slide_08.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Preference:</strong> select the highest API that directly expresses the requirement: AEM, Sling, JCR, then OSGi.</li>
+          <li><strong>Exceptions:</strong> use JCR for repository-specific work and OSGi for container-specific work.</li>
+          <li><strong>Security:</strong> administrative repository access is forbidden; background work uses a scoped service user.</li>
+          <li><strong>Ownership:</strong> close resolvers created by application code, preferably with try-with-resources.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-16/origin_image/slide_09.png">
+        <img class="web-slide-image" src="../slides/lesson-16/origin_image/slide_09.png" alt="Five-stage Guide Card trace connects repository content, Java source, bundle manifest, DS component and runtime evidence.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-16/origin_image/slide_09.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Repository:</strong> record the Guide Card path and resource type.</li>
+          <li><strong>Source:</strong> locate the Java consumer in <code>core</code> and identify exact Resource API reads.</li>
+          <li><strong>Runtime:</strong> connect bundle identity and package wiring to component descriptor, references and state.</li>
+          <li><strong>Explanation:</strong> use the full repository → source → bundle → component → runtime chain, not build success alone.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-16/origin_image/slide_10.png">
+        <img class="web-slide-image" src="../slides/lesson-16/origin_image/slide_10.png" alt="Five key takeaways summarize Java packaging, runtime vocabulary, Declarative Services, diagnostics and Resource API use.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-16/origin_image/slide_10.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Source:</strong> compilation, bundle resolution and component activation are separate checkpoints.</li>
+          <li><strong>Vocabulary:</strong> name bundle, component and service responsibilities precisely.</li>
+          <li><strong>Evidence:</strong> inspect bundle and component states before editing or redeploying.</li>
+          <li><strong>Content:</strong> prefer AEM and Sling abstractions and trace the runtime instead of guessing.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-16/origin_image/slide_11.png">
+        <img class="web-slide-image" src="../slides/lesson-16/origin_image/slide_11.png" alt="Quiet Questions and Thank you closing slide.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-16/origin_image/slide_11.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Close:</strong> thank the audience and leave the floor open for questions they want to raise.</li>
+          <li><strong>Boundary:</strong> do not introduce prompts, an exercise, an assignment or another backend concept.</li>
+        </ul></details>
+      </article>
+    </div>
+
+    <h2>Runtime capability map</h2>
+    <ol>
+      <li>Select one project Java class in the <code>core</code> module.</li>
+      <li>Locate the bundle symbolic name and inspect the class’s package imports or exports.</li>
+      <li>Classify the Java type as a plain class, managed component and/or service provider.</li>
+      <li>Locate the Resource boundary it consumes and record the exact properties or children read.</li>
+      <li>Inspect the corresponding bundle, component and service evidence in the local SDK Web Console.</li>
+      <li>Explain the result using repository, source, bundle and runtime evidence.</li>
+    </ol>
+    <p><strong>Acceptance:</strong> each map identifies the resource boundary, source class, bundle identity, component or service role and runtime state without confusing successful compilation with runtime activation.</p>
+
+    <h2>Official reading</h2>
+    <ul>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/reference-materials">AEM API Reference Materials — Adobe Experience League</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/foundation/development/understand-java-api-best-practices">Java API Best Practices in AEM — Adobe Experience League</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developer-tools/web-console">AEM as a Cloud Service Web Console — Adobe Experience League</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/debugging/debugging-aem-as-a-cloud-service/developer-console">AEM as a Cloud Service Developer Console — Adobe Experience League</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-65-lts/content/implementing/developing/bestpractices/jcr-integration">JCR Integration Best Practices — Adobe Experience League</a></li>
+    </ul>
+  </main>
+  <footer><a href="../index.html">Training overview</a></footer>
+  <script src="../assets/copy-slide.js"></script>
+</body>
+</html>
