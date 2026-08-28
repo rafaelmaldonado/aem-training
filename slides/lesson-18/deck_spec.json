@@ -1,0 +1,412 @@
+{
+  "deck_name": "lesson-18",
+  "title": "Class 18 · OSGi services, configuration and servlet boundaries",
+  "language": "English",
+  "goal": "Teach frontend-oriented AEM developers to introduce one reusable OSGi capability, configure it safely for AEM as a Cloud Service and choose the smallest delivery surface that serves a real consumer.",
+  "aspect_ratio": "16:9",
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 3,
+  "outputs": [
+    "PNG slide images",
+    "HTML lesson",
+    "detailed speaker notes"
+  ],
+  "pptx": false,
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Class 18 configuration-resolution sample prompt derived from slides/lesson-18/outline.md and the Class 17 technical atlas reference",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-18/origin_image/slide_05.png",
+    "input_context_preparation": "Inspected the approved Class 17 slide_08 sample with view_image and passed it to image_gen as a style-only reference; the Class 18 slide_05 sample then received one built-in precise text edit before approval. Workers must inspect and pass the approved Class 18 slide_05 sample as their style-only reference.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode with the approved sample as style-only context and return a blocker if that path is unavailable."
+  },
+  "approved_style_reference": {
+    "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-18/origin_image/slide_05.png",
+    "role": "approved Class 18 sample slide style reference",
+    "fidelity": "match palette, typography, grid, density, semantic colors, monospace treatment and connector weight only; do not copy its exact layout or content"
+  },
+  "style": {
+    "name": "technical atlas courseware",
+    "visual_direction": "A sober, information-rich technical atlas blended with professional academic courseware. Use exact OSGi service, configuration, PID, run-mode and Sling request boundaries rather than generic software or cloud imagery.",
+    "color_palette": "Warm ivory drafting-paper background with a faint square grid; deep navy titles and structural rules; cobalt for runtime and request paths; violet for service and PID identity; green for active, valid and selected states; restrained orange for invalid, rejected, secret-risk and unnecessary-endpoint states.",
+    "typography": "Large bold condensed or modern sans serif headings; crisp sans serif supporting text; true monospace appearance for annotations, Java interfaces, PIDs, paths, placeholders, selectors and extensions.",
+    "texture_and_finish": "Flat 2D technical diagrams, fine rules, precise service, component, configuration, folder, environment, secret, evidence and request icons. No gradients, neon, glass, 3D, photography or generic corporate people.",
+    "deck_consistency": "Match the approved slide_05 sample palette, typography, drafting grid, technical density, semantic colors, monospace treatment and connector weight while varying composition by slide role."
+  },
+  "deck_context": {
+    "source_summary": "Class 18 follows the Sling Models and Model Exporter lesson. It teaches when reusable work belongs in an OSGi service, how Declarative Services owns lifecycle and dependencies, how typed configuration becomes effective in AEM as a Cloud Service, and why a new servlet is justified only by a distinct HTTP consumer and contract.",
+    "core_claim": "Add only the boundary the consumer needs: one reusable service capability, one safe effective configuration and no new servlet unless an existing rendering or export surface cannot satisfy a real HTTP contract.",
+    "canonical_facts": [
+      "A service should own one reusable capability needed by at least one real consumer.",
+      "Declarative Services registers components, manages their lifecycle and resolves declared service references.",
+      "A required unsatisfied service reference prevents component activation.",
+      "OSGi Metatype annotations describe typed operator-facing configuration metadata.",
+      "@Designate connects a Declarative Services component PID to an Object Class Definition.",
+      "AEM as a Cloud Service supports author or publish plus dev, stage or prod run modes; custom run modes are not supported.",
+      "For one PID, the configuration with the most matching run modes is effective as a whole; properties are not merged from less-specific files.",
+      "$[env:NAME] represents a non-secret environment-specific value and $[secret:NAME] represents a secret value.",
+      "Environment variables must not override Adobe-owned OSGi configuration.",
+      "Local runtime state is inspected in the SDK Web Console; cloud state is inspected in Developer Console status dumps.",
+      "HTL, a Sling Model, a Core Component or an existing Model Exporter contract should be preferred before a new servlet.",
+      "Sling strongly recommends resource-type servlet registration over path binding.",
+      "A servlet registration should constrain methods, selectors and extensions to the real contract.",
+      "A new endpoint adds validation, authorization, caching and compatibility responsibilities."
+    ],
+    "canonical_terms": [
+      "OSGi service",
+      "Declarative Services",
+      "@Component",
+      "@Reference",
+      "@ObjectClassDefinition",
+      "@AttributeDefinition",
+      "@Designate",
+      "PID",
+      "author",
+      "publish",
+      "dev",
+      "stage",
+      "prod",
+      "$[env:GUIDE_BASE_URL]",
+      "$[secret:GUIDE_API_TOKEN]",
+      "Web Console",
+      "Developer Console",
+      "HTL",
+      "Sling Model",
+      "Model Exporter",
+      "resource type",
+      "selector",
+      "extension",
+      "method"
+    ]
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "OSGi services, configuration and servlet boundaries",
+      "role": "opening overview",
+      "intent": "Identify the session and preview the path from a real consumer to a configured capability and the minimum delivery surface.",
+      "key_points": [
+        "Class 18 · Week 4 · Day 18 · September 9, 2026",
+        "Today: reusable capabilities, Declarative Services, typed configuration, environment values, secrets and endpoint decisions",
+        "30-minute technical session",
+        "Juan Maldonado"
+      ],
+      "local_context": {
+        "required_background": "Use the exact title and metadata. Show one compact Guide Card consumer calling a configured Guide URL service. Its output reaches HTL and an existing exporter; a servlet branch remains behind a visible decision gate. This is a cover, not an implementation diagram."
+      },
+      "layout": {
+        "composition": "Editorial title and metadata block on the left; compact consumer-to-service-to-delivery map on the right; narrow topic rail at the bottom.",
+        "intent": "Orient the audience and establish the session's consumer-first decision path."
+      },
+      "visual_elements": {
+        "main_visual": "Guide Card consumer → configured Guide URL service → HTL / existing exporter, with a gated servlet branch.",
+        "supporting_elements": "Precise consumer, service, configuration, HTML, JSON and closed-gate icons."
+      },
+      "constraints": [
+        "Render the title, date, duration and presenter exactly.",
+        "Keep the servlet visibly conditional.",
+        "Do not add a lesson number beyond the Class 18 metadata."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Create a service only for a reusable capability.",
+      "role": "responsibility boundary",
+      "intent": "Prevent speculative service layers while giving shared or external work one explicit owner.",
+      "key_points": [
+        "Start with a real consumer and one named capability.",
+        "Use a service for reusable queries, integrations or orchestration.",
+        "Keep presentation logic in the Sling Model.",
+        "Do not create a pass-through service."
+      ],
+      "local_context": {
+        "required_background": "Begin with WHAT DOES THE CONSUMER NEED? Left branch VIEW-SPECIFIC PREPARATION routes to SLING MODEL and includes fallback, formatting and empty state. Right branch SHARED CAPABILITY routes to GUIDE URL SERVICE and includes URL policy, integration and two real consumers. Cross out PASS-THROUGH SERVICE → ONE GETTER. Conclude NAME ONE CAPABILITY."
+      },
+      "layout": {
+        "composition": "Central consumer question with two ownership branches and one crossed-out anti-pattern strip.",
+        "intent": "Turn service creation into an ownership decision rather than a default layer."
+      },
+      "visual_elements": {
+        "main_visual": "View preparation versus reusable capability decision fork."
+      },
+      "constraints": [
+        "Render SLING MODEL, GUIDE URL SERVICE and PASS-THROUGH SERVICE exactly.",
+        "Show two consumers only on the reusable-service branch.",
+        "Do not imply every Sling Model needs a service."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Declarative Services owns the runtime lifecycle.",
+      "role": "runtime contract",
+      "intent": "Show how a service becomes available and why consumers depend on its registered capability.",
+      "key_points": [
+        "@Component registers GuideUrlService.",
+        "DS creates, activates and deactivates the component.",
+        "@Reference declares a real dependency.",
+        "Unsatisfied required references block activation."
+      ],
+      "local_context": {
+        "required_background": "Use a five-stage runtime chain: IMPLEMENTATION CLASS → BUNDLE METADATA → DS COMPONENT → SERVICE REGISTRY → CONSUMERS. Show @Component(service = GuideUrlService.class) at registration. Add one required @Reference entering the DS component through a gate labeled SATISFIED? YES → ACTIVE; NO → UNSATISFIED. Do not show manual new construction."
+      },
+      "layout": {
+        "composition": "Horizontal lifecycle and registration pipeline with a vertical required-reference gate before activation.",
+        "intent": "Connect Java annotations to observable runtime component and service state."
+      },
+      "visual_elements": {
+        "main_visual": "Declarative Services lifecycle pipeline and required-reference activation gate."
+      },
+      "constraints": [
+        "Spell @Component, GuideUrlService.class and @Reference exactly.",
+        "Do not imply the implementation registers itself through construction.",
+        "Keep ACTIVE and UNSATISFIED as distinct runtime states."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Typed configuration documents an operational contract.",
+      "role": "configuration anatomy",
+      "intent": "Connect Metatype definitions to readable typed service configuration.",
+      "key_points": [
+        "@ObjectClassDefinition names the contract.",
+        "Methods declare property names, types and defaults.",
+        "@AttributeDefinition adds operator guidance.",
+        "@Designate connects the component PID."
+      ],
+      "local_context": {
+        "required_background": "Place GUIDE URL CONFIG in the center with exact annotations @ObjectClassDefinition and @AttributeDefinition. Show two typed methods: String base_url() and boolean enabled() default true. Flow to GENERATED METATYPE METADATA, then @Designate(ocd = GuideUrlConfig.class), then the service PID, then ACTIVATE WITH TYPED CONFIG. Add OPERATIONAL API as the conclusion."
+      },
+      "layout": {
+        "composition": "Annotated configuration-interface cutaway flowing through generated metadata and PID into typed activation.",
+        "intent": "Make configuration shape, documentation and runtime consumption one connected contract."
+      },
+      "visual_elements": {
+        "main_visual": "Metatype interface → metadata → Designate/PID → typed activation flow."
+      },
+      "constraints": [
+        "Spell all annotations and GuideUrlConfig.class exactly.",
+        "Render String and boolean types clearly.",
+        "Do not show loose string parsing as the recommended path."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Effective configuration is selected per PID.",
+      "role": "run-mode resolution",
+      "intent": "Explain AEM as a Cloud Service configuration selection without Java environment conditionals.",
+      "key_points": [
+        "Supported run modes select one complete PID configuration.",
+        "The most matching run modes wins.",
+        "More specific replaces; it does not merge.",
+        "Custom run modes are unsupported."
+      ],
+      "local_context": {
+        "required_background": "This is the approved sample slide. Preserve it exactly and do not regenerate it."
+      },
+      "layout": {
+        "composition": "Runtime Author + dev badges select one of four candidate configuration folders for one PID, with resolution rules below.",
+        "intent": "Use one concrete resolution example to establish the deck's visual language."
+      },
+      "visual_elements": {
+        "main_visual": "Approved configuration-resolution atlas."
+      },
+      "constraints": [
+        "Do not regenerate this approved sample.",
+        "Use the existing slide_05.png as final."
+      ],
+      "sample_approved": true
+    },
+    {
+      "number": 6,
+      "title": "Values vary by environment; secrets stay out of Git.",
+      "role": "value classification",
+      "intent": "Separate versioned configuration shape from deploy-time values and credentials.",
+      "key_points": [
+        "Commit stable configuration and placeholder names.",
+        "Use $[env:GUIDE_BASE_URL] for non-secret values.",
+        "Use $[secret:GUIDE_API_TOKEN] for secrets.",
+        "Never commit, log or capture resolved secrets."
+      ],
+      "local_context": {
+        "required_background": "Use three vertical zones. VERSIONED IN GIT contains the stable PID JSON and placeholder names only. DEPLOY-TIME VALUES splits into ENV with $[env:GUIDE_BASE_URL] and SECRET with $[secret:GUIDE_API_TOKEN]. EFFECTIVE SERVICE receives resolved baseUrl and a masked token. Add a redaction shield and warning: DO NOT OVERRIDE ADOBE-OWNED OSGi CONFIGURATION."
+      },
+      "layout": {
+        "composition": "Three-zone configuration supply chain with separate environment and secret channels."
+        ,"intent": "Make the storage and exposure boundary for each value class unmistakable."
+      },
+      "visual_elements": {
+        "main_visual": "Versioned configuration shape receiving distinct ENV and SECRET deploy-time inputs."
+      },
+      "constraints": [
+        "Render both placeholder expressions exactly.",
+        "Mask the effective token; never invent a credential value.",
+        "Do not place resolved secrets in Git, logs or screenshots."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Missing configuration must fail safely and visibly.",
+      "role": "safe activation decision",
+      "intent": "Avoid insecure fallbacks and silent partial behavior when required configuration is absent or invalid.",
+      "key_points": [
+        "Classify required, optional and capability-enabling properties.",
+        "Validate values at activation.",
+        "Reject unsafe configuration.",
+        "Otherwise disable with a useful diagnostic."
+      ],
+      "local_context": {
+        "required_background": "Start with CONFIGURATION INPUTS: base URL, enabled flag and token-present signal; do not show a token. Send them through VALIDATE AT ACTIVATION with three checks: HTTPS URL, ALLOWED RANGE / VALUE, REQUIRED SECRET PRESENT. Outcomes: VALID → ACTIVE in green; OPTIONAL ABSENCE → DISABLED WITH DIAGNOSTIC in navy; UNSAFE INPUT → ACTIVATION REJECTED in orange. Add NO SILENT PARTIAL BEHAVIOR."
+      },
+      "layout": {
+        "composition": "Central validation gate with three input checks and three deliberately separated runtime outcomes."
+        ,"intent": "Teach safe failure as an explicit lifecycle decision."
+      },
+      "visual_elements": {
+        "main_visual": "Activation-time validation decision tree."
+      },
+      "constraints": [
+        "Do not display a secret value.",
+        "Keep ACTIVE, DISABLED WITH DIAGNOSTIC and ACTIVATION REJECTED distinct.",
+        "Do not recommend an insecure fallback URL or token."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Verify the effective runtime value, not only the file.",
+      "role": "operational evidence",
+      "intent": "Teach developers to prove which configuration and component state the runtime actually applied.",
+      "key_points": [
+        "Use the SDK Web Console locally.",
+        "Use Developer Console status dumps in cloud environments.",
+        "Match PID, tier, component state and non-secret values.",
+        "Verify Author and Publish independently."
+      ],
+      "local_context": {
+        "required_background": "Create a two-lane evidence comparison. LOCAL SDK → WEB CONSOLE → Components + Configuration. AEM AS A CLOUD SERVICE → DEVELOPER CONSOLE → Components + Configurations status dumps. Both converge on an evidence checklist with exact rows: PID, TIER / POD, COMPONENT STATE, NON-SECRET EFFECTIVE VALUES. Add AUTHOR ≠ PUBLISH when configured differently and REDACT SECRETS."
+      },
+      "layout": {
+        "composition": "Mirrored local and cloud diagnostic lanes converging on one runtime evidence checklist."
+        ,"intent": "Shift proof from source files to observable effective state."
+      },
+      "visual_elements": {
+        "main_visual": "Web Console and Developer Console evidence paths."
+      },
+      "constraints": [
+        "Use Web Console only for local SDK and Developer Console for cloud evidence.",
+        "Do not show or invent secret values.",
+        "Keep PID and component state visible in the final checklist."
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Choose the minimum delivery surface for the consumer.",
+      "role": "surface decision ladder",
+      "intent": "Make no new servlet the default unless a requirement needs a separate HTTP contract.",
+      "key_points": [
+        "HTL for server-rendered component markup.",
+        "Sling Model for prepared values and state.",
+        "Reuse an existing Core Component or Model Exporter contract.",
+        "Servlet only for a distinct HTTP consumer and response contract."
+      ],
+      "local_context": {
+        "required_background": "Use a descending stop-at-first-fit ladder beginning with WHAT DOES THE CONSUMER NEED? Rung 1 HTL — SERVER-RENDERED MARKUP. Rung 2 SLING MODEL — PREPARED VALUES / STATE. Rung 3 EXISTING CORE COMPONENT OR MODEL EXPORTER — EXISTING CONTRACT. Rung 4 NEW SERVLET — DISTINCT HTTP CONSUMER + RESPONSE CONTRACT. Place validation, authorization, caching and compatibility weights on the servlet rung. Conclude THE BEST SERVLET MAY BE NO SERVLET."
+      },
+      "layout": {
+        "composition": "Four-rung decision ladder with a visible stop marker on each existing surface and accumulated responsibility on the servlet rung."
+        ,"intent": "Encode the minimum-surface rule as a practical design sequence."
+      },
+      "visual_elements": {
+        "main_visual": "HTL → Sling Model → existing contract → servlet decision ladder."
+      },
+      "constraints": [
+        "Render all four surfaces and their consumer need exactly.",
+        "Keep the servlet as the final conditional rung.",
+        "Render THE BEST SERVLET MAY BE NO SERVLET exactly."
+      ]
+    },
+    {
+      "number": 10,
+      "title": "If a servlet is required, bind and constrain it explicitly.",
+      "role": "request boundary",
+      "intent": "Define the smallest safe servlet registration and the evidence needed to operate it.",
+      "key_points": [
+        "Prefer resource-type registration over path binding.",
+        "Declare exact methods, selectors and extensions.",
+        "Validate inputs and return deliberate responses.",
+        "Verify permissions, cache behavior and servlet resolution."
+      ],
+      "local_context": {
+        "required_background": "Decompose one request as RESOURCE / SELECTOR / EXTENSION / METHOD using /content/wknd/us/en.guides.json and GET. Map it to RESOURCE-TYPE SERVLET registration with resourceTypes = wknd/components/page, selectors = guides, extensions = json, methods = GET. Then pass through INPUT VALIDATION, PERMISSION CHECK, CACHE POLICY and RESPONSE CONTRACT gates. Add a restrained orange PATH-BOUND SERVLET card labeled DISCOURAGED."
+      },
+      "layout": {
+        "composition": "Request anatomy across the top, exact resource-type registration in the center and four operational gates before a JSON response."
+        ,"intent": "Tie servlet selection and safety responsibilities to one exact request contract."
+      },
+      "visual_elements": {
+        "main_visual": "Sling request decomposition and constrained resource-type servlet flow."
+      },
+      "constraints": [
+        "Spell the request, resource type, selector, extension and method exactly.",
+        "Prefer resource-type registration and label path binding discouraged.",
+        "Do not show a write method or unauthenticated bypass."
+      ]
+    },
+    {
+      "number": 11,
+      "title": "Key takeaways",
+      "role": "technical recap",
+      "intent": "Consolidate the ownership, configuration and delivery decisions developers should carry into implementation.",
+      "key_points": [
+        "One reusable capability for a real consumer.",
+        "Declarative Services owns lifecycle and dependencies.",
+        "Typed configuration is selected per PID.",
+        "Environment values and secrets fail safely.",
+        "Reuse an existing surface before a constrained servlet."
+      ],
+      "local_context": {
+        "required_background": "Place one central label CONSUMER-DRIVEN BACKEND CONTRACT with five numbered branches: 1 CAPABILITY, 2 DS LIFECYCLE, 3 TYPED CONFIGURATION, 4 EFFECTIVE + SAFE VALUES, 5 MINIMUM DELIVERY SURFACE. Use the exact key points and conclude ADD ONLY THE BOUNDARY THE CONSUMER NEEDS."
+      },
+      "layout": {
+        "composition": "Central backend contract with five takeaway branches and one strong conclusion strip."
+        ,"intent": "Summarize the lesson as five implementation checkpoints rather than repeating earlier diagrams."
+      },
+      "visual_elements": {
+        "main_visual": "Consumer-driven backend contract surrounded by five concise checkpoints."
+      },
+      "constraints": [
+        "Keep all five takeaways readable.",
+        "Do not add new concepts, exercises or next steps.",
+        "Render ADD ONLY THE BOUNDARY THE CONSUMER NEEDS exactly."
+      ]
+    },
+    {
+      "number": 12,
+      "title": "Questions",
+      "role": "Q&A",
+      "intent": "Invite participant questions and close without adding another exercise.",
+      "key_points": [
+        "Questions",
+        "Thank you"
+      ],
+      "local_context": {
+        "required_background": "This must remain a passive closing slide. Use only Questions and Thank you as visible message text. Do not add prompts, quizzes, discussion questions, assignments, recap bullets, next steps or contact details."
+      },
+      "layout": {
+        "composition": "Large restrained Questions title with generous whitespace and a subtle consumer → configured service → existing surface technical motif."
+        ,"intent": "Slow the visual rhythm and leave room for audience-led Q&A."
+      },
+      "visual_elements": {
+        "main_visual": "Minimal technical line motif derived from the deck's configured-service flow."
+      },
+      "constraints": [
+        "Visible message text must be limited to Questions and Thank you.",
+        "Do not invent questions or prompts.",
+        "No assignment, recap or next-step content."
+      ]
+    }
+  ]
+}

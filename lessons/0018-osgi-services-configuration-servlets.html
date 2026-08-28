@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class 18 · OSGi services, configuration and servlet boundaries</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="brand" href="../index.html">AEM Training</a>
+    <ul>
+      <li><a href="../index.html">Overview</a></li>
+      <li><a href="../reference/aem-course-topics.html">Syllabus</a></li>
+      <li><a href="../reference/wknd-project-backlog.html">Practices</a></li>
+      <li><a href="../reference/index.html">References</a></li>
+    </ul>
+  </nav>
+  <header>
+    <p class="eyebrow">Class 18 · Week 4 · Day 18 · September 9, 2026</p>
+    <h1>OSGi services, configuration and servlet boundaries</h1>
+    <p class="lede">Give reusable backend behavior one owner, make its effective configuration safe and observable, and add an HTTP endpoint only when a real consumer needs a distinct contract.</p>
+    <ul class="meta"><li>30 minutes online</li><li>Backend boundaries for frontend-oriented developers</li><li>Consumer → service → configuration → delivery surface</li></ul>
+  </header>
+  <main id="content">
+    <section class="callout"><strong>Observable outcome:</strong> each developer can name one reusable service capability, explain how Declarative Services activates it, trace one typed PID to its effective Author or Publish configuration, classify environment values and secrets, and justify HTL, Sling Model, Model Exporter or a constrained servlet for a named consumer.</section>
+
+    <h2>Topic summary</h2>
+    <p>An OSGi service is useful when reusable queries, integrations or orchestration need one explicit owner. Declarative Services registers that capability, manages component lifecycle and resolves declared service references; an unsatisfied required reference prevents activation instead of leaving a partial object. Metatype annotations describe configuration as a typed operational contract connected to the component PID.</p>
+    <p>In AEM as a Cloud Service, supported run modes select one complete configuration per PID. Non-secret environment values and secrets enter through separate placeholders, while runtime evidence—not the source file alone—proves the effective state. HTL, a Sling Model, a Core Component or an existing Model Exporter contract should satisfy the consumer whenever possible; a servlet is the final option and must constrain selection, validation, permissions, caching and response behavior.</p>
+    <ul>
+      <li>Create a service only for one reusable capability needed by a real consumer.</li>
+      <li>Let Declarative Services own lifecycle and required dependencies.</li>
+      <li>Use typed Metatype configuration connected to a stable PID.</li>
+      <li>Separate versioned shape, environment values and secrets.</li>
+      <li>Verify effective configuration and component state at runtime.</li>
+      <li>Add a constrained servlet only for a distinct HTTP contract.</li>
+    </ul>
+
+    <h2>30-minute agenda</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Time</th><th>Slide</th><th>Facilitation</th></tr></thead>
+      <tbody>
+        <tr><td>0–2</td><td>1 · Opening</td><td>Preview the consumer-to-service-to-surface decision path.</td></tr>
+        <tr><td>2–5</td><td>2 · Service boundary</td><td>Separate view preparation from a genuinely reusable capability.</td></tr>
+        <tr><td>5–8</td><td>3 · DS lifecycle</td><td>Trace registration, activation, references and runtime evidence.</td></tr>
+        <tr><td>8–11</td><td>4 · Typed configuration</td><td>Connect Metatype definitions, Designate, PID and activation.</td></tr>
+        <tr><td>11–14</td><td>5 · Effective PID</td><td>Resolve one complete configuration for Author plus dev.</td></tr>
+        <tr><td>14–17</td><td>6 · Values and secrets</td><td>Separate Git, environment variables and secret variables.</td></tr>
+        <tr><td>17–20</td><td>7 · Safe failure</td><td>Choose active, disabled or rejected behavior deliberately.</td></tr>
+        <tr><td>20–22</td><td>8 · Runtime evidence</td><td>Compare local Web Console and cloud Developer Console proof.</td></tr>
+        <tr><td>22–25</td><td>9 · Surface ladder</td><td>Stop at HTL, model or exporter before proposing a servlet.</td></tr>
+        <tr><td>25–27</td><td>10 · Servlet boundary</td><td>Constrain resource type, selector, extension, method and operation.</td></tr>
+        <tr><td>27–28</td><td>11 · Key takeaways</td><td>Summarize five consumer-driven backend decisions.</td></tr>
+        <tr><td>28–30</td><td>12 · Questions</td><td>Questions from the audience only; no review exercise.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2>Complete slide deck</h2>
+    <p class="section-intro">Study each slide with its presenter notes, then copy or download the PNG.</p>
+    <div class="web-deck">
+      <article class="web-slide" data-slide-src="../slides/lesson-18/origin_image/slide_01.png">
+        <img class="web-slide-image" src="../slides/lesson-18/origin_image/slide_01.png" alt="Class 18 opening slide connecting a Guide Card consumer, configured OSGi service and conditional delivery surfaces.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-18/origin_image/slide_01.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Context:</strong> continue from Sling Models by giving shared backend behavior a different owner.</li>
+          <li><strong>Path:</strong> start with a consumer, reach one configured capability and stop at the smallest suitable output.</li>
+          <li><strong>Restraint:</strong> a service or servlet is not valuable merely because an annotation exists.</li>
+          <li><strong>Outcome:</strong> name the capability, effective configuration and delivery contract from runtime evidence.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-18/origin_image/slide_02.png">
+        <img class="web-slide-image" src="../slides/lesson-18/origin_image/slide_02.png" alt="Decision fork separating Sling Model view preparation from a reusable Guide URL OSGi service and a pass-through anti-pattern.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-18/origin_image/slide_02.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Consumer first:</strong> begin with the capability or data that will be used, and by whom.</li>
+          <li><strong>Model:</strong> keep component-specific fallback, formatting and empty-state behavior at the view boundary.</li>
+          <li><strong>Service:</strong> extract shared queries, integrations or orchestration used across component boundaries.</li>
+          <li><strong>Anti-pattern:</strong> an interface and implementation that forward one getter create cost without a capability.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-18/origin_image/slide_03.png">
+        <img class="web-slide-image" src="../slides/lesson-18/origin_image/slide_03.png" alt="Declarative Services pipeline from implementation and bundle metadata through activation, service registry and consumers.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-18/origin_image/slide_03.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Registration:</strong> build tooling turns <code>@Component</code> metadata into a runtime DS component.</li>
+          <li><strong>Lifecycle:</strong> DS creates, activates, registers and deactivates the implementation.</li>
+          <li><strong>Dependency:</strong> a required unsatisfied <code>@Reference</code> blocks activation.</li>
+          <li><strong>Evidence:</strong> Components runtime state proves more than the presence of a Java class.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-18/origin_image/slide_04.png">
+        <img class="web-slide-image" src="../slides/lesson-18/origin_image/slide_04.png" alt="Typed OSGi configuration flowing from Metatype annotations through Designate and PID into component activation.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-18/origin_image/slide_04.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Definition:</strong> <code>@ObjectClassDefinition</code> groups typed configuration properties.</li>
+          <li><strong>Guidance:</strong> <code>@AttributeDefinition</code> adds operator-facing detail when it is useful.</li>
+          <li><strong>Connection:</strong> <code>@Designate</code> associates the component PID with that definition.</li>
+          <li><strong>Contract:</strong> activation consumes a typed object rather than parsing loose strings.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-18/origin_image/slide_05.png">
+        <img class="web-slide-image" src="../slides/lesson-18/origin_image/slide_05.png" alt="Author plus dev runtime selecting the most specific complete OSGi configuration for one PID.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-18/origin_image/slide_05.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Candidates:</strong> compare base, Author, Author plus dev and Publish folders for one PID.</li>
+          <li><strong>Selection:</strong> <code>config.author.dev</code> wins because both active run modes match.</li>
+          <li><strong>Granularity:</strong> the selected document replaces less-specific candidates for the whole PID.</li>
+          <li><strong>Boundary:</strong> AEM as a Cloud Service supports defined run modes, not project-specific custom modes.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-18/origin_image/slide_06.png">
+        <img class="web-slide-image" src="../slides/lesson-18/origin_image/slide_06.png" alt="Versioned OSGi configuration receiving separate environment and secret variables at deployment time.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-18/origin_image/slide_06.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Git:</strong> version the stable PID configuration and placeholder names.</li>
+          <li><strong>Environment:</strong> use <code>$[env:GUIDE_BASE_URL]</code> for a non-secret varying value.</li>
+          <li><strong>Secret:</strong> use <code>$[secret:GUIDE_API_TOKEN]</code> and keep its result out of evidence.</li>
+          <li><strong>Ownership:</strong> do not use variables to override Adobe-owned OSGi configuration.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-18/origin_image/slide_07.png">
+        <img class="web-slide-image" src="../slides/lesson-18/origin_image/slide_07.png" alt="Activation validation gate routing valid, optional and unsafe configuration to explicit runtime states.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-18/origin_image/slide_07.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Classification:</strong> distinguish required, optional and capability-enabling properties.</li>
+          <li><strong>Validation:</strong> check protocols, ranges, allowed values and secret presence at activation.</li>
+          <li><strong>Outcomes:</strong> expose active, intentionally disabled and rejected states deliberately.</li>
+          <li><strong>Diagnostic:</strong> explain the failure without logging secret material.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-18/origin_image/slide_08.png">
+        <img class="web-slide-image" src="../slides/lesson-18/origin_image/slide_08.png" alt="Local Web Console and cloud Developer Console paths converging on effective runtime evidence.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-18/origin_image/slide_08.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Local:</strong> inspect Components and Configuration in the AEM SDK Web Console.</li>
+          <li><strong>Cloud:</strong> inspect Components and Configurations through Developer Console status dumps.</li>
+          <li><strong>Checklist:</strong> capture PID, tier or pod, component state and non-secret effective values.</li>
+          <li><strong>Tiers:</strong> verify Author and Publish independently when their values differ.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-18/origin_image/slide_09.png">
+        <img class="web-slide-image" src="../slides/lesson-18/origin_image/slide_09.png" alt="Decision ladder stopping at HTL, Sling Model or an existing exporter before a new servlet.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-18/origin_image/slide_09.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Markup:</strong> stop at HTL when the consumer needs server-rendered component HTML.</li>
+          <li><strong>View data:</strong> use a Sling Model for prepared values and explicit state.</li>
+          <li><strong>Existing contract:</strong> inspect Core Component and Model Exporter surfaces before adding code.</li>
+          <li><strong>Servlet:</strong> accept its validation, authorization, caching and compatibility work only for a distinct HTTP contract.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-18/origin_image/slide_10.png">
+        <img class="web-slide-image" src="../slides/lesson-18/origin_image/slide_10.png" alt="Sling request decomposition and a constrained resource-type servlet passing operational gates.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-18/origin_image/slide_10.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Selection:</strong> decompose resource path, selector, extension and method.</li>
+          <li><strong>Registration:</strong> prefer a resource-type servlet over a path-bound endpoint.</li>
+          <li><strong>Constraint:</strong> declare only the request shapes and methods the consumer needs.</li>
+          <li><strong>Operation:</strong> validate input, permissions, cache policy, response type and status codes.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-18/origin_image/slide_11.png">
+        <img class="web-slide-image" src="../slides/lesson-18/origin_image/slide_11.png" alt="Five key takeaways surrounding a consumer-driven backend contract.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-18/origin_image/slide_11.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Capability:</strong> create one reusable service for a real consumer.</li>
+          <li><strong>Runtime:</strong> let DS own lifecycle and required service references.</li>
+          <li><strong>Configuration:</strong> use one typed, effective and safely supplied PID contract.</li>
+          <li><strong>Surface:</strong> reuse rendering or export behavior before adding a constrained servlet.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-18/origin_image/slide_12.png">
+        <img class="web-slide-image" src="../slides/lesson-18/origin_image/slide_12.png" alt="Quiet Questions and Thank you closing slide.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-18/origin_image/slide_12.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Close:</strong> leave the slide open for questions from the group.</li>
+          <li><strong>Boundary:</strong> do not introduce another prompt, recap or exercise.</li>
+        </ul></details>
+      </article>
+    </div>
+
+    <h2>Guide URL service practice</h2>
+    <ol class="steps">
+      <li>Name one reusable Guide URL capability and the two consumers that justify a service.</li>
+      <li>Define typed configuration for an enabled flag and base URL; add a secret placeholder only if the capability genuinely needs a credential.</li>
+      <li>Provide complete local Author configuration and document which values would vary in dev, stage or prod.</li>
+      <li>Inspect the effective PID and component state without exposing secret values.</li>
+      <li>Compare HTL, Sling Model, existing <code>.model.json</code> and servlet options for one named consumer.</li>
+    </ol>
+    <p><strong>Acceptance:</strong> the service owns one reusable capability; typed configuration has deliberate defaults and validation; environment values and secrets are classified safely; missing or invalid input produces an explicit state; evidence names the PID and runtime tier; the delivery decision names its consumer, response contract, permissions and cache behavior.</p>
+
+    <h2>Official reading</h2>
+    <ul>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/deploying/configuring-osgi">Configuring OSGi for AEM as a Cloud Service — Adobe Experience League</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/using-cloud-manager/environment-variables">Environment Variables in Cloud Manager — Adobe Experience League</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developer-tools/web-console">Web Console — Adobe Experience League</a></li>
+      <li><a href="https://sling.apache.org/documentation/the-sling-engine/servlets.html">Servlets and Scripts — Apache Sling</a></li>
+      <li><a href="https://docs.osgi.org/specification/osgi.cmpn/8.1.0/service.metatype.html">Metatype Service Specification — OSGi</a></li>
+    </ul>
+  </main>
+  <footer><a href="../index.html">Back to the training overview</a></footer>
+  <script src="../assets/copy-slide.js"></script>
+</body>
+</html>

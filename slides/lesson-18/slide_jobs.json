@@ -1,0 +1,483 @@
+{
+  "run_status": "slides_recorded",
+  "deck_name": "lesson-18",
+  "selected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Class 18 configuration-resolution sample prompt derived from slides/lesson-18/outline.md and the Class 17 technical atlas reference",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-18/origin_image/slide_05.png",
+    "input_context_preparation": "Inspected the approved Class 17 slide_08 sample with view_image and passed it to image_gen as a style-only reference; the Class 18 slide_05 sample then received one built-in precise text edit before approval. Workers must inspect and pass the approved Class 18 slide_05 sample as their style-only reference.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode with the approved sample as style-only context and return a blocker if that path is unavailable."
+  },
+  "max_concurrent_slides": 3,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "OSGi services, configuration and servlet boundaries",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-18/origin_image/slide_05.png",
+          "role": "approved Class 18 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors, monospace treatment and connector weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_01",
+        "agent_nickname": "slide_01",
+        "prompt": "prompts/slide_01.json",
+        "prompt_sha256": "c42fbb7d28813259ebb2e8099e7550a869198bf2f65fae037aa1dfc2cb51cf86",
+        "dispatched_at": "2026-08-28T18:25:47Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0499e-5e78-78d1-859f-af7512172f38/exec-883598de-fc36-4f30-96fc-9c960fab9b53.png",
+        "selected_source_sha256": "b01be233ccb774a6299bea72041b3293bec93a396e8bf8cf967c80381d25df52",
+        "final_image": "origin_image/slide_01.png",
+        "final_image_sha256": "b01be233ccb774a6299bea72041b3293bec93a396e8bf8cf967c80381d25df52",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Exact title and metadata are legible; servlet remains conditional; style matches the approved sample.",
+        "recorded_at": "2026-08-28T18:29:01Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "Create a service only for a reusable capability.",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-18/origin_image/slide_05.png",
+          "role": "approved Class 18 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors, monospace treatment and connector weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_02",
+        "agent_nickname": "slide_02",
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "efd5fe06f4ea421bc20da08e048d161b11d1652b8732de266e3d64d702211250",
+        "dispatched_at": "2026-08-28T18:25:47Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0497a-b890-7791-88ef-3b606182ae13/exec-768a790a-98de-45a2-8827-e9eebd89b865.png",
+        "selected_source_sha256": "88def9fd4b545ff8f4e51b9f0ed41cf2412d6c0f0d3070c7f482a0d5568a38f6",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "88def9fd4b545ff8f4e51b9f0ed41cf2412d6c0f0d3070c7f482a0d5568a38f6",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Decision fork and anti-pattern are clear; parent corrected Sling Model service injection to @OSGiService.",
+        "recorded_at": "2026-08-28T18:29:02Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "Declarative Services owns the runtime lifecycle.",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-18/origin_image/slide_05.png",
+          "role": "approved Class 18 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors, monospace treatment and connector weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_03",
+        "agent_nickname": "slide_03",
+        "prompt": "prompts/slide_03.json",
+        "prompt_sha256": "19faa1628caefee4cab7a0707f0d62bcb5055405ae07d9b7e3fa59d7fdc9d6d7",
+        "dispatched_at": "2026-08-28T18:25:47Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0499e-be3a-7631-a043-4d012883bccd/exec-11865db5-824b-41fe-af70-5e82201ad6d0.png",
+        "selected_source_sha256": "402e89ee430e13644aa9754cb7dd78fa5dfeec1afcb8a4dfd4ede0cee8e2108b",
+        "final_image": "origin_image/slide_03.png",
+        "final_image_sha256": "402e89ee430e13644aa9754cb7dd78fa5dfeec1afcb8a4dfd4ede0cee8e2108b",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Lifecycle and activation states are readable; exact annotations and required-reference gate are present.",
+        "recorded_at": "2026-08-28T18:29:02Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "Typed configuration documents an operational contract.",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-18/origin_image/slide_05.png",
+          "role": "approved Class 18 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors, monospace treatment and connector weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_04",
+        "agent_nickname": "slide_04",
+        "prompt": "prompts/slide_04.json",
+        "prompt_sha256": "9124d66a3fe854b413ce314fe3b271a9b1e9b280d2c36dca80e8e347d749c555",
+        "dispatched_at": "2026-08-28T18:29:40Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_04",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0497a-b890-7791-88ef-3b606182ae13/exec-f4167c30-31e5-4c3b-bd0a-14c3c3113acf.png",
+        "selected_source_sha256": "d896b82ff3aacc8405a474c2e2918be05be7732a47dbbdd495ce1f07f1b097ac",
+        "final_image": "origin_image/slide_04.png",
+        "final_image_sha256": "d896b82ff3aacc8405a474c2e2918be05be7732a47dbbdd495ce1f07f1b097ac",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Typed configuration flow is readable; parent corrected the generated base.url property ID while preserving base_url() source syntax.",
+        "recorded_at": "2026-08-28T18:35:35Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "Effective configuration is selected per PID.",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-18/origin_image/slide_05.png",
+          "role": "approved Class 18 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors, monospace treatment and connector weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "accepted",
+      "dispatch": null,
+      "result": {
+        "final_image": "origin_image/slide_05.png",
+        "accepted_sample": true
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "Values vary by environment; secrets stay out of Git.",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-18/origin_image/slide_05.png",
+          "role": "approved Class 18 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors, monospace treatment and connector weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_06",
+        "agent_nickname": "slide_06",
+        "prompt": "prompts/slide_06.json",
+        "prompt_sha256": "121e40713b07588adabf93342c84ffcd5d9333772d1ba273245efd039e33f6b1",
+        "dispatched_at": "2026-08-28T18:29:40Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_06",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a049a2-35f4-7ea3-9a86-c4ab190f6edf/exec-538b8bab-9dd3-44ab-9655-9c7e593d0d0a.png",
+        "selected_source_sha256": "6dfe081cf1a904d9b29af743ec2254c9cc55a2c1665e9e50b936fbb02e3267c6",
+        "final_image": "origin_image/slide_06.png",
+        "final_image_sha256": "6dfe081cf1a904d9b29af743ec2254c9cc55a2c1665e9e50b936fbb02e3267c6",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Environment and secret placeholders are exact, the token is masked, and Git/log/screenshot boundaries are clear.",
+        "recorded_at": "2026-08-28T18:35:35Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "Missing configuration must fail safely and visibly.",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-18/origin_image/slide_05.png",
+          "role": "approved Class 18 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors, monospace treatment and connector weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_07",
+        "agent_nickname": "slide_07",
+        "prompt": "prompts/slide_07.json",
+        "prompt_sha256": "a00548a3e3a0e16bb0e26a3d7db0f7506229bfca1e7cc2e5152d7ffd5ebdc63f",
+        "dispatched_at": "2026-08-28T18:29:40Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_07",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0497a-b890-7791-88ef-3b606182ae13/exec-c886e785-7a2e-482b-a22e-6492a8f2ef45.png",
+        "selected_source_sha256": "f757563909d2cb69ff6684ac8bfea9bbb7e357b2efe9a3fc0ec0f8e27d6107fa",
+        "final_image": "origin_image/slide_07.png",
+        "final_image_sha256": "f757563909d2cb69ff6684ac8bfea9bbb7e357b2efe9a3fc0ec0f8e27d6107fa",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Activation outcomes are distinct; parent corrected enabled and token classifications to conditional semantics.",
+        "recorded_at": "2026-08-28T18:35:35Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "Verify the effective runtime value, not only the file.",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-18/origin_image/slide_05.png",
+          "role": "approved Class 18 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors, monospace treatment and connector weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_08",
+        "agent_nickname": "slide_08",
+        "prompt": "prompts/slide_08.json",
+        "prompt_sha256": "c465cd6ab526a2cffba98a42070812b07ed0e62b91b544a59d238ae201650f3d",
+        "dispatched_at": "2026-08-28T18:36:59Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_08",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a049a8-21a2-78a1-b958-1a14fc2cfa46/exec-78dde961-b0fa-499a-ae8b-1e7681698b1d.png",
+        "selected_source_sha256": "1eab17edad0a12fd862401c629e1e88ee84e8d36afa43705964233ca293443ee",
+        "final_image": "origin_image/slide_08.png",
+        "final_image_sha256": "1eab17edad0a12fd862401c629e1e88ee84e8d36afa43705964233ca293443ee",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Local and cloud evidence lanes are distinct; PID, tier, component state, non-secret values and redaction are readable.",
+        "recorded_at": "2026-08-28T18:38:48Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Choose the minimum delivery surface for the consumer.",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-18/origin_image/slide_05.png",
+          "role": "approved Class 18 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors, monospace treatment and connector weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_09",
+        "agent_nickname": "slide_09",
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "3106bb9acdf2251b7920f4c22bd37f2cb6bed9dff13fd5f4bb16581d94c67c2a",
+        "dispatched_at": "2026-08-28T18:36:59Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a049a8-6a04-7be0-be35-c20480c34ac3/exec-51ec3599-91a3-4467-8087-37d5f7e7976e.png",
+        "selected_source_sha256": "c0eeefd97700b371003a28bf926cb4b6832a8100dd7a3568bbf4b833340171f8",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "c0eeefd97700b371003a28bf926cb4b6832a8100dd7a3568bbf4b833340171f8",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "All four delivery surfaces, stop rules and servlet responsibilities are readable and technically coherent.",
+        "recorded_at": "2026-08-28T18:38:48Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_10",
+      "number": 10,
+      "title": "If a servlet is required, bind and constrain it explicitly.",
+      "job": "prompts/slide_10.json",
+      "out": "origin_image/slide_10.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-18/origin_image/slide_05.png",
+          "role": "approved Class 18 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors, monospace treatment and connector weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_10",
+        "agent_nickname": "slide_10",
+        "prompt": "prompts/slide_10.json",
+        "prompt_sha256": "bb6036a0f58a1ffa04000d1f23e62ae7b35d75a952bf3f8b7e682b9811e92060",
+        "dispatched_at": "2026-08-28T18:36:59Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_10",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a049a8-91a5-7ca3-8903-80823a76341a/exec-24550b3e-1ec2-46ff-9cd5-c5e5129cef9f.png",
+        "selected_source_sha256": "772f8aedeb0f1634be73ceef1184eba3565d88999b9a79b9fdfb8d313d3e364c",
+        "final_image": "origin_image/slide_10.png",
+        "final_image_sha256": "772f8aedeb0f1634be73ceef1184eba3565d88999b9a79b9fdfb8d313d3e364c",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Exact request anatomy, resource-type registration and operational gates are present; path binding is clearly discouraged.",
+        "recorded_at": "2026-08-28T18:38:48Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_11",
+      "number": 11,
+      "title": "Key takeaways",
+      "job": "prompts/slide_11.json",
+      "out": "origin_image/slide_11.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-18/origin_image/slide_05.png",
+          "role": "approved Class 18 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors, monospace treatment and connector weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_11",
+        "agent_nickname": "slide_11",
+        "prompt": "prompts/slide_11.json",
+        "prompt_sha256": "dcce2f3107e0e289299ecb4fa4bbadd8a7a8e8e492a7d7e8aaf146d897d55905",
+        "dispatched_at": "2026-08-28T18:39:24Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_11",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a049ab-0c84-7112-97d3-78bb1ad7e3d7/exec-9c294ebe-e8ae-4714-861f-2ba2c64386b2.png",
+        "selected_source_sha256": "01bbcbb628f4b0261434c5bfcf29c134503ed6efd5e393471429d5a6a2e72b88",
+        "final_image": "origin_image/slide_11.png",
+        "final_image_sha256": "01bbcbb628f4b0261434c5bfcf29c134503ed6efd5e393471429d5a6a2e72b88",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "All five takeaways and the consumer-driven conclusion are readable and stylistically consistent.",
+        "recorded_at": "2026-08-28T18:42:43Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_12",
+      "number": 12,
+      "title": "Questions",
+      "job": "prompts/slide_12.json",
+      "out": "origin_image/slide_12.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-18/origin_image/slide_05.png",
+          "role": "approved Class 18 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors, monospace treatment and connector weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_12",
+        "agent_nickname": "slide_12",
+        "prompt": "prompts/slide_12.json",
+        "prompt_sha256": "b95106dbc020975068c257b346462b6d616ea0987d690068b8bb18ffde4aa170",
+        "dispatched_at": "2026-08-28T18:39:24Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_12",
+        "backend_used": "built-in image tool",
+        "selected_source": "/private/tmp/lesson18-slide12.png",
+        "selected_source_sha256": "b05bd5be4f483a53affabba9caeef5c72649645a8b79943c97fa0c80f883e353",
+        "final_image": "origin_image/slide_12.png",
+        "final_image_sha256": "b05bd5be4f483a53affabba9caeef5c72649645a8b79943c97fa0c80f883e353",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Passive closing slide uses only Questions and Thank you as visible message text and matches the approved style.",
+        "recorded_at": "2026-08-28T18:41:32Z"
+      },
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-08-28T18:42:43Z"
+}
