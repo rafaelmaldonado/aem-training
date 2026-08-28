@@ -1,0 +1,483 @@
+{
+  "run_status": "slides_recorded",
+  "deck_name": "lesson-17",
+  "selected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Class 17 delegation sample prompt derived from slides/lesson-17/outline.md and the saved technical atlas style",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-17/origin_image/slide_08.png",
+    "input_context_preparation": "Inspected the preceding Class 16 atlas sample with view_image and passed it to image_gen as a style-only reference; workers must inspect and pass the approved Class 17 slide_08 sample as their style-only reference.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode with the approved sample as style-only context and return a blocker if that path is unavailable."
+  },
+  "max_concurrent_slides": 3,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "Sling Models: adaptables, injection, delegation and JSON",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-17/origin_image/slide_08.png",
+          "role": "approved Class 17 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors and line weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide09",
+        "agent_nickname": "Pauli",
+        "prompt": "prompts/slide_01.json",
+        "prompt_sha256": "5731ae9809ece3beab8f887e429d26488ff34f4aabbfe0a5432342ebf09df8f8",
+        "dispatched_at": "2026-08-27T18:50:09Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040b9-558f-7c33-afd0-2cd2eda6b1f6/exec-b3edf259-9bfa-4331-9c52-b16cdeb5aa28.png",
+        "selected_source_sha256": "ed81e6698e7f420b7c3ef0226bfb7d7258934c9e20c8e7cdb9443563db3c613c",
+        "final_image": "origin_image/slide_01.png",
+        "final_image_sha256": "ed81e6698e7f420b7c3ef0226bfb7d7258934c9e20c8e7cdb9443563db3c613c",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Exact title and metadata, conditional exporter labeling, approved atlas styling and no clipping.",
+        "recorded_at": "2026-08-27T18:52:49Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "A Sling Model turns AEM context into a view contract.",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-17/origin_image/slide_08.png",
+          "role": "approved Class 17 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors and line weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide10",
+        "agent_nickname": "Einstein",
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "dee56921206f911865f5ee558f811a983ef8dd034881f8f59f2f0645842430d0",
+        "dispatched_at": "2026-08-27T18:50:09Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide10",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040bb-76a6-7051-8388-2883290f005a/exec-bafd66d1-3960-4ebd-a0a9-ed8de3c82a55.png",
+        "selected_source_sha256": "ab94238ae1ceef5200a5b9a90d74448b0a7d429ad1e7d529db74e7de079604f8",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "ab94238ae1ceef5200a5b9a90d74448b0a7d429ad1e7d529db74e7de079604f8",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "English text is legible; the four-stage view-contract flow and conditional exporter branch are complete and unclipped.",
+        "recorded_at": "2026-08-27T18:52:30Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "The adaptable defines the context a model can use.",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-17/origin_image/slide_08.png",
+          "role": "approved Class 17 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors and line weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide11",
+        "agent_nickname": "Archimedes",
+        "prompt": "prompts/slide_03.json",
+        "prompt_sha256": "0b28abe45a7f28d2edfda9bcd5bfde50e780df1732c7d603d729470c3b03c01e",
+        "dispatched_at": "2026-08-27T18:50:10Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide11",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040c0-2af1-7892-87fd-7d33f4c069b3/exec-7997c318-6b5d-4071-bc8b-d3f975318001.png",
+        "selected_source_sha256": "fb6fd91719b5e96abba8a9ed65f0304f9c6a823745a076db9f07ebb7db1d4bc0",
+        "final_image": "origin_image/slide_03.png",
+        "final_image_sha256": "fb6fd91719b5e96abba8a9ed65f0304f9c6a823745a076db9f07ebb7db1d4bc0",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "The Resource-versus-request decision is accurate, readable, style-consistent and unclipped.",
+        "recorded_at": "2026-08-27T18:52:30Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "Model creation is a runtime contract.",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-17/origin_image/slide_08.png",
+          "role": "approved Class 17 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors and line weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide09",
+        "agent_nickname": "Pauli",
+        "prompt": "prompts/slide_04.json",
+        "prompt_sha256": "566746177d4d16acc69cb869a489fb76a62e5313d2535070576cdaaf69d4453e",
+        "dispatched_at": "2026-08-27T18:53:33Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040b9-558f-7c33-afd0-2cd2eda6b1f6/exec-34ed6472-7c19-4995-beab-653f28284fc3.png",
+        "selected_source_sha256": "2110eb8fffbce9a97f176a61347a55c64b1c1f6722a88568a8cebfe2d5c284f2",
+        "final_image": "origin_image/slide_04.png",
+        "final_image_sha256": "2110eb8fffbce9a97f176a61347a55c64b1c1f6722a88568a8cebfe2d5c284f2",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Four creation gates and diagnostic rails are technically complete, readable and unclipped.",
+        "recorded_at": "2026-08-27T18:56:56Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "Injection should name its source and optionality.",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-17/origin_image/slide_08.png",
+          "role": "approved Class 17 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors and line weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide10",
+        "agent_nickname": "Einstein",
+        "prompt": "prompts/slide_05.json",
+        "prompt_sha256": "06096d0c110b9ed66a238ee9d55b0347044362dbeece392ac099f1a3637b8b58",
+        "dispatched_at": "2026-08-27T18:53:33Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide10",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040bb-76a6-7051-8388-2883290f005a/exec-ba085ce8-6989-4967-ab2e-a61429390f73.png",
+        "selected_source_sha256": "91dddde3fbeccaa86467d91f216417aa6686558a713ff74e012f89fa82c9d66a",
+        "final_image": "origin_image/slide_05.png",
+        "final_image_sha256": "91dddde3fbeccaa86467d91f216417aa6686558a713ff74e012f89fa82c9d66a",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "The five source-specific injection pairs are valid, optionality is unambiguous, and all text is readable and unclipped after regeneration.",
+        "recorded_at": "2026-08-27T19:00:01Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "Fallbacks and derived values belong in the model.",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-17/origin_image/slide_08.png",
+          "role": "approved Class 17 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors and line weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide11",
+        "agent_nickname": "Archimedes",
+        "prompt": "prompts/slide_06.json",
+        "prompt_sha256": "5db8b053b3d8d5977e4eb21ba99d97ae6340256c35ea67f7eb413044f2185552",
+        "dispatched_at": "2026-08-27T18:53:33Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide11",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040c0-2af1-7892-87fd-7d33f4c069b3/exec-34913ddb-6f66-488d-83bf-6945c322a9aa.png",
+        "selected_source_sha256": "3dadb0a7255a9b60d9776f40b25c24919157c5e93069a5afa5800306dab25600",
+        "final_image": "origin_image/slide_06.png",
+        "final_image_sha256": "3dadb0a7255a9b60d9776f40b25c24919157c5e93069a5afa5800306dab25600",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Fallback order, getter names, model-to-HTL boundary and empty state are readable and complete.",
+        "recorded_at": "2026-08-27T18:56:56Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "The model owns data preparation; HTL owns markup.",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-17/origin_image/slide_08.png",
+          "role": "approved Class 17 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors and line weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide09",
+        "agent_nickname": "Pauli",
+        "prompt": "prompts/slide_07.json",
+        "prompt_sha256": "4e46b75c68544310da893b8edd6864720f4b7ed31d20e5b448e42c7ad2a51f77",
+        "dispatched_at": "2026-08-27T18:56:56Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040b9-558f-7c33-afd0-2cd2eda6b1f6/exec-ac355a32-320d-4613-93ee-9926369b99df.png",
+        "selected_source_sha256": "0fbc52cbf4df0b9bfc62087529dc83e77a87d6a29c125e719c5ba51214d7e029",
+        "final_image": "origin_image/slide_07.png",
+        "final_image_sha256": "0fbc52cbf4df0b9bfc62087529dc83e77a87d6a29c125e719c5ba51214d7e029",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "The Java/HTL ownership boundary, exact code strings and contextual escaping are accurate and unclipped.",
+        "recorded_at": "2026-08-27T19:00:01Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "Delegate Core Component behavior instead of copying it.",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-17/origin_image/slide_08.png",
+          "role": "approved Class 17 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors and line weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "accepted",
+      "dispatch": null,
+      "result": {
+        "final_image": "origin_image/slide_08.png",
+        "accepted_sample": true
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "The model coordinates the view; services own reusable work.",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-17/origin_image/slide_08.png",
+          "role": "approved Class 17 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors and line weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide11",
+        "agent_nickname": "Archimedes",
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "a70274771e5830bece6bc99903156b378b5110e5c5850fa31ac22cea516c9b9a",
+        "dispatched_at": "2026-08-27T18:56:56Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide11",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040c0-2af1-7892-87fd-7d33f4c069b3/exec-b6d0a265-6ac2-4137-a5cc-a80b2d68de5b.png",
+        "selected_source_sha256": "a7ad1eaf56204183adc836946622126c827d7439eab2bf78875b0f3fce283631",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "a7ad1eaf56204183adc836946622126c827d7439eab2bf78875b0f3fce283631",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "The model/service ownership spectrum, @OSGiService boundary and Class 18 handoff are accurate and readable.",
+        "recorded_at": "2026-08-27T18:58:47Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_10",
+      "number": 10,
+      "title": "Model Exporter can expose an existing model contract.",
+      "job": "prompts/slide_10.json",
+      "out": "origin_image/slide_10.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-17/origin_image/slide_08.png",
+          "role": "approved Class 17 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors and line weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide11",
+        "agent_nickname": "Archimedes",
+        "prompt": "prompts/slide_10.json",
+        "prompt_sha256": "a063efb0f49b11b37e4a53e79edb50a11a12794692bb15ae053e7f3941454da8",
+        "dispatched_at": "2026-08-27T18:58:47Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide11",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040c0-2af1-7892-87fd-7d33f4c069b3/exec-0c1823f9-227e-4a88-952a-9cb9c1df672b.png",
+        "selected_source_sha256": "258b648718a54d8d4489137241feaab4e52097f3dbc4e9d75b3859ed93a1eb91",
+        "final_image": "origin_image/slide_10.png",
+        "final_image_sha256": "258b648718a54d8d4489137241feaab4e52097f3dbc4e9d75b3859ed93a1eb91",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "The five-stage exporter flow, eligibility gate, Jackson response and servlet decision warning are complete and unclipped.",
+        "recorded_at": "2026-08-27T19:01:15Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_11",
+      "number": 11,
+      "title": "Key takeaways",
+      "job": "prompts/slide_11.json",
+      "out": "origin_image/slide_11.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-17/origin_image/slide_08.png",
+          "role": "approved Class 17 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors and line weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide09",
+        "agent_nickname": "Pauli",
+        "prompt": "prompts/slide_11.json",
+        "prompt_sha256": "f601cedd1f6e419779f13f4087dbc1528b29e08f1f0d45a62065980460fd136a",
+        "dispatched_at": "2026-08-27T19:00:01Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040b9-558f-7c33-afd0-2cd2eda6b1f6/exec-4331a071-2a6c-45f2-ad77-a2c6d3f03389.png",
+        "selected_source_sha256": "fbaaf32bf63e35843f056c409a5735bdae8a6014fd219b8a7689370e8905cd01",
+        "final_image": "origin_image/slide_11.png",
+        "final_image_sha256": "fbaaf32bf63e35843f056c409a5735bdae8a6014fd219b8a7689370e8905cd01",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Exactly five takeaways and the explicit-contract conclusion are complete, readable and exercise-free.",
+        "recorded_at": "2026-08-27T19:01:15Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_12",
+      "number": 12,
+      "title": "Questions",
+      "job": "prompts/slide_12.json",
+      "out": "origin_image/slide_12.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-17/origin_image/slide_08.png",
+          "role": "approved Class 17 sample slide style reference",
+          "fidelity": "match palette, typography, grid, density, semantic colors and line weight only; do not copy its exact layout or content"
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson16_slide10",
+        "agent_nickname": "Einstein",
+        "prompt": "prompts/slide_12.json",
+        "prompt_sha256": "8fb9ec0c909efc3501214468b5aecca2362449d61a039c91cbee1829c65e538d",
+        "dispatched_at": "2026-08-27T19:00:01Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson16_slide10",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040bb-76a6-7051-8388-2883290f005a/exec-09e09999-02b5-456d-94d9-4ad6cc40c1f9.png",
+        "selected_source_sha256": "ef91a45365eef2d2b8cae6f1dc6a2171bb64fd05aca1c2a33bee9b56952d37a3",
+        "final_image": "origin_image/slide_12.png",
+        "final_image_sha256": "ef91a45365eef2d2b8cae6f1dc6a2171bb64fd05aca1c2a33bee9b56952d37a3",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Only Questions and Thank you are visible; the passive closing is unclipped and contains no prompts or exercises.",
+        "recorded_at": "2026-08-27T19:01:15Z"
+      },
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-08-27T19:01:15Z"
+}

@@ -1,0 +1,404 @@
+{
+  "deck_name": "lesson-17",
+  "title": "Class 17 · Sling Models: adaptables, injection, delegation and JSON",
+  "language": "English",
+  "goal": "Teach frontend-oriented AEM developers to turn resource context into an explicit Sling Model view contract, extend Core Components through delegation, and recognize when Model Exporter already supplies the required JSON representation.",
+  "aspect_ratio": "16:9",
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 3,
+  "outputs": [
+    "PNG slide images",
+    "HTML lesson",
+    "detailed speaker notes"
+  ],
+  "pptx": false,
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "approved Class 17 delegation sample prompt derived from slides/lesson-17/outline.md and the saved technical atlas style",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-17/origin_image/slide_08.png",
+    "input_context_preparation": "Inspected the preceding Class 16 atlas sample with view_image and passed it to image_gen as a style-only reference; workers must inspect and pass the approved Class 17 slide_08 sample as their style-only reference.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in generate mode with the approved sample as style-only context and return a blocker if that path is unavailable."
+  },
+  "approved_style_reference": {
+    "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-17/origin_image/slide_08.png",
+    "role": "approved Class 17 sample slide style reference",
+    "fidelity": "match palette, typography, grid, density, semantic colors and line weight only; do not copy its exact layout or content"
+  },
+  "style": {
+    "name": "technical atlas courseware",
+    "visual_direction": "A sober, information-rich technical atlas blended with professional academic courseware. Use exact AEM resource types, Sling annotations, view-contract boundaries and request flows rather than generic software imagery.",
+    "color_palette": "Warm ivory drafting-paper background with a faint square grid; deep navy titles and structural rules; cobalt for adaptable, request and delegation paths; violet for project-owned model logic; green for valid contracts and safe extension; restrained orange for failures, ambiguity and copying risk.",
+    "typography": "Large bold condensed or modern sans serif headings; crisp sans serif supporting text; true monospace appearance for annotations, Java members, paths, selectors and JSON fields.",
+    "texture_and_finish": "Flat 2D technical diagrams, fine rules, precise resource, request, injector, model, HTL, interface and JSON icons. No gradients, neon, glass, 3D, photography or generic corporate people.",
+    "deck_consistency": "Match the approved slide_08 sample palette, typography, drafting grid, technical density, semantic colors, monospace treatment and connector weight while varying composition by slide role."
+  },
+  "deck_context": {
+    "source_summary": "Class 17 follows the Java, OSGi and Resource API foundations from Class 16. It teaches how Sling Models adapt AEM context, receive values from explicit injectors, prepare a small view contract for HTL, delegate public Core Component behavior and optionally expose an eligible contract through Model Exporter.",
+    "core_claim": "A useful Sling Model makes its runtime inputs and optionality explicit, prepares a small stable view contract, delegates behavior it does not own and exposes JSON only when an exporter contract already exists.",
+    "canonical_facts": [
+      "A Sling Model is created by adapting supported Sling context through the Models Adapter Factory.",
+      "Prefer a Resource adaptable when the model only needs resource content; use a request adaptable only for request-specific context.",
+      "Sling Model packages must be registered in bundle metadata for runtime discovery.",
+      "Injection is required by default unless optionality is explicitly declared.",
+      "Injector-specific annotations communicate the source better than generic @Inject.",
+      "Optional<T> is appropriate when absence is a legitimate part of the model contract.",
+      "Fallback precedence, normalization and derived values belong in the model rather than HTL.",
+      "HTL owns semantic markup and conditional rendering; the model owns prepared values and explicit state.",
+      "Core Component implementations are private and should be extended through delegation against public model contracts.",
+      "@Self with @Via(type = ResourceSuperType.class) obtains delegated behavior through the resource supertype.",
+      "Reusable queries, integrations and orchestration belong in an OSGi service; a model may inject such a service with @OSGiService.",
+      "An exporter-enabled model can be resolved by resource type and serialized for a .model.json request.",
+      "Not every Sling Model automatically exposes .model.json."
+    ],
+    "canonical_terms": [
+      "Sling Model",
+      "Models Adapter Factory",
+      "Resource",
+      "request adaptable",
+      "@Model",
+      "@ValueMapValue",
+      "@ChildResource",
+      "@OSGiService",
+      "@Self",
+      "@ScriptVariable",
+      "Optional<T>",
+      "HTL",
+      "sling:resourceSuperType",
+      "ResourceSuperType.class",
+      "Model Exporter",
+      ".model.json",
+      "Jackson"
+    ]
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Sling Models: adaptables, injection, delegation and JSON",
+      "role": "opening overview",
+      "intent": "Identify the session and preview the path from AEM context to rendered HTML and optional JSON.",
+      "key_points": [
+        "Class 17 · Week 4 · Day 17 · September 8, 2026",
+        "Today: model creation, adaptable choice, injection, optionality, view contracts, delegation and Model Exporter",
+        "30-minute technical session",
+        "Juan Maldonado"
+      ],
+      "local_context": {
+        "required_background": "Use the exact title and metadata. Show one compact Guide Card resource entering a central Sling Model contract, then branching to HTL-rendered HTML and an explicitly conditional JSON representation. The JSON branch must say ELIGIBLE EXPORTER only."
+      },
+      "layout": {
+        "composition": "Editorial title and metadata block on the left; compact resource-to-model-to-HTML/JSON system map on the right; narrow session-topic rail at the bottom.",
+        "intent": "Orient the audience without turning the cover into a detailed implementation slide."
+      },
+      "visual_elements": {
+        "main_visual": "Guide Card Resource → Sling Model → HTL / eligible Model Exporter.",
+        "supporting_elements": "Precise resource, Java model, HTML and JSON icons with meaningful connectors."
+      },
+      "constraints": [
+        "Render the title, date, duration and presenter exactly.",
+        "Do not imply that every Sling Model exports JSON.",
+        "Do not add a lesson number beyond the Class 17 metadata."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "A Sling Model turns AEM context into a view contract.",
+      "role": "architecture flow",
+      "intent": "Establish the model's responsibility before introducing individual annotations.",
+      "key_points": [
+        "Adapt supported AEM or Sling context.",
+        "Resolve inputs through the Models Adapter Factory and injectors.",
+        "Expose typed values and explicit state to HTL.",
+        "Optionally expose an eligible exporter contract."
+      ],
+      "local_context": {
+        "required_background": "Show exactly four stages: ADAPTABLE, MODELS ADAPTER FACTORY + INJECTORS, VIEW CONTRACT, CONSUMERS. Consumers split into HTL → HTML and ELIGIBLE EXPORTER → JSON. Add a distinction strip: SLING MODEL = ADAPTED VIEW OBJECT; NOT AN OSGi SERVICE BY DEFAULT."
+      },
+      "layout": {
+        "composition": "One horizontal four-stage technical flow with a conditional consumer fork and a concise identity strip.",
+        "intent": "Make the creation and consumption boundaries visible in one pass."
+      },
+      "visual_elements": {
+        "main_visual": "Adaptable-to-contract pipeline with injector sockets and conditional output branches."
+      },
+      "constraints": [
+        "Spell Models Adapter Factory exactly.",
+        "Show HTL as the markup consumer, not as a data injector.",
+        "Keep the JSON branch explicitly conditional."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "The adaptable defines the context a model can use.",
+      "role": "decision comparison",
+      "intent": "Teach developers to choose the narrowest context that supplies the model's real inputs.",
+      "key_points": [
+        "Resource supplies properties, children and resource type.",
+        "A request adds bindings, attributes and request-specific objects.",
+        "Prefer Resource for content-only models.",
+        "Use a request only when request context is required."
+      ],
+      "local_context": {
+        "required_background": "Create a decision fork beginning with WHAT DOES THE MODEL NEED? Left branch CONTENT ONLY → Resource with ValueMap, child Resources and resource type. Right branch REQUEST CONTEXT → request adaptable with Sling bindings, request attributes and request objects. Show @ScriptVariable only on the request branch. Conclude CHOOSE THE NARROWEST ADAPTABLE."
+      },
+      "layout": {
+        "composition": "Central decision question with asymmetric Resource and request branches, then a one-line decision rule.",
+        "intent": "Turn adaptable selection into a requirement-driven decision."
+      },
+      "visual_elements": {
+        "main_visual": "Content-only versus request-context decision tree."
+      },
+      "constraints": [
+        "Do not imply a request is always required for HTL.",
+        "Keep @ScriptVariable on the request branch only.",
+        "Render Resource with an uppercase R."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Model creation is a runtime contract.",
+      "role": "runtime gate",
+      "intent": "Show that a compiled class is not automatically discoverable or adaptable as a Sling Model.",
+      "key_points": [
+        "@Model declares the supported adaptable and resource type.",
+        "Bundle metadata registers model packages.",
+        "The adaptable and required injections must match at runtime.",
+        "ModelFactory exposes clearer creation failures than a null adaptation."
+      ],
+      "local_context": {
+        "required_background": "Use four numbered gates: 1 MODEL PACKAGE REGISTERED, 2 ADAPTABLE MATCHES, 3 RESOURCE TYPE APPLIES WHEN DECLARED, 4 REQUIRED INJECTIONS RESOLVE. Success produces MODEL INSTANCE. Failure rail: resource.adaptTo(GuideCard.class) → null; ModelFactory.createModel(...) → explicit exception/evidence. Do not show a full Java class."
+      },
+      "layout": {
+        "composition": "Four serial runtime gates with success output above and a compact diagnostic comparison below.",
+        "intent": "Connect model discovery and adaptation to observable failure evidence."
+      },
+      "visual_elements": {
+        "main_visual": "Registration and adaptation gate sequence with success/failure rails."
+      },
+      "constraints": [
+        "Render @Model, adaptTo and ModelFactory exactly.",
+        "Do not claim compilation registers a model automatically.",
+        "Do not imply resource type is mandatory for every model."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Injection should name its source and optionality.",
+      "role": "injection anatomy",
+      "intent": "Make model dependencies readable and prevent silent ambiguity about their source.",
+      "key_points": [
+        "Use source-specific injector annotations.",
+        "Injection is required by default.",
+        "Use Optional<T> when absence is legitimate.",
+        "Do not make every dependency optional."
+      ],
+      "local_context": {
+        "required_background": "Place one central GUIDE CARD MODEL with five labeled input ports: @ValueMapValue → property, @ChildResource → child Resource, @OSGiService → reusable service, @Self → current adaptable or delegated model, @ScriptVariable → request binding. Solid connectors mean REQUIRED BY DEFAULT; one dashed Optional<String> title means LEGITIMATELY OPTIONAL. Add warning: OPTIONAL EVERYWHERE HIDES BROKEN CONTRACTS."
+      },
+      "layout": {
+        "composition": "Central model with five semantically colored injector ports, a required-versus-optional legend and one warning rail.",
+        "intent": "Make source and optionality visible as parts of the model contract."
+      },
+      "visual_elements": {
+        "main_visual": "Injector port map around a Guide Card model."
+      },
+      "constraints": [
+        "Spell all five annotations exactly.",
+        "Show @ScriptVariable as request-bound.",
+        "Do not use generic @Inject as the recommended annotation."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Fallbacks and derived values belong in the model.",
+      "role": "data preparation flow",
+      "intent": "Move repository-specific decisions out of HTL while keeping behavior small and predictable.",
+      "key_points": [
+        "Resolve configured, legacy and safe fallback values in order.",
+        "Normalize and derive presentation-ready values once.",
+        "Expose explicit empty state.",
+        "Keep getters deterministic and inexpensive."
+      ],
+      "local_context": {
+        "required_background": "Use a Guide Card title example. Input chain: title (configured) → heading (legacy compatibility) → Untitled guide (safe fallback). Then one preparation stage trims whitespace and derives getDisplayTitle(). Expose isEmpty() separately. Contrast MODEL with HTL: Java owns precedence and normalization; HTL receives displayTitle and empty and chooses semantic markup."
+      },
+      "layout": {
+        "composition": "Left-to-right fallback priority chain leading to a preparation node, then a small model-to-HTL contract table.",
+        "intent": "Show one concrete value moving from repository compatibility to a clean view contract."
+      },
+      "visual_elements": {
+        "main_visual": "Configured → legacy → safe fallback chain feeding prepared getters."
+      },
+      "constraints": [
+        "Render title, heading, Untitled guide, getDisplayTitle() and isEmpty() exactly.",
+        "Do not put the fallback chain inside HTL.",
+        "Do not add repository queries or service calls."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "The model owns data preparation; HTL owns markup.",
+      "role": "responsibility boundary",
+      "intent": "Define a stable seam that keeps templates readable without turning the model into a rendering engine.",
+      "key_points": [
+        "The model exposes typed values and explicit state.",
+        "HTL chooses elements, attributes and conditional markup.",
+        "Repository traversal and fallback precedence stay out of HTL.",
+        "Contextual escaping remains automatic."
+      ],
+      "local_context": {
+        "required_background": "Use two unequal lanes separated by a CONTRACT seam. JAVA / SLING MODEL owns ValueMap reads, fallback precedence, normalization, derived values and isEmpty(). HTL owns <article>, <h2>, attributes, data-sly-test and contextual output. Cross the seam with only displayTitle, link and empty. Add forbidden examples under the seam: no deep repository traversal in HTL; no HTML string building in Java."
+      },
+      "layout": {
+        "composition": "Two-lane ownership atlas with a narrow typed-contract bridge and prohibited cross-boundary examples below.",
+        "intent": "Make the Java-to-template responsibility boundary explicit."
+      },
+      "visual_elements": {
+        "main_visual": "Model and HTL responsibility lanes joined by three typed contract values."
+      },
+      "constraints": [
+        "Render HTML tags and data-sly-test in monospace.",
+        "Do not recommend context='unsafe'.",
+        "Do not show HTML markup being assembled in Java."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Delegate Core Component behavior instead of copying it.",
+      "role": "safe extension pattern",
+      "intent": "Show how a project component adds behavior while preserving the Core Component implementation path.",
+      "key_points": [
+        "Proxy through the resource supertype.",
+        "Inject the public model contract.",
+        "Override only what the project owns.",
+        "Delegate the remaining behavior."
+      ],
+      "local_context": {
+        "required_background": "This is the approved sample slide. Preserve it exactly and do not regenerate it."
+      },
+      "layout": {
+        "composition": "Project proxy → project model → delegated public Title contract, with safe-extension and copying-risk strips.",
+        "intent": "Use one concrete delegation trace to establish the deck's visual language."
+      },
+      "visual_elements": {
+        "main_visual": "Approved delegation atlas."
+      },
+      "constraints": [
+        "Do not regenerate this approved sample.",
+        "Use the existing slide_08.png as final."
+      ],
+      "sample_approved": true
+    },
+    {
+      "number": 9,
+      "title": "The model coordinates the view; services own reusable work.",
+      "role": "responsibility decision",
+      "intent": "Prevent both oversized models and speculative service layers.",
+      "key_points": [
+        "Keep component-specific preparation in the model.",
+        "Use a service for reusable queries, integrations or orchestration.",
+        "Inject a real service dependency with @OSGiService.",
+        "Do not create a service that forwards one getter."
+      ],
+      "local_context": {
+        "required_background": "Create a decision axis from VIEW-SPECIFIC to REUSABLE / EXTERNAL. Place fallback, formatting and isEmpty() on the Sling Model side. Place reusable query, external integration and multi-step orchestration on the OSGi Service side. Show @OSGiService as the one-way dependency from model to service. Cross out a pass-through service whose only method returns one model property. Footer: SERVICE CONFIGURATION + LIFECYCLE → CLASS 18."
+      },
+      "layout": {
+        "composition": "Ownership spectrum with concrete tasks positioned along it, plus one dependency arrow and one YAGNI warning.",
+        "intent": "Make service extraction depend on reusable responsibility rather than ceremony."
+      },
+      "visual_elements": {
+        "main_visual": "Sling Model versus OSGi Service ownership spectrum."
+      },
+      "constraints": [
+        "Render @OSGiService exactly.",
+        "Do not teach OSGi configuration mechanics on this slide.",
+        "Do not imply every model needs a service."
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Model Exporter can expose an existing model contract.",
+      "role": "request flow",
+      "intent": "Explain .model.json without implying that every Sling Model automatically has a JSON endpoint.",
+      "key_points": [
+        "An eligible model declares an exporter and resource type.",
+        ".model.json resolves the resource and generated exporter servlet.",
+        "Sling adapts the eligible model.",
+        "Jackson serializes the exposed contract."
+      ],
+      "local_context": {
+        "required_background": "Show exactly five numbered stages: 1 GET /content/wknd/us/en/guides.model.json, 2 resolve Resource + sling:resourceType, 3 generated exporter servlet selected by model selector + json extension, 4 adapt to @Exporter model, 5 Jackson → JSON response. Put an ELIGIBILITY GATE before stage 3 with @Exporter + resourceType. Add warning: NOT EVERY SLING MODEL HAS .model.json. Add decision footer: INSPECT THE EXISTING CONTRACT BEFORE WRITING A CUSTOM SERVLET."
+      },
+      "layout": {
+        "composition": "Five-stage request trace with an explicit eligibility gate and a JSON inspector at the end.",
+        "intent": "Tie the URL to runtime resolution and serialization without teaching custom servlet implementation."
+      },
+      "visual_elements": {
+        "main_visual": ".model.json request → resource type → generated exporter servlet → model → Jackson JSON."
+      },
+      "constraints": [
+        "Spell the URL, sling:resourceType, @Exporter, model and json exactly.",
+        "Do not claim every model exports JSON.",
+        "Do not show a handwritten custom servlet as the default solution."
+      ]
+    },
+    {
+      "number": 11,
+      "title": "Key takeaways",
+      "role": "technical recap",
+      "intent": "Consolidate the decisions developers should carry into implementation and following backend sessions.",
+      "key_points": [
+        "Choose the narrowest adaptable.",
+        "Name every injection source and make optionality deliberate.",
+        "Keep fallback logic in a small model contract, not HTL.",
+        "Delegate public Core Component behavior.",
+        "Use services and exporters only when their contract is real."
+      ],
+      "local_context": {
+        "required_background": "Place one central GUIDE CARD VIEW CONTRACT with five numbered branches: 1 ADAPTABLE, 2 INJECTION, 3 MODEL ↔ HTL BOUNDARY, 4 DELEGATION, 5 SERVICE / EXPORT DECISION. Use the exact key points and conclude MAKE THE CONTRACT EXPLICIT."
+      },
+      "layout": {
+        "composition": "Central contract object with five takeaway branches and one strong conclusion strip.",
+        "intent": "Summarize the session as five implementation checkpoints rather than repeating earlier layouts."
+      },
+      "visual_elements": {
+        "main_visual": "Guide Card view contract surrounded by five concise checkpoints."
+      },
+      "constraints": [
+        "Keep all five takeaways readable.",
+        "Do not add new concepts, exercises or next steps.",
+        "Render MAKE THE CONTRACT EXPLICIT exactly."
+      ]
+    },
+    {
+      "number": 12,
+      "title": "Questions",
+      "role": "Q&A",
+      "intent": "Invite participant questions and close without adding another exercise.",
+      "key_points": [
+        "Questions",
+        "Thank you"
+      ],
+      "local_context": {
+        "required_background": "This must remain a passive closing slide. Use only Questions and Thank you as visible message text. Do not add prompts, quizzes, discussion questions, assignments, recap bullets, next steps or contact details."
+      },
+      "layout": {
+        "composition": "Large restrained Questions title with generous whitespace and a subtle resource → model → HTML/JSON technical motif.",
+        "intent": "Slow the visual rhythm and leave room for audience-led Q&A."
+      },
+      "visual_elements": {
+        "main_visual": "Minimal technical line motif derived from the deck's resource-to-contract flow."
+      },
+      "constraints": [
+        "Visible message text must be limited to Questions and Thank you.",
+        "Do not invent questions or prompts.",
+        "No assignment, recap or next-step content."
+      ]
+    }
+  ]
+}

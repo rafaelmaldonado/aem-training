@@ -267,12 +267,18 @@
     <details><summary>Day 17 · Sling Models, delegation and Model Exporter</summary>
       <p><strong>Retrieval question:</strong> When should a model adapt from a resource rather than a request?</p>
       <ol class="slides">
-        <li><strong>Slide 1 — The adaptable defines available context.</strong> A resource model is portable; a request model is appropriate when request-specific objects are required. <em>Speaker cue: choose the narrowest context.</em></li>
-        <li><strong>Slide 2 — Injection maps AEM data.</strong> Properties, child resources and services can be injected with explicit optionality. <em>Speaker cue: invisible injection failure becomes an empty page.</em></li>
-        <li><strong>Slide 3 — The model is a view contract.</strong> Getters expose values already prepared for HTL. <em>Speaker cue: HTL should not know repository fallbacks or formatting rules.</em></li>
-        <li><strong>Slide 4 — Delegate existing component behavior.</strong> Extend a Core Component model through its public contract instead of copying implementation. <em>Speaker cue: add only the project-owned value or override.</em></li>
-        <li><strong>Slide 5 — Services own reusable orchestration.</strong> Large queries, integrations or shared logic do not belong in getters. <em>Speaker cue: a model coordinates the view; it is not the entire application.</em></li>
-        <li><strong>Slide 6 — Model Exporter can expose an existing JSON contract.</strong> An eligible Sling Model can support selectors such as <code>.model.json</code> without a custom endpoint. <em>Speaker cue: inspect the existing contract before adding a servlet.</em></li>
+        <li><strong>Slide 1 — Sling Models: adaptables, injection, delegation and JSON.</strong> Preview the path from AEM context to rendered HTML and an eligible JSON representation.</li>
+        <li><strong>Slide 2 — A Sling Model turns AEM context into a view contract.</strong> Follow adaptation, injector resolution, prepared getters and consumers.</li>
+        <li><strong>Slide 3 — The adaptable defines the context a model can use.</strong> Choose Resource for content-only models and request context only when required.</li>
+        <li><strong>Slide 4 — Model creation is a runtime contract.</strong> Trace package registration, adaptable, resource-type and injection gates.</li>
+        <li><strong>Slide 5 — Injection should name its source and optionality.</strong> Use source-specific annotations and preserve meaningful required failures.</li>
+        <li><strong>Slide 6 — Fallbacks and derived values belong in the model.</strong> Resolve configured, legacy and safe fallback values before HTL.</li>
+        <li><strong>Slide 7 — The model owns data preparation; HTL owns markup.</strong> Cross the view boundary with prepared values and explicit state.</li>
+        <li><strong>Slide 8 — Delegate Core Component behavior instead of copying it.</strong> Add only project-owned behavior and pass through the remaining public contract.</li>
+        <li><strong>Slide 9 — The model coordinates the view; services own reusable work.</strong> Extract only genuine queries, integrations or orchestration.</li>
+        <li><strong>Slide 10 — Model Exporter can expose an existing model contract.</strong> Trace an eligible <code>.model.json</code> request through adaptation and serialization.</li>
+        <li><strong>Slide 11 — Key takeaways.</strong> Summarize adaptable, injection, view, delegation, service and export decisions.</li>
+        <li><strong>Slide 12 — Questions.</strong> End the session and leave the floor open for audience questions.</li>
       </ol>
       <p><strong>Demo:</strong> implement a Guide title with a fallback and inspect its exported contract. <strong>Assignment:</strong> connect a Sling Model to Guide Card HTL and compare the HTML with <code>.model.json</code>. <strong>Acceptance:</strong> configured, missing and legacy values render without exceptions and the exported contract is understood.</p>
     </details>
