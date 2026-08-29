@@ -11,15 +11,15 @@
 ## Slide 1 — OSGi services, configuration and servlet boundaries
 
 **Role:** opening overview  
-**Intent:** identify the session and preview the path from a real consumer to a configured capability and the minimum delivery surface.
+**Intent:** identify the session, presenter and date while previewing the three learning threads.
 
 - Class 18 · Week 4 · Day 18 · September 9, 2026.
 - OSGi services, configuration and servlet boundaries.
-- Today: reusable capabilities, Declarative Services, typed configuration, environment values, secrets and endpoint decisions.
+- Today: reusable services, typed configuration and endpoint decisions.
 - 30-minute technical session.
 - Juan Maldonado.
 
-**Visual idea:** a Guide Card consumer calls one configured Guide URL service; the output reaches HTL or an existing exporter, while a servlet branch remains behind a decision gate.
+**Visual idea:** a strong title block with presenter and date, plus three compact visual anchors for reusable services, typed configuration and endpoint decisions.
 
 ## Slide 2 — Create a service only for a reusable capability.
 

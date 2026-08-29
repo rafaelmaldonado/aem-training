@@ -26,27 +26,27 @@
       "requires_context_images": false,
       "status": "recorded",
       "dispatch": {
-        "agent_id": "/root/lesson14_slide01",
-        "agent_nickname": "lesson14_slide01",
+        "agent_id": "/root/lesson14_opening",
+        "agent_nickname": "lesson14_opening",
         "prompt": "prompts/slide_01.json",
-        "prompt_sha256": "d356801980adf6993d42836906eb64553acea7895f8c014e51e89434210e4cfe",
-        "dispatched_at": "2026-08-26T22:28:19Z"
+        "prompt_sha256": "b93183f8da916856355b68eb011a805f926e8b1efd9e762def0136a3fab54c6b",
+        "dispatched_at": "2026-08-28T22:36:54Z"
       },
       "result": {
-        "agent_id": "/root/lesson14_slide01",
+        "agent_id": "/root/lesson14_opening",
         "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a04030-1c73-79c1-82e6-8d00f6b5f7aa/exec-21e85a2e-6c03-41d6-a426-ea1457e3e864.png",
-        "selected_source_sha256": "a8b65e6766c06afad0657a4a12d27df49b4992ead237555cd4467001ae4bae00",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a04a84-be72-71d3-b0fe-aef83e048d27/exec-814687e5-11ed-4e37-bc32-c22aa4408b01.png",
+        "selected_source_sha256": "8f7919b618e0643278f78fed675681684a38fad1624206015ff523682f213ee8",
         "final_image": "origin_image/slide_01.png",
-        "final_image_sha256": "a8b65e6766c06afad0657a4a12d27df49b4992ead237555cd4467001ae4bae00",
+        "final_image_sha256": "8f7919b618e0643278f78fed675681684a38fad1624206015ff523682f213ee8",
         "expected_backend": "built-in image tool",
         "expected_backend_labels": [
           "built-in image tool",
           "image_gen"
         ],
         "sample_generation_method_matched": true,
-        "qa_note": "Revised cover; exact metadata, readable hierarchy, simple editor-to-grid-to-browser path.",
-        "recorded_at": "2026-08-26T22:31:59Z"
+        "qa_note": "Exact required text is legible; sparse overview with four unconnected topic anchors; no clipping or process diagram.",
+        "recorded_at": "2026-08-28T22:38:16Z"
       },
       "blocker": null
     },
@@ -339,5 +339,5 @@
       "blocker": null
     }
   ],
-  "updated_at": "2026-08-26T22:38:49Z"
+  "updated_at": "2026-08-28T22:38:16Z"
 }

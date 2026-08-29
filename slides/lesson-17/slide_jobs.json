@@ -32,27 +32,27 @@
       "requires_context_images": true,
       "status": "recorded",
       "dispatch": {
-        "agent_id": "/root/lesson16_slide09",
-        "agent_nickname": "Pauli",
+        "agent_id": "/root/lesson17_opening",
+        "agent_nickname": "lesson17_opening",
         "prompt": "prompts/slide_01.json",
-        "prompt_sha256": "5731ae9809ece3beab8f887e429d26488ff34f4aabbfe0a5432342ebf09df8f8",
-        "dispatched_at": "2026-08-27T18:50:09Z"
+        "prompt_sha256": "3187ad29a1807309243c9fd07ad3d1f02bc848121edd03227ef57ca4f2de7c00",
+        "dispatched_at": "2026-08-28T22:37:20Z"
       },
       "result": {
-        "agent_id": "/root/lesson16_slide09",
+        "agent_id": "/root/lesson17_opening",
         "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040b9-558f-7c33-afd0-2cd2eda6b1f6/exec-b3edf259-9bfa-4331-9c52-b16cdeb5aa28.png",
-        "selected_source_sha256": "ed81e6698e7f420b7c3ef0226bfb7d7258934c9e20c8e7cdb9443563db3c613c",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a04a85-272b-7a21-a753-ef2bf99cd84d/exec-afe574f9-ad04-4316-bfba-27b92251456f.png",
+        "selected_source_sha256": "33fc8980054991d828875099db441aee5854f2c4037b0a700e9a88db03a7dcf8",
         "final_image": "origin_image/slide_01.png",
-        "final_image_sha256": "ed81e6698e7f420b7c3ef0226bfb7d7258934c9e20c8e7cdb9443563db3c613c",
+        "final_image_sha256": "33fc8980054991d828875099db441aee5854f2c4037b0a700e9a88db03a7dcf8",
         "expected_backend": "built-in image tool",
         "expected_backend_labels": [
           "built-in image tool",
           "image_gen"
         ],
         "sample_generation_method_matched": true,
-        "qa_note": "Exact title and metadata, conditional exporter labeling, approved atlas styling and no clipping.",
-        "recorded_at": "2026-08-27T18:52:49Z"
+        "qa_note": "Exact required text is legible; sparse overview with three icon-and-label anchors; no resource-to-model-to-JSON diagram or clipping.",
+        "recorded_at": "2026-08-28T22:39:29Z"
       },
       "blocker": null
     },
@@ -479,5 +479,5 @@
       "blocker": null
     }
   ],
-  "updated_at": "2026-08-27T19:01:15Z"
+  "updated_at": "2026-08-28T22:39:29Z"
 }

@@ -26,27 +26,27 @@
       "requires_context_images": false,
       "status": "recorded",
       "dispatch": {
-        "agent_id": "/root/lesson16_slide01",
-        "agent_nickname": "lesson16_slide01",
+        "agent_id": "/root/lesson16_opening",
+        "agent_nickname": "lesson16_opening",
         "prompt": "prompts/slide_01.json",
-        "prompt_sha256": "8b31567c93d87352f1eeae1b4ec83f5047bfe4387eb9219d40ba6ce7c74ac936",
-        "dispatched_at": "2026-08-27T00:48:53Z"
+        "prompt_sha256": "d44ec3a8aca789998185c82e1f87259092670c4a179455bf57702e4f8db61f39",
+        "dispatched_at": "2026-08-28T22:37:07Z"
       },
       "result": {
-        "agent_id": "/root/lesson16_slide01",
+        "agent_id": "/root/lesson16_opening",
         "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a040b0-5c37-7de1-8d73-3e0752f966ae/exec-ac58b784-1907-41ba-9d08-49b9bcd1923e.png",
-        "selected_source_sha256": "d4d0d6d0dc87dffb449328818f6cfe5627e40783fdd3596aa5f2d9359f47f517",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a04a84-f2ae-75b2-acc9-65dd67dc074e/exec-ae58b086-5a38-4344-a524-9dd3df1d5f65.png",
+        "selected_source_sha256": "94f1ce6209c04553e5205ff4c28fd1adcbafabff838ac0164a7165cda47373ee",
         "final_image": "origin_image/slide_01.png",
-        "final_image_sha256": "d4d0d6d0dc87dffb449328818f6cfe5627e40783fdd3596aa5f2d9359f47f517",
+        "final_image_sha256": "94f1ce6209c04553e5205ff4c28fd1adcbafabff838ac0164a7165cda47373ee",
         "expected_backend": "built-in image tool",
         "expected_backend_labels": [
           "built-in image tool",
           "image_gen"
         ],
         "sample_generation_method_matched": true,
-        "qa_note": "Exact cover metadata, readable source-to-resource path, and approved technical-atlas style.",
-        "recorded_at": "2026-08-27T00:50:04Z"
+        "qa_note": "Exact required text is legible; sparse overview with three standalone icons; no source-to-runtime diagram or clipping.",
+        "recorded_at": "2026-08-28T22:39:09Z"
       },
       "blocker": null
     },
@@ -373,5 +373,5 @@
       "blocker": null
     }
   ],
-  "updated_at": "2026-08-27T01:07:31Z"
+  "updated_at": "2026-08-28T22:39:09Z"
 }

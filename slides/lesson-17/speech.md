@@ -2,9 +2,9 @@
 
 ## Slide 1: Sling Models: adaptables, injection, delegation and JSON
 
-Today we connect the Resource API from the previous class to the objects HTL actually consumes. The path on the slide starts with component content, passes through a Sling Model, and ends in rendered HTML. A second branch shows JSON, but that branch is deliberately conditional: a model must participate in an exporter contract before `.model.json` exists.
+Introduce Class 17, the 30-minute scope and the session’s three threads: adaptable choice, injection contracts and Core Component delegation.
 
-The goal is not to memorize annotations. By the end of the session, we should be able to explain why a model adapts from a Resource or a request, where every injected value comes from, what logic belongs in the model, and when delegation or Model Exporter prevents us from duplicating an existing implementation. We will begin with the role of the model itself.
+Keep the opening at overview level. The next slide establishes what a Sling Model owns before the session introduces individual annotations and export behavior.
 
 ## Slide 2: A Sling Model turns AEM context into a view contract.
 

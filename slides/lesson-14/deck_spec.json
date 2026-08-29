@@ -62,7 +62,7 @@
       "number": 1,
       "title": "Responsive layout in AEM",
       "role": "opening overview",
-      "intent": "Identify the session, presenter and date while previewing the AEM-specific responsive path.",
+      "intent": "Identify the session, presenter and date while previewing the four learning threads.",
       "key_points": [
         "Class 14 · Week 3 · Day 14 · September 3, 2026",
         "Responsive layout in AEM",
@@ -71,19 +71,19 @@
         "Juan Maldonado"
       ],
       "local_context": {
-        "required_background": "Create an opening overview. Show a compact path from the AEM Page Editor through a responsive grid to a browser result. Present four topic anchors: Layout Container, Layout Mode, breakpoints and browser delivery."
+        "required_background": "Create an opening overview. Present four compact topic anchors: Layout Container, Layout Mode, breakpoints and browser delivery."
       },
       "layout": {
-        "composition": "Strong title and metadata block on the left; one concise editor-to-grid-to-browser path and four small topic anchors on the right.",
-        "intent": "Orient the audience without turning the cover into a detailed architecture diagram."
+        "composition": "Strong title block with class metadata, presenter and date on the left; four compact topic anchors on the right.",
+        "intent": "Orient the audience before technical detail without turning the opening into another process slide."
       },
       "visual_elements": {
-        "main_visual": "AEM editor frame connected to a 12-column grid and a responsive browser window."
+        "main_visual": "Four concise icons for Layout Container, Layout Mode, breakpoints and browser delivery."
       },
       "constraints": [
         "Render all class metadata exactly.",
-        "Render the Today line exactly.",
-        "Do not add implementation code or extra agenda items to the opening slide."
+        "Render the four Today topics clearly.",
+        "Do not add a path or flow diagram to the opening slide."
       ]
     },
     {

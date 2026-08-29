@@ -11,15 +11,15 @@
 ## Slide 1 — Java, OSGi and Resource API foundations in AEM
 
 **Role:** opening overview  
-**Intent:** identify the session and preview the complete source-to-runtime-to-content trace.
+**Intent:** identify the session, presenter and date while previewing the three learning threads.
 
 - Class 16 · Week 4 · Day 16 · September 7, 2026.
 - Java, OSGi and Resource API foundations in AEM.
-- Today: `core`, bundles, components, services, runtime evidence and resources.
+- Today: the core module, the OSGi runtime and the Resource API.
 - 30-minute technical session.
 - Juan Maldonado.
 
-**Visual idea:** a compact path from Java source in `core` to an OSGi bundle, a managed runtime component and an AEM content resource.
+**Visual idea:** a strong title block with presenter and date, plus three compact visual anchors for the core module, the OSGi runtime and the Resource API.
 
 ## Slide 2 — Java crosses several boundaries before AEM can use it.
 

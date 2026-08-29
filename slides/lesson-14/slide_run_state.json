@@ -36,7 +36,19 @@
       "to": "slides_recorded",
       "at": "2026-08-26T22:38:49Z",
       "note": "all slide images recorded"
+    },
+    {
+      "from": "slides_recorded",
+      "to": "slides_dispatched",
+      "at": "2026-08-28T22:36:54Z",
+      "note": "all slide jobs dispatched"
+    },
+    {
+      "from": "slides_dispatched",
+      "to": "slides_recorded",
+      "at": "2026-08-28T22:38:16Z",
+      "note": "all slide images recorded"
     }
   ],
-  "updated_at": "2026-08-26T22:38:49Z"
+  "updated_at": "2026-08-28T22:38:16Z"
 }

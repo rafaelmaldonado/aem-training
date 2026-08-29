@@ -32,27 +32,27 @@
       "requires_context_images": true,
       "status": "recorded",
       "dispatch": {
-        "agent_id": "/root/slide_01",
-        "agent_nickname": "slide_01",
+        "agent_id": "/root/lesson18_opening",
+        "agent_nickname": "lesson18_opening",
         "prompt": "prompts/slide_01.json",
-        "prompt_sha256": "c42fbb7d28813259ebb2e8099e7550a869198bf2f65fae037aa1dfc2cb51cf86",
-        "dispatched_at": "2026-08-28T18:25:47Z"
+        "prompt_sha256": "a2410c416cf1bdd2226771951d5e76ec96ff5e4502d33b0f7fa4c13f60f7fb7e",
+        "dispatched_at": "2026-08-28T22:38:29Z"
       },
       "result": {
-        "agent_id": "/root/slide_01",
+        "agent_id": "/root/lesson18_opening",
         "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0499e-5e78-78d1-859f-af7512172f38/exec-883598de-fc36-4f30-96fc-9c960fab9b53.png",
-        "selected_source_sha256": "b01be233ccb774a6299bea72041b3293bec93a396e8bf8cf967c80381d25df52",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a04a86-34de-76e2-b667-a98b134607a8/exec-766a817c-3384-4b76-8c14-607ce3f66eea.png",
+        "selected_source_sha256": "cf1ede23f84059c8950914d3b2d211c5ae1b1ece192258000833b03176f158b0",
         "final_image": "origin_image/slide_01.png",
-        "final_image_sha256": "b01be233ccb774a6299bea72041b3293bec93a396e8bf8cf967c80381d25df52",
+        "final_image_sha256": "cf1ede23f84059c8950914d3b2d211c5ae1b1ece192258000833b03176f158b0",
         "expected_backend": "built-in image tool",
         "expected_backend_labels": [
           "built-in image tool",
           "image_gen"
         ],
         "sample_generation_method_matched": true,
-        "qa_note": "Exact title and metadata are legible; servlet remains conditional; style matches the approved sample.",
-        "recorded_at": "2026-08-28T18:29:01Z"
+        "qa_note": "Exact required text is legible; sparse overview with three compact anchors; no consumer-to-service flow diagram, extra content, or clipping.",
+        "recorded_at": "2026-08-28T22:43:25Z"
       },
       "blocker": null
     },
@@ -479,5 +479,5 @@
       "blocker": null
     }
   ],
-  "updated_at": "2026-08-28T18:42:43Z"
+  "updated_at": "2026-08-28T22:43:25Z"
 }

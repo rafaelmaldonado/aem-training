@@ -11,7 +11,7 @@
 ## Slide 1 — Responsive layout in AEM
 
 **Role:** opening overview
-**Intent:** identify the session, presenter and date while previewing the AEM-specific responsive path.
+**Intent:** identify the session, presenter and date while previewing the four learning threads.
 
 - Class 14 · Week 3 · Day 14 · September 3, 2026.
 - Responsive layout in AEM.
@@ -19,7 +19,7 @@
 - 30-minute technical session.
 - Juan Maldonado.
 
-**Visual idea:** a strong title block with presenter and date, plus a compact left-to-right path from the AEM editor to responsive grid output and the browser.
+**Visual idea:** a strong title block with presenter and date, plus four compact visual anchors for Layout Container, Layout Mode, breakpoints and browser delivery.
 
 ## Slide 2 — Responsiveness has several owners.
 

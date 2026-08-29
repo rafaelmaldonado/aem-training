@@ -11,15 +11,15 @@
 ## Slide 1 — Sling Models: adaptables, injection, delegation and JSON
 
 **Role:** opening overview  
-**Intent:** identify the session and preview the full path from AEM context to rendered and exported output.
+**Intent:** identify the session, presenter and date while previewing the three learning threads.
 
 - Class 17 · Week 4 · Day 17 · September 8, 2026.
 - Sling Models: adaptables, injection, delegation and JSON.
-- Today: model creation, adaptable choice, injection, optionality, view contracts, delegation and Model Exporter.
+- Today: adaptable choice, injection contracts and Core Component delegation.
 - 30-minute technical session.
 - Juan Maldonado.
 
-**Visual idea:** a Guide Card resource enters one central model contract, then branches to HTL-rendered HTML and an optional JSON representation.
+**Visual idea:** a strong title block with presenter and date, plus three compact visual anchors for adaptable choice, injection contracts and Core Component delegation.
 
 ## Slide 2 — A Sling Model turns AEM context into a view contract.
 

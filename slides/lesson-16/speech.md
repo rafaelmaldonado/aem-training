@@ -10,9 +10,9 @@
 
 ## Slide 1: Java, OSGi and Resource API foundations in AEM
 
-This week moves behind the HTL boundary. Until now, most of our evidence has lived in dialogs, repository properties, rendered markup, client libraries and browser behavior. Today we add the runtime map that explains where project Java lives, how AEM loads it and which content object it normally receives.
+Introduce Class 16, the 30-minute scope and the session’s three threads: the `core` module, the OSGi runtime and the Resource API.
 
-We will follow one path: Java source in the `core` module becomes an OSGi bundle, Apache Felix resolves the bundle, Declarative Services manages eligible components, and application code reads content through AEM or Sling abstractions. The objective is not to memorize every OSGi state. It is to know which evidence belongs to which boundary so that a successful Maven build is never mistaken for a working runtime capability.
+Keep the opening at overview level. The next slide begins the detailed source-to-runtime trace.
 
 ## Slide 2: Java crosses several boundaries before AEM can use it
 

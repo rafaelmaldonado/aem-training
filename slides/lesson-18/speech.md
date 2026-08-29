@@ -2,9 +2,9 @@
 
 ## Slide 1: OSGi services, configuration and servlet boundaries
 
-Today we continue from the Sling Model boundary. A model can prepare one component view, but shared behavior needs a different owner. The path on this cover starts with a real consumer, reaches one configured OSGi service and then stops at the smallest delivery surface that satisfies the requirement.
+Introduce Class 18, the 30-minute scope and the session’s three threads: reusable services, typed configuration and endpoint decisions.
 
-The emphasis is on restraint. We will not create a service merely to add a layer, and we will not create a servlet merely because Java can return JSON. By the end, we should be able to name the reusable capability, explain its effective configuration and justify whether HTL, a Sling Model, an existing exporter or a servlet owns the output.
+Keep the opening at overview level. The next slide starts with the decision that determines whether a service should exist at all.
 
 ## Slide 2: Create a service only for a reusable capability.
 

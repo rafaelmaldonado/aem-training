@@ -69,28 +69,28 @@
       "number": 1,
       "title": "Java, OSGi and Resource API foundations in AEM",
       "role": "opening overview",
-      "intent": "Identify the session and preview the complete source-to-runtime-to-content trace.",
+      "intent": "Identify the session, presenter and date while previewing the three learning threads.",
       "key_points": [
         "Class 16 · Week 4 · Day 16 · September 7, 2026",
         "Java, OSGi and Resource API foundations in AEM",
-        "Today: core, bundles, components, services, runtime evidence and resources",
+        "Today: the core module, the OSGi runtime and the Resource API",
         "30-minute technical session",
         "Juan Maldonado"
       ],
       "local_context": {
-        "required_background": "Create an opening overview with a compact path from Java source in the core module to an OSGi bundle, a managed runtime component and an AEM content resource."
+        "required_background": "Create an opening overview. Present three compact topic anchors: the core module, the OSGi runtime and the Resource API."
       },
       "layout": {
-        "composition": "Strong title and metadata block on the left; concise source-to-bundle-to-component-to-resource path on the right.",
-        "intent": "Orient the audience without turning the cover into a detailed architecture page."
+        "composition": "Strong title block with class metadata, presenter and date on the left; three compact topic anchors on the right.",
+        "intent": "Orient the audience before technical detail without turning the opening into another process slide."
       },
       "visual_elements": {
-        "main_visual": "IDE source file connected to a managed JAR, a DS lifecycle node and an AEM Resource tree."
+        "main_visual": "Three concise icons for the core module, the OSGi runtime and the Resource API."
       },
       "constraints": [
         "Render all class metadata exactly.",
-        "Render the Today line exactly.",
-        "Do not add implementation code or extra agenda items."
+        "Render the three Today topics clearly.",
+        "Do not add a source-to-runtime path diagram to the opening slide."
       ]
     },
     {

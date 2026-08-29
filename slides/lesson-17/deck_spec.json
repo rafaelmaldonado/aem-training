@@ -80,28 +80,28 @@
       "number": 1,
       "title": "Sling Models: adaptables, injection, delegation and JSON",
       "role": "opening overview",
-      "intent": "Identify the session and preview the path from AEM context to rendered HTML and optional JSON.",
+      "intent": "Identify the session, presenter and date while previewing the three learning threads.",
       "key_points": [
         "Class 17 · Week 4 · Day 17 · September 8, 2026",
-        "Today: model creation, adaptable choice, injection, optionality, view contracts, delegation and Model Exporter",
+        "Sling Models: adaptables, injection, delegation and JSON",
+        "Today: adaptable choice, injection contracts and Core Component delegation",
         "30-minute technical session",
         "Juan Maldonado"
       ],
       "local_context": {
-        "required_background": "Use the exact title and metadata. Show one compact Guide Card resource entering a central Sling Model contract, then branching to HTL-rendered HTML and an explicitly conditional JSON representation. The JSON branch must say ELIGIBLE EXPORTER only."
+        "required_background": "Create an opening overview. Present three compact topic anchors: adaptable choice, injection contracts and Core Component delegation."
       },
       "layout": {
-        "composition": "Editorial title and metadata block on the left; compact resource-to-model-to-HTML/JSON system map on the right; narrow session-topic rail at the bottom.",
-        "intent": "Orient the audience without turning the cover into a detailed implementation slide."
+        "composition": "Strong title block with class metadata, presenter and date on the left; three compact topic anchors on the right.",
+        "intent": "Orient the audience before technical detail without turning the opening into another process slide."
       },
       "visual_elements": {
-        "main_visual": "Guide Card Resource → Sling Model → HTL / eligible Model Exporter.",
-        "supporting_elements": "Precise resource, Java model, HTML and JSON icons with meaningful connectors."
+        "main_visual": "Three concise icons for adaptable choice, injection contracts and Core Component delegation."
       },
       "constraints": [
         "Render the title, date, duration and presenter exactly.",
-        "Do not imply that every Sling Model exports JSON.",
-        "Do not add a lesson number beyond the Class 17 metadata."
+        "Render the three Today topics clearly.",
+        "Do not add a resource-to-model-to-JSON flow diagram to the opening slide."
       ]
     },
     {

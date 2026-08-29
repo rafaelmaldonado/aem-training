@@ -9,9 +9,9 @@
 
 ## Slide 1: Responsive layout in AEM
 
-Today we are narrowing the word responsive to the mechanisms that AEM actually gives us. This is not another general introduction to media queries. We will follow a page from the template and Layout Container, through the author’s Layout Mode choices, into the grid classes and browser requests that prove the result.
+Introduce Class 14, the 30-minute scope and the session’s four threads: Layout Container, Layout Mode, breakpoints and browser delivery.
 
-The important idea is that no single file controls the whole experience. A template enables the structure, an author chooses a composition, AEM persists that choice, client libraries implement the grid, and each component must behave inside the width it receives. By the end, you should be able to trace a layout instead of guessing which CSS rule to change. We will use the same Guide Page throughout so every diagram refers to one observable implementation.
+Keep this as orientation only. The next slide assigns responsibility across the responsive path before the session examines each mechanism.
 
 ## Slide 2: Responsiveness has several owners
 
