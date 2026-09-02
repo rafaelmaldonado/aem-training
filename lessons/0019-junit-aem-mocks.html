@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class 19 · Testing Sling Models and services with JUnit 5 and AEM Mocks</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="brand" href="../index.html">AEM Training</a>
+    <ul>
+      <li><a href="../index.html">Overview</a></li>
+      <li><a href="../reference/aem-course-topics.html">Syllabus</a></li>
+      <li><a href="../reference/wknd-project-backlog.html">Practices</a></li>
+      <li><a href="../reference/index.html">References</a></li>
+    </ul>
+  </nav>
+  <header>
+    <p class="eyebrow">Class 19 · Week 4 · Day 19 · September 10, 2026</p>
+    <h1>Testing Sling Models and services with JUnit 5 and AEM Mocks</h1>
+    <p class="lede">Protect one observable model or service contract with focused JUnit 5 tests, representative in-memory AEM state and visible red-to-green regression evidence.</p>
+    <ul class="meta"><li>30 minutes online</li><li>Frontend-oriented AEM developers</li><li>Contract → context → activation → regression proof</li></ul>
+  </header>
+  <main id="content">
+    <section class="callout"><strong>Observable outcome:</strong> each developer can name one public behavior, arrange the smallest representative AEM context, exercise a real model or service boundary and prove that the focused test fails without the behavior before it passes with the minimum fix.</section>
+
+    <h2>Topic summary</h2>
+    <p>A useful unit test protects behavior a consumer can observe, not private methods, field layout or incidental call order. Arrange representative content, configuration and dependencies; act once through the public contract; then assert one result, state or deliberate failure.</p>
+    <p>JUnit Jupiter owns test lifecycle and assertions. AEM Mocks supplies the supported in-memory Sling, repository and OSGi boundaries without starting an AEM SDK. It does not prove browser, Dispatcher, deployment or full-runtime behavior, so the test-double decision must stop at the smallest truthful level.</p>
+    <ul>
+      <li>Protect one observable behavior through a public contract.</li>
+      <li>Keep Arrange, Act and Assert explicit and diagnosable.</li>
+      <li>Load only the AEM state and collaborators the behavior needs.</li>
+      <li>Exercise Sling Models through creation and services through activation.</li>
+      <li>Observe the regression check red before accepting green evidence.</li>
+    </ul>
+
+    <h2>30-minute agenda</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Time</th><th>Slide</th><th>Facilitation</th></tr></thead>
+      <tbody>
+        <tr><td>0–2</td><td>1 · Opening</td><td>Preview behavior contracts, representative context and regression evidence.</td></tr>
+        <tr><td>2–5</td><td>2 · Test boundary</td><td>Separate observable behavior from implementation shape.</td></tr>
+        <tr><td>5–8</td><td>3 · Test anatomy</td><td>Read one explicit Arrange–Act–Assert behavior check.</td></tr>
+        <tr><td>8–11</td><td>4 · JUnit lifecycle</td><td>Connect extension setup, fresh state, execution, assertion and cleanup.</td></tr>
+        <tr><td>11–14</td><td>5 · AEM Mocks boundary</td><td>Distinguish the in-memory platform boundary from a running SDK.</td></tr>
+        <tr><td>14–17</td><td>6 · Sling Model test</td><td>Build a model from minimal registered content and inspect creation failures.</td></tr>
+        <tr><td>17–20</td><td>7 · Content states</td><td>Protect configured, missing, invalid and intentional legacy contracts.</td></tr>
+        <tr><td>20–23</td><td>8 · Service activation</td><td>Inject, activate and retrieve an OSGi service through its public interface.</td></tr>
+        <tr><td>23–25</td><td>9 · Test doubles</td><td>Choose a real object, AEM Mock, small double or integration test.</td></tr>
+        <tr><td>25–27</td><td>10 · Red to green</td><td>Capture focused failing and passing evidence, then run the full core suite.</td></tr>
+        <tr><td>27–28</td><td>11 · Key takeaways</td><td>Consolidate five decisions for Week 4 practice.</td></tr>
+        <tr><td>28–30</td><td>12 · Questions</td><td>Questions from the audience only; no additional exercise.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2>Complete slide deck</h2>
+    <p class="section-intro">Study each slide with its presenter notes, then copy or download the PNG.</p>
+    <div class="web-deck">
+      <article class="web-slide" data-slide-src="../slides/lesson-19/origin_image/slide_01.png">
+        <img class="web-slide-image" src="../slides/lesson-19/origin_image/slide_01.png" alt="Class 19 opening slide introducing observable contracts, AEM Mocks and red-to-green evidence.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-19/origin_image/slide_01.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Goal:</strong> learn one repeatable path for protecting a Sling Model or service behavior.</li>
+          <li><strong>Threads:</strong> observable contracts, representative AEM state and red-to-green evidence.</li>
+          <li><strong>Continuity:</strong> Classes 17 and 18 gave the behavior an owner; this class proves that owner keeps its promise.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-19/origin_image/slide_02.png">
+        <img class="web-slide-image" src="../slides/lesson-19/origin_image/slide_02.png" alt="Protected unit-test boundary from representative input through a public contract to an observable result.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-19/origin_image/slide_02.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Contract:</strong> begin with one result a consumer depends on.</li>
+          <li><strong>Boundary:</strong> supply representative input and act through the public model or service API.</li>
+          <li><strong>Avoid:</strong> private methods, field layout and incidental call order are not the protected promise.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-19/origin_image/slide_03.png">
+        <img class="web-slide-image" src="../slides/lesson-19/origin_image/slide_03.png" alt="Arrange, Act and Assert specimen for one missing-title fallback behavior.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-19/origin_image/slide_03.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Arrange:</strong> select representative content and only the dependencies the state needs.</li>
+          <li><strong>Act:</strong> call the public contract once.</li>
+          <li><strong>Assert:</strong> name the business state and expectation so the failure is immediately diagnosable.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-19/origin_image/slide_04.png">
+        <img class="web-slide-image" src="../slides/lesson-19/origin_image/slide_04.png" alt="JUnit 5 lifecycle showing independent extension setup, BeforeEach, Test, assertion and cleanup runs.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-19/origin_image/slide_04.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Lifecycle:</strong> the extension prepares and cleans the AEM mock context.</li>
+          <li><strong>Fresh state:</strong> <code>@BeforeEach</code> runs before every independent <code>@Test</code>.</li>
+          <li><strong>Assertions:</strong> prefer direct Jupiter assertions over clever fixture inheritance.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-19/origin_image/slide_05.png">
+        <img class="web-slide-image" src="../slides/lesson-19/origin_image/slide_05.png" alt="AemContext containing mock content, resolver, request and response, Sling Models and OSGi services, with full-runtime concerns outside.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-19/origin_image/slide_05.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Inside:</strong> mock content, request and response state, model registration and an OSGi registry.</li>
+          <li><strong>Restraint:</strong> load only the tree and register only the collaborators needed by the behavior.</li>
+          <li><strong>Limit:</strong> a passing mock test does not prove Dispatcher, browser, deployment or full-runtime behavior.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-19/origin_image/slide_06.png">
+        <img class="web-slide-image" src="../slides/lesson-19/origin_image/slide_06.png" alt="Sling Model test pipeline from minimal JSON content through model registration and ModelFactory to a public assertion.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-19/origin_image/slide_06.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Fixture:</strong> load minimal JSON content at a stable path and select the exact scenario resource.</li>
+          <li><strong>Registration:</strong> register the model when test-time classpath discovery is unavailable.</li>
+          <li><strong>Diagnosis:</strong> prefer <code>ModelFactory.createModel</code> when a useful creation exception is better than <code>null</code>.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-19/origin_image/slide_07.png">
+        <img class="web-slide-image" src="../slides/lesson-19/origin_image/slide_07.png" alt="Matrix mapping configured, missing, invalid and legacy content to explicit Guide Card expectations.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-19/origin_image/slide_07.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Configured:</strong> return the authored value after documented normalization.</li>
+          <li><strong>Missing or invalid:</strong> produce the explicit fallback, empty, rejected or disabled state in the production contract.</li>
+          <li><strong>Legacy:</strong> preserve old content only when compatibility is intentional and named by a test.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-19/origin_image/slide_08.png">
+        <img class="web-slide-image" src="../slides/lesson-19/origin_image/slide_08.png" alt="OSGi service test flow from collaborator registration and typed properties through DS activation to a public result.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-19/origin_image/slide_08.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Arrange:</strong> register required collaborators and representative activation properties.</li>
+          <li><strong>Activation:</strong> use <code>registerInjectActivateService</code> instead of constructing a partial implementation.</li>
+          <li><strong>Contract:</strong> retrieve the public service interface and assert its deliberate valid or invalid result.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-19/origin_image/slide_09.png">
+        <img class="web-slide-image" src="../slides/lesson-19/origin_image/slide_09.png" alt="Test-double decision ladder from real objects through AEM Mocks and a small double to integration testing.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-19/origin_image/slide_09.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Stop early:</strong> use the real object when it is fast and deterministic in memory.</li>
+          <li><strong>Boundary:</strong> use AEM Mocks for supported platform behavior and a small double only for external or unsupported collaborators.</li>
+          <li><strong>Fidelity:</strong> move to integration evidence when the behavior needs a real repository, HTTP stack or deployment.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-19/origin_image/slide_10.png">
+        <img class="web-slide-image" src="../slides/lesson-19/origin_image/slide_10.png" alt="Focused Maven test moving from red failure evidence through the minimum fix to green evidence and the full core suite.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-19/origin_image/slide_10.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Red:</strong> remove or bypass the fallback and capture the expected focused failure.</li>
+          <li><strong>Green:</strong> restore only the minimum behavior and rerun the same named test.</li>
+          <li><strong>Gate:</strong> after the regression passes, run the complete <code>core</code> test suite.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-19/origin_image/slide_11.png">
+        <img class="web-slide-image" src="../slides/lesson-19/origin_image/slide_11.png" alt="Five checkpoints connecting a public contract, focused JUnit test, AEM context, real boundary and red-to-green proof.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-19/origin_image/slide_11.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Focus:</strong> name one public behavior and keep Arrange, Act and Assert independently diagnosable.</li>
+          <li><strong>Context:</strong> build only the AEM state needed by that behavior.</li>
+          <li><strong>Evidence:</strong> exercise the real adaptation or activation boundary and prove the test red before green.</li>
+        </ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-19/origin_image/slide_12.png">
+        <img class="web-slide-image" src="../slides/lesson-19/origin_image/slide_12.png" alt="Quiet Questions and Thank you closing slide with a completed green test path.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-19/origin_image/slide_12.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul>
+          <li><strong>Close:</strong> leave the slide open for questions from the group.</li>
+          <li><strong>Boundary:</strong> do not add another prompt, recap or exercise.</li>
+        </ul></details>
+      </article>
+    </div>
+
+    <h2>Guide Card testing practice</h2>
+    <ol class="steps">
+      <li>Name one public Guide Card behavior that HTL or another consumer depends on.</li>
+      <li>Write separate focused tests for configured, missing and invalid content.</li>
+      <li>Load only the representative JSON tree and register only the model or collaborator classes required by each state.</li>
+      <li>Show one test failing when the protected fallback is absent, then passing after the minimum behavior is restored.</li>
+      <li>Run the complete <code>core</code> test suite after the focused regression passes.</li>
+    </ol>
+    <p><strong>Acceptance:</strong> focused JUnit 5 tests pass; representative AEM Mocks state is explicit; at least one test is observed failing without the protected behavior; assertions target public output rather than private implementation shape.</p>
+
+    <h2>Official reading</h2>
+    <ul>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/getting-started-wknd-tutorial-develop/project-archetype/unit-testing">Unit testing — Adobe Experience League</a></li>
+      <li><a href="https://wcm.io/testing/aem-mock/usage.html">AEM Mocks usage — wcm.io</a></li>
+      <li><a href="https://sling.apache.org/documentation/development/sling-mock.html">Sling Mocks — Apache Sling</a></li>
+      <li><a href="https://sling.apache.org/documentation/bundles/models.html">Sling Models — Apache Sling</a></li>
+      <li><a href="https://docs.junit.org/current/user-guide/">JUnit User Guide</a></li>
+    </ul>
+  </main>
+  <footer><a href="../index.html">Back to the training overview</a></footer>
+  <script src="../assets/copy-slide.js"></script>
+</body>
+</html>

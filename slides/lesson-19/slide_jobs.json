@@ -1,0 +1,483 @@
+{
+  "run_status": "slides_recorded",
+  "deck_name": "lesson-19",
+  "selected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "edit",
+    "prompt_source": "user-approved Class 19 density revision applied to the existing slide_08 image",
+    "size": "approximately 1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-19/origin_image/slide_08.png",
+    "input_context_preparation": "Inspected the existing slide_08 with view_image and used built-in image_gen edit mode to preserve its accurate activation flow while adding a fixed two-digit slide number, code evidence panels, explanations and denser use of the canvas. Workers must inspect their existing slide as the edit target and slide_08 as the approved style and density reference.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in edit mode, with their existing slide as the edit target and the approved slide_08 as style and density reference; return a blocker if that path is unavailable."
+  },
+  "max_concurrent_slides": 3,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "JUnit 5 and AEM Mocks: protect observable behavior",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-19/origin_image/slide_08.png",
+          "role": "approved Class 19 numbered high-density sample slide style reference",
+          "fidelity": "Match palette, typography, drafting grid, fixed two-digit top-left numbering, technical density, evidence panels, semantic colors, monospace treatment and connector weight only; do not copy its activation layout or content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson19_slide10",
+        "agent_nickname": "lesson19_slide10",
+        "prompt": "prompts/slide_01.json",
+        "prompt_sha256": "a16fb4a3856f32fe4b1985d3d17a9dc0786829b244570be953b2f67abeebc2f3",
+        "dispatched_at": "2026-09-02T12:54:08Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson19_slide10",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a05a07-f00e-7522-922a-e67747ba8405/exec-00afe2fd-544d-4175-97db-b42330dad528.png",
+        "selected_source_sha256": "0ce887c849726bb16836dde2d018ce9fd6612fdcdaa4f63d72e660124c10b1a8",
+        "final_image": "origin_image/slide_01.png",
+        "final_image_sha256": "0ce887c849726bb16836dde2d018ce9fd6612fdcdaa4f63d72e660124c10b1a8",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Numbered session overview with three technically expanded anchors, exact metadata and readable hierarchy.",
+        "recorded_at": "2026-09-02T12:56:39Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "A unit test protects behavior, not implementation shape.",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-19/origin_image/slide_08.png",
+          "role": "approved Class 19 numbered high-density sample slide style reference",
+          "fidelity": "Match palette, typography, drafting grid, fixed two-digit top-left numbering, technical density, evidence panels, semantic colors, monospace treatment and connector weight only; do not copy its activation layout or content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson19_slide11",
+        "agent_nickname": "lesson19_slide11",
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "e35c99eb87cc7cfe109e5c647ad94c63f98e13f36b7425a8b6939e62a7b8031f",
+        "dispatched_at": "2026-09-02T12:54:08Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson19_slide11",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a05a08-03d5-7093-924b-38c2a134388c/exec-a2bfb84f-5110-435a-9d91-31bd429c3911.png",
+        "selected_source_sha256": "9758baa530c16096cd449c8397b9258565f864b264c7319f5af6e49b25089f86",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "9758baa530c16096cd449c8397b9258565f864b264c7319f5af6e49b25089f86",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Numbered protected-boundary diagram with concrete input, public method, observable result and concise rationale annotations.",
+        "recorded_at": "2026-09-02T12:56:39Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "Arrange, act and assert one behavior per failure.",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-19/origin_image/slide_08.png",
+          "role": "approved Class 19 numbered high-density sample slide style reference",
+          "fidelity": "Match palette, typography, drafting grid, fixed two-digit top-left numbering, technical density, evidence panels, semantic colors, monospace treatment and connector weight only; do not copy its activation layout or content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson19_slide12",
+        "agent_nickname": "lesson19_slide12",
+        "prompt": "prompts/slide_03.json",
+        "prompt_sha256": "3f05b49790ddd67bd34eedb18607818dda81e246eaadb6ec779505f0eb72a5ab",
+        "dispatched_at": "2026-09-02T12:54:08Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson19_slide12",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a05a0a-6301-7762-9213-05858eaf936e/exec-40bb4ade-7046-4fd2-addb-eb1841850c76.png",
+        "selected_source_sha256": "c84669852ddaec9a65cbe1232697a6d92e2b8d8a39c1f3d5fed6e648be3270cf",
+        "final_image": "origin_image/slide_03.png",
+        "final_image_sha256": "c84669852ddaec9a65cbe1232697a6d92e2b8d8a39c1f3d5fed6e648be3270cf",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Focused numbered AAA test with one missing-title fixture, one ModelFactory action, one public assertion and readable red evidence.",
+        "recorded_at": "2026-09-02T13:00:10Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "JUnit 5 owns lifecycle, execution and assertions.",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-19/origin_image/slide_08.png",
+          "role": "approved Class 19 numbered high-density sample slide style reference",
+          "fidelity": "Match palette, typography, drafting grid, fixed two-digit top-left numbering, technical density, evidence panels, semantic colors, monospace treatment and connector weight only; do not copy its activation layout or content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson19_slide10",
+        "agent_nickname": "lesson19_slide10",
+        "prompt": "prompts/slide_04.json",
+        "prompt_sha256": "fb997fb9e3763bec353ea3caec8b04c4730f4c44fb8c3a7c6affdf0753814c4d",
+        "dispatched_at": "2026-09-02T12:57:31Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson19_slide10",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a05a07-f00e-7522-922a-e67747ba8405/exec-cb826f46-7bbf-44fc-a382-1282c94344fd.png",
+        "selected_source_sha256": "c744e9cd955fb60dd3acece1f5e2cc5f84022da6e7d42471c96060fde9620bfb",
+        "final_image": "origin_image/slide_04.png",
+        "final_image_sha256": "c744e9cd955fb60dd3acece1f5e2cc5f84022da6e7d42471c96060fde9620bfb",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Numbered, detailed Jupiter lifecycle with exact annotations, two isolated runs, fresh-state evidence and concise rationale notes.",
+        "recorded_at": "2026-09-02T12:59:31Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "AEM Mocks supplies only the AEM boundary the test needs.",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-19/origin_image/slide_08.png",
+          "role": "approved Class 19 numbered high-density sample slide style reference",
+          "fidelity": "Match palette, typography, drafting grid, fixed two-digit top-left numbering, technical density, evidence panels, semantic colors, monospace treatment and connector weight only; do not copy its activation layout or content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson19_slide11",
+        "agent_nickname": "lesson19_slide11",
+        "prompt": "prompts/slide_05.json",
+        "prompt_sha256": "4674cc066cc73472b26123a37b21ba1ba9b3064523a2ea963d99b5509f5547d2",
+        "dispatched_at": "2026-09-02T12:57:31Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson19_slide11",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a05a08-03d5-7093-924b-38c2a134388c/exec-1de06a9e-29b2-4625-825d-d7fdca448347.png",
+        "selected_source_sha256": "7c3def6728ad9d97ecb791f35acd73d4c26682029fd0dd7d560f71a6af3d61fb",
+        "final_image": "origin_image/slide_05.png",
+        "final_image_sha256": "7c3def6728ad9d97ecb791f35acd73d4c26682029fd0dd7d560f71a6af3d61fb",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Numbered AemContext boundary with five concrete facilities, setup examples and explicit full-runtime fidelity limits.",
+        "recorded_at": "2026-09-02T13:00:10Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "Build a Sling Model test from representative content.",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-19/origin_image/slide_08.png",
+          "role": "approved Class 19 numbered high-density sample slide style reference",
+          "fidelity": "Match palette, typography, drafting grid, fixed two-digit top-left numbering, technical density, evidence panels, semantic colors, monospace treatment and connector weight only; do not copy its activation layout or content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson19_slide10",
+        "agent_nickname": "lesson19_slide10",
+        "prompt": "prompts/slide_06.json",
+        "prompt_sha256": "cb3fc70101a5de45d469de6183a6f92a4690241ab292aa0865f6b759be9f8196",
+        "dispatched_at": "2026-09-02T13:01:12Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson19_slide10",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a05a07-f00e-7522-922a-e67747ba8405/exec-93f549cd-745f-41d9-9914-9ae4f7e451a9.png",
+        "selected_source_sha256": "7559a9e8603c951c65d931e977542a4e7b2657967148c55a7b5ad1f53861c9cd",
+        "final_image": "origin_image/slide_06.png",
+        "final_image_sha256": "7559a9e8603c951c65d931e977542a4e7b2657967148c55a7b5ad1f53861c9cd",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Numbered five-stage Sling Model pipeline with concrete fixture, path, registration, ModelFactory assertion and diagnostic createModel/adaptTo comparison.",
+        "recorded_at": "2026-09-02T13:03:36Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "Test configured, missing and invalid content as separate contracts.",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-19/origin_image/slide_08.png",
+          "role": "approved Class 19 numbered high-density sample slide style reference",
+          "fidelity": "Match palette, typography, drafting grid, fixed two-digit top-left numbering, technical density, evidence panels, semantic colors, monospace treatment and connector weight only; do not copy its activation layout or content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson19_slide11",
+        "agent_nickname": "lesson19_slide11",
+        "prompt": "prompts/slide_07.json",
+        "prompt_sha256": "545c7aac85d3171a9677a4648076bf4bf3952b4c392d14e6ae51c743db259d5c",
+        "dispatched_at": "2026-09-02T13:01:12Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson19_slide11",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a05a08-03d5-7093-924b-38c2a134388c/exec-c5c2c018-f12b-46e0-94ab-dbc7b891b21b.png",
+        "selected_source_sha256": "23ffbaa4a6dd1a0eb982047576f142970a1586cbf6d482eb3729790e7f3724f4",
+        "final_image": "origin_image/slide_07.png",
+        "final_image_sha256": "23ffbaa4a6dd1a0eb982047576f142970a1586cbf6d482eb3729790e7f3724f4",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Numbered four-state contract matrix enriched with one named, API-neutral test expectation per state.",
+        "recorded_at": "2026-09-02T13:03:36Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "Exercise an OSGi service through activation and its public capability.",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-19/origin_image/slide_08.png",
+          "role": "approved Class 19 numbered high-density sample slide style reference",
+          "fidelity": "Match palette, typography, drafting grid, fixed two-digit top-left numbering, technical density, evidence panels, semantic colors, monospace treatment and connector weight only; do not copy its activation layout or content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "accepted",
+      "dispatch": null,
+      "result": {
+        "final_image": "origin_image/slide_08.png",
+        "accepted_sample": true
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Mock the platform boundary, not the code under test.",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-19/origin_image/slide_08.png",
+          "role": "approved Class 19 numbered high-density sample slide style reference",
+          "fidelity": "Match palette, typography, drafting grid, fixed two-digit top-left numbering, technical density, evidence panels, semantic colors, monospace treatment and connector weight only; do not copy its activation layout or content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson19_slide12",
+        "agent_nickname": "lesson19_slide12",
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "8b8c11ec54f23677f36e96fc6dac990f29556fcbcd55483a25dc726e86814b41",
+        "dispatched_at": "2026-09-02T13:01:12Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson19_slide12",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a05a0a-6301-7762-9213-05858eaf936e/exec-661e01c9-8678-4499-9332-018b77bb59ba.png",
+        "selected_source_sha256": "a3d4bdeef6e1d9e430793c315740002077c55364342a7d5b32b41e98bd383c5d",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "a3d4bdeef6e1d9e430793c315740002077c55364342a7d5b32b41e98bd383c5d",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Numbered four-rung test-double ladder with explicit gates, examples and stop rationale plus the crossed-out brittle anti-pattern.",
+        "recorded_at": "2026-09-02T13:03:36Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_10",
+      "number": 10,
+      "title": "Red → green proves the regression check.",
+      "job": "prompts/slide_10.json",
+      "out": "origin_image/slide_10.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-19/origin_image/slide_08.png",
+          "role": "approved Class 19 numbered high-density sample slide style reference",
+          "fidelity": "Match palette, typography, drafting grid, fixed two-digit top-left numbering, technical density, evidence panels, semantic colors, monospace treatment and connector weight only; do not copy its activation layout or content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson19_slide10",
+        "agent_nickname": "lesson19_slide10",
+        "prompt": "prompts/slide_10.json",
+        "prompt_sha256": "fd19ad23f1e8a01f9b7660fd6e4829cf5b63beeb60d10d373c5db16f847eef39",
+        "dispatched_at": "2026-09-02T13:04:35Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson19_slide10",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a05a07-f00e-7522-922a-e67747ba8405/exec-3ff2785a-b955-4c5c-9674-3847ba171784.png",
+        "selected_source_sha256": "71cd107d38eb311775c360e6baf63ec7f625a201794e90a3a6f7f09e56884ceb",
+        "final_image": "origin_image/slide_10.png",
+        "final_image_sha256": "71cd107d38eb311775c360e6baf63ec7f625a201794e90a3a6f7f09e56884ceb",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Numbered regression workflow with exact focused command, readable red assertion evidence, green test counts and full-suite gate.",
+        "recorded_at": "2026-09-02T13:06:46Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_11",
+      "number": 11,
+      "title": "Key takeaways",
+      "job": "prompts/slide_11.json",
+      "out": "origin_image/slide_11.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-19/origin_image/slide_08.png",
+          "role": "approved Class 19 numbered high-density sample slide style reference",
+          "fidelity": "Match palette, typography, drafting grid, fixed two-digit top-left numbering, technical density, evidence panels, semantic colors, monospace treatment and connector weight only; do not copy its activation layout or content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson19_slide11",
+        "agent_nickname": "lesson19_slide11",
+        "prompt": "prompts/slide_11.json",
+        "prompt_sha256": "6b92182893a2d287ad2e6cea1348d67c4d44a7707bb57dce746f3a39d0d34ce1",
+        "dispatched_at": "2026-09-02T13:04:35Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson19_slide11",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a05a08-03d5-7093-924b-38c2a134388c/exec-4d81dcbd-eeda-40c2-9679-a9a2fe66befb.png",
+        "selected_source_sha256": "bd83190698403f26120cab2b8785a990eae340029ef782c05bd03eed7ee46b30",
+        "final_image": "origin_image/slide_11.png",
+        "final_image_sha256": "bd83190698403f26120cab2b8785a990eae340029ef782c05bd03eed7ee46b30",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Numbered five-checkpoint summary with one concrete technical anchor per checkpoint and a subordinate footer.",
+        "recorded_at": "2026-09-02T13:06:47Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_12",
+      "number": 12,
+      "title": "Questions",
+      "job": "prompts/slide_12.json",
+      "out": "origin_image/slide_12.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-19/origin_image/slide_08.png",
+          "role": "approved Class 19 numbered high-density sample slide style reference",
+          "fidelity": "Match palette, typography, drafting grid, fixed two-digit top-left numbering, technical density, evidence panels, semantic colors, monospace treatment and connector weight only; do not copy its activation layout or content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson19_slide12",
+        "agent_nickname": "lesson19_slide12",
+        "prompt": "prompts/slide_12.json",
+        "prompt_sha256": "67b406c522c423ca1f9c52c3c0eaa61da9064290f5b31b097e2b504e7b41e2f9",
+        "dispatched_at": "2026-09-02T13:04:35Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson19_slide12",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a05a0a-6301-7762-9213-05858eaf936e/exec-e1a20ed6-4911-4332-8408-ac1a5ce6fdcf.png",
+        "selected_source_sha256": "0c1ac22ed326fa9f425ace8116a3955b08266c8078245b2bd85b46b77cccd421",
+        "final_image": "origin_image/slide_12.png",
+        "final_image_sha256": "0c1ac22ed326fa9f425ace8116a3955b08266c8078245b2bd85b46b77cccd421",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Numbered quiet Q&A close with only Questions, Thank you and the completed green-test motif.",
+        "recorded_at": "2026-09-02T13:06:47Z"
+      },
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-09-02T13:06:47Z"
+}

@@ -1,0 +1,426 @@
+{
+  "deck_name": "lesson-19",
+  "title": "Class 19 · Testing Sling Models and services with JUnit 5 and AEM Mocks",
+  "language": "English",
+  "goal": "Teach frontend-oriented AEM developers to protect one observable Sling Model or service contract with focused JUnit 5 tests, representative AEM Mocks state and visible red-to-green regression evidence.",
+  "aspect_ratio": "16:9",
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 3,
+  "outputs": [
+    "PNG slide images",
+    "HTML lesson",
+    "detailed speaker notes"
+  ],
+  "pptx": false,
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "edit",
+    "prompt_source": "user-approved Class 19 density revision applied to the existing slide_08 image",
+    "size": "approximately 1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-19/origin_image/slide_08.png",
+    "input_context_preparation": "Inspected the existing slide_08 with view_image and used built-in image_gen edit mode to preserve its accurate activation flow while adding a fixed two-digit slide number, code evidence panels, explanations and denser use of the canvas. Workers must inspect their existing slide as the edit target and slide_08 as the approved style and density reference.",
+    "handoff_rule": "Subagents must use the same built-in image_gen backend in edit mode, with their existing slide as the edit target and the approved slide_08 as style and density reference; return a blocker if that path is unavailable."
+  },
+  "approved_style_reference": {
+    "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-19/origin_image/slide_08.png",
+    "role": "approved Class 19 numbered high-density sample slide style reference",
+    "fidelity": "Match palette, typography, drafting grid, fixed two-digit top-left numbering, technical density, evidence panels, semantic colors, monospace treatment and connector weight only; do not copy its activation layout or content."
+  },
+  "style": {
+    "name": "technical atlas courseware",
+    "visual_direction": "A sober, information-rich technical atlas blended with professional academic courseware. Use exact JUnit lifecycle, AEM mock context, content-state, Sling Model, OSGi activation and test-evidence boundaries rather than generic software imagery.",
+    "color_palette": "Warm ivory drafting-paper background with a faint square grid; deep navy titles and structural rules; cobalt for test execution and lifecycle paths; violet for fixtures and mock context; green for valid contracts and passing evidence; restrained orange for failures, invalid input and fidelity warnings.",
+    "typography": "Large bold condensed or modern sans serif headings; crisp sans serif supporting text; true monospace appearance for annotations, Java methods, fixture values, paths and Maven commands.",
+    "texture_and_finish": "Flat 2D technical diagrams, fine rules, precise test, resource, model, service, assertion and terminal icons. No gradients, neon, glass, 3D, photography or generic corporate people.",
+    "deck_consistency": "Match the approved slide_08 sample palette, typography, drafting grid, technical density, evidence panels, semantic colors and connector weight while varying composition by slide role. Render the exact two-digit slide number once in a fixed top-left eyebrow on every slide. Use concrete code, paths, annotations, state values or commands instead of decorative whitespace. Keep takeaways and footer notes small and subordinate; never render a second headline banner at the bottom."
+  },
+  "deck_context": {
+    "source_summary": "Class 19 follows the Sling Models, Model Exporter, OSGi services, configuration and servlet-boundary lessons. It teaches how focused JUnit 5 tests and AEM Mocks protect public model and service behavior with representative content, configuration and dependencies outside a running AEM SDK.",
+    "core_claim": "A useful unit test arranges the smallest representative AEM state, executes a public contract, asserts one observable behavior and is proven red before the minimum implementation makes it green.",
+    "revision_rules": [
+      "Render exactly one fixed top-left eyebrow with the two-digit slide number and a short section label.",
+      "Preserve the accurate main diagram from the existing slide, then add concrete technical evidence and short why-it-matters annotations.",
+      "Use the canvas densely but legibly; only the Questions slide should retain generous open space.",
+      "Do not invent unrelated APIs, commands, tools, exercises or recap content."
+    ],
+    "canonical_facts": [
+      "A unit test should protect observable public behavior rather than private implementation shape.",
+      "JUnit Jupiter uses @Test for test methods and @BeforeEach for fresh per-test setup.",
+      "AemContextExtension manages AEM mock context setup and cleanup for JUnit 5 tests.",
+      "AemContext exposes mock resource, request, response and OSGi facilities without starting an AEM SDK.",
+      "Tests should load only the content tree and register only the models, services or adapters required by the behavior.",
+      "Sling Models must be registered in the mock context when classpath discovery is not available.",
+      "ModelFactory.createModel throws useful model-creation exceptions while adaptTo may return null.",
+      "Configured, missing, invalid and intentionally supported legacy content are separate behavior contracts.",
+      "registerInjectActivateService injects dependencies, activates and registers a Declarative Services component in the mock OSGi environment.",
+      "AEM Mocks should represent platform boundaries it supports; small stubs or Mockito belong only at external or unsupported collaborator boundaries.",
+      "A mock-based unit test does not prove browser, deployment or full-runtime integration behavior.",
+      "A regression test should be observed failing when the protected behavior is absent before the minimum fix makes the same test pass.",
+      "After a focused test passes, the complete core test suite should run to detect neighboring regressions."
+    ],
+    "canonical_terms": [
+      "JUnit 5",
+      "JUnit Jupiter",
+      "@Test",
+      "@BeforeEach",
+      "@ExtendWith",
+      "AemContext",
+      "AemContextExtension",
+      "AEM Mocks",
+      "Sling Model",
+      "ModelFactory.createModel",
+      "adaptTo",
+      "Resource",
+      "test fixture",
+      "configured",
+      "missing",
+      "invalid",
+      "legacy",
+      "OSGi service",
+      "registerInjectActivateService",
+      "Mockito",
+      "red",
+      "green",
+      "mvn -pl core -Dtest=GuideCardImplTest test"
+    ]
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "JUnit 5 and AEM Mocks: protect observable behavior",
+      "role": "opening overview",
+      "intent": "Identify the session, presenter and date while previewing the three learning threads.",
+      "key_points": [
+        "Class 19 · Week 4 · Day 19 · September 10, 2026",
+        "JUnit 5 and AEM Mocks: protect observable behavior",
+        "Today: behavior contracts, representative AEM context and red → green evidence",
+        "30-minute technical session",
+        "Juan Maldonado"
+      ],
+      "local_context": {
+        "required_background": "Create an opening overview with three compact topic anchors: a public behavior contract, an in-memory AEM context and red-to-green regression evidence."
+      },
+      "layout": {
+        "composition": "Strong title block with class metadata, presenter and date on the left; three compact topic anchors on the right.",
+        "intent": "Orient the audience without turning the opening into a detailed test workflow."
+      },
+      "visual_elements": {
+        "main_visual": "Three concise icons for public contract, AEM mock context and red-to-green evidence."
+      },
+      "constraints": [
+        "Render the title, date, duration and presenter exactly.",
+        "Render the three Today topics clearly.",
+        "Do not add a detailed Arrange-Act-Assert diagram to the opening slide."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "A unit test protects behavior, not implementation shape.",
+      "role": "testing boundary",
+      "intent": "Anchor every test in an externally observable contract that may regress.",
+      "key_points": [
+        "Start with one behavior a consumer depends on.",
+        "Supply the smallest representative input.",
+        "Execute the public model or service contract.",
+        "Assert the observable result.",
+        "Do not couple tests to private methods or field layout."
+      ],
+      "local_context": {
+        "required_background": "Place INPUT, PUBLIC CONTRACT and OBSERVABLE RESULT inside the protected test boundary. Place PRIVATE METHODS, FIELD LAYOUT and INTERNAL CALL ORDER outside it. Use GuideCard.getTitle() or GuideUrlService.resolve() as compact public-contract examples, not both as full code listings."
+      },
+      "layout": {
+        "composition": "A protected-contract boundary encloses input, public API and observable result; private implementation details sit outside as crossed-out test targets.",
+        "intent": "Make the test ownership boundary visible rather than presenting generic testing advice."
+      },
+      "visual_elements": {
+        "main_visual": "Consumer contract boundary with valid and invalid assertion targets."
+      },
+      "constraints": [
+        "Render PUBLIC CONTRACT and OBSERVABLE RESULT exactly.",
+        "Show private methods and field layout outside the assertion boundary.",
+        "Do not imply implementation details may never be inspected while arranging an AEM test."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Arrange, act and assert one behavior per failure.",
+      "role": "test anatomy",
+      "intent": "Make a failing test small enough to diagnose without a custom testing abstraction.",
+      "key_points": [
+        "ARRANGE representative content, configuration and dependencies.",
+        "ACT once through the public contract.",
+        "ASSERT one observable expectation.",
+        "Name the business state in the test method.",
+        "Keep shared setup genuinely shared."
+      ],
+      "local_context": {
+        "required_background": "Use one compact Java test specimen named returnsFallbackWhenTitleMissing(). Arrange selects /content/guides/missing-title, act creates GuideCard, assert checks the fallback title. Keep the code schematic and readable rather than syntactically exhaustive."
+      },
+      "layout": {
+        "composition": "Three sequential zones labeled ARRANGE, ACT and ASSERT around one compact test specimen, ending in one readable failure message.",
+        "intent": "Teach the diagnostic rhythm of a focused test through one concrete example."
+      },
+      "visual_elements": {
+        "main_visual": "Arrange-Act-Assert pipeline with a compact Guide Card fallback test."
+      },
+      "constraints": [
+        "Render ARRANGE, ACT and ASSERT exactly.",
+        "Show only one behavior and one primary assertion.",
+        "Do not create a reusable test-builder abstraction."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "JUnit 5 owns lifecycle, execution and assertions.",
+      "role": "framework map",
+      "intent": "Introduce only the JUnit Jupiter pieces needed for a focused AEM unit test.",
+      "key_points": [
+        "@Test marks an executable behavior check.",
+        "@BeforeEach prepares fresh common state.",
+        "@ExtendWith(AemContextExtension.class) connects mock lifecycle.",
+        "Use direct assertions: assertEquals, assertTrue, assertThrows.",
+        "Isolation matters more than clever fixtures."
+      ],
+      "local_context": {
+        "required_background": "Trace two independent test runs through EXTENSION SETUP → @BeforeEach → @Test → ASSERTION → CLEANUP. Show that each run receives fresh state. Do not include JUnit 4 rules or a large annotation catalog."
+      },
+      "layout": {
+        "composition": "A horizontal JUnit lifecycle lane branches into two isolated test executions with fresh-state markers.",
+        "intent": "Make extension lifecycle and test isolation clearer than an annotation reference table."
+      },
+      "visual_elements": {
+        "main_visual": "JUnit Jupiter lifecycle lane with two isolated test runs."
+      },
+      "constraints": [
+        "Render @Test, @BeforeEach and @ExtendWith(AemContextExtension.class) exactly.",
+        "Show setup and cleanup around each independent test.",
+        "Do not introduce @BeforeAll, parameterized tests or JUnit 4."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "AEM Mocks supplies only the AEM boundary the test needs.",
+      "role": "mock-context architecture",
+      "intent": "Distinguish a fast in-memory unit-test environment from a running AEM instance.",
+      "key_points": [
+        "AemContext exposes mock resource, request, response and OSGi facilities.",
+        "Load only the content tree required by the behavior.",
+        "Register only the models, services or adapters the unit consumes.",
+        "Choose one fitting resource-resolver mock type.",
+        "A passing mock test does not prove full-runtime integration."
+      ],
+      "local_context": {
+        "required_background": "Inside one bounded AemContext show MOCK CONTENT, RESOURCE RESOLVER, REQUEST/RESPONSE, MODEL REGISTRATION and OSGi REGISTRY. Outside the boundary show AEM SDK, DISPATCHER and BROWSER as not proven by this unit test."
+      },
+      "layout": {
+        "composition": "A bounded AemContext architecture contains five mock facilities; a separate muted outer-runtime strip shows what the unit test does not prove.",
+        "intent": "Communicate both the usefulness and fidelity ceiling of AEM Mocks."
+      },
+      "visual_elements": {
+        "main_visual": "In-memory AemContext boundary versus excluded full-runtime systems."
+      },
+      "constraints": [
+        "Render AemContext, MOCK CONTENT and OSGi REGISTRY exactly.",
+        "Keep AEM SDK, Dispatcher and browser outside the proven boundary.",
+        "Do not imply AEM Mocks implements every AEM API."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Build a Sling Model test from representative content.",
+      "role": "model test flow",
+      "intent": "Connect test JSON and model registration to a diagnosable model instance and public getter.",
+      "key_points": [
+        "Register GuideCardImpl when classpath discovery is unavailable.",
+        "Load minimal JSON content under a stable test path.",
+        "Select the representative current resource.",
+        "Prefer ModelFactory.createModel(...) for diagnosable failures.",
+        "Assert the view-ready getter or explicit empty state."
+      ],
+      "local_context": {
+        "required_background": "Trace GuideCardImplTest.json → /content/guides/configured → GuideCardImpl registration → ModelFactory.createModel(resource, GuideCard.class) → getTitle(). Contrast createModel throwing a useful exception with adaptTo returning null in a small side note."
+      },
+      "layout": {
+        "composition": "A left-to-right model-test pipeline with five concrete artifacts and a small createModel-versus-adaptTo diagnostic inset.",
+        "intent": "Turn model setup into an explicit data and adaptation flow."
+      },
+      "visual_elements": {
+        "main_visual": "JSON fixture to mock resource to registered Sling Model to public getter."
+      },
+      "constraints": [
+        "Render GuideCardImplTest.json, ModelFactory.createModel(...) and adaptTo exactly.",
+        "Show createModel as the diagnosable test path.",
+        "Do not imply adaptTo is invalid production code."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Test configured, missing and invalid content as separate contracts.",
+      "role": "state-by-expectation matrix",
+      "intent": "Protect authoring fallbacks and validation decisions that keep rendering safe.",
+      "key_points": [
+        "Configured content returns the authored, normalized value.",
+        "Missing optional content returns the documented fallback or empty state.",
+        "Invalid content is rejected, normalized or disabled by contract.",
+        "Legacy content stays safe only when compatibility is intentional.",
+        "Name each state in its test."
+      ],
+      "local_context": {
+        "required_background": "Preserve the accurate CONFIGURED, MISSING, INVALID and LEGACY matrix, then enrich it with compact named JUnit evidence for each row: a representative test method, one public assertion and a short contract rationale. Keep the existing small footer subordinate."
+      },
+      "layout": {
+        "composition": "Four-row state-by-expectation matrix plus a narrow TEST EVIDENCE column containing one named test or assertion per state.",
+        "intent": "Make each authoring state an independently named public contract."
+      },
+      "visual_elements": {
+        "main_visual": "Approved configured, missing, invalid and legacy matrix."
+      },
+      "constraints": [
+        "Render exactly 07 • CONTENT STATE CONTRACTS in the top-left eyebrow.",
+        "Keep all four state rows and add concrete test evidence without inventing unrelated APIs.",
+        "Do not add a full-width slogan banner."
+      ]
+    },
+    {
+      "number": 8,
+      "approved_sample": true,
+      "title": "Exercise an OSGi service through activation and its public capability.",
+      "role": "service test flow",
+      "intent": "Test configuration and required dependencies without bypassing the Declarative Services boundary.",
+      "key_points": [
+        "Register required collaborator services.",
+        "Supply representative typed activation properties.",
+        "Use registerInjectActivateService(...).",
+        "Retrieve the service through its public interface.",
+        "Assert capability output and safe invalid-configuration behavior."
+      ],
+      "local_context": {
+        "required_background": "Preserve the approved slide_08.png exactly. It traces a mock UrlPolicy collaborator plus ENABLED=true and BASE_URL=https://guides.example into registerInjectActivateService(new GuideUrlServiceImpl(), props), retrieves GuideUrlService from the registry, asserts resolve('/merida'), and shows a small invalid BASE_URL branch to DISABLED STATE or ACTIVATION REJECTION."
+      },
+      "layout": {
+        "composition": "Approved five-stage activation flow with three detailed evidence panels for arrange, activation and public assertion.",
+        "intent": "Show that the service test exercises injection and activation rather than constructing a partial object."
+      },
+      "visual_elements": {
+        "main_visual": "Mock OSGi activation pipeline for GuideUrlService."
+      },
+      "constraints": [
+        "Reuse the approved slide_08.png without regeneration.",
+        "Keep the exact 08 • OSGI SERVICE TEST eyebrow and technical evidence panels.",
+        "Do not expose or invent secret values."
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Mock the platform boundary, not the code under test.",
+      "role": "test-double decision",
+      "intent": "Prevent brittle tests that merely replay implementation calls.",
+      "key_points": [
+        "Use real objects when they run cheaply in memory.",
+        "Use AEM Mocks for supported Sling, repository and OSGi boundaries.",
+        "Use a small stub or Mockito for an external or unsupported collaborator.",
+        "Stub public results, not internal call sequences.",
+        "Use integration tests when real runtime fidelity is required."
+      ],
+      "local_context": {
+        "required_background": "Build a decision ladder: REAL OBJECT → AEM MOCK → SMALL TEST DOUBLE → INTEGRATION TEST. Gates are RUNS CHEAPLY?, PLATFORM BOUNDARY SUPPORTED?, EXTERNAL OR UNSUPPORTED COLLABORATOR?, and REQUIRES REAL REPOSITORY/HTTP/DEPLOYMENT?. Cross out MOCK THE CLASS UNDER TEST."
+      },
+      "layout": {
+        "composition": "A descending fidelity decision ladder with one crossed-out brittle-testing anti-pattern.",
+        "intent": "Give developers a stopping rule for choosing the smallest truthful test double."
+      },
+      "visual_elements": {
+        "main_visual": "Real object to AEM Mock to small test double to integration test ladder."
+      },
+      "constraints": [
+        "Render REAL OBJECT, AEM MOCK, SMALL TEST DOUBLE and INTEGRATION TEST exactly.",
+        "Cross out MOCK THE CLASS UNDER TEST.",
+        "Do not imply Mockito is always required for AEM unit tests."
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Red → green proves the regression check.",
+      "role": "regression evidence loop",
+      "intent": "Show that the focused test detects the missing behavior before it certifies the fix.",
+      "key_points": [
+        "Run one named test with a focused Maven command.",
+        "Remove or bypass the Guide Card fallback and capture RED.",
+        "Restore the minimum behavior and rerun the same command GREEN.",
+        "Read the first useful failure before changing code.",
+        "Rerun the complete core test suite."
+      ],
+      "local_context": {
+        "required_background": "Use the exact command mvn -pl core -Dtest=GuideCardImplTest test. Show one loop: protected fallback absent → expected assertion failure RED → minimum fallback restored → same test GREEN → mvn -pl core test full-suite gate. The red state is intentional evidence, not a broken build left unresolved."
+      },
+      "layout": {
+        "composition": "A terminal command anchors a four-stage red-to-green evidence loop ending in a full core-suite gate.",
+        "intent": "Make regression proof a visible workflow rather than a slogan."
+      },
+      "visual_elements": {
+        "main_visual": "Focused Maven test moving through red failure, minimum fix, green pass and full-suite verification."
+      },
+      "constraints": [
+        "Render mvn -pl core -Dtest=GuideCardImplTest test exactly.",
+        "Show the same focused test in RED and GREEN.",
+        "Do not suggest committing or shipping the intentionally broken red state."
+      ]
+    },
+    {
+      "number": 11,
+      "title": "Key takeaways",
+      "role": "summary",
+      "intent": "Consolidate the testing decisions developers should carry into Week 4 practice.",
+      "key_points": [
+        "Protect one observable behavior through the public contract.",
+        "Keep Arrange, Act and Assert explicit.",
+        "Build the smallest representative AEM context.",
+        "Exercise real adaptation or activation boundaries.",
+        "Prove the test red before accepting green evidence."
+      ],
+      "local_context": {
+        "required_background": "Summarize exactly five checkpoints: PUBLIC CONTRACT, FOCUSED TEST, REPRESENTATIVE AEM CONTEXT, REAL MODEL OR SERVICE BOUNDARY, and RED → GREEN EVIDENCE. End with a small subordinate note reading 'Protect the behavior that must not regress.' Do not use a large bottom slogan banner."
+      },
+      "layout": {
+        "composition": "Five numbered checkpoints form one compact evidence chain around a central protected-contract icon, with a small subordinate footer note.",
+        "intent": "Provide a scan-friendly summary without repeating the state matrix or regression loop layouts."
+      },
+      "visual_elements": {
+        "main_visual": "Five testing checkpoints connected to one protected public contract."
+      },
+      "constraints": [
+        "Render exactly five checkpoints.",
+        "Keep the footer note small and subordinate.",
+        "Do not add another exercise or a large slogan banner."
+      ]
+    },
+    {
+      "number": 12,
+      "title": "Questions",
+      "role": "Q&A",
+      "intent": "Invite questions raised by participants and close without adding another exercise.",
+      "key_points": [
+        "Questions",
+        "Thank you"
+      ],
+      "local_context": {
+        "required_background": "Create a quiet closing slide with only QUESTIONS, THANK YOU and a small completed green-test path motif. Leave generous open space and do not add scripted prompts, review questions or another recap."
+      },
+      "layout": {
+        "composition": "Large quiet Questions title with Thank you and a small completed test-path motif in one corner.",
+        "intent": "Close the session calmly and leave visual space for audience questions."
+      },
+      "visual_elements": {
+        "main_visual": "Minimal completed green-test path with generous open space."
+      },
+      "constraints": [
+        "Render Questions and Thank you exactly.",
+        "Do not add scripted questions, exercises or recap bullets.",
+        "Do not add a large bottom slogan banner."
+      ]
+    }
+  ]
+}
