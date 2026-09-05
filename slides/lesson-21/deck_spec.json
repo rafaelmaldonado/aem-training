@@ -1,0 +1,417 @@
+{
+  "deck_name": "lesson-21",
+  "title": "Class 21 · Multi-Site Management foundations",
+  "language": "English",
+  "goal": "Teach frontend-oriented AEM developers to trace an MSM relationship from a same-language source to a Live Copy, predict synchronization behavior and preserve one deliberate local override.",
+  "aspect_ratio": "16:9",
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 3,
+  "outputs": [
+    "PNG slide images",
+    "HTML lesson",
+    "detailed speaker notes"
+  ],
+  "pptx": false,
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "Class 21 outline slide 07, using the approved Class 19 slide 08 as a style-only reference; one localized image_gen edit corrected the trigger label before approval",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+    "input_context_preparation": "The parent inspected the Class 19 style reference and the generated Class 21 sample with view_image. Workers must inspect slide_07 and pass it to built-in image_gen as a style-only reference.",
+    "handoff_rule": "Use built-in image_gen in generate mode with slide_07 as a style-only reference; return a blocker if that backend or reference path is unavailable."
+  },
+  "approved_style_reference": {
+    "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+    "role": "approved Class 21 style and density reference",
+    "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+  },
+  "style": {
+    "name": "technical atlas courseware",
+    "visual_direction": "Sober, information-rich technical atlas blended with professional academic courseware. Use exact AEM MSM paths, relationships, state labels, action directions and evidence checkpoints rather than generic cloud imagery.",
+    "color_palette": "Warm ivory drafting-paper background with a faint square grid; deep navy titles; cobalt for source-to-target flow; violet for configuration; green for valid or protected local state; restrained orange for destructive actions and cautions.",
+    "typography": "Large bold condensed sans-serif headings; crisp sans-serif supporting text; true monospace appearance for repository paths, property names, action names and state values.",
+    "texture_and_finish": "Flat 2D technical diagrams, fine rules, precise page, relationship, configuration and status icons. No gradients, neon, glass, 3D, photography or generic corporate people.",
+    "deck_consistency": "Match approved slide_07 palette, typography, drafting grid, fixed two-digit top-left numbering, technical density, evidence panels, semantic colors and connector weight while varying composition by role. Use concrete paths, state badges and exact terms instead of decorative whitespace."
+  },
+  "deck_context": {
+    "source_summary": "Class 21 begins Week 5 and introduces AEM Multi-Site Management for traditional AEM Sites. It follows backend testing and prepares developers to trace content reuse and maintenance relationships with observable evidence.",
+    "core_claim": "MSM is predictable when a developer proves the source-to-Live-Copy relationship, identifies inherited versus local ownership and names the effective synchronization action before changing content.",
+    "canonical_facts": [
+      "MSM reuses site content through maintained Live Copy relationships.",
+      "A similar path or identical rendering does not prove a Live Copy relationship.",
+      "A Live Copy source can be a regular page or a page referenced by a blueprint configuration.",
+      "A blueprint configuration identifies a source site and enables author-facing site creation and rollout capabilities.",
+      "A LiveRelationship connects a target resource to its source counterpart.",
+      "The language master is the primary authored source for a language.",
+      "Use MSM primarily within one language; translation manages changes across languages.",
+      "Component inheritance can be cancelled without cancelling inheritance for sibling components.",
+      "Re-enabling inheritance does not automatically synchronize content.",
+      "Synchronize begins on a Live Copy and pulls eligible source changes to that selected target.",
+      "Rollout begins on a blueprint source and pushes eligible changes to one or more Live Copies.",
+      "The effective rollout configuration determines the trigger and synchronization actions.",
+      "Standard rollout configuration runs on an explicit Rollout or Synchronize request.",
+      "Reset removes inheritance cancellations and restores source state, overwriting local changes.",
+      "Detach permanently removes the live relationship and is not reversible.",
+      "Live Copy Overview and Live Copy properties provide relationship and inheritance evidence."
+    ],
+    "canonical_terms": [
+      "Multi-Site Management",
+      "MSM",
+      "Live Copy",
+      "Live Copy source",
+      "blueprint configuration",
+      "LiveRelationship",
+      "language master",
+      "language root",
+      "inheritance",
+      "Cancel Inheritance",
+      "Re-enable Inheritance",
+      "Synchronize",
+      "Rollout",
+      "rollout configuration",
+      "On Rollout",
+      "Suspend",
+      "Resume",
+      "Reset",
+      "Detach",
+      "Live Copy Overview",
+      "/content/wknd/language-masters/en",
+      "/content/wknd/us/en",
+      "/content/wknd/ca/en"
+    ],
+    "revision_rules": [
+      "Render exactly one fixed top-left eyebrow with the two-digit slide number and a short section label.",
+      "Use one clear visual model plus concrete evidence panels; do not fill slides with generic bullets alone.",
+      "Use the canvas densely but legibly; only the Questions slide should retain generous open space.",
+      "Do not invent AEM paths, properties, rollout triggers or operations beyond the supplied context."
+    ]
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Multi-Site Management foundations",
+      "role": "opening cover",
+      "intent": "Present the session topic, presenter, date and four main subtopics.",
+      "key_points": [
+        "Class 21 · Week 5 · Day 21 · September 14, 2026",
+        "Multi-Site Management foundations",
+        "Live relationships · Inheritance · Synchronization · Local ownership",
+        "Juan Maldonado"
+      ],
+      "local_context": {
+        "required_background": "This is a clean cover with four concise subtopic labels only. Detailed explanations, paths, states and action flows begin on later slides."
+      },
+      "layout": {
+        "composition": "Large title, one restrained horizontal subtopic line, small class/date/presenter metadata, generous whitespace and one subtle relationship motif.",
+        "intent": "Introduce the topic and its four main subthemes without teaching them on the cover."
+      },
+      "visual_elements": {
+        "main_visual": "Two simple page outlines joined by a restrained relationship link; no labels or technical detail."
+      },
+      "constraints": [
+        "Render only the title, the exact four subtopic labels, class/date metadata and presenter name.",
+        "Do not render bullets, paths, component states, explanations, evidence panels or cards."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Reuse requires a live relationship, not a similar path.",
+      "role": "core mental model",
+      "intent": "Establish the smallest truthful definition of MSM.",
+      "key_points": [
+        "MSM reuses content through a maintained Live Copy relationship.",
+        "The source remains the origin for inherited content.",
+        "The Live Copy can receive later source changes.",
+        "A one-time copy is independent.",
+        "Prove origin and inheritance before comparing output."
+      ],
+      "local_context": {
+        "required_background": "Contrast SOURCE → LIVE RELATIONSHIP → LIVE COPY with SOURCE → ONE-TIME COPY. Identical pages can have different future behavior."
+      },
+      "layout": {
+        "composition": "A two-row comparison: maintained relationship above, disconnected one-time copy below, each with future-update outcome.",
+        "intent": "Make the behavioral difference visible."
+      },
+      "visual_elements": {
+        "main_visual": "Relationship-versus-copy comparison with evidence badges."
+      },
+      "constraints": [
+        "Render LIVE RELATIONSHIP and ONE-TIME COPY exactly.",
+        "Do not imply matching paths create a relationship."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Source, blueprint configuration and Live Copy are distinct objects.",
+      "role": "vocabulary architecture",
+      "intent": "Separate source content, configuration, target and per-resource relationship.",
+      "key_points": [
+        "A Live Copy source is the page or branch that provides inherited content.",
+        "A blueprint configuration names a source site and enables site creation and rollout.",
+        "A Live Copy is the target branch.",
+        "A LiveRelationship connects equivalent resources.",
+        "A regular source is valid, but offers fewer authoring capabilities."
+      ],
+      "local_context": {
+        "required_background": "Show four distinct layers: source tree, blueprint configuration, Live Copy tree and per-resource LiveRelationship. Configuration points to source; it is not the source content itself."
+      },
+      "layout": {
+        "composition": "Layered architecture with a small object-definition panel for each exact term.",
+        "intent": "Prevent vocabulary collapse."
+      },
+      "visual_elements": {
+        "main_visual": "Four-layer MSM object architecture."
+      },
+      "constraints": [
+        "Render Live Copy source, blueprint configuration, Live Copy and LiveRelationship exactly.",
+        "Do not depict the blueprint configuration as a copied page."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Language structure separates language from market reuse.",
+      "role": "site-structure map",
+      "intent": "Place language masters and country Live Copies in a concrete WKND structure.",
+      "key_points": [
+        "A language root identifies one content language.",
+        "The language master is the primary authored source for that language.",
+        "English source: /content/wknd/language-masters/en",
+        "Same-language targets: /content/wknd/us/en and /content/wknd/ca/en",
+        "Keep each language in a separate relationship lane."
+      ],
+      "local_context": {
+        "required_background": "Use the exact WKND paths. Connect language-masters/en to us/en and ca/en. Place French branches in a separate lane with no English MSM arrow."
+      },
+      "layout": {
+        "composition": "Repository tree on the left and two same-language relationship lanes on the right.",
+        "intent": "Explain site structure through exact paths."
+      },
+      "visual_elements": {
+        "main_visual": "WKND repository tree and same-language source-to-market relationships."
+      },
+      "constraints": [
+        "Render all three canonical paths exactly.",
+        "Do not show MSM translating English into French."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Inheritance can stop at one component and continue elsewhere.",
+      "role": "inheritance-state model",
+      "intent": "Show how a market takes local ownership of one component without disconnecting the page.",
+      "key_points": [
+        "Pages and components inherit while live relationships remain active.",
+        "Cancel inheritance at the narrowest component that needs a local value.",
+        "Sibling components continue inheriting.",
+        "Re-enable restores inheritance but does not synchronize automatically.",
+        "Record who owns the exception and why."
+      ],
+      "local_context": {
+        "required_background": "Use one Canada page with Header, Hero and Offer components. Header and Offer remain INHERITED. Hero changes to LOCAL after Cancel Inheritance. A later source update reaches Header and Offer but not Hero."
+      },
+      "layout": {
+        "composition": "Before-and-after page component stack with relationship lines and explicit INHERITED or LOCAL badges.",
+        "intent": "Make inheritance granularity and future-update behavior concrete."
+      },
+      "visual_elements": {
+        "main_visual": "Component-level inheritance state transition."
+      },
+      "constraints": [
+        "Render Cancel Inheritance and Re-enable Inheritance exactly.",
+        "Do not imply Re-enable performs an automatic synchronization."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Inspect relationship evidence before changing content.",
+      "role": "diagnostic workflow",
+      "intent": "Give developers an evidence-first relationship trace.",
+      "key_points": [
+        "Start from the Live Copy or source in the Sites console.",
+        "Inspect the Live Copy tab for source, inheritance and rollout configuration.",
+        "Use References → Live Copies → Live Copy Overview.",
+        "Check status at the exact page or component.",
+        "Paths and rendered equality are clues, not proof."
+      ],
+      "local_context": {
+        "required_background": "Show five checkpoints: target path, Live Copy tab, source path, relationship status and effective rollout configuration. Live Copy Overview compares source and target structure."
+      },
+      "layout": {
+        "composition": "Numbered diagnostic trace with a central source/target relationship overview and evidence cards.",
+        "intent": "Turn investigation into a repeatable sequence."
+      },
+      "visual_elements": {
+        "main_visual": "Five-checkpoint relationship evidence trace."
+      },
+      "constraints": [
+        "Render References → Live Copies → Live Copy Overview exactly.",
+        "Do not invent console fields or repository properties."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Synchronize pulls one Live Copy; rollout pushes from the source.",
+      "role": "action-direction comparison",
+      "intent": "Make direction, starting point and scope predictable.",
+      "approved_sample": true,
+      "key_points": [
+        "Synchronize starts on a Live Copy and pulls eligible source changes.",
+        "Rollout starts on a blueprint source and pushes to one or more Live Copies.",
+        "Both use the effective rollout configuration.",
+        "Inheritance cancellation protects deliberate local values.",
+        "Name source, target, scope and expected result first."
+      ],
+      "local_context": {
+        "required_background": "Approved sample already exists at origin_image/slide_07.png. Do not regenerate."
+      },
+      "layout": {
+        "composition": "Approved two-lane action-direction comparison.",
+        "intent": "Preserve the accepted sample."
+      },
+      "visual_elements": {
+        "main_visual": "Approved Synchronize-versus-Rollout comparison."
+      },
+      "constraints": [
+        "Reuse the approved existing sample exactly."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "A rollout configuration defines trigger plus actions.",
+      "role": "synchronization contract",
+      "intent": "Explain enough configuration to predict behavior without teaching custom extensions.",
+      "key_points": [
+        "Standard rollout configuration runs on explicit Rollout or Synchronize.",
+        "Actions can create, update, delete, reorder and update references.",
+        "Other configurations may trigger on activation, deactivation or modification.",
+        "On Modification can affect performance.",
+        "Customize only for a proven requirement."
+      ],
+      "local_context": {
+        "required_background": "Show TRIGGER → ROLLOUT CONFIGURATION → ACTION SET → TARGET RESULT. Standard: On Rollout with contentUpdate, contentCopy, contentDelete, referencesUpdate and orderChildren. Automatic trigger alternatives are guarded, not recommended defaults."
+      },
+      "layout": {
+        "composition": "Horizontal contract pipeline with one primary standard path and a small alternatives rail.",
+        "intent": "Separate when synchronization starts from what it does."
+      },
+      "visual_elements": {
+        "main_visual": "Trigger-and-action rollout contract."
+      },
+      "constraints": [
+        "Render On Rollout and the five standard action names exactly.",
+        "Do not add scheduler as a rollout trigger.",
+        "Do not teach custom LiveAction implementation."
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Choose the least destructive relationship action.",
+      "role": "author-action decision matrix",
+      "intent": "Separate local ownership, temporary suspension, reset and permanent detachment.",
+      "key_points": [
+        "Cancel/Re-enable: one local override, reversible.",
+        "Suspend/Resume: temporarily pause a page relationship.",
+        "Reset: remove cancellations and overwrite local changes with source state.",
+        "Detach: permanently remove the live relationship.",
+        "Preview scope and preserve evidence before Reset or Detach."
+      ],
+      "local_context": {
+        "required_background": "Compare Cancel/Re-enable, Suspend/Resume, Reset and Detach by granularity, reversibility, effect on local changes and future source updates. Reset and Detach require orange caution treatment."
+      },
+      "layout": {
+        "composition": "Four-row decision matrix with a least-to-most-destructive progression and clear reversibility column.",
+        "intent": "Help authors stop at the smallest action that fits."
+      },
+      "visual_elements": {
+        "main_visual": "Relationship-action matrix with reversibility and local-change impact."
+      },
+      "constraints": [
+        "Render Reset as overwriting local changes.",
+        "Render Detach as permanent and irreversible.",
+        "Do not imply Cancel Inheritance disconnects the entire page."
+      ]
+    },
+    {
+      "number": 10,
+      "title": "MSM distributes content; translation changes language.",
+      "role": "localization boundary",
+      "intent": "Prevent language problems from being diagnosed in the wrong subsystem.",
+      "key_points": [
+        "MSM distributes translated source content within the same language.",
+        "Translation projects and connectors manage content across languages.",
+        "i18n dictionaries manage component-interface strings.",
+        "A market override is a content-ownership decision.",
+        "Diagnose relationship, translated content or UI dictionary first."
+      ],
+      "local_context": {
+        "required_background": "Use three parallel lanes: MSM maps language-masters/en to us/en; TRANSLATION maps English authored content to French authored content; i18n maps a component UI key to labels such as Read more / Lire la suite."
+      },
+      "layout": {
+        "composition": "Three responsibility lanes with input, responsible AEM capability and output example.",
+        "intent": "Make localization ownership unambiguous."
+      },
+      "visual_elements": {
+        "main_visual": "MSM versus translation versus i18n responsibility map."
+      },
+      "constraints": [
+        "Do not show MSM translating text.",
+        "Do not show i18n dictionaries storing authored page copy."
+      ]
+    },
+    {
+      "number": 11,
+      "title": "Key takeaways",
+      "role": "summary",
+      "intent": "Consolidate five MSM decisions for Week 5 practice.",
+      "key_points": [
+        "Prove the live relationship; do not infer it from matching content.",
+        "Separate source, blueprint configuration, Live Copy and LiveRelationship.",
+        "Cancel inheritance at the narrowest component that needs local ownership.",
+        "Predict trigger, direction, scope and action set before synchronization.",
+        "Keep MSM, translation and component i18n separate."
+      ],
+      "local_context": {
+        "required_background": "Connect five checkpoints to the final evidence chain SOURCE → INHERITANCE → ACTION → RESULT."
+      },
+      "layout": {
+        "composition": "Five numbered checkpoints around one source-to-result relationship chain.",
+        "intent": "Create a compact retrieval map rather than repeat earlier diagrams."
+      },
+      "visual_elements": {
+        "main_visual": "Five MSM checkpoints and final evidence chain."
+      },
+      "constraints": [
+        "Render SOURCE → INHERITANCE → ACTION → RESULT exactly.",
+        "Do not add an exercise or new technical content."
+      ]
+    },
+    {
+      "number": 12,
+      "title": "Questions",
+      "role": "Q&A",
+      "intent": "Invite audience questions and close without another prompt or exercise.",
+      "key_points": [
+        "Questions",
+        "Thank you"
+      ],
+      "local_context": {
+        "required_background": "Use one completed source-to-Live-Copy relationship with a green protected local component and generous open space."
+      },
+      "layout": {
+        "composition": "Minimal closing composition with the relationship motif and restrained metadata.",
+        "intent": "Leave visual space for audience questions."
+      },
+      "visual_elements": {
+        "main_visual": "Completed source-to-Live-Copy relationship with protected local state."
+      },
+      "constraints": [
+        "Render only Questions and Thank you as primary copy.",
+        "Do not add scripted prompts, recap or exercise."
+      ]
+    }
+  ]
+}

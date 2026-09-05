@@ -1,5 +1,7 @@
 # Class 16 · Detailed speaker notes
 
+**Guía de preparación en español:** [Abrir en el navegador](../../reference/session-16-study-guide.html) · [Resumen en Markdown](../../reference/session-16-study-guide.md).
+
 ## How to use these notes
 
 - Keep one Guide Card resource as the thread from repository content to Java source and runtime evidence.

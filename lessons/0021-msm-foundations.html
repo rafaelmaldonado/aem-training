@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class 21 · Multi-Site Management foundations</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="brand" href="../index.html">AEM Training</a>
+    <ul>
+      <li><a href="../index.html">Overview</a></li>
+      <li><a href="../reference/aem-course-topics.html">Syllabus</a></li>
+      <li><a href="../reference/wknd-project-backlog.html">Practices</a></li>
+      <li><a href="../reference/index.html">References</a></li>
+    </ul>
+  </nav>
+  <header>
+    <p class="eyebrow">Class 21 · Week 5 · Day 21 · September 14, 2026</p>
+    <h1>Multi-Site Management foundations</h1>
+    <p class="lede">Trace a same-language source-to-Live-Copy relationship, predict synchronization behavior and preserve one deliberate local override.</p>
+    <ul class="meta"><li>30 minutes online</li><li>Frontend-oriented AEM developers</li><li>Source → inheritance → action → result</li></ul>
+  </header>
+  <main id="content">
+    <section class="callout"><strong>Observable outcome:</strong> each developer can prove one MSM relationship, identify inherited and local component state, choose the least destructive author action and predict which values will change before synchronization.</section>
+
+    <h2>Topic summary</h2>
+    <p>Multi-Site Management reuses AEM Sites content through maintained Live Copy relationships. A source page, blueprint configuration, Live Copy and per-resource relationship are distinct objects; path similarity or identical rendering does not prove that inheritance exists.</p>
+    <p>Predictable maintenance starts with evidence. Inspect the source, target, relationship status and effective rollout configuration; then distinguish a Live Copy Synchronize pull from a blueprint Rollout push. Cancel inheritance only at the component that needs local ownership, and keep MSM distribution separate from translation and component i18n.</p>
+    <ul>
+      <li>Prove the live relationship before changing content.</li>
+      <li>Separate source content, blueprint configuration and Live Copy roles.</li>
+      <li>Keep deliberate local ownership at the narrowest component.</li>
+      <li>Predict trigger, direction, scope and action set before synchronization.</li>
+      <li>Diagnose MSM, translation and i18n as separate responsibility lanes.</li>
+    </ul>
+
+    <h2>30-minute agenda</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Time</th><th>Slide</th><th>Facilitation</th></tr></thead>
+      <tbody>
+        <tr><td>0–2</td><td>1 · Opening</td><td>Frame live relationships, inheritance and synchronization.</td></tr>
+        <tr><td>2–4</td><td>2 · Relationship</td><td>Contrast a maintained Live Copy with a one-time copy.</td></tr>
+        <tr><td>4–7</td><td>3 · Vocabulary</td><td>Separate source, blueprint configuration, target and relationship.</td></tr>
+        <tr><td>7–9</td><td>4 · Language structure</td><td>Map language masters to same-language market sites.</td></tr>
+        <tr><td>9–12</td><td>5 · Inheritance</td><td>Cancel inheritance on one component while siblings remain linked.</td></tr>
+        <tr><td>12–15</td><td>6 · Evidence</td><td>Trace the relationship through supported authoring views.</td></tr>
+        <tr><td>15–18</td><td>7 · Direction</td><td>Compare Synchronize pull with Rollout push.</td></tr>
+        <tr><td>18–21</td><td>8 · Configuration</td><td>Separate rollout triggers from synchronization actions.</td></tr>
+        <tr><td>21–24</td><td>9 · Actions</td><td>Choose among cancel, suspend, reset and detach.</td></tr>
+        <tr><td>24–26</td><td>10 · Localization</td><td>Separate MSM, translation and component i18n.</td></tr>
+        <tr><td>26–28</td><td>11 · Key takeaways</td><td>Consolidate the source-to-result evidence chain.</td></tr>
+        <tr><td>28–30</td><td>12 · Questions</td><td>Questions from the audience only.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2>Complete slide deck</h2>
+    <p class="section-intro">Study each slide with its presenter notes, then copy or download the PNG.</p>
+    <div class="web-deck">
+      <article class="web-slide" data-slide-src="../slides/lesson-21/origin_image/slide_01.png">
+        <img class="web-slide-image" src="../slides/lesson-21/origin_image/slide_01.png" alt="Class 21 opening slide introducing Multi-Site Management foundations and the subtopics live relationships, inheritance, synchronization and local ownership.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-21/origin_image/slide_01.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul><li><strong>Opening:</strong> introduce Multi-Site Management as the Week 5 topic.</li><li><strong>Subtopics:</strong> live relationships, inheritance, synchronization and local ownership.</li><li><strong>Transition:</strong> build the relationship model on the next slide.</li></ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-21/origin_image/slide_02.png">
+        <img class="web-slide-image" src="../slides/lesson-21/origin_image/slide_02.png" alt="Comparison between a maintained Live Copy relationship and an independent one-time copy.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-21/origin_image/slide_02.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul><li><strong>Relationship:</strong> eligible source changes can reach a connected Live Copy later.</li><li><strong>Copy:</strong> a one-time copy is independent even when it looks identical today.</li><li><strong>Evidence:</strong> paths and rendering are clues, not proof.</li></ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-21/origin_image/slide_03.png">
+        <img class="web-slide-image" src="../slides/lesson-21/origin_image/slide_03.png" alt="Four-layer MSM architecture separating source, blueprint configuration, Live Copy and LiveRelationship.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-21/origin_image/slide_03.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul><li><strong>Source:</strong> the page or branch provides inheritable content.</li><li><strong>Configuration:</strong> it references the source and enables author-facing creation and rollout.</li><li><strong>Connection:</strong> each LiveRelationship links an equivalent target resource to its source.</li></ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-21/origin_image/slide_04.png">
+        <img class="web-slide-image" src="../slides/lesson-21/origin_image/slide_04.png" alt="WKND repository structure showing English and French language masters with same-language country Live Copies.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-21/origin_image/slide_04.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul><li><strong>Language master:</strong> the primary authored source for one language.</li><li><strong>Market reuse:</strong> English country sites inherit from the English source.</li><li><strong>Boundary:</strong> translation creates another language; MSM distributes within a language.</li></ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-21/origin_image/slide_05.png">
+        <img class="web-slide-image" src="../slides/lesson-21/origin_image/slide_05.png" alt="Component-level inheritance where Header and Offer update while a local Hero remains unchanged.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-21/origin_image/slide_05.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul><li><strong>Granularity:</strong> cancel inheritance only on the component that needs local ownership.</li><li><strong>Siblings:</strong> other components keep receiving eligible source changes.</li><li><strong>Re-enable:</strong> restoring the relationship does not synchronize automatically.</li></ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-21/origin_image/slide_06.png">
+        <img class="web-slide-image" src="../slides/lesson-21/origin_image/slide_06.png" alt="Five-checkpoint diagnostic trace through Live Copy paths, properties, status and overview.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-21/origin_image/slide_06.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul><li><strong>Trace:</strong> start at the exact target path and inspect its Live Copy properties.</li><li><strong>Overview:</strong> compare source and target structure through References and Live Copy Overview.</li><li><strong>Granularity:</strong> inspect the exact page or component that appears stale.</li></ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-21/origin_image/slide_07.png">
+        <img class="web-slide-image" src="../slides/lesson-21/origin_image/slide_07.png" alt="Directional comparison of Live Copy Synchronize pull and blueprint Rollout push.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-21/origin_image/slide_07.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul><li><strong>Synchronize:</strong> begin on one Live Copy and pull eligible source changes.</li><li><strong>Rollout:</strong> begin on the blueprint and push to one or more Live Copies.</li><li><strong>Predict:</strong> name source, target, scope and protected local values first.</li></ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-21/origin_image/slide_08.png">
+        <img class="web-slide-image" src="../slides/lesson-21/origin_image/slide_08.png" alt="Rollout configuration pipeline from trigger through standard action set to eligible target updates.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-21/origin_image/slide_08.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul><li><strong>Trigger:</strong> standard configuration starts from explicit Rollout or Synchronize.</li><li><strong>Actions:</strong> configuration decides what content operations run.</li><li><strong>Restraint:</strong> modification-triggered rollout can affect performance.</li></ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-21/origin_image/slide_09.png">
+        <img class="web-slide-image" src="../slides/lesson-21/origin_image/slide_09.png" alt="Decision matrix comparing cancel, suspend, reset and detach by scope, reversibility and local impact.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-21/origin_image/slide_09.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul><li><strong>Smallest scope:</strong> use component inheritance cancellation for one local exception.</li><li><strong>Temporary:</strong> Suspend and Resume pause and restore a page relationship.</li><li><strong>Caution:</strong> Reset overwrites local changes; Detach is permanent.</li></ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-21/origin_image/slide_10.png">
+        <img class="web-slide-image" src="../slides/lesson-21/origin_image/slide_10.png" alt="Three responsibility lanes separating MSM distribution, translation and component i18n dictionaries.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-21/origin_image/slide_10.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul><li><strong>MSM:</strong> distribute content to market sites within the same language.</li><li><strong>Translation:</strong> create and maintain authored content across languages.</li><li><strong>i18n:</strong> resolve component-interface labels, not authored page copy.</li></ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-21/origin_image/slide_11.png">
+        <img class="web-slide-image" src="../slides/lesson-21/origin_image/slide_11.png" alt="Five MSM takeaways connected to the evidence chain from source through inheritance and action to result.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-21/origin_image/slide_11.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul><li><strong>Prove:</strong> identify the relationship and object roles.</li><li><strong>Predict:</strong> name inheritance, direction, scope and action set.</li><li><strong>Preserve:</strong> verify the intended inherited change and deliberate local override.</li></ul></details>
+      </article>
+      <article class="web-slide" data-slide-src="../slides/lesson-21/origin_image/slide_12.png">
+        <img class="web-slide-image" src="../slides/lesson-21/origin_image/slide_12.png" alt="Quiet Questions and Thank you closing slide with a protected local Live Copy state.">
+        <div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-21/origin_image/slide_12.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div>
+        <details class="presenter-note"><summary>Detailed presenter notes</summary><ul><li><strong>Close:</strong> leave the slide open for audience questions.</li><li><strong>Boundary:</strong> do not add another prompt, recap or exercise.</li></ul></details>
+      </article>
+    </div>
+
+    <h2>Live Copy relationship practice</h2>
+    <ol class="steps">
+      <li>Select one same-language source page and one corresponding Live Copy page.</li>
+      <li>Record the source path, target path, relationship status and effective rollout configuration.</li>
+      <li>Identify one inherited component and cancel inheritance on one component that needs a deliberate local value.</li>
+      <li>Change the source, predict the result and run one controlled Synchronize or Rollout action.</li>
+      <li>Record which inherited value changed and verify that the local override remained intact.</li>
+    </ol>
+    <p><strong>Acceptance:</strong> the evidence matrix identifies source, inherited or local state, selected action and result; the intended inherited value changes; the deliberate local override remains intact; the developer explains the action direction and scope.</p>
+
+    <h2>Official reading</h2>
+    <ul>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm/overview">Reusing Content: Multi Site Manager and Live Copy — Adobe Experience League</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm/creating-live-copies">Creating and Synchronizing Live Copies — Adobe Experience League</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm/live-copy-sync-config">Configuring Live Copy Synchronization — Adobe Experience League</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm/live-copy-overview">Live Copy Overview Console — Adobe Experience League</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm-and-translation">Multi Site Manager and Translation — Adobe Experience League</a></li>
+    </ul>
+  </main>
+  <footer><a href="../index.html">Back to the training overview</a></footer>
+  <script src="../assets/copy-slide.js"></script>
+</body>
+</html>

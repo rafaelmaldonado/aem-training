@@ -35,6 +35,25 @@
 - [WKND full-stack repository — Adobe](https://github.com/adobe/aem-guides-wknd)
   Base del proyecto de mantenimiento. Fijar un commit de la rama principal y trabajar sobre un fork o repositorio individual.
 
+## Session 16 · Java, OSGi and Resource API
+
+- [Java API Best Practices in AEM — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-learn/foundation/development/understand-java-api-best-practices)
+  Lectura principal: selección de APIs AEM, Sling, JCR y OSGi y ejemplos de adaptación.
+- [Declarative Services — OSGi](https://docs.osgi.org/specification/osgi.cmpn/8.1.0/service.component.html)
+  Componentes, referencias, descriptores y activación diferida.
+- [Life Cycle Layer — OSGi](https://docs.osgi.org/specification/osgi.core/8.0.0/framework.lifecycle.html)
+  Estados y ciclo de vida de bundles.
+- [Web Console — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developer-tools/web-console)
+  Inspección local y distinción respecto de Developer Console cloud.
+- [Resource — Apache Sling](https://sling.apache.org/apidocs/sling12/org/apache/sling/api/resource/Resource.html)
+  Contrato de recursos, propiedades, hijos y adaptación.
+- [ValueMap — Apache Sling](https://sling.apache.org/apidocs/sling12/org/apache/sling/api/resource/ValueMap.html)
+  Lectura tipada y valores predeterminados.
+- [ResourceResolver — Apache Sling](https://sling.apache.org/apidocs/sling12/org/apache/sling/api/resource/ResourceResolver.html)
+  Acceso a recursos, ciclo de vida y concurrencia.
+
+Consultadas el 5 de septiembre de 2026. Estas referencias explican contratos; las dependencias del proyecto determinan las versiones de las APIs del SDK.
+
 ## Wisdom (Communities)
 
 - [Experience League Community: Adobe Experience Manager](https://experienceleaguecommunities.adobe.com/t5/adobe-experience-manager/ct-p/adobe-experience-manager-community)

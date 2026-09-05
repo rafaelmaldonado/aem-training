@@ -1,5 +1,7 @@
 # Class 16 · Java, OSGi and Resource API foundations in AEM
 
+**Guía de preparación en español:** [Abrir en el navegador](../../reference/session-16-study-guide.html) · [Resumen en Markdown](../../reference/session-16-study-guide.md).
+
 **Date:** Monday, September 7, 2026  
 **Audience:** frontend-oriented developers beginning AEM backend work  
 **Duration:** 30 minutes online  

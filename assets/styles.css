@@ -231,5 +231,7 @@ th { background: var(--wash); }
   .web-slide { padding: 0; border: 0; box-shadow: none; break-after: page; }
   .web-slide:last-child { break-after: auto; }
   .presenter-note { display: none; }
+  .study-guide details { break-inside: avoid; }
+  .study-guide details::details-content { display: block; content-visibility: visible; }
   a { color: inherit; text-decoration: none; }
 }

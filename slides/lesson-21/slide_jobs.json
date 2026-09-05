@@ -1,0 +1,483 @@
+{
+  "run_status": "slides_recorded",
+  "deck_name": "lesson-21",
+  "selected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "Class 21 outline slide 07, using the approved Class 19 slide 08 as a style-only reference; one localized image_gen edit corrected the trigger label before approval",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+    "input_context_preparation": "The parent inspected the Class 19 style reference and the generated Class 21 sample with view_image. Workers must inspect slide_07 and pass it to built-in image_gen as a style-only reference.",
+    "handoff_rule": "Use built-in image_gen in generate mode with slide_07 as a style-only reference; return a blocker if that backend or reference path is unavailable."
+  },
+  "max_concurrent_slides": 3,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "Multi-Site Management foundations",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson21_slide01",
+        "agent_nickname": "lesson21_slide01",
+        "prompt": "prompts/slide_01.json",
+        "prompt_sha256": "8178998cbda7a504bfc1b17283690e102726b4d2cb2325bd86d8c351364e3d23",
+        "dispatched_at": "2026-09-04T17:55:54Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson21_slide01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a06365-c899-75e1-a747-2bc6209f0d62/exec-4734f544-ac58-4ab9-936e-ccc77577349f.png",
+        "selected_source_sha256": "e6a492744c4dff4eb55211732757c5314c491d6cef88e9f69cfc7e4ca430b5a9",
+        "final_image": "origin_image/slide_01.png",
+        "final_image_sha256": "e6a492744c4dff4eb55211732757c5314c491d6cef88e9f69cfc7e4ca430b5a9",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Cover adds exactly four readable subtopics in one restrained row while preserving the title, metadata, relationship motif and clean hierarchy.",
+        "recorded_at": "2026-09-04T17:55:54Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "Reuse requires a live relationship, not a similar path.",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson21_slide02",
+        "agent_nickname": "lesson21_slide02",
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "1f8269e8963833bb6f27c7fd5440366e583ac9eaaee53f57e982a1edcdebc890",
+        "dispatched_at": "2026-09-02T23:45:46Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson21_slide02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a06483-61e0-7783-b0fe-1471d5d863c3/exec-96c54cac-e91c-4b56-a954-3107881a6ef9.png",
+        "selected_source_sha256": "a161fc3f4d54eff9ca3ab1dbdc4040bc920728796b91f047f733d45173a5b241",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "a161fc3f4d54eff9ca3ab1dbdc4040bc920728796b91f047f733d45173a5b241",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Text readable; relationship-versus-copy comparison is accurate; unsupported internal paths and properties were removed.",
+        "recorded_at": "2026-09-02T23:49:07Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "Source, blueprint configuration and Live Copy are distinct objects.",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson21_slide03",
+        "agent_nickname": "lesson21_slide03",
+        "prompt": "prompts/slide_03.json",
+        "prompt_sha256": "c9bc4234412a0428ec8823b8cc87446126b195e17307866da059edceafe00c99",
+        "dispatched_at": "2026-09-02T23:45:46Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson21_slide03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a06483-894d-75f3-8e58-d9bd1a123aef/exec-3e159313-9570-4fbb-9083-fdb2023c35ef.png",
+        "selected_source_sha256": "d6c72b6bfb512b7657722c1daa51331e2a0e868437543f8bd043cb4b76e11dcf",
+        "final_image": "origin_image/slide_03.png",
+        "final_image_sha256": "d6c72b6bfb512b7657722c1daa51331e2a0e868437543f8bd043cb4b76e11dcf",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Text readable; four MSM objects are distinguished accurately; style and slide number match the approved sample.",
+        "recorded_at": "2026-09-02T23:48:56Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "Language structure separates language from market reuse.",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson21_slide04",
+        "agent_nickname": "lesson21_slide04",
+        "prompt": "prompts/slide_04.json",
+        "prompt_sha256": "01e7b737c25e1e1081537f46e818c64f5130cb2626ced1791f22cb09bb4d9471",
+        "dispatched_at": "2026-09-02T23:47:20Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson21_slide04",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a06485-09b7-7c51-ae7c-272fc0d951f9/exec-3937dc55-ee79-44c3-b055-69e133b4f0e4.png",
+        "selected_source_sha256": "656cb013ff9a257e021023caab5f8279458d024b7048a16bca97a0202a605de3",
+        "final_image": "origin_image/slide_04.png",
+        "final_image_sha256": "656cb013ff9a257e021023caab5f8279458d024b7048a16bca97a0202a605de3",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Text and paths readable; repository branches are siblings under /content/wknd; same-language MSM lanes are accurate.",
+        "recorded_at": "2026-09-02T23:50:53Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "Inheritance can stop at one component and continue elsewhere.",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson21_slide05",
+        "agent_nickname": "lesson21_slide05",
+        "prompt": "prompts/slide_05.json",
+        "prompt_sha256": "d3cb6a5add63ffa87c8c3f2d301b9f2cda4f32193b5645c9265ace0de070d388",
+        "dispatched_at": "2026-09-02T23:49:45Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson21_slide05",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a06487-1cfd-7972-825b-f3ed92bc66ac/exec-52c7579d-8f67-4309-a364-eac5bdd7499d.png",
+        "selected_source_sha256": "9f0b8386a77e52d045af58fcea5c345e01083ae17a434855715514b416b6fd17",
+        "final_image": "origin_image/slide_05.png",
+        "final_image_sha256": "9f0b8386a77e52d045af58fcea5c345e01083ae17a434855715514b416b6fd17",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Text readable; component-level cancellation, sibling inheritance and re-enable-without-sync semantics are accurate.",
+        "recorded_at": "2026-09-02T23:52:08Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "Inspect relationship evidence before changing content.",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson21_slide06",
+        "agent_nickname": "lesson21_slide06",
+        "prompt": "prompts/slide_06.json",
+        "prompt_sha256": "d209bce049d4c85345e0e763992a5ed94e92c84b8477dcff85ab3bd58827269d",
+        "dispatched_at": "2026-09-02T23:49:46Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson21_slide06",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a06487-3ac4-7652-ae0c-ee3b4a638c81/exec-ca4c0d7d-1589-492f-a9d4-0559e87c0243.png",
+        "selected_source_sha256": "7ebdcad36b06b856dd79df2a5f46b2f35012573e3c3364e012ec22941bbbcb1a",
+        "final_image": "origin_image/slide_06.png",
+        "final_image_sha256": "7ebdcad36b06b856dd79df2a5f46b2f35012573e3c3364e012ec22941bbbcb1a",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Text readable; five UI evidence checkpoints are accurate; no unsupported internal properties or URLs.",
+        "recorded_at": "2026-09-02T23:51:26Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "Synchronize pulls one Live Copy; rollout pushes from the source.",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "accepted",
+      "dispatch": null,
+      "result": {
+        "final_image": "origin_image/slide_07.png",
+        "accepted_sample": true
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "A rollout configuration defines trigger plus actions.",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson21_slide08",
+        "agent_nickname": "lesson21_slide08",
+        "prompt": "prompts/slide_08.json",
+        "prompt_sha256": "fccc480109ed0ed7251758afb8ea142f2ff30039261ca0c2f481b366c8e7ebd8",
+        "dispatched_at": "2026-09-02T23:51:04Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson21_slide08",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a06488-75cc-7910-adab-9ad99594ede1/exec-cc811192-f3f6-48e9-88ef-034a23e887e1.png",
+        "selected_source_sha256": "b0a39d8ba529044cfc0278993cc306a9353ec786efabcb9322250da6673e427c",
+        "final_image": "origin_image/slide_08.png",
+        "final_image_sha256": "b0a39d8ba529044cfc0278993cc306a9353ec786efabcb9322250da6673e427c",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Text readable; standard On Rollout trigger and five action names are exact; automatic alternatives are correctly guarded.",
+        "recorded_at": "2026-09-02T23:52:49Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Choose the least destructive relationship action.",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson21_slide09",
+        "agent_nickname": "lesson21_slide09",
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "9361a5ffdb1c9a248d7413ab5837ef036440b7c3e65b09c1aedb8c3ba9d53cdc",
+        "dispatched_at": "2026-09-02T23:51:37Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson21_slide09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a06488-f5a1-7331-87d7-88c28b99b56a/exec-42eae6af-d728-41c7-a48f-a7516969677b.png",
+        "selected_source_sha256": "b71644983c81f19ba56369916beb755e95281a56feba11744b1be6b94d942739",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "b71644983c81f19ba56369916beb755e95281a56feba11744b1be6b94d942739",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Text readable; relationship actions progress from component-local to permanent; Reset and Detach consequences are correctly cautioned.",
+        "recorded_at": "2026-09-02T23:53:18Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_10",
+      "number": 10,
+      "title": "MSM distributes content; translation changes language.",
+      "job": "prompts/slide_10.json",
+      "out": "origin_image/slide_10.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson21_slide10",
+        "agent_nickname": "lesson21_slide10",
+        "prompt": "prompts/slide_10.json",
+        "prompt_sha256": "94077a3c09dba8ec2235577c492fce33f3183547e3d495a6fb3c096f84deb733",
+        "dispatched_at": "2026-09-02T23:52:20Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson21_slide10",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a06489-9d2a-7da2-8e8f-1d97bd7317f9/exec-c9930927-d923-4d76-8567-d70333428b41.png",
+        "selected_source_sha256": "01ede306872f3c1c9be780e45e933f3258e8fd91d15e3537bc76d639300b07f4",
+        "final_image": "origin_image/slide_10.png",
+        "final_image_sha256": "01ede306872f3c1c9be780e45e933f3258e8fd91d15e3537bc76d639300b07f4",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Text readable; MSM, translation and i18n responsibilities are accurately separated; canonical paths and labels are correct.",
+        "recorded_at": "2026-09-02T23:54:12Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_11",
+      "number": 11,
+      "title": "Key takeaways",
+      "job": "prompts/slide_11.json",
+      "out": "origin_image/slide_11.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson21_slide11",
+        "agent_nickname": "lesson21_slide11",
+        "prompt": "prompts/slide_11.json",
+        "prompt_sha256": "7cbd31d2f76afa572fd52647a65de07415252f90879330dc4d115b8265b4535c",
+        "dispatched_at": "2026-09-02T23:53:01Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson21_slide11",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0648a-3ecb-7243-a5af-9f0728cb1a71/exec-b401457a-7d34-442e-b79a-c529f367d097.png",
+        "selected_source_sha256": "2a2f0592e213b69c2159f3988cc1d99061d0f8926ec710defa2f63bcbad010ee",
+        "final_image": "origin_image/slide_11.png",
+        "final_image_sha256": "2a2f0592e213b69c2159f3988cc1d99061d0f8926ec710defa2f63bcbad010ee",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Text readable; all five takeaways and evidence chain are accurate; re-enable is correctly separated from synchronization.",
+        "recorded_at": "2026-09-02T23:57:56Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_12",
+      "number": 12,
+      "title": "Questions",
+      "job": "prompts/slide_12.json",
+      "out": "origin_image/slide_12.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/lesson21_slide12",
+        "agent_nickname": "lesson21_slide12",
+        "prompt": "prompts/slide_12.json",
+        "prompt_sha256": "129b8075e8d7681a482abf92388e5caa7d073ee39bc71ba62b6ad72a5724a301",
+        "dispatched_at": "2026-09-02T23:53:30Z"
+      },
+      "result": {
+        "agent_id": "/root/lesson21_slide12",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0648a-b00c-76b2-9996-b81b78dbab5c/exec-038731d3-7d9b-4c2e-862f-d8b3927d5d58.png",
+        "selected_source_sha256": "74b8f0d01d501fc156e5eddc47ac6bd20b1ff273b089d229f4d718151ab67d67",
+        "final_image": "origin_image/slide_12.png",
+        "final_image_sha256": "74b8f0d01d501fc156e5eddc47ac6bd20b1ff273b089d229f4d718151ab67d67",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Passive Questions/Thank you closing is readable, uncluttered and matches the approved technical-atlas style.",
+        "recorded_at": "2026-09-02T23:55:44Z"
+      },
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-09-02T23:57:56Z"
+}
