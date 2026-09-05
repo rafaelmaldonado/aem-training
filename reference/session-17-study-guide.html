@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Guía profunda de preparación para la sesión 17: Sling Models, adaptables, inyección, HTL, delegación y JSON en AEM, con casos y repaso.">
+  <title>Sesión 17 · Guía de preparación · AEM Training</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body class="study-guide">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <nav class="site-nav" aria-label="Principal">
+    <a class="brand" href="../index.html">AEM Training</a>
+    <ul>
+      <li><a href="../lessons/0017-sling-models-delegation-exporter.html#slide-deck">Diapositivas 17</a></li>
+      <li><a href="index.html">Referencias</a></li>
+      <li><a href="session-17-study-guide.md" download>Markdown</a></li>
+    </ul>
+  </nav>
+  <header>
+    <p class="eyebrow">Preparación · Semana 4 · Sesión 17</p>
+    <h1>Sesión 17 · Sling Models, delegación y JSON en AEM</h1>
+    <p class="lede">Del recurso al contrato de vista: elige el contexto, prepara los valores y comprende cómo llegan a HTL y JSON.</p>
+    <ul class="meta"><li>Español</li><li>Lectura: 20–25 minutos</li><li>Repaso: 5–10 minutos</li><li>Imprimible desde el navegador</li></ul>
+  </header>
+  <main id="contenido">
+<p><strong>Guía profunda de preparación · Martes 8 de septiembre de 2026 · Español</strong></p>
+<p><a href="session-17-study-guide.html">Abrir la versión HTML</a> · <a href="../lessons/0017-sling-models-delegation-exporter.html#slide-deck">Ver las diapositivas</a> · <a href="../slides/lesson-17/speech.md">Notas del presentador</a></p>
+<p>La sesión 17 enseña a transformar el contexto de AEM en un contrato pequeño y explícito para la vista. Sobre los fundamentos de Java, OSGi y Resource API de la <a href="session-16-study-guide.html">sesión 16</a>, ahora debes decidir de dónde obtiene sus datos un Sling Model, cómo prepara esos datos y cómo los consumen HTL y, cuando corresponde, JSON.</p>
+<blockquote>
+<p><strong>Un Sling Model convierte contexto en valores y estado listos para la vista.</strong> El modelo prepara los datos; HTL construye el markup; los servicios aportan capacidades reutilizables y un exporter puede publicar una representación del contrato.</p>
+</blockquote>
+<h2>Cómo estudiar esta guía</h2>
+<ul>
+<li><strong>Primera lectura, 20–25 minutos:</strong> sigue la Guide Card desde el recurso hasta sus valores de salida. Detente en adaptable, inyección y fallbacks.</li>
+<li><strong>Recuperación, 5–10 minutos:</strong> contesta las preguntas y los casos sin abrir primero las respuestas.</li>
+<li><strong>Antes de la sesión:</strong> vuelve a los casos que fallaste y justifica cada decisión sin consultar el texto.</li>
+<li><strong>Después de la sesión:</strong> identifica un modelo real de tu proyecto y completa el mapa de evidencias. Registra lo observado; si no tienes el SDK abierto, utiliza el caso ilustrativo sin inventar resultados.</li>
+</ul>
+<p><strong>Resultado esperado:</strong> explicar el adaptable y cada entrada de un modelo, separar la preparación de datos del HTL, reconocer una delegación correcta y comprobar si existe un contrato exportable. Memorizar anotaciones no demuestra esas capacidades.</p>
+<h2>Índice</h2>
+<ol>
+<li><a href="#contrato">Del recurso al contrato de vista</a></li>
+<li><a href="#adaptable">Resource o request: elegir el adaptable</a></li>
+<li><a href="#creacion">Cómo se descubre y crea un modelo</a></li>
+<li><a href="#inyeccion">Inyección: fuente y opcionalidad</a></li>
+<li><a href="#fallbacks">Fallbacks, valores derivados y estado vacío</a></li>
+<li><a href="#htl">La frontera entre Java y HTL</a></li>
+<li><a href="#delegacion">Delegación de Core Components</a></li>
+<li><a href="#servicios">Cuándo utilizar un servicio OSGi</a></li>
+<li><a href="#exporter">Model Exporter y .model.json</a></li>
+<li><a href="#diagnostico">Diagnóstico y mapa de evidencias</a></li>
+<li><a href="#repaso">Repaso con respuestas</a></li>
+<li><a href="#fuentes">Glosario y fuentes</a></li>
+</ol>
+<p><a id="contrato"></a></p>
+<h2>1. Del recurso al contrato de vista</h2>
+<p>En la sesión 16 seguiste una clase desde <code>core</code> hasta su disponibilidad en AEM. Ahora el recorrido se concentra en el objeto que la vista utiliza:</p>
+<pre><code class="language-text">Resource o request compatible
+        ↓
+Models Adapter Factory e inyectores
+        ↓
+Sling Model: entradas → preparación → getters y estado
+        ├── HTL → HTML
+        └── Exporter habilitado → JSON
+</code></pre>
+<p>El <strong>adaptable</strong> es el objeto de partida: por ejemplo, un recurso con propiedades o una petición con contexto adicional. La Models Adapter Factory coordina la creación del modelo y la resolución de sus entradas.</p>
+<p>El resultado útil no es una clase llena de anotaciones. Es un contrato que otro código puede consumir sin conocer cómo está guardado el contenido. En una Guide Card podría incluir <code>displayTitle</code>, <code>link</code> y <code>empty</code>.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Responsabilidad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Resource</td>
+<td>Exponer el contenido y su estructura.</td>
+</tr>
+<tr>
+<td>Sling Model</td>
+<td>Preparar valores y estado para un consumidor.</td>
+</tr>
+<tr>
+<td>HTL</td>
+<td>Elegir elementos, atributos y condiciones del markup.</td>
+</tr>
+<tr>
+<td>Servicio OSGi</td>
+<td>Proporcionar una capacidad reutilizable cuando se necesita.</td>
+</tr>
+<tr>
+<td>Exporter</td>
+<td>Serializar la representación que el modelo expone.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Un Sling Model no es un servicio OSGi por defecto.</strong> <code>@Model</code> declara un modelo adaptable; no equivale a <code>@Component</code>. Un modelo puede consumir un servicio sin convertirse en uno. Esta distinción continúa el vocabulario de la sesión 16. Base: <a href="../slides/lesson-17/speech.md">notas de la sesión, slides 2 y 9</a>.</p>
+<p><a id="adaptable"></a></p>
+<h2>2. Resource o request: elegir el adaptable</h2>
+<p>La pregunta decisiva es <strong>qué contexto necesita realmente el modelo</strong>, no desde qué pantalla lo vas a usar.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Si necesitas…</th>
+<th>Punto de partida</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Propiedades, hijos y tipo de recurso</td>
+<td><code>Resource</code>.</td>
+</tr>
+<tr>
+<td>Atributos de petición, bindings u objetos de la petición</td>
+<td>Request compatible con el SDK.</td>
+</tr>
+<tr>
+<td>Delegar un modelo existente</td>
+<td>Un adaptable compatible también con el delegado.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Preferir <code>Resource</code> cuando sólo necesitas contenido permite reutilizar el modelo dentro y fuera de una petición. Usarlo desde HTL no obliga a declarar request como adaptable.</p>
+<p>Una request sí permite leer contenido de su recurso, además del contexto de la petición. El sentido inverso no está garantizado: tener un <code>Resource</code> no proporciona atributos de request ni variables de scripting.</p>
+<p><strong>Caso concreto:</strong> <code>@ScriptVariable</code> necesita una request con los bindings correspondientes. Cambiar el adaptable a request no inventa un binding ausente. Si la entrada requerida no está disponible, la creación puede fallar.</p>
+<p>No declares ambos adaptables por precaución: cada uno debe poder satisfacer el contrato que prometes. El tipo exacto de request y los imports deben coincidir con las APIs del proyecto; la documentación actual de Sling también muestra variantes Jakarta. <a href="https://sling.apache.org/documentation/bundles/models.html#model-and-adaptable-types">Contrato de adaptables de Apache Sling</a>.</p>
+<p><a id="creacion"></a></p>
+<h2>3. Cómo se descubre y crea un modelo</h2>
+<p>Que una clase compile no demuestra que esté disponible como Sling Model. Debes distinguir registro, contexto, selección e inicialización.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Comprobación</th>
+<th>Evidencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>La clase llegó al runtime</td>
+<td>Bundle desplegado con la versión esperada.</td>
+</tr>
+<tr>
+<td>El runtime descubre el modelo</td>
+<td><code>@Model</code> y metadatos de registro generados en el bundle.</td>
+</tr>
+<tr>
+<td>El objeto de entrada es compatible</td>
+<td>Adaptable real frente a los declarados.</td>
+</tr>
+<tr>
+<td>Se selecciona la implementación esperada</td>
+<td>Tipo solicitado y asociación con el resource type, cuando aplica.</td>
+</tr>
+<tr>
+<td>Las entradas están disponibles</td>
+<td>Fuentes de inyección y dependencias requeridas.</td>
+</tr>
+<tr>
+<td>La inicialización termina</td>
+<td>Logs o excepción concreta de creación.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Los metadatos pueden identificar paquetes mediante <code>Sling-Model-Packages</code> o clases mediante <code>Sling-Model-Classes</code>. El tooling del proyecto puede generarlos: inspecciona el artefacto antes de añadir configuración duplicada.</p>
+<p>Los atributos de <code>@Model</code> expresan cosas distintas:</p>
+<ul>
+<li><strong><code>adaptables</code>:</strong> objetos desde los que se puede crear el modelo.</li>
+<li><strong><code>adapters</code>:</strong> tipos bajo los que puede solicitarse, por ejemplo una interfaz pública.</li>
+<li><strong><code>resourceType</code>:</strong> asociación usada para selección por recurso y exportación.</li>
+</ul>
+<p><strong>Matiz del esquema de las slides:</strong> <code>resourceType</code> no es una validación universal que rechace toda adaptación directa a una clase concreta. Interviene en la selección entre implementaciones, en búsquedas por recurso y en el exporter; no sustituye validar entradas. <a href="https://sling.apache.org/documentation/bundles/models.html#associating-a-model-class-with-a-resource-type">Registro y asociación por resource type — Sling</a>.</p>
+<p><code>adaptTo(...)</code> puede devolver <code>null</code>. Eso indica que no se obtuvo el modelo, pero no explica por sí solo la causa. <code>ModelFactory#createModel(...)</code> permite obtener una excepción más explícita para diagnosticarla. No conviertas todo fallo en un valor predeterminado antes de entender qué requisito falló. Base: <a href="../slides/lesson-17/speech.md">notas de la sesión, slide 4</a>.</p>
+<p><a id="inyeccion"></a></p>
+<h2>4. Inyección: fuente y opcionalidad</h2>
+<p>Cada entrada debería permitir responder dos preguntas: <strong>¿de dónde viene?</strong> y <strong>¿puede faltar legítimamente?</strong></p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Anotación</th>
+<th>Fuente o intención</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@ValueMapValue</code></td>
+<td>Propiedad del recurso.</td>
+</tr>
+<tr>
+<td><code>@ChildResource</code></td>
+<td>Recurso hijo y, según el tipo solicitado, su adaptación.</td>
+</tr>
+<tr>
+<td><code>@OSGiService</code></td>
+<td>Servicio registrado bajo un contrato compatible.</td>
+</tr>
+<tr>
+<td><code>@Self</code></td>
+<td>Adaptable actual o adaptación de éste al tipo solicitado.</td>
+</tr>
+<tr>
+<td><code>@ScriptVariable</code></td>
+<td>Variable de los Sling bindings de una request.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Estas anotaciones hacen visible la fuente y evitan la ambigüedad de una inyección genérica de campos con <code>@Inject</code>. No confundas esta recomendación con prohibir cualquier uso de <code>@Inject</code>, incluida la inyección por constructor.</p>
+<p>Por defecto, las inyecciones son requeridas salvo que el modelo o el campo indique otra estrategia. Si la entrada es imprescindible para un objeto válido, su ausencia debe seguir siendo un fallo visible.</p>
+<p>Cuando la ausencia es parte del contrato, <code>Optional&lt;T&gt;</code> la comunica también en el tipo. Este fragmento ilustra las entradas de una tarjeta con compatibilidad de contenido; omite imports y el resto de la clase:</p>
+<pre><code class="language-java">@Model(adaptables = Resource.class)
+public class GuideCardModel {
+    @ValueMapValue
+    private Optional&lt;String&gt; title;
+
+    @ValueMapValue(name = &quot;heading&quot;)
+    private Optional&lt;String&gt; legacyTitle;
+}
+</code></pre>
+<p>Ambas propiedades pueden faltar porque la tarjeta tiene un fallback definido. Eso no justifica hacer opcional un servicio imprescindible o cualquier otro campo del modelo.</p>
+<p>Tampoco equivale <strong>opcional</strong> a <strong>válido</strong>: una cadena presente puede estar vacía o contener sólo espacios. La preparación de valores debe contemplarlo. Base: <a href="../slides/lesson-17/speech.md">notas de la sesión, slides 5 y 6</a>.</p>
+<p><strong>Conexión con DS:</strong> <code>@OSGiService</code> expresa la dependencia en el Sling Model; <code>@Reference</code> corresponde a componentes DS. Si falta un servicio obligatorio, revisa su proveedor y su estado OSGi antes de modificar las inyecciones para ocultar el fallo.</p>
+<p><a id="fallbacks"></a></p>
+<h2>5. Fallbacks, valores derivados y estado vacío</h2>
+<p>En la Guide Card de la sesión, el contrato de prioridad es:</p>
+<pre><code class="language-text">title actual con contenido significativo
+        ↓ si no existe o queda vacío al normalizar
+heading heredado con contenido significativo
+        ↓ si tampoco sirve
+&quot;Untitled guide&quot;
+</code></pre>
+<p><code>heading</code> es el nombre legado del ejemplo, no una propiedad que debas inventar en cualquier proyecto. Sólo mantén esa compatibilidad si existe contenido que la requiere.</p>
+<p>El modelo prepara <code>getDisplayTitle()</code> y HTL recibe el resultado. La prioridad debe ser explícita y comprobable:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th><code>title</code></th>
+<th><code>heading</code></th>
+<th><code>displayTitle</code> esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&quot;Guía actual&quot;</code></td>
+<td><code>&quot;Título anterior&quot;</code></td>
+<td><code>Guía actual</code></td>
+</tr>
+<tr>
+<td>Ausente</td>
+<td><code>&quot;Título anterior&quot;</code></td>
+<td><code>Título anterior</code></td>
+</tr>
+<tr>
+<td><code>&quot;   &quot;</code></td>
+<td><code>&quot;  Ruta histórica  &quot;</code></td>
+<td><code>Ruta histórica</code></td>
+</tr>
+<tr>
+<td>Ausente</td>
+<td>Ausente</td>
+<td><code>Untitled guide</code></td>
+</tr>
+<tr>
+<td><code>&quot;  Ruta nueva  &quot;</code></td>
+<td>Ausente</td>
+<td><code>Ruta nueva</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Esta tabla define un comportamiento ilustrativo: recortar espacios exteriores, considerar vacío el resultado sin texto y aplicar la prioridad una sola vez. No implica reescribir el contenido persistido.</p>
+<h3>Un fallback no decide automáticamente si la tarjeta está vacía</h3>
+<p>Si <code>displayTitle</code> siempre tiene un valor predeterminado, no puedes deducir el estado vacío comprobando únicamente si ese getter devuelve texto.</p>
+<p>Define qué contenido hace renderizable al componente. Por ejemplo, si una tarjeta sólo es útil con un destino válido, la falta de ese destino podría hacerla vacía aunque tenga un título de respaldo. Ésta es una decisión de producto que debe quedar explícita; no es una regla universal de Sling.</p>
+<p><code>isEmpty()</code> comunica esa decisión a la vista. El tratamiento del placeholder para autores sigue el contrato de authoring del componente, separado del markup destinado al visitante.</p>
+<h3>Getters predecibles</h3>
+<p>La vista puede consultar un getter más de una vez. No escondas en él consultas nuevas, escrituras o llamadas remotas repetidas. Si una preparación merece calcularse al inicializar el modelo, puede realizarse después de las inyecciones, por ejemplo con <code>@PostConstruct</code>, y exponer después el resultado. <code>@PostConstruct</code> en un modelo no es el callback DS <code>@Activate</code>.</p>
+<p>Los valores sencillos no necesitan una capa adicional sólo para devolverlos. Base: <a href="../slides/lesson-17/speech.md">fallbacks y contrato HTL, slides 6 y 7</a>.</p>
+<p><a id="htl"></a></p>
+<h2>6. La frontera entre Java y HTL</h2>
+<p>El objetivo es que alguien pueda leer el template sin reconstruir reglas del repositorio.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Decisión</th>
+<th>Responsable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Propiedad actual frente a legado</td>
+<td>Modelo.</td>
+</tr>
+<tr>
+<td>Normalización y valor calculado</td>
+<td>Modelo.</td>
+</tr>
+<tr>
+<td>Condición de negocio que define <code>empty</code></td>
+<td>Modelo.</td>
+</tr>
+<tr>
+<td>Elementos semánticos y jerarquía de encabezados</td>
+<td>HTL.</td>
+</tr>
+<tr>
+<td>Emisión condicional de markup</td>
+<td>HTL usando el estado del modelo.</td>
+</tr>
+<tr>
+<td>Escapado según el contexto de salida</td>
+<td>HTL.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Este fragmento ilustra el consumo del contrato. La clase y el elemento deben ajustarse al proyecto y a la jerarquía real de la página; no implementa el placeholder de authoring:</p>
+<pre><code class="language-html">&lt;sly data-sly-use.card=&quot;com.example.core.models.GuideCardModel&quot;&gt;&lt;/sly&gt;
+&lt;article data-sly-test=&quot;${!card.empty}&quot;&gt;
+    &lt;h2&gt;${card.displayTitle}&lt;/h2&gt;
+&lt;/article&gt;
+</code></pre>
+<p>HTL accede a <code>getDisplayTitle()</code> como <code>displayTitle</code> y al estado <code>isEmpty()</code> como <code>empty</code>. El template no necesita saber si el título procede de <code>title</code>, <code>heading</code> o un fallback.</p>
+<p>Java tampoco debería construir una cadena de HTML para que HTL la inserte. Preparar el valor no elimina la necesidad de escapado contextual ni justifica desactivarlo. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-core-components/using/developing/guidelines#separation-of-concerns">Separación de responsabilidades — Adobe</a>.</p>
+<p><a id="delegacion"></a></p>
+<h2>7. Delegación de Core Components</h2>
+<p>Cuando una personalización cambia sólo parte de un Core Component, la sesión propone conservar el comportamiento público existente y añadir únicamente lo que pertenece al proyecto.</p>
+<p>El recorrido tiene dos niveles diferentes:</p>
+<pre><code class="language-text">Instancia de contenido
+  sling:resourceType → componente proxy del proyecto
+                              ↓ sling:resourceSuperType
+                         Core Component
+
+Modelo del proyecto
+  comportamiento propio + métodos reenviados al modelo delegado
+</code></pre>
+<p>El proxy vive bajo el espacio de componentes del proyecto y su <code>sling:resourceSuperType</code> apunta a la versión del Core Component utilizada. La versión concreta se toma del proyecto, no de un ejemplo copiado.</p>
+<p>El modelo usa la interfaz pública, por ejemplo <code>Title</code>. El fragmento central de delegación es:</p>
+<pre><code class="language-java">@Self
+@Via(type = ResourceSuperType.class)
+private Title delegate;
+
+public String getText() {
+    return delegate.getText();
+}
+</code></pre>
+<p>Es un fragmento dentro de un modelo registrado y compatible con el adaptable del delegado; no es una implementación completa de <code>Title</code>. Debes conservar y reenviar el resto del contrato que corresponda a la versión utilizada.</p>
+<p><code>@Via(type = ResourceSuperType.class)</code> dirige la adaptación hacia el comportamiento del supertipo. Esto evita solicitar simplemente otra vez el contrato del mismo componente personalizado.</p>
+<p><strong>La delegación no es automática por añadir el campo.</strong> Tener un <code>delegate</code> no hace que todos tus getters invoquen sus métodos. Tampoco heredar el resource supertype equivale a herencia Java.</p>
+<p>Si añades <code>getEyebrowText()</code>, esa salida también debe formar parte del contrato que consume tu HTL. Reutilizar el markup heredado no garantiza que muestre un getter nuevo.</p>
+<p>Copiar clases privadas de Core Components crea una implementación propia que tendrás que mantener. Delegar conserva la ruta de reutilización, pero no elimina la necesidad de comprobar compatibilidad al actualizar dependencias. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-core-components/using/developing/customizing">Personalización de Core Components — Adobe</a>.</p>
+<p><a id="servicios"></a></p>
+<h2>8. Cuándo utilizar un servicio OSGi</h2>
+<p>Un Sling Model coordina una vista. Un servicio puede concentrar trabajo reutilizable por varios modelos u otros consumidores.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Trabajo</th>
+<th>Ubicación razonable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Elegir título actual, legado o fallback</td>
+<td>Modelo de la tarjeta.</td>
+</tr>
+<tr>
+<td>Preparar una etiqueta específica de esa vista</td>
+<td>Modelo.</td>
+</tr>
+<tr>
+<td>Consulta compartida por varios componentes</td>
+<td>Servicio, si existe esa reutilización.</td>
+</tr>
+<tr>
+<td>Integración con un sistema externo</td>
+<td>Servicio con un contrato claro.</td>
+</tr>
+<tr>
+<td>Método que sólo reenvía una propiedad</td>
+<td>Normalmente no necesita servicio.</td>
+</tr>
+</tbody>
+</table></div>
+<p>El modelo declara una dependencia real con <code>@OSGiService</code> y adapta el resultado a su vista. El servicio no debería necesitar conocer el HTML de la tarjeta para cumplir su función.</p>
+<p>Antes de crear una capa nueva, pregunta qué responsabilidad reusable separa. Evita tanto el modelo que concentra consultas e integraciones como el servicio creado sólo para devolver un campo. Ciclo de vida, configuración y servlets se desarrollan en la <a href="../lessons/0018-osgi-services-configuration-servlets.html">sesión 18</a>.</p>
+<p><a id="exporter"></a></p>
+<h2>9. Model Exporter y .model.json</h2>
+<p>Model Exporter permite reutilizar una representación preparada por el modelo y serializarla, normalmente con Jackson. No significa que cualquier clase con <code>@Model</code> tenga un endpoint JSON.</p>
+<pre><code class="language-text">Petición a un recurso con selector model y extensión json
+        ↓
+Resolución del recurso y su tipo
+        ↓
+Servlet de exportación aplicable
+        ↓
+Creación del Sling Model elegible
+        ↓
+Jackson → JSON
+</code></pre>
+<p>Este fragmento ilustra las declaraciones, no un componente desplegado:</p>
+<pre><code class="language-java">@Model(
+    adaptables = Resource.class,
+    resourceType = &quot;example/components/guidecard&quot;
+)
+@Exporter(name = &quot;jackson&quot;, extensions = &quot;json&quot;)
+</code></pre>
+<p>Se necesitan el registro del modelo, la asociación al recurso y el exporter disponible. El selector habitual es <code>model</code>; la extensión del ejemplo es <code>json</code>. El contenido de la respuesta depende de la serialización configurada. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/foundation/development/understand-sling-model-exporter">Model Exporter — Adobe</a>.</p>
+<p><strong>La ruta importa.</strong> La URL debe identificar el recurso cuyo modelo quieres inspeccionar. Una página y una tarjeta dentro de su árbol pueden tener resource types y modelos diferentes. No asumas que exportar la página equivale a exportar directamente tu tarjeta.</p>
+<p>Si el contrato expone <code>displayTitle</code> y <code>empty</code>, una representación posible sería:</p>
+<pre><code class="language-json">{
+  &quot;displayTitle&quot;: &quot;Ruta histórica&quot;,
+  &quot;empty&quot;: false
+}
+</code></pre>
+<p>Es un resultado ilustrativo, no la promesa de que cualquier modelo produzca exactamente esas claves. Jackson y sus anotaciones determinan qué propiedades se serializan y con qué nombres. Un getter nuevo puede ampliar la superficie JSON; inspecciona el resultado y evita exponer objetos internos o datos que el consumidor no debe recibir. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/foundation/development/develop-sling-model-exporter">Opciones y anotaciones de exportación — Adobe</a>.</p>
+<p>HTML y JSON representan información relacionada, pero no tienen que ser idénticos: HTML incluye estructura y presentación; JSON expone datos. Compara la coherencia de los valores y la política de campos ausentes.</p>
+<p>Si un modelo declara Resource y request, el servlet de exportación de Sling prefiere Resource. Por eso un modelo que funciona desde HTL con contexto de request puede fallar al exportarse si sus entradas no funcionan desde Resource. <a href="https://sling.apache.org/documentation/bundles/models.html#exporter-framework">Selección del adaptable en Exporter Framework</a>.</p>
+<p>Antes de implementar un servlet propio o duplicar datos en otro modelo, comprueba si el contrato exportado existente ya satisface la necesidad. Exportar JSON en esta sesión no cambia el alcance del curso hacia una arquitectura headless.</p>
+<p><a id="diagnostico"></a></p>
+<h2>10. Diagnóstico y mapa de evidencias</h2>
+<p>Diagnostica la frontera que falla antes de cambiar anotaciones:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Evidencia</th>
+<th>Siguiente investigación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>El bundle esperado no está disponible</td>
+<td>Despliegue y resolución, como en la sesión 16.</td>
+</tr>
+<tr>
+<td>La clase compila pero no se descubre como modelo</td>
+<td>Registro generado y versión desplegada.</td>
+</tr>
+<tr>
+<td><code>adaptTo()</code> devuelve <code>null</code></td>
+<td>Adaptable, entradas requeridas e inicialización; buscar una causa explícita.</td>
+</tr>
+<tr>
+<td>Falta una variable de scripting</td>
+<td>Request y bindings efectivamente disponibles.</td>
+</tr>
+<tr>
+<td>No se inyecta un servicio obligatorio</td>
+<td>Contrato registrado y estado del proveedor OSGi.</td>
+</tr>
+<tr>
+<td>Aparece siempre el fallback</td>
+<td>Recurso leído, nombre de propiedad y normalización.</td>
+</tr>
+<tr>
+<td>La extensión pierde comportamiento del Core Component</td>
+<td>Contrato del delegado y métodos reenviados.</td>
+</tr>
+<tr>
+<td>HTL funciona y JSON falla</td>
+<td>Elegibilidad del exporter, ruta, adaptable y serialización.</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Mapa para un modelo real</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Qué registrar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recurso</td>
+<td>Ruta, resource type y supertipo relevante.</td>
+</tr>
+<tr>
+<td>Modelo</td>
+<td>Clase, bundle y versión desplegada.</td>
+</tr>
+<tr>
+<td>Adaptable</td>
+<td>Tipo real de entrada y por qué es necesario.</td>
+</tr>
+<tr>
+<td>Entradas</td>
+<td>Anotación, fuente, nombre y obligatoriedad de cada una.</td>
+</tr>
+<tr>
+<td>Preparación</td>
+<td>Prioridad actual → legado → fallback y tratamiento de blancos.</td>
+</tr>
+<tr>
+<td>Estado</td>
+<td>Regla de <code>isEmpty()</code> y comportamiento de authoring.</td>
+</tr>
+<tr>
+<td>HTL</td>
+<td>Getters consumidos y markup que controla.</td>
+</tr>
+<tr>
+<td>Delegación</td>
+<td>Interfaz pública, adaptable y métodos propios frente a reenviados.</td>
+</tr>
+<tr>
+<td>Servicios</td>
+<td>Capacidad reutilizada y proveedor, o «no aplica».</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>Exporter, recurso solicitado y respuesta observada, o «no habilitado».</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Criterio de preparación:</strong> explicar qué cambia al quitar <code>title</code>, conservar sólo <code>heading</code>, eliminar ambos o perder una dependencia obligatoria. Los tres primeros casos siguen el fallback definido; el último debe seguir mostrando el contrato roto si el servicio es esencial.</p>
+<p><a id="repaso"></a></p>
+<h2>11. Repaso con respuestas</h2>
+<p>Responde antes de desplegar cada solución. Si fallas, vuelve a la sección indicada por el concepto y repite la pregunta antes de la sesión. Este repaso es personal; la última slide sigue dedicada sólo a preguntas de la audiencia.</p>
+<details>
+<summary>1. ¿Qué produce un Sling Model para la vista?</summary>
+<p>Un contrato de valores tipados y estado preparados desde un contexto compatible. HTL consume ese contrato sin reconstruir las reglas del repositorio.</p>
+</details>
+<details>
+<summary>2. ¿Cuándo elegirías Resource en lugar de request?</summary>
+<p>Cuando el modelo necesita contenido, propiedades e hijos y sus dependencias son compatibles con ese contexto. Usarlo desde HTL no obliga a depender de una request.</p>
+</details>
+<details>
+<summary>3. ¿@Model convierte la clase en servicio OSGi?</summary>
+<p>No. Declara un modelo adaptable. Un Sling Model puede consumir servicios mediante @OSGiService, pero no se registra como servicio por tener @Model.</p>
+</details>
+<details>
+<summary>4. ¿Qué sabes si adaptTo devuelve null?</summary>
+<p>Que no obtuviste el modelo, no cuál fue la causa. Inspecciona registro, adaptable, entradas e inicialización; ModelFactory puede aportar una excepción más explícita.</p>
+</details>
+<details>
+<summary>5. ¿Por qué no hacer opcionales todas las inyecciones?</summary>
+<p>Porque ocultaría dependencias imprescindibles ausentes. La opcionalidad debe representar una ausencia legítima, como una propiedad con fallback definido.</p>
+</details>
+<details>
+<summary>6. ¿Optional de String significa texto no vacío?</summary>
+<p>No. Puede contener una cadena vacía o espacios. La normalización y la regla de contenido significativo son decisiones del modelo.</p>
+</details>
+<details>
+<summary>7. ¿Dónde decides entre title, heading y Untitled guide?</summary>
+<p>En el modelo. HTL recibe displayTitle y conserva el control del markup y su escapado contextual.</p>
+</details>
+<details>
+<summary>8. ¿Inyectar un delegate reenvía todos los métodos automáticamente?</summary>
+<p>No. La implementación debe conservar y reenviar el contrato correspondiente. La inyección proporciona el objeto delegado; no implementa todos tus getters.</p>
+</details>
+<details>
+<summary>9. ¿Cuándo merece existir un servicio detrás del modelo?</summary>
+<p>Cuando encapsula trabajo reutilizable, una integración o una orquestación con responsabilidad propia. Un getter que sólo devuelve una propiedad no necesita esa capa por defecto.</p>
+</details>
+<details>
+<summary>10. ¿Todo Sling Model responde a .model.json?</summary>
+<p>No. Debe existir una integración de exportación aplicable al recurso y un modelo que pueda crearse y serializarse. Inspecciona la respuesta real.</p>
+</details>
+<h3>Cuatro casos de diagnóstico</h3>
+<details>
+<summary>Caso A · Un modelo sólo adapta Resource y requiere @ScriptVariable. ¿Qué contrato revisarías?</summary>
+<p>La fuente requiere bindings de request y el adaptable prometido no los proporciona. Decide si el requisito necesita realmente request o si debe expresarse con contenido. Hacer opcional el campo no crea el contexto ausente.</p>
+</details>
+<details>
+<summary>Caso B · title contiene espacios y heading contiene «Ruta histórica». ¿Qué debe mostrar la tarjeta del ejemplo?</summary>
+<p>Ruta histórica. El contrato normaliza y descarta el título actual sin texto antes de consultar el legado. Si muestra espacios, falta aplicar la regla de contenido significativo; si muestra el fallback, revisa la lectura de heading.</p>
+</details>
+<details>
+<summary>Caso C · El componente personalizado obtiene su delegate, pero un getter devuelve null en vez del valor del Core Component. ¿Qué inspeccionas?</summary>
+<p>La implementación de ese getter y si realmente reenvía la llamada al delegado. Tener el campo inyectado no garantiza conservar el comportamiento del contrato heredado.</p>
+</details>
+<details>
+<summary>Caso D · El modelo declara Resource y request, funciona en HTL y falla al exportarse. ¿Qué contexto compararías?</summary>
+<p>El adaptable usado en cada ruta y las entradas requeridas. El servlet de exportación de Sling prefiere Resource cuando ambos están declarados; una dependencia de request podría quedar sin satisfacer. Comprueba también que la URL identifica el recurso correcto.</p>
+</details>
+<p>Si necesitas más práctica, pregunta al agente con el modelo, el contexto de entrada y la evidencia disponible. Puedes pedir una explicación de una inyección o un caso nuevo sin ver la solución de antemano.</p>
+<p><a id="fuentes"></a></p>
+<h2>12. Glosario y fuentes</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Término</th>
+<th>Definición de referencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Adaptable</td>
+<td>Objeto de partida desde el que se solicita una adaptación.</td>
+</tr>
+<tr>
+<td>Adapter</td>
+<td>Tipo resultante solicitado en la adaptación.</td>
+</tr>
+<tr>
+<td>Sling Model</td>
+<td>Objeto Java creado desde contexto compatible mediante Sling Models.</td>
+</tr>
+<tr>
+<td>Injector</td>
+<td>Mecanismo que resuelve una entrada desde una fuente concreta.</td>
+</tr>
+<tr>
+<td>Binding</td>
+<td>Variable disponible en el contexto de scripting.</td>
+</tr>
+<tr>
+<td>Inyección requerida</td>
+<td>Entrada cuya falta impide una creación válida según el contrato.</td>
+</tr>
+<tr>
+<td>Optional</td>
+<td>Tipo que representa presencia o ausencia; no valida el contenido.</td>
+</tr>
+<tr>
+<td>Contrato de vista</td>
+<td>Valores y estado que un consumidor puede utilizar directamente.</td>
+</tr>
+<tr>
+<td>Fallback</td>
+<td>Alternativa definida para una entrada ausente o no significativa.</td>
+</tr>
+<tr>
+<td>Proxy</td>
+<td>Componente del proyecto que reutiliza otro mediante su supertipo.</td>
+</tr>
+<tr>
+<td>Delegación</td>
+<td>Reenvío explícito de comportamiento a otro objeto.</td>
+</tr>
+<tr>
+<td>Model Exporter</td>
+<td>Integración que exporta un modelo a otra representación.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Este glosario amplía el de la <a href="session-16-study-guide.html#fuentes">sesión 16</a>: bundle, componente DS, servicio OSGi, Resource, ValueMap y ResourceResolver mantienen esas definiciones.</p>
+<p><strong>Lectura principal recomendada:</strong> <a href="https://sling.apache.org/documentation/bundles/models.html">Apache Sling Models</a>. Lee primero adaptables, inyecciones y creación; después asociación por resource type y Exporter Framework. Los ejemplos de la documentación no fijan las versiones de tu SDK: usa las dependencias e imports del proyecto.</p>
+<p>Fuentes utilizadas para la preparación, consultadas el 5 de septiembre de 2026:</p>
+<ul>
+<li><a href="../lessons/0017-sling-models-delegation-exporter.html">Contenido y diapositivas de la sesión 17</a>.</li>
+<li><a href="../slides/lesson-17/outline.md">Outline de la sesión 17</a> y <a href="../slides/lesson-17/speech.md">notas del presentador</a>.</li>
+<li><a href="https://sling.apache.org/documentation/bundles/models.html">Apache Sling Models</a>: contraste de contratos y matices de registro, contexto y exportación.</li>
+<li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-core-components/using/developing/customizing">Customizing Core Components — Adobe</a>: proxy, extensión y reutilización.</li>
+<li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-core-components/using/developing/guidelines">Core Components Guidelines — Adobe</a>: separación entre lógica y markup.</li>
+<li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/foundation/development/understand-sling-model-exporter">Understand Sling Model Exporter — Adobe</a>: propósito de la exportación.</li>
+<li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/foundation/development/develop-sling-model-exporter">Develop Sling Model Exporter — Adobe</a>: configuración de la representación y Jackson.</li>
+</ul>
+<p><strong>Alcance:</strong> esta guía prepara para adaptables, inyección, contrato HTL, delegación y JSON. La <a href="../lessons/0018-osgi-services-configuration-servlets.html">sesión 18</a> desarrolla servicios, configuración y servlets; JUnit se aborda después. No necesitas adelantar esas implementaciones para explicar correctamente el recorrido de esta sesión.</p>
+  </main>
+  <footer><a href="../lessons/0017-sling-models-delegation-exporter.html#slide-deck">Volver a las diapositivas de la sesión 17</a> · <a href="session-17-study-guide.md" download>Descargar Markdown</a></footer>
+</body>
+</html>

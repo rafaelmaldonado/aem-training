@@ -1,5 +1,7 @@
 # Class 17 · Sling Models: adaptables, injection, delegation and JSON
 
+**Guía de preparación en español:** [Abrir en el navegador](../../reference/session-17-study-guide.html) · [Resumen en Markdown](../../reference/session-17-study-guide.md).
+
 ## Slide 1: Sling Models: adaptables, injection, delegation and JSON
 
 Introduce Class 17, the 30-minute scope and the session’s three threads: adaptable choice, injection contracts and Core Component delegation.

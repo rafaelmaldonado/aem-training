@@ -1,5 +1,7 @@
 # Class 17 · Sling Models: adaptables, injection, delegation and JSON
 
+**Guía de preparación en español:** [Abrir en el navegador](../../reference/session-17-study-guide.html) · [Resumen en Markdown](../../reference/session-17-study-guide.md).
+
 **Date:** Tuesday, September 8, 2026  
 **Audience:** frontend-oriented developers beginning AEM backend work  
 **Duration:** 30 minutes online  

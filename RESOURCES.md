@@ -54,6 +54,21 @@
 
 Consultadas el 5 de septiembre de 2026. Estas referencias explican contratos; las dependencias del proyecto determinan las versiones de las APIs del SDK.
 
+## Session 17 · Sling Models, delegation and JSON
+
+- [Apache Sling Models](https://sling.apache.org/documentation/bundles/models.html)
+  Lectura principal: adaptables, registro, inyección, opcionalidad, selección por resource type y exporter.
+- [Customizing Core Components — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-core-components/using/developing/customizing)
+  Proxy y delegación del contrato público para extender comportamiento.
+- [Core Components Guidelines — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-core-components/using/developing/guidelines)
+  Separación entre lógica en Sling Models y markup en HTL.
+- [Understand Sling Model Exporter — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-learn/foundation/development/understand-sling-model-exporter)
+  Reutilización del contrato de un modelo para una representación JSON.
+- [Develop Sling Model Exporter — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-learn/foundation/development/develop-sling-model-exporter)
+  Exporter, opciones y anotaciones de Jackson para controlar la representación.
+
+Consultadas el 5 de septiembre de 2026. Las dependencias del proyecto determinan las APIs y variantes de request compatibles con el SDK.
+
 ## Wisdom (Communities)
 
 - [Experience League Community: Adobe Experience Manager](https://experienceleaguecommunities.adobe.com/t5/adobe-experience-manager/ct-p/adobe-experience-manager-community)
