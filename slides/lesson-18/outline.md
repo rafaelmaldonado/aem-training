@@ -1,5 +1,7 @@
 # Class 18 · OSGi services, configuration and servlet boundaries
 
+**Guía de preparación en español:** [Abrir en el navegador](../../reference/session-18-study-guide.html) · [Resumen en Markdown](../../reference/session-18-study-guide.md).
+
 **Date:** Wednesday, September 9, 2026  
 **Audience:** frontend-oriented developers beginning AEM backend work  
 **Duration:** 30 minutes online  

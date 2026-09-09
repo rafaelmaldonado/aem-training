@@ -22,6 +22,7 @@
     <h1>Multi-Site Management foundations</h1>
     <p class="lede">Trace a same-language source-to-Live-Copy relationship, predict synchronization behavior and preserve one deliberate local override.</p>
     <ul class="meta"><li>30 minutes online</li><li>Frontend-oriented AEM developers</li><li>Source → inheritance → action → result</li></ul>
+  <p lang="es"><a href="#practica-local">Práctica local: archivos completos y pasos verificables</a></p>
   </header>
   <main id="content">
     <section class="callout"><strong>Observable outcome:</strong> each developer can prove one MSM relationship, identify inherited and local component state, choose the least destructive author action and predict which values will change before synchronization.</section>
@@ -56,8 +57,11 @@
       </tbody>
     </table></div>
 
-    <h2>Complete slide deck</h2>
+    <h2 id="slide-deck">Complete slide deck</h2>
     <p class="section-intro">Study each slide with its presenter notes, then copy or download the PNG.</p>
+    <aside class="callout" lang="es" aria-label="Guía de preparación">
+      <strong>Prepárate para la sesión 21:</strong> <a href="../reference/session-21-study-guide.html">abrir el resumen profundo en español</a>, con Live Copies, herencia, sincronización, excepciones locales y repaso con respuestas. <a href="../reference/session-21-study-guide.md" download>Descargar Markdown</a>.
+    </aside>
     <div class="web-deck">
       <article class="web-slide" data-slide-src="../slides/lesson-21/origin_image/slide_01.png">
         <img class="web-slide-image" src="../slides/lesson-21/origin_image/slide_01.png" alt="Class 21 opening slide introducing Multi-Site Management foundations and the subtopics live relationships, inheritance, synchronization and local ownership.">
@@ -130,6 +134,52 @@
       <li>Record which inherited value changed and verify that the local override remained intact.</li>
     </ol>
     <p><strong>Acceptance:</strong> the evidence matrix identifies source, inherited or local state, selected action and result; the intended inherited value changes; the deliberate local override remains intact; the developer explains the action direction and scope.</p>
+
+    <section lang="es" aria-label="Práctica local">
+<p><a id="practica-local"></a></p>
+<h2>Práctica local · Una Live Copy con una excepción (25–35 min)</h2>
+<p><strong>Requisitos:</strong> Author SDK local, permisos para crear páginas y Live Copies y un template editable con dos componentes Title o Text permitidos. No hace falta código ni blueprint configuration: se usará <strong>Synchronize desde el destino</strong>. Los nombres de controles pueden variar con el SDK o el idioma de la interfaz.</p>
+<ol>
+<li>En <code>http://localhost:4502/sites.html/content</code>, dentro de un sitio funcional de tu baseline (por ejemplo <code>/content/wknd/us/en</code>), crea una página contenedora llamada <code>msm-lab</code> usando su template. Registra su ruta real; todos los pasos siguientes ocurren debajo de esa rama.</li>
+<li>Bajo <code>msm-lab</code>, crea una página <code>source</code> y añade <strong>dos componentes de contenido editables</strong>. Escribe <code>Shared heading v1</code> en el primero y <code>Shared offer v1</code> en el segundo. No uses componentes bloqueados por la estructura del template para esta demostración.</li>
+<li>En Sites selecciona <code>msm-lab</code>, elige <strong>Create → Live Copy</strong>, indica <code>source</code> como origen, elige <code>msm-lab</code> como destino y llama <code>canada</code> a la copia. Mantén el mismo idioma. Selecciona <strong>Standard rollout config</strong> si el asistente lo solicita y finaliza. No uses Copy/Paste.</li>
+<li>En las propiedades de <code>canada</code>, abre <strong>Live Copy</strong> y confirma la ruta fuente exacta y la configuración de rollout. Registra esa evidencia antes de editar.</li>
+<li>Abre <code>canada</code> en el editor. Selecciona sólo el <strong>segundo componente</strong>, usa <strong>Cancel Inheritance</strong> (icono de enlace/candado según SDK), confirma y cambia su texto a <code>Canada local offer</code>. Deja el primer componente heredado.</li>
+<li>En <code>source</code>, cambia los textos a <code>Shared heading v2</code> y <code>Shared offer v2</code>; guarda. Predice por escrito qué debe quedar en <code>canada</code>.</li>
+<li>Regresa a Sites, selecciona <code>canada</code> y usa <strong>Synchronize</strong> desde la barra o las propiedades Live Copy. Confirma origen y alcance: sólo esta página, sin descendientes. La acción no requiere un Rollout en la fuente.</li>
+<li>Recarga <code>canada</code>: el primer componente debe mostrar <code>Shared heading v2</code>, y el segundo debe conservar <code>Canada local offer</code>. Si no sucede, inspecciona estado del componente, configuración y alcance antes de repetir.</li>
+<li>En el segundo componente reactiva herencia. Si el diálogo ofrece sincronizar ahora, deja esa opción sin marcar para observar las dos operaciones por separado. Luego solicita Synchronize explícitamente y comprueba <code>Shared offer v2</code>.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Momento</th>
+<th>Primer componente</th>
+<th>Segundo componente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tras crear Live Copy</td>
+<td>Shared heading v1</td>
+<td>Shared offer v1</td>
+</tr>
+<tr>
+<td>Tras excepción y Synchronize</td>
+<td>Shared heading v2</td>
+<td>Canada local offer</td>
+</tr>
+<tr>
+<td>Tras reactivar y sincronizar</td>
+<td>Shared heading v2</td>
+<td>Shared offer v2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Aceptación:</strong> captura de la relación y de las dos salidas posteriores, con ruta fuente, destino y componente que perdió la protección local. La matriz es una predicción a comprobar, no evidencia de una instancia ya ejecutada.</p>
+<p><strong>Limpieza:</strong> elimina sólo la rama <code>msm-lab</code> cuando termines y después de conservar evidencia. No uses Reset ni Detach como parte de esta práctica: no son necesarios para demostrar una excepción de componente. No ejecutes acciones contra las Live Copies reales de WKND.</p>
+<p>Fuente: <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm/creating-live-copies">crear y sincronizar Live Copies — Adobe</a>.</p>
+    </section>
 
     <h2>Official reading</h2>
     <ul>

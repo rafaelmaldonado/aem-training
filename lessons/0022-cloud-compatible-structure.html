@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Class 22 · Cloud-compatible structure</title><link rel="stylesheet" href="../assets/styles.css"></head>
+<body><a class="skip-link" href="#content">Skip to content</a>
+<nav class="site-nav" aria-label="Primary"><a class="brand" href="../index.html">AEM Training</a><ul><li><a href="../index.html">Overview</a></li><li><a href="../reference/aem-course-topics.html">Syllabus</a></li><li><a href="../reference/wknd-project-backlog.html">Practices</a></li><li><a href="../reference/index.html">References</a></li></ul></nav>
+<header><p class="eyebrow">Class 22 · Week 5 · September 15, 2026</p><h1>Cloud-compatible structure</h1><p class="lede">Separate mutable content from immutable code and predict package import effects on authored state.</p><ul class="meta"><li>30 minutes online</li><li>Individual repository and local SDK</li><li><a href="#practica-local" lang="es">Ir a la práctica local</a></li></ul></header>
+<main id="content">
+<section class="callout"><strong>Observable outcome:</strong> classify a repository change, inspect its package boundary and predict what survives when the package is reinstalled after an author edit.</section>
+<h2>Topic summary</h2><p>AEM Cloud distinguishes runtime-immutable application code from mutable repository content. A component implementation, an OSGi configuration and an authored title have different owners and deployment responsibilities even when they contribute to the same rendered page.</p><p>A package is an installation contract. Its type, embedded artifacts, filter scope and import mode determine how its payload affects an existing repository. A useful local check compares before and after an author edit and reinstallation, then inspects the actual ZIP and installation log.</p><ul><li>Separate /apps and /libs runtime boundaries from mutable content.</li><li>Map core, ui.apps, ui.config, ui.content, all and dispatcher responsibilities.</li><li>Keep code and mutable payloads in separate packages.</li><li>Read the effective filter in the built artifact.</li><li>Compare replace, merge_properties and update_properties on ordinary properties.</li><li>Prove preservation on an already-authored repository.</li></ul>
+<h2>30-minute agenda</h2><div class="table-wrap"><table><thead><tr><th>Time</th><th>Slides</th><th>Focus</th></tr></thead><tbody><tr><td>0–3</td><td>1–2</td><td>Opening and two change paths.</td></tr><tr><td>3–9</td><td>3–5</td><td>Repository, modules and packages.</td></tr><tr><td>9–17</td><td>6–8</td><td>Filters, import modes and ownership.</td></tr><tr><td>17–25</td><td>9–10</td><td>Prepared local lab and evidence.</td></tr><tr><td>25–28</td><td>11</td><td>Key takeaways.</td></tr><tr><td>28–30</td><td>12</td><td>Questions.</td></tr></tbody></table></div>
+<h2 id="slide-deck">Complete slide deck</h2><p class="section-intro">Copy each complete image to PowerPoint or download its PNG. The practical source files and instance steps follow the deck.</p>
+<aside class="callout" lang="es"><strong>Prepárate para la sesión 22:</strong> <a href="../reference/session-22-study-guide.html">abrir el resumen profundo en español</a> · <a href="../reference/session-22-study-guide.md" download>Descargar Markdown</a> · <a href="#practica-local">Ir al laboratorio de paquetes</a>.</aside><div class="web-deck">
+<article class="web-slide" data-slide-src="../slides/lesson-22/origin_image/slide_01.png"><img class="web-slide-image" src="../slides/lesson-22/origin_image/slide_01.png" alt="Cloud-compatible structure. Class 22 · Week 5 · September 15, 2026 · Juan Maldonado. Mutable content · Immutable code · Packages · Import filters." ><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-22/origin_image/slide_01.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-22/origin_image/slide_02.png"><img class="web-slide-image" src="../slides/lesson-22/origin_image/slide_02.png" alt="A local edit is not a deployment strategy. An SDK may allow a change that Cloud runtime rejects. Code changes travel through Git, build and deployment. Author changes travel through authoring and publication." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-22/origin_image/slide_02.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-22/origin_image/slide_03.png"><img class="web-slide-image" src="../slides/lesson-22/origin_image/slide_03.png" alt="Repository location defines the boundary. /apps and /libs are immutable at Cloud runtime; never customize /libs. /content and /conf are mutable, but permissions and ownership still apply. /oak:index is a special case: managed and deployed with code." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-22/origin_image/slide_03.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-22/origin_image/slide_04.png"><img class="web-slide-image" src="../slides/lesson-22/origin_image/slide_04.png" alt="Give each module one responsibility. core: Java bundle; ui.apps: HTL, components and clientlibs. ui.config: OSGi configuration deployed as code. ui.content: intended mutable baseline; all: deployment container. dispatcher: delivery configuration outside the JCR content package." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-22/origin_image/slide_04.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-22/origin_image/slide_05.png"><img class="web-slide-image" src="../slides/lesson-22/origin_image/slide_05.png" alt="Separate packages; assemble one application. application packages carry immutable code/configuration. content packages carry mutable content; do not mix /apps and /content in one payload package. all embeds subpackages and bundles at declared install locations. Dependencies and filters make installation intent explicit." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-22/origin_image/slide_05.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-22/origin_image/slide_06.png"><img class="web-slide-image" src="../slides/lesson-22/origin_image/slide_06.png" alt="A filter is an import boundary. META-INF/vault/filter.xml chooses root, includes, excludes and mode. Use /content/aem-training-package-lab, not a site-wide /content root. A ZIP entry alone does not explain the effective import scope. Inspect the built archive, not only the source tree." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-22/origin_image/slide_06.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-22/origin_image/slide_07.png"><img class="web-slide-image" src="../slides/lesson-22/origin_image/slide_07.png" alt="Predict property changes before installation. replace: replace covered state; omitted covered content can disappear. merge_properties: keep existing properties; add missing state. update_properties: replace supplied properties; retain omitted state. Legacy merge/update differ by serialization; do not equate them with the newer modes." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-22/origin_image/slide_07.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-22/origin_image/slide_08.png"><img class="web-slide-image" src="../slides/lesson-22/origin_image/slide_08.png" alt="Mutable does not mean owned by the build. Authors can change values after initial installation. Reinstalling a package can overwrite those values even with update_properties. Limit baseline paths; agree who owns each property. A repeated deployment is a content test case." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-22/origin_image/slide_08.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-22/origin_image/slide_09.png"><img class="web-slide-image" src="../slides/lesson-22/origin_image/slide_09.png" alt="Local lab: install, edit, reinstall. Use an isolated /content/aem-training-package-lab branch. Build and inspect a content ZIP; install on local Author. Change title and add localOnly; predict and compare three import modes. Restore the same starting state before each comparison." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-22/origin_image/slide_09.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-22/origin_image/slide_10.png"><img class="web-slide-image" src="../slides/lesson-22/origin_image/slide_10.png" alt="Diagnose the artifact before the instance. Build fails: inspect package type, filters and validator output. Missing content: inspect ZIP paths, effective filter and install log. Lost author value: compare import mode, payload and ownership. Local success does not prove Cloud compatibility or publication." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-22/origin_image/slide_10.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-22/origin_image/slide_11.png"><img class="web-slide-image" src="../slides/lesson-22/origin_image/slide_11.png" alt="Key takeaways. Separate runtime-mutable content from deployed code. Give every package a clear type and narrow scope. Predict import behavior on an already-authored repository. Inspect the built ZIP and compare before/after evidence." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-22/origin_image/slide_11.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-22/origin_image/slide_12.png"><img class="web-slide-image" src="../slides/lesson-22/origin_image/slide_12.png" alt="Questions / Thank you. Questions. Thank you." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-22/origin_image/slide_12.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+</div>
+<section lang="es" aria-label="Práctica local"><p><a id="practica-local"></a></p>
+<h2>Práctica local · Qué hace un paquete al reinstalarse (25–35 min)</h2>
+<p><strong>Objetivo:</strong> comparar tres modos sobre un nodo <code>nt:unstructured</code>, sin templates, bundles ni cambios en <code>/apps</code>. Se crea un ZIP FileVault mínimo; XML no se compila como Java, se empaqueta y se importa. Necesitas el comando <code>jar</code> del JDK y un Author SDK local con Package Manager y CRXDE Lite. Los modos <code>merge_properties</code> y <code>update_properties</code> requieren FileVault 3.5.0 o posterior: comprueba la versión del bundle <code>org.apache.jackrabbit.vault</code> en <code>/system/console/bundles</code>.</p>
+<p><strong>Ubicación:</strong> crea una carpeta <code>package-lab</code> en tu repositorio de práctica y coloca estos tres archivos dentro. No mezcles <code>META-INF</code> dentro de <code>jcr_root</code>. Esta carpeta es un laboratorio aislado, no sustituye los módulos <code>ui.content</code> y <code>all</code> de tu aplicación.</p>
+<h3>Archivo: <code>META-INF/vault/filter.xml</code></h3>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;workspaceFilter version=&quot;1.0&quot;&gt;
+    &lt;filter root=&quot;/content/aem-training-package-lab&quot; mode=&quot;merge_properties&quot;/&gt;
+&lt;/workspaceFilter&gt;
+</code></pre>
+<h3>Archivo: <code>META-INF/vault/properties.xml</code></h3>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE properties SYSTEM &quot;http://java.sun.com/dtd/properties.dtd&quot;&gt;
+&lt;properties&gt;
+    &lt;entry key=&quot;group&quot;&gt;aem-training&lt;/entry&gt;
+    &lt;entry key=&quot;name&quot;&gt;package-lab&lt;/entry&gt;
+    &lt;entry key=&quot;version&quot;&gt;1.0.0&lt;/entry&gt;
+    &lt;entry key=&quot;packageType&quot;&gt;content&lt;/entry&gt;
+    &lt;entry key=&quot;description&quot;&gt;Local lab: ordinary content property import modes&lt;/entry&gt;
+&lt;/properties&gt;
+</code></pre>
+<h3>Archivo: <code>jcr_root/content/aem-training-package-lab/.content.xml</code></h3>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;jcr:root xmlns:jcr=&quot;http://www.jcp.org/jcr/1.0&quot;
+    jcr:primaryType=&quot;nt:unstructured&quot;
+    title=&quot;Package title&quot;
+    packageOnly=&quot;Added by package&quot;/&gt;
+</code></pre>
+<h3>Construir e inspeccionar el ZIP</h3>
+<p>Desde la carpeta <code>package-lab</code> que contiene <code>META-INF</code> y <code>jcr_root</code>:</p>
+<pre><code class="language-sh">jar --create --file ../package-lab.zip --no-manifest -C . META-INF -C . jcr_root
+jar --list --file ../package-lab.zip
+</code></pre>
+<p>La lista debe contener <code>META-INF/vault/filter.xml</code>, <code>META-INF/vault/properties.xml</code> y <code>jcr_root/content/aem-training-package-lab/.content.xml</code>. Puedes abrir el ZIP con tu explorador y revisar el filtro antes de instalarlo. No incluyas un directorio <code>package-lab/</code> adicional dentro del ZIP.</p>
+<h3>Instalar y establecer una línea base</h3>
+<ol>
+<li>En <code>http://localhost:4502/crx/de/index.jsp</code>, comprueba que <code>/content/aem-training-package-lab</code> no contiene trabajo previo. Si existe y no es tu laboratorio, usa otro nombre y actualiza la ruta del filtro y la carpeta del payload de forma coherente.</li>
+<li>En <code>http://localhost:4502/crx/packmgr/index.jsp</code>, usa <strong>Upload Package</strong>, carga <code>package-lab.zip</code>, revisa el grupo <code>aem-training</code> y usa <strong>Install</strong>. El modo inicial es <code>merge_properties</code>.</li>
+<li>En CRXDE Lite refresca el árbol y selecciona <code>/content/aem-training-package-lab</code>. Deben aparecer <code>title=Package title</code> y <code>packageOnly=Added by package</code>. Este nodo no es una página Sites y no se espera que renderice HTML.</li>
+<li>Prepara la línea base para cada ensayo: cambia <code>title</code> a <code>Local title</code>, añade una propiedad String <code>localOnly=Keep me</code> y elimina sólo <code>packageOnly</code> si existe. Pulsa <strong>Save All</strong>. No cambies <code>jcr:primaryType</code>.</li>
+<li>Antes de reinstalar, copia estos tres valores iniciales a tu evidencia. Cada ensayo debe comenzar exactamente en ese estado.</li>
+</ol>
+<h3>Comparar los modos</h3>
+<ol>
+<li>Reinstala el paquete original con <code>merge_properties</code>. Confirma que <code>title</code> sigue local, que <code>localOnly</code> se conserva y que aparece <code>packageOnly</code>.</li>
+<li>Restablece la línea base del paso 4. En tu archivo fuente <code>filter.xml</code>, cambia <strong>sólo</strong> <code>mode="merge_properties"</code> a <code>mode="update_properties"</code>. Reconstruye el ZIP con el mismo comando. En Package Manager vuelve a cargarlo con <strong>Force Upload</strong> para reemplazar el archivo de la misma versión; revisa el filtro recién cargado y reinstala. No uses Build en Package Manager: exportaría el estado actual y cambiaría el payload del experimento.</li>
+<li>Restablece otra vez la línea base. Cambia el modo a <code>replace</code>, reconstruye, carga y reinstala siguiendo el mismo procedimiento. Comprueba únicamente el nodo aislado del laboratorio.</li>
+</ol>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Modo</th>
+<th>title después</th>
+<th>localOnly después</th>
+<th>packageOnly después</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>merge_properties</td>
+<td>Local title</td>
+<td>Keep me</td>
+<td>Added by package</td>
+</tr>
+<tr>
+<td>update_properties</td>
+<td>Package title</td>
+<td>Keep me</td>
+<td>Added by package</td>
+</tr>
+<tr>
+<td>replace</td>
+<td>Package title</td>
+<td>Ausente</td>
+<td>Added by package</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Interpretación:</strong> <code>update_properties</code> conserva lo omitido, pero sí sobrescribe un valor authored incluido en el paquete. <code>replace</code> también puede eliminar contenido cubierto que falta en el payload. Estos resultados se refieren a propiedades ordinarias de este nodo; ACLs, usuarios, binarios y UUIDs necesitan revisar sus reglas específicas. No cambies los modos a los legacy <code>merge</code>/<code>update</code> suponiendo que son equivalentes.</p>
+<p><strong>Aceptación:</strong> ZIP inspeccionado, versión FileVault registrada y una tabla de valores observados para los tres ensayos. Si un modo es rechazado, conserva el error y verifica la versión; no lo cambies por <code>replace</code> sólo para lograr una instalación verde.</p>
+<p><strong>Volver al proyecto:</strong> identifica en tus POM qué contiene <code>ui.apps</code>, <code>ui.content</code>, <code>ui.config</code> y <code>all</code>; abre el ZIP generado por tu build y localiza los filtros de los subpaquetes. Anota qué pasaría con un título modificado por un autor si reinstalas. No amplíes los filtros de la aplicación para incluir todo <code>/content</code>.</p>
+<p><strong>Limpieza:</strong> al finalizar, elimina sólo <code>/content/aem-training-package-lab</code> y el paquete <code>aem-training:package-lab</code> de tu Author local. Devuelve el filtro fuente a <code>merge_properties</code> si conservarás el ejemplo. No tomes Uninstall como estrategia general de rollback del contenido authored.</p>
+<p>Fuentes: <a href="https://jackrabbit.apache.org/filevault/filter.html">workspace filters</a>, <a href="https://jackrabbit.apache.org/filevault/importmode.html">modos de importación</a> y <a href="https://jackrabbit.apache.org/filevault/properties.html">propiedades del paquete</a>.</p></section><h2>Official reading</h2><ul><li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/aem-project-content-package-structure">AEM project structure — Adobe</a></li><li><a href="https://jackrabbit.apache.org/filevault/filter.html">Workspace filter — Apache Jackrabbit FileVault</a></li><li><a href="https://jackrabbit.apache.org/filevault/importmode.html">Import modes — Apache Jackrabbit FileVault</a></li></ul>
+</main><footer><a href="../index.html">Back to the training overview</a></footer>
+<script src="../assets/copy-slide.js"></script>
+</body></html>

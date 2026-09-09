@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sesión 20: Revisión práctica de backend AEM. Resumen, repaso y práctica local completa.">
+  <title>Sesión 20 · Guía de preparación · AEM Training</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body class="study-guide">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <nav class="site-nav" aria-label="Principal">
+    <a class="brand" href="../index.html">AEM Training</a>
+    <ul><li><a href="../lessons/0020-backend-practice-review.html">Sesión 20</a></li><li><a href="index.html">Referencias</a></li><li><a href="session-20-study-guide.md" download>Markdown</a></li></ul>
+  </nav>
+  <header>
+    <p class="eyebrow">Preparación · Semana 4 · Sesión 20</p>
+    <h1>Sesión 20 · Revisión práctica de backend AEM</h1>
+    <p class="lede">Demuestra el recorrido del componente con pruebas y evidencia en Author.</p>
+    <ul class="meta"><li>Español</li><li>Repaso con respuestas</li><li>Práctica en SDK local</li><li>Imprimible</li></ul>
+  </header>
+  <main id="contenido">
+<p><strong>Guía de preparación · Viernes 11 de septiembre de 2026 · Español</strong></p>
+<p><a href="session-20-study-guide.html">Versión HTML</a> · <a href="../lessons/0020-backend-practice-review.html">Sesión y práctica</a></p>
+<p>La revisión cierra la semana 4: Java y Resource API, Sling Models, servicios OSGi y pruebas. Se usa el componente de las sesiones 18 y 19 para demostrar un recorrido completo. Como las otras revisiones de viernes, esta sesión no lleva slides ni introduce un tema nuevo.</p>
+<h2>Qué debes poder explicar</h2>
+<ol>
+<li>Qué recurso aporta el contenido y qué propiedad lee el modelo.</li>
+<li>Qué configuración recibe el servicio y cómo se identifica su PID.</li>
+<li>Cómo llega el valor del servicio hasta HTL.</li>
+<li>Qué hace el componente cuando el título o la configuración están vacíos.</li>
+<li>Qué aserción detecta una regresión y qué queda fuera de AEM Mocks.</li>
+</ol>
+<h2>Recorrido de repaso</h2>
+<pre><code class="language-text">Recurso authored → ValueMap → Sling Model → getter → HTL → HTML
+                                 ↑
+                        servicio OSGi ← configuración
+</code></pre>
+<p>Un resource resolver permite acceder a recursos según sus permisos; no convierte el request del usuario en acceso administrativo. Para este componente basta el recurso que ya está renderizando AEM. No abras otro resolver para leer su propio título.</p>
+<p>El modelo adapta ese recurso para la vista. La inyección del título es opcional porque existe un fallback explícito; la del servicio es obligatoria porque el párrafo depende de él. Volver opcional una dependencia que falta podría cambiar un diagnóstico claro por una página incompleta.</p>
+<p>El servicio define una capacidad reutilizable y aplica su configuración al activarse o modificarse. Una instancia creada con <code>new</code> en un test no tiene, por sí sola, el ciclo DS; por eso la práctica usa <code>registerInjectActivateService</code>. El PID y los archivos por run mode se comprueban en la instancia, no quedan probados por pasar propiedades directamente al mock.</p>
+<p>HTL consume getters y escapa texto. El test protege la salida Java, pero no demuestra que el diálogo persista, que el componente esté permitido ni que el navegador muestre el HTML esperado. La demo une esas evidencias sin confundirlas.</p>
+<h2>Agenda de 30 minutos</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Minutos</th>
+<th>Actividad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0–3</td>
+<td>Quick recap de contenido, configuración, servicio y vista.</td>
+</tr>
+<tr>
+<td>3–15</td>
+<td>Dos demos rotativas de seis minutos con evidencia individual.</td>
+</tr>
+<tr>
+<td>15–25</td>
+<td>Hallazgos comunes y una variación técnica sobre el mismo componente.</td>
+</tr>
+<tr>
+<td>25–30</td>
+<td>Feedback y siguiente comprobación individual.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Cada participante entrega antes de la revisión su commit, prueba y explicación breve. La sesión no intenta revisar seis repositorios completos en vivo. Una demo debe mostrar el cambio y su resultado, no sólo recorrer archivos.</p>
+<h2>Repaso con respuestas</h2>
+<details><summary>¿Por qué el título del componente no se guarda en ConfigMgr?</summary><p>Porque es contenido de cada instancia authored. ConfigMgr representa configuración de servicios; usarlo para títulos de páginas cambia innecesariamente la responsabilidad del dato.</p></details>
+
+<details><summary>¿Qué demuestra el test rojo de la práctica?</summary><p>Que, al retirar el fallback del mensaje, la misma aserción de salida detecta la regresión. Un fallo de compilación no demuestra ese contrato.</p></details>
+
+<details><summary>¿Por qué no añadimos un servlet?</summary><p>El consumidor es una página HTL y el Sling Model ya entrega lo necesario. No existe un consumidor HTTP adicional que justifique otra ruta.</p></details>
+
+<details><summary>¿Dos implementaciones parecidas demuestran el mismo nivel de comprensión?</summary><p>No. Cada persona debe ejecutar, predecir y explicar una variación del componente y señalar la evidencia que la confirma.</p></details>
+
+<h2>Evidencia mínima</h2>
+<ul>
+<li>Recuperación: explica el recorrido sin apuntes.</li>
+<li>Aplicación: commit y salida de las pruebas, más una captura en Preview.</li>
+<li>Explicación: distingue lo demostrado por mocks de lo observado en Author.</li>
+</ul>
+<p>El siguiente objetivo se registra como una comprobación concreta: por ejemplo, “puede identificar el PID efectivo sin ayuda”. No se sustituye por horas conectadas o cantidad de commits.</p>
+<h2>Referencias del curso</h2>
+<p><a href="session-16-study-guide.html">Java y Resource API</a>, <a href="session-17-study-guide.html">Sling Models</a>, <a href="session-18-study-guide.html">OSGi</a>, <a href="session-19-study-guide.html">JUnit y AEM Mocks</a> y <a href="weekly-practice-review-instructions.html">guía de revisión semanal</a>.</p>
+<p><a id="practica-local"></a></p>
+<h2>Práctica local · Demo verificable de la semana 4 (15–20 min)</h2>
+<p><strong>Preparación:</strong> termina el componente de la <a href="session-18-study-guide.html#practica-local">sesión 18</a> y el test de la <a href="session-19-study-guide.html#practica-local">19</a>. Usa tu propio repo y Author local; esta revisión no introduce clases nuevas.</p>
+<ol>
+<li>En una terminal, desde tu proyecto AEM, ejecuta <code>mvn -pl core -Dtest=TrainingMessageTest test</code>. Enseña el resultado con dos tests, cero fallos y cero errores.</li>
+<li>En el editor de tu página local, configura el título como <code>Friday review</code>, guarda y abre Preview. Enseña ese título junto al mensaje OSGi.</li>
+<li>Señala la propiedad <code>title</code> del recurso de ese componente en CRXDE Lite y el PID de <code>TrainingMessage</code> en ConfigMgr. Explica cuál pertenece al autor y cuál a configuración de la aplicación.</li>
+<li>Vacía el título en el diálogo, guarda y recarga Preview. Antes de hacerlo, predice <code>Weekend Guides</code>. Comprueba que el párrafo de configuración no cambió.</li>
+<li>Abre el segundo test y señala exactamente la aserción que protege el mensaje vacío. Enseña tu evidencia roja de la sesión 19 y la implementación ya restaurada.</li>
+<li>Ejecuta <code>mvn -pl core test</code>. Si falla otro test, registra nombre y causa; no presentes la suite como verde por haber pasado únicamente el test nuevo.</li>
+<li>Registra ruta de página, commit, resultado Maven y captura del estado final. Termina explicando por qué el componente no necesita un servlet.</li>
+</ol>
+<p><strong>Aceptación:</strong> otra persona puede repetir el cambio de título y observar el fallback; el alumno distingue contenido, configuración, servicio, modelo y HTL, y sabe qué no cubren los mocks. No se pide una segunda implementación del componente.</p>
+<p><strong>Variación durante la demo:</strong> escribe sólo espacios en el título; debe volver al fallback. Si aparece un título vacío, identifica el getter responsable y añade una aserción de ese caso antes de corregirlo.</p>
+<p><strong>Limpieza:</strong> deja el título en un estado legible y conserva la página para revisiones posteriores. No borres el repositorio ni reinstales WKND para repetir la demo.</p>
+  </main>
+  <footer><a href="../lessons/0020-backend-practice-review.html">Volver a la sesión 20</a> · <a href="session-20-study-guide.md" download>Descargar Markdown</a></footer>
+</body>
+</html>

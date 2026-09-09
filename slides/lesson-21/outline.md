@@ -1,5 +1,7 @@
 # Class 21 · Multi-Site Management foundations
 
+**Guía de preparación en español:** [Abrir en el navegador](../../reference/session-21-study-guide.html) · [Resumen en Markdown](../../reference/session-21-study-guide.md).
+
 **Date:** Monday, September 14, 2026  
 **Audience:** frontend-oriented developers maintaining traditional AEM Sites implementations  
 **Duration:** 30 minutes online  

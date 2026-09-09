@@ -22,6 +22,7 @@
     <h1>Testing Sling Models and services with JUnit 5 and AEM Mocks</h1>
     <p class="lede">Protect one observable model or service contract with focused JUnit 5 tests, representative in-memory AEM state and visible red-to-green regression evidence.</p>
     <ul class="meta"><li>30 minutes online</li><li>Frontend-oriented AEM developers</li><li>Contract → context → activation → regression proof</li></ul>
+  <p lang="es"><a href="#practica-local">Práctica local: archivos completos y pasos verificables</a></p>
   </header>
   <main id="content">
     <section class="callout"><strong>Observable outcome:</strong> each developer can name one public behavior, arrange the smallest representative AEM context, exercise a real model or service boundary and prove that the focused test fails without the behavior before it passes with the minimum fix.</section>
@@ -56,8 +57,11 @@
       </tbody>
     </table></div>
 
-    <h2>Complete slide deck</h2>
+    <h2 id="slide-deck">Complete slide deck</h2>
     <p class="section-intro">Study each slide with its presenter notes, then copy or download the PNG.</p>
+    <aside class="callout" lang="es" aria-label="Guía de preparación">
+      <strong>Prepárate para la sesión 19:</strong> <a href="../reference/session-19-study-guide.html">abrir el resumen profundo en español</a>, con JUnit 5, AEM Mocks, ejemplos de pruebas, evidencia red → green y repaso con respuestas. <a href="../reference/session-19-study-guide.md" download>Descargar Markdown</a>.
+    </aside>
     <div class="web-deck">
       <article class="web-slide" data-slide-src="../slides/lesson-19/origin_image/slide_01.png">
         <img class="web-slide-image" src="../slides/lesson-19/origin_image/slide_01.png" alt="Class 19 opening slide introducing observable contracts, AEM Mocks and red-to-green evidence.">
@@ -177,6 +181,89 @@
       <li>Run the complete <code>core</code> test suite after the focused regression passes.</li>
     </ol>
     <p><strong>Acceptance:</strong> focused JUnit 5 tests pass; representative AEM Mocks state is explicit; at least one test is observed failing without the protected behavior; assertions target public output rather than private implementation shape.</p>
+
+    <section lang="es" aria-label="Práctica local">
+<p><a id="practica-local"></a></p>
+<h2>Práctica local · Probar el componente de la sesión 18 (20–30 min)</h2>
+<p><strong>Requisitos:</strong> copia primero los archivos completos de la <a href="../reference/session-18-study-guide.html#practica-local">práctica 18</a>. El test usa esas clases reales, no <code>GuideCardImpl</code> ni interfaces que tengas que inventar. Conserva el mismo package en producción y pruebas.</p>
+<p>Tu <code>core/pom.xml</code> debe tener JUnit Jupiter y <code>io.wcm:io.wcm.testing.aem-mock.junit5</code> con scope <code>test</code>, y Surefire con soporte JUnit 5. WKND/Archetype suelen gestionarlos desde el POM padre: reutiliza sus versiones. Si faltan, añade estas dependencias <strong>dentro del bloque dependencies existente</strong>, con versiones gestionadas compatibles con tu baseline; no copies un segundo bloque de proyecto ni actualices a ciegas las versiones del curso.</p>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.junit.jupiter&lt;/groupId&gt;
+    &lt;artifactId&gt;junit-jupiter&lt;/artifactId&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.wcm&lt;/groupId&gt;
+    &lt;artifactId&gt;io.wcm.testing.aem-mock.junit5&lt;/artifactId&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>El build de <code>core</code> debe generar los descriptores DS antes de las pruebas: <code>registerInjectActivateService</code> los usa para activar el servicio. Un error “No OSGi SCR metadata” es de preparación del build, no un fallo del fallback.</p>
+<h3>Archivo: <code>core/src/test/java/com/adobe/aem/guides/wknd/core/training/TrainingMessageTest.java</code></h3>
+<pre><code class="language-java">package com.adobe.aem.guides.wknd.core.training;
+
+import io.wcm.testing.mock.aem.junit5.AemContext;
+import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.factory.ModelFactory;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@ExtendWith(AemContextExtension.class)
+class TrainingMessageTest {
+    private final AemContext context = new AemContext();
+
+    @Test
+    void rendersAuthoredTitleAndConfiguredServiceMessage() {
+        context.registerInjectActivateService(new TrainingMessage(), &quot;message&quot;, &quot;  Local Author  &quot;);
+        context.addModelsForClasses(TrainingMessageModel.class);
+        Resource resource = context.create().resource(&quot;/content/training/message&quot;, &quot;title&quot;, &quot;  My guide  &quot;);
+
+        TrainingMessageModel model = context.getService(ModelFactory.class)
+                .createModel(resource, TrainingMessageModel.class);
+
+        assertEquals(&quot;My guide&quot;, model.getTitle());
+        assertEquals(&quot;Local Author&quot;, model.getMessage());
+    }
+
+    @Test
+    void usesFallbackWhenTitleIsMissingAndConfigurationIsBlank() {
+        context.registerInjectActivateService(new TrainingMessage(), &quot;message&quot;, &quot;   &quot;);
+        context.addModelsForClasses(TrainingMessageModel.class);
+        Resource resource = context.create().resource(&quot;/content/training/message&quot;);
+
+        TrainingMessageModel model = context.getService(ModelFactory.class)
+                .createModel(resource, TrainingMessageModel.class);
+
+        assertEquals(&quot;Weekend Guides&quot;, model.getTitle());
+        assertEquals(&quot;Welcome to Weekend Guides&quot;, model.getMessage());
+    }
+}
+</code></pre>
+<h3>Ejecutar y demostrar que detecta la regresión</h3>
+<p>Desde la raíz de tu proyecto AEM:</p>
+<pre><code class="language-sh">mvn -pl core -Dtest=TrainingMessageTest test
+</code></pre>
+<p><strong>Verde esperado:</strong> dos pruebas, cero fallos y cero errores. La primera comprueba título y mensaje configurados, incluyendo trim; la segunda combina título ausente y configuración vacía. <code>ModelFactory.createModel</code> conserva el diagnóstico si falta una inyección obligatoria.</p>
+<ol>
+<li>En <code>TrainingMessage.activate</code>, sustituye temporalmente la asignación con fallback por <code>message = value.trim();</code>. No cambies el test.</li>
+<li>Ejecuta sólo la segunda prueba:</li>
+</ol>
+<pre><code class="language-sh">mvn -pl core '-Dtest=TrainingMessageTest#usesFallbackWhenTitleIsMissingAndConfigurationIsBlank' test
+</code></pre>
+<ol>
+<li><strong>Rojo esperado:</strong> la aserción del mensaje espera <code>Welcome to Weekend Guides</code> y recibe una cadena vacía. Un error de compilación o de activación no cuenta como ese rojo.</li>
+<li>Restaura la asignación original y ejecuta ambos tests; después ejecuta la suite de <code>core</code>:</li>
+</ol>
+<pre><code class="language-sh">mvn -pl core -Dtest=TrainingMessageTest test
+mvn -pl core test
+</code></pre>
+<p><strong>Aceptación:</strong> guarda el fallo de aserción y el resultado verde con el mismo test, más una explicación de dos frases sobre el contrato. No dejes el cambio roto en el source code.</p>
+<p><strong>Límite:</strong> AEM Mocks comprueba adaptación, activación y salida Java; no valida render HTL, selección de run modes, instalación del ZIP ni publicación. La página de la sesión 18 aporta la comprobación visual. No hace falta arrancar AEM para estos tests.</p>
+<p>Fuente: <a href="https://wcm.io/testing/aem-mock/usage.html">uso de AEM Mocks y JUnit 5</a>.</p>
+    </section>
 
     <h2>Official reading</h2>
     <ul>

@@ -1,0 +1,312 @@
+{
+  "deck_name": "lesson-22",
+  "title": "Class 22 · Cloud-compatible structure",
+  "language": "English",
+  "goal": "Predict package installation effects on authored content and separate mutable content from immutable code.",
+  "aspect_ratio": "16:9",
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 3,
+  "outputs": [
+    "PNG slide images",
+    "HTML lesson",
+    "Spanish study guide",
+    "Copyable local labs"
+  ],
+  "pptx": false,
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "Class 21 outline slide 07, using the approved Class 19 slide 08 as a style-only reference; one localized image_gen edit corrected the trigger label before approval",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+    "input_context_preparation": "The parent inspected the Class 19 style reference and the generated Class 21 sample with view_image. Workers must inspect slide_07 and pass it to built-in image_gen as a style-only reference.",
+    "handoff_rule": "Use built-in image_gen with the approved Class 21 slide_07 as a style-only reference. User approved continuing this style for all 12 Class 22 slides without intermediate sample confirmation."
+  },
+  "approved_style_reference": {
+    "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+    "role": "approved Class 21 style and density reference",
+    "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+  },
+  "style": {
+    "name": "technical atlas courseware",
+    "visual_direction": "Technical atlas AEM courseware with precise module, package and repository diagrams.",
+    "color_palette": "Warm ivory drafting-paper background with a faint square grid; deep navy titles; cobalt for source-to-target flow; violet for configuration; green for valid or protected local state; restrained orange for destructive actions and cautions.",
+    "typography": "Large bold condensed sans-serif headings; crisp sans-serif supporting text; true monospace appearance for repository paths, property names, action names and state values.",
+    "texture_and_finish": "Flat 2D technical diagrams, fine rules, precise page, relationship, configuration and status icons. No gradients, neon, glass, 3D, photography or generic corporate people.",
+    "deck_consistency": "Match approved slide_07 palette, typography, drafting grid, fixed two-digit top-left numbering, technical density, evidence panels, semantic colors and connector weight while varying composition by role. Use concrete paths, state badges and exact terms instead of decorative whitespace."
+  },
+  "deck_context": {
+    "source_summary": "Cloud-compatible AEM project structure, package types and safe import boundaries. No Cloud Manager access required.",
+    "core_claim": "Choose ownership and predict the effect of reinstalling before deploying a package."
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Cloud-compatible structure",
+      "key_points": [
+        "Class 22 · Week 5 · September 15, 2026 · Juan Maldonado.",
+        "Mutable content · Immutable code · Packages · Import filters."
+      ],
+      "layout": {
+        "role": "cover",
+        "composition": "restrained cover, repository boundary motif.",
+        "intent": "restrained cover, repository boundary motif."
+      },
+      "constraints": [
+        "English only. Exact technical spelling. No invented technical claims. Match style reference but use this slide content only.",
+        "Do not add speaker notes. Use large legible text, no overlap."
+      ],
+      "local_context": {
+        "required_background": "Class 22 of traditional AEM Sites course. Cloud runtime immutable areas differ from mutable content. Example uses ordinary nt:unstructured properties, no ACLs or authorizables. New import modes require FileVault 3.5.0 or later."
+      }
+    },
+    {
+      "number": 2,
+      "title": "A local edit is not a deployment strategy",
+      "key_points": [
+        "An SDK may allow a change that Cloud runtime rejects.",
+        "Code changes travel through Git, build and deployment.",
+        "Author changes travel through authoring and publication."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "two distinct paths from source to running instance.",
+        "intent": "two distinct paths from source to running instance."
+      },
+      "constraints": [
+        "English only. Exact technical spelling. No invented technical claims. Match style reference but use this slide content only.",
+        "Do not add speaker notes. Use large legible text, no overlap."
+      ],
+      "local_context": {
+        "required_background": "Class 22 of traditional AEM Sites course. Cloud runtime immutable areas differ from mutable content. Example uses ordinary nt:unstructured properties, no ACLs or authorizables. New import modes require FileVault 3.5.0 or later."
+      }
+    },
+    {
+      "number": 3,
+      "title": "Repository location defines the boundary",
+      "key_points": [
+        "/apps and /libs are immutable at Cloud runtime; never customize /libs.",
+        "/content and /conf are mutable, but permissions and ownership still apply.",
+        "/oak:index is a special case: managed and deployed with code."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "annotated repository tree with boundary and exception.",
+        "intent": "annotated repository tree with boundary and exception."
+      },
+      "constraints": [
+        "English only. Exact technical spelling. No invented technical claims. Match style reference but use this slide content only.",
+        "Do not add speaker notes. Use large legible text, no overlap."
+      ],
+      "local_context": {
+        "required_background": "Class 22 of traditional AEM Sites course. Cloud runtime immutable areas differ from mutable content. Example uses ordinary nt:unstructured properties, no ACLs or authorizables. New import modes require FileVault 3.5.0 or later."
+      }
+    },
+    {
+      "number": 4,
+      "title": "Give each module one responsibility",
+      "key_points": [
+        "core: Java bundle; ui.apps: HTL, components and clientlibs.",
+        "ui.config: OSGi configuration deployed as code.",
+        "ui.content: intended mutable baseline; all: deployment container.",
+        "dispatcher: delivery configuration outside the JCR content package."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "module-to-artifact map.",
+        "intent": "module-to-artifact map."
+      },
+      "constraints": [
+        "English only. Exact technical spelling. No invented technical claims. Match style reference but use this slide content only.",
+        "Do not add speaker notes. Use large legible text, no overlap."
+      ],
+      "local_context": {
+        "required_background": "Class 22 of traditional AEM Sites course. Cloud runtime immutable areas differ from mutable content. Example uses ordinary nt:unstructured properties, no ACLs or authorizables. New import modes require FileVault 3.5.0 or later."
+      }
+    },
+    {
+      "number": 5,
+      "title": "Separate packages; assemble one application",
+      "key_points": [
+        "application packages carry immutable code/configuration.",
+        "content packages carry mutable content; do not mix /apps and /content in one payload package.",
+        "all embeds subpackages and bundles at declared install locations.",
+        "Dependencies and filters make installation intent explicit."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "container diagram with separate code and content payloads.",
+        "intent": "container diagram with separate code and content payloads."
+      },
+      "constraints": [
+        "English only. Exact technical spelling. No invented technical claims. Match style reference but use this slide content only.",
+        "Do not add speaker notes. Use large legible text, no overlap."
+      ],
+      "local_context": {
+        "required_background": "Class 22 of traditional AEM Sites course. Cloud runtime immutable areas differ from mutable content. Example uses ordinary nt:unstructured properties, no ACLs or authorizables. New import modes require FileVault 3.5.0 or later."
+      }
+    },
+    {
+      "number": 6,
+      "title": "A filter is an import boundary",
+      "key_points": [
+        "META-INF/vault/filter.xml chooses root, includes, excludes and mode.",
+        "Use /content/aem-training-package-lab, not a site-wide /content root.",
+        "A ZIP entry alone does not explain the effective import scope.",
+        "Inspect the built archive, not only the source tree."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "source, filter and destination comparison.",
+        "intent": "source, filter and destination comparison."
+      },
+      "constraints": [
+        "English only. Exact technical spelling. No invented technical claims. Match style reference but use this slide content only.",
+        "Do not add speaker notes. Use large legible text, no overlap."
+      ],
+      "local_context": {
+        "required_background": "Class 22 of traditional AEM Sites course. Cloud runtime immutable areas differ from mutable content. Example uses ordinary nt:unstructured properties, no ACLs or authorizables. New import modes require FileVault 3.5.0 or later."
+      }
+    },
+    {
+      "number": 7,
+      "title": "Predict property changes before installation",
+      "key_points": [
+        "replace: replace covered state; omitted covered content can disappear.",
+        "merge_properties: keep existing properties; add missing state.",
+        "update_properties: replace supplied properties; retain omitted state.",
+        "Legacy merge/update differ by serialization; do not equate them with the newer modes."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "matrix for existing title, new property and omitted local property; ordinary nt:unstructured nodes only.",
+        "intent": "matrix for existing title, new property and omitted local property; ordinary nt:unstructured nodes only."
+      },
+      "constraints": [
+        "English only. Exact technical spelling. No invented technical claims. Match style reference but use this slide content only.",
+        "Do not add speaker notes. Use large legible text, no overlap."
+      ],
+      "local_context": {
+        "required_background": "Class 22 of traditional AEM Sites course. Cloud runtime immutable areas differ from mutable content. Example uses ordinary nt:unstructured properties, no ACLs or authorizables. New import modes require FileVault 3.5.0 or later."
+      }
+    },
+    {
+      "number": 8,
+      "title": "Mutable does not mean owned by the build",
+      "key_points": [
+        "Authors can change values after initial installation.",
+        "Reinstalling a package can overwrite those values even with update_properties.",
+        "Limit baseline paths; agree who owns each property.",
+        "A repeated deployment is a content test case."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "timeline from baseline to author edit to redeployment.",
+        "intent": "timeline from baseline to author edit to redeployment."
+      },
+      "constraints": [
+        "English only. Exact technical spelling. No invented technical claims. Match style reference but use this slide content only.",
+        "Do not add speaker notes. Use large legible text, no overlap."
+      ],
+      "local_context": {
+        "required_background": "Class 22 of traditional AEM Sites course. Cloud runtime immutable areas differ from mutable content. Example uses ordinary nt:unstructured properties, no ACLs or authorizables. New import modes require FileVault 3.5.0 or later."
+      }
+    },
+    {
+      "number": 9,
+      "title": "Local lab: install, edit, reinstall",
+      "key_points": [
+        "Use an isolated /content/aem-training-package-lab branch.",
+        "Build and inspect a content ZIP; install on local Author.",
+        "Change title and add localOnly; predict and compare three import modes.",
+        "Restore the same starting state before each comparison."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "lab procedure with before/after evidence table.",
+        "intent": "lab procedure with before/after evidence table."
+      },
+      "constraints": [
+        "English only. Exact technical spelling. No invented technical claims. Match style reference but use this slide content only.",
+        "Do not add speaker notes. Use large legible text, no overlap."
+      ],
+      "local_context": {
+        "required_background": "Class 22 of traditional AEM Sites course. Cloud runtime immutable areas differ from mutable content. Example uses ordinary nt:unstructured properties, no ACLs or authorizables. New import modes require FileVault 3.5.0 or later."
+      }
+    },
+    {
+      "number": 10,
+      "title": "Diagnose the artifact before the instance",
+      "key_points": [
+        "Build fails: inspect package type, filters and validator output.",
+        "Missing content: inspect ZIP paths, effective filter and install log.",
+        "Lost author value: compare import mode, payload and ownership.",
+        "Local success does not prove Cloud compatibility or publication."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "symptom-to-evidence decision tree.",
+        "intent": "symptom-to-evidence decision tree."
+      },
+      "constraints": [
+        "English only. Exact technical spelling. No invented technical claims. Match style reference but use this slide content only.",
+        "Do not add speaker notes. Use large legible text, no overlap."
+      ],
+      "local_context": {
+        "required_background": "Class 22 of traditional AEM Sites course. Cloud runtime immutable areas differ from mutable content. Example uses ordinary nt:unstructured properties, no ACLs or authorizables. New import modes require FileVault 3.5.0 or later."
+      }
+    },
+    {
+      "number": 11,
+      "title": "Key takeaways",
+      "key_points": [
+        "Separate runtime-mutable content from deployed code.",
+        "Give every package a clear type and narrow scope.",
+        "Predict import behavior on an already-authored repository.",
+        "Inspect the built ZIP and compare before/after evidence."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "four linked checkpoints.",
+        "intent": "four linked checkpoints."
+      },
+      "constraints": [
+        "English only. Exact technical spelling. No invented technical claims. Match style reference but use this slide content only.",
+        "Do not add speaker notes. Use large legible text, no overlap."
+      ],
+      "local_context": {
+        "required_background": "Class 22 of traditional AEM Sites course. Cloud runtime immutable areas differ from mutable content. Example uses ordinary nt:unstructured properties, no ACLs or authorizables. New import modes require FileVault 3.5.0 or later."
+      }
+    },
+    {
+      "number": 12,
+      "title": "Questions / Thank you",
+      "key_points": [
+        "Questions.",
+        "Thank you."
+      ],
+      "layout": {
+        "role": "Q&A",
+        "composition": "passive closing; no extra exercise or recap.",
+        "intent": "passive closing; no extra exercise or recap."
+      },
+      "constraints": [
+        "English only. Exact technical spelling. No invented technical claims. Match style reference but use this slide content only.",
+        "Do not add speaker notes. Use large legible text, no overlap."
+      ],
+      "local_context": {
+        "required_background": "Class 22 of traditional AEM Sites course. Cloud runtime immutable areas differ from mutable content. Example uses ordinary nt:unstructured properties, no ACLs or authorizables. New import modes require FileVault 3.5.0 or later."
+      }
+    }
+  ],
+  "approval": {
+    "outline": "User approved September 8, 2026",
+    "style": "Continue Class 21",
+    "backend": "built-in image tool",
+    "intermediate_confirmations": "Explicitly waived by user",
+    "speech": false
+  }
+}

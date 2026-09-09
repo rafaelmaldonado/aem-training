@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Guía profunda de preparación para la sesión 19: JUnit 5, AEM Mocks, pruebas de modelos y servicios y evidencia red → green, con casos y repaso.">
+  <title>Sesión 19 · Guía de preparación · AEM Training</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body class="study-guide">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <nav class="site-nav" aria-label="Principal">
+    <a class="brand" href="../index.html">AEM Training</a>
+    <ul>
+      <li><a href="../lessons/0019-junit-aem-mocks.html#slide-deck">Diapositivas 19</a></li>
+      <li><a href="index.html">Referencias</a></li>
+      <li><a href="session-19-study-guide.md" download>Markdown</a></li>
+    </ul>
+  </nav>
+  <header>
+    <p class="eyebrow">Preparación · Semana 4 · Sesión 19</p>
+    <h1>Sesión 19 · JUnit 5 y AEM Mocks para probar modelos y servicios</h1>
+    <p class="lede">Del contrato a la evidencia: prepara el contexto, prueba el comportamiento y demuestra que detectas la regresión.</p>
+    <ul class="meta"><li>Español</li><li>Lectura: 20–25 minutos</li><li>Repaso: 5–10 minutos</li><li>Imprimible desde el navegador</li></ul>
+  <p lang="es"><a href="#practica-local">Práctica local: archivos completos y pasos verificables</a></p>
+  </header>
+  <main id="contenido">
+<p><strong>Guía profunda de preparación · Jueves 10 de septiembre de 2026 · Español</strong></p>
+<p><a href="session-19-study-guide.html">Abrir la versión HTML</a> · <a href="../lessons/0019-junit-aem-mocks.html#slide-deck">Ver las diapositivas</a> · <a href="../slides/lesson-19/speech.md">Notas del presentador</a></p>
+<p>Las <a href="session-17-study-guide.html">sesiones 17</a> y <a href="session-18-study-guide.html">18</a> dieron un dueño al comportamiento: modelos para la vista y servicios para capacidades reutilizables. La sesión 19 enseña a comprobar que esos dueños cumplen su contrato cuando el contenido o la configuración cambian.</p>
+<blockquote>
+<p><strong>Una prueba útil protege lo que observa el consumidor.</strong> Prepara una entrada representativa, utiliza el contrato público y comprueba el resultado. Después demuestra que la prueba detecta la regresión que afirma proteger.</p>
+</blockquote>
+<h2>Cómo estudiar esta guía</h2>
+<ul>
+<li><strong>Primera lectura, 20–25 minutos:</strong> sigue una prueba de fallback desde su fixture hasta la aserción.</li>
+<li><strong>Recuperación, 5–10 minutos:</strong> contesta las preguntas y clasifica cada fallo antes de abrir las soluciones.</li>
+<li><strong>Antes de la sesión:</strong> explica por qué un error de creación del modelo no demuestra todavía que su fallback esté mal.</li>
+<li><strong>Después de la sesión:</strong> ejecuta una prueba en tu proyecto AEM y registra evidencia red → green. Los ejemplos de esta guía no equivalen a pruebas ejecutadas en tu SDK o proyecto.</li>
+</ul>
+<p><strong>Resultado esperado:</strong> escribir y explicar una comprobación enfocada, preparar el contexto mínimo de AEM Mocks, pasar por adaptación o activación y reconocer el límite de la prueba. No necesitas dominar Mockito ni fijar un porcentaje de cobertura.</p>
+<h2>Índice</h2>
+<ol>
+<li><a href="#contrato">Qué comportamiento debes proteger</a></li>
+<li><a href="#aaa">Arrange, Act, Assert</a></li>
+<li><a href="#junit">JUnit 5 y aislamiento</a></li>
+<li><a href="#contexto">Qué representa AEM Mocks</a></li>
+<li><a href="#modelo">Contenido mínimo y creación de un modelo</a></li>
+<li><a href="#estados">Configurado, ausente, inválido y legado</a></li>
+<li><a href="#servicio">Probar un servicio mediante activación</a></li>
+<li><a href="#dobles">Cuándo usar un doble de prueba</a></li>
+<li><a href="#regresion">Red → green y comandos Maven</a></li>
+<li><a href="#diagnostico">Diagnóstico y mapa de evidencias</a></li>
+<li><a href="#repaso">Repaso con respuestas</a></li>
+<li><a href="#fuentes">Glosario y fuentes</a></li>
+</ol>
+<p><a id="contrato"></a></p>
+<h2>1. Qué comportamiento debes proteger</h2>
+<p>Empieza con una promesa que un consumidor pueda observar. Para la Guide Card: «Si faltan el título actual y el legado, <code>getDisplayTitle()</code> devuelve <code>Untitled guide</code>». Para un servicio: «Si la capacidad está habilitada y el destino es inválido, sigue la política de rechazo definida».</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Buen objetivo</th>
+<th>Objetivo frágil sin una razón contractual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Valor que HTL recibe del getter</td>
+<td>Nombre de un campo privado.</td>
+</tr>
+<tr>
+<td>Estado vacío que controla el renderizado</td>
+<td>Número de métodos auxiliares.</td>
+</tr>
+<tr>
+<td>URL que devuelve el servicio</td>
+<td>Orden incidental de llamadas internas.</td>
+</tr>
+<tr>
+<td>Rechazo o deshabilitación documentados</td>
+<td>Que se utilice una implementación específica de colección.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Una refactorización puede cambiar la implementación manteniendo la promesa. La prueba debería seguir pasando en ese caso. A veces una interacción sí forma parte del contrato, como no enviar dos veces una operación externa; entonces hay una razón para verificarla. No conviertas esa excepción en una inspección de todas las llamadas.</p>
+<p>El nombre de una prueba puede expresar estado y expectativa: <code>returnsFallbackWhenBothTitlesMissing</code>. Es más informativo que <code>testGetter</code> o <code>happyPath</code>. Base: <a href="../slides/lesson-19/speech.md">notas de la sesión, slides 2 y 3</a>.</p>
+<p><a id="aaa"></a></p>
+<h2>2. Arrange, Act, Assert</h2>
+<p>La estructura mínima es:</p>
+<pre><code class="language-text">Arrange: contenido, configuración y colaboradores necesarios
+    ↓
+Act: ejecutar una operación del contrato público
+    ↓
+Assert: comparar el resultado observado con la expectativa
+</code></pre>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Fase</th>
+<th>Pregunta que debe responder</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arrange</td>
+<td>¿Qué estado provoca este comportamiento?</td>
+</tr>
+<tr>
+<td>Act</td>
+<td>¿Qué contrato real ejecuta el consumidor?</td>
+</tr>
+<tr>
+<td>Assert</td>
+<td>¿Qué resultado demuestra que se cumplió la promesa?</td>
+</tr>
+</tbody>
+</table></div>
+<p>Mantén un comportamiento identificable por fallo. Esto no prohíbe varias aserciones coherentes, pero sí aconseja separar escenarios independientes. Si una prueba comprueba título, un error de configuración, un servlet y una integración remota, el primer fallo ocultará el resto.</p>
+<p>El setup compartido debería contener sólo lo que todos los casos necesitan. La diferencia que define un escenario debe verse cerca de la prueba; no la escondas detrás de una gran fábrica de fixtures.</p>
+<p><a id="junit"></a></p>
+<h2>3. JUnit 5 y aislamiento</h2>
+<p>JUnit Jupiter aporta las anotaciones y aserciones utilizadas en esta sesión. Los imports pertenecen a <code>org.junit.jupiter</code>, no a las anotaciones de JUnit 4.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@Test</code></td>
+<td>Marca un método de prueba.</td>
+</tr>
+<tr>
+<td><code>@BeforeEach</code></td>
+<td>Prepara estado común antes de cada test.</td>
+</tr>
+<tr>
+<td><code>@ExtendWith(AemContextExtension.class)</code></td>
+<td>Integra el ciclo de vida del contexto AEM mock.</td>
+</tr>
+<tr>
+<td><code>assertEquals(expected, actual)</code></td>
+<td>Compara resultado esperado y observado.</td>
+</tr>
+<tr>
+<td><code>assertTrue(...)</code></td>
+<td>Comprueba una condición del contrato.</td>
+</tr>
+<tr>
+<td><code>assertThrows(...)</code></td>
+<td>Comprueba una excepción esperada.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Usa un <code>AemContext</code> no estático gestionado por la extensión como punto de partida. Evita que un test dependa del contenido o servicios que dejó otro. La limpieza del contexto no arregla cualquier estado estático que tu propio código haya creado.</p>
+<p>Para una excepción, ejecuta dentro de <code>assertThrows</code> la operación que debe fallar y elige el tipo significativo. Aceptar cualquier <code>Exception</code> puede hacer pasar una prueba por un error distinto, como una dependencia sin registrar.</p>
+<p>Esta guía enlaza la documentación versionada de <strong>JUnit 5</strong>; un enlace <code>current</code> puede conducir a otra versión principal. No actualices ni rebajes dependencias sólo por copiar un tutorial: revisa el POM del proyecto y su compatibilidad. <a href="https://docs.junit.org/5.13.4/user-guide/">JUnit 5 User Guide</a>.</p>
+<p><a id="contexto"></a></p>
+<h2>4. Qué representa AEM Mocks</h2>
+<p><code>AemContext</code> ofrece recursos, resolver, request, response y un registro OSGi de prueba, junto con facilidades para modelos y APIs AEM soportadas. Esto permite ejecutar gran parte del Java de un proyecto sin arrancar el SDK.</p>
+<pre><code class="language-text">Prueba JUnit
+    └── AemContext
+          ├── contenido representativo
+          ├── recurso / resolver / request
+          ├── modelos registrados
+          └── servicios y activación simulada
+
+Fuera de esta prueba: navegador, Dispatcher y despliegue real
+</code></pre>
+<p><strong>AEM Mocks no es una instancia completa de AEM.</strong> Un test que pasa no demuestra resolución real de paquetes OSGi, selección cloud de run modes, permisos completos del repositorio, reglas de Dispatcher ni comportamiento del navegador.</p>
+<p>Elige un tipo de resolver mock que soporte la operación probada. Para leer propiedades e hijos normalmente basta una frontera sencilla. Si la prueba necesita semántica JCR específica, confirma que el tipo elegido la implementa. No ejecutes todos los escenarios sobre múltiples resolvers sin una necesidad concreta. Base: <a href="../slides/lesson-19/speech.md">notas de la sesión, slides 5 y 9</a>; consulta las <a href="https://sling.apache.org/documentation/development/sling-mock.html">capacidades de Sling Mocks</a>.</p>
+<p>La fidelidad importa más que el tamaño: un árbol pequeño con las propiedades correctas puede probar más que una exportación enorme de contenido cuyo significado nadie entiende.</p>
+<p><a id="modelo"></a></p>
+<h2>5. Contenido mínimo y creación de un modelo</h2>
+<p>El recorrido de una prueba de modelo es:</p>
+<pre><code class="language-text">JSON en src/test/resources
+    ↓ cargar bajo una ruta conocida
+Resource de la tarjeta
+    ↓ modelo registrado y dependencias disponibles
+ModelFactory.createModel(...)
+    ↓ interfaz pública
+getDisplayTitle() → resultado esperado
+</code></pre>
+<p>Un fixture contiene datos de entrada; no sustituye al código del modelo. Ejemplo ilustrativo para <code>core/src/test/resources/guide-card.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;missing&quot;: {
+    &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;,
+    &quot;sling:resourceType&quot;: &quot;example/components/guidecard&quot;
+  }
+}
+</code></pre>
+<p>Si lo cargas bajo <code>/content/test</code>, el recurso del escenario estará en <code>/content/test/missing</code>. La falta de <code>title</code> y <code>heading</code> es deliberada. No uses una ruta de página si el modelo necesita el recurso de la tarjeta.</p>
+<h3>Ejemplo de test para adaptar al proyecto</h3>
+<p>Este ejemplo supone que ya existen <code>GuideCardImpl</code>, su interfaz <code>GuideCard</code> con <code>getDisplayTitle()</code> y el contrato de fallback de la sesión 17. Añade el package e imports de esos tipos reales. Si el modelo tiene más entradas requeridas, deben prepararse explícitamente; el fragmento no las vuelve opcionales.</p>
+<pre><code class="language-java">import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.apache.sling.models.factory.ModelFactory;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import io.wcm.testing.mock.aem.junit5.AemContext;
+import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+
+@ExtendWith(AemContextExtension.class)
+class GuideCardImplTest {
+    private final AemContext context = new AemContext();
+
+    @BeforeEach
+    void setUp() {
+        context.addModelsForClasses(GuideCardImpl.class);
+        context.load().json(&quot;/guide-card.json&quot;, &quot;/content/test&quot;);
+    }
+
+    @Test
+    void returnsFallbackWhenBothTitlesMissing() {
+        // Arrange
+        context.currentResource(&quot;/content/test/missing&quot;);
+        ModelFactory factory = context.getService(ModelFactory.class);
+        assertNotNull(factory, &quot;El contexto debe proporcionar ModelFactory&quot;);
+
+        // Act
+        GuideCard card = factory.createModel(
+            context.currentResource(), GuideCard.class);
+
+        // Assert
+        assertEquals(&quot;Untitled guide&quot;, card.getDisplayTitle());
+    }
+}
+</code></pre>
+<p>La implementación debe estar registrada como adapter de <code>GuideCard</code> si solicitas esa interfaz. Si tu proyecto expone directamente una clase, utiliza ese contrato real; no añadas una interfaz sólo para imitar el ejemplo.</p>
+<p><code>addModelsForClasses</code> hace explícito el registro de prueba. Es útil cuando el descubrimiento del classpath no lo proporciona. <code>ModelFactory#createModel</code> aporta un fallo de creación más diagnóstico que recibir <code>null</code> y fallar después al llamar al getter. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/getting-started-wknd-tutorial-develop/project-archetype/unit-testing">Patrón de pruebas de modelos — Adobe</a>.</p>
+<p><strong>Si el modelo adapta request:</strong> utiliza <code>context.request()</code> como entrada y prepara los atributos o bindings que requiere. Seleccionar un recurso actual no crea todas las variables del contexto de scripting. La prueba debe respetar el mismo contrato de adaptables estudiado en la sesión 17.</p>
+<p><a id="estados"></a></p>
+<h2>6. Configurado, ausente, inválido y legado</h2>
+<p>Protege estados diferentes con expectativas concretas. Esta matriz continúa el contrato ilustrativo de título actual → legado → fallback:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Estado</th>
+<th>Entrada</th>
+<th>Resultado esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Configurado</td>
+<td><code>title = &quot;  Ruta nueva  &quot;</code></td>
+<td><code>Ruta nueva</code>.</td>
+</tr>
+<tr>
+<td>Ausente</td>
+<td>Sin <code>title</code> ni <code>heading</code></td>
+<td><code>Untitled guide</code>.</td>
+</tr>
+<tr>
+<td>Blanco</td>
+<td><code>title = &quot;   &quot;</code>, sin legado</td>
+<td><code>Untitled guide</code>.</td>
+</tr>
+<tr>
+<td>Legado admitido</td>
+<td>Sin título actual; <code>heading = &quot;Ruta histórica&quot;</code></td>
+<td><code>Ruta histórica</code>.</td>
+</tr>
+<tr>
+<td>Prioridad</td>
+<td>Título actual y legado presentes</td>
+<td>Gana el título actual.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Una propiedad ausente y una cadena en blanco no son la misma entrada. Una prueba del primer caso puede pasar aunque la normalización del segundo esté rota.</p>
+<p>Para contenido inválido, primero consulta el contrato de producción. Puede corresponder rechazar, normalizar o deshabilitar; una prueba no debe inventar una regla distinta sólo para conseguir verde.</p>
+<p>El estado <code>isEmpty()</code> requiere su propia definición: si hay un título de respaldo, no deduzcas automáticamente que la tarjeta es renderizable. Prueba el contenido mínimo que el producto exige, por ejemplo un destino válido cuando éste sea parte del contrato.</p>
+<p>Una prueba del getter demuestra el resultado Java, no el HTML final ni el placeholder de authoring. Para esos comportamientos necesitas evidencia de la vista. Base: <a href="../slides/lesson-19/speech.md">notas de la sesión, slides 6 y 7</a>.</p>
+<p><a id="servicio"></a></p>
+<h2>7. Probar un servicio mediante activación</h2>
+<p>En el modelo, la frontera era la adaptación. En el servicio configurado, prepara dependencias y ejercita inyección y activación:</p>
+<ol>
+<li>Registra los colaboradores que el componente requiere realmente.</li>
+<li>Suministra las propiedades de un estado representativo.</li>
+<li>Usa <code>registerInjectActivateService(...)</code> para inyectar, activar y registrar la implementación.</li>
+<li>Recupera el servicio por su interfaz pública.</li>
+<li>Comprueba el resultado de su capacidad o el fallo seguro definido.</li>
+</ol>
+<p>Fragmento ilustrativo dentro de un test cuyo <code>context</code> ya está preparado:</p>
+<pre><code class="language-java">context.registerInjectActivateService(
+    new GuideUrlServiceImpl(),
+    &quot;enabled&quot;, true,
+    &quot;baseUrl&quot;, &quot;https://guides.example.test&quot;,
+    &quot;timeoutMs&quot;, 2000
+);
+
+GuideUrlService service = context.getService(GuideUrlService.class);
+assertNotNull(service);
+</code></pre>
+<p>Los nombres son propiedades efectivas, sin los sufijos de tipo usados en <code>.cfg.json</code>. Aquí suministras valores Java como <code>boolean</code> e <code>int</code>. La API del servicio real determinará la llamada y aserción de comportamiento que deben seguir: <strong><code>assertNotNull</code> sólo prueba disponibilidad, no que la capacidad funcione</strong>.</p>
+<p>A diferencia de usar <code>new</code> como atajo en producción, aquí entregas el objeto al entorno mock para que procese su frontera OSGi. Los metadatos DS generados deben estar disponibles para que ese procesamiento conozca referencias y servicios. Registrar un objeto con <code>registerService</code> no es lo mismo que pedir su inyección y activación. <a href="https://wcm.io/testing/aem-mock/usage.html">Registro y activación en AEM Mocks — wcm.io</a>.</p>
+<h3>Elige el fallo que corresponde</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Política del componente</th>
+<th>Expectativa de prueba</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Configuración válida</td>
+<td>La operación pública devuelve el resultado esperado.</td>
+</tr>
+<tr>
+<td>Capacidad opcional deshabilitada</td>
+<td>El consumidor observa el estado deshabilitado documentado.</td>
+</tr>
+<tr>
+<td>Configuración inválida que debe rechazarse</td>
+<td>Falla la activación por esa razón específica.</td>
+</tr>
+<tr>
+<td>Colaborador requerido ausente</td>
+<td>Falla la preparación de esa dependencia, no una validación de URL.</td>
+</tr>
+</tbody>
+</table></div>
+<p>El helper puede envolver la excepción de activación según la versión de mocks. Comprueba el tipo y causa reales en vez de aceptar cualquier fallo como éxito.</p>
+<p>Estos tests suministran propiedades ya preparadas: <strong>no prueban la selección de <code>config.author.dev</code>, la interpolación de secretos de Cloud Manager ni el PID desplegado</strong>. Esas evidencias operativas siguen el recorrido de la sesión 18. Usa datos ficticios, nunca secretos reales en fixtures.</p>
+<p><a id="dobles"></a></p>
+<h2>8. Cuándo usar un doble de prueba</h2>
+<p>Detente en la opción más sencilla que represente honestamente la frontera:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Opción</th>
+<th>Cuándo usarla</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Objeto real</td>
+<td>Código barato y determinista que puede ejecutarse en memoria.</td>
+</tr>
+<tr>
+<td>AEM Mocks</td>
+<td>Recursos, modelos y OSGi dentro de las capacidades implementadas.</td>
+</tr>
+<tr>
+<td>Stub pequeño o Mockito</td>
+<td>Colaborador externo o no soportado por el contexto.</td>
+</tr>
+<tr>
+<td>Prueba de integración</td>
+<td>Dependencia de semántica real del repositorio, HTTP o runtime desplegado.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Un stub de una API externa puede devolver una respuesta conocida para que el servicio real procese ese dato. Si simulas el propio <code>GuideUrlService</code> y luego compruebas el valor que tú le programaste devolver, no has probado su lógica.</p>
+<p>Tampoco reemplaces todas las llamadas de un resolver por una larga cadena de mocks si AEM Mocks ya representa ese recurso. La prueba debe mostrar el estado y el contrato, no recrear cada paso de la implementación. Base: <a href="../slides/lesson-19/speech.md">notas de la sesión, slide 9</a>.</p>
+<p><a id="regresion"></a></p>
+<h2>9. Red → green y comandos Maven</h2>
+<p>Una prueba verde aislada no demuestra que detecte el fallo que te preocupa. El recorrido de evidencia es:</p>
+<pre><code class="language-text">Contrato nombrado y contexto válido
+    ↓
+Comportamiento protegido ausente → fallo esperado (RED)
+    ↓
+Restaurar la implementación mínima
+    ↓
+Mismo test y misma entrada → éxito (GREEN)
+    ↓
+Suite completa de core
+</code></pre>
+<p>Desde la raíz del proyecto Maven AEM, con nombres ajustados a sus tests:</p>
+<pre><code class="language-sh">mvn -pl core -Dtest=GuideCardImplTest test
+mvn -pl core '-Dtest=GuideCardImplTest#returnsFallbackWhenBothTitlesMissing' test
+mvn -pl core test
+</code></pre>
+<p>La primera orden ejecuta la clase, la segunda el método concreto y la tercera amplía la comprobación a <code>core</code>. Las comillas evitan que el shell interprete caracteres del selector. La sintaxis de selección corresponde a <a href="https://maven.apache.org/surefire/maven-surefire-plugin/examples/single-test.html">Maven Surefire</a>.</p>
+<p>Estos comandos pertenecen a tu proyecto AEM con POM y módulo <code>core</code>; este repositorio de materiales no proporciona por sí solo ese proyecto ejecutable. Reutiliza su configuración de build. Si faltan dependencias de otros módulos, resuelve ese requisito según el reactor del proyecto; no confundas descarga o compilación fallida con una regresión del modelo.</p>
+<h3>Qué cuenta como rojo útil</h3>
+<p>Para la promesa del fallback, rojo útil significa que la aserción esperaba <code>Untitled guide</code> y obtuvo otro resultado al quitar ese comportamiento. No cuentan como esa prueba:</p>
+<ul>
+<li>JSON que no se puede cargar.</li>
+<li>Clase que no compila.</li>
+<li>Modelo que no se registra.</li>
+<li>Servicio requerido ausente.</li>
+<li>Maven que no ejecutó ningún test.</li>
+</ul>
+<p>Si haces una retirada temporal del fallback, hazla en tu entorno de desarrollo y restáurala antes de terminar. No dejes ni publiques la regresión usada para demostrar el test. Tras recuperar verde, ejecuta la suite de <code>core</code> y registra cuántos tests corrieron realmente.</p>
+<p><a id="diagnostico"></a></p>
+<h2>10. Diagnóstico y mapa de evidencias</h2>
+<p>Lee el primer fallo que explica la causa, no sólo el último <code>NullPointerException</code>.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Síntoma</th>
+<th>Qué revisar primero</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No encuentra el fixture</td>
+<td>Ruta de classpath y ubicación en <code>src/test/resources</code>.</td>
+</tr>
+<tr>
+<td>No existe el recurso del caso</td>
+<td>Raíz de carga JSON y ruta seleccionada.</td>
+</tr>
+<tr>
+<td>No puede crear el modelo</td>
+<td>Registro, adapter solicitado, adaptable e inyecciones.</td>
+</tr>
+<tr>
+<td>Falla la activación del servicio</td>
+<td>Metadatos DS, colaboradores y propiedades suministradas.</td>
+</tr>
+<tr>
+<td>Aserción devuelve el dato equivocado</td>
+<td>Contrato de prioridad, normalización y valor observado.</td>
+</tr>
+<tr>
+<td>Sólo pasa después de otro test</td>
+<td>Estado compartido, contenido o registros no aislados.</td>
+</tr>
+<tr>
+<td>Maven termina bien pero no hay pruebas</td>
+<td>Descubrimiento, nombres, filtros, skips y reporte de ejecución.</td>
+</tr>
+<tr>
+<td>Pasa en mocks y falla en AEM</td>
+<td>Diferencia de fidelidad o contexto que la prueba no representa.</td>
+</tr>
+</tbody>
+</table></div>
+<p>En proyectos que usan Surefire, consulta también <code>core/target/surefire-reports</code>. Un reporte útil conserva el nombre del test, resultado esperado y observado, comando y razón del rojo.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Campo de evidencia</th>
+<th>Qué registrar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contrato</td>
+<td>Promesa que el consumidor necesita.</td>
+</tr>
+<tr>
+<td>Escenario</td>
+<td>Contenido o configuración representativos.</td>
+</tr>
+<tr>
+<td>Contexto</td>
+<td>Recurso/request, modelos, servicios y resolver necesarios.</td>
+</tr>
+<tr>
+<td>Operación</td>
+<td>Getter o método público ejecutado.</td>
+</tr>
+<tr>
+<td>Aserción</td>
+<td>Resultado o fallo específico esperado.</td>
+</tr>
+<tr>
+<td>Red</td>
+<td>Cambio temporal y fallo que demuestra su detección.</td>
+</tr>
+<tr>
+<td>Green</td>
+<td>Restauración y resultado con el mismo comando.</td>
+</tr>
+<tr>
+<td>Gate final</td>
+<td>Suite de <code>core</code> y número de pruebas ejecutadas.</td>
+</tr>
+<tr>
+<td>Límite</td>
+<td>Lo que esta prueba no valida en el runtime real.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Criterio de preparación:</strong> explicar por qué la prueba falla al quitar el comportamiento protegido, por qué pasa al restaurarlo y qué evidencia adicional necesitarías para confiar en el despliegue.</p>
+<p><a id="repaso"></a></p>
+<h2>11. Repaso con respuestas</h2>
+<p>Contesta antes de desplegar las soluciones. Las preguntas son preparación personal y no sustituyen el cierre pasivo del deck.</p>
+<details>
+<summary>1. ¿Qué protege una prueba útil de un Sling Model?</summary>
+<p>Un valor o estado que su consumidor observa, como el título de respaldo o la condición vacía. No la distribución de campos privados.</p>
+</details>
+<details>
+<summary>2. ¿Qué debe quedar explícito en Arrange, Act y Assert?</summary>
+<p>El estado representativo, la operación real del contrato y el resultado esperado. El nombre del test debe ayudar a identificar la promesa que falló.</p>
+</details>
+<details>
+<summary>3. ¿Por qué utilizar un contexto no estático gestionado por la extensión?</summary>
+<p>Para facilitar preparación y limpieza independientes. No deberías depender del orden de ejecución ni del contenido dejado por otro test.</p>
+</details>
+<details>
+<summary>4. ¿AEM Mocks demuestra que el bundle resuelve en el SDK?</summary>
+<p>No. Representa fronteras de prueba en memoria, no toda la resolución de paquetes ni el despliegue real. Necesitas evidencia del runtime para esa afirmación.</p>
+</details>
+<details>
+<summary>5. ¿Por qué ModelFactory ayuda a diagnosticar una creación fallida?</summary>
+<p>Porque puede proporcionar una excepción de creación más concreta, en lugar de devolver null y provocar después una desreferencia que oculta la causa.</p>
+</details>
+<details>
+<summary>6. ¿Una prueba de título ausente cubre también un título con espacios?</summary>
+<p>No necesariamente. Son entradas distintas: el segundo caso requiere la normalización o validación definida por el contrato.</p>
+</details>
+<details>
+<summary>7. ¿Registrar un objeto como servicio equivale a probar su activación?</summary>
+<p>No. Usa la frontera de inyección y activación cuando ése es el comportamiento que debe ejercitarse, y después verifica la capacidad pública.</p>
+</details>
+<details>
+<summary>8. ¿Un test verde prueba que detecta la regresión prevista?</summary>
+<p>Por sí solo no. La evidencia red → green muestra que el test falla por el comportamiento ausente y pasa cuando se restaura.</p>
+</details>
+<h3>Cuatro casos para identificar el fallo correcto</h3>
+<details>
+<summary>Caso A · El test del fallback falla porque no encuentra guide-card.json. ¿Es la regresión esperada?</summary>
+<p>No. Falló la preparación. Corrige la ubicación y ruta del fixture antes de evaluar el comportamiento del modelo.</p>
+</details>
+<details>
+<summary>Caso B · El servicio recibe baseUrl válida, pero falta un colaborador @Reference. ¿Has probado la validación de configuración?</summary>
+<p>No. El componente todavía no supera su dependencia requerida. Registra el colaborador apropiado y luego aísla el caso de configuración que quieres comprobar.</p>
+</details>
+<details>
+<summary>Caso C · Simulas getDisplayTitle para devolver el fallback y luego verificas ese mismo valor. ¿Qué lógica probaste?</summary>
+<p>La respuesta configurada en tu doble, no el fallback del modelo real. Ejecuta el modelo de producción sobre contenido representativo.</p>
+</details>
+<details>
+<summary>Caso D · La suite pasa, pero Author usa otra baseUrl al desplegar. ¿Qué evidencia falta?</summary>
+<p>La selección e interpolación efectivas de configuración en ese tier. Una prueba con propiedades Java suministradas no valida los archivos por run mode ni las variables de Cloud Manager.</p>
+</details>
+<p>Si necesitas ayuda, comparte el nombre del test, el contrato esperado y el primer fallo útil. Pregunta al agente si el problema corresponde a preparación, creación, comportamiento o al límite de los mocks; no compartas secretos del entorno.</p>
+<p><a id="fuentes"></a></p>
+<h2>12. Glosario y fuentes</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Término</th>
+<th>Definición de referencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unidad bajo prueba</td>
+<td>Código real cuyo comportamiento se verifica.</td>
+</tr>
+<tr>
+<td>Contrato observable</td>
+<td>Resultado, estado o fallo que el consumidor puede percibir.</td>
+</tr>
+<tr>
+<td>Fixture</td>
+<td>Datos representativos que preparan un escenario.</td>
+</tr>
+<tr>
+<td>Aserción</td>
+<td>Comprobación de una expectativa.</td>
+</tr>
+<tr>
+<td>Aislamiento</td>
+<td>Independencia respecto al estado de otras pruebas.</td>
+</tr>
+<tr>
+<td>AemContext</td>
+<td>Contexto de prueba que ofrece fronteras AEM soportadas.</td>
+</tr>
+<tr>
+<td>Stub</td>
+<td>Colaborador controlado que devuelve resultados conocidos.</td>
+</tr>
+<tr>
+<td>Regresión</td>
+<td>Pérdida de un comportamiento que debía conservarse.</td>
+</tr>
+<tr>
+<td>Red → green</td>
+<td>Evidencia de detección del fallo y satisfacción posterior del contrato.</td>
+</tr>
+<tr>
+<td>Surefire</td>
+<td>Plugin Maven que ejecuta las pruebas unitarias en este flujo.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Lectura principal:</strong> <a href="https://wcm.io/testing/aem-mock/usage.html">AEM Mocks Usage — wcm.io</a>. Prioriza JUnit 5, carga de contenido, registro de modelos y servicios. Conserva las versiones compatibles del POM de tu proyecto.</p>
+<p>Fuentes de preparación, consultadas el 8 de septiembre de 2026:</p>
+<ul>
+<li><a href="../lessons/0019-junit-aem-mocks.html">Sesión 19 y diapositivas</a>, <a href="../slides/lesson-19/outline.md">outline</a> y <a href="../slides/lesson-19/speech.md">notas del presentador</a>.</li>
+<li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/getting-started-wknd-tutorial-develop/project-archetype/unit-testing">Unit testing — Adobe</a>: ejemplo de pruebas de un modelo WKND. Sus instrucciones de versiones corresponden al tutorial, no a una orden de cambiar tu proyecto.</li>
+<li><a href="https://sling.apache.org/documentation/development/sling-mock.html">Sling Mocks — Apache Sling</a>: tipos de resolver y capacidades simuladas.</li>
+<li><a href="https://docs.junit.org/5.13.4/user-guide/">JUnit 5 User Guide</a>: lifecycle, Jupiter y aserciones.</li>
+<li><a href="https://maven.apache.org/surefire/maven-surefire-plugin/examples/single-test.html">Running a Single Test — Maven Surefire</a>: selección de clases y métodos.</li>
+</ul>
+<p><strong>Alcance:</strong> pruebas enfocadas de modelos y servicios con estado representativo. Los fragmentos son material de estudio para adaptar al proyecto AEM; esta guía no instala dependencias ni afirma haber ejecutado esos tests. La integración contra SDK, navegador o Dispatcher necesita su propia evidencia y no queda certificada por una prueba en memoria.</p>
+<p><a id="practica-local"></a></p>
+<h2>Práctica local · Probar el componente de la sesión 18 (20–30 min)</h2>
+<p><strong>Requisitos:</strong> copia primero los archivos completos de la <a href="session-18-study-guide.html#practica-local">práctica 18</a>. El test usa esas clases reales, no <code>GuideCardImpl</code> ni interfaces que tengas que inventar. Conserva el mismo package en producción y pruebas.</p>
+<p>Tu <code>core/pom.xml</code> debe tener JUnit Jupiter y <code>io.wcm:io.wcm.testing.aem-mock.junit5</code> con scope <code>test</code>, y Surefire con soporte JUnit 5. WKND/Archetype suelen gestionarlos desde el POM padre: reutiliza sus versiones. Si faltan, añade estas dependencias <strong>dentro del bloque dependencies existente</strong>, con versiones gestionadas compatibles con tu baseline; no copies un segundo bloque de proyecto ni actualices a ciegas las versiones del curso.</p>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.junit.jupiter&lt;/groupId&gt;
+    &lt;artifactId&gt;junit-jupiter&lt;/artifactId&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.wcm&lt;/groupId&gt;
+    &lt;artifactId&gt;io.wcm.testing.aem-mock.junit5&lt;/artifactId&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>El build de <code>core</code> debe generar los descriptores DS antes de las pruebas: <code>registerInjectActivateService</code> los usa para activar el servicio. Un error “No OSGi SCR metadata” es de preparación del build, no un fallo del fallback.</p>
+<h3>Archivo: <code>core/src/test/java/com/adobe/aem/guides/wknd/core/training/TrainingMessageTest.java</code></h3>
+<pre><code class="language-java">package com.adobe.aem.guides.wknd.core.training;
+
+import io.wcm.testing.mock.aem.junit5.AemContext;
+import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.factory.ModelFactory;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@ExtendWith(AemContextExtension.class)
+class TrainingMessageTest {
+    private final AemContext context = new AemContext();
+
+    @Test
+    void rendersAuthoredTitleAndConfiguredServiceMessage() {
+        context.registerInjectActivateService(new TrainingMessage(), &quot;message&quot;, &quot;  Local Author  &quot;);
+        context.addModelsForClasses(TrainingMessageModel.class);
+        Resource resource = context.create().resource(&quot;/content/training/message&quot;, &quot;title&quot;, &quot;  My guide  &quot;);
+
+        TrainingMessageModel model = context.getService(ModelFactory.class)
+                .createModel(resource, TrainingMessageModel.class);
+
+        assertEquals(&quot;My guide&quot;, model.getTitle());
+        assertEquals(&quot;Local Author&quot;, model.getMessage());
+    }
+
+    @Test
+    void usesFallbackWhenTitleIsMissingAndConfigurationIsBlank() {
+        context.registerInjectActivateService(new TrainingMessage(), &quot;message&quot;, &quot;   &quot;);
+        context.addModelsForClasses(TrainingMessageModel.class);
+        Resource resource = context.create().resource(&quot;/content/training/message&quot;);
+
+        TrainingMessageModel model = context.getService(ModelFactory.class)
+                .createModel(resource, TrainingMessageModel.class);
+
+        assertEquals(&quot;Weekend Guides&quot;, model.getTitle());
+        assertEquals(&quot;Welcome to Weekend Guides&quot;, model.getMessage());
+    }
+}
+</code></pre>
+<h3>Ejecutar y demostrar que detecta la regresión</h3>
+<p>Desde la raíz de tu proyecto AEM:</p>
+<pre><code class="language-sh">mvn -pl core -Dtest=TrainingMessageTest test
+</code></pre>
+<p><strong>Verde esperado:</strong> dos pruebas, cero fallos y cero errores. La primera comprueba título y mensaje configurados, incluyendo trim; la segunda combina título ausente y configuración vacía. <code>ModelFactory.createModel</code> conserva el diagnóstico si falta una inyección obligatoria.</p>
+<ol>
+<li>En <code>TrainingMessage.activate</code>, sustituye temporalmente la asignación con fallback por <code>message = value.trim();</code>. No cambies el test.</li>
+<li>Ejecuta sólo la segunda prueba:</li>
+</ol>
+<pre><code class="language-sh">mvn -pl core '-Dtest=TrainingMessageTest#usesFallbackWhenTitleIsMissingAndConfigurationIsBlank' test
+</code></pre>
+<ol>
+<li><strong>Rojo esperado:</strong> la aserción del mensaje espera <code>Welcome to Weekend Guides</code> y recibe una cadena vacía. Un error de compilación o de activación no cuenta como ese rojo.</li>
+<li>Restaura la asignación original y ejecuta ambos tests; después ejecuta la suite de <code>core</code>:</li>
+</ol>
+<pre><code class="language-sh">mvn -pl core -Dtest=TrainingMessageTest test
+mvn -pl core test
+</code></pre>
+<p><strong>Aceptación:</strong> guarda el fallo de aserción y el resultado verde con el mismo test, más una explicación de dos frases sobre el contrato. No dejes el cambio roto en el source code.</p>
+<p><strong>Límite:</strong> AEM Mocks comprueba adaptación, activación y salida Java; no valida render HTL, selección de run modes, instalación del ZIP ni publicación. La página de la sesión 18 aporta la comprobación visual. No hace falta arrancar AEM para estos tests.</p>
+<p>Fuente: <a href="https://wcm.io/testing/aem-mock/usage.html">uso de AEM Mocks y JUnit 5</a>.</p>
+  </main>
+  <footer><a href="../lessons/0019-junit-aem-mocks.html#slide-deck">Volver a las diapositivas de la sesión 19</a> · <a href="session-19-study-guide.md" download>Descargar Markdown</a></footer>
+</body>
+</html>

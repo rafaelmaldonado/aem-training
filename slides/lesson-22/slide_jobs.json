@@ -1,0 +1,501 @@
+{
+  "run_status": "slides_recorded",
+  "deck_name": "lesson-22",
+  "selected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "Class 21 outline slide 07, using the approved Class 19 slide 08 as a style-only reference; one localized image_gen edit corrected the trigger label before approval",
+    "size": "1672x941, 16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+    "input_context_preparation": "The parent inspected the Class 19 style reference and the generated Class 21 sample with view_image. Workers must inspect slide_07 and pass it to built-in image_gen as a style-only reference.",
+    "handoff_rule": "Use built-in image_gen with the approved Class 21 slide_07 as a style-only reference. User approved continuing this style for all 12 Class 22 slides without intermediate sample confirmation."
+  },
+  "max_concurrent_slides": 3,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "Cloud-compatible structure",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_01.json",
+        "prompt_sha256": "2cf548bc8dac5cbae62cd6ca60e3e067f835dc9f3250119a11059df026d70fe6",
+        "dispatched_at": "2026-09-08T18:19:15Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0823e-4bdb-78b0-b077-a751d5d29e21/exec-a93f70b2-9283-4d94-a4c5-71d4a1fd3fe1.png",
+        "selected_source_sha256": "d9364cb8575e382e65bfbf46b3135dfa345e77372627e9432567a17c9b22f6a1",
+        "final_image": "origin_image/slide_01.png",
+        "final_image_sha256": "d9364cb8575e382e65bfbf46b3135dfa345e77372627e9432567a17c9b22f6a1",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent inspected cover; legible and correct after removing invented paths.",
+        "recorded_at": "2026-09-08T22:32:33Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "A local edit is not a deployment strategy",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_02",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "0280f1ac3cc04a8e46e94d18cc328a938063e9b77113055e7f796701d758bdf9",
+        "dispatched_at": "2026-09-08T18:19:15Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0823e-7d6b-75c3-8624-defc539ff22d/exec-fb6be776-e223-466e-8ef7-cff60cdc6f47.png",
+        "selected_source_sha256": "3784e3ff70b5be26b6a504275298dc23118119671a43724cd56b034f14a39a5a",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "3784e3ff70b5be26b6a504275298dc23118119671a43724cd56b034f14a39a5a",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent visually inspected complete image: readable, correct boundaries and module responsibilities.",
+        "recorded_at": "2026-09-08T22:37:57Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "Repository location defines the boundary",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_03",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_03.json",
+        "prompt_sha256": "c470e96ca3208cb0c31957e6f0c66e774e54d917b5107826327682ef054d767b",
+        "dispatched_at": "2026-09-08T18:19:16Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0823e-a9d3-75f2-8b8e-53614fa23d62/exec-1d352bc1-3eba-4883-b980-2dbbcbce88ac.png",
+        "selected_source_sha256": "fa9ee06789c177f3b4d0715299780a20336606b7405c25cfbd81f4a7c39f7067",
+        "final_image": "origin_image/slide_03.png",
+        "final_image_sha256": "fa9ee06789c177f3b4d0715299780a20336606b7405c25cfbd81f4a7c39f7067",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent inspected repository tree, runtime boundary and Oak exception.",
+        "recorded_at": "2026-09-08T22:32:33Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "Give each module one responsibility",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_04.json",
+        "prompt_sha256": "6f7e3ab351ff2c0fcd72ff45b4018c0d9d95a80d545b60838c1a1eba9c133027",
+        "dispatched_at": "2026-09-08T22:32:33Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0823e-4bdb-78b0-b077-a751d5d29e21/exec-b1b239e4-c87c-4b26-9b5e-ea7bc3f22ae0.png",
+        "selected_source_sha256": "d4c0383dfbd7b3f2f7b78e26b127a90c2792bf170a060b0b6b5543023a0c4dca",
+        "final_image": "origin_image/slide_04.png",
+        "final_image_sha256": "d4c0383dfbd7b3f2f7b78e26b127a90c2792bf170a060b0b6b5543023a0c4dca",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent visually inspected complete image: readable, correct boundaries and module responsibilities.",
+        "recorded_at": "2026-09-08T22:37:57Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "Separate packages; assemble one application",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_03",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_05.json",
+        "prompt_sha256": "8ea1c9281696d221bb9b49dc38530458ae36205a2e9369689a87ada1954d2011",
+        "dispatched_at": "2026-09-08T22:32:34Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0823e-a9d3-75f2-8b8e-53614fa23d62/exec-5768af0e-f112-4f3f-a0dc-9db64dccdb46.png",
+        "selected_source_sha256": "b0ba9577d06959c62c0d958abea28a5debae13046cc092e7bc35ddf70aa7f134",
+        "final_image": "origin_image/slide_05.png",
+        "final_image_sha256": "b0ba9577d06959c62c0d958abea28a5debae13046cc092e7bc35ddf70aa7f134",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent visually inspected complete image: readable, correct boundaries and module responsibilities.",
+        "recorded_at": "2026-09-08T22:37:57Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "A filter is an import boundary",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_06.json",
+        "prompt_sha256": "7d2606ba8aaa93416e28359cabc41170b2a1a9abf22ff5940a736afeac0eb0b5",
+        "dispatched_at": "2026-09-08T22:37:57Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0823e-4bdb-78b0-b077-a751d5d29e21/exec-114c7ac3-067f-4d07-bada-a594f41db2c7.png",
+        "selected_source_sha256": "0495fd42676e56a3fbed163b7707f4dd9ffe380c58e4573320297348ea0d210a",
+        "final_image": "origin_image/slide_06.png",
+        "final_image_sha256": "0495fd42676e56a3fbed163b7707f4dd9ffe380c58e4573320297348ea0d210a",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent inspected: correct import boundary, ordinary-property matrix and ownership explanation; readable.",
+        "recorded_at": "2026-09-08T22:39:05Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "Predict property changes before installation",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_02",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_07.json",
+        "prompt_sha256": "9ef523370c021f6f44cb2062d89682a9396adb70581613753543377e7afabd05",
+        "dispatched_at": "2026-09-08T22:37:58Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0823e-7d6b-75c3-8624-defc539ff22d/exec-9d70bd69-a87c-4e63-9d8d-72d3caacda6a.png",
+        "selected_source_sha256": "e07091234eb8bbd2e48353de11f56977b62772a9ac694a8212ed030f0ad29e06",
+        "final_image": "origin_image/slide_07.png",
+        "final_image_sha256": "e07091234eb8bbd2e48353de11f56977b62772a9ac694a8212ed030f0ad29e06",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent inspected: correct import boundary, ordinary-property matrix and ownership explanation; readable.",
+        "recorded_at": "2026-09-08T22:39:05Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "Mutable does not mean owned by the build",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_03",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_08.json",
+        "prompt_sha256": "22a5186e3a6935e8ddb3a6cd658128d670761f6dd1c865dcf13a1db912e7e578",
+        "dispatched_at": "2026-09-08T22:37:58Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0823e-a9d3-75f2-8b8e-53614fa23d62/exec-376a6d73-94c8-4f29-98ad-d5306a181bf8.png",
+        "selected_source_sha256": "05c805d9fe65100186a99922a45effa71463b93cff1ade4cc2fc0130fcc15d65",
+        "final_image": "origin_image/slide_08.png",
+        "final_image_sha256": "05c805d9fe65100186a99922a45effa71463b93cff1ade4cc2fc0130fcc15d65",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent inspected: correct import boundary, ordinary-property matrix and ownership explanation; readable.",
+        "recorded_at": "2026-09-08T22:39:06Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Local lab: install, edit, reinstall",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "91e24c292358c60da159f6346e42dc992b77f71fdbbcdf8692d569ced0e715f9",
+        "dispatched_at": "2026-09-08T22:39:06Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0823e-4bdb-78b0-b077-a751d5d29e21/exec-97d6fd2b-c3f1-46b8-a71f-d11948398029.png",
+        "selected_source_sha256": "f2377fd8d46b16f62f5779dacb11ec42ad89bcb5c530986fed69e9ec0a9c5572",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "f2377fd8d46b16f62f5779dacb11ec42ad89bcb5c530986fed69e9ec0a9c5572",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent inspected lab path, node edits, three modes and reset instruction; correct.",
+        "recorded_at": "2026-09-08T22:42:04Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_10",
+      "number": 10,
+      "title": "Diagnose the artifact before the instance",
+      "job": "prompts/slide_10.json",
+      "out": "origin_image/slide_10.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_02",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_10.json",
+        "prompt_sha256": "3bf62eff2804d8c5c4a2001207dae5bcc21f5b54ca3fc8d1a7076b5e61f66810",
+        "dispatched_at": "2026-09-08T22:39:06Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0823e-7d6b-75c3-8624-defc539ff22d/exec-3759dfef-e33f-4290-84a5-f09e34f295d1.png",
+        "selected_source_sha256": "0324bcd79f3610ceff716791c2bec13d8b1a0935e8a2a3565e9adbbcbcd8f3aa",
+        "final_image": "origin_image/slide_10.png",
+        "final_image_sha256": "0324bcd79f3610ceff716791c2bec13d8b1a0935e8a2a3565e9adbbcbcd8f3aa",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Worker checked exact diagnostic mappings; parent final QA pending.",
+        "recorded_at": "2026-09-08T22:40:08Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_11",
+      "number": 11,
+      "title": "Key takeaways",
+      "job": "prompts/slide_11.json",
+      "out": "origin_image/slide_11.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_03",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_11.json",
+        "prompt_sha256": "ea9aa4406a93439364409df39a331d0f316005d3a518eddbf261703b1f086a49",
+        "dispatched_at": "2026-09-08T22:39:06Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0823e-a9d3-75f2-8b8e-53614fa23d62/exec-754b0cf5-b1b6-4879-9b4f-a58110415e69.png",
+        "selected_source_sha256": "0b3d2a688d77c4908af95dda06f0dec532cdf8c1223a48041aa65b78d2e8c094",
+        "final_image": "origin_image/slide_11.png",
+        "final_image_sha256": "0b3d2a688d77c4908af95dda06f0dec532cdf8c1223a48041aa65b78d2e8c094",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent inspected exact takeaways and diagrams; correct and readable.",
+        "recorded_at": "2026-09-08T22:41:28Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_12",
+      "number": 12,
+      "title": "Questions / Thank you",
+      "job": "prompts/slide_12.json",
+      "out": "origin_image/slide_12.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-21/origin_image/slide_07.png",
+          "role": "approved Class 21 style and density reference",
+          "fidelity": "Match palette, typography, drafting grid, two-digit top-left eyebrow, technical density, semantic colors, evidence panels and connector weight only; vary composition by slide role."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_02",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_12.json",
+        "prompt_sha256": "193cf60d123140ea3eb80b849e730ccbb90e4bd21af7deb246d4708df638da4b",
+        "dispatched_at": "2026-09-08T22:40:08Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0823e-7d6b-75c3-8624-defc539ff22d/exec-f6e51fc5-764a-490e-b3ea-e0a75462bab1.png",
+        "selected_source_sha256": "cbf85e742e5e50ae8dfe79310d0c4b949e4c1ed72531779856d8c47d600a31c4",
+        "final_image": "origin_image/slide_12.png",
+        "final_image_sha256": "cbf85e742e5e50ae8dfe79310d0c4b949e4c1ed72531779856d8c47d600a31c4",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent inspected passive Questions / Thank you closing; no extra teaching.",
+        "recorded_at": "2026-09-08T22:42:04Z"
+      },
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-09-08T22:42:04Z"
+}

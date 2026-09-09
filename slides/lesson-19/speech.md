@@ -1,5 +1,7 @@
 # Class 19 · Testing Sling Models and services with JUnit 5 and AEM Mocks
 
+**Guía de preparación en español:** [Abrir en el navegador](../../reference/session-19-study-guide.html) · [Resumen en Markdown](../../reference/session-19-study-guide.md).
+
 ## Slide 1: JUnit 5 and AEM Mocks: protect observable behavior
 
 Introduce Class 19 and the session’s three threads: observable behavior contracts, representative AEM state in memory and red-to-green regression evidence. The goal is not to learn every testing feature. It is to leave with one repeatable path for protecting a Sling Model or service behavior that HTL or another consumer depends on.

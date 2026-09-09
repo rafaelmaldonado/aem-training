@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Guía profunda de preparación para la sesión 18: servicios OSGi, configuración por PID, valores de entorno y servlets en AEM, con casos y repaso.">
+  <title>Sesión 18 · Guía de preparación · AEM Training</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body class="study-guide">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <nav class="site-nav" aria-label="Principal">
+    <a class="brand" href="../index.html">AEM Training</a>
+    <ul>
+      <li><a href="../lessons/0018-osgi-services-configuration-servlets.html#slide-deck">Diapositivas 18</a></li>
+      <li><a href="index.html">Referencias</a></li>
+      <li><a href="session-18-study-guide.md" download>Markdown</a></li>
+    </ul>
+  </nav>
+  <header>
+    <p class="eyebrow">Preparación · Semana 4 · Sesión 18</p>
+    <h1>Sesión 18 · Servicios OSGi, configuración y servlets en AEM</h1>
+    <p class="lede">Del consumidor a la configuración efectiva: define la capacidad y elige la superficie de entrega necesaria.</p>
+    <ul class="meta"><li>Español</li><li>Lectura: 20–25 minutos</li><li>Repaso: 5–10 minutos</li><li>Imprimible desde el navegador</li></ul>
+  <p lang="es"><a href="#practica-local">Práctica local: archivos completos y pasos verificables</a></p>
+  </header>
+  <main id="contenido">
+<p><strong>Guía profunda de preparación · Miércoles 9 de septiembre de 2026 · Español</strong></p>
+<p><a href="session-18-study-guide.html">Abrir la versión HTML</a> · <a href="../lessons/0018-osgi-services-configuration-servlets.html#slide-deck">Ver las diapositivas</a> · <a href="../slides/lesson-18/speech.md">Notas del presentador</a></p>
+<p>La sesión 18 continúa el recorrido de la <a href="session-17-study-guide.html">sesión 17</a>: el modelo prepara una vista, pero algunas capacidades deben compartirse y configurarse fuera de ese modelo. Aquí aprenderás a identificar esa frontera, comprobar su configuración efectiva y decidir si necesita una interfaz HTTP propia.</p>
+<blockquote>
+<p><strong>Empieza por el consumidor y su necesidad.</strong> Crea una capacidad reutilizable cuando tenga sentido, configura su comportamiento explícitamente y añade sólo la superficie de entrega que ese consumidor necesita.</p>
+</blockquote>
+<h2>Cómo estudiar esta guía</h2>
+<ul>
+<li><strong>Primera lectura, 20–25 minutos:</strong> sigue el caso ilustrativo <code>GuideUrlService</code> desde su consumidor hasta la configuración observada.</li>
+<li><strong>Recuperación, 5–10 minutos:</strong> responde las preguntas antes de desplegar sus soluciones.</li>
+<li><strong>Antes de la sesión:</strong> explica qué archivo gana para Author/dev y qué ocurre si falta una propiedad requerida.</li>
+<li><strong>Después de la sesión:</strong> completa el mapa de evidencias con un servicio real. Si sólo dispones del material del curso, etiqueta tus resultados como hipótesis, no como observaciones de AEM.</li>
+</ul>
+<p><strong>Resultado esperado:</strong> justificar la existencia del servicio, identificar su PID y estado, distinguir valores versionados de secretos y explicar la elección entre HTL, exporter y servlet. Cloud Manager se estudia de forma conceptual; no necesitas acceso para esta preparación.</p>
+<h2>Índice</h2>
+<ol>
+<li><a href="#servicio">Cuándo merece existir un servicio</a></li>
+<li><a href="#ds">Declarative Services y consumidores</a></li>
+<li><a href="#configuracion">Configuración tipada y PID</a></li>
+<li><a href="#runmodes">Run modes y selección del documento</a></li>
+<li><a href="#secretos">Valores de entorno y secretos</a></li>
+<li><a href="#validacion">Ausencia, validación y actualizaciones</a></li>
+<li><a href="#evidencia">Comprobar la configuración efectiva</a></li>
+<li><a href="#superficie">Elegir la superficie de entrega</a></li>
+<li><a href="#servlet">Un servlet como contrato HTTP</a></li>
+<li><a href="#caso">Caso integrado y mapa de evidencias</a></li>
+<li><a href="#repaso">Repaso con respuestas</a></li>
+<li><a href="#fuentes">Glosario y fuentes</a></li>
+</ol>
+<p><a id="servicio"></a></p>
+<h2>1. Cuándo merece existir un servicio</h2>
+<p>En la sesión anterior, una Guide Card elegía entre <code>title</code>, un valor legado y un fallback. Esa decisión pertenece naturalmente al modelo de la tarjeta. Llevarla a un servicio que sólo devuelve el mismo texto no añade una responsabilidad útil.</p>
+<p>La situación cambia si varios consumidores deben aplicar una política común para construir enlaces. Entonces <code>GuideUrlService</code> puede concentrar esa capacidad y evitar que dos modelos implementen reglas distintas.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Trabajo</th>
+<th>Dueño razonable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Título calculado y estado vacío de una tarjeta</td>
+<td>Sling Model.</td>
+</tr>
+<tr>
+<td>Política de enlaces compartida entre consumidores</td>
+<td>Servicio.</td>
+</tr>
+<tr>
+<td>Integración con un sistema externo</td>
+<td>Servicio con contrato propio.</td>
+</tr>
+<tr>
+<td>Elementos y atributos HTML</td>
+<td>HTL.</td>
+</tr>
+<tr>
+<td>Recepción y respuesta de una petición HTTP específica</td>
+<td>Servlet, si el consumidor lo exige.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Antes de crear la interfaz, escribe una frase: «Este consumidor necesita esta capacidad y observa este resultado». Si sólo puedes describir un getter de una vista, probablemente todavía estás dentro del modelo.</p>
+<p>Una interfaz pequeña resulta útil cuando consumidores reales dependen de la capacidad. No necesitas anticipar varias implementaciones, una fábrica o una jerarquía de servicios. Base: <a href="../slides/lesson-18/speech.md">notas de la sesión, slides 2 y 9</a>.</p>
+<p><a id="ds"></a></p>
+<h2>2. Declarative Services y consumidores</h2>
+<p>El recorrido operativo reutiliza lo aprendido en la <a href="session-16-study-guide.html">sesión 16</a>:</p>
+<pre><code class="language-text">Clase de implementación en core
+        ↓
+Bundle y metadatos DS
+        ↓
+Requisitos y configuración satisfechos
+        ↓
+Componente gestionado / servicio disponible según su ciclo de vida
+        ↓
+Consumidor de la interfaz pública
+</code></pre>
+<p><code>@Component(service = GuideUrlService.class)</code> declara la publicación bajo ese contrato. El build debe generar los metadatos y el runtime debe poder satisfacer los requisitos; la anotación por sí sola no demuestra disponibilidad.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Anotación</th>
+<th>Contexto y función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@Component</code></td>
+<td>Declaración del componente DS y sus servicios.</td>
+</tr>
+<tr>
+<td><code>@Reference</code></td>
+<td>Dependencia de servicio en otro componente DS.</td>
+</tr>
+<tr>
+<td><code>@OSGiService</code></td>
+<td>Dependencia de servicio dentro de un Sling Model.</td>
+</tr>
+<tr>
+<td><code>@Activate</code></td>
+<td>Inicialización del componente DS.</td>
+</tr>
+<tr>
+<td><code>@Deactivate</code></td>
+<td>Limpieza asociada a su desactivación.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Una referencia obligatoria insatisfecha impide continuar normalmente hacia la activación. Construir manualmente la implementación con <code>new</code> no sustituye la inyección ni el ciclo de vida del contenedor.</p>
+<p>Recuerda el matiz de activación diferida: servicio registrado y objeto ya activado no siempre significan lo mismo. Comprueba el estado relevante antes de concluir que hay un error.</p>
+<p>Los consumidores de un servicio pueden ejecutarse concurrentemente. No guardes datos de una petición como campos compartidos ni conserves su resolver para futuras peticiones. Una configuración preparada y coherente es distinta de estado de negocio mutable por usuario.</p>
+<p><a id="configuracion"></a></p>
+<h2>3. Configuración tipada y PID</h2>
+<p>La configuración es un contrato operativo: otra persona debe entender qué significa una propiedad, qué tipo tiene y qué ocurre cuando falta.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Papel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@ObjectClassDefinition</code></td>
+<td>Describe el tipo de configuración.</td>
+</tr>
+<tr>
+<td>Métodos de la definición</td>
+<td>Declaran propiedades, tipos y valores predeterminados.</td>
+</tr>
+<tr>
+<td><code>@AttributeDefinition</code></td>
+<td>Añade descripción, nombre u opciones para quien configura.</td>
+</tr>
+<tr>
+<td><code>@Designate</code></td>
+<td>Asocia el componente con la definición Metatype.</td>
+</tr>
+<tr>
+<td>PID</td>
+<td>Identifica la configuración que recibe el componente.</td>
+</tr>
+</tbody>
+</table></div>
+<p>La definición utiliza un <strong>tipo de anotación Java</strong>, <code>@interface</code>. Este ejemplo es ilustrativo y omite imports:</p>
+<pre><code class="language-java">@ObjectClassDefinition(name = &quot;Guide URL&quot;)
+public @interface GuideUrlConfig {
+    boolean enabled() default false;
+    String baseUrl();
+    int timeoutMs() default 2000;
+}
+</code></pre>
+<p>En el componente, <code>@Designate(ocd = GuideUrlConfig.class)</code> enlaza esa definición, y el método de activación puede recibir <code>GuideUrlConfig</code>. La conversión tipada evita parsear todas las propiedades como cadenas; no valida por sí sola la semántica de una URL o un rango operativo. <a href="https://docs.osgi.org/specification/osgi.cmpn/8.1.0/service.metatype.html">Metatype — OSGi</a>.</p>
+<p><strong>El PID no es el nombre de la interfaz del servicio.</strong> Habitualmente coincide con el nombre completo de la implementación, pero puede configurarse explícitamente. El nombre del archivo debe dirigirse al PID real. Renombrar una clase sin revisar su configuración puede romper esa correspondencia.</p>
+<p>Tampoco asumas que <code>@Designate</code> hace obligatoria la existencia de configuración. Si el componente requiere un objeto de configuración de Configuration Admin, su política DS debe expresarlo, por ejemplo <code>ConfigurationPolicy.REQUIRE</code>. La existencia del objeto y la validez de cada propiedad son comprobaciones diferentes. <a href="https://docs.osgi.org/specification/osgi.cmpn/8.1.0/service.component.html">Declarative Services — OSGi</a>.</p>
+<p><a id="runmodes"></a></p>
+<h2>4. Run modes y selección del documento</h2>
+<p>El proyecto versiona archivos <code>&lt;PID&gt;.cfg.json</code>, normalmente dentro de <code>ui.config</code>. Una ruta de código representativa sería:</p>
+<pre><code class="language-text">ui.config/src/main/content/jcr_root/apps/example/config.author.dev/
+    com.example.core.services.impl.GuideUrlServiceImpl.cfg.json
+</code></pre>
+<p>La ruta es ilustrativa: utiliza el módulo y la estructura ya existentes en tu proyecto. El estado efectivo de configuración cloud se comprueba en Developer Console, no suponiendo que encontrarás ese archivo como contenido editable en <code>/apps</code>.</p>
+<p>Para un mismo PID en un entorno <strong>Author + dev</strong>:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Carpeta candidata</th>
+<th>Coincide</th>
+<th>Resultado entre estas candidatas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>config</code></td>
+<td>Sí</td>
+<td>General.</td>
+</tr>
+<tr>
+<td><code>config.author</code></td>
+<td>Sí</td>
+<td>Más específica que la general.</td>
+</tr>
+<tr>
+<td><code>config.author.dev</code></td>
+<td>Sí</td>
+<td>Gana por tener más run modes coincidentes.</td>
+</tr>
+<tr>
+<td><code>config.publish</code></td>
+<td>No</td>
+<td>No aplica a Author.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>La selección ocurre por PID completo, no por propiedad.</strong> Si el archivo general contiene <code>baseUrl</code> y <code>timeoutMs</code>, y el específico sólo incluye <code>baseUrl</code>, no debes asumir que <code>timeoutMs</code> se hereda del general. Su resultado dependerá del contrato y los defaults aplicables, no de una mezcla de esos archivos.</p>
+<p>Usa los run modes admitidos, como <code>author</code>, <code>publish</code>, <code>dev</code>, <code>stage</code> y <code>prod</code>; AEM as a Cloud Service no permite inventar run modes personalizados como <code>cliente-a</code>. Evita depender de empates de especificidad para expresar prioridades. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/deploying/configuring-osgi">Selección de configuración — Adobe</a>.</p>
+<p><a id="secretos"></a></p>
+<h2>5. Valores de entorno y secretos</h2>
+<p>Versiona la forma del contrato y los valores que pueden compartirse. Para valores que cambian entre entornos, usa el mecanismo de interpolación correspondiente:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Clase de valor</th>
+<th>Ejemplo</th>
+<th>Tratamiento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estable y no sensible</td>
+<td>Timeout predeterminado</td>
+<td>Puede versionarse.</td>
+</tr>
+<tr>
+<td>Variable no secreta</td>
+<td>URL base por entorno</td>
+<td><code>$[env:GUIDE_BASE_URL]</code>.</td>
+</tr>
+<tr>
+<td>Credencial de una integración real</td>
+<td>Token API</td>
+<td><code>$[secret:GUIDE_API_TOKEN]</code>.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Ejemplo de configuración para una capacidad sin credenciales:</p>
+<pre><code class="language-json">{
+  &quot;enabled:Boolean&quot;: true,
+  &quot;baseUrl&quot;: &quot;$[env:GUIDE_BASE_URL]&quot;,
+  &quot;timeoutMs:Integer&quot;: 2000
+}
+</code></pre>
+<p>Los sufijos del formato <code>.cfg.json</code> indican tipos. Las propiedades resultantes aquí se llaman <code>enabled</code>, <code>baseUrl</code> y <code>timeoutMs</code>; no copies los sufijos como nombres de métodos Java.</p>
+<p>Un servicio que sólo construye URLs no necesita un token por precaución. Si una integración autenticada lo requiere, añade esa propiedad al contrato y utiliza la referencia de secreto, sin guardar su valor resuelto en Git, logs, capturas ni fixtures.</p>
+<p><strong>Un placeholder sin resolver puede seguir siendo texto no vacío.</strong> Si falta la variable y no hay default de interpolación, no basta comprobar <code>value != null</code>. Detecta valores sin resolver y aplica la política de ausencia. Un default sólo es correcto si su comportamiento es seguro y deliberado. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/deploying/configuring-osgi">Interpolación y defaults — Adobe</a>.</p>
+<p>Las variables de entorno se suministran por el canal operativo y tier correspondientes. No son un mecanismo para sobrescribir configuración OSGi propiedad de Adobe. Tampoco añadas condicionales Java para adivinar si estás en dev o prod cuando la configuración ya expresa la diferencia. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/using-cloud-manager/environment-variables">Variables de entorno — Adobe</a>.</p>
+<p><a id="validacion"></a></p>
+<h2>6. Ausencia, validación y actualizaciones</h2>
+<p>Clasifica cada propiedad antes de implementar el servicio:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Situación</th>
+<th>Comportamiento que debes definir</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Propiedad opcional ausente</td>
+<td>Default documentado y seguro.</td>
+</tr>
+<tr>
+<td>Capacidad explícitamente apagada</td>
+<td>Estado deshabilitado reconocible.</td>
+</tr>
+<tr>
+<td>Capacidad habilitada sin entrada imprescindible</td>
+<td>Rechazo o indisponibilidad deliberada.</td>
+</tr>
+<tr>
+<td>Valor presente pero inválido</td>
+<td>Diagnóstico útil y fallo seguro.</td>
+</tr>
+</tbody>
+</table></div>
+<p>En una integración, «hay una URL» no demuestra que sea un destino permitido. Valida su forma y las restricciones que exige el contrato, por ejemplo esquema HTTPS, host permitido y ausencia de credenciales incrustadas. Establece límites de tiempo y rangos razonables antes de realizar trabajo remoto. Si el servicio sólo construye enlaces, valida según esa responsabilidad, sin fingir que realiza una integración.</p>
+<p>No normalices silenciosamente un destino inseguro hasta convertirlo en otro destino inesperado. Un error de configuración debe ser identificable sin imprimir la configuración completa ni secretos.</p>
+<h3>Activación inicial y actualización no son la misma operación</h3>
+<p>En activación inicial no existe una configuración anterior válida que conservar. Si la inicialización lanza una excepción, el componente no queda activado.</p>
+<p>El outline menciona conservar el contrato válido anterior. Debes leerlo como <strong>un comportamiento que requiere diseño explícito</strong>, no como una garantía automática del contenedor. En particular, una excepción de <code>@Modified</code> no deshace por sí sola los valores de Configuration Admin. Sin un método de modificación, una actualización puede llevar a desactivación y nueva activación.</p>
+<p>Si el requisito permite mantener el comportamiento anterior durante una actualización inválida, valida primero una configuración candidata y sólo después sustituye coherentemente el estado de trabajo. Registra que el comportamiento conservado no coincide con la configuración rechazada. En otros casos, lo correcto será deshabilitar la capacidad. <a href="https://docs.osgi.org/specification/osgi.cmpn/8.1.0/service.component.html">Activación y modificación en DS — OSGi</a>.</p>
+<p><a id="evidencia"></a></p>
+<h2>7. Comprobar la configuración efectiva</h2>
+<p>El archivo demuestra intención; el runtime demuestra qué se aplicó. Sigue esta secuencia:</p>
+<ol>
+<li>Identifica el PID exacto y la versión del componente desplegado.</li>
+<li>Selecciona el entorno y tier que quieres comprobar.</li>
+<li>Comprueba el estado del componente y sus referencias.</li>
+<li>Inspecciona sólo las propiedades efectivas no sensibles necesarias.</li>
+<li>Ejecuta la capacidad con una entrada conocida y compara el resultado esperado.</li>
+</ol>
+<p>En el SDK local, las vistas de Components y Configuration permiten inspección directa. En cloud, usa los status dumps de Developer Console. Verifica Author y Publish de manera independiente si tienen valores distintos. Base: <a href="../slides/lesson-18/speech.md">notas de la sesión, slide 8</a>.</p>
+<p>Una captura con el nombre del archivo no demuestra que el PID correcto esté activo. Tampoco la presencia de una propiedad prueba que la lógica la haya aceptado. La evidencia debe unir <strong>PID, tier, estado, valor seguro y resultado observado</strong>.</p>
+<p><a id="superficie"></a></p>
+<h2>8. Elegir la superficie de entrega</h2>
+<p>Detente en la primera opción que satisface al consumidor:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Necesidad</th>
+<th>Superficie mínima</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Markup de un componente renderizado en servidor</td>
+<td>HTL.</td>
+</tr>
+<tr>
+<td>Valores preparados para ese markup</td>
+<td>Sling Model.</td>
+</tr>
+<tr>
+<td>Datos ya presentes en un contrato exportado aplicable</td>
+<td>Core Component o Model Exporter existente.</td>
+</tr>
+<tr>
+<td>Petición y respuesta HTTP distintas que lo anterior no cubre</td>
+<td>Servlet con contrato explícito.</td>
+</tr>
+</tbody>
+</table></div>
+<p>HTL y Sling Model colaboran; no son necesariamente alternativas excluyentes. El servlet aparece cuando existe un consumidor HTTP y una responsabilidad adicional concreta.</p>
+<p>«Quiero usar JavaScript» no justifica duplicar un endpoint: primero comprueba qué representación necesita y si ya existe. «Quiero ejecutar Java» tampoco basta: el modelo ya lo hace en el servidor.</p>
+<p>Todo endpoint añade decisiones sobre entradas, permisos, caché, errores y compatibilidad de respuesta. Esas decisiones forman parte de la implementación, no son tareas posteriores. Base: <a href="../slides/lesson-18/speech.md">slides 9 y 10</a>.</p>
+<p><a id="servlet"></a></p>
+<h2>9. Un servlet como contrato HTTP</h2>
+<p>Si hace falta, prefiere registrarlo por tipo de recurso y define los métodos, selectores y extensiones que necesita el consumidor. Este ejemplo de petición es ilustrativo:</p>
+<pre><code class="language-text">GET /content/example/guide.guides.json
+
+Recurso:   /content/example/guide
+Selector:  guides
+Extensión: json
+Método:    GET
+</code></pre>
+<p>Un servlet por resource type participa en la resolución de Sling para ese recurso. No confundas la ruta de la instancia con su tipo. Registrar por un path global tiene otras limitaciones y no es el punto de partida recomendado.</p>
+<p>Para lectura, <code>SlingSafeMethodsServlet</code> es una base apropiada; no convierte por sí sola tu lógica en segura ni impide que programes efectos laterales dentro de un GET.</p>
+<p><strong>Matiz de selectores:</strong> Sling puede aceptar selectores adicionales después de los registrados. Declarar <code>guides</code> no significa necesariamente rechazar <code>guides.extra</code>. Si el contrato exige una forma estricta, comprueba también la petición completa. <a href="https://sling.apache.org/documentation/the-sling-engine/servlets.html">Resolución de servlets — Apache Sling</a>.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Decisión que debes poder explicar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Entradas</td>
+<td>Parámetros admitidos, tipos, rangos y límites.</td>
+</tr>
+<tr>
+<td>Permisos</td>
+<td>Quién puede leer esos datos; identidad usada para acceder.</td>
+</tr>
+<tr>
+<td>Respuesta</td>
+<td>Content type explícito, estructura estable y codificación.</td>
+</tr>
+<tr>
+<td>Errores</td>
+<td>Estados HTTP deliberados, sin revelar detalles internos.</td>
+</tr>
+<tr>
+<td>Caché</td>
+<td>Si el resultado varía por usuario o parámetros y cómo se evita reutilizarlo incorrectamente.</td>
+</tr>
+<tr>
+<td>Resolución</td>
+<td>Qué servlet atiende exactamente esa petición.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Ejemplos de decisiones, no resultados automáticos de Sling: <code>400</code> para entrada inválida, <code>404</code> para un recurso no disponible según la política, <code>503</code> para una capacidad temporalmente indisponible. La autenticación y autorización deben integrarse con el comportamiento de la plataforma.</p>
+<p>Registrar por resource type no sustituye comprobar permisos dentro del trabajo que haces. Un resolver de servicio con más permisos no debe convertir un endpoint público en una vía para leer datos privados. Para JSON, utiliza la serialización disponible; no concatenes cadenas con valores del usuario.</p>
+<p><a id="caso"></a></p>
+<h2>10. Caso integrado y mapa de evidencias</h2>
+<p>Imagina que dos modelos necesitan la misma política de enlaces y Author/dev debe usar una URL base diferente de Publish/prod. El servicio concentra la política; cada entorno configura sus datos; cada modelo prepara su vista. No aparece un nuevo servlet mientras ningún consumidor necesite otro contrato HTTP.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Evidencia que registrar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Consumidor</td>
+<td>Nombre real y necesidad.</td>
+</tr>
+<tr>
+<td>Capacidad</td>
+<td>Operación reutilizada y resultado esperado.</td>
+</tr>
+<tr>
+<td>Servicio</td>
+<td>Interfaz, implementación y bundle desplegado.</td>
+</tr>
+<tr>
+<td>DS</td>
+<td>Referencias, política de configuración y estado.</td>
+</tr>
+<tr>
+<td>PID</td>
+<td>Identidad exacta y archivo correspondiente.</td>
+</tr>
+<tr>
+<td>Selección</td>
+<td>Run modes activos y documento ganador completo.</td>
+</tr>
+<tr>
+<td>Valores</td>
+<td>Estables, variables, secretos y defaults deliberados.</td>
+</tr>
+<tr>
+<td>Validación</td>
+<td>Ausencia, valor inválido y comportamiento definido.</td>
+</tr>
+<tr>
+<td>Runtime</td>
+<td>Tier, estado y resultado observado sin secretos.</td>
+</tr>
+<tr>
+<td>Entrega</td>
+<td>HTL, exporter o servlet; razón y consumidor.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Si falla el enlace, esta secuencia evita redeploys a ciegas: <strong>consumidor → servicio → PID → documento seleccionado → valor efectivo → validación → resultado</strong>.</p>
+<p><a id="repaso"></a></p>
+<h2>11. Repaso con respuestas</h2>
+<p>Responde antes de abrir cada solución. Este repaso es para preparación personal; la slide final permanece reservada a preguntas de la audiencia.</p>
+<details>
+<summary>1. ¿Toda lógica de un Sling Model debe moverse a un servicio?</summary>
+<p>No. El modelo conserva la preparación propia de su vista. El servicio merece existir si concentra una capacidad reutilizable o una integración con responsabilidad clara.</p>
+</details>
+<details>
+<summary>2. ¿Qué diferencia hay entre @Reference y @OSGiService?</summary>
+<p>@Reference declara una dependencia en un componente DS; @OSGiService la declara en un Sling Model. Ninguna se sustituye construyendo manualmente una implementación.</p>
+</details>
+<details>
+<summary>3. ¿La configuración tipada valida automáticamente la URL?</summary>
+<p>No. Facilita tipos y metadatos, pero el componente debe validar el significado y las restricciones del valor.</p>
+</details>
+<details>
+<summary>4. ¿El PID siempre es la interfaz del servicio?</summary>
+<p>No. Suele coincidir con el nombre completo de la implementación, salvo configuración explícita. Verifica el PID real en el descriptor y runtime.</p>
+</details>
+<details>
+<summary>5. ¿config.author.dev completa propiedades de config.author?</summary>
+<p>No. Entre candidatas aplicables, la más específica se selecciona para el PID completo. Las propiedades omitidas no se heredan por mezcla del documento anterior.</p>
+</details>
+<details>
+<summary>6. ¿Un placeholder no vacío prueba que la variable existe?</summary>
+<p>No. Puede haber quedado sin interpolar. Valida que el valor esté resuelto y sea aceptable antes de usarlo.</p>
+</details>
+<details>
+<summary>7. ¿Lanzar una excepción en @Modified revierte automáticamente la configuración?</summary>
+<p>No. La modificación no es una transacción con rollback automático. Conservar estado válido anterior o deshabilitar la capacidad requiere una política explícita.</p>
+</details>
+<details>
+<summary>8. ¿Cuándo necesitas un servlet nuevo?</summary>
+<p>Cuando un consumidor HTTP necesita un contrato distinto que las superficies existentes no satisfacen. Debes definir también validación, permisos, errores y caché.</p>
+</details>
+<h3>Tres casos para aplicar las decisiones</h3>
+<details>
+<summary>Caso A · El timeout general es 2000, pero el archivo específico no lo incluye. ¿Qué debes comprobar?</summary>
+<p>El documento efectivo del PID y el default aplicable del contrato. No atribuyas el valor a una mezcla de archivos. Si el entorno necesita explícitamente 2000, asegúralo en su configuración o default documentado.</p>
+</details>
+<details>
+<summary>Caso B · El endpoint HTTPS es correcto, pero el servicio habilitado conserva un placeholder de token. ¿Puede operar?</summary>
+<p>Si la integración requiere ese token, no. Trátalo como entrada imprescindible sin resolver y aplica el fallo seguro previsto; no registres el valor ni inventes credenciales.</p>
+</details>
+<details>
+<summary>Caso C · JavaScript necesita exactamente los datos que ya devuelve un Model Exporter. ¿Añadirías un servlet?</summary>
+<p>Primero comprobaría que el contrato exportado, sus permisos y caché sirven al consumidor. Si los satisface, reutilizaría esa superficie en vez de duplicar la implementación.</p>
+</details>
+<p>Si algo no queda claro, pregunta al agente con el consumidor, el PID y la evidencia no sensible. Puedes pedir otro caso de selección de configuración antes de ver su solución.</p>
+<p><a id="fuentes"></a></p>
+<h2>12. Glosario y fuentes</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Término</th>
+<th>Definición de referencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Capacidad</td>
+<td>Trabajo con una responsabilidad y un consumidor identificables.</td>
+</tr>
+<tr>
+<td>PID</td>
+<td>Identidad persistente a la que se dirige una configuración OSGi.</td>
+</tr>
+<tr>
+<td>Metatype</td>
+<td>Descripción de tipos y atributos de configuración.</td>
+</tr>
+<tr>
+<td>Configuration Admin</td>
+<td>Servicio OSGi que administra configuraciones.</td>
+</tr>
+<tr>
+<td>Run mode</td>
+<td>Condición del entorno usada para seleccionar configuración.</td>
+</tr>
+<tr>
+<td>Interpolación</td>
+<td>Sustitución de un placeholder por un valor operativo.</td>
+</tr>
+<tr>
+<td>Configuración efectiva</td>
+<td>Valores aplicados al PID en el runtime seleccionado.</td>
+</tr>
+<tr>
+<td>Tier</td>
+<td>Servicio del entorno, como Author o Publish.</td>
+</tr>
+<tr>
+<td>Servlet</td>
+<td>Componente que atiende un contrato de petición y respuesta HTTP.</td>
+</tr>
+<tr>
+<td>Selector</td>
+<td>Parte de la URL que participa en la selección de procesamiento Sling.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Se mantienen las definiciones de <a href="session-16-study-guide.html#fuentes">OSGi en la sesión 16</a> y <a href="session-17-study-guide.html#fuentes">Sling Models en la 17</a>.</p>
+<p><strong>Lectura principal:</strong> <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/deploying/configuring-osgi">Configuring OSGi for AEM as a Cloud Service — Adobe</a>. Prioriza selección por PID, interpolación y comprobación efectiva.</p>
+<p>Fuentes de preparación, consultadas el 8 de septiembre de 2026:</p>
+<ul>
+<li><a href="../lessons/0018-osgi-services-configuration-servlets.html">Sesión 18 y diapositivas</a>, <a href="../slides/lesson-18/outline.md">outline</a> y <a href="../slides/lesson-18/speech.md">notas del presentador</a>.</li>
+<li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/using-cloud-manager/environment-variables">Environment Variables — Adobe</a>.</li>
+<li><a href="https://docs.osgi.org/specification/osgi.cmpn/8.1.0/service.metatype.html">Metatype — OSGi</a>.</li>
+<li><a href="https://docs.osgi.org/specification/osgi.cmpn/8.1.0/service.component.html">Declarative Services — OSGi</a>.</li>
+<li><a href="https://sling.apache.org/documentation/the-sling-engine/servlets.html">Servlets and Scripts — Apache Sling</a>.</li>
+</ul>
+<p>Los nombres y fragmentos son ilustrativos; no representan un servicio instalado por esta guía. Las APIs del proyecto determinan los imports y versiones aplicables. La <a href="session-19-study-guide.html">guía de la sesión 19</a> muestra cómo proteger estos contratos con pruebas, sin adelantar autenticación personalizada ni operaciones de Cloud Manager.</p>
+<p><a id="practica-local"></a></p>
+<h2>Práctica local · Del servicio OSGi al HTML (35–45 min)</h2>
+<p><strong>Objetivo:</strong> ver un título authored y un mensaje de configuración en el mismo componente. El recorrido es configuración → servicio → Sling Model → HTL. Se usan las APIs que ya incluye WKND; no necesitas un servlet para renderizar esta página.</p>
+<p><strong>Requisitos:</strong> proyecto WKND Sites tradicional o Archetype que ya compile, JDK/Maven compatibles con ese proyecto y Author local en <code>http://localhost:4502</code>. Este repositorio contiene material del curso, no el reactor Maven de AEM: los archivos se copian a TU proyecto AEM.</p>
+<p>Los ejemplos completos usan el package <code>com.adobe.aem.guides.wknd.core.training</code> y <code>/apps/wknd</code>. En Archetype sustituye ese prefijo por el de tus clases actuales, tanto en Java como en <code>data-sly-use</code>, en el nombre del PID <code>.cfg.json</code> y en las rutas <code>/apps</code>. No sustituyas los imports de Sling/OSGi. Usa el directorio OSGi ya existente de tu <code>ui.config</code> si tiene otro nombre.</p>
+<ol>
+<li>Copia los seis archivos de abajo conservando sus rutas relativas; no reemplaces los POM ni los filtros completos de tu proyecto.</li>
+<li>Comprueba que el filtro de <code>ui.apps</code> cubre <code>/apps/wknd/components</code> y el de <code>ui.config</code> cubre <code>/apps/wknd/osgiconfig</code>. Si ya cubren esos árboles, no añadas raíces duplicadas.</li>
+<li>El build debe generar descriptores DS (<code>OSGI-INF</code>) y metatype, además de registrar el Sling Model. Mantén los plugins Bnd/Sling del baseline. Si tu manifiesto usa <code>Sling-Model-Packages</code> limitado a <code>.models</code>, añade el package <code>.training</code> a esa lista; si usa el escáner Bnd, comprueba <code>Sling-Model-Classes</code> en el JAR resultante.</li>
+<li>Añade también el <a href="session-19-study-guide.html#practica-local">test completo de la sesión 19</a>, para comprobar los fallbacks de este ejemplo.</li>
+</ol>
+<h3>Archivo: <code>core/src/main/java/com/adobe/aem/guides/wknd/core/training/TrainingMessage.java</code></h3>
+<pre><code class="language-java">package com.adobe.aem.guides.wknd.core.training;
+
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Modified;
+import org.osgi.service.metatype.annotations.AttributeDefinition;
+import org.osgi.service.metatype.annotations.Designate;
+import org.osgi.service.metatype.annotations.ObjectClassDefinition;
+
+@Component(service = TrainingMessage.class)
+@Designate(ocd = TrainingMessage.Config.class)
+public class TrainingMessage {
+    @ObjectClassDefinition(name = &quot;AEM Training - Message&quot;)
+    public @interface Config {
+        @AttributeDefinition(name = &quot;Message&quot;)
+        String message() default &quot;Welcome to Weekend Guides&quot;;
+    }
+
+    private volatile String message;
+
+    @Activate
+    @Modified
+    protected void activate(Config config) {
+        String value = config.message();
+        message = value == null || value.trim().isEmpty()
+                ? &quot;Welcome to Weekend Guides&quot; : value.trim();
+    }
+
+    public String getMessage() {
+        return message;
+    }
+}
+</code></pre>
+<h3>Archivo: <code>core/src/main/java/com/adobe/aem/guides/wknd/core/training/TrainingMessageModel.java</code></h3>
+<pre><code class="language-java">package com.adobe.aem.guides.wknd.core.training;
+
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+
+@Model(adaptables = Resource.class)
+public class TrainingMessageModel {
+    @OSGiService
+    private TrainingMessage trainingMessage;
+
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    private String title;
+
+    public String getTitle() {
+        return title == null || title.trim().isEmpty() ? &quot;Weekend Guides&quot; : title.trim();
+    }
+
+    public String getMessage() {
+        return trainingMessage.getMessage();
+    }
+}
+</code></pre>
+<h3>Archivo: <code>ui.apps/src/main/content/jcr_root/apps/wknd/components/training-message/.content.xml</code></h3>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;jcr:root xmlns:jcr=&quot;http://www.jcp.org/jcr/1.0&quot;
+    xmlns:cq=&quot;http://www.day.com/jcr/cq/1.0&quot;
+    jcr:primaryType=&quot;cq:Component&quot;
+    jcr:title=&quot;Training Message&quot;
+    componentGroup=&quot;WKND Sites Project - Content&quot;/&gt;
+</code></pre>
+<h3>Archivo: <code>ui.apps/src/main/content/jcr_root/apps/wknd/components/training-message/_cq_dialog/.content.xml</code></h3>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;jcr:root xmlns:jcr=&quot;http://www.jcp.org/jcr/1.0&quot;
+    xmlns:sling=&quot;http://sling.apache.org/jcr/sling/1.0&quot;
+    jcr:primaryType=&quot;nt:unstructured&quot;
+    jcr:title=&quot;Training Message&quot;
+    sling:resourceType=&quot;cq/gui/components/authoring/dialog&quot;&gt;
+    &lt;content jcr:primaryType=&quot;nt:unstructured&quot;
+        sling:resourceType=&quot;granite/ui/components/coral/foundation/container&quot;&gt;
+        &lt;items jcr:primaryType=&quot;nt:unstructured&quot;&gt;
+            &lt;title jcr:primaryType=&quot;nt:unstructured&quot;
+                sling:resourceType=&quot;granite/ui/components/coral/foundation/form/textfield&quot;
+                fieldLabel=&quot;Title&quot; name=&quot;./title&quot;/&gt;
+        &lt;/items&gt;
+    &lt;/content&gt;
+&lt;/jcr:root&gt;
+</code></pre>
+<h3>Archivo: <code>ui.apps/src/main/content/jcr_root/apps/wknd/components/training-message/training-message.html</code></h3>
+<pre><code class="language-html">&lt;section data-sly-use.model=&quot;com.adobe.aem.guides.wknd.core.training.TrainingMessageModel&quot;&gt;
+    &lt;h2&gt;${model.title}&lt;/h2&gt;
+    &lt;p&gt;${model.message}&lt;/p&gt;
+&lt;/section&gt;
+</code></pre>
+<h3>Archivo: <code>ui.config/src/main/content/jcr_root/apps/wknd/osgiconfig/config.author/com.adobe.aem.guides.wknd.core.training.TrainingMessage.cfg.json</code></h3>
+<pre><code class="language-json">{
+  &quot;message&quot;: &quot;Hello from local Author&quot;
+}
+</code></pre>
+<h3>Compilar e instalar</h3>
+<p>Desde la raíz de TU proyecto AEM, ejecuta primero las pruebas. El segundo comando supone el perfil <code>autoInstallSinglePackage</code> del baseline WKND/Archetype y Author en 4502; compruébalo en tu POM antes de usar otro puerto o credenciales.</p>
+<pre><code class="language-sh">mvn -pl core -Dtest=TrainingMessageTest test
+mvn clean install -PautoInstallSinglePackage
+</code></pre>
+<h3>Pasos en Author y resultado esperado</h3>
+<ol>
+<li>Abre <code>/system/console/bundles</code> en tu Author local y confirma que el bundle <code>core</code> está Active.</li>
+<li>En <code>/system/console/components</code>, busca <code>com.adobe.aem.guides.wknd.core.training.TrainingMessage</code>. Un servicio DS diferido puede estar <strong>Satisfied</strong> antes del primer consumo; después debe activarse al usar el modelo.</li>
+<li>En <code>/system/console/configMgr</code>, busca <strong>AEM Training - Message</strong> y verifica <code>Hello from local Author</code>. La configuración fuente está en <code>config.author</code>, sin depender de un run mode <code>dev</code> adicional.</li>
+<li>En Sites crea una página de laboratorio dentro de tu sitio, con un template editable que permita un contenedor. En <strong>Edit Template → Structure</strong>, selecciona ese contenedor, abre su política y permite <strong>Training Message</strong>. Usa una política de laboratorio si la actual afecta otras páginas.</li>
+<li>Regresa a la página, inserta <strong>Training Message</strong>, abre su diálogo y escribe <code>My local guide</code>. Guarda y abre Preview: debes ver el título y <code>Hello from local Author</code>.</li>
+<li>Vacía el título: debe aparecer <code>Weekend Guides</code>. Cambia el mensaje del <code>.cfg.json</code>, vuelve a desplegar y recarga: cambia el párrafo, pero el título authored se conserva.</li>
+<li>Opcional, sólo en SDK: cambia el mensaje en ConfigMgr y comprueba <code>@Modified</code> recargando la página. Vuelve a dejar el valor de Git; verifica configuración efectiva después de desplegar, porque una edición de consola puede dejar un override local.</li>
+</ol>
+<p><strong>Aceptación:</strong> captura del componente, PID efectivo y prueba verde. Si falla la creación del modelo, revisa registro y servicio obligatorio; no lo vuelvas opcional para ocultar la ausencia. El contenido de los getters se escapa con el contexto de texto de HTL: no uses <code>context='unsafe'</code>.</p>
+<p><strong>Limpieza:</strong> elimina sólo la página de laboratorio y revierte la política de prueba; conserva el código hasta terminar las sesiones 19 y 20. Las ediciones en ConfigMgr son una comprobación local, no el mecanismo de configuración Cloud.</p>
+<p>Fuentes: <a href="https://sling.apache.org/documentation/bundles/models.html">inyección y registro de Sling Models</a> y <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/deploying/configuring-osgi">configuración OSGi en AEM Cloud</a>.</p>
+  </main>
+  <footer><a href="../lessons/0018-osgi-services-configuration-servlets.html#slide-deck">Volver a las diapositivas de la sesión 18</a> · <a href="session-18-study-guide.md" download>Descargar Markdown</a></footer>
+</body>
+</html>

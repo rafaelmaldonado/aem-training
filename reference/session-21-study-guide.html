@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Guía profunda de preparación para la sesión 21: MSM, Live Copies, herencia, sincronización y excepciones locales en AEM, con casos y repaso.">
+  <title>Sesión 21 · Guía de preparación · AEM Training</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body class="study-guide">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <nav class="site-nav" aria-label="Principal">
+    <a class="brand" href="../index.html">AEM Training</a>
+    <ul>
+      <li><a href="../lessons/0021-msm-foundations.html#slide-deck">Diapositivas 21</a></li>
+      <li><a href="index.html">Referencias</a></li>
+      <li><a href="session-21-study-guide.md" download>Markdown</a></li>
+    </ul>
+  </nav>
+  <header>
+    <p class="eyebrow">Preparación · Semana 5 · Sesión 21</p>
+    <h1>Sesión 21 · Fundamentos de Multi-Site Management en AEM</h1>
+    <p class="lede">Fuente, herencia, acción y resultado: predice la sincronización y conserva las diferencias locales que el mercado necesita.</p>
+    <ul class="meta"><li>Español</li><li>Lectura: 20–25 minutos</li><li>Repaso: 5–10 minutos</li><li>Imprimible desde el navegador</li></ul>
+  <p lang="es"><a href="#practica-local">Práctica local: archivos completos y pasos verificables</a></p>
+  </header>
+  <main id="contenido">
+<p><strong>Guía profunda de preparación · Lunes 14 de septiembre de 2026 · Español</strong></p>
+<p><a href="session-21-study-guide.html">Abrir la versión HTML</a> · <a href="../lessons/0021-msm-foundations.html#slide-deck">Ver las diapositivas</a> · <a href="../slides/lesson-21/speech.md">Notas del presentador</a></p>
+<p>La sesión 21 abre la semana 5 con Multi-Site Management, o MSM. El objetivo es seguir una relación desde una fuente hasta su Live Copy, predecir qué cambiará al sincronizar y conservar una excepción local deliberada. El caso central utiliza un origen en inglés y dos sitios de mercado del mismo idioma.</p>
+<blockquote>
+<p><strong>La cadena que debes poder explicar es fuente → herencia → acción → resultado.</strong> Dos páginas iguales no prueban una relación MSM; una relación activa tampoco demuestra que todos sus componentes estén sincronizados.</p>
+</blockquote>
+<h2>Cómo estudiar esta guía</h2>
+<ul>
+<li><strong>Primera lectura, 20–25 minutos:</strong> sigue la página de Canadá y distingue lo heredado de lo que su equipo mantiene localmente.</li>
+<li><strong>Recuperación, 5–10 minutos:</strong> responde las preguntas antes de abrir sus soluciones y predice los cambios de la matriz del caso práctico.</li>
+<li><strong>Antes de la sesión:</strong> explica sin mirar las diferencias entre Synchronize, Rollout, Reset y Detach.</li>
+<li><strong>Después de la sesión:</strong> registra una relación real y una sincronización controlada en el entorno de práctica. Si sólo estudias la guía, conserva las predicciones como hipótesis; no las presentes como resultados observados en AEM.</li>
+</ul>
+<p><strong>Resultado esperado:</strong> demostrar de dónde hereda una página, identificar una excepción a nivel de componente y justificar el alcance de la acción seleccionada. El curso se centra en AEM Sites tradicional sobre AEM as a Cloud Service; esta preparación no diseña una topología MSM de producción ni modifica contenido real.</p>
+<h2>Índice</h2>
+<ol>
+<li><a href="#relacion">MSM es una relación mantenida</a></li>
+<li><a href="#objetos">Fuente, blueprint y Live Copy</a></li>
+<li><a href="#idiomas">Idioma y mercado en el árbol de sitios</a></li>
+<li><a href="#herencia">Herencia y propiedad local</a></li>
+<li><a href="#inspeccion">Inspeccionar antes de actuar</a></li>
+<li><a href="#sincronizacion">Synchronize y Rollout</a></li>
+<li><a href="#configuracion">Trigger y acciones de rollout</a></li>
+<li><a href="#acciones">Cancelar, suspender, restablecer o separar</a></li>
+<li><a href="#localizacion">MSM, traducción e i18n</a></li>
+<li><a href="#caso">Caso integrado y evidencia</a></li>
+<li><a href="#repaso">Repaso con respuestas</a></li>
+<li><a href="#fuentes">Glosario y fuentes</a></li>
+</ol>
+<p><a id="relacion"></a></p>
+<h2>1. MSM es una relación mantenida</h2>
+<p>MSM permite reutilizar contenido en distintas ubicaciones de AEM Sites conservando relaciones entre recursos equivalentes. La fuente proporciona contenido; el destino puede recibir cambios posteriores mediante sincronización.</p>
+<pre><code class="language-text">Fuente ── relación mantenida ──► Live Copy
+   └── cambios posteriores ───► sincronización según configuración
+
+Fuente ── copia puntual ──────► contenido independiente
+</code></pre>
+<p>Una copia puntual puede tener el mismo texto y diseño que la fuente. Esa igualdad sólo describe el estado actual; no prueba que mañana reciba cambios.</p>
+<p>Tampoco interpretes «Live» como actualización inmediata permanente. La propagación depende del trigger, las acciones configuradas, el alcance y el estado de herencia. Con una configuración de sincronización explícita, guardar la fuente no significa que el destino ya haya recibido el cambio.</p>
+<p>El valor práctico de MSM es equilibrar reutilización y variaciones locales. Sin un origen claro, varios equipos duplican el mismo mantenimiento. Sin excepciones explícitas, una actualización central puede entrar en conflicto con necesidades de un mercado. Base: <a href="../slides/lesson-21/speech.md">notas de la sesión, slides 2 y 5</a>.</p>
+<p><a id="objetos"></a></p>
+<h2>2. Fuente, blueprint y Live Copy</h2>
+<p>Estas palabras se relacionan, pero no identifican el mismo objeto:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Qué representa</th>
+<th>Pregunta que responde</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Source o fuente</td>
+<td>Página o rama de contenido de origen.</td>
+<td>¿De dónde provienen los valores heredados?</td>
+</tr>
+<tr>
+<td>Blueprint configuration</td>
+<td>Configuración que identifica un sitio fuente y habilita flujos de creación y rollout.</td>
+<td>¿Qué origen está preparado para ese flujo de autoría?</td>
+</tr>
+<tr>
+<td>Live Copy</td>
+<td>Contenido destino con relaciones mantenidas hacia su origen.</td>
+<td>¿Qué sitio o rama recibe los cambios?</td>
+</tr>
+<tr>
+<td>LiveRelationship</td>
+<td>Relación efectiva de un recurso destino con su contraparte fuente.</td>
+<td>¿Este recurso concreto sigue relacionado?</td>
+</tr>
+<tr>
+<td>Rollout configuration</td>
+<td>Reglas de cuándo y cómo se sincroniza.</td>
+<td>¿Qué evento ejecuta qué acciones?</td>
+</tr>
+</tbody>
+</table></div>
+<p>En la documentación, <strong>blueprint</strong> también puede referirse a la fuente. Por eso conviene decir «página fuente» o «configuración de blueprint» cuando la diferencia importa.</p>
+<p>Una Live Copy puede crearse a partir de una fuente normal sin blueprint configuration. El flujo Create Site usa un blueprint predefinido; una Live Copy creada directamente puede sincronizarse desde el destino aunque no disponga del mismo botón Rollout en la fuente. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm/overview">Vocabulario y flujos de MSM — Adobe</a>.</p>
+<p>No confundas esta herencia de contenido con la herencia Java ni con el <code>sling:resourceSuperType</code> de componentes estudiado en la <a href="session-17-study-guide.html#delegacion">sesión 17</a>. Reutilizar una implementación de Core Component no crea por sí solo una relación Live Copy entre dos páginas.</p>
+<p><a id="idiomas"></a></p>
+<h2>3. Idioma y mercado en el árbol de sitios</h2>
+<p>El ejemplo WKND distingue la fuente de cada idioma de las variantes para mercados:</p>
+<pre><code class="language-text">/content/wknd
+    language-masters
+        en                 ← fuente principal en inglés
+        fr                 ← fuente principal en francés
+    us
+        en                 ← posible Live Copy del origen inglés
+    ca
+        en                 ← posible Live Copy del origen inglés
+        fr                 ← posible Live Copy del origen francés
+</code></pre>
+<p>Las rutas son representativas. Su existencia en un proyecto no demuestra que las relaciones ya estén configuradas.</p>
+<p>Un <strong>language root</strong> identifica la rama de un idioma. El <strong>language master</strong> es la fuente principal de autoría para ese idioma dentro de esta organización. Una rama de mercado como Canadá/inglés puede reutilizar ese contenido y mantener diferencias locales.</p>
+<p>El recorrido del ejemplo es:</p>
+<pre><code class="language-text">/content/wknd/language-masters/en
+        ├── MSM → /content/wknd/us/en
+        └── MSM → /content/wknd/ca/en
+</code></pre>
+<p>El idioma y el mercado son dimensiones diferentes: compartir inglés no obliga a compartir todas las ofertas, y pertenecer a Canadá no convierte inglés y francés en una misma rama de contenido.</p>
+<p>La distribución dentro del mismo idioma es el patrón de esta sesión, no un motor de traducción ni una afirmación de que MSM traduzca al conectar rutas con distintos códigos de idioma. Base: <a href="../slides/lesson-21/speech.md">notas de la sesión, slide 4</a>.</p>
+<p><a id="herencia"></a></p>
+<h2>4. Herencia y propiedad local</h2>
+<p>Imagina una página con Header, Hero y Offer. Canadá necesita un mensaje específico en Hero, pero debe seguir recibiendo el encabezado y la oferta comunes.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Componente de la Live Copy</th>
+<th>Estado deseado</th>
+<th>Dueño del contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Header</td>
+<td>Heredado</td>
+<td>Equipo del origen.</td>
+</tr>
+<tr>
+<td>Hero</td>
+<td>Herencia cancelada para una variación local</td>
+<td>Equipo de Canadá.</td>
+</tr>
+<tr>
+<td>Offer</td>
+<td>Heredado</td>
+<td>Equipo del origen.</td>
+</tr>
+</tbody>
+</table></div>
+<p>La acción adecuada es cancelar herencia en el componente que necesita la excepción, no desconectar la página completa. Los hermanos conservan su relación y reciben los cambios elegibles de una sincronización ordinaria.</p>
+<p><strong>Cancelar herencia del componente afecta a ese componente, no sólo al campo que tienes en mente.</strong> Si el requisito es «un título local», comprueba qué otros valores quedan bajo mantenimiento local al cancelar su herencia. No prometas una protección por propiedad cuando la acción elegida tiene alcance de componente.</p>
+<p>Una excepción debería tener responsable y motivo. «Hero local porque existe una campaña canadiense» explica por qué debe sobrevivir al siguiente rollout; «alguien desbloqueó esto» no permite decidir si la diferencia es correcta.</p>
+<h3>Restaurar la relación no es actualizar el contenido</h3>
+<p>Re-enable Inheritance devuelve al origen la capacidad de aportar contenido. La sincronización sigue siendo una operación distinta. No interpretes el botón como una garantía de que ya se copiaron los valores actuales de la fuente.</p>
+<p>Antes de sincronizar después de reactivar herencia, identifica el valor local que dejará de estar protegido. Si debe conservarse como referencia, registra la evidencia antes del cambio. Base: <a href="../slides/lesson-21/speech.md">notas de la sesión, slide 5</a>.</p>
+<p><a id="inspeccion"></a></p>
+<h2>5. Inspeccionar antes de actuar</h2>
+<p>Empieza por la ubicación exacta del síntoma. «La página de Canadá está desactualizada» todavía no identifica qué relación falla.</p>
+<ol>
+<li>Registra la ruta destino y el componente o propiedad que observas.</li>
+<li>En las propiedades de la página, revisa la pestaña Live Copy.</li>
+<li>Identifica la fuente, la herencia y las configuraciones de rollout aplicables.</li>
+<li>Comprueba el estado del componente concreto; el estado general de la página no basta.</li>
+<li>Desde la fuente, usa References → Live Copies → Live Copy Overview para comparar relaciones y estructura donde ese flujo esté disponible.</li>
+</ol>
+<p>La consola de overview ayuda a situar las Live Copies respecto a su fuente y ofrece acciones relacionadas con su estado. Las opciones visibles dependen del contexto seleccionado y de los permisos. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm/live-copy-overview">Live Copy Overview — Adobe</a>.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Evidencia</th>
+<th>Lo que demuestra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dos páginas visualmente iguales</td>
+<td>Coincidencia actual del resultado.</td>
+</tr>
+<tr>
+<td>Ruta fuente en las propiedades Live Copy</td>
+<td>Origen configurado de esa relación.</td>
+</tr>
+<tr>
+<td>Estado del componente</td>
+<td>Si ese recurso hereda o mantiene una excepción.</td>
+</tr>
+<tr>
+<td>Configuración aplicable</td>
+<td>Qué desencadena y ejecuta la sincronización.</td>
+</tr>
+<tr>
+<td>Valores antes y después</td>
+<td>Efecto concreto observado de una acción.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Si el repositorio o Author ya tienen el valor esperado y sólo la web publicada muestra otro, has llegado a otra frontera de diagnóstico. Revisa publicación y entrega según corresponda; repetir MSM sin comprobar el contenido destino no aporta evidencia.</p>
+<p><a id="sincronizacion"></a></p>
+<h2>6. Synchronize y Rollout</h2>
+<p>Las dos acciones llevan cambios de la fuente al destino. Lo que cambia es el punto desde el que se inicia y selecciona la operación.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Synchronize</th>
+<th>Rollout</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inicio manual</td>
+<td>Live Copy.</td>
+<td>Fuente/blueprint en el flujo disponible.</td>
+</tr>
+<tr>
+<td>Perspectiva</td>
+<td>El destino solicita cambios de su fuente.</td>
+<td>El origen envía cambios a los destinos seleccionados.</td>
+</tr>
+<tr>
+<td>Destinos</td>
+<td>Live Copy seleccionada y alcance elegido.</td>
+<td>Una o varias Live Copies, según selección.</td>
+</tr>
+<tr>
+<td>Reglas de actualización</td>
+<td>Configuración de rollout efectiva.</td>
+<td>Configuración de rollout efectiva.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Synchronize no sube los cambios de Canadá al language master.</strong> Pull describe que el destino solicita la actualización, no que se invierta el origen del contenido.</p>
+<p>Antes de ejecutar cualquiera, completa esta frase:</p>
+<blockquote>
+<p>Desde esta fuente actualizaré estos destinos, con este alcance y configuración. Espero que cambien estos componentes y que permanezca local esta excepción.</p>
+</blockquote>
+<p>«Una página» y «esa página con descendientes» son alcances diferentes. Tampoco ejecutar Rollout significa necesariamente afectar a todas las Live Copies existentes: comprueba la selección del diálogo y el ámbito real.</p>
+<p>Una Live Copy puede ser superficial, de una página, o profunda, incluyendo descendientes. Esa característica de la relación no sustituye revisar el alcance de la operación elegida. Esta guía no propone cambiar la profundidad como atajo para resolver un componente desactualizado.</p>
+<p>Base: <a href="../slides/lesson-21/speech.md">notas de la sesión, slide 7</a>.</p>
+<p><a id="configuracion"></a></p>
+<h2>7. Trigger y acciones de rollout</h2>
+<p>Separa <strong>cuándo</strong> empieza una sincronización de <strong>qué</strong> hace:</p>
+<pre><code class="language-text">Trigger → configuración de rollout → acciones → cambios elegibles
+</code></pre>
+<p>La configuración estándar utiliza el trigger <strong>On Rollout</strong>, tanto para la orden Rollout como para Synchronize. Puede ejecutar operaciones de actualización, copia, eliminación, ordenación y actualización de referencias.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Nombre representativo</th>
+<th>Tipo de operación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>contentUpdate</code></td>
+<td>Actualizar contenido elegible.</td>
+</tr>
+<tr>
+<td><code>contentCopy</code></td>
+<td>Copiar contenido fuente que falta en el destino.</td>
+</tr>
+<tr>
+<td><code>contentDelete</code></td>
+<td>Eliminar contenido dentro de las reglas de la acción.</td>
+</tr>
+<tr>
+<td><code>referencesUpdate</code></td>
+<td>Actualizar referencias según sus reglas.</td>
+</tr>
+<tr>
+<td><code>orderChildren</code></td>
+<td>Ajustar el orden de hijos.</td>
+</tr>
+</tbody>
+</table></div>
+<p>La tabla es un mapa de lectura, no un listado completo ni una promesa de afectar todo nodo. Comprueba exclusiones y comportamiento de las acciones instaladas. Las configuraciones efectivas pueden proceder de la Live Copy, su fuente, la jerarquía o el valor predeterminado; no deduzcas cuál se usa por el nombre del sitio.</p>
+<p>Otros triggers responden a modificación, activación o desactivación. <strong>On Modification</strong> puede afectar al rendimiento; activarlo para no tener que pensar cuándo sincronizar cambia el contrato operativo. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm/live-copy-sync-config">Configuración de sincronización — Adobe</a>.</p>
+<p>La sincronización estándar no equivale por sí sola a publicar el destino. Si una configuración añade acciones de activación, ése es un comportamiento adicional que debes comprobar.</p>
+<p>Empieza por la configuración instalada que cumple el requisito. Crear una acción personalizada de rollout añade mantenimiento y consecuencias sobre muchos destinos; no forma parte del objetivo de esta sesión. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm/best-practices">Buenas prácticas de MSM — Adobe</a>.</p>
+<p><a id="acciones"></a></p>
+<h2>8. Cancelar, suspender, restablecer o separar</h2>
+<p>Elige la acción por su alcance y su efecto sobre la relación, no por el parecido entre sus nombres.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Acción</th>
+<th>Intención</th>
+<th>Impacto que debes anticipar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cancel Inheritance</td>
+<td>Permitir una excepción local en el componente seleccionado.</td>
+<td>Ese componente deja de recibir cambios heredados ordinarios.</td>
+</tr>
+<tr>
+<td>Re-enable Inheritance</td>
+<td>Devolver al origen la propiedad del contenido heredado.</td>
+<td>Restablece la herencia; sincronizar el contenido es otra decisión.</td>
+</tr>
+<tr>
+<td>Suspend</td>
+<td>Pausar temporalmente la relación de una página en el alcance elegido.</td>
+<td>Detiene su propagación heredada mientras permanezca suspendida.</td>
+</tr>
+<tr>
+<td>Resume</td>
+<td>Recuperar una relación suspendida.</td>
+<td>Puede acompañarse de sincronización si se solicita.</td>
+</tr>
+<tr>
+<td>Reset</td>
+<td>Retirar cancelaciones y devolver el alcance afectado al estado fuente.</td>
+<td>Sobrescribe cambios locales afectados.</td>
+</tr>
+<tr>
+<td>Detach</td>
+<td>Eliminar permanentemente la relación.</td>
+<td>No tiene un Resume que deshaga la separación.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Reset no es un refresco inocuo.</strong> Si el Hero local tiene que conservarse, resetear la página puede contradecir directamente ese requisito. «Quiero recibir lo heredado» y «quiero descartar mis diferencias locales» son intenciones distintas.</p>
+<p><strong>Detach tampoco es una pausa.</strong> La operación elimina la relación MSM. En una subrama cuyo padre sigue relacionado, un rollout posterior del padre puede producir conflictos, renombrar páginas separadas y crear nuevas Live Copies. No lo interpretes como un modo universal de proteger una rama frente a cualquier operación del ancestro.</p>
+<p>En Resume, el diálogo puede permitir solicitar sincronización además de restaurar la herencia. Distingue ambas decisiones al explicar el resultado. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm/creating-live-copies">Acciones y alcance de Live Copy — Adobe</a>.</p>
+<p>Para una necesidad pequeña, utiliza la acción más pequeña que la resuelve. Antes de Reset o Detach en una práctica, identifica el ámbito exacto y las diferencias que perderías; no los uses como pasos de diagnóstico por defecto.</p>
+<p><a id="localizacion"></a></p>
+<h2>9. MSM, traducción e i18n</h2>
+<p>Un texto localizado incorrecto puede pertenecer a tres problemas distintos:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Capa</th>
+<th>Qué resuelve</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MSM</td>
+<td>Reutilización y distribución de contenido entre ubicaciones relacionadas.</td>
+<td>Inglés del language master hacia Canadá/inglés.</td>
+</tr>
+<tr>
+<td>Traducción</td>
+<td>Creación y mantenimiento de contenido authored en otro idioma.</td>
+<td>Texto de una página inglesa a su versión francesa.</td>
+</tr>
+<tr>
+<td>i18n</td>
+<td>Etiquetas de interfaz del componente.</td>
+<td>Traducción de la etiqueta fija «Read more».</td>
+</tr>
+</tbody>
+</table></div>
+<p>Una campaña canadiense redactada en inglés puede ser una excepción comercial local sin involucrar traducción. Una página francesa incompleta no se arregla automáticamente sincronizando texto inglés. Una etiqueta fija sin traducir exige revisar el contrato de i18n del componente, no cancelar la herencia de toda la página.</p>
+<p>En el patrón del curso, primero existe contenido fuente para cada idioma y después MSM lo distribuye a los mercados correspondientes. Las decisiones de traducción y reutilización se coordinan, pero siguen siendo responsabilidades distintas. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm-and-translation">MSM y traducción — Adobe</a>.</p>
+<p>No todo texto dentro de un componente es una etiqueta de diccionario: un título escrito por el autor es contenido. Clasifica primero quién lo produce y dónde se almacena.</p>
+<p><a id="caso"></a></p>
+<h2>10. Caso integrado y evidencia</h2>
+<p>Utiliza una página de práctica y su Live Copy del mismo idioma. Estos paths y valores son ilustrativos; no afirman que existan en tu SDK:</p>
+<pre><code class="language-text">Fuente:  /content/wknd/language-masters/en/adventures
+Destino: /content/wknd/ca/en/adventures
+</code></pre>
+<h3>Primero predice el resultado</h3>
+<p>Supón que Header y Offer siguen heredando, Hero tiene la herencia cancelada y la configuración ejecuta las actualizaciones ordinarias de contenido dentro del alcance elegido:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Fuente después de editar</th>
+<th>Destino antes de sincronizar</th>
+<th>Destino esperado después</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Header heredado</td>
+<td><code>Explore the outdoors</code></td>
+<td><code>Welcome to WKND</code></td>
+<td><code>Explore the outdoors</code></td>
+</tr>
+<tr>
+<td>Hero local</td>
+<td><code>Summer adventures</code></td>
+<td><code>Explore Canada</code></td>
+<td><code>Explore Canada</code></td>
+</tr>
+<tr>
+<td>Offer heredado</td>
+<td><code>New guided routes</code></td>
+<td><code>Weekend routes</code></td>
+<td><code>New guided routes</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>El éxito tiene dos partes: <strong>se actualiza lo que debe heredar y se conserva lo que debe permanecer local</strong>. Comprobar sólo Header dejaría sin verificar la excepción que justificaba el ejercicio.</p>
+<h3>Después ejecuta en el entorno de práctica</h3>
+<ol>
+<li>Confirma fuente, destino y relación real antes de editar.</li>
+<li>Registra los valores iniciales y la configuración aplicable.</li>
+<li>Si el ejercicio lo requiere, cancela herencia sólo en Hero y establece su valor local.</li>
+<li>Cambia valores de la fuente con alcance controlado.</li>
+<li>Anota la predicción y ejecuta una Synchronize o Rollout explícita con la selección revisada.</li>
+<li>Compara los tres resultados y registra diferencias entre predicción y observación.</li>
+</ol>
+<p>Si no coincide el resultado, revisa la relación y la acción antes de modificar más contenido:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Síntoma</th>
+<th>Primera investigación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nada cambió</td>
+<td>Fuente, destino, trigger ejecutado, alcance y suspensión.</td>
+</tr>
+<tr>
+<td>Sólo un componente quedó distinto</td>
+<td>Cancelación local y reglas de ese recurso.</td>
+</tr>
+<tr>
+<td>Se perdió una excepción</td>
+<td>Acción utilizada, estado previo y alcance de un posible Reset.</td>
+</tr>
+<tr>
+<td>El texto coincide pero el orden cambió</td>
+<td>Herencia del contenedor y acciones de ordenación.</td>
+</tr>
+<tr>
+<td>Author está bien y Publish no</td>
+<td>Publicación y entrega tras comprobar el contenido destino.</td>
+</tr>
+<tr>
+<td>El idioma o etiqueta es incorrecto</td>
+<td>Contenido traducido o i18n, según su procedencia.</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Mapa de evidencias</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Qué registrar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fuente</td>
+<td>Ruta y componente origen.</td>
+</tr>
+<tr>
+<td>Destino</td>
+<td>Ruta y recurso equivalente.</td>
+</tr>
+<tr>
+<td>Relación</td>
+<td>Evidencia de Live Copy, estado de página y estado de componente.</td>
+</tr>
+<tr>
+<td>Propiedad local</td>
+<td>Responsable, motivo y valores que deben conservarse.</td>
+</tr>
+<tr>
+<td>Configuración</td>
+<td>Trigger y acciones efectivamente aplicables.</td>
+</tr>
+<tr>
+<td>Operación</td>
+<td>Synchronize o Rollout, punto de inicio y selección.</td>
+</tr>
+<tr>
+<td>Alcance</td>
+<td>Página, descendientes y destinos incluidos.</td>
+</tr>
+<tr>
+<td>Predicción</td>
+<td>Qué debería cambiar y qué debería mantenerse.</td>
+</tr>
+<tr>
+<td>Resultado</td>
+<td>Valores antes/después y explicación de cualquier diferencia.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Criterio de preparación:</strong> explicar la tabla completa sin apoyarte sólo en capturas del aspecto final. El ejercicio exige evidencia de contenido y relación, no simplemente que dos páginas se vean parecidas.</p>
+<p><a id="repaso"></a></p>
+<h2>11. Repaso con respuestas</h2>
+<p>Responde antes de desplegar cada solución. Este repaso es personal; el cierre de la presentación sigue reservado a preguntas de la audiencia.</p>
+<details>
+<summary>1. ¿Dos páginas idénticas prueban que una es Live Copy de la otra?</summary>
+<p>No. Sólo prueban igualdad actual. Debes comprobar la relación, la fuente configurada y el estado del recurso.</p>
+</details>
+<details>
+<summary>2. ¿Un language master es lo mismo que una blueprint configuration?</summary>
+<p>No. El primero es contenido fuente organizado por idioma; la segunda configura un origen para determinados flujos de creación y rollout.</p>
+</details>
+<details>
+<summary>3. ¿Qué dirección tienen los datos al usar Synchronize desde Canadá?</summary>
+<p>Van de la fuente hacia Canadá. El destino solicita la actualización; no envía sus cambios locales de vuelta al language master.</p>
+</details>
+<details>
+<summary>4. ¿Cómo conservarías un Hero local sin desconectar Header y Offer?</summary>
+<p>Cancelaría la herencia en Hero, comprobaría el alcance de esa excepción y mantendría vinculados los otros componentes.</p>
+</details>
+<details>
+<summary>5. ¿Re-enable Inheritance garantiza que ya se copiaron los valores de la fuente?</summary>
+<p>No. Restaurar herencia y sincronizar contenido son decisiones distintas. Comprueba qué acción se solicitó y qué valores cambiaron.</p>
+</details>
+<details>
+<summary>6. ¿Qué distingue un trigger de una acción de rollout?</summary>
+<p>El trigger determina cuándo se ejecuta; la acción determina qué operación realiza sobre el contenido. La configuración reúne esas reglas.</p>
+</details>
+<details>
+<summary>7. ¿Por qué Reset no es un reemplazo habitual de Synchronize?</summary>
+<p>Porque Reset elimina cancelaciones y devuelve el alcance al estado fuente, sobrescribiendo diferencias locales afectadas. Puede destruir la excepción que pretendías conservar.</p>
+</details>
+<details>
+<summary>8. ¿MSM traduce el contenido al copiarlo a otra rama de idioma?</summary>
+<p>No. MSM reutiliza contenido mediante relaciones. La traducción de contenido y los diccionarios i18n resuelven otras responsabilidades.</p>
+</details>
+<h3>Cuatro casos para elegir la siguiente acción</h3>
+<details>
+<summary>Caso A · Header cambia tras sincronizar y Hero conserva «Explore Canada». ¿Hay un fallo?</summary>
+<p>No necesariamente. Si Header hereda y Hero tiene una excepción local deliberada, ése es el resultado esperado. Confirma el estado de ambos componentes.</p>
+</details>
+<details>
+<summary>Caso B · Reanudaste una página suspendida, pero conserva texto anterior. ¿Qué comprobarías?</summary>
+<p>Si sólo restauraste la relación o también solicitaste sincronización. Después comprueba configuración, alcance y cancelaciones de componentes antes de ejecutar otra acción.</p>
+</details>
+<details>
+<summary>Caso C · Quieres una variación local temporal y alguien propone Detach. ¿Qué revisarías?</summary>
+<p>Detach es permanente y no tiene una reanudación inversa. Para una excepción de componente, revisa Cancel Inheritance; para una pausa de página, Suspend con el alcance adecuado.</p>
+</details>
+<details>
+<summary>Caso D · El contenido francés está bien, pero «Read more» aparece en inglés. ¿Por dónde empezarías?</summary>
+<p>Por la procedencia de la etiqueta. Si es una cadena fija de interfaz, revisa su i18n y contexto de idioma, en vez de resetear la Live Copy o repetir la traducción de la página.</p>
+</details>
+<p>Si algo no está claro, pregunta al agente con las rutas, el estado de herencia, la acción elegida y el resultado esperado. Puedes pedir otro caso para practicar la predicción antes de ver su solución.</p>
+<p><a id="fuentes"></a></p>
+<h2>12. Glosario y fuentes</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Término</th>
+<th>Definición de referencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MSM</td>
+<td>Multi Site Manager: reutilización de contenido mediante relaciones Live Copy.</td>
+</tr>
+<tr>
+<td>Fuente</td>
+<td>Contenido desde el que se hereda.</td>
+</tr>
+<tr>
+<td>Blueprint configuration</td>
+<td>Configuración que identifica un sitio fuente para flujos MSM.</td>
+</tr>
+<tr>
+<td>Live Copy</td>
+<td>Destino que mantiene relaciones hacia contenido fuente.</td>
+</tr>
+<tr>
+<td>LiveRelationship</td>
+<td>Relación efectiva de un recurso con su contraparte fuente.</td>
+</tr>
+<tr>
+<td>Language master</td>
+<td>Fuente principal de autoría de un idioma en el patrón del curso.</td>
+</tr>
+<tr>
+<td>Herencia</td>
+<td>Participación del recurso en la recepción de contenido fuente al sincronizar.</td>
+</tr>
+<tr>
+<td>Override local</td>
+<td>Diferencia mantenida deliberadamente por el destino.</td>
+</tr>
+<tr>
+<td>Rollout configuration</td>
+<td>Reglas de trigger y acciones de sincronización.</td>
+</tr>
+<tr>
+<td>Shallow / deep</td>
+<td>Live Copy de una página / incluyendo páginas descendientes.</td>
+</tr>
+<tr>
+<td>i18n</td>
+<td>Internacionalización de cadenas de interfaz, distinta de traducir contenido authored.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Lectura principal:</strong> <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm/overview">Reusing Content: Multi Site Manager and Live Copy — Adobe</a>. Prioriza vocabulario, composición de Live Copies y el ejemplo de language masters.</p>
+<p>Fuentes de preparación, consultadas el 8 de septiembre de 2026:</p>
+<ul>
+<li><a href="../lessons/0021-msm-foundations.html">Sesión 21 y diapositivas</a>, <a href="../slides/lesson-21/outline.md">outline</a> y <a href="../slides/lesson-21/speech.md">notas del presentador</a>.</li>
+<li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm/creating-live-copies">Creating and Synchronizing Live Copies — Adobe</a>: herencia, sincronización, Reset y Detach.</li>
+<li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm/live-copy-sync-config">Configuring Live Copy Synchronization — Adobe</a>: triggers y acciones.</li>
+<li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm/live-copy-overview">Live Copy Overview Console — Adobe</a>: inspección y operación de relaciones.</li>
+<li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm/best-practices">MSM Best Practices — Adobe</a>: límites y decisiones de mantenimiento.</li>
+<li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm-and-translation">Multi Site Manager and Translation — Adobe</a>: separación entre distribución y traducción.</li>
+</ul>
+<p><strong>Alcance:</strong> relaciones de páginas AEM Sites, herencia y operaciones estándar. El diseño de topologías de producción, las acciones personalizadas, los conectores de traducción y Assets MSM quedan fuera de esta preparación. Las rutas y resultados del caso son ilustrativos; no se ha ejecutado ninguna operación MSM al crear esta guía.</p>
+<p><a id="practica-local"></a></p>
+<h2>Práctica local · Una Live Copy con una excepción (25–35 min)</h2>
+<p><strong>Requisitos:</strong> Author SDK local, permisos para crear páginas y Live Copies y un template editable con dos componentes Title o Text permitidos. No hace falta código ni blueprint configuration: se usará <strong>Synchronize desde el destino</strong>. Los nombres de controles pueden variar con el SDK o el idioma de la interfaz.</p>
+<ol>
+<li>En <code>http://localhost:4502/sites.html/content</code>, dentro de un sitio funcional de tu baseline (por ejemplo <code>/content/wknd/us/en</code>), crea una página contenedora llamada <code>msm-lab</code> usando su template. Registra su ruta real; todos los pasos siguientes ocurren debajo de esa rama.</li>
+<li>Bajo <code>msm-lab</code>, crea una página <code>source</code> y añade <strong>dos componentes de contenido editables</strong>. Escribe <code>Shared heading v1</code> en el primero y <code>Shared offer v1</code> en el segundo. No uses componentes bloqueados por la estructura del template para esta demostración.</li>
+<li>En Sites selecciona <code>msm-lab</code>, elige <strong>Create → Live Copy</strong>, indica <code>source</code> como origen, elige <code>msm-lab</code> como destino y llama <code>canada</code> a la copia. Mantén el mismo idioma. Selecciona <strong>Standard rollout config</strong> si el asistente lo solicita y finaliza. No uses Copy/Paste.</li>
+<li>En las propiedades de <code>canada</code>, abre <strong>Live Copy</strong> y confirma la ruta fuente exacta y la configuración de rollout. Registra esa evidencia antes de editar.</li>
+<li>Abre <code>canada</code> en el editor. Selecciona sólo el <strong>segundo componente</strong>, usa <strong>Cancel Inheritance</strong> (icono de enlace/candado según SDK), confirma y cambia su texto a <code>Canada local offer</code>. Deja el primer componente heredado.</li>
+<li>En <code>source</code>, cambia los textos a <code>Shared heading v2</code> y <code>Shared offer v2</code>; guarda. Predice por escrito qué debe quedar en <code>canada</code>.</li>
+<li>Regresa a Sites, selecciona <code>canada</code> y usa <strong>Synchronize</strong> desde la barra o las propiedades Live Copy. Confirma origen y alcance: sólo esta página, sin descendientes. La acción no requiere un Rollout en la fuente.</li>
+<li>Recarga <code>canada</code>: el primer componente debe mostrar <code>Shared heading v2</code>, y el segundo debe conservar <code>Canada local offer</code>. Si no sucede, inspecciona estado del componente, configuración y alcance antes de repetir.</li>
+<li>En el segundo componente reactiva herencia. Si el diálogo ofrece sincronizar ahora, deja esa opción sin marcar para observar las dos operaciones por separado. Luego solicita Synchronize explícitamente y comprueba <code>Shared offer v2</code>.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Momento</th>
+<th>Primer componente</th>
+<th>Segundo componente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tras crear Live Copy</td>
+<td>Shared heading v1</td>
+<td>Shared offer v1</td>
+</tr>
+<tr>
+<td>Tras excepción y Synchronize</td>
+<td>Shared heading v2</td>
+<td>Canada local offer</td>
+</tr>
+<tr>
+<td>Tras reactivar y sincronizar</td>
+<td>Shared heading v2</td>
+<td>Shared offer v2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Aceptación:</strong> captura de la relación y de las dos salidas posteriores, con ruta fuente, destino y componente que perdió la protección local. La matriz es una predicción a comprobar, no evidencia de una instancia ya ejecutada.</p>
+<p><strong>Limpieza:</strong> elimina sólo la rama <code>msm-lab</code> cuando termines y después de conservar evidencia. No uses Reset ni Detach como parte de esta práctica: no son necesarios para demostrar una excepción de componente. No ejecutes acciones contra las Live Copies reales de WKND.</p>
+<p>Fuente: <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/msm/creating-live-copies">crear y sincronizar Live Copies — Adobe</a>.</p>
+  </main>
+  <footer><a href="../lessons/0021-msm-foundations.html#slide-deck">Volver a las diapositivas de la sesión 21</a> · <a href="session-21-study-guide.md" download>Descargar Markdown</a></footer>
+</body>
+</html>

@@ -1,5 +1,7 @@
 # Class 19 · Testing Sling Models and services with JUnit 5 and AEM Mocks
 
+**Guía de preparación en español:** [Abrir en el navegador](../../reference/session-19-study-guide.html) · [Resumen en Markdown](../../reference/session-19-study-guide.md).
+
 **Date:** Thursday, September 10, 2026  
 **Audience:** frontend-oriented developers beginning AEM backend testing  
 **Duration:** 30 minutes online  

@@ -1,5 +1,7 @@
 # Class 18 · OSGi services, configuration and servlet boundaries
 
+**Guía de preparación en español:** [Abrir en el navegador](../../reference/session-18-study-guide.html) · [Resumen en Markdown](../../reference/session-18-study-guide.md).
+
 ## Slide 1: OSGi services, configuration and servlet boundaries
 
 Introduce Class 18, the 30-minute scope and the session’s three threads: reusable services, typed configuration and endpoint decisions.

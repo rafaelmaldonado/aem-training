@@ -1,5 +1,7 @@
 # Class 21 · Multi-Site Management foundations
 
+**Guía de preparación en español:** [Abrir en el navegador](../../reference/session-21-study-guide.html) · [Resumen en Markdown](../../reference/session-21-study-guide.md).
+
 ## Slide 1: Multi-Site Management foundations
 
 Today we begin Week 5 with Multi-Site Management. The session follows four connected ideas: live relationships, inheritance, synchronization and local ownership. We will develop each one in the following slides.

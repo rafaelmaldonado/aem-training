@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="group">aem-training</entry>
+    <entry key="name">package-lab</entry>
+    <entry key="version">1.0.0</entry>
+    <entry key="packageType">content</entry>
+    <entry key="description">Local lab: ordinary content property import modes</entry>
+</properties>

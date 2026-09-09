@@ -22,6 +22,7 @@
     <h1>OSGi services, configuration and servlet boundaries</h1>
     <p class="lede">Give reusable backend behavior one owner, make its effective configuration safe and observable, and add an HTTP endpoint only when a real consumer needs a distinct contract.</p>
     <ul class="meta"><li>30 minutes online</li><li>Backend boundaries for frontend-oriented developers</li><li>Consumer → service → configuration → delivery surface</li></ul>
+  <p lang="es"><a href="#practica-local">Práctica local: archivos completos y pasos verificables</a></p>
   </header>
   <main id="content">
     <section class="callout"><strong>Observable outcome:</strong> each developer can name one reusable service capability, explain how Declarative Services activates it, trace one typed PID to its effective Author or Publish configuration, classify environment values and secrets, and justify HTL, Sling Model, Model Exporter or a constrained servlet for a named consumer.</section>
@@ -57,8 +58,11 @@
       </tbody>
     </table></div>
 
-    <h2>Complete slide deck</h2>
+    <h2 id="slide-deck">Complete slide deck</h2>
     <p class="section-intro">Study each slide with its presenter notes, then copy or download the PNG.</p>
+    <aside class="callout" lang="es" aria-label="Guía de preparación">
+      <strong>Prepárate para la sesión 18:</strong> <a href="../reference/session-18-study-guide.html">abrir el resumen profundo en español</a>, con servicios, configuración por PID, secretos, servlets y repaso con respuestas. <a href="../reference/session-18-study-guide.md" download>Descargar Markdown</a>.
+    </aside>
     <div class="web-deck">
       <article class="web-slide" data-slide-src="../slides/lesson-18/origin_image/slide_01.png">
         <img class="web-slide-image" src="../slides/lesson-18/origin_image/slide_01.png" alt="Class 18 opening slide connecting a Guide Card consumer, configured OSGi service and conditional delivery surfaces.">
@@ -189,6 +193,134 @@
       <li>Compare HTL, Sling Model, existing <code>.model.json</code> and servlet options for one named consumer.</li>
     </ol>
     <p><strong>Acceptance:</strong> the service owns one reusable capability; typed configuration has deliberate defaults and validation; environment values and secrets are classified safely; missing or invalid input produces an explicit state; evidence names the PID and runtime tier; the delivery decision names its consumer, response contract, permissions and cache behavior.</p>
+
+    <section lang="es" aria-label="Práctica local">
+<p><a id="practica-local"></a></p>
+<h2>Práctica local · Del servicio OSGi al HTML (35–45 min)</h2>
+<p><strong>Objetivo:</strong> ver un título authored y un mensaje de configuración en el mismo componente. El recorrido es configuración → servicio → Sling Model → HTL. Se usan las APIs que ya incluye WKND; no necesitas un servlet para renderizar esta página.</p>
+<p><strong>Requisitos:</strong> proyecto WKND Sites tradicional o Archetype que ya compile, JDK/Maven compatibles con ese proyecto y Author local en <code>http://localhost:4502</code>. Este repositorio contiene material del curso, no el reactor Maven de AEM: los archivos se copian a TU proyecto AEM.</p>
+<p>Los ejemplos completos usan el package <code>com.adobe.aem.guides.wknd.core.training</code> y <code>/apps/wknd</code>. En Archetype sustituye ese prefijo por el de tus clases actuales, tanto en Java como en <code>data-sly-use</code>, en el nombre del PID <code>.cfg.json</code> y en las rutas <code>/apps</code>. No sustituyas los imports de Sling/OSGi. Usa el directorio OSGi ya existente de tu <code>ui.config</code> si tiene otro nombre.</p>
+<ol>
+<li>Copia los seis archivos de abajo conservando sus rutas relativas; no reemplaces los POM ni los filtros completos de tu proyecto.</li>
+<li>Comprueba que el filtro de <code>ui.apps</code> cubre <code>/apps/wknd/components</code> y el de <code>ui.config</code> cubre <code>/apps/wknd/osgiconfig</code>. Si ya cubren esos árboles, no añadas raíces duplicadas.</li>
+<li>El build debe generar descriptores DS (<code>OSGI-INF</code>) y metatype, además de registrar el Sling Model. Mantén los plugins Bnd/Sling del baseline. Si tu manifiesto usa <code>Sling-Model-Packages</code> limitado a <code>.models</code>, añade el package <code>.training</code> a esa lista; si usa el escáner Bnd, comprueba <code>Sling-Model-Classes</code> en el JAR resultante.</li>
+<li>Añade también el <a href="../reference/session-19-study-guide.html#practica-local">test completo de la sesión 19</a>, para comprobar los fallbacks de este ejemplo.</li>
+</ol>
+<h3>Archivo: <code>core/src/main/java/com/adobe/aem/guides/wknd/core/training/TrainingMessage.java</code></h3>
+<pre><code class="language-java">package com.adobe.aem.guides.wknd.core.training;
+
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Modified;
+import org.osgi.service.metatype.annotations.AttributeDefinition;
+import org.osgi.service.metatype.annotations.Designate;
+import org.osgi.service.metatype.annotations.ObjectClassDefinition;
+
+@Component(service = TrainingMessage.class)
+@Designate(ocd = TrainingMessage.Config.class)
+public class TrainingMessage {
+    @ObjectClassDefinition(name = &quot;AEM Training - Message&quot;)
+    public @interface Config {
+        @AttributeDefinition(name = &quot;Message&quot;)
+        String message() default &quot;Welcome to Weekend Guides&quot;;
+    }
+
+    private volatile String message;
+
+    @Activate
+    @Modified
+    protected void activate(Config config) {
+        String value = config.message();
+        message = value == null || value.trim().isEmpty()
+                ? &quot;Welcome to Weekend Guides&quot; : value.trim();
+    }
+
+    public String getMessage() {
+        return message;
+    }
+}
+</code></pre>
+<h3>Archivo: <code>core/src/main/java/com/adobe/aem/guides/wknd/core/training/TrainingMessageModel.java</code></h3>
+<pre><code class="language-java">package com.adobe.aem.guides.wknd.core.training;
+
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+
+@Model(adaptables = Resource.class)
+public class TrainingMessageModel {
+    @OSGiService
+    private TrainingMessage trainingMessage;
+
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    private String title;
+
+    public String getTitle() {
+        return title == null || title.trim().isEmpty() ? &quot;Weekend Guides&quot; : title.trim();
+    }
+
+    public String getMessage() {
+        return trainingMessage.getMessage();
+    }
+}
+</code></pre>
+<h3>Archivo: <code>ui.apps/src/main/content/jcr_root/apps/wknd/components/training-message/.content.xml</code></h3>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;jcr:root xmlns:jcr=&quot;http://www.jcp.org/jcr/1.0&quot;
+    xmlns:cq=&quot;http://www.day.com/jcr/cq/1.0&quot;
+    jcr:primaryType=&quot;cq:Component&quot;
+    jcr:title=&quot;Training Message&quot;
+    componentGroup=&quot;WKND Sites Project - Content&quot;/&gt;
+</code></pre>
+<h3>Archivo: <code>ui.apps/src/main/content/jcr_root/apps/wknd/components/training-message/_cq_dialog/.content.xml</code></h3>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;jcr:root xmlns:jcr=&quot;http://www.jcp.org/jcr/1.0&quot;
+    xmlns:sling=&quot;http://sling.apache.org/jcr/sling/1.0&quot;
+    jcr:primaryType=&quot;nt:unstructured&quot;
+    jcr:title=&quot;Training Message&quot;
+    sling:resourceType=&quot;cq/gui/components/authoring/dialog&quot;&gt;
+    &lt;content jcr:primaryType=&quot;nt:unstructured&quot;
+        sling:resourceType=&quot;granite/ui/components/coral/foundation/container&quot;&gt;
+        &lt;items jcr:primaryType=&quot;nt:unstructured&quot;&gt;
+            &lt;title jcr:primaryType=&quot;nt:unstructured&quot;
+                sling:resourceType=&quot;granite/ui/components/coral/foundation/form/textfield&quot;
+                fieldLabel=&quot;Title&quot; name=&quot;./title&quot;/&gt;
+        &lt;/items&gt;
+    &lt;/content&gt;
+&lt;/jcr:root&gt;
+</code></pre>
+<h3>Archivo: <code>ui.apps/src/main/content/jcr_root/apps/wknd/components/training-message/training-message.html</code></h3>
+<pre><code class="language-html">&lt;section data-sly-use.model=&quot;com.adobe.aem.guides.wknd.core.training.TrainingMessageModel&quot;&gt;
+    &lt;h2&gt;${model.title}&lt;/h2&gt;
+    &lt;p&gt;${model.message}&lt;/p&gt;
+&lt;/section&gt;
+</code></pre>
+<h3>Archivo: <code>ui.config/src/main/content/jcr_root/apps/wknd/osgiconfig/config.author/com.adobe.aem.guides.wknd.core.training.TrainingMessage.cfg.json</code></h3>
+<pre><code class="language-json">{
+  &quot;message&quot;: &quot;Hello from local Author&quot;
+}
+</code></pre>
+<h3>Compilar e instalar</h3>
+<p>Desde la raíz de TU proyecto AEM, ejecuta primero las pruebas. El segundo comando supone el perfil <code>autoInstallSinglePackage</code> del baseline WKND/Archetype y Author en 4502; compruébalo en tu POM antes de usar otro puerto o credenciales.</p>
+<pre><code class="language-sh">mvn -pl core -Dtest=TrainingMessageTest test
+mvn clean install -PautoInstallSinglePackage
+</code></pre>
+<h3>Pasos en Author y resultado esperado</h3>
+<ol>
+<li>Abre <code>/system/console/bundles</code> en tu Author local y confirma que el bundle <code>core</code> está Active.</li>
+<li>En <code>/system/console/components</code>, busca <code>com.adobe.aem.guides.wknd.core.training.TrainingMessage</code>. Un servicio DS diferido puede estar <strong>Satisfied</strong> antes del primer consumo; después debe activarse al usar el modelo.</li>
+<li>En <code>/system/console/configMgr</code>, busca <strong>AEM Training - Message</strong> y verifica <code>Hello from local Author</code>. La configuración fuente está en <code>config.author</code>, sin depender de un run mode <code>dev</code> adicional.</li>
+<li>En Sites crea una página de laboratorio dentro de tu sitio, con un template editable que permita un contenedor. En <strong>Edit Template → Structure</strong>, selecciona ese contenedor, abre su política y permite <strong>Training Message</strong>. Usa una política de laboratorio si la actual afecta otras páginas.</li>
+<li>Regresa a la página, inserta <strong>Training Message</strong>, abre su diálogo y escribe <code>My local guide</code>. Guarda y abre Preview: debes ver el título y <code>Hello from local Author</code>.</li>
+<li>Vacía el título: debe aparecer <code>Weekend Guides</code>. Cambia el mensaje del <code>.cfg.json</code>, vuelve a desplegar y recarga: cambia el párrafo, pero el título authored se conserva.</li>
+<li>Opcional, sólo en SDK: cambia el mensaje en ConfigMgr y comprueba <code>@Modified</code> recargando la página. Vuelve a dejar el valor de Git; verifica configuración efectiva después de desplegar, porque una edición de consola puede dejar un override local.</li>
+</ol>
+<p><strong>Aceptación:</strong> captura del componente, PID efectivo y prueba verde. Si falla la creación del modelo, revisa registro y servicio obligatorio; no lo vuelvas opcional para ocultar la ausencia. El contenido de los getters se escapa con el contexto de texto de HTL: no uses <code>context='unsafe'</code>.</p>
+<p><strong>Limpieza:</strong> elimina sólo la página de laboratorio y revierte la política de prueba; conserva el código hasta terminar las sesiones 19 y 20. Las ediciones en ConfigMgr son una comprobación local, no el mecanismo de configuración Cloud.</p>
+<p>Fuentes: <a href="https://sling.apache.org/documentation/bundles/models.html">inyección y registro de Sling Models</a> y <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/deploying/configuring-osgi">configuración OSGi en AEM Cloud</a>.</p>
+    </section>
 
     <h2>Official reading</h2>
     <ul>
