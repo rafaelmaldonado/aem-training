@@ -1,0 +1,501 @@
+{
+  "run_status": "slides_recorded",
+  "deck_name": "lesson-24",
+  "selected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "Per-slide Class 24 JSON job, Class 23 slide 07 used only as style reference",
+    "size": "16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-23/origin_image/slide_07.png",
+    "input_context_preparation": "Parent inspected Class23 slide07; each worker must inspect it and supply it as style reference.",
+    "handoff_rule": "Use built-in image_gen only with reference path. User requested same established workflow; prior authorization to omit intermediate confirmations persists."
+  },
+  "max_concurrent_slides": 3,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "Content Fragments and Experience Fragments",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-23/origin_image/slide_07.png",
+          "role": "Established course style: Class 23 slide 07",
+          "fidelity": "Match ivory grid, navy condensed headings, cobalt/violet/green/orange semantic accents, thin rules and technical diagrams. Vary layouts; no repeated filler cards."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_01.json",
+        "prompt_sha256": "6f62f59be9a5387c3d40314f7144d8197e9c4b67d579b39f9dd369cecad813aa",
+        "dispatched_at": "2026-09-10T17:41:55Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0823e-4bdb-78b0-b077-a751d5d29e21/exec-c5ce7f81-c529-47cb-82cb-75a5bab68662.png",
+        "selected_source_sha256": "efdf4af5e9e9b579e0ef1bca7ccfe6c973db9b05eb7ab004a2a5c8165372ee21",
+        "final_image": "origin_image/slide_01.png",
+        "final_image_sha256": "efdf4af5e9e9b579e0ef1bca7ccfe6c973db9b05eb7ab004a2a5c8165372ee21",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent inspected complete image: accurate slide-specific content, readable and consistent with course style.",
+        "recorded_at": "2026-09-10T17:46:18Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "Choose what should be reused",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-23/origin_image/slide_07.png",
+          "role": "Established course style: Class 23 slide 07",
+          "fidelity": "Match ivory grid, navy condensed headings, cobalt/violet/green/orange semantic accents, thin rules and technical diagrams. Vary layouts; no repeated filler cards."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_02",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "30a63cf437d930f46b7fd7f6d3533b70739db29386e900cbc6d64546f5f2ccf6",
+        "dispatched_at": "2026-09-10T17:41:55Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0823e-7d6b-75c3-8624-defc539ff22d/exec-2344e7ff-7f4d-42b7-b98d-9f2d7ab44d52.png",
+        "selected_source_sha256": "b778f68d3ef0f17e07440bfd46af1505e3a2915bef3973beb8f25bd6cba4b63a",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "b778f68d3ef0f17e07440bfd46af1505e3a2915bef3973beb8f25bd6cba4b63a",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent inspected complete image: accurate slide-specific content, readable and consistent with course style.",
+        "recorded_at": "2026-09-10T17:46:18Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "A Content Fragment Model defines the fields",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-23/origin_image/slide_07.png",
+          "role": "Established course style: Class 23 slide 07",
+          "fidelity": "Match ivory grid, navy condensed headings, cobalt/violet/green/orange semantic accents, thin rules and technical diagrams. Vary layouts; no repeated filler cards."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_03",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_03.json",
+        "prompt_sha256": "e945e2bed45c159cd0ded32ede0c5ca7defb6805e2c22e1b5d21e3f85464914e",
+        "dispatched_at": "2026-09-10T17:41:55Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0823e-a9d3-75f2-8b8e-53614fa23d62/exec-ed2cd25e-404a-437b-a459-1dbc3ca6772c.png",
+        "selected_source_sha256": "dacd57fb332a1e8ae26d31b8546558f108b4cae71035a0fc6bf06b1d625949b4",
+        "final_image": "origin_image/slide_03.png",
+        "final_image_sha256": "dacd57fb332a1e8ae26d31b8546558f108b4cae71035a0fc6bf06b1d625949b4",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent inspected complete image: accurate slide-specific content, readable and consistent with course style.",
+        "recorded_at": "2026-09-10T17:46:18Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "Content is separate from its page presentation",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-23/origin_image/slide_07.png",
+          "role": "Established course style: Class 23 slide 07",
+          "fidelity": "Match ivory grid, navy condensed headings, cobalt/violet/green/orange semantic accents, thin rules and technical diagrams. Vary layouts; no repeated filler cards."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_04.json",
+        "prompt_sha256": "665480faee779386c92a8aaf840da98aed4e350af275d64f8cfc451d7c7c3935",
+        "dispatched_at": "2026-09-10T17:46:19Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a08c82-cb2e-70d3-b1c6-8b4dae1ae1be/exec-f636be0f-a32f-4543-913d-121e7717907e.png",
+        "selected_source_sha256": "8c5c078495db8655200859c7d04c5084ae6ca1470923d9cc958f8864c3c2a6c5",
+        "final_image": "origin_image/slide_04.png",
+        "final_image_sha256": "8c5c078495db8655200859c7d04c5084ae6ca1470923d9cc958f8864c3c2a6c5",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent visually verified readable text, page-to-fragment reference arrows and matching course style.",
+        "recorded_at": "2026-09-10T18:11:15Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "Content Fragment variations are authored alternatives",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-23/origin_image/slide_07.png",
+          "role": "Established course style: Class 23 slide 07",
+          "fidelity": "Match ivory grid, navy condensed headings, cobalt/violet/green/orange semantic accents, thin rules and technical diagrams. Vary layouts; no repeated filler cards."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_02",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_05.json",
+        "prompt_sha256": "0a0c7162c13a3a927976f6e2d1aeabfb7c2f2c9844bf51d50c5fd88bd848a777",
+        "dispatched_at": "2026-09-10T17:46:19Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a08c82-ec6d-7aa1-8e84-1cfbe41a6fae/exec-da01f061-443f-4eb1-9478-4b236829909c.png",
+        "selected_source_sha256": "5ddde6b8a7ca3c1cf4b1ff1559649a89ad65b90eb74c949af47215b1b8a411f0",
+        "final_image": "origin_image/slide_05.png",
+        "final_image_sha256": "5ddde6b8a7ca3c1cf4b1ff1559649a89ad65b90eb74c949af47215b1b8a411f0",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent visually verified corrected Content Fragment Component label and explicit reference to Short; readable and style consistent.",
+        "recorded_at": "2026-09-10T18:12:21Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "An Experience Fragment reuses a composed block",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-23/origin_image/slide_07.png",
+          "role": "Established course style: Class 23 slide 07",
+          "fidelity": "Match ivory grid, navy condensed headings, cobalt/violet/green/orange semantic accents, thin rules and technical diagrams. Vary layouts; no repeated filler cards."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_03",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_06.json",
+        "prompt_sha256": "545ddfd190e571069ac74540ff7b5c601867f2a601eb094d51724f396b038587",
+        "dispatched_at": "2026-09-10T17:46:19Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a08c83-1008-70b2-b811-f4f0e77ad359/exec-536c28d8-7716-4ae3-ba9d-7a55154b30c2.png",
+        "selected_source_sha256": "c94e3e156e33ab6ccc4889a85b5b24afd03685ac0fa02797a37b47c6ff992fa0",
+        "final_image": "origin_image/slide_06.png",
+        "final_image_sha256": "c94e3e156e33ab6ccc4889a85b5b24afd03685ac0fa02797a37b47c6ff992fa0",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent visually verified legible text, XF composition and both references pointing toward the variation; unrelated kicker removed by image backend.",
+        "recorded_at": "2026-09-10T18:12:08Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "Locate the fragment and its definition",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-23/origin_image/slide_07.png",
+          "role": "Established course style: Class 23 slide 07",
+          "fidelity": "Match ivory grid, navy condensed headings, cobalt/violet/green/orange semantic accents, thin rules and technical diagrams. Vary layouts; no repeated filler cards."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_07.json",
+        "prompt_sha256": "57dabb89c7f2d5f970d1799b1fe77d916dc94fba5777b5784cfdc98cd85b0d44",
+        "dispatched_at": "2026-09-10T18:11:35Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a08c82-cb2e-70d3-b1c6-8b4dae1ae1be/exec-6855d94d-8323-4f07-bb6f-91e4bf5a58e0.png",
+        "selected_source_sha256": "bf1f1403d2ef54162434c98d2056786468d72b28ba10cc369d35062c776a3f95",
+        "final_image": "origin_image/slide_07.png",
+        "final_image_sha256": "bf1f1403d2ef54162434c98d2056786468d72b28ba10cc369d35062c776a3f95",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent visually checked technical labels, reference directions, complete readable text and course style.",
+        "recorded_at": "2026-09-10T18:15:16Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "References share a source; copies create another source",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-23/origin_image/slide_07.png",
+          "role": "Established course style: Class 23 slide 07",
+          "fidelity": "Match ivory grid, navy condensed headings, cobalt/violet/green/orange semantic accents, thin rules and technical diagrams. Vary layouts; no repeated filler cards."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_02",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_08.json",
+        "prompt_sha256": "94fad5325dd6d6f1c5c81f2c58587acafb682c21ce913916bf56faf5094a2ee4",
+        "dispatched_at": "2026-09-10T18:12:33Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a08c82-ec6d-7aa1-8e84-1cfbe41a6fae/exec-6b3ced66-a212-4fd2-89ea-20672104ceef.png",
+        "selected_source_sha256": "d97f806bf84158b3bc49f3bef1b70b31aaafa5f8a5bd7c4b6e15b3f8dc2566f0",
+        "final_image": "origin_image/slide_08.png",
+        "final_image_sha256": "d97f806bf84158b3bc49f3bef1b70b31aaafa5f8a5bd7c4b6e15b3f8dc2566f0",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent visually checked technical labels, reference directions, complete readable text and course style.",
+        "recorded_at": "2026-09-10T18:15:16Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Author preview does not prove Publish completeness",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-23/origin_image/slide_07.png",
+          "role": "Established course style: Class 23 slide 07",
+          "fidelity": "Match ivory grid, navy condensed headings, cobalt/violet/green/orange semantic accents, thin rules and technical diagrams. Vary layouts; no repeated filler cards."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_03",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "761c722e338d4630ada115e19f704d3be6704a1bfb7f8130b61146e1791b309a",
+        "dispatched_at": "2026-09-10T18:12:52Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a08c83-1008-70b2-b811-f4f0e77ad359/exec-c998db99-8c6c-49e4-9c6f-e41cba8eee6c.png",
+        "selected_source_sha256": "dd2c56ab03f409aa41753535e35cdae7d7fb7ca08dd6dfecdd1ea3ca9a09aae3",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "dd2c56ab03f409aa41753535e35cdae7d7fb7ca08dd6dfecdd1ea3ca9a09aae3",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent visually checked technical labels, reference directions, complete readable text and course style.",
+        "recorded_at": "2026-09-10T18:15:17Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_10",
+      "number": 10,
+      "title": "Two simple examples in local Author",
+      "job": "prompts/slide_10.json",
+      "out": "origin_image/slide_10.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-23/origin_image/slide_07.png",
+          "role": "Established course style: Class 23 slide 07",
+          "fidelity": "Match ivory grid, navy condensed headings, cobalt/violet/green/orange semantic accents, thin rules and technical diagrams. Vary layouts; no repeated filler cards."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_10.json",
+        "prompt_sha256": "d77ca5d0666e31d035b530f428afe416c847d26c32b1fed3cff2cac163eb8531",
+        "dispatched_at": "2026-09-10T18:15:31Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a08c82-cb2e-70d3-b1c6-8b4dae1ae1be/exec-ed42b8b4-9b5e-403b-9b38-b8e380d60bed.png",
+        "selected_source_sha256": "674692046faa916c1e5e28c0030d05c1a30ca33506e475a75c52b330f17d3eeb",
+        "final_image": "origin_image/slide_10.png",
+        "final_image_sha256": "674692046faa916c1e5e28c0030d05c1a30ca33506e475a75c52b330f17d3eeb",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent visually verified all required text, correct technical meaning, readable layout and consistent style.",
+        "recorded_at": "2026-09-10T18:17:57Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_11",
+      "number": 11,
+      "title": "Key takeaways",
+      "job": "prompts/slide_11.json",
+      "out": "origin_image/slide_11.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-23/origin_image/slide_07.png",
+          "role": "Established course style: Class 23 slide 07",
+          "fidelity": "Match ivory grid, navy condensed headings, cobalt/violet/green/orange semantic accents, thin rules and technical diagrams. Vary layouts; no repeated filler cards."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_02",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_11.json",
+        "prompt_sha256": "fd0ec410b8c42fe17fe32ff15d1d19f9bc7c4b2442778ea3421671da4d79d1c1",
+        "dispatched_at": "2026-09-10T18:15:42Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a08c82-ec6d-7aa1-8e84-1cfbe41a6fae/exec-72adc90f-3a72-4ccf-aa8f-60a662c337d5.png",
+        "selected_source_sha256": "2c5ae24094e2cc3fb73c71d4530e799c2cd525f5e9adb198f9328bad6d6484c5",
+        "final_image": "origin_image/slide_11.png",
+        "final_image_sha256": "2c5ae24094e2cc3fb73c71d4530e799c2cd525f5e9adb198f9328bad6d6484c5",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent visually verified all required text, correct technical meaning, readable layout and consistent style.",
+        "recorded_at": "2026-09-10T18:17:57Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_12",
+      "number": 12,
+      "title": "Questions / Thank you",
+      "job": "prompts/slide_12.json",
+      "out": "origin_image/slide_12.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-23/origin_image/slide_07.png",
+          "role": "Established course style: Class 23 slide 07",
+          "fidelity": "Match ivory grid, navy condensed headings, cobalt/violet/green/orange semantic accents, thin rules and technical diagrams. Vary layouts; no repeated filler cards."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_03",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_12.json",
+        "prompt_sha256": "65660a7675a462d602f637970c7998159e8b8a737063e4e006756b14e413dd07",
+        "dispatched_at": "2026-09-10T18:16:01Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a08c83-1008-70b2-b811-f4f0e77ad359/exec-5c08bc34-dd3d-4486-9444-a7c24009256b.png",
+        "selected_source_sha256": "20f990fdea86279e75d31a9591accdc86a187a34468eccae3b8995d25f70469a",
+        "final_image": "origin_image/slide_12.png",
+        "final_image_sha256": "20f990fdea86279e75d31a9591accdc86a187a34468eccae3b8995d25f70469a",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent visually verified all required text, correct technical meaning, readable layout and consistent style.",
+        "recorded_at": "2026-09-10T18:17:58Z"
+      },
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-09-10T18:17:58Z"
+}

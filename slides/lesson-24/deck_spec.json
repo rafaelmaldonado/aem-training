@@ -1,0 +1,350 @@
+{
+  "deck_name": "lesson-24",
+  "title": "Class 24 · Content Fragments and Experience Fragments",
+  "language": "English",
+  "goal": "Choose the appropriate reusable content mechanism in traditional AEM Sites and trace its definitions, references and publication dependencies.",
+  "aspect_ratio": "16:9",
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 3,
+  "outputs": [
+    "PNG slide images",
+    "HTML lesson",
+    "Spanish HTML and Markdown summary",
+    "Simple Author examples with step-by-step instructions"
+  ],
+  "pptx": false,
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "Per-slide Class 24 JSON job, Class 23 slide 07 used only as style reference",
+    "size": "16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-23/origin_image/slide_07.png",
+    "input_context_preparation": "Parent inspected Class23 slide07; each worker must inspect it and supply it as style reference.",
+    "handoff_rule": "Use built-in image_gen only with reference path. User requested same established workflow; prior authorization to omit intermediate confirmations persists."
+  },
+  "approved_style_reference": {
+    "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-23/origin_image/slide_07.png",
+    "role": "Established course style: Class 23 slide 07",
+    "fidelity": "Match ivory grid, navy condensed headings, cobalt/violet/green/orange semantic accents, thin rules and technical diagrams. Vary layouts; no repeated filler cards."
+  },
+  "style": {
+    "name": "technical atlas courseware",
+    "visual_direction": "Technical atlas courseware with structured content, composed experiences and accurate reference diagrams.",
+    "color_palette": "Warm ivory drafting-paper background with a faint square grid; deep navy titles; cobalt for source-to-target flow; violet for configuration; green for valid or protected local state; restrained orange for destructive actions and cautions.",
+    "typography": "Large bold condensed sans-serif headings; crisp sans-serif supporting text; true monospace appearance for repository paths, property names, action names and state values.",
+    "texture_and_finish": "Flat 2D technical diagrams, fine rules, precise page, relationship, configuration and status icons. No gradients, neon, glass, 3D, photography or generic corporate people.",
+    "deck_consistency": "Match Class23 slide07 palette, type, faint drafting grid and semantic colors; vary diagrams and layouts per slide."
+  },
+  "deck_context": {
+    "source_summary": "Traditional AEM Sites on Cloud; local Author SDK examples using existing components. CF means structured content; XF means composed experience.",
+    "core_claim": "Choose the unit of reuse, then trace its definition, references and delivery dependencies.",
+    "canonical_facts": [
+      "Content Fragments use models and are stored as assets.",
+      "Experience Fragments use editable templates and have composed variations.",
+      "Content Fragment variations and XF variations are different features.",
+      "No GraphQL, headless or Target integration in this session."
+    ],
+    "content_constraints": [
+      "No speech, assignments, labs, deliverables or acceptance rubrics.",
+      "English only; no invented screenshots, APIs or repository paths.",
+      "Render only slide-specific text and diagrams; no duplicated points or deck-wide footer claim.",
+      "Reference arrows point from consumer to referenced source. Do not imply copying, automatic synchronization or automatic publication."
+    ]
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Content Fragments and Experience Fragments",
+      "key_points": [
+        "Class 24 · Week 5 · September 17, 2026 · Juan Maldonado",
+        "Structured content · Composed experiences · References · Publication"
+      ],
+      "layout": {
+        "role": "cover",
+        "composition": "Cover: title and metadata, two simple visual motifs for fields and a composed page block. No teaching panels.",
+        "intent": "Cover: title and metadata, two simple visual motifs for fields and a composed page block. No teaching panels."
+      },
+      "local_context": {
+        "required_background": "Cover: title and metadata, two simple visual motifs for fields and a composed page block. No teaching panels."
+      },
+      "constraints": [
+        "No speech, assignments, labs, deliverables or acceptance rubrics.",
+        "English only; no invented screenshots, APIs or repository paths.",
+        "Render only slide-specific text and diagrams; no duplicated points or deck-wide footer claim.",
+        "Reference arrows point from consumer to referenced source. Do not imply copying, automatic synchronization or automatic publication."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Choose what should be reused",
+      "key_points": [
+        "Content Fragment: reusable structured content.",
+        "Experience Fragment: reusable components, content and layout.",
+        "A guide fact sheet fits fields; a shared notice fits a composed block.",
+        "The consuming Sites page still needs the appropriate component."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "Two-column comparison: Guide fact sheet with heading and summary fields versus a Shared notice composed from Title and Text. These are illustrative designs, not screenshots.",
+        "intent": "Two-column comparison: Guide fact sheet with heading and summary fields versus a Shared notice composed from Title and Text. These are illustrative designs, not screenshots."
+      },
+      "local_context": {
+        "required_background": "Two-column comparison: Guide fact sheet with heading and summary fields versus a Shared notice composed from Title and Text. These are illustrative designs, not screenshots."
+      },
+      "constraints": [
+        "No speech, assignments, labs, deliverables or acceptance rubrics.",
+        "English only; no invented screenshots, APIs or repository paths.",
+        "Render only slide-specific text and diagrams; no duplicated points or deck-wide footer claim.",
+        "Reference arrows point from consumer to referenced source. Do not imply copying, automatic synchronization or automatic publication."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "A Content Fragment Model defines the fields",
+      "key_points": [
+        "A model defines field names, data types and validation.",
+        "An enabled model can be allowed on an Assets folder.",
+        "Each fragment supplies values for that model.",
+        "Changing a shared model can affect existing fragments."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "Model schema heading: Single line text, summary: Multi line text → fragment values heading: Trail information, summary: Bring water. Distinguish field label from property name. No JSON or APIs.",
+        "intent": "Model schema heading: Single line text, summary: Multi line text → fragment values heading: Trail information, summary: Bring water. Distinguish field label from property name. No JSON or APIs."
+      },
+      "local_context": {
+        "required_background": "Model schema heading: Single line text, summary: Multi line text → fragment values heading: Trail information, summary: Bring water. Distinguish field label from property name. No JSON or APIs."
+      },
+      "constraints": [
+        "No speech, assignments, labs, deliverables or acceptance rubrics.",
+        "English only; no invented screenshots, APIs or repository paths.",
+        "Render only slide-specific text and diagrams; no duplicated points or deck-wide footer claim.",
+        "Reference arrows point from consumer to referenced source. Do not imply copying, automatic synchronization or automatic publication."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Content is separate from its page presentation",
+      "key_points": [
+        "The fragment stores authored field values.",
+        "A Sites component selects the fragment, variation and elements.",
+        "The component and page styles determine the presentation.",
+        "Reusing a fragment does not require copying its text into each page."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "One Content Fragment referenced by two different page renderings, labelled Page A and Page B. Reference arrows point FROM consuming page TO fragment. No layout stored inside CF; no headless architecture.",
+        "intent": "One Content Fragment referenced by two different page renderings, labelled Page A and Page B. Reference arrows point FROM consuming page TO fragment. No layout stored inside CF; no headless architecture."
+      },
+      "local_context": {
+        "required_background": "One Content Fragment referenced by two different page renderings, labelled Page A and Page B. Reference arrows point FROM consuming page TO fragment. No layout stored inside CF; no headless architecture."
+      },
+      "constraints": [
+        "No speech, assignments, labs, deliverables or acceptance rubrics.",
+        "English only; no invented screenshots, APIs or repository paths.",
+        "Render only slide-specific text and diagrams; no duplicated points or deck-wide footer claim.",
+        "Reference arrows point from consumer to referenced source. Do not imply copying, automatic synchronization or automatic publication."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Content Fragment variations are authored alternatives",
+      "key_points": [
+        "Main content is the starting content.",
+        "A variation provides an alternative set of values.",
+        "The page component explicitly selects the required variation.",
+        "A variation is not automatically a translation or a synchronized copy."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "Main summary Bring water and wear comfortable shoes; short variation Bring water. Label authored alternative and explicit selection. No automatic-sync arrows.",
+        "intent": "Main summary Bring water and wear comfortable shoes; short variation Bring water. Label authored alternative and explicit selection. No automatic-sync arrows."
+      },
+      "local_context": {
+        "required_background": "Main summary Bring water and wear comfortable shoes; short variation Bring water. Label authored alternative and explicit selection. No automatic-sync arrows."
+      },
+      "constraints": [
+        "No speech, assignments, labs, deliverables or acceptance rubrics.",
+        "English only; no invented screenshots, APIs or repository paths.",
+        "Render only slide-specific text and diagrams; no duplicated points or deck-wide footer claim.",
+        "Reference arrows point from consumer to referenced source. Do not imply copying, automatic synchronization or automatic publication."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "An Experience Fragment reuses a composed block",
+      "key_points": [
+        "An editable template supplies structure and allowed components.",
+        "Authors compose content and layout inside a variation.",
+        "A Sites Experience Fragment component references that variation.",
+        "Example: one Title and one Text reused as a shared notice."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "Experience Fragment variation contains Title and Text; two Sites pages reference it. All reference arrows point FROM pages TO variation. No copied content or invented screenshots.",
+        "intent": "Experience Fragment variation contains Title and Text; two Sites pages reference it. All reference arrows point FROM pages TO variation. No copied content or invented screenshots."
+      },
+      "local_context": {
+        "required_background": "Experience Fragment variation contains Title and Text; two Sites pages reference it. All reference arrows point FROM pages TO variation. No copied content or invented screenshots."
+      },
+      "constraints": [
+        "No speech, assignments, labs, deliverables or acceptance rubrics.",
+        "English only; no invented screenshots, APIs or repository paths.",
+        "Render only slide-specific text and diagrams; no duplicated points or deck-wide footer claim.",
+        "Reference arrows point from consumer to referenced source. Do not imply copying, automatic synchronization or automatic publication."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Locate the fragment and its definition",
+      "key_points": [
+        "Content Fragment assets live under /content/dam.",
+        "Content Fragment Models live under /conf.",
+        "Experience Fragment content lives under /content/experience-fragments.",
+        "Editable templates and policies live under /conf."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "Repository map with separate CF and XF branches: definition /conf and authored content paths. /conf boxes must be distinct model versus editable template/policy; not one shared schema. Read-only inspection; no path editing instructions.",
+        "intent": "Repository map with separate CF and XF branches: definition /conf and authored content paths. /conf boxes must be distinct model versus editable template/policy; not one shared schema. Read-only inspection; no path editing instructions."
+      },
+      "local_context": {
+        "required_background": "Repository map with separate CF and XF branches: definition /conf and authored content paths. /conf boxes must be distinct model versus editable template/policy; not one shared schema. Read-only inspection; no path editing instructions."
+      },
+      "constraints": [
+        "No speech, assignments, labs, deliverables or acceptance rubrics.",
+        "English only; no invented screenshots, APIs or repository paths.",
+        "Render only slide-specific text and diagrams; no duplicated points or deck-wide footer claim.",
+        "Reference arrows point from consumer to referenced source. Do not imply copying, automatic synchronization or automatic publication."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "References share a source; copies create another source",
+      "key_points": [
+        "Two pages can reference the same fragment or variation.",
+        "Editing that source can affect both pages when rendered.",
+        "Copying creates separate content with a separate lifecycle.",
+        "Check references before moving, deleting or changing shared content."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "Comparison: two pages with references to one shared notice versus two separate copied notices. Reference arrows FROM pages TO sources. Publication/cache can delay visible changes; no instant propagation promise.",
+        "intent": "Comparison: two pages with references to one shared notice versus two separate copied notices. Reference arrows FROM pages TO sources. Publication/cache can delay visible changes; no instant propagation promise."
+      },
+      "local_context": {
+        "required_background": "Comparison: two pages with references to one shared notice versus two separate copied notices. Reference arrows FROM pages TO sources. Publication/cache can delay visible changes; no instant propagation promise."
+      },
+      "constraints": [
+        "No speech, assignments, labs, deliverables or acceptance rubrics.",
+        "English only; no invented screenshots, APIs or repository paths.",
+        "Render only slide-specific text and diagrams; no duplicated points or deck-wide footer claim.",
+        "Reference arrows point from consumer to referenced source. Do not imply copying, automatic synchronization or automatic publication."
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Author preview does not prove Publish completeness",
+      "key_points": [
+        "Inspect the consuming page, selected fragment and referenced assets.",
+        "Verify required model or template dependencies on the target.",
+        "Publishing one item does not prove every dependency is available.",
+        "Check the target page and its delivery cache after publication."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "Dependency checklist graph rooted in consuming page referencing fragment, model/template and assets. Author and Publish separate boundaries, explicit Verify target; not automatic replication of all dependencies. No publishing root folders.",
+        "intent": "Dependency checklist graph rooted in consuming page referencing fragment, model/template and assets. Author and Publish separate boundaries, explicit Verify target; not automatic replication of all dependencies. No publishing root folders."
+      },
+      "local_context": {
+        "required_background": "Dependency checklist graph rooted in consuming page referencing fragment, model/template and assets. Author and Publish separate boundaries, explicit Verify target; not automatic replication of all dependencies. No publishing root folders."
+      },
+      "constraints": [
+        "No speech, assignments, labs, deliverables or acceptance rubrics.",
+        "English only; no invented screenshots, APIs or repository paths.",
+        "Render only slide-specific text and diagrams; no duplicated points or deck-wide footer claim.",
+        "Reference arrows point from consumer to referenced source. Do not imply copying, automatic synchronization or automatic publication."
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Two simple examples in local Author",
+      "key_points": [
+        "Content Fragment: create heading and summary, then render them in Sites.",
+        "Experience Fragment: compose a Title and Text, then reference its variation.",
+        "Edit the source and refresh the consuming page to observe reuse.",
+        "If a selector is empty, inspect allowed models, templates or components."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "Two short numbered example routes, no assignments, acceptance criteria or new Java. Exact example names Training fact sheet and Training notice. Mention detailed steps in HTML, no placeholder code.",
+        "intent": "Two short numbered example routes, no assignments, acceptance criteria or new Java. Exact example names Training fact sheet and Training notice. Mention detailed steps in HTML, no placeholder code."
+      },
+      "local_context": {
+        "required_background": "Two short numbered example routes, no assignments, acceptance criteria or new Java. Exact example names Training fact sheet and Training notice. Mention detailed steps in HTML, no placeholder code."
+      },
+      "constraints": [
+        "No speech, assignments, labs, deliverables or acceptance rubrics.",
+        "English only; no invented screenshots, APIs or repository paths.",
+        "Render only slide-specific text and diagrams; no duplicated points or deck-wide footer claim.",
+        "Reference arrows point from consumer to referenced source. Do not imply copying, automatic synchronization or automatic publication."
+      ]
+    },
+    {
+      "number": 11,
+      "title": "Key takeaways",
+      "key_points": [
+        "Choose structured fields or a composed experience.",
+        "Separate model/template, fragment and consuming component.",
+        "Reference shared content and manage the impact of changes.",
+        "Verify dependencies and output on the target instance."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "Four numbered concise takeaways with icons separated by rules, no causal arrows between unrelated concepts.",
+        "intent": "Four numbered concise takeaways with icons separated by rules, no causal arrows between unrelated concepts."
+      },
+      "local_context": {
+        "required_background": "Four numbered concise takeaways with icons separated by rules, no causal arrows between unrelated concepts."
+      },
+      "constraints": [
+        "No speech, assignments, labs, deliverables or acceptance rubrics.",
+        "English only; no invented screenshots, APIs or repository paths.",
+        "Render only slide-specific text and diagrams; no duplicated points or deck-wide footer claim.",
+        "Reference arrows point from consumer to referenced source. Do not imply copying, automatic synchronization or automatic publication."
+      ]
+    },
+    {
+      "number": 12,
+      "title": "Questions / Thank you",
+      "key_points": [
+        "Questions",
+        "Thank you."
+      ],
+      "layout": {
+        "role": "Q&A",
+        "composition": "Passive closing ONLY Questions, Thank you. and small 12. No recap or footer claim.",
+        "intent": "Passive closing ONLY Questions, Thank you. and small 12. No recap or footer claim."
+      },
+      "local_context": {
+        "required_background": "Passive closing ONLY Questions, Thank you. and small 12. No recap or footer claim."
+      },
+      "constraints": [
+        "No speech, assignments, labs, deliverables or acceptance rubrics.",
+        "English only; no invented screenshots, APIs or repository paths.",
+        "Render only slide-specific text and diagrams; no duplicated points or deck-wide footer claim.",
+        "Reference arrows point from consumer to referenced source. Do not imply copying, automatic synchronization or automatic publication."
+      ]
+    }
+  ],
+  "approval": {
+    "scope": "User requested same deliverables and workflow for Class24; simple examples and no speech or PPTX.",
+    "style": "Continue Class23 course style",
+    "backend": "built-in image tool",
+    "intermediate_confirmations": "Prior user waiver persists for continuation",
+    "speech": false
+  }
+}

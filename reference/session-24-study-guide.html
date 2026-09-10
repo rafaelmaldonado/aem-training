@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Sesión 24: Content Fragments y Experience Fragments. Resumen y dos ejemplos simples paso a paso en Author."><title>Sesión 24 · Guía de preparación · AEM Training</title><link rel="stylesheet" href="../assets/styles.css"></head>
+<body class="study-guide">
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<nav class="site-nav" aria-label="Principal"><a class="brand" href="../index.html">AEM Training</a><ul><li><a href="../lessons/0024-content-experience-fragments.html">Sesión 24</a></li><li><a href="index.html">Referencias</a></li><li><a href="session-24-study-guide.md" download>Markdown</a></li></ul></nav>
+<header><p class="eyebrow">Preparación · Semana 5 · Sesión 24</p><h1>Sesión 24 · Content Fragments y Experience Fragments</h1><p class="lede">Elige qué reutilizar y relaciona cada fragmento con su definición, sus consumidores y su publicación.</p><ul class="meta"><li>Español</li><li>Repaso con respuestas</li><li>Ejemplos simples en SDK local</li><li>Imprimible</li></ul></header>
+<main id="contenido">
+<p><strong>Resumen de preparación · Jueves 17 de septiembre de 2026 · Español</strong></p>
+<p><a href="session-24-study-guide.html">Versión HTML</a> · <a href="../lessons/0024-content-experience-fragments.html#slide-deck">Diapositivas</a> · <a href="#ejemplos-locales">Ejemplos paso a paso</a></p>
+<p>La sesión 24 trata una decisión habitual en Sites: qué unidad conviene reutilizar y quién controla su presentación. Una ficha con datos y un aviso visual pueden aparecer en muchas páginas, pero eso no significa que deban almacenarse igual.</p>
+<blockquote>
+<p><strong>Define la unidad de reutilización; identifica su fuente y comprueba quién la consume.</strong> Un cambio pequeño en contenido compartido puede verse en varias páginas.</p>
+</blockquote>
+<h2>Índice</h2>
+<ol>
+<li><a href="#eleccion">Elegir CF o XF</a></li>
+<li><a href="#cf">Modelo, fragmento y componente</a></li>
+<li><a href="#variaciones">Variaciones de contenido</a></li>
+<li><a href="#xf">Experiencias compuestas</a></li>
+<li><a href="#repositorio">Ubicación y propiedad</a></li>
+<li><a href="#referencias">Referencias y copias</a></li>
+<li><a href="#publicacion">Publicación y dependencias</a></li>
+<li><a href="#repaso">Repaso con respuestas</a></li>
+<li><a href="#ejemplos-locales">Ejemplo CF: dos campos</a></li>
+<li><a href="#ejemplo-xf">Ejemplo XF: título y texto</a></li>
+<li><a href="#fuentes">Glosario y fuentes</a></li>
+</ol>
+<p><a id="eleccion"></a></p>
+<h2>1. Elegir qué reutilizar</h2>
+<p>Un <strong>Content Fragment (CF)</strong> conserva contenido estructurado independiente de una página. Un <strong>Experience Fragment (XF)</strong> conserva una composición de componentes, contenido y layout. Ambos se pueden consumir en Sites tradicional.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Pregunta</th>
+<th>Content Fragment</th>
+<th>Experience Fragment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>¿Qué reutilizo?</td>
+<td>Valores de campos.</td>
+<td>Un bloque de experiencia compuesto.</td>
+</tr>
+<tr>
+<td>¿Qué define su estructura?</td>
+<td>Content Fragment Model.</td>
+<td>Editable template y componentes permitidos.</td>
+</tr>
+<tr>
+<td>¿Quién decide la presentación?</td>
+<td>El componente consumidor y sus estilos.</td>
+<td>La composición del XF, sus componentes y los estilos del sitio.</td>
+</tr>
+<tr>
+<td>Ejemplo de esta sesión</td>
+<td>Una ficha: heading y summary.</td>
+<td>Un aviso: Title y Text.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Elige según el requisito. Si una misma ficha debe tener distintas presentaciones, unos campos explícitos permiten separar los datos de su renderizado. Si el equipo necesita mantener un aviso compuesto como unidad, un XF conserva esa composición. El tamaño del texto o la cantidad de páginas no bastan para decidir.</p>
+<p>Un XF tampoco es una captura de pantalla: sus componentes se renderizan dentro de un contexto con estilos y anchura disponibles. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/authoring/fragments/content-fragments">Conceptos de fragmentos en Sites — Adobe</a>.</p>
+<p><a id="cf"></a></p>
+<h2>2. Modelo, fragmento y componente son tres piezas</h2>
+<p>El modelo establece los campos; el fragmento contiene valores; el componente de la página los presenta. En nuestro ejemplo, <code>heading</code> y <code>summary</code> son nombres de propiedades del modelo. <code>Trail information</code> y <code>Bring water.</code> son valores de un fragmento concreto.</p>
+<p>La etiqueta que ve el autor y el nombre técnico del campo tienen funciones distintas. Cambiar la etiqueta no equivale a renombrar la propiedad que un consumidor selecciona. Del mismo modo, llamar <code>heading</code> a un campo no lo convierte automáticamente en un elemento HTML de encabezado.</p>
+<p>Piensa en tres cambios distintos: añadir un campo al modelo, editar el valor de una ficha o cambiar los estilos del componente. Cada uno afecta a una pieza diferente. Antes de cambiar un modelo compartido, identifica los fragmentos y consumidores que dependen de él. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/assets/content-fragments/content-fragments-models">Modelos de Content Fragment — Adobe</a>.</p>
+<p><a id="variaciones"></a></p>
+<h2>3. Una variación es una alternativa de contenido</h2>
+<p>El contenido principal es el punto de partida de un CF. Una variación permite mantener otra versión de sus valores, por ejemplo un resumen más breve. El consumidor debe seleccionar cuál mostrar.</p>
+<p>La alternativa <code>short</code> podría conservar <code>Bring water.</code> mientras el contenido principal dice <code>Bring water and wear comfortable shoes.</code>. No deduzcas que una variación se traduce sola, que representa un idioma o que todo cambio del principal se refleja automáticamente en ella. Revisa las acciones de edición/sincronización del editor y el contenido realmente seleccionado.</p>
+<p><strong>Error común:</strong> editar el principal y mirar una página configurada para otra variación. No es necesariamente un fallo de guardado; puede ser una selección distinta. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/assets/content-fragments/content-fragments-variations">Variaciones — Adobe</a>.</p>
+<p><a id="xf"></a></p>
+<h2>4. Un XF conserva una composición</h2>
+<p>En el aviso del ejemplo, Title y Text siguen siendo dos componentes. La variación del XF los agrupa para que la página los utilice como un bloque. Su editable template y sus policies definen la estructura y las opciones de autoría.</p>
+<p>La página contiene un componente Experience Fragment que selecciona una <strong>variación</strong>. Esa referencia no convierte los dos componentes internos en copias editables independientes dentro de la página consumidora. Para cambiar el aviso compartido, abre la fuente XF y edítala allí.</p>
+<p>Las variaciones XF son composiciones alternativas. Una variación creada como Live Copy incorpora reglas MSM; una variación normal no adquiere esas reglas por tener otro nombre. El ejemplo usa únicamente la variación inicial. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-core-components/using/wcm-components/experience-fragment">Componente Experience Fragment — Adobe</a>.</p>
+<p><a id="repositorio"></a></p>
+<h2>5. Ubicar el contenido ayuda a reconocer su responsabilidad</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Pieza</th>
+<th>Ubicación habitual</th>
+<th>Qué inspeccionar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content Fragment</td>
+<td><code>/content/dam</code></td>
+<td>Asset, modelo asociado y valores/variaciones.</td>
+</tr>
+<tr>
+<td>Content Fragment Model</td>
+<td><code>/conf</code></td>
+<td>Definición de campos y estado del modelo.</td>
+</tr>
+<tr>
+<td>Experience Fragment</td>
+<td><code>/content/experience-fragments</code></td>
+<td>Variación y componentes authored.</td>
+</tr>
+<tr>
+<td>Editable template y policies</td>
+<td><code>/conf</code></td>
+<td>Estructura y restricciones de componentes.</td>
+</tr>
+<tr>
+<td>Página Sites</td>
+<td><code>/content</code> bajo el sitio</td>
+<td>Componentes consumidores y sus selecciones.</td>
+</tr>
+</tbody>
+</table></div>
+<p>La misma raíz <code>/conf</code> aloja distintos tipos de definiciones; no significa que un modelo CF sea una plantilla XF. Usa las consolas y propiedades para relacionar cada pieza. No hace falta editar nodos manualmente para completar estos ejemplos.</p>
+<p><a id="referencias"></a></p>
+<h2>6. Compartir una referencia tiene consecuencias</h2>
+<p>Imagina dos páginas, A y B, que seleccionan la misma variación <code>Training notice</code>. Si cambias el texto en esa fuente, ambas pueden mostrarlo al volver a renderizarse. Si copiaste el aviso como contenido separado, cada copia tendrá sus propios cambios y ciclo de publicación.</p>
+<p>En los diagramas, <strong>la flecha de referencia sale del consumidor y apunta a su fuente</strong>. No representa una operación que copie contenido hacia la página. Esta lectura permite responder qué objeto necesita inspeccionarse cuando el resultado cambia.</p>
+<p>Antes de mover, borrar o rediseñar contenido compartido, revisa sus referencias. «Lo veo en una página» no demuestra que sólo exista un consumidor. Publicación y caché también intervienen en cuándo un cambio se hace visible fuera de Author.</p>
+<p><a id="publicacion"></a></p>
+<h2>7. Author y Publish son comprobaciones distintas</h2>
+<p>Un preview correcto confirma el resultado en Author bajo ese usuario y estado. Para el sitio publicado, considera el conjunto: página consumidora, fragmento y variación seleccionados, assets referenciados y definiciones requeridas en el destino.</p>
+<p>El modelo de un CF debe estar disponible al publicar sus fragmentos dependientes. Un XF necesita su contenido y la estructura/implementaciones que usa; el flujo de publicación de contenido no sustituye el despliegue del código del proyecto. Revisa las dependencias que presenta el asistente y confirma el resultado final en la instancia de destino.</p>
+<p>No publiques una carpeta raíz para «enviar todo»: selecciona los elementos concretos del ejemplo. Si el contenido ya llegó pero se ve una versión anterior, revisa la ruta consumida y la caché de entrega antes de editar otra vez la fuente.</p>
+<p>Los ejemplos siguientes funcionan con Author. Si además tienes Publish configurado, puedes comprobar allí esos mismos elementos mediante el flujo de publicación de tu baseline. Si no lo tienes, conserva esa diferencia al describir lo observado. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/assets/content-fragments/content-fragments-managing">Publicación de Content Fragments</a> y <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/authoring/fragments/experience-fragments">Experience Fragments</a>.</p>
+<p><a id="repaso"></a></p>
+<h2>Repaso con respuestas</h2>
+<details><summary>1. ¿Un campo llamado heading define la tipografía de la página?</summary><p>No. Define contenido; el componente y sus estilos deciden cómo renderizarlo.</p></details>
+
+<details><summary>2. ¿Crear un modelo crea también una ficha?</summary><p>No. El modelo define los campos. Después creas un fragmento que contiene valores.</p></details>
+
+<details><summary>3. ¿Por qué una página puede seguir mostrando otro resumen?</summary><p>Puede seleccionar otro fragmento o variación. Comprueba esa selección, el guardado y la instancia antes de atribuirlo a caché.</p></details>
+
+<details><summary>4. ¿La página referencia la carpeta del XF?</summary><p>El componente selecciona la variación que se quiere renderizar. Una carpeta organiza; no reemplaza esa selección.</p></details>
+
+<details><summary>5. ¿Un XF garantiza el mismo resultado visual en cualquier sitio?</summary><p>No. Los componentes, estilos y contexto de layout del destino también influyen.</p></details>
+
+<details><summary>6. ¿Una copia sigue siendo la misma fuente compartida?</summary><p>No. El contenido copiado se puede editar por separado. Una relación especial, como Live Copy, requiere su propia configuración.</p></details>
+
+<details><summary>7. ¿Qué revisas si un selector está vacío?</summary><p>El selector concreto: modelos habilitados y permitidos en Assets; plantillas permitidas en XF; o componentes permitidos por la policy del contenedor.</p></details>
+
+<details><summary>8. ¿Un preview de Author demuestra publicación completa?</summary><p>No. Hay que verificar el contenido y las dependencias en el destino y después el resultado entregado.</p></details>
+<p><a id="ejemplos-locales"></a></p>
+<h2>Ejemplos simples en Author</h2>
+<p>Estos ejemplos usan los componentes que ya trae tu proyecto. No requieren clases Java, HTL ni comandos Maven adicionales. Trabaja en Author SDK (<code>http://localhost:4502</code>) con tu baseline WKND Sites o Archetype instalado y una página de prueba editable.</p>
+<p><a id="preparacion"></a></p>
+<h3>Antes de empezar: comprobar los selectores</h3>
+<p>En el editor de tu página, abre <strong>Insert New Component</strong>. Deben aparecer <strong>Content Fragment</strong> y <strong>Experience Fragment</strong>, los componentes del proyecto que reutilizan Core Components. El componente <strong>Content Fragment List</strong> es otro componente; no lo uses para este ejemplo.</p>
+<p>Si no aparecen:</p>
+<ol>
+<li>En el menú de información de la página, abre <strong>Edit Template</strong>, o entra a <strong>Tools → General → Templates</strong> y selecciona la plantilla de esa página.</li>
+<li>En modo <strong>Structure</strong>, selecciona el contenedor editable donde vas a insertar el contenido y abre <strong>Policy</strong>.</li>
+<li>En <strong>Allowed Components</strong>, permite los componentes Content Fragment y Experience Fragment del proyecto. Conserva las otras selecciones y guarda. Una policy compartida afecta a otras páginas: usa la de tu plantilla de prueba.</li>
+<li>Vuelve al editor de la página y recarga. Si los componentes tampoco existen en el selector de la policy, falta su instalación o sus proxies en el baseline; la policy no instala componentes. Usa el baseline WKND/Archetype completo antes de seguir.</li>
+</ol>
+<p>Para el segundo ejemplo también necesitas una plantilla <strong>Experience Fragment de tipo web</strong> instalada, que permita los componentes Title y Text. Una plantilla normal de página Sites no sustituye a una plantilla XF.</p>
+<h3>Ejemplo 1 · Una ficha con dos campos</h3>
+<p><strong>Qué verás:</strong> el texto de un Content Fragment dentro de una página Sites. Los nombres y valores siguientes son sólo contenido de ejemplo.</p>
+<h4>A. Habilitar la configuración y crear el modelo</h4>
+<ol>
+<li>Abre <strong>Tools → General → Configuration Browser → Create</strong>. Pon título <code>Training fragments</code>, nombre <code>training-fragments</code> y activa <strong>Content Fragment Models</strong>. Guarda. Si ya existe esta configuración del ejemplo, úsala; no crees otra.</li>
+<li>En <strong>Tools → General → Content Fragment Models</strong>, entra a esa configuración y pulsa <strong>Create</strong>. Título: <code>Training fact sheet</code>. Crea el modelo y ábrelo para editar.</li>
+<li>Añade estos dos campos, comprobando especialmente <strong>Property Name</strong>:</li>
+</ol>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Field Label</th>
+<th>Property Name</th>
+<th>Configuración</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single line text</td>
+<td>Heading</td>
+<td><code>heading</code></td>
+<td>Required activado</td>
+</tr>
+<tr>
+<td>Multi line text</td>
+<td>Summary</td>
+<td><code>summary</code></td>
+<td>Default Type: Plain Text</td>
+</tr>
+</tbody>
+</table></div>
+<ol start="4">
+<li>Guarda el modelo. En su consola, selecciónalo y pulsa <strong>Enable</strong> si todavía no está habilitado.</li>
+<li>En <strong>Assets → Files</strong>, crea una carpeta propia llamada <code>training-fragments</code>. Selecciónala y abre <strong>Properties → Cloud Services</strong>. En <strong>Cloud Configuration</strong>, selecciona <code>/conf/training-fragments</code> y guarda.</li>
+<li>En <strong>Properties → Policies</strong> de esa carpeta, permite <code>Training fact sheet</code> mediante <strong>Allowed Content Fragment Models by Path</strong>, usando el picker. Si la política viene heredada, desactiva esa herencia únicamente en esta carpeta de ejemplo antes de seleccionar el modelo. Guarda.</li>
+</ol>
+<p>La configuración vincula la carpeta con sus definiciones; la política controla los modelos permitidos. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/assets/content-fragments/content-fragments-configuration-browser">Configuration Browser</a> y <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/assets/content-fragments/content-fragments-models">modelos y políticas</a>.</p>
+<h4>B. Crear la ficha y verla en la página</h4>
+<ol>
+<li>Dentro de la carpeta Assets anterior, pulsa <strong>Create → Content Fragment</strong>, selecciona <code>Training fact sheet</code> y continúa. Usa título <code>Trail information</code> y nombre <code>trail-information</code>.</li>
+<li>Abre el fragmento. En su contenido principal escribe <strong>Heading:</strong> <code>Trail information</code> y <strong>Summary:</strong> <code>Bring water and wear comfortable shoes.</code>. Guarda con <strong>Save</strong> o <strong>Save &amp; Close</strong>, según tu editor.</li>
+<li>Abre tu página de prueba en Sites. Inserta <strong>Content Fragment</strong> y abre <strong>Configure</strong>.</li>
+<li>En <strong>Content Fragment</strong>, selecciona con el picker el fragmento que acabas de crear. Usa <strong>Display Mode → Multiple Elements</strong> y selecciona <code>heading</code> y <code>summary</code>. En <strong>Variation</strong>, conserva el contenido principal: según la versión, puede aparecer como <strong>Master</strong> o <strong>Main</strong>. Confirma el diálogo.</li>
+<li>En <strong>Preview</strong>, comprueba que aparecen los dos valores. El componente puede mostrarlos como campos, sin convertir <code>heading</code> en un encabezado visual: el nombre del campo no decide el HTML ni la tipografía.</li>
+<li>Vuelve al editor del fragmento, cambia Summary a <code>Bring water.</code> y guarda. Regresa a la página y recarga su preview: el componente debe leer el nuevo valor de la misma fuente.</li>
+</ol>
+<p>Si quieres ver el efecto en dos lugares, referencia ese mismo fragmento desde una segunda página de prueba; no copies su texto dentro de un componente Text. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/assets/content-fragments/content-fragments-managing">Crear y editar fragmentos</a> y <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/authoring/fragments/content-fragments">usarlos en páginas</a>.</p>
+<p><a id="ejemplo-xf"></a></p>
+<h3>Ejemplo 2 · Un aviso con título y texto</h3>
+<p><strong>Qué verás:</strong> dos componentes compuestos en un Experience Fragment y reutilizados desde una página.</p>
+<ol>
+<li>En la navegación principal, abre <strong>Experience Fragments</strong>. Dentro de la carpeta del proyecto, crea una subcarpeta <code>training-fragments</code> para este ejemplo.</li>
+<li>Selecciona la carpeta y abre <strong>Properties → Allowed Templates</strong>. Conserva la selección heredada si ya permite la plantilla XF web de tu proyecto. Si el selector de creación está vacío, añade la ruta real de esa plantilla instalada y habilitada, obtenida en <strong>Tools → General → Templates</strong>, a Allowed Templates de esta carpeta. Este campo acepta patrones; una ruta exacta de tu plantilla evita permitir todas las plantillas. Guarda.</li>
+<li>Dentro de la carpeta, pulsa <strong>Create → Experience Fragment</strong>. Elige la plantilla XF web disponible, título <code>Training notice</code> y nombre <code>training-notice</code>. Crea y abre el fragmento.</li>
+<li>En su variación inicial, agrega <strong>Title</strong> con texto <code>Before you go</code> y <strong>Text</strong> con <code>Bring water.</code>. Confirma ambos diálogos. Si tu plantilla ya incluye esos componentes, edítalos en lugar de añadir duplicados. Si no están permitidos, revisa la policy del contenedor de <strong>esa plantilla XF</strong>, siguiendo el procedimiento anterior para Title y Text.</li>
+<li>Abre tu página de prueba Sites e inserta <strong>Experience Fragment</strong>. En <strong>Configure → Experience Fragment variation</strong>, elige con el picker la variación que acabas de editar, normalmente <code>master</code>. Selecciona la variación, no la carpeta ni sólo el contenedor raíz del fragmento. Confirma.</li>
+<li>Abre <strong>Preview</strong>. Debes ver el título y el texto compuestos. Vuelve a esa variación XF, cambia el Text a <code>Bring water and a hat.</code> y confirma. Recarga la página consumidora para observar el cambio.</li>
+</ol>
+<p>No es necesario crear una segunda variación, configurar MSM ni publicar para observar esta referencia en Author. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/authoring/fragments/experience-fragments">Crear Experience Fragments</a> y <a href="https://experienceleague.adobe.com/en/docs/experience-manager-core-components/using/wcm-components/experience-fragment">configurar su componente</a>.</p>
+<h3>Si algo no aparece</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Síntoma</th>
+<th>Comprobación concreta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Falta Create en Content Fragment Models.</td>
+<td>Configuration Browser: Content Fragment Models habilitado y permisos de edición.</td>
+</tr>
+<tr>
+<td>El modelo no aparece al crear el fragmento.</td>
+<td>Estado Enable, Cloud Configuration y Policies de la carpeta Assets.</td>
+</tr>
+<tr>
+<td>El componente no aparece en la página.</td>
+<td>Instalación del componente y Allowed Components del contenedor de esa plantilla.</td>
+</tr>
+<tr>
+<td>No hay plantilla para crear el XF.</td>
+<td>Plantilla XF web instalada/habilitada y Allowed Templates de la carpeta XF.</td>
+</tr>
+<tr>
+<td>El componente XF queda vacío.</td>
+<td>Selección de una variación existente con contenido; permisos y template/policy del XF.</td>
+</tr>
+<tr>
+<td>Cambiaste contenido, pero la página sigue igual.</td>
+<td>Guardado, fuente y variación seleccionadas, instancia que estás mirando y caché.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Alcance de la comprobación:</strong> las instrucciones se contrastaron con documentación oficial; no se ejecutaron en tu SDK. Los dos ejemplos son de autoría/configuración y no incluyen código nuevo que compilar. Si sólo tienes Author, observar el resultado allí no confirma su publicación.</p>
+<p><a id="fuentes"></a></p>
+<h2>Glosario y fuentes</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Término</th>
+<th>Significado en esta sesión</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CF</td>
+<td>Content Fragment: contenido estructurado reutilizable.</td>
+</tr>
+<tr>
+<td>XF</td>
+<td>Experience Fragment: composición reutilizable de componentes.</td>
+</tr>
+<tr>
+<td>Model</td>
+<td>Definición de campos de un CF.</td>
+</tr>
+<tr>
+<td>Element</td>
+<td>Campo de contenido seleccionable por el consumidor.</td>
+</tr>
+<tr>
+<td>Variation</td>
+<td>Alternativa de contenido/composición dentro del mecanismo correspondiente.</td>
+</tr>
+<tr>
+<td>Policy</td>
+<td>Restricciones de autoría aplicables al contenedor o carpeta.</td>
+</tr>
+<tr>
+<td>Reference</td>
+<td>Selección de una fuente existente por un consumidor.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Las fuentes oficiales están enlazadas junto a cada explicación y procedimiento. Consulta realizada el 10 de septiembre de 2026. Los pasos usan las consolas Tools, Assets y el editor de páginas del SDK; algunas etiquetas cambian entre versiones. No requieren acceso a Cloud Manager.</p>
+</main><footer><a href="../lessons/0024-content-experience-fragments.html">Volver a la sesión 24</a> · <a href="session-24-study-guide.md" download>Descargar Markdown</a></footer>
+</body></html>

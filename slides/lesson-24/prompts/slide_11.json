@@ -1,0 +1,43 @@
+{
+  "slide": 11,
+  "title": "Key takeaways",
+  "prompt": "# Codex PPT Slide Image Prompt\n\n## Canvas\n{\n  \"type\": \"16:9 full-slide PowerPoint image\",\n  \"language\": \"English\",\n  \"slide_number\": 11,\n  \"render_slide_number\": false\n}\n\n## Deck Goal\nChoose the appropriate reusable content mechanism in traditional AEM Sites and trace its definitions, references and publication dependencies.\n\n## Required Background\n{\n  \"deck_context\": {\n    \"source_summary\": \"Traditional AEM Sites on Cloud; local Author SDK examples using existing components. CF means structured content; XF means composed experience.\",\n    \"core_claim\": \"Choose the unit of reuse, then trace its definition, references and delivery dependencies.\",\n    \"canonical_facts\": [\n      \"Content Fragments use models and are stored as assets.\",\n      \"Experience Fragments use editable templates and have composed variations.\",\n      \"Content Fragment variations and XF variations are different features.\",\n      \"No GraphQL, headless or Target integration in this session.\"\n    ],\n    \"content_constraints\": [\n      \"No speech, assignments, labs, deliverables or acceptance rubrics.\",\n      \"English only; no invented screenshots, APIs or repository paths.\",\n      \"Render only slide-specific text and diagrams; no duplicated points or deck-wide footer claim.\",\n      \"Reference arrows point from consumer to referenced source. Do not imply copying, automatic synchronization or automatic publication.\"\n    ]\n  },\n  \"slide_local_context\": {\n    \"required_background\": \"Four numbered concise takeaways with icons separated by rules, no causal arrows between unrelated concepts.\"\n  }\n}\n\n## Global Style\n{\n  \"name\": \"technical atlas courseware\",\n  \"visual_direction\": \"Technical atlas courseware with structured content, composed experiences and accurate reference diagrams.\",\n  \"color_palette\": \"Warm ivory drafting-paper background with a faint square grid; deep navy titles; cobalt for source-to-target flow; violet for configuration; green for valid or protected local state; restrained orange for destructive actions and cautions.\",\n  \"typography\": \"Large bold condensed sans-serif headings; crisp sans-serif supporting text; true monospace appearance for repository paths, property names, action names and state values.\",\n  \"texture_and_finish\": \"Flat 2D technical diagrams, fine rules, precise page, relationship, configuration and status icons. No gradients, neon, glass, 3D, photography or generic corporate people.\",\n  \"deck_consistency\": \"Match Class23 slide07 palette, type, faint drafting grid and semantic colors; vary diagrams and layouts per slide.\"\n}\n\n## Input Images\n\n- Image 1: /Users/juanmaldonado/Projects/aem-training/slides/lesson-23/origin_image/slide_07.png — Established course style: Class 23 slide 07; Match ivory grid, navy condensed headings, cobalt/violet/green/orange semantic accents, thin rules and technical diagrams. Vary layouts; no repeated filler cards.\n\n\n## Slide\n{\n  \"number\": 11,\n  \"title\": \"Key takeaways\",\n  \"role\": null,\n  \"intent\": null\n}\n\n## Text\n{\n  \"title\": \"Key takeaways\",\n  \"key_points\": [\n    \"Choose structured fields or a composed experience.\",\n    \"Separate model/template, fragment and consuming component.\",\n    \"Reference shared content and manage the impact of changes.\",\n    \"Verify dependencies and output on the target instance.\"\n  ],\n  \"speaker_focus\": null\n}\n\n## Layout\n{\n  \"role\": \"technical explanation\",\n  \"composition\": \"Four numbered concise takeaways with icons separated by rules, no causal arrows between unrelated concepts.\",\n  \"intent\": \"Four numbered concise takeaways with icons separated by rules, no causal arrows between unrelated concepts.\"\n}\n\n## Constraints\n[\n  \"No speech, assignments, labs, deliverables or acceptance rubrics.\",\n  \"English only; no invented screenshots, APIs or repository paths.\",\n  \"Render only slide-specific text and diagrams; no duplicated points or deck-wide footer claim.\",\n  \"Reference arrows point from consumer to referenced source. Do not imply copying, automatic synchronization or automatic publication.\"\n]\n\n## Style Reference Rule\nUse Image 1 as the approved sample-slide style reference. Match its palette, typography mood, density, texture, and overall visual identity. Do not copy its exact layout unless this slide's layout explicitly asks for it.\n\n## Input Image Handling Rules\nFor any input image marked as a strict input asset, include it visibly and preserve its content. Do not redraw, replace, relabel, or invent a similar figure. Scale and crop only as needed for composition while keeping the important labels, arrows, data, and relationships recognizable.\n\n## Universal Constraints\n- The final image itself must contain the title and key points.\n- Render Chinese text exactly and legibly; avoid garbled characters.\n- Keep the confirmed deck style consistent while varying layout by slide role.\n- No watermark, unrelated logo, or extra slide number.\n",
+  "out": "slide_11.png",
+  "input_images": [
+    {
+      "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-23/origin_image/slide_07.png",
+      "role": "Established course style: Class 23 slide 07",
+      "fidelity": "Match ivory grid, navy condensed headings, cobalt/violet/green/orange semantic accents, thin rules and technical diagrams. Vary layouts; no repeated filler cards."
+    }
+  ],
+  "requires_context_images": true,
+  "expected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "Per-slide Class 24 JSON job, Class 23 slide 07 used only as style reference",
+    "size": "16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-23/origin_image/slide_07.png",
+    "input_context_preparation": "Parent inspected Class23 slide07; each worker must inspect it and supply it as style reference.",
+    "handoff_rule": "Use built-in image_gen only with reference path. User requested same established workflow; prior authorization to omit intermediate confirmations persists."
+  },
+  "generation_contract": {
+    "must_use_selected_image_backend": true,
+    "must_match_sample_generation_method": true,
+    "forbidden_final_image_methods": [
+      "local drawing/rendering scripts",
+      "Pillow-generated slides",
+      "SVG/HTML/CSS/canvas screenshots",
+      "python-pptx/PptxGenJS/native PPT layout screenshots",
+      "manually composited text/image overlays"
+    ],
+    "must_return": [
+      "backend_used",
+      "selected_source",
+      "qa_note"
+    ]
+  }
+}
