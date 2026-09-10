@@ -1,0 +1,43 @@
+{
+  "slide": 12,
+  "title": "Questions / Thank you",
+  "prompt": "# Codex PPT Slide Image Prompt\n\n## Canvas\n{\n  \"type\": \"16:9 full-slide PowerPoint image\",\n  \"language\": \"English\",\n  \"slide_number\": 12,\n  \"render_slide_number\": false\n}\n\n## Deck Goal\nIdentify the responsible runtime layer and distinguish workflows, launchers and retryable jobs using simple examples.\n\n## Required Background\n{\n  \"deck_context\": {\n    \"source_summary\": \"Traditional AEM Sites on AEM as a Cloud Service; local SDK examples. Diagnose logs, OSGi bundles/components/configuration and workflow/job state.\",\n    \"core_claim\": \"Identify the responsible runtime layer and inspect its state before changing or retrying it.\",\n    \"canonical_facts\": [\n      \"Bundle Active does not guarantee DS component Active.\",\n      \"Delayed DS Satisfied can be normal before first consumer.\",\n      \"A workflow launcher starts a workflow when configured repository-event conditions match.\",\n      \"Sync updates runtime model used by new workflow instances.\",\n      \"Sling Job processing is at least once; retries depend on queue policy.\",\n      \"No custom Cloud log file: send custom Java logs to error.log.\"\n    ],\n    \"content_constraints\": [\n      \"No assignments, labs, deliverables, homework, acceptance rubrics or speech.\",\n      \"Do not invent APIs, package types, repository paths, log lines, stack traces, XML, dependencies or UI screenshots.\",\n      \"Every figure must use only the exact facts and labels supplied for its slide.\",\n      \"Do not render the whole deck context/core claim as a footer on every slide.\"\n    ]\n  },\n  \"slide_local_context\": {\n    \"required_background\": \"Passive closing. ONLY Questions, Thank you. and small 12 eyebrow. No footer claim, bullets, recap or teaching.\"\n  }\n}\n\n## Global Style\n{\n  \"name\": \"technical atlas courseware\",\n  \"visual_direction\": \"Technical atlas courseware with accurate runtime states, diagnostic evidence and asynchronous flows.\",\n  \"color_palette\": \"Warm ivory drafting-paper background with a faint square grid; deep navy titles; cobalt for source-to-target flow; violet for configuration; green for valid or protected local state; restrained orange for destructive actions and cautions.\",\n  \"typography\": \"Large bold condensed sans-serif headings; crisp sans-serif supporting text; true monospace appearance for repository paths, property names, action names and state values.\",\n  \"texture_and_finish\": \"Flat 2D technical diagrams, fine rules, precise page, relationship, configuration and status icons. No gradients, neon, glass, 3D, photography or generic corporate people.\",\n  \"deck_consistency\": \"Match approved slide_07 palette, typography, drafting grid, fixed two-digit top-left numbering, technical density, evidence panels, semantic colors and connector weight while varying composition by role. Use concrete paths, state badges and exact terms instead of decorative whitespace.\"\n}\n\n## Input Images\n\n- Image 1: /Users/juanmaldonado/Projects/aem-training/slides/lesson-22/origin_image/slide_10.png — Previously approved course style, Class 22 slide 10; Match ivory grid, navy condensed headings, cobalt/violet/green/orange semantic accents, thin rules and technical diagrams. Vary layouts; no repeated filler cards.\n\n\n## Slide\n{\n  \"number\": 12,\n  \"title\": \"Questions / Thank you\",\n  \"role\": null,\n  \"intent\": null\n}\n\n## Text\n{\n  \"title\": \"Questions / Thank you\",\n  \"key_points\": [\n    \"Questions\",\n    \"Thank you.\"\n  ],\n  \"speaker_focus\": null\n}\n\n## Layout\n{\n  \"role\": \"Q&A\",\n  \"composition\": \"Passive closing. ONLY Questions, Thank you. and small 12 eyebrow. No footer claim, bullets, recap or teaching.\",\n  \"intent\": \"Passive closing. ONLY Questions, Thank you. and small 12 eyebrow. No footer claim, bullets, recap or teaching.\"\n}\n\n## Constraints\n[\n  \"No assignments, labs, deliverables, homework, acceptance rubrics or speech.\",\n  \"Do not invent APIs, package types, repository paths, log lines, stack traces, XML, dependencies or UI screenshots.\",\n  \"Every figure must use only the exact facts and labels supplied for its slide.\",\n  \"Do not render the whole deck context/core claim as a footer on every slide.\",\n  \"English only, accurately spelled. No cropping or overlapping text. Use only slide-specific points, not stale Class22 content.\"\n]\n\n## Style Reference Rule\nUse Image 1 as the approved sample-slide style reference. Match its palette, typography mood, density, texture, and overall visual identity. Do not copy its exact layout unless this slide's layout explicitly asks for it.\n\n## Input Image Handling Rules\nFor any input image marked as a strict input asset, include it visibly and preserve its content. Do not redraw, replace, relabel, or invent a similar figure. Scale and crop only as needed for composition while keeping the important labels, arrows, data, and relationships recognizable.\n\n## Universal Constraints\n- The final image itself must contain the title and key points.\n- Render Chinese text exactly and legibly; avoid garbled characters.\n- Keep the confirmed deck style consistent while varying layout by slide role.\n- No watermark, unrelated logo, or extra slide number.\n",
+  "out": "slide_12.png",
+  "input_images": [
+    {
+      "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-22/origin_image/slide_10.png",
+      "role": "Previously approved course style, Class 22 slide 10",
+      "fidelity": "Match ivory grid, navy condensed headings, cobalt/violet/green/orange semantic accents, thin rules and technical diagrams. Vary layouts; no repeated filler cards."
+    }
+  ],
+  "requires_context_images": true,
+  "expected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "Per-slide Class 23 JSON job, using Class 22 slide 10 as a style-only reference",
+    "size": "16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-22/origin_image/slide_10.png",
+    "input_context_preparation": "Parent inspected Class22 slide10 with view_image; each worker must inspect and supply it as style reference.",
+    "handoff_rule": "Use built-in image_gen only with reference path. User requested same established workflow; prior authorization to omit intermediate confirmations persists."
+  },
+  "generation_contract": {
+    "must_use_selected_image_backend": true,
+    "must_match_sample_generation_method": true,
+    "forbidden_final_image_methods": [
+      "local drawing/rendering scripts",
+      "Pillow-generated slides",
+      "SVG/HTML/CSS/canvas screenshots",
+      "python-pptx/PptxGenJS/native PPT layout screenshots",
+      "manually composited text/image overlays"
+    ],
+    "must_return": [
+      "backend_used",
+      "selected_source",
+      "qa_note"
+    ]
+  }
+}

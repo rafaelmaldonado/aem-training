@@ -13,7 +13,7 @@
 - Flujo de presentación: publicar las slides en GitHub Pages y copiarlas como una imagen completa a PowerPoint para conservar el formato; no conservar ni generar archivos `.pptx` para sesiones existentes o futuras.
 - Estilo visual de slides: fondo azul marino, iluminación azul hielo, tarjetas tipo vidrio, bordes cian, trama de puntos y curvas concéntricas sutiles; usar la referencia visual más reciente proporcionada el 2026-08-13.
 - Estilo visual del sitio: aplicar el mismo tema azul marino y azul hielo de las slides a todas las páginas mediante la hoja de estilos compartida.
-- Entregable docente: cada sesión necesita contenido breve en formato reutilizable como slides, más ejercicio y criterio de aceptación.
+- Material por sesión: slides y resumen en HTML/Markdown, sin speech. Incluir ejemplos simples: código completo que compile, o instrucciones paso a paso para configuraciones en la instancia. No convertirlos en prácticas por sesión ni añadir entregables; las prácticas se mantienen a nivel semanal.
 - Publicación prevista: GitHub Pages; mantener navegación con rutas relativas y `index.html` como overview de planeación.
 - Prioridad: aprendizaje aplicable y seguimiento con pocas reuniones.
 - Evidencia requerida: progreso individual verificable mediante recuperación, artefactos técnicos y explicación; asistencia o cámara no cuentan como aprendizaje.

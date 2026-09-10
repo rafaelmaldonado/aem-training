@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Class 23 · Runtime diagnostics and asynchronous processing</title><link rel="stylesheet" href="../assets/styles.css"></head>
+<body><a class="skip-link" href="#content">Skip to content</a>
+<nav class="site-nav" aria-label="Primary"><a class="brand" href="../index.html">AEM Training</a><ul><li><a href="../index.html">Overview</a></li><li><a href="../reference/aem-course-topics.html">Syllabus</a></li><li><a href="../reference/wknd-project-backlog.html">Practices</a></li><li><a href="../reference/index.html">References</a></li></ul></nav>
+<header><p class="eyebrow">Class 23 · Week 5 · September 16, 2026</p><h1>Runtime diagnostics and asynchronous processing</h1><p class="lede">Read runtime evidence and distinguish workflow state, launcher triggers and retryable jobs.</p><ul class="meta"><li>30 minutes online</li><li>Local Author SDK</li><li><a href="#ejemplos-locales" lang="es">Ver ejemplos simples</a></li></ul></header>
+<main id="content">
+<section class="callout"><strong>Session focus:</strong> connect an observed symptom to logs, bundle and component state, effective configuration, and the responsible asynchronous execution.</section>
+<h2>Topic summary</h2>
+<p>A successful build does not establish what is running in AEM. A bundle can be Active while one of its components has an unsatisfied reference; a valid configuration file may differ from the values selected on the affected instance. Diagnostics start with a concrete symptom, instance, time window and execution identifier.</p>
+<p>Workflows describe process steps and expose execution history. Launchers select repository events that start workflows. Sling Jobs separate submission from processing and support retries according to queue policy. Their responsibilities and states differ, so understanding the current operation comes before restarting or retrying it.</p>
+<ul><li>Read log context and exception causes on the affected instance.</li><li>Distinguish bundle resolution from Declarative Services activation.</li><li>Inspect effective values and the correct configuration instance.</li><li>Separate a workflow model, payload, runtime model and execution.</li><li>Recognize launcher matching rules and Sling Job results.</li><li>Check side effects and duplicate risk before retrying.</li></ul>
+<h2>30-minute agenda</h2><div class="table-wrap"><table><thead><tr><th>Time</th><th>Slides</th><th>Focus</th></tr></thead><tbody><tr><td>0–3</td><td>1–2</td><td>Opening and symptom context.</td></tr><tr><td>3–10</td><td>3–5</td><td>Logs, OSGi states and configuration.</td></tr><tr><td>10–19</td><td>6–8</td><td>Workflow structure, a simple logging example and launchers.</td></tr><tr><td>19–25</td><td>9–10</td><td>Sling Jobs, retries and side effects.</td></tr><tr><td>25–28</td><td>11</td><td>Key takeaways.</td></tr><tr><td>28–30</td><td>12</td><td>Questions.</td></tr></tbody></table></div>
+<h2 id="slide-deck">Complete slide deck</h2><p class="section-intro">Copy each complete image to PowerPoint or download its PNG. A small Java example and step-by-step Author instructions follow the deck.</p>
+<aside class="callout" lang="es"><strong>Material de la sesión 23:</strong> <a href="../reference/session-23-study-guide.html">Resumen en español</a> · <a href="../reference/session-23-study-guide.md" download>Descargar Markdown</a> · <a href="#ejemplos-locales">Código completo y pasos en Author</a>.</aside>
+<div class="web-deck">
+<article class="web-slide" data-slide-src="../slides/lesson-23/origin_image/slide_01.png"><img class="web-slide-image" src="../slides/lesson-23/origin_image/slide_01.png" alt="Runtime diagnostics and asynchronous processing. Class 23 · Week 5 · September 16, 2026 · Juan Maldonado Logs · OSGi runtime · Workflows and launchers · Sling Jobs" ><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-23/origin_image/slide_01.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-23/origin_image/slide_02.png"><img class="web-slide-image" src="../slides/lesson-23/origin_image/slide_02.png" alt="Locate the symptom before changing the runtime. Record the affected instance, time and content path. Separate missing output from failed processing. Trace the responsible layer: request, service, workflow or job. Use one observation to choose the next check." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-23/origin_image/slide_02.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-23/origin_image/slide_03.png"><img class="web-slide-image" src="../slides/lesson-23/origin_image/slide_03.png" alt="Read logs as an execution timeline. Filter by time, logger and workflow or job identity. Read the exception chain and nearby context. An ERROR line is evidence, not a complete diagnosis. In Cloud, custom Java logs must reach error.log; use supported log access." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-23/origin_image/slide_03.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-23/origin_image/slide_04.png"><img class="web-slide-image" src="../slides/lesson-23/origin_image/slide_04.png" alt="An active bundle does not prove an active service. Bundle Installed: inspect unresolved package imports. Bundle Resolved: imports are resolved; the bundle is not active. DS Unsatisfied: inspect required references and configuration. A delayed DS component can be Satisfied until a consumer requests it." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-23/origin_image/slide_04.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-23/origin_image/slide_05.png"><img class="web-slide-image" src="../slides/lesson-23/origin_image/slide_05.png" alt="Verify the effective configuration. Find the exact PID or factory configuration instance. Confirm the applicable run modes and current property values. A source .cfg.json file does not prove the selected runtime values. Use local ConfigMgr for the SDK; Cloud changes follow supported configuration delivery." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-23/origin_image/slide_05.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-23/origin_image/slide_06.png"><img class="web-slide-image" src="../slides/lesson-23/origin_image/slide_06.png" alt="A workflow has a model, a payload and an instance. Model: the process definition. Payload: the object being processed. Instance: one execution with its own history and current step. Sync prepares the runtime model; start a new instance after model changes. Inspect Instances, Archive or Failures according to the observed state." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-23/origin_image/slide_06.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-23/origin_image/slide_07.png"><img class="web-slide-image" src="../slides/lesson-23/origin_image/slide_07.png" alt="A process step runs code; a participant step waits. Process Step: executes a registered WorkflowProcess service. Participant Step: assigns work to a user or group. Example: Start → Log payload → End, with Handler Advance enabled. A log entry proves the step executed; check history to prove completion." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-23/origin_image/slide_07.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-23/origin_image/slide_08.png"><img class="web-slide-image" src="../slides/lesson-23/origin_image/slide_08.png" alt="A launcher selects which event starts a workflow. Match event type, node type, path, conditions and enabled state. A saved page can produce multiple repository events. Keep the path narrow and prevent self-triggering changes. A launcher starts a workflow; it is not the workflow or a timer." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-23/origin_image/slide_08.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-23/origin_image/slide_09.png"><img class="web-slide-image" src="../slides/lesson-23/origin_image/slide_09.png" alt="Sling Jobs decouple submission from processing. A producer submits a topic and serializable properties. A consumer handles that topic and returns a processing result. OK: success. FAILED: eligible for configured retry. CANCEL: permanent failure. The processing guarantee is at least once; repeated execution is possible." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-23/origin_image/slide_09.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-23/origin_image/slide_10.png"><img class="web-slide-image" src="../slides/lesson-23/origin_image/slide_10.png" alt="Retry only after understanding the side effect. Identify payload, current state, attempt and failure cause. Fix the cause before retrying a workflow step or job. Repeating the same operation must not duplicate its business effect. A timeout does not prove the remote operation never happened." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-23/origin_image/slide_10.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-23/origin_image/slide_11.png"><img class="web-slide-image" src="../slides/lesson-23/origin_image/slide_11.png" alt="Key takeaways. Correlate the symptom with logs and runtime state. Separate bundle, DS component and effective configuration. Distinguish workflow definition, instance and launcher trigger. Inspect job results and duplicate risk before retrying." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-23/origin_image/slide_11.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-23/origin_image/slide_12.png"><img class="web-slide-image" src="../slides/lesson-23/origin_image/slide_12.png" alt="Questions / Thank you. Questions Thank you." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-23/origin_image/slide_12.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+</div>
+<section lang="es" aria-label="Ejemplos simples y pasos en la instancia"><p><a id="ejemplos-locales"></a></p>
+<h2>Ejemplo simple · Un workflow que escribe una línea en el log</h2>
+<p>El ejemplo une tres piezas: <strong>un servicio Java</strong>, <strong>un logger</strong> y <strong>un modelo con un único Process Step</strong>. No modifica ni publica el payload. Puedes usarlo para ver qué diferencia hay entre instalar código, ejecutar un paso y completar un workflow.</p>
+<p>Necesitas tu proyecto WKND Sites tradicional o Archetype, un build base que funcione y Author SDK en <code>http://localhost:4502</code>, con permisos para ConfigMgr y Workflow Models. Los pasos de consola se refieren al SDK local. Usa una página de prueba sin datos sensibles; el ejemplo registra su ruta.</p>
+<h3>1. Copiar una sola clase</h3>
+<p>Crea este archivo en <strong>tu proyecto AEM</strong>, no en el repositorio de documentación:</p>
+<p><code>core/src/main/java/com/adobe/aem/guides/wknd/core/training/LogPayloadProcess.java</code></p>
+<pre><code class="language-java">package com.adobe.aem.guides.wknd.core.training;
+
+import com.adobe.granite.workflow.WorkflowSession;
+import com.adobe.granite.workflow.exec.WorkItem;
+import com.adobe.granite.workflow.exec.WorkflowProcess;
+import com.adobe.granite.workflow.metadata.MetaDataMap;
+import org.osgi.service.component.annotations.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@Component(
+        service = WorkflowProcess.class,
+        property = &quot;process.label=Training: log payload&quot;)
+public class LogPayloadProcess implements WorkflowProcess {
+    private static final Logger LOG = LoggerFactory.getLogger(LogPayloadProcess.class);
+
+    @Override
+    public void execute(WorkItem item, WorkflowSession session, MetaDataMap args) {
+        LOG.info(&quot;Training workflow: instance={}, payloadType={}, payload={}&quot;,
+                item.getWorkflow().getId(),
+                item.getWorkflowData().getPayloadType(),
+                item.getWorkflowData().getPayload());
+    }
+}
+</code></pre>
+<p>En Archetype, cambia la declaración <code>package</code> y la carpeta Java al prefijo de tu proyecto; usa también ese nombre en la categoría del logger. Mantén los imports <code>com.adobe.granite.workflow</code>: no los mezcles con la API antigua <code>com.day.cq.workflow</code>. Las dependencias del SDK, OSGi y SLF4J ya deben estar en el baseline. Conserva el plugin Bnd que genera <code>OSGI-INF</code>; no basta copiar un <code>.class</code> a AEM.</p>
+<p>Desde la raíz de tu proyecto:</p>
+<pre><code class="language-sh">mvn -pl core -am package
+</code></pre>
+<p>Instala con el perfil local de tu baseline. En WKND/Archetype, si tu POM define <code>autoInstallSinglePackage</code> para Author en 4502:</p>
+<pre><code class="language-sh">mvn clean install -PautoInstallSinglePackage
+</code></pre>
+<p>Abre <code>/system/console/bundles</code> y comprueba la versión y el estado Active de tu bundle. En <code>/system/console/components</code>, busca el nombre completo de <code>LogPayloadProcess</code>: puede aparecer <strong>Satisfied</strong> antes de que un consumidor solicite el servicio. La propiedad <code>process.label</code> es la etiqueta que debe aparecer en el selector del Process Step.</p>
+<h3>2. Configurar el logger en la instancia</h3>
+<ol>
+<li>Abre <code>http://localhost:4502/system/console/configMgr</code>.</li>
+<li>Busca <strong>Apache Sling Logging Logger Configuration</strong>. Crea una instancia con <strong>+</strong>, o edita la que ya cubra exactamente esta clase; evita duplicarla.</li>
+<li>Configura estos campos y conserva los demás valores existentes:</li>
+</ol>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Log Level</td>
+<td><code>INFO</code></td>
+</tr>
+<tr>
+<td>Log File</td>
+<td><code>logs/error.log</code></td>
+</tr>
+<tr>
+<td>Logger / Loggers</td>
+<td><code>com.adobe.aem.guides.wknd.core.training.LogPayloadProcess</code></td>
+</tr>
+</tbody>
+</table></div>
+<ol start="4">
+<li>Guarda. En <code>/system/console/slinglog</code>, confirma que esa categoría tiene el nivel y archivo elegidos. Este logger pertenece a una instancia de la factory <code>org.apache.sling.commons.log.LogManager.factory.config</code>; la clase del workflow es la <strong>categoría</strong>, no ese factory PID.</li>
+<li>Abre <code>crx-quickstart/logs/error.log</code> dentro de la carpeta donde arrancaste Author. Puedes verlo en el IDE o, desde esa carpeta, ejecutar:</li>
+</ol>
+<pre><code class="language-sh">tail -f crx-quickstart/logs/error.log
+</code></pre>
+<p>Todavía no esperes el mensaje: <strong>guardar el logger o instalar el bundle no ejecuta el workflow</strong>. Usa <code>Ctrl+C</code> para salir de <code>tail</code> cuando termines.</p>
+<h3>3. Crear y ejecutar el modelo en Author</h3>
+<ol>
+<li>Abre <strong>Tools → Workflow → Models → Create → Create Model</strong>. Usa título <code>Training log payload</code> y nombre <code>training-log-payload</code>.</li>
+<li>Selecciona tu modelo y pulsa <strong>Edit</strong>. Si viene con un <code>Step 1</code> de ejemplo, elimina sólo ese paso. Conserva <strong>Start</strong> y <strong>End</strong>.</li>
+<li>Abre el panel lateral de pasos y arrastra un <strong>Process Step</strong> entre Start y End. En sus propiedades, pon título <code>Log payload</code>.</li>
+<li>En la pestaña <strong>Process</strong>, selecciona <code>Training: log payload</code>, activa <strong>Handler Advance</strong> y deja <strong>Arguments</strong> vacío. Confirma el diálogo. El flujo debe ser <strong>Start → Log payload → End</strong>.</li>
+<li>Mantén <strong>Transient Workflow</strong> desactivado en las propiedades del modelo para conservar el historial del ejemplo. Pulsa <strong>Sync</strong> y espera la confirmación. Sync prepara el modelo para nuevas ejecuciones; no inicia ninguna.</li>
+<li>Regresa a <strong>Models</strong>, selecciona <code>Training log payload</code> y pulsa <strong>Start Workflow</strong>. En <strong>Payload</strong>, selecciona con el picker una página de prueba existente en tu sitio. No escribas una ruta del ejemplo si no existe en tu instancia. Inicia el workflow.</li>
+<li>En el log busca <code>Training workflow:</code>. Debe incluir el ID real de la instancia, el tipo de payload y la ruta seleccionada. En <strong>Tools → Workflow → Archive</strong>, localiza la ejecución por modelo/payload y abre <strong>History</strong> para confirmar que llegó a End. Puede completarse tan rápido que no alcances a verla en Instances.</li>
+</ol>
+<p><strong>Qué significa el resultado:</strong> la línea confirma que entró a <code>execute</code>; el historial confirma el avance del workflow. El método Java no llama a <code>session.complete</code>: el avance se delegó a <strong>Handler Advance</strong>.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Si observas esto</th>
+<th>Revisa esto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No aparece <code>Training: log payload</code> en el selector.</td>
+<td>Bundle instalado, componente DS, interfaz <code>WorkflowProcess</code> y propiedad <code>process.label</code>.</td>
+</tr>
+<tr>
+<td>No aparece la línea.</td>
+<td>Instancia iniciada, modelo sincronizado, paso elegido y categoría/nivel del logger.</td>
+</tr>
+<tr>
+<td>Aparece la línea, pero no termina.</td>
+<td>Paso actual e historial; Handler Advance y posibles pasos Participant que hayan quedado en el modelo.</td>
+</tr>
+<tr>
+<td>La ejecución no aparece en Archive.</td>
+<td>Instances y Failures; filtro de búsqueda, retención y que el modelo no sea transient.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Cuando termines, puedes conservar la clase y el modelo para consultar el ejemplo. Si creaste una configuración de logger sólo para verlo, elimínala o restaura sus valores anteriores. La configuración Cloud se entrega por el mecanismo soportado del proyecto; no depende de cambios manuales en la consola local.</p>
+<p><a id="ejemplo-launcher"></a></p>
+<h2>Ejemplo de lectura · Inspeccionar un launcher sin cambiarlo</h2>
+<p>Este ejemplo permite reconocer la configuración existente sin automatizar nuevas ejecuciones:</p>
+<ol>
+<li>Abre <strong>Tools → Workflow → Launchers</strong> en tu SDK.</li>
+<li>Selecciona un launcher existente y abre <strong>View Properties</strong>, o <strong>Edit</strong> si ésa es la opción disponible. Al terminar usa <strong>Cancel</strong>, sin guardar.</li>
+<li>Localiza <strong>Event Type</strong>, <strong>Nodetype</strong>, <strong>Path/Glob</strong>, <strong>Condition</strong>, <strong>Workflow Model</strong>, estado <strong>Enabled</strong> y <strong>Exclude List</strong>, según los nombres de tu versión.</li>
+<li>Lee la regla como una frase: «si ocurre este evento en este tipo de nodo y ruta, cumple estas condiciones y el launcher está habilitado, inicia este modelo». El <code>Nodetype</code> JCR no es <code>sling:resourceType</code>.</li>
+<li>Si <strong>Exclude List</strong> nombra propiedades o <code>event-user-data</code>, identifica qué cambios se ignoran. No guardes una página para probar una regla amplia que pertenezca al sistema. El ejemplo anterior ya permite iniciar tu workflow manualmente.</li>
+</ol>
+<p>Un launcher no contiene la implementación del proceso ni es un temporizador. Si la consola está vacía en tu baseline, no hay una regla instalada que inspeccionar; la ejecución manual del ejemplo anterior sigue siendo válida.</p></section>
+<h2>Official reading</h2><ul><li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/debugging/debugging-aem-as-a-cloud-service/logs">AEM Cloud logs — Adobe</a></li><li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/workflows-administering">Administering workflow instances — Adobe</a></li><li><a href="https://sling.apache.org/documentation/development/logging.html">Logging — Apache Sling</a></li><li><a href="https://sling.apache.org/documentation/bundles/apache-sling-eventing-and-job-handling.html">Sling Jobs and event handling — Apache Sling</a></li></ul>
+</main><footer><a href="../index.html">Back to the training overview</a></footer><script src="../assets/copy-slide.js"></script>
+</body></html>

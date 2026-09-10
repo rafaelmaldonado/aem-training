@@ -1,0 +1,364 @@
+{
+  "deck_name": "lesson-23",
+  "title": "Class 23 · Runtime diagnostics and asynchronous processing",
+  "language": "English",
+  "goal": "Identify the responsible runtime layer and distinguish workflows, launchers and retryable jobs using simple examples.",
+  "aspect_ratio": "16:9",
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 3,
+  "outputs": [
+    "PNG slide images",
+    "HTML lesson",
+    "Spanish HTML and Markdown summary",
+    "Small compilable example and step-by-step instance instructions"
+  ],
+  "pptx": false,
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "generate",
+    "prompt_source": "Per-slide Class 23 JSON job, using Class 22 slide 10 as a style-only reference",
+    "size": "16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-22/origin_image/slide_10.png",
+    "input_context_preparation": "Parent inspected Class22 slide10 with view_image; each worker must inspect and supply it as style reference.",
+    "handoff_rule": "Use built-in image_gen only with reference path. User requested same established workflow; prior authorization to omit intermediate confirmations persists."
+  },
+  "approved_style_reference": {
+    "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-22/origin_image/slide_10.png",
+    "role": "Previously approved course style, Class 22 slide 10",
+    "fidelity": "Match ivory grid, navy condensed headings, cobalt/violet/green/orange semantic accents, thin rules and technical diagrams. Vary layouts; no repeated filler cards."
+  },
+  "style": {
+    "name": "technical atlas courseware",
+    "visual_direction": "Technical atlas courseware with accurate runtime states, diagnostic evidence and asynchronous flows.",
+    "color_palette": "Warm ivory drafting-paper background with a faint square grid; deep navy titles; cobalt for source-to-target flow; violet for configuration; green for valid or protected local state; restrained orange for destructive actions and cautions.",
+    "typography": "Large bold condensed sans-serif headings; crisp sans-serif supporting text; true monospace appearance for repository paths, property names, action names and state values.",
+    "texture_and_finish": "Flat 2D technical diagrams, fine rules, precise page, relationship, configuration and status icons. No gradients, neon, glass, 3D, photography or generic corporate people.",
+    "deck_consistency": "Match approved slide_07 palette, typography, drafting grid, fixed two-digit top-left numbering, technical density, evidence panels, semantic colors and connector weight while varying composition by role. Use concrete paths, state badges and exact terms instead of decorative whitespace."
+  },
+  "deck_context": {
+    "source_summary": "Traditional AEM Sites on AEM as a Cloud Service; local SDK examples. Diagnose logs, OSGi bundles/components/configuration and workflow/job state.",
+    "core_claim": "Identify the responsible runtime layer and inspect its state before changing or retrying it.",
+    "canonical_facts": [
+      "Bundle Active does not guarantee DS component Active.",
+      "Delayed DS Satisfied can be normal before first consumer.",
+      "A workflow launcher starts a workflow when configured repository-event conditions match.",
+      "Sync updates runtime model used by new workflow instances.",
+      "Sling Job processing is at least once; retries depend on queue policy.",
+      "No custom Cloud log file: send custom Java logs to error.log."
+    ],
+    "content_constraints": [
+      "No assignments, labs, deliverables, homework, acceptance rubrics or speech.",
+      "Do not invent APIs, package types, repository paths, log lines, stack traces, XML, dependencies or UI screenshots.",
+      "Every figure must use only the exact facts and labels supplied for its slide.",
+      "Do not render the whole deck context/core claim as a footer on every slide."
+    ]
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Runtime diagnostics and asynchronous processing",
+      "key_points": [
+        "Class 23 · Week 5 · September 16, 2026 · Juan Maldonado",
+        "Logs · OSGi runtime · Workflows and launchers · Sling Jobs"
+      ],
+      "layout": {
+        "role": "cover",
+        "composition": "Cover: large title and four topic labels, minimal diagnostic route motif. Only title, metadata and topic labels; no teaching panels.",
+        "intent": "Cover: large title and four topic labels, minimal diagnostic route motif. Only title, metadata and topic labels; no teaching panels."
+      },
+      "local_context": {
+        "required_background": "Cover: large title and four topic labels, minimal diagnostic route motif. Only title, metadata and topic labels; no teaching panels."
+      },
+      "constraints": [
+        "No assignments, labs, deliverables, homework, acceptance rubrics or speech.",
+        "Do not invent APIs, package types, repository paths, log lines, stack traces, XML, dependencies or UI screenshots.",
+        "Every figure must use only the exact facts and labels supplied for its slide.",
+        "Do not render the whole deck context/core claim as a footer on every slide.",
+        "English only, accurately spelled. No cropping or overlapping text. Use only slide-specific points, not stale Class22 content."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Locate the symptom before changing the runtime",
+      "key_points": [
+        "Record the affected instance, time and content path.",
+        "Separate missing output from failed processing.",
+        "Trace the responsible layer: request, service, workflow or job.",
+        "Use one observation to choose the next check."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "A four-stage diagnostic route with a small example: process label absent → inspect service registration. No invented code, commands or logs.",
+        "intent": "A four-stage diagnostic route with a small example: process label absent → inspect service registration. No invented code, commands or logs."
+      },
+      "local_context": {
+        "required_background": "A four-stage diagnostic route with a small example: process label absent → inspect service registration. No invented code, commands or logs."
+      },
+      "constraints": [
+        "No assignments, labs, deliverables, homework, acceptance rubrics or speech.",
+        "Do not invent APIs, package types, repository paths, log lines, stack traces, XML, dependencies or UI screenshots.",
+        "Every figure must use only the exact facts and labels supplied for its slide.",
+        "Do not render the whole deck context/core claim as a footer on every slide.",
+        "English only, accurately spelled. No cropping or overlapping text. Use only slide-specific points, not stale Class22 content."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Read logs as an execution timeline",
+      "key_points": [
+        "Filter by time, logger and workflow or job identity.",
+        "Read the exception chain and nearby context.",
+        "An ERROR line is evidence, not a complete diagnosis.",
+        "In Cloud, custom Java logs must reach error.log; use supported log access."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "Annotated conceptual log fields: timestamp, level, logger, message, correlation. No invented stack trace or arbitrary timestamps. Local SDK uses crx-quickstart/logs/error.log.",
+        "intent": "Annotated conceptual log fields: timestamp, level, logger, message, correlation. No invented stack trace or arbitrary timestamps. Local SDK uses crx-quickstart/logs/error.log."
+      },
+      "local_context": {
+        "required_background": "Annotated conceptual log fields: timestamp, level, logger, message, correlation. No invented stack trace or arbitrary timestamps. Local SDK uses crx-quickstart/logs/error.log."
+      },
+      "constraints": [
+        "No assignments, labs, deliverables, homework, acceptance rubrics or speech.",
+        "Do not invent APIs, package types, repository paths, log lines, stack traces, XML, dependencies or UI screenshots.",
+        "Every figure must use only the exact facts and labels supplied for its slide.",
+        "Do not render the whole deck context/core claim as a footer on every slide.",
+        "English only, accurately spelled. No cropping or overlapping text. Use only slide-specific points, not stale Class22 content."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "An active bundle does not prove an active service",
+      "key_points": [
+        "Bundle Installed: inspect unresolved package imports.",
+        "Bundle Resolved: imports are resolved; the bundle is not active.",
+        "DS Unsatisfied: inspect required references and configuration.",
+        "A delayed DS component can be Satisfied until a consumer requests it."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "Two distinct columns: bundle states and Declarative Services states. A dashed link means bundle hosts components, not identical lifecycles. Add Active bundle ≠ every component Active.",
+        "intent": "Two distinct columns: bundle states and Declarative Services states. A dashed link means bundle hosts components, not identical lifecycles. Add Active bundle ≠ every component Active."
+      },
+      "local_context": {
+        "required_background": "Two distinct columns: bundle states and Declarative Services states. A dashed link means bundle hosts components, not identical lifecycles. Add Active bundle ≠ every component Active."
+      },
+      "constraints": [
+        "No assignments, labs, deliverables, homework, acceptance rubrics or speech.",
+        "Do not invent APIs, package types, repository paths, log lines, stack traces, XML, dependencies or UI screenshots.",
+        "Every figure must use only the exact facts and labels supplied for its slide.",
+        "Do not render the whole deck context/core claim as a footer on every slide.",
+        "English only, accurately spelled. No cropping or overlapping text. Use only slide-specific points, not stale Class22 content."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Verify the effective configuration",
+      "key_points": [
+        "Find the exact PID or factory configuration instance.",
+        "Confirm the applicable run modes and current property values.",
+        "A source .cfg.json file does not prove the selected runtime values.",
+        "Use local ConfigMgr for the SDK; Cloud changes follow supported configuration delivery."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "Source config → selection → effective values → service. Include small logger example category com.adobe.aem.guides.wknd.core.training.LogPayloadProcess, level INFO, file logs/error.log. No extra configuration keys.",
+        "intent": "Source config → selection → effective values → service. Include small logger example category com.adobe.aem.guides.wknd.core.training.LogPayloadProcess, level INFO, file logs/error.log. No extra configuration keys."
+      },
+      "local_context": {
+        "required_background": "Source config → selection → effective values → service. Include small logger example category com.adobe.aem.guides.wknd.core.training.LogPayloadProcess, level INFO, file logs/error.log. No extra configuration keys."
+      },
+      "constraints": [
+        "No assignments, labs, deliverables, homework, acceptance rubrics or speech.",
+        "Do not invent APIs, package types, repository paths, log lines, stack traces, XML, dependencies or UI screenshots.",
+        "Every figure must use only the exact facts and labels supplied for its slide.",
+        "Do not render the whole deck context/core claim as a footer on every slide.",
+        "English only, accurately spelled. No cropping or overlapping text. Use only slide-specific points, not stale Class22 content."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "A workflow has a model, a payload and an instance",
+      "key_points": [
+        "Model: the process definition. Payload: the object being processed.",
+        "Instance: one execution with its own history and current step.",
+        "Sync prepares the runtime model; start a new instance after model changes.",
+        "Inspect Instances, Archive or Failures according to the observed state."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "Separate model definition and runtime execution diagram. Sync arrow between model editing and runtime model; instance launched from runtime model. No hard-coded model repository paths.",
+        "intent": "Separate model definition and runtime execution diagram. Sync arrow between model editing and runtime model; instance launched from runtime model. No hard-coded model repository paths."
+      },
+      "local_context": {
+        "required_background": "Separate model definition and runtime execution diagram. Sync arrow between model editing and runtime model; instance launched from runtime model. No hard-coded model repository paths."
+      },
+      "constraints": [
+        "No assignments, labs, deliverables, homework, acceptance rubrics or speech.",
+        "Do not invent APIs, package types, repository paths, log lines, stack traces, XML, dependencies or UI screenshots.",
+        "Every figure must use only the exact facts and labels supplied for its slide.",
+        "Do not render the whole deck context/core claim as a footer on every slide.",
+        "English only, accurately spelled. No cropping or overlapping text. Use only slide-specific points, not stale Class22 content."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "A process step runs code; a participant step waits",
+      "key_points": [
+        "Process Step: executes a registered WorkflowProcess service.",
+        "Participant Step: assigns work to a user or group.",
+        "Example: Start → Log payload → End, with Handler Advance enabled.",
+        "A log entry proves the step executed; check history to prove completion."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "Short workflow diagram plus process-versus-participant comparison. Example process label exactly Training: log payload. No Java source or extra business actions. This example only logs; it does not write or publish content.",
+        "intent": "Short workflow diagram plus process-versus-participant comparison. Example process label exactly Training: log payload. No Java source or extra business actions. This example only logs; it does not write or publish content."
+      },
+      "local_context": {
+        "required_background": "Short workflow diagram plus process-versus-participant comparison. Example process label exactly Training: log payload. No Java source or extra business actions. This example only logs; it does not write or publish content."
+      },
+      "constraints": [
+        "No assignments, labs, deliverables, homework, acceptance rubrics or speech.",
+        "Do not invent APIs, package types, repository paths, log lines, stack traces, XML, dependencies or UI screenshots.",
+        "Every figure must use only the exact facts and labels supplied for its slide.",
+        "Do not render the whole deck context/core claim as a footer on every slide.",
+        "English only, accurately spelled. No cropping or overlapping text. Use only slide-specific points, not stale Class22 content."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "A launcher selects which event starts a workflow",
+      "key_points": [
+        "Match event type, node type, path, conditions and enabled state.",
+        "A saved page can produce multiple repository events.",
+        "Keep the path narrow and prevent self-triggering changes.",
+        "A launcher starts a workflow; it is not the workflow or a timer."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "Repository event passes through matching-rule gates to workflow start. Clearly gates combine; not alternative OR routes. No concrete launcher rule with invented regex or API values.",
+        "intent": "Repository event passes through matching-rule gates to workflow start. Clearly gates combine; not alternative OR routes. No concrete launcher rule with invented regex or API values."
+      },
+      "local_context": {
+        "required_background": "Repository event passes through matching-rule gates to workflow start. Clearly gates combine; not alternative OR routes. No concrete launcher rule with invented regex or API values."
+      },
+      "constraints": [
+        "No assignments, labs, deliverables, homework, acceptance rubrics or speech.",
+        "Do not invent APIs, package types, repository paths, log lines, stack traces, XML, dependencies or UI screenshots.",
+        "Every figure must use only the exact facts and labels supplied for its slide.",
+        "Do not render the whole deck context/core claim as a footer on every slide.",
+        "English only, accurately spelled. No cropping or overlapping text. Use only slide-specific points, not stale Class22 content."
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Sling Jobs decouple submission from processing",
+      "key_points": [
+        "A producer submits a topic and serializable properties.",
+        "A consumer handles that topic and returns a processing result.",
+        "OK: success. FAILED: eligible for configured retry. CANCEL: permanent failure.",
+        "The processing guarantee is at least once; repeated execution is possible."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "Producer → JobManager → queue → matching consumer, with result branches. FAILED retry arrow conditional on queue retry policy, not infinite. No Java APIs beyond shown names, no exactly-once claim.",
+        "intent": "Producer → JobManager → queue → matching consumer, with result branches. FAILED retry arrow conditional on queue retry policy, not infinite. No Java APIs beyond shown names, no exactly-once claim."
+      },
+      "local_context": {
+        "required_background": "Producer → JobManager → queue → matching consumer, with result branches. FAILED retry arrow conditional on queue retry policy, not infinite. No Java APIs beyond shown names, no exactly-once claim."
+      },
+      "constraints": [
+        "No assignments, labs, deliverables, homework, acceptance rubrics or speech.",
+        "Do not invent APIs, package types, repository paths, log lines, stack traces, XML, dependencies or UI screenshots.",
+        "Every figure must use only the exact facts and labels supplied for its slide.",
+        "Do not render the whole deck context/core claim as a footer on every slide.",
+        "English only, accurately spelled. No cropping or overlapping text. Use only slide-specific points, not stale Class22 content."
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Retry only after understanding the side effect",
+      "key_points": [
+        "Identify payload, current state, attempt and failure cause.",
+        "Fix the cause before retrying a workflow step or job.",
+        "Repeating the same operation must not duplicate its business effect.",
+        "A timeout does not prove the remote operation never happened."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "Failure → inspect state → fix cause → safe retry, with simple payment-free content example: set status=processed again versus append a second item. Do not imply a property flag alone guarantees atomic idempotency.",
+        "intent": "Failure → inspect state → fix cause → safe retry, with simple payment-free content example: set status=processed again versus append a second item. Do not imply a property flag alone guarantees atomic idempotency."
+      },
+      "local_context": {
+        "required_background": "Failure → inspect state → fix cause → safe retry, with simple payment-free content example: set status=processed again versus append a second item. Do not imply a property flag alone guarantees atomic idempotency."
+      },
+      "constraints": [
+        "No assignments, labs, deliverables, homework, acceptance rubrics or speech.",
+        "Do not invent APIs, package types, repository paths, log lines, stack traces, XML, dependencies or UI screenshots.",
+        "Every figure must use only the exact facts and labels supplied for its slide.",
+        "Do not render the whole deck context/core claim as a footer on every slide.",
+        "English only, accurately spelled. No cropping or overlapping text. Use only slide-specific points, not stale Class22 content."
+      ]
+    },
+    {
+      "number": 11,
+      "title": "Key takeaways",
+      "key_points": [
+        "Correlate the symptom with logs and runtime state.",
+        "Separate bundle, DS component and effective configuration.",
+        "Distinguish workflow definition, instance and launcher trigger.",
+        "Inspect job results and duplicate risk before retrying."
+      ],
+      "layout": {
+        "role": "technical explanation",
+        "composition": "Four concise numbered checkpoint panels with different small diagrams. No exercise, assignment, acceptance rubric or extra framework.",
+        "intent": "Four concise numbered checkpoint panels with different small diagrams. No exercise, assignment, acceptance rubric or extra framework."
+      },
+      "local_context": {
+        "required_background": "Four concise numbered checkpoint panels with different small diagrams. No exercise, assignment, acceptance rubric or extra framework."
+      },
+      "constraints": [
+        "No assignments, labs, deliverables, homework, acceptance rubrics or speech.",
+        "Do not invent APIs, package types, repository paths, log lines, stack traces, XML, dependencies or UI screenshots.",
+        "Every figure must use only the exact facts and labels supplied for its slide.",
+        "Do not render the whole deck context/core claim as a footer on every slide.",
+        "English only, accurately spelled. No cropping or overlapping text. Use only slide-specific points, not stale Class22 content."
+      ]
+    },
+    {
+      "number": 12,
+      "title": "Questions / Thank you",
+      "key_points": [
+        "Questions",
+        "Thank you."
+      ],
+      "layout": {
+        "role": "Q&A",
+        "composition": "Passive closing. ONLY Questions, Thank you. and small 12 eyebrow. No footer claim, bullets, recap or teaching.",
+        "intent": "Passive closing. ONLY Questions, Thank you. and small 12 eyebrow. No footer claim, bullets, recap or teaching."
+      },
+      "local_context": {
+        "required_background": "Passive closing. ONLY Questions, Thank you. and small 12 eyebrow. No footer claim, bullets, recap or teaching."
+      },
+      "constraints": [
+        "No assignments, labs, deliverables, homework, acceptance rubrics or speech.",
+        "Do not invent APIs, package types, repository paths, log lines, stack traces, XML, dependencies or UI screenshots.",
+        "Every figure must use only the exact facts and labels supplied for its slide.",
+        "Do not render the whole deck context/core claim as a footer on every slide.",
+        "English only, accurately spelled. No cropping or overlapping text. Use only slide-specific points, not stale Class22 content."
+      ]
+    }
+  ],
+  "approval": {
+    "scope": "User requested same deliverables for Class23, with simple examples instead of per-session practice assignments.",
+    "style": "Continue Class22 course style",
+    "backend": "built-in image tool",
+    "intermediate_confirmations": "Prior user waiver persists for continuation",
+    "speech": false
+  }
+}
