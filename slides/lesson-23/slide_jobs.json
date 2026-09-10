@@ -1,5 +1,5 @@
 {
-  "run_status": "jobs_prepared",
+  "run_status": "slides_recorded",
   "deck_name": "lesson-23",
   "selected_backend": "built-in image tool",
   "sample_generation_method": {
@@ -310,7 +310,7 @@
         }
       ],
       "requires_context_images": true,
-      "status": "dispatched",
+      "status": "recorded",
       "dispatch": {
         "agent_id": "/root/slide_02",
         "agent_nickname": null,
@@ -318,7 +318,22 @@
         "prompt_sha256": "b5485ee612666760bd1a75b34eaeea292b23c5dcbb20edd3c87021b579a560b1",
         "dispatched_at": "2026-09-10T03:24:52Z"
       },
-      "result": null,
+      "result": {
+        "agent_id": "/root/slide_02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0823e-7d6b-75c3-8624-defc539ff22d/exec-9f87156d-7a06-471f-95d4-58553847d4b4.png",
+        "selected_source_sha256": "16c03609007dd09c713e684a305c7e7e5fb58d0139af2385f8452b6ce99c2cde",
+        "final_image": "origin_image/slide_08.png",
+        "final_image_sha256": "16c03609007dd09c713e684a305c7e7e5fb58d0139af2385f8452b6ce99c2cde",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent inspected complete image: accurate slide-specific content, readable and consistent with course style.",
+        "recorded_at": "2026-09-10T12:52:12Z"
+      },
       "blocker": null
     },
     {
@@ -335,7 +350,7 @@
         }
       ],
       "requires_context_images": true,
-      "status": "dispatched",
+      "status": "recorded",
       "dispatch": {
         "agent_id": "/root/slide_03",
         "agent_nickname": null,
@@ -343,7 +358,22 @@
         "prompt_sha256": "0cae73c674880146bbfeefc8c16d045274740cc6e8b47b54fb2f7c969b1df5e5",
         "dispatched_at": "2026-09-10T03:24:52Z"
       },
-      "result": null,
+      "result": {
+        "agent_id": "/root/slide_03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0823e-a9d3-75f2-8b8e-53614fa23d62/exec-4c8f7afa-c8f4-4280-beac-8afa140838a2.png",
+        "selected_source_sha256": "cabaeb07501f56bdbb6c202ba50b33c8762a040b8ea0bdd7552d51a6d3b606f6",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "cabaeb07501f56bdbb6c202ba50b33c8762a040b8ea0bdd7552d51a6d3b606f6",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent inspected complete image: accurate slide-specific content, readable and consistent with course style.",
+        "recorded_at": "2026-09-10T12:52:12Z"
+      },
       "blocker": null
     },
     {
@@ -360,7 +390,7 @@
         }
       ],
       "requires_context_images": true,
-      "status": "dispatched",
+      "status": "recorded",
       "dispatch": {
         "agent_id": "/root/slide_01",
         "agent_nickname": null,
@@ -368,7 +398,22 @@
         "prompt_sha256": "413c0a1890955b01bfc4f1bbc96dfd734b92cf626259ac6b881172a5919237e3",
         "dispatched_at": "2026-09-10T03:27:06Z"
       },
-      "result": null,
+      "result": {
+        "agent_id": "/root/slide_01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0823e-4bdb-78b0-b077-a751d5d29e21/exec-f9e9c1f1-8f39-4ffa-8756-ed7b9837e9fe.png",
+        "selected_source_sha256": "59a7d9ad7aff4d0c60bae204b5236a48785d0a4382d37353654c504b97513d1d",
+        "final_image": "origin_image/slide_10.png",
+        "final_image_sha256": "59a7d9ad7aff4d0c60bae204b5236a48785d0a4382d37353654c504b97513d1d",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent inspected complete image: accurate slide-specific content, readable and consistent with course style.",
+        "recorded_at": "2026-09-10T12:53:26Z"
+      },
       "blocker": null
     },
     {
@@ -385,9 +430,30 @@
         }
       ],
       "requires_context_images": true,
-      "status": "pending",
-      "dispatch": null,
-      "result": null,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_02",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_11.json",
+        "prompt_sha256": "c327a16617d044d5dbbe79a4905ced26e90d61ccf50243c4b7c695596147b9ff",
+        "dispatched_at": "2026-09-10T12:52:13Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0823e-7d6b-75c3-8624-defc539ff22d/exec-f395c6eb-9273-4ef4-b5e6-709ccc952cc0.png",
+        "selected_source_sha256": "6218df8e9bd041e588c033f838e1bb04b99974512bbd66fd5358ba40a629b8c8",
+        "final_image": "origin_image/slide_11.png",
+        "final_image_sha256": "6218df8e9bd041e588c033f838e1bb04b99974512bbd66fd5358ba40a629b8c8",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent inspected complete image: accurate slide-specific content, readable and consistent with course style.",
+        "recorded_at": "2026-09-10T12:56:47Z"
+      },
       "blocker": null
     },
     {
@@ -404,11 +470,32 @@
         }
       ],
       "requires_context_images": true,
-      "status": "pending",
-      "dispatch": null,
-      "result": null,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide_03",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_12.json",
+        "prompt_sha256": "588de0225bb0ae4b8e457051151956a626ce65355114ed865385bd1d4fc1d01d",
+        "dispatched_at": "2026-09-10T12:52:13Z"
+      },
+      "result": {
+        "agent_id": "/root/slide_03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0823e-a9d3-75f2-8b8e-53614fa23d62/exec-d7949d1b-890b-4a07-8d0e-a17bfb145ed2.png",
+        "selected_source_sha256": "0fa42f34edf47e751545fe15349151884f1d595e0d7f16a1e92af6d85cbcbcd7",
+        "final_image": "origin_image/slide_12.png",
+        "final_image_sha256": "0fa42f34edf47e751545fe15349151884f1d595e0d7f16a1e92af6d85cbcbcd7",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent inspected complete image: accurate slide-specific content, readable and consistent with course style.",
+        "recorded_at": "2026-09-10T12:54:13Z"
+      },
       "blocker": null
     }
   ],
-  "updated_at": "2026-09-10T03:27:06Z"
+  "updated_at": "2026-09-10T12:56:47Z"
 }

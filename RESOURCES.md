@@ -129,3 +129,9 @@ Consultadas el 8 de septiembre de 2026. Reanudar herencia y sincronizar son deci
 - [Sesión 20: revisión de backend](reference/session-20-study-guide.html) y [sesión HTML](lessons/0020-backend-practice-review.html); revisión semanal sin slides.
 - [Sesión 22: estructura compatible con Cloud](reference/session-22-study-guide.html), [Markdown](reference/session-22-study-guide.md) y [slides + práctica](lessons/0022-cloud-compatible-structure.html).
 - Las sesiones 18–22 incluyen prácticas locales en sus HTML; los archivos copiables están en `reference/examples/session-18`, `session-19` y `session-22`.
+
+## Sesión 23 · Diagnóstico y procesamiento asíncrono
+
+- [Doce slides y ejemplos simples](lessons/0023-runtime-diagnostics-async-processing.html), [resumen en español](reference/session-23-study-guide.html) y [Markdown](reference/session-23-study-guide.md).
+- [Una clase Java completa](reference/examples/session-23/core/src/main/java/com/adobe/aem/guides/wknd/core/training/LogPayloadProcess.java), con compilación y descriptor DS verificados. El HTML detalla los pasos para logger, modelo y ejecución en Author.
+- Fuentes oficiales y alcance de la comprobación: [glosario y fuentes](reference/session-23-study-guide.html#fuentes).

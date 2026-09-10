@@ -36,7 +36,7 @@
     "color_palette": "Warm ivory drafting-paper background with a faint square grid; deep navy titles; cobalt for source-to-target flow; violet for configuration; green for valid or protected local state; restrained orange for destructive actions and cautions.",
     "typography": "Large bold condensed sans-serif headings; crisp sans-serif supporting text; true monospace appearance for repository paths, property names, action names and state values.",
     "texture_and_finish": "Flat 2D technical diagrams, fine rules, precise page, relationship, configuration and status icons. No gradients, neon, glass, 3D, photography or generic corporate people.",
-    "deck_consistency": "Match approved slide_07 palette, typography, drafting grid, fixed two-digit top-left numbering, technical density, evidence panels, semantic colors and connector weight while varying composition by role. Use concrete paths, state badges and exact terms instead of decorative whitespace."
+    "deck_consistency": "Match Class 22 slide_10 palette, typography, drafting grid, fixed two-digit top-left numbering, technical density, evidence panels, semantic colors and connector weight while varying composition by role. Use concrete paths, state badges and exact terms instead of decorative whitespace."
   },
   "deck_context": {
     "source_summary": "Traditional AEM Sites on AEM as a Cloud Service; local SDK examples. Diagnose logs, OSGi bundles/components/configuration and workflow/job state.",

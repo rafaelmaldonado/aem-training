@@ -350,15 +350,10 @@
     </details>
 
     <details><summary>Day 23 · Runtime diagnostics and asynchronous processing</summary>
-      <p><strong>Retrieval question:</strong> Which runtime view would you inspect for an unsatisfied service reference?</p>
-      <ol class="slides">
-        <li><strong>Slide 1 — Logs provide a timed execution record.</strong> Narrow by service, request, correlation detail and root exception. <em>Speaker cue: the first cause is often above the final summary.</em></li>
-        <li><strong>Slide 2 — Bundle state reveals package resolution.</strong> Installed or resolved bundles may have missing imports even when Maven passed. <em>Speaker cue: compare symbolic name, version and imported package.</em></li>
-        <li><strong>Slide 3 — Choose the asynchronous mechanism by responsibility.</strong> Workflows expose business process state, launchers react to repository events and jobs queue retryable work. <em>Speaker cue: do not use three mechanisms for one event.</em></li>
-        <li><strong>Slide 4 — Effective configuration beats assumptions.</strong> Confirm the active PID, values and run mode on the affected service. <em>Speaker cue: the committed file may not be the selected configuration.</em></li>
-        <li><strong>Slide 5 — Retry requires idempotency.</strong> Trace payload, state and duplicate risk before rerunning a failed workflow or job. <em>Speaker cue: repeated processing must not repeat destructive side effects.</em></li>
-      </ol>
-      <p><strong>Demo:</strong> trace a Guide event through logs, configuration and its workflow or job state. <strong>Assignment:</strong> resolve a seeded runtime or asynchronous failure. <strong>Acceptance:</strong> exact evidence, responsible mechanism, cause and verification are recorded.</p>
+      <p><a href="../lessons/0023-runtime-diagnostics-async-processing.html#slide-deck">Open the complete 12-slide deck →</a> · <a href="session-23-study-guide.html">Resumen en español</a></p>
+      <p>Start with the symptom, instance, time and execution identity. Distinguish bundle resolution, DS activation and effective configuration, then inspect the responsible workflow instance or job.</p>
+      <p>Workflows define process steps; launchers select repository events; Sling Jobs decouple submission from processing. Review state and side effects before retrying.</p>
+      <p><strong>Simple example:</strong> one Java WorkflowProcess writes the payload to the log. <a href="../lessons/0023-runtime-diagnostics-async-processing.html#ejemplos-locales">Copy the complete class and follow the logger/model instructions in local Author</a>.</p>
     </details>
 
     <details><summary>Day 24 · Experience Fragments and Content Fragments</summary>
