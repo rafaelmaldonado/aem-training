@@ -3,24 +3,25 @@
 - Audiencia: seis desarrolladores con experiencia principalmente en frontend y authoring; enseñar desarrollo AEM desde cero.
 - Modalidad: equipo completamente remoto; el usuario es el arquitecto y también conduce el entrenamiento.
 - Restricción remota: no depender de breakout rooms; usar chat, preguntas dirigidas, demos y trabajo individual posterior.
-- Duración: siete semanas, lunes a viernes; 35 sesiones en línea de 30 minutos y ejercicios asíncronos posteriores.
-- Preferencias: mismo proyecto en repositorios y ambientes individuales; siete prácticas semanales, publicadas el lunes, entregadas el jueves y revisadas el viernes.
+- Duración: hasta el 30 de octubre de 2026; sesiones en línea de 30 a 60 minutos dentro de la reserva de calendario. Preparar un núcleo de 30 minutos y ampliar demos/preguntas hasta 60 según el tema. Rediseño de semanas 6–11 en propuesta; semanas 1–4 impartidas y material de semana 5 congelado.
+- Preferencias: mismo proyecto de referencia; prácticas semanales voluntarias, sin calificación final ni entrega obligatoria. Publicarlas el lunes; quien quiera feedback puede compartir avances antes del viernes.
 - Presentación: materiales en HTML, accesibles desde `index.html`, con estilo compartido e impresión limpia.
 - Estructura de cada lección: incluir al inicio un resumen sustancial pero escaneable —dos párrafos conceptuales y entre cinco y seis puntos fundamentales— antes de la agenda y las slides.
 - Preferencia para slides: contenido completo con bullets, ejemplos concretos, diagramas e imágenes; no limitarse a una descripción breve.
-- Cierre de cada sesión con deck: incluir una slide de **Key takeaways** con bullets que resuman los puntos importantes, seguida únicamente por la slide pasiva **Questions / Thank you.**; los días 5, 10, 15, 20, 25, 30 y 35 no llevan slides.
-- Formato de las sesiones semanales: el arquitecto da un quick recap y el equipo presenta la práctica con evidencia; no son sesiones para introducir un tema técnico nuevo.
+- Cierre de cada sesión con deck: incluir una slide de **Key takeaways** con bullets que resuman los puntos importantes, seguida únicamente por la slide pasiva **Questions / Thank you.**; los viernes (sesiones múltiplo de 5, hasta la 55) no llevan slides.
+- Formato de los viernes: recap y demo de la práctica, con participación voluntaria. Si nadie presenta, el instructor demuestra el caso de referencia. Sin temas nuevos, evaluación ni defensa obligatoria.
 - Flujo de presentación: publicar las slides en GitHub Pages y copiarlas como una imagen completa a PowerPoint para conservar el formato; no conservar ni generar archivos `.pptx` para sesiones existentes o futuras.
 - Estilo visual de slides: fondo azul marino, iluminación azul hielo, tarjetas tipo vidrio, bordes cian, trama de puntos y curvas concéntricas sutiles; usar la referencia visual más reciente proporcionada el 2026-08-13.
 - Estilo visual del sitio: aplicar el mismo tema azul marino y azul hielo de las slides a todas las páginas mediante la hoja de estilos compartida.
 - Material por sesión: slides y resumen en HTML/Markdown, sin speech. Incluir ejemplos simples: código completo que compile, o instrucciones paso a paso para configuraciones en la instancia. No convertirlos en prácticas por sesión ni añadir entregables; las prácticas se mantienen a nivel semanal.
 - Publicación prevista: GitHub Pages; mantener navegación con rutas relativas y `index.html` como overview de planeación.
 - Prioridad: aprendizaje aplicable y seguimiento con pocas reuniones.
-- Evidencia requerida: progreso individual verificable mediante recuperación, artefactos técnicos y explicación; asistencia o cámara no cuentan como aprendizaje.
-- Revisión: la similitud de código es una señal para preguntar, no una prueba; confirmar comprensión con explicación, ejecución y un cambio pequeño en vivo.
+- Feedback: resultados y comprobaciones sugeridas para autoevaluación y conversación voluntaria; no exigir evidencia, puntuar ni asignar niveles de desempeño. Asistencia o cámara no prueban aprendizaje.
+- Continuidad: cada semana necesita un punto de partida suministrado; no depender de que los participantes hayan completado prácticas anteriores.
 - Plataforma confirmada: AEM Sites tradicional sobre AEM as a Cloud Service; no incluir EDS, Headless ni Forms en el núcleo.
-- Acceso confirmado: AEM as a Cloud Service SDK disponible para el entrenamiento; Cloud Manager no es requisito.
+- Acceso confirmado: AEM as a Cloud Service SDK disponible para el entrenamiento. El instructor no tiene Cloud Manager; cualquier acceso de participantes es incierto y no permite asumir autorización para pruebas.
 - Inicio del repositorio confirmado: cada participante puede clonar el tutorial público WKND o generar el proyecto con AEM Project Archetype; ambas rutas son válidas y terminan en un repositorio individual.
-- Cloud Manager: contenido teórico con diagramas y evidencia anonimizada; no pedir acceso ni despliegues.
+- Cloud Manager/RDE/CDN: documentación pública, diagramas, videos disponibles y casos sintéticos identificados; evidencia real sólo si ya se dispone de ella. No planear demos en vivo ni pruebas/despliegues Cloud.
+- GraphQL: uso en el trabajo real desconocido; fuera del calendario principal, lectura opcional. Mantener Content Fragments en Sites tradicional.
 - Pendiente de levantar: perfiles individuales y dos o tres tipos de cambio habituales que deberá resolver el equipo.
-- No se esperan interrupciones relevantes durante las siete semanas restantes.
+- No se han comunicado interrupciones relevantes para el calendario propuesto hasta el 30 de octubre.

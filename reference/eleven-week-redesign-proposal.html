@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Propuesta de rediseño · 11 semanas · AEM Training</title><meta name="description" content="Propuesta hasta el 30 de octubre: semanas 1–5 congeladas, nuevo calendario 6–11, sesiones de 30–60 minutos, prácticas voluntarias y recap/demo todos los viernes."><link rel="stylesheet" href="../assets/styles.css"></head>
+<body><a class="skip-link" href="#contenido">Saltar al contenido</a>
+<nav class="site-nav" aria-label="Principal"><a class="brand" href="../index.html">AEM Training</a><ul><li><a href="aem-course-topics.html">Temario vigente</a></li><li><a href="wknd-project-backlog.html">Prácticas vigentes</a></li><li><a href="eleven-week-redesign-proposal.md" download>Markdown</a></li></ul></nav>
+<header><p class="eyebrow">Propuesta para revisión · Semanas 1–5 congeladas</p><p class="lede">Del 17 de agosto al 30 de octubre de 2026: 55 sesiones de 30–60 minutos, prácticas voluntarias y todos los viernes dedicados a recap y demo.</p></header>
+<main id="contenido"><h1>Rediseño del entrenamiento AEM as a Cloud Service hasta el 30 de octubre</h1>
+<p><strong>Propuesta para revisión · 11 semanas · 55 sesiones · 17 de agosto–30 de octubre de 2026</strong></p>
+<p><a href="eleven-week-redesign-proposal.html">Versión HTML</a> · <a href="aem-course-topics.html">Temario vigente</a> · <a href="wknd-project-backlog.html">Prácticas vigentes</a></p>
+<h2>Decisión recomendada</h2>
+<p>Conservar íntegramente las semanas 1–5 y sustituir la planificación de las semanas 6–7 por seis semanas nuevas, del 21 de septiembre al 30 de octubre. Cada semana tiene cuatro sesiones técnicas y un viernes exclusivo de recap y demo de la práctica. Todas duran entre 30 y 60 minutos, dentro del tiempo reservado en calendario. El curso queda en 44 sesiones técnicas y 11 encuentros de recap y demo.</p>
+<p>Las sesiones 1–20 ya impartidas y el material preparado de las sesiones 21–25 no se reescriben. Las prácticas 1–5 también se conservan. Este documento propone el cambio; todavía no sustituye el temario publicado ni constituye material de clase ya desarrollado.</p>
+<p>Se conserva el escenario <strong>Weekend Guides</strong>, seis developers y una práctica semanal común <strong>voluntaria</strong>. Quien decida implementarla puede usar su repositorio y SDK. El brief se publica el lunes; quien quiera feedback puede compartir avances antes del viernes. No hay entregas obligatorias, calificación final ni requisitos de aprobación.</p>
+<p><strong>Restricciones aclaradas por el instructor:</strong> no dispone de Cloud Manager y no se puede contar con acceso utilizable para pruebas por parte de los participantes. Cloud Manager, RDE y CDN se enseñan con documentación pública, diagramas, videos disponibles y casos sintéticos claramente identificados. Sólo se usa evidencia real si ya está disponible; no se presupone una demo Cloud en vivo. El uso laboral de GraphQL es desconocido: queda como lectura opcional fuera del calendario principal.</p>
+<p><strong>Continuidad sin tareas obligatorias:</strong> cada semana incluye un punto de partida suministrado y un ejemplo completo del instructor. Nadie necesita completar las prácticas anteriores para seguir las clases, observar la demo o intentar la práctica actual. Las comprobaciones de este documento describen resultados técnicos para autoevaluación y feedback, no una rúbrica de calificación.</p>
+<h2>Qué cambia respecto de la propuesta recibida</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla del rediseño"><table>
+<thead>
+<tr>
+<th>Observación</th>
+<th>Ajuste propuesto</th>
+<th>Razón</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Los viernes de las semanas 7–10 introducen un lab o tema nuevo.</td>
+<td>Los casos se trabajan de lunes a jueves; el viernes se presentan resultados.</td>
+<td>Mantener la cadencia de recap y demostración sin estrenar requisitos.</td>
+</tr>
+<tr>
+<td>Workflows, launchers, Sling Jobs, MSM y CF ya aparecen en la semana 5.</td>
+<td>En la semana 9 se resuelven problemas de reintentos, integraciones y evolución del contenido.</td>
+<td>La segunda exposición debe exigir una capacidad nueva, no repetir definiciones.</td>
+</tr>
+<tr>
+<td>Service users aparecen antes de ACLs y Repo Init.</td>
+<td>Miércoles: identidades, permisos y Repo Init. Jueves: subservices y ciclo de vida del resolver.</td>
+<td>Primero preparar la identidad y sus permisos, después consumirla desde código.</td>
+</tr>
+<tr>
+<td>Tags y taxonomía desaparecen del nuevo bloque de consultas.</td>
+<td>Recuperarlos el lunes de la semana 6 como contrato de clasificación de Guide List.</td>
+<td>Ya son parte del proyecto y conectan autoría con búsqueda.</td>
+</tr>
+<tr>
+<td>La práctica 6 vigente reúne consultas, Cloud Manager, Dispatcher y seguridad.</td>
+<td>Repartir sus objetivos entre las prácticas 6, 7, 8 y 10.</td>
+<td>Una demo breve puede defender un resultado semanal concreto.</td>
+</tr>
+<tr>
+<td>La semana 10 concentra a11y, SEO y rendimiento en una sola sesión.</td>
+<td>Un día para accesibilidad/SEO y otro para rendimiento; unitarias e integración se comparan el lunes.</td>
+<td>JUnit y AEM Mocks ya se estudiaron en la semana 4.</td>
+</tr>
+<tr>
+<td>GraphQL cambia el alcance y ocupa un viernes.</td>
+<td>Lectura opcional fuera del calendario principal.</td>
+<td>No hay una necesidad laboral confirmada y no debe desplazar el recap y la demo.</td>
+</tr>
+<tr>
+<td>El capstone parece comenzar desde cero la última semana.</td>
+<td>Caso integrador suministrado y ampliación personal opcional.</td>
+<td>La última semana sirve para integrar, diagnosticar y compartir aprendizajes sin examen final.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Cobertura comprobada y huecos que conviene atender</h2>
+<p>“Falta” significa que no encontré un bloque o evidencia práctica explícita en los materiales revisados; no implica que el instructor nunca lo haya mencionado en clase.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla del rediseño"><table>
+<thead>
+<tr>
+<th>Área</th>
+<th>Base conservada en semanas 1–5</th>
+<th>Profundidad nueva</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Repositorio y consultas</td>
+<td>JCR/Resource API en sesiones 3 y 16; tags como datos en HTL.</td>
+<td>Taxonomía, QueryBuilder/JCR-SQL2, paginación, límites, orden, full-text y lectura del plan. Semana 6.</td>
+</tr>
+<tr>
+<td>Identidad y seguridad</td>
+<td>La sesión 16 menciona acceso administrativo prohibido y cierre de resolvers; HTL seguro y límites de servlet en semanas 3–4.</td>
+<td>ACL efectiva, Repo Init, mappings, identidad del solicitante, autorización y diagnóstico de 403. Semana 6; refuerzo en 7 y 10.</td>
+</tr>
+<tr>
+<td>Entrega</td>
+<td>Modelo Author/Publish desde semana 1; dependencias de fragmentos en sesión 24.</td>
+<td>Publicación/despublicación, estado en destino, filtros, redirects/rewrites, cachés y contenido privado. Semana 7.</td>
+</tr>
+<tr>
+<td>Operación Cloud</td>
+<td>Paquetes e inmutabilidad en sesión 22; configuración OSGi y secretos en 18; diagnóstico en 23.</td>
+<td>Tipo de pipeline, lectura de fallos, compatibilidad entre versiones, configuración efectiva y elección de herramientas Cloud. Semana 8.</td>
+</tr>
+<tr>
+<td>Integraciones y asincronía</td>
+<td>Servicios y criterios de retry ya introducidos en 18 y 23.</td>
+<td>HTTP saliente con timeouts y fallos, ejecución repetida, progreso persistido y límites de escalado. Semana 9.</td>
+</tr>
+<tr>
+<td>Arquitectura de contenido</td>
+<td>MSM en 21 y CF/XF en 24.</td>
+<td>Casos de localización, acciones de rollout existentes, cambio de modelo y referencias entre fragmentos. Semana 9.</td>
+</tr>
+<tr>
+<td>Calidad</td>
+<td>A11y/responsive/Data Layer en semanas 2–3; JUnit/AEM Mocks en 4.</td>
+<td>Comprobaciones con repositorio/HTTP real, flujo UI, SEO y medición comparable de rendimiento. Semana 10.</td>
+</tr>
+<tr>
+<td>Diagnóstico integral</td>
+<td>Varias trazas parciales y una práctica de mantenimiento.</td>
+<td>Correlación por capas, descarte de hipótesis, recuperación y explicación del caso. Semana 11.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Hay cuatro límites técnicos que deben quedar explícitos en el material nuevo:</p>
+<ul>
+<li><strong>Una consulta que usa un índice todavía puede ser costosa.</strong> Revisar restricciones, ordenamiento, resultados leídos y plan; no aprobar sólo porque aparece el nombre de un índice. Un índice nuevo se justifica con evidencia y sigue el proceso de despliegue Cloud. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/operations/query-and-indexing-best-practices">Consultas e índices — Adobe</a>, <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/operations/indexing">indexación en Cloud — Adobe</a>.</li>
+<li><strong>Un service resolver no sustituye los permisos del visitante.</strong> La lectura que debe respetar al solicitante conserva esa identidad; una tarea técnica usa un subservice con alcance explícito. AEM Mocks no sustituye la comprobación de ACL efectiva en un repositorio real. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/developing/advanced/service-users">Service users — Adobe</a>.</li>
+<li><strong>Publish, Dispatcher y CDN son pruebas distintas.</strong> No atribuir a la replicación clásica local todas las propiedades de Sling Content Distribution ni asumir que un encabezado de privacidad protege por sí solo todas las capas de caché. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/operations/replication">Replicación Cloud — Adobe</a>, <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching">caché en AEMaaCS — Adobe</a>.</li>
+<li><strong>Los fallos de red y reinicios forman parte del caso normal Cloud.</strong> Enseñar estado persistente apropiado, compatibilidad entre versiones y procesamiento reanudable. Un timeout no prueba que el sistema remoto no haya ejecutado la operación. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/development-guidelines">Guías de desarrollo Cloud — Adobe</a>.</li>
+</ul>
+<h2>Calendario propuesto: semanas 6–11</h2>
+<p>Cada fila tiene un foco principal y una demo preparada por el instructor. Diseñar un núcleo de 30 minutos: 5 de recuperación y objetivo, 12 de explicación, 10 de demo y 3 de cierre. Para sesiones de hasta 60 minutos, ampliar hasta 20 minutos la demo o el diagnóstico guiado y reservar hasta 10 minutos adicionales para preguntas. El margen permite profundizar en el mismo objetivo; no obliga a duplicar temas ni slides. La comprensión de una clase no depende de haber hecho tareas.</p>
+<h3>Semana 6 · Repositorio, consultas y acceso seguro · 21–25 de septiembre</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla del rediseño"><table>
+<thead>
+<tr>
+<th>Sesión</th>
+<th>Fecha</th>
+<th>Tema y capacidad observable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>26</td>
+<td>Lun 21 sep</td>
+<td><strong>Consultar contenido clasificado.</strong> Tags/taxonomía, QueryBuilder y lectura equivalente en JCR-SQL2; path, tipo, propiedades, full-text, límite y paginación. Explicar qué devuelve Guide List y qué excluye.</td>
+</tr>
+<tr>
+<td>27</td>
+<td>Mar 22 sep</td>
+<td><strong>Diagnosticar una consulta costosa.</strong> Traversal, Explain Query, selectividad, ordenamiento y resultados leídos; revisar una definición de índice compatible con Cloud. Corregir primero la consulta cuando sea suficiente.</td>
+</tr>
+<tr>
+<td>28</td>
+<td>Mié 23 sep</td>
+<td><strong>Modelar permisos como código.</strong> Usuarios, grupos y service users; ACL efectiva y mínimo privilegio; paths y permisos con Repo Init. Distinguir identidad humana gestionada mediante IMS de identidad técnica del repositorio.</td>
+</tr>
+<tr>
+<td>29</td>
+<td>Jue 24 sep</td>
+<td><strong>Acceder al repositorio con la identidad correcta.</strong> ResourceResolverFactory, subservice mappings, cierre/propiedad del resolver y request resolver frente a service resolver. Distinguir un fallo de mapping, ACL y protección HTTP como CSRF.</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Vie 25 sep</td>
+<td><strong>Recap y demo de la práctica 6:</strong> Guide List acotada y diagnóstico de un fallo de acceso; mostrar resultado permitido y resultado excluido.</td>
+</tr>
+</tbody>
+</table></div>
+<p>La práctica implementa una sola vía de consulta; JCR-SQL2 sirve para entender y contrastar el plan, no para construir dos implementaciones del mismo listado. CSRF, autorización y CORS se distinguen como controles diferentes, sin desactivarlos para hacer pasar una prueba. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/developing/advanced/csrf-protection">Protección CSRF — Adobe</a>.</p>
+<h3>Semana 7 · Publicación, Dispatcher y CDN · 28 de septiembre–2 de octubre</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla del rediseño"><table>
+<thead>
+<tr>
+<th>Sesión</th>
+<th>Fecha</th>
+<th>Tema y capacidad observable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>31</td>
+<td>Lun 28 sep</td>
+<td><strong>Comprobar la publicación.</strong> Author → Publish, publicar/despublicar, dependencias, estado y Sling Content Distribution; propósito de Preview. Separar código desplegado de contenido publicado.</td>
+</tr>
+<tr>
+<td>32</td>
+<td>Mar 29 sep</td>
+<td><strong>Seguir una petición por Apache y Dispatcher.</strong> Vhost, farm, filtros, rewrite frente a redirect y encabezados. Explicar un 403/404 con la regla y la capa responsables.</td>
+</tr>
+<tr>
+<td>33</td>
+<td>Mié 30 sep</td>
+<td><strong>Diagnosticar caché de Dispatcher.</strong> Reglas, invalidación, stat files, TTL y parámetros de URL. Reproducir un miss, un hit y una actualización controlada.</td>
+</tr>
+<tr>
+<td>34</td>
+<td>Jue 1 oct</td>
+<td><strong>Separar navegador, CDN y Dispatcher.</strong> Cache-Control, Surrogate-Control, cookies y contenido privado; versionado de assets/clientlibs. Atribuir contenido antiguo a una capa usando evidencia.</td>
+</tr>
+<tr>
+<td>35</td>
+<td>Vie 2 oct</td>
+<td><strong>Recap y demo de la práctica 7:</strong> “funciona en Author, falla en Publish” o “se sirve contenido anterior”, resuelto durante la semana.</td>
+</tr>
+</tbody>
+</table></div>
+<p>El requisito es diagnosticar y probar una política concreta, no memorizar todas las directivas ni borrar globalmente las cachés. La ejecución local demuestra Publish/Dispatcher; los resultados de CDN se analizan en evidencia suministrada cuando no hay acceso Cloud.</p>
+<h3>Semana 8 · Desarrollo, despliegue y diagnóstico Cloud · 5–9 de octubre</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla del rediseño"><table>
+<thead>
+<tr>
+<th>Sesión</th>
+<th>Fecha</th>
+<th>Tema y capacidad observable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>36</td>
+<td>Lun 5 oct</td>
+<td><strong>Elegir el flujo de entrega.</strong> Cloud Manager: programas, ambientes, repositorios y pipelines de aplicación/frontend/configuración según el cambio. Relacionar commit, artefacto y destino.</td>
+</tr>
+<tr>
+<td>37</td>
+<td>Mar 6 oct</td>
+<td><strong>Leer un fallo de pipeline.</strong> Build, calidad, seguridad, pruebas y despliegue; identificar el primer error accionable. Compatibilidad entre código anterior/nuevo y contenido durante una actualización; estrategia de recuperación.</td>
+</tr>
+<tr>
+<td>38</td>
+<td>Mié 7 oct</td>
+<td><strong>Explicar la configuración efectiva.</strong> PID/factory, run modes permitidos, .cfg.json, valores de entorno y secretos. Diagnosticar por qué el servicio local y el Cloud difieren sin repetir la introducción OSGi.</td>
+</tr>
+<tr>
+<td>39</td>
+<td>Jue 8 oct</td>
+<td><strong>Elegir una herramienta Cloud para una hipótesis.</strong> RDE para iteración; AEM Developer Console, Repository Browser y logs para inspección. Resolver un caso guiado, no recorrer cuatro interfaces sin objetivo.</td>
+</tr>
+<tr>
+<td>40</td>
+<td>Vie 9 oct</td>
+<td><strong>Recap y demo de la práctica 8:</strong> diagnóstico de un despliegue/configuración fallido con evidencia proporcionada y corrección local verificable.</td>
+</tr>
+</tbody>
+</table></div>
+<p>RDE no reemplaza la validación del pipeline. La selección de configuración se estudia con las reglas Cloud, incluidos los run modes soportados y la separación entre valores versionados y secretos. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/rapid-development-environments">RDE — Adobe</a>, <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/deploying/configuring-osgi">configuración OSGi — Adobe</a>.</p>
+<h3>Semana 9 · Integraciones resilientes y evolución del contenido · 12–16 de octubre</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla del rediseño"><table>
+<thead>
+<tr>
+<th>Sesión</th>
+<th>Fecha</th>
+<th>Tema y capacidad observable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>41</td>
+<td>Lun 12 oct</td>
+<td><strong>Hacer una tarea asíncrona reintentable.</strong> Aplicar workflows/launchers/Sling Jobs ya conocidos: efectos repetidos, idempotencia, reanudación, lotes y prevención de bucles. Diferenciar coordinación del trabajo de su efecto de negocio.</td>
+</tr>
+<tr>
+<td>42</td>
+<td>Mar 13 oct</td>
+<td><strong>Consumir un servicio externo desde AEM.</strong> Servicio OSGi, timeouts, errores HTTP, credenciales y límites de reintento; diagnóstico de conectividad/egress. Usar un stub local; no bloquear el render de una página con trabajo largo.</td>
+</tr>
+<tr>
+<td>43</td>
+<td>Mié 14 oct</td>
+<td><strong>Resolver un caso MSM de localización.</strong> Rollout configurations existentes, cancelación/restauración de herencia y referencias localizadas. Diferenciar Live Copy, Language Copy y proceso de traducción.</td>
+</tr>
+<tr>
+<td>44</td>
+<td>Jue 15 oct</td>
+<td><strong>Evolucionar un modelo CF sin romper consumidores.</strong> Referencias de contenido frente a referencias entre fragmentos, campos ausentes, profundidad del modelo y dependencias de publicación. Mantener consumo en Sites.</td>
+</tr>
+<tr>
+<td>45</td>
+<td>Vie 16 oct</td>
+<td><strong>Recap y demo de la práctica 9:</strong> tarea que tolera fallo/reintento y justificación del impacto sobre contenido compartido.</td>
+</tr>
+</tbody>
+</table></div>
+<p>No se exige escribir un motor de workflows, una rollout action propia ni una aplicación Headless. La sesión 44 mantiene CF relacionados y evolución del modelo para Sites. GraphQL se ofrece únicamente como lectura opcional; no se reserva una sesión ni se añade a la práctica mientras su necesidad laboral siga sin confirmar.</p>
+<h3>Semana 10 · Estrategia de pruebas y calidad observable · 19–23 de octubre</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla del rediseño"><table>
+<thead>
+<tr>
+<th>Sesión</th>
+<th>Fecha</th>
+<th>Tema y capacidad observable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>46</td>
+<td>Lun 19 oct</td>
+<td><strong>Elegir la prueba que puede demostrar el riesgo.</strong> Casos negativos de Models/servicios/servlets; límites de AEM Mocks; prueba con repositorio o HTTP real para permisos, resolución o integración.</td>
+</tr>
+<tr>
+<td>47</td>
+<td>Mar 20 oct</td>
+<td><strong>Automatizar un recorrido crítico.</strong> Un flujo author → página visible con una sola herramienta UI; datos estables, selectores, aislamiento y diagnóstico de pruebas intermitentes. Relación con ui.tests/Cloud Manager.</td>
+</tr>
+<tr>
+<td>48</td>
+<td>Mié 21 oct</td>
+<td><strong>Comprobar accesibilidad y SEO.</strong> Teclado, foco, semántica, nombres accesibles y zoom; título, canonical, indexabilidad y sitemap según el caso. Lighthouse/Experience Audit como evidencia parcial.</td>
+</tr>
+<tr>
+<td>49</td>
+<td>Jue 22 oct</td>
+<td><strong>Medir y corregir un cuello de botella.</strong> Separar backend/consulta, caché, imágenes/clientlibs y navegador; baseline comparable, medición repetible, presupuesto acordado y un cambio comprobado.</td>
+</tr>
+<tr>
+<td>50</td>
+<td>Vie 23 oct</td>
+<td><strong>Recap y demo de la práctica 10:</strong> regresión detectada y corrección de calidad/rendimiento con evidencia antes/después.</td>
+</tr>
+</tbody>
+</table></div>
+<p>No se enseñan Cypress, Playwright y Selenium como tres cursos. Se elige la herramienta del baseline o una sola para todos. Tampoco se equipara una puntuación Lighthouse con conformidad completa de accesibilidad ni se exige “100” como aceptación universal. Adobe distingue pruebas funcionales, UI y Experience Audit dentro de su estrategia de validación. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/using-cloud-manager/test-results/functional-testing/functional-testing">Pruebas funcionales y UI — Adobe</a>.</p>
+<h3>Semana 11 · Troubleshooting y caso integrador · 26–30 de octubre</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla del rediseño"><table>
+<thead>
+<tr>
+<th>Sesión</th>
+<th>Fecha</th>
+<th>Tema y capacidad observable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>51</td>
+<td>Lun 26 oct</td>
+<td><strong>Trazar un fallo de extremo a extremo.</strong> Navegador → CDN → Dispatcher → Sling → Model → OSGi → JCR. Delimitar síntoma, petición, tiempo y primera capa divergente.</td>
+</tr>
+<tr>
+<td>52</td>
+<td>Mar 27 oct</td>
+<td><strong>Resolver un incidente con evidencia incompleta.</strong> Códigos HTTP, logs, bundles/servicios/configuración, consultas y cachés; priorizar hipótesis y elegir la siguiente prueba.</td>
+</tr>
+<tr>
+<td>53</td>
+<td>Mié 28 oct</td>
+<td><strong>Integrar y depurar el caso completo.</strong> Clínica guiada sobre el ejemplo suministrado y, si los hay, avances voluntarios; completar el recorrido y sus comprobaciones.</td>
+</tr>
+<tr>
+<td>54</td>
+<td>Jue 29 oct</td>
+<td><strong>Revisar y consolidar.</strong> Code review, regresiones, recuperación y limitaciones del ejemplo; feedback a quienes compartan su trabajo.</td>
+</tr>
+<tr>
+<td>55</td>
+<td>Vie 30 oct</td>
+<td><strong>Recap final, demos voluntarias y retrospectiva.</strong> Mostrar el caso integrado y aprendizajes; sin examen, calificación ni defensa obligatoria.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Cómo quedan las prácticas</h2>
+<p>Los materiales de las prácticas 1–5 se conservan intactos; cualquier instrucción previa de obligatoriedad o evaluación deja de aplicarse conforme a esta aclaración. La práctica 6 antigua se descompone; la práctica 7 antigua se reformula como caso integrador opcional en la semana 11. Las nuevas prácticas reutilizan el mismo proyecto, con un punto de partida suministrado por semana para evitar dependencias de tareas anteriores.</p>
+<p>Ofrecer dos recorridos voluntarios: <strong>explorar el ejemplo</strong> (30–60 minutos orientativos para ejecutarlo, cambiar un dato y observar) o <strong>implementar la ampliación completa</strong> (4–6 horas estimadas; hasta 6–8 para los casos más extensos de semanas 9 y 11). No son horas exigidas ni criterios de participación. Los pasos siguientes describen la ampliación; cada brief debe identificar también el recorrido breve. Quien no haga práctica puede seguir todas las sesiones y el recap del viernes.</p>
+<h3>Práctica 6 · Guide List acotada y acceso de mínimo privilegio</h3>
+<p><strong>Resultado:</strong> consultar las Guide Pages correctas, explicar el plan y corregir un fallo de acceso sin ampliar permisos innecesariamente.</p>
+<ul>
+<li>Implementar un listado por path, tipo y tag con límite/paginación; usar un dataset suministrado con páginas incluidas, excluidas y no visibles para la identidad de prueba.</li>
+<li>Comparar consulta y plan antes/después; justificar el índice existente. Revisar un ejemplo de definición Cloud; crear uno sólo si el caso demuestra que hace falta.</li>
+<li>Configurar mediante Repo Init la identidad y ACL de una pequeña operación técnica suministrada, y conectar su subservice mapping. El listado del visitante conserva la identidad que exige su contrato.</li>
+<li>Demostrar lectura permitida, lectura excluida y ausencia de escritura donde no corresponde; distinguir permiso insuficiente de mapping ausente.</li>
+</ul>
+<p><strong>Para compartir si se desea feedback:</strong> PR o diff, consulta, plan, tabla identidad/ruta/operación/resultado y comprobación de regresión. <strong>Demo del viernes:</strong> un resultado correcto, un caso negativo y la causa del fallo original, mostrados por un voluntario o por el instructor. La autoevaluación considera el resultado y el plan, no sólo milisegundos o la presencia de un índice.</p>
+<h3>Práctica 7 · Entregar una guía y corregir contenido ausente o desactualizado</h3>
+<p><strong>Resultado:</strong> servir una Guide Page con sus dependencias desde Publish a través del Dispatcher local y justificar la política de caché.</p>
+<ul>
+<li>Publicar página y fragmento/asset del escenario; comprobar el destino.</li>
+<li>Validar una petición permitida y otra bloqueada, más una regla concreta de redirect o rewrite.</li>
+<li>Observar hit/miss y actualización tras un cambio; resolver un incidente sembrado durante la semana.</li>
+<li>Leer el caso CDN suministrado y señalar qué se comprobó localmente y qué sólo se deduce de evidencia Cloud. Incluir un caso de contenido que no debe entrar en caché compartida.</li>
+</ul>
+<p><strong>Evidencia:</strong> configuración y comandos HTTP reproducibles, encabezados, resultado antes/después y diagnóstico por capa. <strong>Demo:</strong> reproducir el síntoma, mostrar la corrección y una petición de control. La configuración local de replicación no se presenta como una reproducción del servicio Cloud.</p>
+<h3>Práctica 8 · Preparar y diagnosticar una entrega compatible con Cloud</h3>
+<p><strong>Resultado:</strong> ubicar un fallo en el flujo de entrega y producir una corrección verificable sin requerir un despliegue real.</p>
+<ul>
+<li>Analizar un paquete de evidencia suministrado: commit, tipo de pipeline, log de fallo, configuración declarada y estado del servicio.</li>
+<li>Corregir un problema de build, paquete o configuración reproducible en el SDK; separar causa de mensajes derivados.</li>
+<li>Documentar valores versionados, variables y referencias de secretos sin credenciales reales.</li>
+<li>Demostrar compatibilidad con el contenido anterior del fixture y explicar recuperación y herramienta de inspección elegida.</li>
+</ul>
+<p><strong>Comprobaciones sugeridas:</strong> PR o diff, comando local y resultado, diagnóstico, mapa commit → pipeline → destino y límite de lo demostrado. <strong>Demo:</strong> primer error accionable y corrección; no simular haber usado Cloud Manager. Al cerrar esta semana el instructor presenta el alcance del caso integrador final; quien quiera una ampliación personal puede elegirla sin compromiso de entrega.</p>
+<h3>Práctica 9 · Una actualización asíncrona que tolera fallos</h3>
+<p><strong>Resultado principal:</strong> un Sling Job en Author actualiza de forma controlada un dato del escenario, con un servicio HTTP local simulado y un efecto verificable al repetir la operación.</p>
+<ul>
+<li>Partir de un esqueleto suministrado; completar timeout, error transitorio y operación repetida con la misma clave de negocio.</li>
+<li>Usar el subservice de mínimo privilegio y rutas del ejercicio. Verificar progreso/estado según el diseño; no almacenar el estado duradero sólo en memoria.</li>
+<li>Mostrar éxito, fallo transitorio y repetición sin duplicar el efecto. Declarar el límite de la prueba local; no afirmar que demuestra coordinación de todo un clúster.</li>
+<li>Como evidencia secundaria breve, inspeccionar <strong>uno</strong> de los casos preparados de MSM o referencias CF y explicar el impacto de modificar su fuente. No implementar dos subsistemas nuevos adicionales.</li>
+</ul>
+<p><strong>Evidencia:</strong> PR, secuencia de intentos/resultado, prueba del efecto repetido y decisión de contenido. <strong>Demo:</strong> provocar un fallo y recuperarlo de manera controlada. Quedan fuera pagos, grandes importaciones, endpoints externos reales y automatización de publicación masiva.</p>
+<h3>Práctica 10 · Proteger el incremento con pruebas y una mejora medida</h3>
+<p><strong>Resultado:</strong> una regresión relevante es detectable y una deficiencia concreta de accesibilidad, SEO o rendimiento queda corregida.</p>
+<ul>
+<li>Extender una prueba unitaria existente con un caso negativo que falle sin la corrección.</li>
+<li>Añadir una comprobación real de HTTP/repositorio para algo que AEM Mocks no pueda probar y automatizar un único recorrido UI crítico.</li>
+<li>Revisar teclado/foco y metadatos del recorrido; medir un problema de carga/consulta/render bajo condiciones comparables.</li>
+<li>Corregir el hallazgo prioritario y mantener los demás como riesgos explícitos si exceden el alcance acordado.</li>
+</ul>
+<p><strong>Evidencia:</strong> pruebas ejecutadas, checklist breve, medición comparable y diff. <strong>Demo:</strong> regresión antes/después y razón para elegir cada nivel de prueba. No se pide un framework nuevo, una suite completa ni una cifra arbitraria de cobertura.</p>
+<h3>Práctica 11 · Caso integrador opcional</h3>
+<p><strong>Resultado:</strong> conectar las capas del caso Weekend Guides y explicar un diagnóstico completo, sobre el ejemplo suministrado o una implementación propia voluntaria.</p>
+<ul>
+<li>Partir del ejemplo suministrado o del proyecto personal; no comenzar una aplicación nueva.</li>
+<li>Explorar el incidente acotado publicado el lunes y, opcionalmente, intentar una variación de requisito.</li>
+<li>Si se desea feedback, compartir antes del viernes el diff, la traza, las comprobaciones y la duda concreta; no hay entrega obligatoria.</li>
+<li>Quien quiera presentar puede llevar una demo breve o una grabación; el instructor prepara una demo completa para asegurar el cierre aunque no haya voluntarios.</li>
+</ul>
+<p><strong>Autoevaluación:</strong> poder seguir la traza, reproducir un resultado y explicar una decisión; pedir ayuda forma parte del aprendizaje. <strong>Demo del viernes:</strong> resultado visible, decisión técnica y comprobación útil. No hay examen, calificación, defensa individual ni requisito de implementar todos los mecanismos vistos.</p>
+<h2>Viernes y feedback voluntario</h2>
+<p>Los viernes 25 de septiembre, 2, 9, 16 y 23 de octubre duran entre 30 y 60 minutos. El formato de 30 minutos reserva 5 para recap, 15 para demos y 10 para preguntas y feedback; el formato de 60 reserva 10, 30 y 20 minutos respectivamente. Se elige según las demos y dudas disponibles. Participan voluntarios si los hay; no se impone rotación ni entrega. Si nadie hizo la práctica o quiere presentar, el instructor demuestra el caso preparado, incluido un fallo y su corrección. No se estrenan temas ni requisitos.</p>
+<p>Para el <strong>30 de octubre</strong>, el formato de 30 minutos usa 5 de recap global, 15 de demo integradora o demos voluntarias, 5 de preguntas y 5 de retrospectiva. Si se utilizan los 60 minutos reservados, distribuir 5 de recap, 30 de demos, 15 de preguntas y 10 de retrospectiva. No se exige que las seis personas presenten; si todas quieren, el bloque de 30 minutos permite seis demos breves de 5 minutos. Cualquier material adicional se comparte opcionalmente sin superar la hora.</p>
+<p>No se asignan notas ni niveles de desempeño. Las preguntas, ejemplos y comprobaciones sirven para autoevaluación y feedback descriptivo a quien lo solicite. La ausencia de práctica o demo no tiene consecuencias académicas ni impide seguir el curso.</p>
+<h2>Preparación que requiere el nuevo diseño</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla del rediseño"><table>
+<thead>
+<tr>
+<th>Antes de</th>
+<th>Preparación del instructor</th>
+<th>Dependencia y límite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Semana 6</td>
+<td>Fixture de Guide Pages y tags; query costosa y corregible; usuarios/rutas del ejercicio y servicio técnico mínimo.</td>
+<td>Repositorio real para ACL/plan. Si el baseline carece de un índice útil, preparar el fixture o índice de laboratorio antes; no prometer que el mismo plan existe en todos los SDK.</td>
+</tr>
+<tr>
+<td>Semana 7</td>
+<td>Instrucciones de Publish local, Dispatcher Tools/contenedor, contenido dependiente y casos de caché; ejemplos de headers/logs CDN identificados como reales o sintéticos.</td>
+<td>Preparar la demo local del instructor. El entorno de participantes sólo se necesita si eligen ejecutar la práctica; un análisis de logs no se presenta como ejecución Cloud.</td>
+</tr>
+<tr>
+<td>Semana 8</td>
+<td>Documentación pública, diagramas y caso sintético coherente de pipeline/configuración/runtime, más fallo reproducible localmente.</td>
+<td>El instructor no tiene Cloud Manager. No planear capturas nuevas ni demos en vivo de Cloud/RDE; usar material público o evidencia existente autorizada.</td>
+</tr>
+<tr>
+<td>Semana 9</td>
+<td>Job mínimo, stub HTTP controlable y casos pequeños de contenido localizado/relacionado.</td>
+<td>Mantener una sola implementación central; la revisión de arquitectura reutiliza fixtures.</td>
+</tr>
+<tr>
+<td>Semana 10</td>
+<td>Una herramienta UI acordada, fixture estable y comandos de test/medición del baseline.</td>
+<td>Ejecutar pruebas antes de asignarlas; una prueba local no demuestra el gate Cloud.</td>
+</tr>
+<tr>
+<td>Semana 11</td>
+<td>Ejemplo integrador completo, incidente acotado y demo preparada; espacio para voluntarios.</td>
+<td>El cierre funciona sin prácticas entregadas. No hay seis demos obligatorias ni defensa final.</td>
+</tr>
+</tbody>
+</table></div>
+<p>No se han generado todavía estos fixtures, las clases 26–55 ni sus diapositivas. Son trabajo de preparación posterior a adoptar la secuencia, no evidencia de aprendizaje ya disponible.</p>
+<h2>Temas que no convertiría en bloques obligatorios</h2>
+<p>EDS/Universal Editor, Forms, Commerce, administración profunda de Assets, Dynamic Media, conectores de traducción, configuración avanzada de redes/CDN y desarrollo de rollout actions merecen recorridos propios. En este curso se reconoce su frontera cuando corresponde; no se agregan por disponibilidad de semanas. Assets y localización sí se profundizan en los puntos necesarios para los casos Sites existentes.</p>
+<p>GraphQL merece especial cuidado: el alcance original lo excluye y su uso laboral no está confirmado. Queda como lectura opcional fuera de las 55 sesiones. Si posteriormente se confirma una necesidad concreta, se diseña una ampliación específica; no se sobrecarga ahora la sesión 44 ni el viernes.</p>
+<h2>Archivos a sincronizar al adoptar la propuesta</h2>
+<p>Actualizar la portada, el temario público, el temario detallado, las prácticas 6–11 y las instrucciones de cierre. Retirar de las reglas generales las entregas obligatorias, calificaciones, niveles de desempeño y defensas; sustituir el seguimiento evaluativo por feedback voluntario. Revisar las referencias a “7 semanas”, “35 sesiones”, “7 prácticas” y “2 de octubre”, y expresar la duración como “30–60 minutos”. Extender la regla de viernes sin slides a las sesiones 40, 45, 50 y 55. Mantener estable la URL existente <code>eight-week-syllabus.html</code> aunque su nombre histórico ya no refleje la duración.</p>
+<p>El contenido de las semanas 1–5, sus lecciones, imágenes, resúmenes y prácticas queda congelado. Los bloques futuros del documento de contenido listo para slides se deben reemplazar o marcar como pendientes para evitar enseñar la antigua secuencia. Actualizar la planificación no significa declarar listas las diapositivas ni los ejemplos nuevos.</p>
+<p><strong>Base de la revisión:</strong> temario y prácticas locales enlazados al inicio, sesiones 16–24 y documentación oficial citada junto a cada decisión técnica. La secuencia, carga y distribución de prácticas son recomendaciones pedagógicas para este equipo, no un currículo prescrito por Adobe.</p></main><footer><a href="../index.html">Volver al curso</a> · <a href="eleven-week-redesign-proposal.md" download>Descargar propuesta</a></footer></body></html>
