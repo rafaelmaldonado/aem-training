@@ -1,0 +1,348 @@
+{
+  "run_status": "jobs_prepared",
+  "deck_name": "lesson-26",
+  "selected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "edit",
+    "prompt_source": "Per-slide numbering correction; existing generated slide is the edit target.",
+    "size": "16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-24/origin_image/slide_02.png",
+    "input_context_preparation": "Inspect each original image using view_image and provide its local path as the sole edit target.",
+    "handoff_rule": "Use built-in image_gen edit only. Add assigned two-digit slide number; preserve all existing slide content."
+  },
+  "max_concurrent_slides": 3,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "Tags and bounded content queries",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-172b-77f2-b601-6057bab67ace/exec-a2dee87a-285d-4e53-977a-971a95a32754.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_01.json",
+        "prompt_sha256": "f8533be37d16bbe6e54d81fcfcc8172cef4992dfba4c13a6d09df44c6569cdd0",
+        "dispatched_at": "2026-09-19T17:57:05Z"
+      },
+      "result": {
+        "agent_id": "/root/slide01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-172b-77f2-b601-6057bab67ace/exec-cf6857f8-1d6e-4731-bd36-3801e5eea1fe.png",
+        "selected_source_sha256": "cdb7c18829d101313a2ccaa8a3457f73dd32a248dfe455a46c16026fdc9b3d72",
+        "final_image": "origin_image/slide_01.png",
+        "final_image_sha256": "cdb7c18829d101313a2ccaa8a3457f73dd32a248dfe455a46c16026fdc9b3d72",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "01 visible above title; original content preserved.",
+        "recorded_at": "2026-09-19T17:58:13Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "Define what Guide List returns",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-3b45-77d2-9681-bde8583c283d/exec-e1a608e9-a62d-42ea-ad65-452c23c1a27a.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide02",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "95288ce594206120f44fd35e818091562d053d48aa25ed102dbc3ce740c364c5",
+        "dispatched_at": "2026-09-19T17:57:05Z"
+      },
+      "result": {
+        "agent_id": "/root/slide02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-3b45-77d2-9681-bde8583c283d/exec-5524db6a-bd43-4066-a28c-bba03bc5c876.png",
+        "selected_source_sha256": "b4511e2905764405abc554dd145f117160dc7793c4fe24560fdd43130fe02dce",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "b4511e2905764405abc554dd145f117160dc7793c4fe24560fdd43130fe02dce",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "02 visible; candidate numbers, tags, paths and text preserved.",
+        "recorded_at": "2026-09-19T17:58:58Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "A tag ID is different from its title",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-6382-7371-9163-f13a1206cf8f/exec-49bdaa94-4b01-48f7-a43d-5853b2b3a91f.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide03",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_03.json",
+        "prompt_sha256": "c831ca48dbc71650e754bb57e2a9a3faf4422b04f5bb86ffd71ce9cf0bbd71bb",
+        "dispatched_at": "2026-09-19T17:57:06Z"
+      },
+      "result": {
+        "agent_id": "/root/slide03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-6382-7371-9163-f13a1206cf8f/exec-5e71ffd6-d590-4d5b-89c0-c9e06c7ce8ff.png",
+        "selected_source_sha256": "63c1a66f8e5f4590b0cb7dccde30385cdd0c161db6a2b96af73e6ff2c45550a0",
+        "final_image": "origin_image/slide_03.png",
+        "final_image_sha256": "63c1a66f8e5f4590b0cb7dccde30385cdd0c161db6a2b96af73e6ff2c45550a0",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "03 visible above title; taxonomy and stored assignment preserved.",
+        "recorded_at": "2026-09-19T17:58:58Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "Two ways to express a repository query",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-172b-77f2-b601-6057bab67ace/exec-25cbcf9b-5801-485c-a101-fe6d05c56f86.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_04.json",
+        "prompt_sha256": "c7262991d5718753de8a41c27d529495320d64644a5cf215da224afeb9f5a2ed",
+        "dispatched_at": "2026-09-19T18:00:16Z"
+      },
+      "result": {
+        "agent_id": "/root/slide01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-172b-77f2-b601-6057bab67ace/exec-a4088157-0d7c-451e-9e81-f080f53e8488.png",
+        "selected_source_sha256": "34e3a5f089d683e8dc84e672bfe3ce7c7d45527cfc0994a968115d5a8b8960ab",
+        "final_image": "origin_image/slide_04.png",
+        "final_image_sha256": "34e3a5f089d683e8dc84e672bfe3ce7c7d45527cfc0994a968115d5a8b8960ab",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "04 visible; both query routes and original text preserved.",
+        "recorded_at": "2026-09-19T18:01:13Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "Start with path, type and property",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-172b-77f2-b601-6057bab67ace/exec-39df8bfa-cf19-4282-adf4-6e0ec40c030b.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide02",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_05.json",
+        "prompt_sha256": "d9605c50a8658cb484723bdc9f744f30e090ead7fc81ed5b31d154c6ca2940c2",
+        "dispatched_at": "2026-09-19T18:00:16Z"
+      },
+      "result": {
+        "agent_id": "/root/slide02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-3b45-77d2-9681-bde8583c283d/exec-04b6f0cf-a4ae-46ca-b06b-6e5eb9ff84ed.png",
+        "selected_source_sha256": "4139b7add29d4300ba1dfb4cddadfe30229665e701d3c5bdab49d9966c3d7bce",
+        "final_image": "origin_image/slide_05.png",
+        "final_image_sha256": "4139b7add29d4300ba1dfb4cddadfe30229665e701d3c5bdab49d9966c3d7bce",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "05 visible; exact predicates and annotations preserved.",
+        "recorded_at": "2026-09-19T18:01:13Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "Read the same selection in JCR-SQL2",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-3b45-77d2-9681-bde8583c283d/exec-8ec9aca9-cf7b-404a-a547-21646dc2081b.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "dispatched",
+      "dispatch": {
+        "agent_id": "/root/slide03",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_06.json",
+        "prompt_sha256": "078abd17b4862604a8691227cfa75ad4571d6e0cece9c2813f7bd0dca6c1886f",
+        "dispatched_at": "2026-09-19T18:00:17Z"
+      },
+      "result": null,
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "Bound and order each result window",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-6382-7371-9163-f13a1206cf8f/exec-3cfd004b-9c8f-469c-8f8f-31b81e4e3741.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "pending",
+      "dispatch": null,
+      "result": null,
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "Full-text adds a different condition",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-172b-77f2-b601-6057bab67ace/exec-c9bbbe70-027e-4e5a-8800-a6692fca51fb.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "pending",
+      "dispatch": null,
+      "result": null,
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Read the response before drawing conclusions",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-3b45-77d2-9681-bde8583c283d/exec-90b568a2-8084-4741-9733-a1b8060c3b61.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "pending",
+      "dispatch": null,
+      "result": null,
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_10",
+      "number": 10,
+      "title": "Follow one small example in local Author",
+      "job": "prompts/slide_10.json",
+      "out": "origin_image/slide_10.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-6382-7371-9163-f13a1206cf8f/exec-3cfffc17-ebc4-4f0e-a610-414b67152975.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "pending",
+      "dispatch": null,
+      "result": null,
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_11",
+      "number": 11,
+      "title": "Key takeaways",
+      "job": "prompts/slide_11.json",
+      "out": "origin_image/slide_11.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-172b-77f2-b601-6057bab67ace/exec-504f94dc-c271-45a3-a37a-ab0aeb719e1f.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "pending",
+      "dispatch": null,
+      "result": null,
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_12",
+      "number": 12,
+      "title": "Questions / Thank you",
+      "job": "prompts/slide_12.json",
+      "out": "origin_image/slide_12.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-3b45-77d2-9681-bde8583c283d/exec-6bbb931c-c266-4b84-af23-5637c832a79d.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "pending",
+      "dispatch": null,
+      "result": null,
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-09-19T18:01:13Z"
+}

@@ -1,0 +1,45 @@
+{
+  "slide": 4,
+  "title": "Two ways to express a repository query",
+  "prompt": "Edit the provided existing 16:9 AEM slide. Make ONE localized change: add the small two-digit slide number \"04\" at the TOP LEFT, in the narrow header margin above the existing title. Use dark navy bold condensed sans-serif, approximately 24px at a 1680px-wide slide, aligned to the title's left edge. Keep the number distinct and legible with a small safe margin from the top edge. Number appears exactly once as slide metadata. Do not alter existing numbers inside examples or diagrams.\nPreserve every original title, word, code character, diagram, icon, color, grid line, layout, footer, and aspect ratio. Do not paraphrase, correct, expand or add other content. Keep all content within the canvas. Only make a minimal title adjustment if essential to prevent overlap with the new number; never move or shrink the main content panels. This is an image edit, not a redesign. The only new visible text is \"04\".",
+  "out": "slide_04.png",
+  "input_images": [
+    {
+      "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-172b-77f2-b601-6057bab67ace/exec-25cbcf9b-5801-485c-a101-fe6d05c56f86.png",
+      "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+    }
+  ],
+  "requires_context_images": true,
+  "expected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "edit",
+    "prompt_source": "Per-slide numbering correction; existing generated slide is the edit target.",
+    "size": "16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-24/origin_image/slide_02.png",
+    "input_context_preparation": "Inspect each original image using view_image and provide its local path as the sole edit target.",
+    "handoff_rule": "Use built-in image_gen edit only. Add assigned two-digit slide number; preserve all existing slide content."
+  },
+  "generation_contract": {
+    "must_use_selected_image_backend": true,
+    "must_match_sample_generation_method": true,
+    "forbidden_final_image_methods": [
+      "local drawing/rendering scripts",
+      "Pillow-generated slides",
+      "SVG/HTML/CSS/canvas screenshots",
+      "python-pptx/PptxGenJS/native PPT layout screenshots",
+      "manually composited text/image overlays"
+    ],
+    "must_return": [
+      "backend_used",
+      "selected_source",
+      "qa_note"
+    ]
+  },
+  "generation_prompt": "# Codex PPT Slide Image Prompt\n\n## Canvas\n{\n  \"type\": \"16:9 full-slide PowerPoint image\",\n  \"language\": \"English\",\n  \"slide_number\": 4,\n  \"render_slide_number\": true\n}\n\n## Deck Goal\nDefine and inspect a bounded Guide List query using tags, QueryBuilder and equivalent JCR-SQL2.\n\n## Required Background\n{\n  \"deck_context\": {\n    \"source_summary\": \"Class 26, Week 6, September 21 2026. AEM Sites traditional, local Author SDK. New calendar: query/index diagnosis belongs to Class27. English slide text; Spanish study guide.\",\n    \"core_claim\": \"Define the content selection before writing a query: path, node type, tag, order and bounded results.\",\n    \"canonical_facts\": [\n      \"Fixture path /content/wknd/us/en/training-search. Archetype users substitute their real site root.\",\n      \"Query returns cq:Page nodes. Tags and titles are under jcr:content.\",\n      \"Exact property matching of cq:tags is intentional; it does not expand descendants or moved-tag aliases.\",\n      \"QueryBuilder evaluates predicates and typically produces XPath; JCR-SQL2 is a separate equivalent expression, not its output.\",\n      \"Use p.limit=2, p.offset=0 or 2, p.guessTotal=true. Order by title; fixture titles are unique and content stays unchanged.\",\n      \"Two hiking matches: 01 Forest trail, 02 River trail. A cycling page, untagged page and hiking page outside the root are excluded.\",\n      \"Fulltext is an optional additional filter and depends on indexed content.\",\n      \"No custom index, servlet, service user, assignment or deliverable in this lesson.\"\n    ],\n    \"content_constraints\": [\n      \"Only render slide-specific text, not all deck context.\",\n      \"No invented screenshots, runtime measurements or automatic publication claims.\",\n      \"English only; exact code spelling; simple readable diagrams.\",\n      \"No speech or PPTX. Final slide contains only Questions / Thank you. plus its small slide number.\"\n    ]\n  },\n  \"slide_local_context\": {\n    \"required_background\": \"Parallel routes QueryBuilder predicates → XPath → Oak and JCR-SQL2 → Oak, converging to readable results. Do not connect QueryBuilder directly to SQL2.\"\n  }\n}\n\n## Global Style\n{\n  \"name\": \"technical atlas courseware\",\n  \"visual_direction\": \"Technical atlas courseware: tags, content queries and bounded result windows.\",\n  \"color_palette\": \"Warm ivory drafting-paper background with a faint square grid; deep navy titles; cobalt for source-to-target flow; violet for configuration; green for valid or protected local state; restrained orange for destructive actions and cautions.\",\n  \"typography\": \"Large bold condensed sans-serif headings; crisp sans-serif supporting text; true monospace appearance for repository paths, property names, action names and state values.\",\n  \"texture_and_finish\": \"Flat 2D technical diagrams, fine rules, precise page, relationship, configuration and status icons. No gradients, neon, glass, 3D, photography or generic corporate people.\",\n  \"deck_consistency\": \"Match Class24 slide02 palette, typography and drafting grid; vary layouts.\"\n}\n\n## Input Images\n\n- Image 1: /Users/juanmaldonado/Projects/aem-training/slides/lesson-24/origin_image/slide_02.png — Established course style: Class 24 slide 02; Match ivory grid, navy condensed headings, cobalt/violet/green/orange semantic accents, thin rules and technical diagrams. Vary layouts; no repeated filler cards.\n- Image 2: /Users/juanmaldonado/.codex/generated_images/01a0b53a-172b-77f2-b601-6057bab67ace/exec-25cbcf9b-5801-485c-a101-fe6d05c56f86.png — Existing slide image: strict edit target. Preserve all content; add only the assigned slide number.\n\n\n## Slide\n{\n  \"number\": 4,\n  \"title\": \"Two ways to express a repository query\",\n  \"role\": null,\n  \"intent\": null\n}\n\n## Text\n{\n  \"title\": \"Two ways to express a repository query\",\n  \"key_points\": [\n    \"QueryBuilder: a map of predicates.\",\n    \"JCR-SQL2: a declarative query statement.\",\n    \"QueryBuilder typically produces XPath, not SQL2.\",\n    \"Oak executes the query against repository content.\"\n  ],\n  \"speaker_focus\": null\n}\n\n## Layout\n{\n  \"role\": \"process\",\n  \"composition\": \"Parallel routes QueryBuilder predicates → XPath → Oak and JCR-SQL2 → Oak, converging to readable results. Do not connect QueryBuilder directly to SQL2.\",\n  \"intent\": \"Parallel routes QueryBuilder predicates → XPath → Oak and JCR-SQL2 → Oak, converging to readable results. Do not connect QueryBuilder directly to SQL2.\"\n}\n\n## Constraints\n[\n  \"Only render slide-specific text, not all deck context.\",\n  \"No invented screenshots, runtime measurements or automatic publication claims.\",\n  \"English only; exact code spelling; simple readable diagrams.\",\n  \"No speech or PPTX. Final slide contains only Questions / Thank you. plus its small slide number.\",\n  \"Render slide number 04 in the top-left header margin.\"\n]\n\n## Style Reference Rule\nUse Image 1 as the approved sample-slide style reference. Match its palette, typography mood, density, texture, and overall visual identity. Do not copy its exact layout unless this slide's layout explicitly asks for it.\n\n## Input Image Handling Rules\nFor any input image marked as a strict input asset, include it visibly and preserve its content. Do not redraw, replace, relabel, or invent a similar figure. Scale and crop only as needed for composition while keeping the important labels, arrows, data, and relationships recognizable.\n\n## Universal Constraints\n- The final image itself must contain the title and key points.\n- Render Chinese text exactly and legibly; avoid garbled characters.\n- Keep the confirmed deck style consistent while varying layout by slide role.\n- No watermark or unrelated logo. Render the assigned slide number.\n",
+  "render_slide_number": true,
+  "slide_number_text": "04"
+}

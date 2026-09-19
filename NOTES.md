@@ -8,6 +8,7 @@
 - Presentación: materiales en HTML, accesibles desde `index.html`, con estilo compartido e impresión limpia.
 - Estructura de cada lección: incluir al inicio un resumen sustancial pero escaneable —dos párrafos conceptuales y entre cinco y seis puntos fundamentales— antes de la agenda y las slides.
 - Preferencia para slides: contenido completo con bullets, ejemplos concretos, diagramas e imágenes; no limitarse a una descripción breve.
+- Numeración de slides: cada imagen debe incluir su número de dos dígitos (01, 02…), también portada y cierre, visible al copiar el PNG a PowerPoint. Verificar que los prompts no desactiven la numeración.
 - Cierre de cada sesión con deck: incluir una slide de **Key takeaways** con bullets que resuman los puntos importantes, seguida únicamente por la slide pasiva **Questions / Thank you.**; los viernes (sesiones múltiplo de 5, hasta la 55) no llevan slides.
 - Formato de los viernes: recap y demo de la práctica, con participación voluntaria. Si nadie presenta, el instructor demuestra el caso de referencia. Sin temas nuevos, evaluación ni defensa obligatoria.
 - Flujo de presentación: publicar las slides en GitHub Pages y copiarlas como una imagen completa a PowerPoint para conservar el formato; no conservar ni generar archivos `.pptx` para sesiones existentes o futuras.

@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sesión 26 · Tags y consultas · AEM Training</title><meta name="description" content="Tags, QueryBuilder y JCR-SQL2 con consultas acotadas y un ejemplo completo en Author local."><link rel="stylesheet" href="../assets/styles.css"></head><body class="study-guide"><a class="skip-link" href="#contenido">Saltar al contenido</a><nav class="site-nav" aria-label="Primary"><a class="brand" href="../index.html">AEM Training</a><ul><li><a href="../index.html">Overview</a></li><li><a href="../reference/aem-course-topics.html">Syllabus</a></li><li><a href="../reference/wknd-project-backlog.html">Practices</a></li><li><a href="../reference/index.html">References</a></li></ul></nav><header><p class="eyebrow">Semana 6 · Sesión 26 · 21 de septiembre de 2026</p><h1>Tags y consultas de contenido acotadas</h1><p class="lede">Define qué devuelve Guide List y comprueba sus exclusiones.</p><ul class="meta"><li>Resumen en español</li><li>Ejemplo local</li><li>Repaso con respuestas</li><li><a href="session-26-study-guide.md" download>Descargar Markdown</a></li></ul></header><main id="contenido"><p><strong>Lunes 21 de septiembre de 2026 · Semana 6 · Núcleo de 30 minutos, ampliable a 60</strong></p>
+<p><a href="session-26-study-guide.html">Versión HTML</a> · <a href="../lessons/0026-tags-bounded-content-queries.html#slide-deck">Slides en inglés</a> · <a href="#ejemplos-locales">Ejemplo local</a></p>
+<p>Una Guide List empieza con una decisión de contenido: qué páginas pertenecen al listado y cuáles quedan fuera. La taxonomía permite clasificarlas; la consulta convierte esa decisión en restricciones sobre una ruta, un tipo de nodo y propiedades concretas. Un título visible como <code>Hiking</code> ayuda al autor, mientras que un ID como <code>training:activity/hiking</code> identifica el tag almacenado.</p>
+<p>La sesión conecta esa clasificación con QueryBuilder y una lectura equivalente en JCR-SQL2. Usamos un conjunto pequeño de páginas creado desde cero, un orden explícito y ventanas de resultados limitadas. El objetivo es poder anticipar la salida y explicar las exclusiones. La selección de índices y Explain Query se trabajan en la sesión 27; hoy sólo reconocemos que devolver pocos resultados no demuestra bajo coste.</p>
+<ul>
+<li>Define la raíz del listado antes de consultar.</li>
+<li>Distingue el nodo <code>cq:Page</code> de sus propiedades en <code>jcr:content</code>.</li>
+<li>Usa el ID almacenado del tag, no su etiqueta visible.</li>
+<li>Separa selección, orden y paginación.</li>
+<li>Comprueba casos incluidos, excluidos y una página de resultados vacía.</li>
+<li>Interpreta los resultados en la instancia y con la identidad que los consultó.</li>
+</ul>
+<nav aria-label="Contenido de la guía"><a href="#taxonomia">Taxonomía</a> · <a href="#querybuilder">QueryBuilder</a> · <a href="#sql2">SQL2</a> · <a href="#ejemplos-locales">Ejemplo local</a> · <a href="#repaso">Repaso</a></nav>
+<h2>Recorrido de la sesión</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Minutos</th>
+<th>Slides</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0–5</td>
+<td>1–3</td>
+<td>Contrato de Guide List y clasificación.</td>
+</tr>
+<tr>
+<td>5–12</td>
+<td>4–6</td>
+<td>Predicados y lectura equivalente en SQL2.</td>
+</tr>
+<tr>
+<td>12–17</td>
+<td>7–9</td>
+<td>Orden, ventanas, full-text y respuesta.</td>
+</tr>
+<tr>
+<td>17–27</td>
+<td>10</td>
+<td>Demo con páginas suministradas y consultas copiables.</td>
+</tr>
+<tr>
+<td>27–30</td>
+<td>11–12</td>
+<td>Key takeaways y preguntas.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Ampliación a 60 minutos:</strong> dedica 20 minutos adicionales a repetir las variantes con el mismo contenido y 10 a preguntas. Los ejemplos son demostraciones del instructor que cualquiera puede reproducir; no añaden tareas ni entregables por sesión. Para observarlos no hace falta haber completado prácticas anteriores.</p>
+<p><a id="taxonomia"></a></p>
+<h2>1. Taxonomía: ID, título y asignación</h2>
+<p>El namespace agrupa una taxonomía. Nuestro ejemplo crea <code>training</code>, el contenedor <code>activity</code> y dos tags hoja: <code>hiking</code> y <code>cycling</code>. La definición de Hiking está en <code>/content/cq:tags/training/activity/hiking</code>; su ID es <code>training:activity/hiking</code>. El título <code>Hiking</code> puede mostrarse o localizarse sin convertirse en el identificador de la consulta.</p>
+<p>Al asignarlo a una página, inspeccionamos <code>cq:tags</code> en su nodo <code>jcr:content</code>. Es una propiedad multivalor: una página puede pertenecer a varias categorías. La jerarquía del árbol de tags y la del árbol de páginas cumplen funciones distintas; clasificar una página no la mueve a otra carpeta ni le concede permisos. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/full-stack/tagging-framework">Framework de tagging — Adobe</a>.</p>
+<p><strong>Decisión del ejemplo:</strong> buscamos el valor exacto <code>training:activity/hiking</code>. Si mañana el requisito incluye toda la rama Activity, tags movidos o equivalencias históricas, habrá que revisar las reglas de tagging y la consulta. Una igualdad sobre una propiedad no expande automáticamente esas relaciones.</p>
+<p><a id="contrato"></a></p>
+<h2>2. Contrato del listado</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Decisión</th>
+<th>Valor del ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raíz</td>
+<td><code>/content/wknd/us/en/training-search</code></td>
+</tr>
+<tr>
+<td>Tipo de resultado</td>
+<td><code>cq:Page</code></td>
+</tr>
+<tr>
+<td>Clasificación</td>
+<td><code>jcr:content/cq:tags</code> contiene el ID exacto de Hiking.</td>
+</tr>
+<tr>
+<td>Orden</td>
+<td><code>jcr:content/jcr:title</code>, ascendente.</td>
+</tr>
+<tr>
+<td>Tamaño</td>
+<td>Hasta dos resultados por petición.</td>
+</tr>
+<tr>
+<td>Instancia</td>
+<td>Author local, con el usuario autenticado de la demo.</td>
+</tr>
+<tr>
+<td>Exclusiones</td>
+<td>Cycling, página sin tag y página Hiking fuera de la raíz.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Los títulos del conjunto de ejemplo son únicos para que el orden sea inequívoco. En un listado real que permita títulos repetidos, define un segundo criterio estable y comprueba su soporte y coste. Mantén el contenido sin cambios al comparar ventanas: offset no ofrece una instantánea entre peticiones y las inserciones o cambios de orden pueden desplazar resultados.</p>
+<p><a id="querybuilder"></a></p>
+<h2>3. QueryBuilder: predicados que se combinan</h2>
+<p>QueryBuilder recibe restricciones declarativas. Sus evaluadores pueden expresarlas en XPath y, según el predicado, filtrar resultados. Oak procesa la consulta. JCR-SQL2 es otra forma de expresar una selección equivalente; no es el texto que QueryBuilder necesariamente genera. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/full-stack/search/query-builder-api">QueryBuilder API — Adobe</a>.</p>
+<p>Esta consulta completa está en <a href="examples/session-26/querybuilder.properties">querybuilder.properties</a>:</p>
+<pre><code class="language-properties">path=/content/wknd/us/en/training-search
+type=cq:Page
+property=jcr:content/cq:tags
+property.value=training:activity/hiking
+orderby=@jcr:content/jcr:title
+orderby.sort=asc
+p.limit=2
+p.offset=0
+p.guessTotal=true
+</code></pre>
+<p><code>path</code> acota los descendientes; con los valores por defecto no incluye la propia raíz. <code>type</code> determina que el resultado es la página, por eso la propiedad usa la ruta relativa <code>jcr:content/cq:tags</code>. Las restricciones se combinan con AND por defecto. Si se cambia el tipo a <code>cq:PageContent</code>, cambia también el nodo devuelto y la ruta relativa de las propiedades: no cambies uno sin revisar el otro.</p>
+<p>En este caso <code>property</code> compara el valor guardado. QueryBuilder también ofrece <code>tagid</code> para búsquedas por ID de tag. Se puede sustituir el par <code>property</code>/<code>property.value</code> por <code>tagid=training:activity/hiking</code> y <code>tagid.property=jcr:content/cq:tags</code>; no lo añadas encima como si fuera otra condición necesaria. Esta alternativa no define la equivalencia SQL2 de nuestro ejemplo: cuando haya jerarquías o tags movidos, comprueba el comportamiento concreto del predicado instalado. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/full-stack/search/query-builder-predicates">Predicados de QueryBuilder — Adobe</a>.</p>
+<p><a id="sql2"></a></p>
+<h2>4. JCR-SQL2: leer la misma selección</h2>
+<p>Consulta completa en <a href="examples/session-26/guides.sql2">guides.sql2</a>:</p>
+<pre><code class="language-sql">SELECT * FROM [cq:Page] AS page
+WHERE ISDESCENDANTNODE(page, '/content/wknd/us/en/training-search')
+AND page.[jcr:content/cq:tags] = 'training:activity/hiking'
+ORDER BY page.[jcr:content/jcr:title] ASC
+</code></pre>
+<p><code>FROM</code> selecciona el tipo; <code>ISDESCENDANTNODE</code> conserva la frontera del subárbol; la comparación encuentra el valor en <code>cq:tags</code>; <code>ORDER BY</code> aplica el mismo orden. Oak admite propiedades relativas como <code>jcr:content/cq:tags</code>. No son tablas de una base relacional ni consultas a una API externa. <a href="https://jackrabbit.apache.org/oak/docs/query/grammar-sql2.html">Gramática SQL2 de Oak</a>.</p>
+<p>El archivo muestra selección y orden. Para comparar la <strong>misma ventana</strong>, configura también límite 2 y offset 0 en la herramienta. En la API JCR esos controles son <code>Query.setLimit(2)</code> y <code>Query.setOffset(0)</code>, antes de ejecutar. No pegues un <code>LIMIT 2</code> de SQL relacional al final esperando que sea JCR-SQL2 estándar. <a href="https://developer.adobe.com/experience-manager/reference-materials/cloud-service/javadoc/javax/jcr/query/Query.html">API JCR Query</a>.</p>
+<p>Sólo usamos SQL2 para leer y contrastar la selección; no construimos dos implementaciones de Guide List.</p>
+<p><a id="ventanas"></a></p>
+<h2>5. Orden, límites y conteo</h2>
+<p><code>p.limit=2</code> devuelve como máximo dos hits y <code>p.offset=2</code> omite los dos primeros. <code>p.guessTotal=true</code> evita exigir un conteo completo cuando basta conocer el tramo solicitado. En la respuesta JSON, <code>hits</code> contiene la ventana, <code>offset</code> identifica su inicio, <code>more</code> indica si quedan resultados y <code>total</code> puede ser un límite inferior cuando el conteo se detiene antes de recorrer todos. Si <code>more</code> es verdadero, la interfaz no debe presentar <code>total</code> como un total exacto. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/full-stack/search/query-builder-api#using-p-guesstotal-to-return-the-results">Conteo con guessTotal — Adobe</a>.</p>
+<p>Una respuesta con dos hits puede haber leído u ordenado muchos candidatos. Tampoco un offset muy grande deja de costar sólo porque la ventana sea pequeña. Evita <code>p.limit=-1</code> en un listado de navegación. La sesión 27 examina el plan y el trabajo real: hoy conservamos raíz, tipo y tamaño explícitos. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/operations/query-and-indexing-best-practices">Consultas e índices — Adobe</a>.</p>
+<p><a id="texto"></a></p>
+<h2>6. Full-text y propiedad exacta responden preguntas distintas</h2>
+<p>Un tag clasifica; full-text busca términos en contenido indexado. Sobre la consulta base, añade:</p>
+<pre><code class="language-properties">fulltext=Forest
+fulltext.relPath=jcr:content
+</code></pre>
+<p>Mantén el resto de predicados y vuelve a <code>p.offset=0</code>. En el conjunto suministrado sólo <code>01 Forest trail</code> debe coincidir, una vez que su título sea buscable por el índice. No confundas este comportamiento con buscar una subcadena literal: intervienen los campos indexados, el análisis de términos y la frescura del índice. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/full-stack/search/query-builder-predicates#fulltext">Full-text — Adobe</a>, <a href="https://jackrabbit.apache.org/oak/docs/query/query-engine.html">motor de consultas de Oak</a>.</p>
+<p>Si en el futuro se expone un buscador, la aplicación debe fijar las raíces y tipos permitidos, validar términos y límites y conservar la identidad adecuada. No debe aceptar un mapa arbitrario de predicados enviado por el navegador. Para valores dinámicos en SQL2 usa variables enlazadas cuando corresponda, no concatenación de texto externo. Aquí ejecutamos consultas fijas en las herramientas del SDK.</p>
+<p><a id="ejemplos-locales"></a></p>
+<h2>7. Ejemplo completo en Author local</h2>
+<h3>Punto de partida suministrado</h3>
+<p>Necesitas un Author SDK local con WKND o un sitio creado con Archetype, una plantilla de página habilitada y una cuenta local con permisos para crear páginas y tags. No necesitas Guide List implementada, servicios Java, Cloud Manager ni prácticas previas. Las rutas de WKND siguientes son <strong>rutas del ejemplo a crear</strong>; no se presupone que existan.</p>
+<p>Si usas Archetype, identifica tu raíz de idioma en Sites y reemplaza <code>/content/wknd/us/en</code> por esa raíz en ambos archivos de consulta y en la tabla. El instructor prepara este mismo conjunto antes de clase y lo demuestra aunque nadie haya hecho práctica. Si una página o un namespace ya existen con otros datos, usa un nombre de prueba distinto y ajusta las consultas; no reemplaces contenido ajeno.</p>
+<h3>A. Crear la taxonomía</h3>
+<ol>
+<li>Inicia sesión en tu Author, normalmente <code>http://localhost:4502</code>.</li>
+<li>Abre <strong>Tools → General → Tagging</strong>. Crea un namespace con título <code>Training</code> y nombre <code>training</code>, o reutilízalo si pertenece a este ejemplo.</li>
+<li>Dentro de Training crea un tag contenedor con título <code>Activity</code>, nombre <code>activity</code>.</li>
+<li>Dentro de Activity crea <code>Hiking</code> con nombre <code>hiking</code> y <code>Cycling</code> con nombre <code>cycling</code>.</li>
+<li>Comprueba sus IDs: <code>training:activity/hiking</code> y <code>training:activity/cycling</code>. El título no sustituye al campo Name.</li>
+</ol>
+<p>La creación necesita permisos sobre la taxonomía. Si faltan, el instructor suministra estos tags en el baseline local; no se resuelve concediendo permisos globales a visitantes. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/tags">Administrar tags — Adobe</a>.</p>
+<h3>B. Crear páginas y asignar tags</h3>
+<ol>
+<li>En <strong>Sites</strong>, entra a la raíz de idioma del sitio. Crea una página padre con título <code>Training search</code> y nombre <code>training-search</code>, usando la plantilla de página habilitada de tu baseline.</li>
+<li>Dentro de ella crea las primeras cuatro páginas de la tabla. La quinta se crea <strong>al lado de Training search</strong>, fuera de esa raíz.</li>
+<li>En cada página abre <strong>Properties → Basic → Tags</strong> y elige el tag indicado con el picker. Guarda con <strong>Save &amp; Close</strong>. Deja sin tag <code>Visitor notes</code> y la página padre; elimina únicamente tags heredados de una copia de prueba si los hubiera. Es preferible crear estas páginas nuevas.</li>
+<li>Comprueba nombres, títulos y selección de tags antes de consultar. Los prefijos 01–05 son parte del título, no del nombre de nodo.</li>
+</ol>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Ruta respecto de <code>/content/wknd/us/en</code></th>
+<th>Título exacto</th>
+<th>Tag</th>
+<th>Consulta base</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>training-search/forest-trail</code></td>
+<td><code>01 Forest trail</code></td>
+<td>Hiking</td>
+<td>Incluida.</td>
+</tr>
+<tr>
+<td><code>training-search/river-trail</code></td>
+<td><code>02 River trail</code></td>
+<td>Hiking</td>
+<td>Incluida.</td>
+</tr>
+<tr>
+<td><code>training-search/city-ride</code></td>
+<td><code>03 City ride</code></td>
+<td>Cycling</td>
+<td>Excluida por tag.</td>
+</tr>
+<tr>
+<td><code>training-search/visitor-notes</code></td>
+<td><code>04 Visitor notes</code></td>
+<td>Ninguno</td>
+<td>Excluida por tag ausente.</td>
+</tr>
+<tr>
+<td><code>training-outside-trail</code></td>
+<td><code>05 Outside trail</code></td>
+<td>Hiking</td>
+<td>Excluida por ruta.</td>
+</tr>
+</tbody>
+</table></div>
+<p>En CRXDE Lite local (<code>http://localhost:4502/crx/de/index.jsp</code>), inspecciona sin editar el nodo <code>.../forest-trail/jcr:content</code>: <code>jcr:title</code> debe ser <code>01 Forest trail</code> y <code>cq:tags</code> debe contener <code>training:activity/hiking</code>. La asignación se hace desde el picker, no creando a mano una propiedad con un título o un ID inexistente.</p>
+<h3>C. Ejecutar QueryBuilder</h3>
+<ol>
+<li>Abre <code>http://localhost:4502/libs/cq/search/content/querydebug.html</code> con la misma cuenta local.</li>
+<li>Reemplaza el contenido del formulario por la consulta completa de la sección 3. Si aparece <strong>Query is given as URL</strong>, déjalo desactivado al pegar líneas <code>clave=valor</code>.</li>
+<li>Pulsa <strong>Search</strong>. Deben aparecer <code>forest-trail</code> y <code>river-trail</code> en ese orden. Las rutas de los hits corresponden a páginas, no a sus nodos <code>jcr:content</code>.</li>
+<li>Cambia únicamente <code>p.offset</code> a <code>2</code> y repite. Debe quedar vacío porque sólo hay dos coincidencias.</li>
+<li>Vuelve a offset <code>0</code>. Para ver dos ventanas no vacías sin crear más contenido, cambia temporalmente <code>p.limit</code> a <code>1</code>: offset <code>0</code> devuelve Forest y offset <code>1</code> devuelve River. Restaura límite <code>2</code> al terminar.</li>
+<li>Añade las dos líneas de full-text de la sección 6 y busca de nuevo. El resultado esperado es Forest. Quita esas líneas antes de contrastar con SQL2.</li>
+</ol>
+<p>El Debugger muestra detalles útiles para aprender. Si quieres observar directamente el JSON, abre el endpoint local con los mismos parámetros codificados en la URL; el HTML de esta guía incluye un enlace preparado. Estas herramientas sirven para el SDK autenticado; no se pide exponerlas en el sitio público. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/full-stack/search/query-builder-api#testing-and-debugging">Debugger de QueryBuilder — Adobe</a>.</p>
+<p><a href="http://localhost:4502/bin/querybuilder.json?path=%2Fcontent%2Fwknd%2Fus%2Fen%2Ftraining-search&amp;type=cq%3APage&amp;property=jcr%3Acontent%2Fcq%3Atags&amp;property.value=training%3Aactivity%2Fhiking&amp;orderby=%40jcr%3Acontent%2Fjcr%3Atitle&amp;orderby.sort=asc&amp;p.limit=2&amp;p.offset=0&amp;p.guessTotal=true">Abrir la consulta JSON en Author local (localhost:4502)</a>. Requiere haber creado el ejemplo WKND e iniciado sesión; adapta la URL para otro sitio.</p><h3>D. Leer la selección en SQL2</h3>
+<ol>
+<li>En CRXDE Lite, abre la herramienta de consultas (<strong>Tools → Query</strong>, según la versión) y elige <strong>JCR-SQL2</strong> como lenguaje.</li>
+<li>Pega <code>guides.sql2</code>, ajustando la raíz si usas otro sitio.</li>
+<li>Configura <strong>Limit = 2</strong> y <strong>Offset = 0</strong> cuando la consola ofrezca esos campos. Si tu versión no los expone, conserva el conjunto de cinco páginas y compara sólo selección y orden: la ventana no queda demostrada por ese formulario. Los controles portables están en la API JCR descrita arriba.</li>
+<li>Ejecuta y compara las rutas: Forest, River. No compares con la variante QueryBuilder que todavía contiene <code>fulltext=Forest</code>.</li>
+</ol>
+<p><strong>Resultado esperado del ejemplo, no evidencia de ejecución:</strong> con la misma identidad, contenido guardado e índices actualizados, las dos expresiones seleccionan las mismas dos páginas. Las instrucciones y sintaxis se contrastaron con fuentes oficiales; no se ejecutaron en tu SDK durante la preparación del material.</p>
+<p><a id="diagnostico"></a></p>
+<h2>8. Si la salida no coincide</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Síntoma</th>
+<th>Comprobación concreta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cero resultados desde la primera búsqueda.</td>
+<td>Ruta real del sitio, tipo <code>cq:Page</code>, ID exacto y propiedad en <code>jcr:content</code>.</td>
+</tr>
+<tr>
+<td>Sólo falla después de paginar.</td>
+<td>Offset actual; vuelve a 0 al cambiar filtros.</td>
+</tr>
+<tr>
+<td>La página Cycling aparece.</td>
+<td><code>cq:tags</code> es multivalor: comprueba si también tiene Hiking.</td>
+</tr>
+<tr>
+<td>Aparece Outside trail.</td>
+<td>Verifica que la raíz termina en <code>training-search</code>, no en la raíz del sitio.</td>
+</tr>
+<tr>
+<td>Full-text no devuelve Forest.</td>
+<td>Título guardado, alcance <code>jcr:content</code> y actualización/cobertura del índice.</td>
+</tr>
+<tr>
+<td>Resultados distintos entre herramientas.</td>
+<td>Misma instancia, usuario, filtros, orden, offset y contenido; retira el full-text adicional.</td>
+</tr>
+<tr>
+<td>Consulta lenta con sólo dos hits.</td>
+<td>Conserva la consulta y sus condiciones; analiza el plan en la 27 antes de proponer un índice.</td>
+</tr>
+<tr>
+<td>Funciona como administrador.</td>
+<td>Eso no demuestra lectura con la identidad del visitante; se estudia en las sesiones 28–29.</td>
+</tr>
+</tbody>
+</table></div>
+<p>No cambies a <code>/</code> ni retires todos los límites para “encontrar algo”. Comprueba una condición cada vez dentro del conjunto de prueba. Un resultado en Author tampoco confirma presencia en Publish, publicación de dependencias ni acceso anónimo.</p>
+<p><a id="repaso"></a></p>
+<h2>9. Repaso con respuestas</h2>
+<ol>
+<li><strong>¿Por qué no buscar <code>Hiking</code> como valor de <code>cq:tags</code>?</strong> Es el título; el ejemplo almacena <code>training:activity/hiking</code>.</li>
+<li><strong>¿Por qué el path de la propiedad incluye <code>jcr:content</code>?</strong> El hit es una <code>cq:Page</code> y los valores están en su nodo hijo.</li>
+<li><strong>¿Por qué se excluye Outside trail si tiene Hiking?</strong> No es descendiente de la raíz seleccionada.</li>
+<li><strong>¿Qué devuelve offset 2 con límite 2?</strong> Ningún hit en el conjunto suministrado: sólo existen dos coincidencias.</li>
+<li><strong>¿QueryBuilder genera esta SQL2?</strong> No; mostramos dos expresiones de la misma selección y QueryBuilder normalmente produce XPath.</li>
+<li><strong>¿Dos hits significan dos nodos leídos?</strong> No; la ejecución puede leer u ordenar más candidatos.</li>
+<li><strong>¿Full-text equivale a filtrar un tag?</strong> No; una clasificación explícita y términos indexados son condiciones distintas.</li>
+<li><strong>¿Se puede mostrar <code>total</code> siempre como cifra exacta?</strong> No con conteo parcial; revisa <code>more</code> y la configuración de <code>guessTotal</code>.</li>
+</ol>
+<p><a id="fuentes"></a></p>
+<h2>Fuentes y continuidad</h2>
+<p>Fuentes oficiales de Adobe y Apache enlazadas junto a cada explicación. Consulta documental: 18 de septiembre de 2026. La sesión sigue el <a href="eleven-week-redesign-proposal.html">calendario nuevo</a>: la 27 diagnostica consultas costosas; la 28 trata identidades y ACLs; la 29 el acceso mediante resolvers. Este material no modifica por sí solo el resto del temario publicado.</p>
+</main><footer><a href="../lessons/0026-tags-bounded-content-queries.html">Slides de la sesión 26</a> · <a href="index.html">Referencias</a></footer></body></html>

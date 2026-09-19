@@ -1,0 +1,463 @@
+{
+  "deck_name": "lesson-26",
+  "title": "Class 26 · Tags and bounded content queries",
+  "language": "English",
+  "goal": "Define and inspect a bounded Guide List query using tags, QueryBuilder and equivalent JCR-SQL2.",
+  "aspect_ratio": "16:9",
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 3,
+  "outputs": [
+    "PNG slide images",
+    "HTML lesson",
+    "Spanish HTML and Markdown summary",
+    "Simple Author examples with step-by-step instructions"
+  ],
+  "pptx": false,
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "edit",
+    "prompt_source": "Per-slide numbering correction; existing generated slide is the edit target.",
+    "size": "16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-24/origin_image/slide_02.png",
+    "input_context_preparation": "Inspect each original image using view_image and provide its local path as the sole edit target.",
+    "handoff_rule": "Use built-in image_gen edit only. Add assigned two-digit slide number; preserve all existing slide content."
+  },
+  "approved_style_reference": {
+    "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-24/origin_image/slide_02.png",
+    "role": "Established course style: Class 24 slide 02",
+    "fidelity": "Match ivory grid, navy condensed headings, cobalt/violet/green/orange semantic accents, thin rules and technical diagrams. Vary layouts; no repeated filler cards."
+  },
+  "style": {
+    "name": "technical atlas courseware",
+    "visual_direction": "Technical atlas courseware: tags, content queries and bounded result windows.",
+    "color_palette": "Warm ivory drafting-paper background with a faint square grid; deep navy titles; cobalt for source-to-target flow; violet for configuration; green for valid or protected local state; restrained orange for destructive actions and cautions.",
+    "typography": "Large bold condensed sans-serif headings; crisp sans-serif supporting text; true monospace appearance for repository paths, property names, action names and state values.",
+    "texture_and_finish": "Flat 2D technical diagrams, fine rules, precise page, relationship, configuration and status icons. No gradients, neon, glass, 3D, photography or generic corporate people.",
+    "deck_consistency": "Match Class24 slide02 palette, typography and drafting grid; vary layouts."
+  },
+  "deck_context": {
+    "source_summary": "Class 26, Week 6, September 21 2026. AEM Sites traditional, local Author SDK. New calendar: query/index diagnosis belongs to Class27. English slide text; Spanish study guide.",
+    "core_claim": "Define the content selection before writing a query: path, node type, tag, order and bounded results.",
+    "canonical_facts": [
+      "Fixture path /content/wknd/us/en/training-search. Archetype users substitute their real site root.",
+      "Query returns cq:Page nodes. Tags and titles are under jcr:content.",
+      "Exact property matching of cq:tags is intentional; it does not expand descendants or moved-tag aliases.",
+      "QueryBuilder evaluates predicates and typically produces XPath; JCR-SQL2 is a separate equivalent expression, not its output.",
+      "Use p.limit=2, p.offset=0 or 2, p.guessTotal=true. Order by title; fixture titles are unique and content stays unchanged.",
+      "Two hiking matches: 01 Forest trail, 02 River trail. A cycling page, untagged page and hiking page outside the root are excluded.",
+      "Fulltext is an optional additional filter and depends on indexed content.",
+      "No custom index, servlet, service user, assignment or deliverable in this lesson."
+    ],
+    "content_constraints": [
+      "Only render slide-specific text, not all deck context.",
+      "No invented screenshots, runtime measurements or automatic publication claims.",
+      "English only; exact code spelling; simple readable diagrams.",
+      "No speech or PPTX. Final slide contains only Questions / Thank you. plus its small slide number."
+    ]
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Tags and bounded content queries",
+      "key_points": [
+        "Class 26 · Week 6 · September 21, 2026",
+        "Juan Maldonado",
+        "Taxonomy · QueryBuilder · JCR-SQL2 · Pagination"
+      ],
+      "layout": {
+        "role": "cover",
+        "composition": "Large title; simple taxonomy-to-filter-to-results motif. No instructional panels.",
+        "intent": "Large title; simple taxonomy-to-filter-to-results motif. No instructional panels."
+      },
+      "local_context": {
+        "required_background": "Large title; simple taxonomy-to-filter-to-results motif. No instructional panels."
+      },
+      "constraints": [
+        "Only render slide-specific text, not all deck context.",
+        "No invented screenshots, runtime measurements or automatic publication claims.",
+        "English only; exact code spelling; simple readable diagrams.",
+        "No speech or PPTX. Final slide contains only Questions / Thank you. plus its small slide number.",
+        "Render slide number 01 in the top-left header margin."
+      ],
+      "render_slide_number": true,
+      "required_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-172b-77f2-b601-6057bab67ace/exec-a2dee87a-285d-4e53-977a-971a95a32754.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Define what Guide List returns",
+      "key_points": [
+        "Include: pages below the selected root with the hiking tag.",
+        "Exclude: cycling, untagged pages and content outside the root.",
+        "Return two results at a time, ordered by title.",
+        "Author results describe the current repository and identity."
+      ],
+      "layout": {
+        "role": "case study",
+        "composition": "Selection funnel and five named candidates: 01 Forest trail and 02 River trail included, 03 City ride and 04 Visitor notes excluded, 05 Outside trail excluded by path. Synthetic teaching fixture.",
+        "intent": "Selection funnel and five named candidates: 01 Forest trail and 02 River trail included, 03 City ride and 04 Visitor notes excluded, 05 Outside trail excluded by path. Synthetic teaching fixture."
+      },
+      "local_context": {
+        "required_background": "Selection funnel and five named candidates: 01 Forest trail and 02 River trail included, 03 City ride and 04 Visitor notes excluded, 05 Outside trail excluded by path. Synthetic teaching fixture."
+      },
+      "constraints": [
+        "Only render slide-specific text, not all deck context.",
+        "No invented screenshots, runtime measurements or automatic publication claims.",
+        "English only; exact code spelling; simple readable diagrams.",
+        "No speech or PPTX. Final slide contains only Questions / Thank you. plus its small slide number.",
+        "Render slide number 02 in the top-left header margin."
+      ],
+      "render_slide_number": true,
+      "required_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-3b45-77d2-9681-bde8583c283d/exec-e1a608e9-a62d-42ea-ad65-452c23c1a27a.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "A tag ID is different from its title",
+      "key_points": [
+        "Namespace: training",
+        "Tag ID: training:activity/hiking",
+        "Display title: Hiking",
+        "Page assignments live in jcr:content/cq:tags."
+      ],
+      "layout": {
+        "role": "architecture",
+        "composition": "Side-by-side taxonomy and page assignment; no arrow between them. Distinguish namespace, ID and display title.",
+        "intent": "Compare tag definition and stored page assignment without implying data flow."
+      },
+      "local_context": {
+        "required_background": "Side-by-side taxonomy and page assignment; no arrow between them. Distinguish namespace, ID and display title."
+      },
+      "constraints": [
+        "Only render slide-specific text, not all deck context.",
+        "No invented screenshots, runtime measurements or automatic publication claims.",
+        "English only; exact code spelling; simple readable diagrams.",
+        "No speech or PPTX. Final slide contains only Questions / Thank you. plus its small slide number.",
+        "Render slide number 03 in the top-left header margin."
+      ],
+      "render_slide_number": true,
+      "required_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-6382-7371-9163-f13a1206cf8f/exec-49bdaa94-4b01-48f7-a43d-5853b2b3a91f.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Two ways to express a repository query",
+      "key_points": [
+        "QueryBuilder: a map of predicates.",
+        "JCR-SQL2: a declarative query statement.",
+        "QueryBuilder typically produces XPath, not SQL2.",
+        "Oak executes the query against repository content."
+      ],
+      "layout": {
+        "role": "process",
+        "composition": "Parallel routes QueryBuilder predicates → XPath → Oak and JCR-SQL2 → Oak, converging to readable results. Do not connect QueryBuilder directly to SQL2.",
+        "intent": "Parallel routes QueryBuilder predicates → XPath → Oak and JCR-SQL2 → Oak, converging to readable results. Do not connect QueryBuilder directly to SQL2."
+      },
+      "local_context": {
+        "required_background": "Parallel routes QueryBuilder predicates → XPath → Oak and JCR-SQL2 → Oak, converging to readable results. Do not connect QueryBuilder directly to SQL2."
+      },
+      "constraints": [
+        "Only render slide-specific text, not all deck context.",
+        "No invented screenshots, runtime measurements or automatic publication claims.",
+        "English only; exact code spelling; simple readable diagrams.",
+        "No speech or PPTX. Final slide contains only Questions / Thank you. plus its small slide number.",
+        "Render slide number 04 in the top-left header margin."
+      ],
+      "render_slide_number": true,
+      "required_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-172b-77f2-b601-6057bab67ace/exec-25cbcf9b-5801-485c-a101-fe6d05c56f86.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Start with path, type and property",
+      "key_points": [
+        "path=/content/wknd/us/en/training-search",
+        "type=cq:Page",
+        "property=jcr:content/cq:tags",
+        "property.value=training:activity/hiking"
+      ],
+      "layout": {
+        "role": "code explanation",
+        "composition": "Four exact monospace lines on left; on right four annotations: subtree boundary, page nodes, relative property, exact stored tag ID. Bottom: All conditions must match. This is selection only; pagination comes next.",
+        "intent": "Four exact monospace lines on left; on right four annotations: subtree boundary, page nodes, relative property, exact stored tag ID. Bottom: All conditions must match. This is selection only; pagination comes next."
+      },
+      "local_context": {
+        "required_background": "Four exact monospace lines on left; on right four annotations: subtree boundary, page nodes, relative property, exact stored tag ID. Bottom: All conditions must match. This is selection only; pagination comes next."
+      },
+      "constraints": [
+        "Only render slide-specific text, not all deck context.",
+        "No invented screenshots, runtime measurements or automatic publication claims.",
+        "English only; exact code spelling; simple readable diagrams.",
+        "No speech or PPTX. Final slide contains only Questions / Thank you. plus its small slide number.",
+        "Render slide number 05 in the top-left header margin."
+      ],
+      "render_slide_number": true,
+      "required_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-172b-77f2-b601-6057bab67ace/exec-39df8bfa-cf19-4282-adf4-6e0ec40c030b.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Read the same selection in JCR-SQL2",
+      "key_points": [
+        "SELECT * FROM [cq:Page] AS page",
+        "WHERE ISDESCENDANTNODE(page,",
+        "  '/content/wknd/us/en/training-search')",
+        "AND page.[jcr:content/cq:tags] =",
+        "  'training:activity/hiking'"
+      ],
+      "layout": {
+        "role": "code explanation",
+        "composition": "Render five lines as one exact SQL code block. Small annotations link type, descendant path and exact tag property. Footer: Same selection; apply ordering and limits separately. No LIMIT clause added.",
+        "intent": "Render five lines as one exact SQL code block. Small annotations link type, descendant path and exact tag property. Footer: Same selection; apply ordering and limits separately. No LIMIT clause added."
+      },
+      "local_context": {
+        "required_background": "Render five lines as one exact SQL code block. Small annotations link type, descendant path and exact tag property. Footer: Same selection; apply ordering and limits separately. No LIMIT clause added."
+      },
+      "constraints": [
+        "Only render slide-specific text, not all deck context.",
+        "No invented screenshots, runtime measurements or automatic publication claims.",
+        "English only; exact code spelling; simple readable diagrams.",
+        "No speech or PPTX. Final slide contains only Questions / Thank you. plus its small slide number.",
+        "Render slide number 06 in the top-left header margin."
+      ],
+      "render_slide_number": true,
+      "required_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-3b45-77d2-9681-bde8583c283d/exec-8ec9aca9-cf7b-404a-a547-21646dc2081b.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Bound and order each result window",
+      "key_points": [
+        "orderby=@jcr:content/jcr:title",
+        "orderby.sort=asc",
+        "p.limit=2",
+        "p.offset=0",
+        "p.guessTotal=true"
+      ],
+      "layout": {
+        "role": "pagination",
+        "composition": "Code settings left; diagram first window offset 0, next window offset 2 right. Callouts: Fixture titles are unique. Keep content unchanged while comparing pages. Limit bounds returned hits, not all repository work. guessTotal may be a lower bound.",
+        "intent": "Code settings left; diagram first window offset 0, next window offset 2 right. Callouts: Fixture titles are unique. Keep content unchanged while comparing pages. Limit bounds returned hits, not all repository work. guessTotal may be a lower bound."
+      },
+      "local_context": {
+        "required_background": "Code settings left; diagram first window offset 0, next window offset 2 right. Callouts: Fixture titles are unique. Keep content unchanged while comparing pages. Limit bounds returned hits, not all repository work. guessTotal may be a lower bound."
+      },
+      "constraints": [
+        "Only render slide-specific text, not all deck context.",
+        "No invented screenshots, runtime measurements or automatic publication claims.",
+        "English only; exact code spelling; simple readable diagrams.",
+        "No speech or PPTX. Final slide contains only Questions / Thank you. plus its small slide number.",
+        "Render slide number 07 in the top-left header margin."
+      ],
+      "render_slide_number": true,
+      "required_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-6382-7371-9163-f13a1206cf8f/exec-3cfd004b-9c8f-469c-8f8f-31b81e4e3741.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Full-text adds a different condition",
+      "key_points": [
+        "fulltext=Forest",
+        "fulltext.relPath=jcr:content",
+        "Keep the existing path, type and tag predicates.",
+        "Expected fixture match: 01 Forest trail."
+      ],
+      "layout": {
+        "role": "comparison",
+        "composition": "Compare exact tag membership with indexed text terms. Show base two results reduced to Forest. Caveat: Tokenization, indexed fields and index freshness affect matches. Do not imply substring matching or tag hierarchy expansion.",
+        "intent": "Compare exact tag membership with indexed text terms. Show base two results reduced to Forest. Caveat: Tokenization, indexed fields and index freshness affect matches. Do not imply substring matching or tag hierarchy expansion."
+      },
+      "local_context": {
+        "required_background": "Compare exact tag membership with indexed text terms. Show base two results reduced to Forest. Caveat: Tokenization, indexed fields and index freshness affect matches. Do not imply substring matching or tag hierarchy expansion."
+      },
+      "constraints": [
+        "Only render slide-specific text, not all deck context.",
+        "No invented screenshots, runtime measurements or automatic publication claims.",
+        "English only; exact code spelling; simple readable diagrams.",
+        "No speech or PPTX. Final slide contains only Questions / Thank you. plus its small slide number.",
+        "Render slide number 08 in the top-left header margin."
+      ],
+      "render_slide_number": true,
+      "required_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-172b-77f2-b601-6057bab67ace/exec-c9bbbe70-027e-4e5a-8800-a6692fca51fb.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Read the response before drawing conclusions",
+      "key_points": [
+        "hits: results in this window.",
+        "offset: how many matches were skipped.",
+        "more: additional results remain.",
+        "total with guessTotal can be a lower bound."
+      ],
+      "layout": {
+        "role": "result interpretation",
+        "composition": "Clearly labelled synthetic JSON fragment {\"offset\":0,\"more\":false,\"total\":2}; two result rows 01 Forest trail and 02 River trail. Caveat: An Author hit does not prove publication or visitor access.",
+        "intent": "Clearly labelled synthetic JSON fragment {\"offset\":0,\"more\":false,\"total\":2}; two result rows 01 Forest trail and 02 River trail. Caveat: An Author hit does not prove publication or visitor access."
+      },
+      "local_context": {
+        "required_background": "Clearly labelled synthetic JSON fragment {\"offset\":0,\"more\":false,\"total\":2}; two result rows 01 Forest trail and 02 River trail. Caveat: An Author hit does not prove publication or visitor access."
+      },
+      "constraints": [
+        "Only render slide-specific text, not all deck context.",
+        "No invented screenshots, runtime measurements or automatic publication claims.",
+        "English only; exact code spelling; simple readable diagrams.",
+        "No speech or PPTX. Final slide contains only Questions / Thank you. plus its small slide number.",
+        "Render slide number 09 in the top-left header margin."
+      ],
+      "render_slide_number": true,
+      "required_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-3b45-77d2-9681-bde8583c283d/exec-90b568a2-8084-4741-9733-a1b8060c3b61.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Follow one small example in local Author",
+      "key_points": [
+        "Create tags and five supplied example pages.",
+        "Paste the bounded query into QueryBuilder Debugger.",
+        "Compare offset 0, offset 2 and the Forest filter.",
+        "Read the equivalent SQL2 query in CRXDE Lite."
+      ],
+      "layout": {
+        "role": "sequence",
+        "composition": "Four numbered steps with local Author boundary. Footer: Step-by-step setup and copyable queries are in the lesson. No homework, no deliverables, no Cloud Manager. Index diagnosis continues in Class 27.",
+        "intent": "Four numbered steps with local Author boundary. Footer: Step-by-step setup and copyable queries are in the lesson. No homework, no deliverables, no Cloud Manager. Index diagnosis continues in Class 27."
+      },
+      "local_context": {
+        "required_background": "Four numbered steps with local Author boundary. Footer: Step-by-step setup and copyable queries are in the lesson. No homework, no deliverables, no Cloud Manager. Index diagnosis continues in Class 27."
+      },
+      "constraints": [
+        "Only render slide-specific text, not all deck context.",
+        "No invented screenshots, runtime measurements or automatic publication claims.",
+        "English only; exact code spelling; simple readable diagrams.",
+        "No speech or PPTX. Final slide contains only Questions / Thank you. plus its small slide number.",
+        "Render slide number 10 in the top-left header margin."
+      ],
+      "render_slide_number": true,
+      "required_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-6382-7371-9163-f13a1206cf8f/exec-3cfffc17-ebc4-4f0e-a610-414b67152975.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "title": "Key takeaways",
+      "key_points": [
+        "Tags classify content through stable IDs.",
+        "Path, type and properties define the selection.",
+        "Order, limit and offset define a result window.",
+        "Exact tag matching and full-text solve different needs.",
+        "Results depend on repository state and read permissions."
+      ],
+      "layout": {
+        "role": "summary",
+        "composition": "Five concise numbered takeaways with small technical icons, no causal arrows.",
+        "intent": "Five concise numbered takeaways with small technical icons, no causal arrows."
+      },
+      "local_context": {
+        "required_background": "Five concise numbered takeaways with small technical icons, no causal arrows."
+      },
+      "constraints": [
+        "Only render slide-specific text, not all deck context.",
+        "No invented screenshots, runtime measurements or automatic publication claims.",
+        "English only; exact code spelling; simple readable diagrams.",
+        "No speech or PPTX. Final slide contains only Questions / Thank you. plus its small slide number.",
+        "Render slide number 11 in the top-left header margin."
+      ],
+      "render_slide_number": true,
+      "required_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-172b-77f2-b601-6057bab67ace/exec-504f94dc-c271-45a3-a37a-ab0aeb719e1f.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "title": "Questions / Thank you",
+      "key_points": [
+        "Questions",
+        "Thank you."
+      ],
+      "layout": {
+        "role": "Q&A",
+        "composition": "Passive closing: only Questions and Thank you. No other teaching text or metadata.",
+        "intent": "Passive closing: only Questions and Thank you. No other teaching text or metadata."
+      },
+      "local_context": {
+        "required_background": "Passive closing: only Questions and Thank you. No other teaching text or metadata."
+      },
+      "constraints": [
+        "Only render slide-specific text, not all deck context.",
+        "No invented screenshots, runtime measurements or automatic publication claims.",
+        "English only; exact code spelling; simple readable diagrams.",
+        "No speech or PPTX. Final slide contains only Questions / Thank you. plus its small slide number.",
+        "Render slide number 12 in the top-left header margin."
+      ],
+      "render_slide_number": true,
+      "required_images": [
+        {
+          "path": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-3b45-77d2-9681-bde8583c283d/exec-6bbb931c-c266-4b84-af23-5637c832a79d.png",
+          "role": "Existing slide image: strict edit target. Preserve all content; add only the assigned slide number."
+        }
+      ]
+    }
+  ],
+  "approval": {
+    "scope": "User requested creation of session26 and confirmed new calendar: tags and queries; index diagnosis in session27.",
+    "style": "Continue established Class24 style",
+    "backend": "built-in image tool",
+    "intermediate_confirmations": "Continuation waiver recorded in Class24 deck_spec approval and sample_generation_method.",
+    "speech": false,
+    "pptx": false,
+    "numbering": "User explicitly requested slide numbering matching earlier lessons; edit all 12 images."
+  },
+  "render_slide_number": true,
+  "numbering": {
+    "format": "01–12",
+    "position": "top-left above title",
+    "required_in_png": true,
+    "scope": "All slides including cover and Questions / Thank you."
+  }
+}
