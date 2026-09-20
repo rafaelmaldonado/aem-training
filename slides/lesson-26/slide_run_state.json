@@ -1,5 +1,5 @@
 {
-  "status": "jobs_prepared",
+  "status": "slides_recorded",
   "history": [
     {
       "from": "created",
@@ -24,7 +24,19 @@
       "to": "jobs_prepared",
       "at": "2026-09-19T17:55:54Z",
       "note": "prepared slide prompt jobs"
+    },
+    {
+      "from": "jobs_prepared",
+      "to": "slides_dispatched",
+      "at": "2026-09-19T23:00:42Z",
+      "note": "all slide jobs dispatched"
+    },
+    {
+      "from": "slides_dispatched",
+      "to": "slides_recorded",
+      "at": "2026-09-19T23:03:03Z",
+      "note": "all slide images recorded"
     }
   ],
-  "updated_at": "2026-09-19T17:55:54Z"
+  "updated_at": "2026-09-19T23:03:03Z"
 }
