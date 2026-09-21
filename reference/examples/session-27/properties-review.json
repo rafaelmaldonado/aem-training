@@ -1,0 +1,15 @@
+{
+  "jcr:primaryType": "nt:unstructured",
+  "tags": {
+    "jcr:primaryType": "nt:unstructured",
+    "name": "jcr:content/cq:tags",
+    "propertyIndex": true
+  },
+  "title": {
+    "jcr:primaryType": "nt:unstructured",
+    "name": "jcr:content/jcr:title",
+    "propertyIndex": true,
+    "ordered": true,
+    "type": "String"
+  }
+}

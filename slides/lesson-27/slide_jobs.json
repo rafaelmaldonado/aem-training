@@ -1,0 +1,501 @@
+{
+  "run_status": "slides_recorded",
+  "deck_name": "lesson-27",
+  "selected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "edit",
+    "prompt_source": "Per-slide lesson27 JSON job; redraw established course reference with new slide content.",
+    "size": "16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-26/origin_image/slide_04.png",
+    "input_context_preparation": "Parent and worker inspect local style reference using view_image, then pass reference to image_gen.",
+    "handoff_rule": "Use built-in image_gen only; redraw the reference as the specified slide. Existing course workflow and prior intermediate-confirmation waiver persist."
+  },
+  "max_concurrent_slides": 3,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "Diagnosing costly queries",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-26/origin_image/slide_04.png",
+          "role": "Established lesson26 visual style only; replace all content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_01.json",
+        "prompt_sha256": "cace01cc1e33bc3384cf5b93306468ed7f96fac0f278b754d0147decdf965916",
+        "dispatched_at": "2026-09-20T16:01:24Z"
+      },
+      "result": {
+        "agent_id": "/root/slide01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-172b-77f2-b601-6057bab67ace/exec-74424828-cbc5-4cda-b606-04e61bcc64de.png",
+        "selected_source_sha256": "14b0f847775b16858939f76885497d78487f99f541ba123d5f9097089ffac789",
+        "final_image": "origin_image/slide_01.png",
+        "final_image_sha256": "14b0f847775b16858939f76885497d78487f99f541ba123d5f9097089ffac789",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent reviewed: visible number, readable text and correct diagram.",
+        "recorded_at": "2026-09-20T16:05:27Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "Two hits do not mean two reads",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-26/origin_image/slide_04.png",
+          "role": "Established lesson26 visual style only; replace all content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide02",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "7160b730774ea81be5f43d906bf1b5257ef568a9601fba1704c5a62af32e5040",
+        "dispatched_at": "2026-09-20T16:01:44Z"
+      },
+      "result": {
+        "agent_id": "/root/slide02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-3b45-77d2-9681-bde8583c283d/exec-3bfb07d4-329c-401c-a75d-0808d0d29933.png",
+        "selected_source_sha256": "7af327fd6ae3110f9503c61099fb4195d65a0a8b0ca02d46adb5ca199de26f15",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "7af327fd6ae3110f9503c61099fb4195d65a0a8b0ca02d46adb5ca199de26f15",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent reviewed: visible number, readable text and correct diagram.",
+        "recorded_at": "2026-09-20T16:05:27Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "How Oak chooses a plan",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-26/origin_image/slide_04.png",
+          "role": "Established lesson26 visual style only; replace all content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide03",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_03.json",
+        "prompt_sha256": "892c0f2ca464f07b92c550fad8a9fb9c7245c33b4ebcba2bc185f3500f7a5610",
+        "dispatched_at": "2026-09-20T16:02:13Z"
+      },
+      "result": {
+        "agent_id": "/root/slide03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-6382-7371-9163-f13a1206cf8f/exec-249efd6d-923b-483d-9bc6-2edf842ac880.png",
+        "selected_source_sha256": "b9a576384d9b3784f492cd1b5a8d41c1857d54174551d94ba0ca9c84b34db61a",
+        "final_image": "origin_image/slide_03.png",
+        "final_image_sha256": "b9a576384d9b3784f492cd1b5a8d41c1857d54174551d94ba0ca9c84b34db61a",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent reviewed: visible number, readable text and correct diagram.",
+        "recorded_at": "2026-09-20T16:05:27Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "Read more than the index name",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-26/origin_image/slide_04.png",
+          "role": "Established lesson26 visual style only; replace all content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_04.json",
+        "prompt_sha256": "531c3d36c173849d5b48f5b501c08e3074400668ef9642f2ae1ad00196f378f5",
+        "dispatched_at": "2026-09-20T16:05:42Z"
+      },
+      "result": {
+        "agent_id": "/root/slide01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-172b-77f2-b601-6057bab67ace/exec-356955b5-c122-4b66-8bb9-4b6e8bc9852e.png",
+        "selected_source_sha256": "cb1e66625b71deb8573b31e5392b5f0c681005d01138e161115c03cc7ef3f24b",
+        "final_image": "origin_image/slide_04.png",
+        "final_image_sha256": "cb1e66625b71deb8573b31e5392b5f0c681005d01138e161115c03cc7ef3f24b",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent reviewed:04 visible, conceptual plan labelled, four inspection questions correct.",
+        "recorded_at": "2026-09-20T16:08:59Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "Correct the query contract first",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-26/origin_image/slide_04.png",
+          "role": "Established lesson26 visual style only; replace all content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide02",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_05.json",
+        "prompt_sha256": "e6bc0f54c3db146d4e082aaa195ada665f491fe7edb208e62092cfc3be9f3645",
+        "dispatched_at": "2026-09-20T16:05:56Z"
+      },
+      "result": {
+        "agent_id": "/root/slide02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-3b45-77d2-9681-bde8583c283d/exec-7b5e574b-2792-4888-ab7e-3a7f5025eb49.png",
+        "selected_source_sha256": "614f5c89c0d9a904dc114ab04c0bd7c048e11e094844b0eb847c27cb82868a62",
+        "final_image": "origin_image/slide_05.png",
+        "final_image_sha256": "614f5c89c0d9a904dc114ab04c0bd7c048e11e094844b0eb847c27cb82868a62",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "05 visible; all fixture paths, predicates and selection-change caveat checked.",
+        "recorded_at": "2026-09-20T16:09:47Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "EXPLAIN and MEASURE answer different questions",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-26/origin_image/slide_04.png",
+          "role": "Established lesson26 visual style only; replace all content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide03",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_06.json",
+        "prompt_sha256": "9b04f5ee8c84eef5a658659a83dd3089a74f5d2f82dd9c9675c6f3934bac5d4f",
+        "dispatched_at": "2026-09-20T16:06:14Z"
+      },
+      "result": {
+        "agent_id": "/root/slide03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-6382-7371-9163-f13a1206cf8f/exec-372656c5-0423-4b93-a016-0a581c5fc786.png",
+        "selected_source_sha256": "5b12da6bf659eb237a4fcb1ba00b2c6d8a72eef85cfaddf2a707da379d53b3ff",
+        "final_image": "origin_image/slide_06.png",
+        "final_image_sha256": "5b12da6bf659eb237a4fcb1ba00b2c6d8a72eef85cfaddf2a707da379d53b3ff",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent reviewed: number visible, operation semantics and local-demo caveats correct.",
+        "recorded_at": "2026-09-20T16:10:54Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "Inspect one query in local Author",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-26/origin_image/slide_04.png",
+          "role": "Established lesson26 visual style only; replace all content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_07.json",
+        "prompt_sha256": "341b58e8e68070819096dc41a3e2e139a518f5259503097f0ba58ab7a300df88",
+        "dispatched_at": "2026-09-20T16:09:20Z"
+      },
+      "result": {
+        "agent_id": "/root/slide01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-172b-77f2-b601-6057bab67ace/exec-a23daef9-8983-4f47-a070-aef257b8a9a9.png",
+        "selected_source_sha256": "2cf00f0a3ab99610132edd546f096cd17ec994c866eb4cb45e590e30ba89863d",
+        "final_image": "origin_image/slide_07.png",
+        "final_image_sha256": "2cf00f0a3ab99610132edd546f096cd17ec994c866eb4cb45e590e30ba89863d",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Parent reviewed: number visible, operation semantics and local-demo caveats correct.",
+        "recorded_at": "2026-09-20T16:10:55Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "Compare evidence under the same conditions",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-26/origin_image/slide_04.png",
+          "role": "Established lesson26 visual style only; replace all content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide02",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_08.json",
+        "prompt_sha256": "87c53a394e8300bcae4400a355b056d631fa71338ae8f6704e2dac88188a342d",
+        "dispatched_at": "2026-09-20T16:10:07Z"
+      },
+      "result": {
+        "agent_id": "/root/slide02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-3b45-77d2-9681-bde8583c283d/exec-36e56964-0f3c-4a32-96e4-841b88f8173e.png",
+        "selected_source_sha256": "46aee07cb68086102004123fb69cf5ebc04aa023d6007d0adead110af449abe7",
+        "final_image": "origin_image/slide_08.png",
+        "final_image_sha256": "46aee07cb68086102004123fb69cf5ebc04aa023d6007d0adead110af449abe7",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "08 visible; synthetic label and exact table counts verified; no measured claims.",
+        "recorded_at": "2026-09-20T22:10:59Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Read the definition behind the plan",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-26/origin_image/slide_04.png",
+          "role": "Established lesson26 visual style only; replace all content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide03",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "df34558d762733a6cd9fd71744abfbe21333d4f789f086ec08244b64605b2410",
+        "dispatched_at": "2026-09-20T22:09:14Z"
+      },
+      "result": {
+        "agent_id": "/root/slide03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-6382-7371-9163-f13a1206cf8f/exec-472281fb-6f42-4d5b-8e79-2714aac3cb4c.png",
+        "selected_source_sha256": "7234fc2797dd9e077544ae76b1503862860f89ba855071e73209b4bfb9f24cae",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "7234fc2797dd9e077544ae76b1503862860f89ba855071e73209b4bfb9f24cae",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "09 visible; corrected path-support annotation; exact properties and paths verified.",
+        "recorded_at": "2026-09-20T22:13:55Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_10",
+      "number": 10,
+      "title": "An index change needs evidence",
+      "job": "prompts/slide_10.json",
+      "out": "origin_image/slide_10.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-26/origin_image/slide_04.png",
+          "role": "Established lesson26 visual style only; replace all content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_10.json",
+        "prompt_sha256": "e6fe6c3479e3c333ef65ff8d804fbfa34357cc2f1f82c3180b1f216b9f2902ce",
+        "dispatched_at": "2026-09-20T22:09:37Z"
+      },
+      "result": {
+        "agent_id": "/root/slide01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-172b-77f2-b601-6057bab67ace/exec-5df484be-e015-464f-a89a-3aaa19c0e8c7.png",
+        "selected_source_sha256": "ccc6ccb894b393d7bb65bfb950969051f2ea69cc79b7f798063b31cdc0cca216",
+        "final_image": "origin_image/slide_10.png",
+        "final_image_sha256": "ccc6ccb894b393d7bb65bfb950969051f2ea69cc79b7f798063b31cdc0cca216",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "10 visible; decision branches, pipeline and caveats correct.",
+        "recorded_at": "2026-09-20T22:12:15Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_11",
+      "number": 11,
+      "title": "Key takeaways",
+      "job": "prompts/slide_11.json",
+      "out": "origin_image/slide_11.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-26/origin_image/slide_04.png",
+          "role": "Established lesson26 visual style only; replace all content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide02",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_11.json",
+        "prompt_sha256": "2e408221b10811410383df9610d69f6f49b49b691ec78d951a6b9fa6a2869fdc",
+        "dispatched_at": "2026-09-20T22:11:41Z"
+      },
+      "result": {
+        "agent_id": "/root/slide02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-3b45-77d2-9681-bde8583c283d/exec-76dea260-0da0-436b-aae8-95cf288cf36b.png",
+        "selected_source_sha256": "0f8c1ff878b5d231d31a908910d989bed87e13a189cde0c623aae4a86375457f",
+        "final_image": "origin_image/slide_11.png",
+        "final_image_sha256": "0f8c1ff878b5d231d31a908910d989bed87e13a189cde0c623aae4a86375457f",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "11 visible; all five takeaways readable and correct.",
+        "recorded_at": "2026-09-20T22:13:55Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_12",
+      "number": 12,
+      "title": "Questions / Thank you.",
+      "job": "prompts/slide_12.json",
+      "out": "origin_image/slide_12.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-26/origin_image/slide_04.png",
+          "role": "Established lesson26 visual style only; replace all content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_12.json",
+        "prompt_sha256": "4581babbcd533aafdbf818fb7909eba5473a37a5022a2f864f5e7a3f1084ee23",
+        "dispatched_at": "2026-09-20T22:12:45Z"
+      },
+      "result": {
+        "agent_id": "/root/slide01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0b53a-172b-77f2-b601-6057bab67ace/exec-83dd5a43-9aaf-4893-89ca-39469e6ffca1.png",
+        "selected_source_sha256": "d5e2826e3bb0229ef901736cd0fe3b4a3883cacc680643e6d91a12d9aa106766",
+        "final_image": "origin_image/slide_12.png",
+        "final_image_sha256": "d5e2826e3bb0229ef901736cd0fe3b4a3883cacc680643e6d91a12d9aa106766",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "12 visible; passive Questions and Thank you closing only.",
+        "recorded_at": "2026-09-20T22:14:24Z"
+      },
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-09-20T22:14:24Z"
+}

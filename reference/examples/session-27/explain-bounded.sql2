@@ -1,0 +1,5 @@
+EXPLAIN
+SELECT * FROM [cq:Page] AS page
+WHERE ISDESCENDANTNODE(page, '/content/wknd/us/en/training-search')
+AND page.[jcr:content/cq:tags] = 'training:activity/hiking'
+ORDER BY page.[jcr:content/jcr:title] ASC

@@ -1,0 +1,380 @@
+{
+  "language": "English",
+  "aspect_ratio": "16:9",
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 3,
+  "outputs": [
+    "PNG slide images",
+    "HTML lesson",
+    "Spanish HTML and Markdown summary",
+    "Simple Author examples with step-by-step instructions"
+  ],
+  "pptx": false,
+  "style": {
+    "name": "technical atlas courseware",
+    "visual_direction": "Technical atlas courseware: query execution, evidence and index coverage.",
+    "color_palette": "Warm ivory drafting-paper background with a faint square grid; deep navy titles; cobalt for source-to-target flow; violet for configuration; green for valid or protected local state; restrained orange for destructive actions and cautions.",
+    "typography": "Large bold condensed sans-serif headings; crisp sans-serif supporting text; true monospace appearance for repository paths, property names, action names and state values.",
+    "texture_and_finish": "Flat 2D technical diagrams, fine rules, precise page, relationship, configuration and status icons. No gradients, neon, glass, 3D, photography or generic corporate people.",
+    "deck_consistency": "Match Class24 slide02 palette, typography and drafting grid; vary layouts."
+  },
+  "deck_name": "lesson-27",
+  "title": "Class 27 · Diagnosing costly queries",
+  "goal": "Diagnose query work, correct an overbroad selection and identify when an index change needs evidence.",
+  "render_slide_number": true,
+  "numbering": {
+    "format": "01–12",
+    "position": "top-left above title",
+    "required_in_png": true,
+    "scope": "All slides including cover and Questions / Thank you."
+  },
+  "approved_style_reference": {
+    "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-26/origin_image/slide_04.png",
+    "role": "Established lesson26 visual style only; replace all content.",
+    "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+  },
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "edit",
+    "prompt_source": "Per-slide lesson27 JSON job; redraw established course reference with new slide content.",
+    "size": "16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-26/origin_image/slide_04.png",
+    "input_context_preparation": "Parent and worker inspect local style reference using view_image, then pass reference to image_gen.",
+    "handoff_rule": "Use built-in image_gen only; redraw the reference as the specified slide. Existing course workflow and prior intermediate-confirmation waiver persist."
+  },
+  "approval": {
+    "scope": "User explicitly requested lesson27 after confirming new calendar and numbered slides.",
+    "style": "Continue lessons24/26 style.",
+    "backend": "built-in image tool",
+    "intermediate_confirmations": "Prior continuation waiver recorded in lesson24 and lesson26 persists.",
+    "speech": false,
+    "pptx": false
+  },
+  "deck_context": {
+    "source_summary": "Lesson27, week6, September22 2026. Traditional AEM Sites on AEM as a Cloud Service; local Author SDK only. Lesson26 covered tags and query syntax. Lesson27 teaches query diagnosis.",
+    "core_claim": "Inspect the work a query performs before proposing an index.",
+    "canonical_facts": [
+      "Guide List selects cq:Page descendants of /content/wknd/us/en/training-search with exact jcr:content/cq:tags = training:activity/hiking, ordered by jcr:content/jcr:title.",
+      "Expected fixture matches Forest and River. Outside trail is tagged but outside root. Cycling and untagged pages excluded.",
+      "SQL2 EXPLAIN returns plan, MEASURE executes; EXPLAIN MEASURE reports plan and estimated cost. AEM UI execution options differ.",
+      "No guaranteed index name, timing, scan count or speedup in a local SDK.",
+      "Existing-index coverage, remaining filtering and ordering matter. Cloud index changes are versioned deployments, not runtime tweaks.",
+      "Only show slide-specific text. No assignments, speech or PPTX. Final page passive Questions / Thank you."
+    ]
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Diagnosing costly queries",
+      "key_points": [
+        "Class 27 · Week 6 · September 22, 2026",
+        "Juan Maldonado",
+        "Explain · Selectivity · Ordering · Indexes"
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "cover",
+        "composition": "Large editorial title left, repository-to-magnifier-to-query-plan motif right. No instructional cards.",
+        "intent": "Large editorial title left, repository-to-magnifier-to-query-plan motif right. No instructional cards."
+      },
+      "local_context": {
+        "required_background": "Large editorial title left, repository-to-magnifier-to-query-plan motif right. No instructional cards."
+      },
+      "constraints": [
+        "English text only. Render exact key points; do not add unsupported technical claims.",
+        "Use the reference for visual style only; replace its content completely. Vary the composition to fit this slide.",
+        "All text must be sharp and readable. No fabricated screenshot, real benchmark or measured SDK result.",
+        "Render the assigned two-digit slide number in navy at the top-left above the title, inside the PNG.",
+        "Render slide number 01 exactly once in the top-left header."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Two hits do not mean two reads",
+      "key_points": [
+        "A small response can hide a large scan.",
+        "Filtering and sorting may happen after index access.",
+        "A low limit bounds output, not all the work.",
+        "Compare scanned rows, returned results and ordering."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "problem",
+        "composition": "Oversized 2 HITS on right. A funnel from many candidate page icons through filter and sort to two pages. No invented measurements; label candidate count unknown.",
+        "intent": "Oversized 2 HITS on right. A funnel from many candidate page icons through filter and sort to two pages. No invented measurements; label candidate count unknown."
+      },
+      "local_context": {
+        "required_background": "Oversized 2 HITS on right. A funnel from many candidate page icons through filter and sort to two pages. No invented measurements; label candidate count unknown."
+      },
+      "constraints": [
+        "English text only. Render exact key points; do not add unsupported technical claims.",
+        "Use the reference for visual style only; replace its content completely. Vary the composition to fit this slide.",
+        "All text must be sharp and readable. No fabricated screenshot, real benchmark or measured SDK result.",
+        "Render the assigned two-digit slide number in navy at the top-left above the title, inside the PNG.",
+        "Render slide number 02 exactly once in the top-left header."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "How Oak chooses a plan",
+      "key_points": [
+        "The planner compares estimated access costs.",
+        "An index supplies candidates; remaining checks may follow.",
+        "Repository traversal reads the subtree without a suitable index.",
+        "Estimated cost is not elapsed milliseconds."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "architecture",
+        "composition": "Flow query → cost-based planner; two alternative branches Index access and Repository traversal; converge to Remaining filters / ACL checks, then Results. Small separate note: Ordering may require reading candidates before a window can be returned. Simplified single-selector model, no promise that sorting always happens last.",
+        "intent": "Flow query → cost-based planner; two alternative branches Index access and Repository traversal; converge to Remaining filters / ACL checks, then Results. Small separate note: Ordering may require reading candidates before a window can be returned. Simplified single-selector model, no promise that sorting always happens last."
+      },
+      "local_context": {
+        "required_background": "Flow query → cost-based planner; two alternative branches Index access and Repository traversal; converge to Remaining filters / ACL checks, then Results. Small separate note: Ordering may require reading candidates before a window can be returned. Simplified single-selector model, no promise that sorting always happens last."
+      },
+      "constraints": [
+        "English text only. Render exact key points; do not add unsupported technical claims.",
+        "Use the reference for visual style only; replace its content completely. Vary the composition to fit this slide.",
+        "All text must be sharp and readable. No fabricated screenshot, real benchmark or measured SDK result.",
+        "Render the assigned two-digit slide number in navy at the top-left above the title, inside the PNG.",
+        "Render slide number 03 exactly once in the top-left header."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Read more than the index name",
+      "key_points": [
+        "Identify the selected index or traversal plan.",
+        "Check node type and path restrictions.",
+        "Check which property filters reach the index.",
+        "Check whether the index supplies the requested order."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "diagnostic checklist",
+        "composition": "Four numbered inspection rows beside a conceptual plan with highlighted labels: access path, type + path, property, ordering. Label the diagram Conceptual plan — not SDK output. Footer: An indexed query can still scan too much.",
+        "intent": "Four numbered inspection rows beside a conceptual plan with highlighted labels: access path, type + path, property, ordering. Label the diagram Conceptual plan — not SDK output. Footer: An indexed query can still scan too much."
+      },
+      "local_context": {
+        "required_background": "Four numbered inspection rows beside a conceptual plan with highlighted labels: access path, type + path, property, ordering. Label the diagram Conceptual plan — not SDK output. Footer: An indexed query can still scan too much."
+      },
+      "constraints": [
+        "English text only. Render exact key points; do not add unsupported technical claims.",
+        "Use the reference for visual style only; replace its content completely. Vary the composition to fit this slide.",
+        "All text must be sharp and readable. No fabricated screenshot, real benchmark or measured SDK result.",
+        "Render the assigned two-digit slide number in navy at the top-left above the title, inside the PNG.",
+        "Render slide number 04 exactly once in the top-left header."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Correct the query contract first",
+      "key_points": [
+        "Root: /content/wknd/us/en/training-search",
+        "Type: cq:Page; tag: training:activity/hiking",
+        "Order: jcr:content/jcr:title, ascending",
+        "Window: p.limit=2; p.offset=0; p.guessTotal=true"
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "comparison",
+        "composition": "Compare Too broad /content/wknd/us/en versus Intended root /content/wknd/us/en/training-search in two clear code-like panels. Show Outside trail excluded by corrected path. Below show other key_points. Footer: Narrowing the path restores the intended selection; it changes results.",
+        "intent": "Compare Too broad /content/wknd/us/en versus Intended root /content/wknd/us/en/training-search in two clear code-like panels. Show Outside trail excluded by corrected path. Below show other key_points. Footer: Narrowing the path restores the intended selection; it changes results."
+      },
+      "local_context": {
+        "required_background": "Compare Too broad /content/wknd/us/en versus Intended root /content/wknd/us/en/training-search in two clear code-like panels. Show Outside trail excluded by corrected path. Below show other key_points. Footer: Narrowing the path restores the intended selection; it changes results."
+      },
+      "constraints": [
+        "English text only. Render exact key points; do not add unsupported technical claims.",
+        "Use the reference for visual style only; replace its content completely. Vary the composition to fit this slide.",
+        "All text must be sharp and readable. No fabricated screenshot, real benchmark or measured SDK result.",
+        "Render the assigned two-digit slide number in navy at the top-left above the title, inside the PNG.",
+        "Render slide number 05 exactly once in the top-left header."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "EXPLAIN and MEASURE answer different questions",
+      "key_points": [
+        "EXPLAIN: inspect the plan without running the result query.",
+        "MEASURE: execute and report scanCount by selector.",
+        "EXPLAIN MEASURE: plan plus estimated cost.",
+        "Execution options in the AEM tool may run the query."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "comparison",
+        "composition": "Three horizontal contrasting lanes EXPLAIN, MEASURE, EXPLAIN MEASURE; icons plan / counter / estimate. Warning footer: Use MEASURE only on the small prepared local fixture. Do not conflate estimated cost, scanCount and duration.",
+        "intent": "Three horizontal contrasting lanes EXPLAIN, MEASURE, EXPLAIN MEASURE; icons plan / counter / estimate. Warning footer: Use MEASURE only on the small prepared local fixture. Do not conflate estimated cost, scanCount and duration."
+      },
+      "local_context": {
+        "required_background": "Three horizontal contrasting lanes EXPLAIN, MEASURE, EXPLAIN MEASURE; icons plan / counter / estimate. Warning footer: Use MEASURE only on the small prepared local fixture. Do not conflate estimated cost, scanCount and duration."
+      },
+      "constraints": [
+        "English text only. Render exact key points; do not add unsupported technical claims.",
+        "Use the reference for visual style only; replace its content completely. Vary the composition to fit this slide.",
+        "All text must be sharp and readable. No fabricated screenshot, real benchmark or measured SDK result.",
+        "Render the assigned two-digit slide number in navy at the top-left above the title, inside the PNG.",
+        "Render slide number 06 exactly once in the top-left header."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Inspect one query in local Author",
+      "key_points": [
+        "Prepare the supplied five-page fixture.",
+        "Explain the broad and bounded SQL2 queries.",
+        "Inspect the selected index and covered restrictions.",
+        "Run the bounded query; compare paths and recorded counts."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "process",
+        "composition": "Four-step path with local Author boundary and file icons. Footer: Exact index names and counts depend on your SDK. Small supporting note: Full setup and copyable queries are in the study guide.",
+        "intent": "Four-step path with local Author boundary and file icons. Footer: Exact index names and counts depend on your SDK. Small supporting note: Full setup and copyable queries are in the study guide."
+      },
+      "local_context": {
+        "required_background": "Four-step path with local Author boundary and file icons. Footer: Exact index names and counts depend on your SDK. Small supporting note: Full setup and copyable queries are in the study guide."
+      },
+      "constraints": [
+        "English text only. Render exact key points; do not add unsupported technical claims.",
+        "Use the reference for visual style only; replace its content completely. Vary the composition to fit this slide.",
+        "All text must be sharp and readable. No fabricated screenshot, real benchmark or measured SDK result.",
+        "Render the assigned two-digit slide number in navy at the top-left above the title, inside the PNG.",
+        "Render slide number 07 exactly once in the top-left header."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Compare evidence under the same conditions",
+      "key_points": [
+        "Keep content, identity, query and window comparable.",
+        "Confirm the returned paths before judging speed.",
+        "Look for fewer unnecessary scans and supported ordering.",
+        "Repeat observations; one duration is not a benchmark."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "evidence",
+        "composition": "Large table explicitly labelled Synthetic teaching example — not measured in SDK. Columns Observation / Case A / Case B. Rows: Uses an index / Yes / Yes; Scanned candidates / 8400 / 2; Returned results / 2 / 2; Ordering / Outside index / In index. Footer: These cases illustrate possible work, not a promised improvement from changing one setting.",
+        "intent": "Large table explicitly labelled Synthetic teaching example — not measured in SDK. Columns Observation / Case A / Case B. Rows: Uses an index / Yes / Yes; Scanned candidates / 8400 / 2; Returned results / 2 / 2; Ordering / Outside index / In index. Footer: These cases illustrate possible work, not a promised improvement from changing one setting."
+      },
+      "local_context": {
+        "required_background": "Large table explicitly labelled Synthetic teaching example — not measured in SDK. Columns Observation / Case A / Case B. Rows: Uses an index / Yes / Yes; Scanned candidates / 8400 / 2; Returned results / 2 / 2; Ordering / Outside index / In index. Footer: These cases illustrate possible work, not a promised improvement from changing one setting."
+      },
+      "constraints": [
+        "English text only. Render exact key points; do not add unsupported technical claims.",
+        "Use the reference for visual style only; replace its content completely. Vary the composition to fit this slide.",
+        "All text must be sharp and readable. No fabricated screenshot, real benchmark or measured SDK result.",
+        "Render the assigned two-digit slide number in navy at the top-left above the title, inside the PNG.",
+        "Render slide number 08 exactly once in the top-left header."
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Read the definition behind the plan",
+      "key_points": [
+        "type=lucene; compatVersion=2",
+        "Path support: evaluatePathRestrictions",
+        "Exact tag condition: propertyIndex=true",
+        "Title ordering: ordered=true on a single-valued property"
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "code explanation",
+        "composition": "Annotated minimal tree /oak:index/<selected-index> → indexRules → cq:Page → properties. Leaves tags: name=jcr:content/cq:tags, propertyIndex=true; title: name=jcr:content/jcr:title, ordered=true, type=String. Footer: Inspect the actual definition; do not edit it during this demo. Keep all paths legible.",
+        "intent": "Annotated minimal tree /oak:index/<selected-index> → indexRules → cq:Page → properties. Leaves tags: name=jcr:content/cq:tags, propertyIndex=true; title: name=jcr:content/jcr:title, ordered=true, type=String. Footer: Inspect the actual definition; do not edit it during this demo. Keep all paths legible."
+      },
+      "local_context": {
+        "required_background": "Annotated minimal tree /oak:index/<selected-index> → indexRules → cq:Page → properties. Leaves tags: name=jcr:content/cq:tags, propertyIndex=true; title: name=jcr:content/jcr:title, ordered=true, type=String. Footer: Inspect the actual definition; do not edit it during this demo. Keep all paths legible."
+      },
+      "constraints": [
+        "English text only. Render exact key points; do not add unsupported technical claims.",
+        "Use the reference for visual style only; replace its content completely. Vary the composition to fit this slide.",
+        "All text must be sharp and readable. No fabricated screenshot, real benchmark or measured SDK result.",
+        "Render the assigned two-digit slide number in navy at the top-left above the title, inside the PNG.",
+        "Render slide number 09 exactly once in the top-left header."
+      ]
+    },
+    {
+      "number": 10,
+      "title": "An index change needs evidence",
+      "key_points": [
+        "Check query scope and existing index coverage first.",
+        "For cq:Page, prefer extending an appropriate existing index.",
+        "Review and version the definition in source control.",
+        "Cloud Manager deploys the change through its pipeline."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "workflow",
+        "composition": "Evidence → Query correction → Coverage gap? decision diamond. No branch: Retest. Yes branch: Versioned index change → Pipeline → Verify. Small boundary note: Today: local inspection and documented Cloud workflow. No live Cloud deployment or manual production reindex.",
+        "intent": "Evidence → Query correction → Coverage gap? decision diamond. No branch: Retest. Yes branch: Versioned index change → Pipeline → Verify. Small boundary note: Today: local inspection and documented Cloud workflow. No live Cloud deployment or manual production reindex."
+      },
+      "local_context": {
+        "required_background": "Evidence → Query correction → Coverage gap? decision diamond. No branch: Retest. Yes branch: Versioned index change → Pipeline → Verify. Small boundary note: Today: local inspection and documented Cloud workflow. No live Cloud deployment or manual production reindex."
+      },
+      "constraints": [
+        "English text only. Render exact key points; do not add unsupported technical claims.",
+        "Use the reference for visual style only; replace its content completely. Vary the composition to fit this slide.",
+        "All text must be sharp and readable. No fabricated screenshot, real benchmark or measured SDK result.",
+        "Render the assigned two-digit slide number in navy at the top-left above the title, inside the PNG.",
+        "Render slide number 10 exactly once in the top-left header."
+      ]
+    },
+    {
+      "number": 11,
+      "title": "Key takeaways",
+      "key_points": [
+        "Few results do not prove low query cost.",
+        "Read restrictions and ordering inside the plan.",
+        "Separate estimated cost, scans and elapsed time.",
+        "Correct the query while preserving its intended contract.",
+        "Justify index changes with repeatable evidence."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "summary",
+        "composition": "Five wide concise takeaway rows, small specific icons, balanced whitespace. Each takeaway appears exactly once.",
+        "intent": "Five wide concise takeaway rows, small specific icons, balanced whitespace. Each takeaway appears exactly once."
+      },
+      "local_context": {
+        "required_background": "Five wide concise takeaway rows, small specific icons, balanced whitespace. Each takeaway appears exactly once."
+      },
+      "constraints": [
+        "English text only. Render exact key points; do not add unsupported technical claims.",
+        "Use the reference for visual style only; replace its content completely. Vary the composition to fit this slide.",
+        "All text must be sharp and readable. No fabricated screenshot, real benchmark or measured SDK result.",
+        "Render the assigned two-digit slide number in navy at the top-left above the title, inside the PNG.",
+        "Render slide number 11 exactly once in the top-left header."
+      ]
+    },
+    {
+      "number": 12,
+      "title": "Questions / Thank you.",
+      "key_points": [
+        "Questions",
+        "Thank you."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "Q&A",
+        "composition": "Passive closing with question bubble and handshake. Render ONLY Questions, Thank you. and small slide number 12. No other titles, subtitles, metadata or footer.",
+        "intent": "Passive closing with question bubble and handshake. Render ONLY Questions, Thank you. and small slide number 12. No other titles, subtitles, metadata or footer."
+      },
+      "local_context": {
+        "required_background": "Passive closing with question bubble and handshake. Render ONLY Questions, Thank you. and small slide number 12. No other titles, subtitles, metadata or footer."
+      },
+      "constraints": [
+        "English text only. Render exact key points; do not add unsupported technical claims.",
+        "Use the reference for visual style only; replace its content completely. Vary the composition to fit this slide.",
+        "All text must be sharp and readable. No fabricated screenshot, real benchmark or measured SDK result.",
+        "Render the assigned two-digit slide number in navy at the top-left above the title, inside the PNG.",
+        "Render slide number 12 exactly once in the top-left header."
+      ]
+    }
+  ]
+}

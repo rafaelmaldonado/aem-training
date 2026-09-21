@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Class 27 · Diagnosing costly queries</title><link rel="stylesheet" href="../assets/styles.css"></head><body><a class="skip-link" href="#content">Skip to content</a><nav class="site-nav" aria-label="Primary"><a class="brand" href="../index.html">AEM Training</a><ul><li><a href="../index.html">Overview</a></li><li><a href="../reference/aem-course-topics.html">Syllabus</a></li><li><a href="../reference/wknd-project-backlog.html">Practices</a></li><li><a href="../reference/index.html">References</a></li></ul></nav><header><p class="eyebrow">Class 27 · Week 6 · September 22, 2026</p><h1>Diagnosing costly queries</h1><p class="lede">Inspect query work, correct the selection and justify index changes with evidence.</p><ul class="meta"><li>30-minute core · up to 60 minutes</li><li>Local Author SDK</li><li><a href="#ejemplos-locales" lang="es">Ejemplo paso a paso</a></li></ul></header>
+<main id="content"><section class="callout"><strong>Session focus:</strong> query plans, traversal, selectivity, ordering and index coverage. Continue the new calendar after Class 26.</section>
+<h2>Topic summary</h2><p>A query can return two correct pages while examining many candidates. Its result limit describes the window delivered to the caller, while filtering, access checks and sorting may require more work. Diagnosing Guide List starts with its content contract and the access path selected by Oak.</p>
+<p>This session connects the query to its plan and observed work. Compare the intended subtree with an overbroad root, separate estimated cost from scan counts and elapsed time, then inspect the selected index definition. Correct the query when that solves the problem; propose an index change when evidence shows a coverage gap.</p>
+<ul><li>Few hits do not prove low query cost.</li><li>Distinguish repository traversal from excessive scanning through an index.</li><li>Inspect node type, path, property restrictions and ordering.</li><li>Separate EXPLAIN, MEASURE and execution options.</li><li>Compare results and observations under controlled conditions.</li><li>Review existing index coverage and the Cloud deployment process.</li></ul>
+<h2>30-minute agenda</h2><div class="table-wrap"><table><thead><tr><th>Time</th><th>Slides</th><th>Focus</th></tr></thead><tbody><tr><td>0–5</td><td>1–3</td><td>Result size, query work and planning.</td></tr><tr><td>5–11</td><td>4–6</td><td>Restrictions, scope and Explain/Measure.</td></tr><tr><td>11–23</td><td>7–8</td><td>Local demo and comparable evidence.</td></tr><tr><td>23–27</td><td>9–10</td><td>Index definition and Cloud workflow.</td></tr><tr><td>27–30</td><td>11–12</td><td>Key takeaways and questions.</td></tr></tbody></table></div>
+<p>For a 60-minute session, add 20 minutes of guided inspection and 10 minutes of questions. The instructor supplies the local fixture; previous practice completion is not required.</p>
+<h2 id="slide-deck">Complete slide deck</h2><p>Copy each complete numbered image to PowerPoint or download its PNG.</p><aside class="callout" lang="es"><strong>Material de la sesión 27:</strong> <a href="../reference/session-27-study-guide.html">Resumen en español</a> · <a href="../reference/session-27-study-guide.md" download>Markdown</a> · <a href="#ejemplos-locales">Ejemplo local</a>.</aside>
+<div class="web-deck"><article class="web-slide" data-slide-src="../slides/lesson-27/origin_image/slide_01.png"><img class="web-slide-image" src="../slides/lesson-27/origin_image/slide_01.png" alt="01. Diagnosing costly queries. Class 27 · Week 6 · September 22, 2026 Juan Maldonado Explain · Selectivity · Ordering · Indexes"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-27/origin_image/slide_01.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-27/origin_image/slide_02.png"><img class="web-slide-image" src="../slides/lesson-27/origin_image/slide_02.png" alt="02. Two hits do not mean two reads. A small response can hide a large scan. Filtering and sorting may happen after index access. A low limit bounds output, not all the work. Compare scanned rows, returned results and ordering." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-27/origin_image/slide_02.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-27/origin_image/slide_03.png"><img class="web-slide-image" src="../slides/lesson-27/origin_image/slide_03.png" alt="03. How Oak chooses a plan. The planner compares estimated access costs. An index supplies candidates; remaining checks may follow. Repository traversal reads the subtree without a suitable index. Estimated cost is not elapsed milliseconds." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-27/origin_image/slide_03.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-27/origin_image/slide_04.png"><img class="web-slide-image" src="../slides/lesson-27/origin_image/slide_04.png" alt="04. Read more than the index name. Identify the selected index or traversal plan. Check node type and path restrictions. Check which property filters reach the index. Check whether the index supplies the requested order." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-27/origin_image/slide_04.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-27/origin_image/slide_05.png"><img class="web-slide-image" src="../slides/lesson-27/origin_image/slide_05.png" alt="05. Correct the query contract first. Root: /content/wknd/us/en/training-search Type: cq:Page; tag: training:activity/hiking Order: jcr:content/jcr:title, ascending Window: p.limit=2; p.offset=0; p.guessTotal=true" loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-27/origin_image/slide_05.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-27/origin_image/slide_06.png"><img class="web-slide-image" src="../slides/lesson-27/origin_image/slide_06.png" alt="06. EXPLAIN and MEASURE answer different questions. EXPLAIN: inspect the plan without running the result query. MEASURE: execute and report scanCount by selector. EXPLAIN MEASURE: plan plus estimated cost. Execution options in the AEM tool may run the query." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-27/origin_image/slide_06.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-27/origin_image/slide_07.png"><img class="web-slide-image" src="../slides/lesson-27/origin_image/slide_07.png" alt="07. Inspect one query in local Author. Prepare the supplied five-page fixture. Explain the broad and bounded SQL2 queries. Inspect the selected index and covered restrictions. Run the bounded query; compare paths and recorded counts." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-27/origin_image/slide_07.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-27/origin_image/slide_08.png"><img class="web-slide-image" src="../slides/lesson-27/origin_image/slide_08.png" alt="08. Compare evidence under the same conditions. Keep content, identity, query and window comparable. Confirm the returned paths before judging speed. Look for fewer unnecessary scans and supported ordering. Repeat observations; one duration is not a benchmark." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-27/origin_image/slide_08.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-27/origin_image/slide_09.png"><img class="web-slide-image" src="../slides/lesson-27/origin_image/slide_09.png" alt="09. Read the definition behind the plan. type=lucene; compatVersion=2 Path support: evaluatePathRestrictions Exact tag condition: propertyIndex=true Title ordering: ordered=true on a single-valued property" loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-27/origin_image/slide_09.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-27/origin_image/slide_10.png"><img class="web-slide-image" src="../slides/lesson-27/origin_image/slide_10.png" alt="10. An index change needs evidence. Check query scope and existing index coverage first. For cq:Page, prefer extending an appropriate existing index. Review and version the definition in source control. Cloud Manager deploys the change through its pipeline." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-27/origin_image/slide_10.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-27/origin_image/slide_11.png"><img class="web-slide-image" src="../slides/lesson-27/origin_image/slide_11.png" alt="11. Key takeaways. Few results do not prove low query cost. Read restrictions and ordering inside the plan. Separate estimated cost, scans and elapsed time. Correct the query while preserving its intended contract. Justify index changes with repeatable evidence." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-27/origin_image/slide_11.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-27/origin_image/slide_12.png"><img class="web-slide-image" src="../slides/lesson-27/origin_image/slide_12.png" alt="12. Questions / Thank you.. Questions Thank you." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-27/origin_image/slide_12.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+</div><section id="ejemplos-locales" lang="es"><h2>Consultas copiables y diagnóstico local</h2><p>Para las diferencias entre EXPLAIN, MEASURE y las opciones de ejecución, consulta <a href="../reference/session-27-study-guide.html#herramientas">la explicación completa</a>. La tabla de comparación incluida abajo es sintética.</p><h2>3. Ejemplo completo en Author local</h2>
+<h3>A. Preparar un punto de partida independiente</h3>
+<p>Necesitas un SDK Author con WKND o un sitio de Archetype, una plantilla de página habilitada y una cuenta local con permisos para crear páginas/tags y abrir las herramientas de diagnóstico. El instructor prepara este conjunto aunque nadie haya hecho la sesión anterior. No hace falta implementar Guide List ni disponer de Cloud Manager.</p>
+<ol>
+<li>Inicia sesión en <code>http://localhost:4502</code>. Si usas otro puerto, adapta las direcciones de esta guía.</li>
+<li>En <strong>Tools → General → Tagging</strong>, crea el namespace <code>training</code> (título Training), el tag contenedor <code>activity</code> (Activity) y sus hijos <code>hiking</code> (Hiking) y <code>cycling</code> (Cycling). Reutilízalos sólo si pertenecen al ejemplo. El ID de Hiking debe ser <code>training:activity/hiking</code>.</li>
+<li>En <strong>Sites</strong>, crea el padre <code>training-search</code> bajo <code>/content/wknd/us/en</code>, con la plantilla habilitada de tu sitio. Crea las cuatro primeras páginas dentro de él y la quinta al lado del padre.</li>
+<li>Asigna los tags con <strong>Properties → Basic → Tags → Save &amp; Close</strong>. Mantén sin tags el padre y Visitor notes. Comprueba que Cycling no tenga también Hiking.</li>
+<li>Si usas Archetype, sustituye <code>/content/wknd/us/en</code> por tu raíz real en todos los archivos. Si <code>training-search</code> contiene otros datos, usa un nombre nuevo y actualiza las consultas; no sustituyas contenido ajeno.</li>
+</ol>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Ruta respecto de la raíz del sitio</th>
+<th>Título</th>
+<th>Tag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>training-search/forest-trail</code></td>
+<td><code>01 Forest trail</code></td>
+<td>Hiking</td>
+</tr>
+<tr>
+<td><code>training-search/river-trail</code></td>
+<td><code>02 River trail</code></td>
+<td>Hiking</td>
+</tr>
+<tr>
+<td><code>training-search/city-ride</code></td>
+<td><code>03 City ride</code></td>
+<td>Cycling</td>
+</tr>
+<tr>
+<td><code>training-search/visitor-notes</code></td>
+<td><code>04 Visitor notes</code></td>
+<td>Ninguno</td>
+</tr>
+<tr>
+<td><code>training-outside-trail</code></td>
+<td><code>05 Outside trail</code></td>
+<td>Hiking</td>
+</tr>
+</tbody>
+</table></div>
+<p>Inspecciona <code>forest-trail/jcr:content</code> en <a href="http://localhost:4502/crx/de/index.jsp">CRXDE Lite local</a>: <code>jcr:title</code> y <code>cq:tags</code> deben coincidir. Guarda el contenido y comprueba que la consulta ya ve las dos páginas antes de comparar. Los índices asíncronos pueden tardar en reflejar cambios; no interpretes una actualización pendiente como prueba de que falta un índice. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/tags">Tagging — Adobe</a>, <a href="https://jackrabbit.apache.org/oak/docs/query/indexing.html">modos de indexación — Oak</a>.</p>
+<h3>B. Comprobar la selección y su ventana</h3>
+<p>Abre el <a href="http://localhost:4502/libs/cq/search/content/querydebug.html">QueryBuilder Debugger local</a>, pega el archivo completo y pulsa <strong>Search</strong>. Deja desactivada <strong>Query is given as URL</strong> si aparece. La ventana esperada es Forest y River, en ese orden.</p>
+<p><a href="../reference/examples/session-27/querybuilder.properties">Descargar querybuilder.properties</a></p>
+<pre><code class="language-properties">path=/content/wknd/us/en/training-search
+type=cq:Page
+property=jcr:content/cq:tags
+property.value=training:activity/hiking
+orderby=@jcr:content/jcr:title
+orderby.sort=asc
+p.limit=2
+p.offset=0
+p.guessTotal=true
+</code></pre>
+<p>Esta consulta conserva el contrato de la 26. <code>p.guessTotal=true</code> reduce la necesidad de contar todo, pero no arregla una propiedad sin cobertura ni un orden costoso. No uses <code>p.limit=-1</code> para un listado de navegación. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/full-stack/search/query-builder-api#using-p-guesstotal-to-return-the-results">QueryBuilder y guessTotal — Adobe</a>.</p>
+<p>La selección equivalente en SQL2 es:</p>
+<p><a href="../reference/examples/session-27/guides.sql2">Descargar guides.sql2</a></p>
+<pre><code class="language-sql">SELECT * FROM [cq:Page] AS page
+WHERE ISDESCENDANTNODE(page, '/content/wknd/us/en/training-search')
+AND page.[jcr:content/cq:tags] = 'training:activity/hiking'
+ORDER BY page.[jcr:content/jcr:title] ASC
+</code></pre>
+<p>Para ejecutar esa misma ventana en una consola SQL2, configura límite 2 y offset 0 cuando existan esos campos; en código JCR son <code>Query.setLimit(2)</code> y <code>Query.setOffset(0)</code>. Si el formulario no los expone, compara sólo selección y orden sobre el conjunto pequeño. El archivo no incorpora paginación. <a href="https://developer.adobe.com/experience-manager/reference-materials/cloud-service/javadoc/javax/jcr/query/Query.html">API JCR Query</a>.</p>
+<h3>C. Explicar la raíz amplia y la raíz correcta</h3>
+<ol>
+<li>Abre <a href="http://localhost:4502/libs/granite/operations/content/diagnosistools/queryPerformance.html">Query Performance local</a>. Elige <strong>Explain Query</strong> y <strong>JCR-SQL2</strong>.</li>
+<li>Para esa interfaz, pega el <code>SELECT</code> de <code>guides.sql2</code>, <strong>sin prefijo EXPLAIN</strong>, y deja desmarcadas las tres opciones de ejecución Include Execution Time, Read first page of results e Include Node Count. Pulsa <strong>Explain</strong>.</li>
+<li>Conserva el texto del plan y las cuatro observaciones de la guía: acceso elegido, tipo/ruta, propiedades y orden. El nombre/versionado del índice depende de tu SDK: no esperamos un <code>cqPageLucene</code> con sufijo fijo.</li>
+<li>Cambia sólo la raíz a <code>/content/wknd/us/en</code> y vuelve a explicar con las mismas opciones. Es una selección más amplia: Outside trail pasa a estar dentro del alcance. No la ejecutes ni midas para buscar un tiempo lento; explicar basta para compararla.</li>
+<li>Restaura la raíz <code>training-search</code>. Compara acceso, restricciones y orden. Es válido que ambas consultas seleccionen el mismo índice. Eso no demuestra que tengan el mismo trabajo ni que el índice sea insuficiente.</li>
+</ol>
+<p><strong>Alternativa en CRXDE Lite:</strong> abre <strong>Tools → Query</strong>, selecciona <strong>JCR-SQL2</strong> y ejecuta uno de estos archivos completos. Aquí sí se incluye <code>EXPLAIN</code>: el resultado es el plan, no las páginas. No pegues ambas sentencias a la vez.</p>
+<p><a href="../reference/examples/session-27/explain-broad.sql2">Descargar explain-broad.sql2</a></p>
+<pre><code class="language-sql">EXPLAIN
+SELECT * FROM [cq:Page] AS page
+WHERE ISDESCENDANTNODE(page, '/content/wknd/us/en')
+AND page.[jcr:content/cq:tags] = 'training:activity/hiking'
+ORDER BY page.[jcr:content/jcr:title] ASC
+</code></pre>
+<p><a href="../reference/examples/session-27/explain-bounded.sql2">Descargar explain-bounded.sql2</a></p>
+<pre><code class="language-sql">EXPLAIN
+SELECT * FROM [cq:Page] AS page
+WHERE ISDESCENDANTNODE(page, '/content/wknd/us/en/training-search')
+AND page.[jcr:content/cq:tags] = 'training:activity/hiking'
+ORDER BY page.[jcr:content/jcr:title] ASC
+</code></pre>
+<p>La corrección de raíz <strong>cambia intencionalmente la selección</strong> para ajustarse al requisito. No presentamos las dos expresiones como equivalentes ni atribuimos una mejora medida a este cambio. La consulta amplia es incorrecta para Guide List aunque el SDK pequeño la ejecute rápido.</p>
+<h3>D. Observar trabajo en el conjunto pequeño</h3>
+<ol>
+<li>Confirma que la raíz de prueba contiene únicamente las páginas suministradas, con dos coincidencias Hiking. Conserva la misma cuenta, contenido y orden.</li>
+<li>En la consola SQL2 de CRXDE Lite, ejecuta <code>measure-bounded.sql2</code>. <code>MEASURE</code> <strong>sí ejecuta</strong> y consume resultados: la seguridad del ejemplo depende del conjunto pequeño, no de un supuesto límite dentro del archivo.</li>
+<li>Lee cada <code>selector</code> y su <code>scanCount</code>. Anota también las rutas obtenidas con la consulta normal; los contadores solos no demuestran que los resultados sean correctos.</li>
+<li>Si dispones de la tabla de Query Performance, compara sus campos <strong>Scanned</strong> y <strong>Read</strong>, conservando sus nombres. No los mezcles automáticamente con <code>scanCount</code>: pertenecen a salidas distintas y pueden observar diferente cantidad de resultados.</li>
+<li>Repite sólo la consulta acotada bajo las mismas condiciones. Una segunda ejecución puede aprovechar caché. No prometas porcentajes de mejora con cinco páginas.</li>
+</ol>
+<p><a href="../reference/examples/session-27/measure-bounded.sql2">Descargar measure-bounded.sql2</a></p>
+<pre><code class="language-sql">MEASURE
+SELECT * FROM [cq:Page] AS page
+WHERE ISDESCENDANTNODE(page, '/content/wknd/us/en/training-search')
+AND page.[jcr:content/cq:tags] = 'training:activity/hiking'
+ORDER BY page.[jcr:content/jcr:title] ASC
+</code></pre>
+<p><strong>Resultado esperado, no ejecución registrada:</strong> Forest y River son las dos coincidencias de la consulta normal. Explain muestra el plan que elija tu SDK; Measure informa contadores reales de esa ejecución. No hay un índice ni un número de lecturas garantizados. El material fue revisado contra documentación; no se ejecutó en tu instancia durante su preparación.</p>
+<p>Si no puedes abrir Query Performance pero sí CRXDE, usa los archivos SQL2. Si tampoco están disponibles las herramientas o permisos, el instructor demuestra su instancia preparada y el grupo interpreta el caso sintético siguiente. No se requiere cambiar permisos globales ni desplegar índices para terminar la sesión.</p>
+<p><a id="evidencia"></a></p>
+<h2>4. Comparar evidencia, no sólo el cronómetro</h2>
+<p><strong>Caso sintético de enseñanza: estos datos son inventados para explicar el diagnóstico, no mediciones del SDK.</strong></p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Observación</th>
+<th>Caso A</th>
+<th>Caso B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Usa un índice</td>
+<td>Sí</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Candidatos examinados</td>
+<td>8400</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Resultados devueltos</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Ordenamiento</td>
+<td>Fuera del índice</td>
+<td>Dentro del índice</td>
+</tr>
+</tbody>
+</table></div>
+<p>Ambos casos entregan dos resultados. A exige investigar qué trabajo queda fuera del acceso; B ilustra una ejecución con poco descarte. La tabla no establece un umbral universal, no prueba que las ACL sean iguales y no predice que cambiar la ruta produzca exactamente B.</p>
+<p>Para una conversación técnica basta conservar: consulta exacta, instancia/build del SDK, identidad usada, contenido y momento, límite/offset, plan, rutas de resultados y métricas con su nombre original. Es una ayuda de diagnóstico voluntaria, no una entrega evaluada. Si cambias una condición, anótala para no comparar experimentos diferentes.</p>
+<p><a id="indice"></a></p>
+<h2>5. Leer una definición de índice</h2>
+<p>Desde el plan real, localiza el nodo indicado bajo <code>/oak:index</code> en CRXDE local y <strong>sólo inspecciónalo</strong>. Busca <code>type</code>, <code>compatVersion</code>, configuración asíncrona y reglas que cubran <code>cq:Page</code>. En las propiedades, <code>name</code> puede ser una ruta relativa o una expresión configurada; los nombres de nodos auxiliares no tienen que llamarse <code>tags</code> y <code>title</code>.</p>
+<p>Este <strong>fragmento ilustrativo</strong> representa el nodo <code>properties</code> dentro de <code>indexRules/cq:Page</code>. Es un material de lectura, <strong>no una definición completa ni un paquete instalable</strong>. No se debe importar ni usar para reemplazar un índice existente.</p>
+<p><a href="../reference/examples/session-27/properties-review.json">Descargar properties-review.json</a></p>
+<pre><code class="language-json">{
+  &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;,
+  &quot;tags&quot;: {
+    &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;,
+    &quot;name&quot;: &quot;jcr:content/cq:tags&quot;,
+    &quot;propertyIndex&quot;: true
+  },
+  &quot;title&quot;: {
+    &quot;jcr:primaryType&quot;: &quot;nt:unstructured&quot;,
+    &quot;name&quot;: &quot;jcr:content/jcr:title&quot;,
+    &quot;propertyIndex&quot;: true,
+    &quot;ordered&quot;: true,
+    &quot;type&quot;: &quot;String&quot;
+  }
+}
+</code></pre>
+<p><code>propertyIndex</code> aporta soporte para condiciones sobre la propiedad; <code>ordered</code> habilita su uso para ordenar y aumenta el trabajo/espacio de indexación. El título es monovalor en el ejemplo: no actives <code>ordered</code> sobre el array <code>cq:tags</code>. <code>evaluatePathRestrictions</code> permite resolver la restricción de ruta dentro del índice Lucene. <code>includedPaths</code> define qué se indexa y <code>queryPaths</code> interviene en qué consultas lo pueden seleccionar; deben alinearse. <a href="https://jackrabbit.apache.org/oak/docs/query/lucene.html">Definición de índices Lucene — Oak</a>.</p>
+<p>En una revisión Cloud comprobaríamos <code>type=lucene</code>, <code>compatVersion=2</code> y un modo <code>async</code> admitido, además de las reglas necesarias. Para páginas, primero revisamos la extensión de un índice existente apropiado; no recortamos sus rutas o reglas compartidas con otras funcionalidades. Si se justifica un índice completamente nuevo, también se revisan su alcance y la política de selección por index tag. Ese index tag <strong>no es</strong> el tag editorial <code>training:activity/hiking</code>. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/operations/indexing">Índices Cloud — Adobe</a>, <a href="https://jackrabbit.apache.org/oak/docs/query/query-engine.html#query-option-index-tag">selección por tags — Oak</a>.</p>
+<p><a id="cloud"></a></p>
+<h2>6. Decidir el siguiente cambio</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Hallazgo</th>
+<th>Siguiente paso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>La raíz o filtros contradicen el requisito.</td>
+<td>Corrige la consulta y vuelve a comprobar incluidos/excluidos.</td>
+</tr>
+<tr>
+<td>Aparece traversal.</td>
+<td>Revisa consulta, definición disponible y plan; identifica la cobertura que falta.</td>
+</tr>
+<tr>
+<td>Hay índice, pero muchas lecturas.</td>
+<td>Busca filtrado posterior, orden, conteo, offset y restricciones poco selectivas.</td>
+</tr>
+<tr>
+<td>Los resultados nuevos aún no aparecen.</td>
+<td>Comprueba guardado, ruta, identidad y actualización del índice.</td>
+</tr>
+<tr>
+<td>Falta cobertura después de corregir la consulta.</td>
+<td>Documenta el caso y revisa una extensión versionada del índice adecuado.</td>
+</tr>
+</tbody>
+</table></div>
+<p>En Cloud, una modificación se versiona en el proyecto y se despliega mediante el pipeline de Cloud Manager. Se comprueban las consultas afectadas y la compatibilidad con el despliegue; editar un índice de producción o marcar <code>reindex=true</code> a mano no forma parte de ese proceso. La definición local puede diferir de la Cloud. Aquí leemos el flujo documentado, sin asumir acceso ni ejecutar un despliegue. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/operations/indexing#deploying-custom-index-definitions">Despliegue de índices — Adobe</a>.</p>
+</section><h2>Official references</h2><ul><li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/operations/query-and-indexing-best-practices">Adobe: Query and indexing best practices</a></li><li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/operations/indexing">Adobe: Cloud index definitions and deployment</a></li><li><a href="https://jackrabbit.apache.org/oak/docs/query/grammar-sql2.html">Apache: SQL2 Explain and Measure</a></li><li><a href="https://jackrabbit.apache.org/oak/docs/query/lucene.html">Apache: Lucene index configuration</a></li></ul><nav aria-label="Lesson navigation"><a href="0026-tags-bounded-content-queries.html">Previous: Class 26</a> · <a href="../index.html">Overview</a></nav></main><footer>Class 27 · AEM Training · <a href="../reference/session-27-study-guide.html">Study guide</a></footer><script src="../assets/copy-slide.js"></script></body></html>
