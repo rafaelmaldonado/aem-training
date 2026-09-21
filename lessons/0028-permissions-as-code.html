@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Class 28 · Permissions as code</title><link rel="stylesheet" href="../assets/styles.css"></head><body><a class="skip-link" href="#content">Skip to content</a><nav class="site-nav" aria-label="Primary"><a class="brand" href="../index.html">AEM Training</a><ul><li><a href="../index.html">Overview</a></li><li><a href="../reference/aem-course-topics.html">Syllabus</a></li><li><a href="../reference/wknd-project-backlog.html">Practices</a></li><li><a href="../reference/index.html">References</a></li></ul></nav><header><p class="eyebrow">Class 28 · Week 6 · September 23, 2026</p><h1>Permissions as code</h1><p class="lede">Model scoped access with users, groups, service users and Repo Init.</p><ul class="meta"><li>30-minute core · up to 60 minutes</li><li>Local Author SDK</li><li><a href="#ejemplos-locales" lang="es">Ejemplo paso a paso</a></li></ul></header>
+<main id="content"><section class="callout"><strong>Session focus:</strong> identities, effective permissions, least privilege and versioned repository initialization.</section>
+<h2>Topic summary</h2><p>Repository access depends on the identity, the target resource and the operation. Human authentication on Cloud Author uses IMS, while AEM permissions govern content actions. A service user gives application code a technical repository identity. Groups let teams assign shared responsibilities without maintaining separate ACLs for every person.</p>
+<p>This session models a small permission boundary with Repo Init. A group can read a demonstration tree and modify properties under one child folder. A separate service user receives a reading grant. Inspect the configured entries and inherited access before comparing an allowed operation with one outside the intended scope. A narrow grant alone cannot remove privileges supplied by another group or ancestor.</p>
+<ul><li>Separate authentication from authorization on repository resources.</li><li>Use groups for shared human responsibilities and service users for specific code tasks.</li><li>Choose privileges and paths that match the operation.</li><li>Inspect all relevant principals, inherited entries and restrictions.</li><li>Version paths, identities and ACLs with Repo Init.</li><li>Check both allowed operations and operations outside the intended scope.</li></ul>
+<h2>30-minute agenda</h2><div class="table-wrap"><table><thead><tr><th>Time</th><th>Slides</th><th>Focus</th></tr></thead><tbody><tr><td>0–5</td><td>1–3</td><td>Identities, Cloud access and authorization.</td></tr><tr><td>5–11</td><td>4–6</td><td>ACL entries, least privilege and effective access.</td></tr><tr><td>11–23</td><td>7–9</td><td>Repo Init and the prepared local configuration.</td></tr><tr><td>23–27</td><td>10</td><td>Expected checks and unexpected outcomes.</td></tr><tr><td>27–30</td><td>11–12</td><td>Key takeaways and questions.</td></tr></tbody></table></div>
+<p>For a 60-minute session, add 20 minutes of guided setup and inspection, then 10 minutes of questions. The instructor supplies a prepared fixture. Class 29 covers subservice mappings and ResourceResolver ownership.</p>
+<h2 id="slide-deck">Complete slide deck</h2><p>Copy each complete numbered image to PowerPoint or download its PNG.</p><aside class="callout" lang="es"><strong>Material de la sesión 28:</strong> <a href="../reference/session-28-study-guide.html">Resumen en español</a> · <a href="../reference/session-28-study-guide.md" download>Markdown</a> · <a href="#ejemplos-locales">Ejemplo local</a>.</aside>
+<div class="web-deck"><article class="web-slide" data-slide-src="../slides/lesson-28/origin_image/slide_01.png"><img class="web-slide-image" src="../slides/lesson-28/origin_image/slide_01.png" alt="01. Permissions as code. Class 28 · Week 6 · September 23, 2026 Juan Maldonado Users, groups, ACLs and Repo Init"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-28/origin_image/slide_01.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-28/origin_image/slide_02.png"><img class="web-slide-image" src="../slides/lesson-28/origin_image/slide_02.png" alt="02. Access starts with an identity. A human user performs an interactive action. A group represents a shared responsibility. A service user gives application code a repository identity. Each operation needs permission on its target path." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-28/origin_image/slide_02.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-28/origin_image/slide_03.png"><img class="web-slide-image" src="../slides/lesson-28/origin_image/slide_03.png" alt="03. Cloud identity and content access. IMS authenticates people on Cloud Author. Admin Console product profiles grant environment access. AEM groups and ACLs define content operations. Repository service users have no password login." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-28/origin_image/slide_03.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-28/origin_image/slide_04.png"><img class="web-slide-image" src="../slides/lesson-28/origin_image/slide_04.png" alt="04. An ACL describes access rules. Principal: who the entry applies to. Path: where the entry takes effect. Privilege: which operation it covers. Allow or deny, with optional restrictions." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-28/origin_image/slide_04.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-28/origin_image/slide_05.png"><img class="web-slide-image" src="../slides/lesson-28/origin_image/slide_05.png" alt="05. Least privilege for one task. Read content: jcr:read Change properties: jcr:modifyProperties Add child nodes: jcr:addChildNodes jcr:write bundles several write privileges." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-28/origin_image/slide_05.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-28/origin_image/slide_06.png"><img class="web-slide-image" src="../slides/lesson-28/origin_image/slide_06.png" alt="06. Effective access includes inherited rules. Inspect the user and every relevant group. Follow ACLs from the target through its ancestors. Check entry order and restrictions. A narrow grant does not revoke broader access." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-28/origin_image/slide_06.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-28/origin_image/slide_07.png"><img class="web-slide-image" src="../slides/lesson-28/origin_image/slide_07.png" alt="07. Repo Init in source control. Create the required paths and identities first. Assign ACLs to the smallest useful subtree. Store the script in an OSGi factory configuration. Use config.author for this Author-only example." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-28/origin_image/slide_07.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-28/origin_image/slide_08.png"><img class="web-slide-image" src="../slides/lesson-28/origin_image/slide_08.png" alt="08. A small permission model. Group: training-guide-editors Service user: training-guide-reader Human group: read root, modify properties in guides. Service user: read guides." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-28/origin_image/slide_08.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-28/origin_image/slide_09.png"><img class="web-slide-image" src="../slides/lesson-28/origin_image/slide_09.png" alt="09. Local configuration and inspection. Install the supplied Author configuration. Inspect the created group, service user and paths. Create a local demo user and add the editor group. Inspect inherited ACLs before checking the matrix." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-28/origin_image/slide_09.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-28/origin_image/slide_10.png"><img class="web-slide-image" src="../slides/lesson-28/origin_image/slide_10.png" alt="10. Allowed and excluded operations. Demo user belongs only to the editor group. Read guides: expected allowed. Modify guides properties: expected allowed. Modify outside properties: expected denied." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-28/origin_image/slide_10.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-28/origin_image/slide_11.png"><img class="web-slide-image" src="../slides/lesson-28/origin_image/slide_11.png" alt="11. Key takeaways. Separate human authentication from repository authorization. Give service users a specific technical responsibility. Scope privileges to the paths the task requires. Inspect effective access, including inherited grants. Version Repo Init and check allowed and excluded operations." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-28/origin_image/slide_11.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-28/origin_image/slide_12.png"><img class="web-slide-image" src="../slides/lesson-28/origin_image/slide_12.png" alt="12. Questions / Thank you.. Questions Thank you." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-28/origin_image/slide_12.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+</div><section id="ejemplos-locales" lang="es"><h2>Repo Init y comprobación local</h2><p>Consulta <a href="../reference/session-28-study-guide.html#acl">la explicación de ACL y acceso efectivo</a> antes de interpretar las reglas.</p><h2>3. Ejemplo completo en Author local</h2>
+<h3>A. Punto de partida independiente</h3>
+<p>Necesitas un SDK Author local, una cuenta administradora para preparar la demo y un proyecto WKND o Archetype con <code>ui.config</code>. No necesitas Cloud Manager ni las páginas de las sesiones 26 y 27.</p>
+<ol>
+<li>Inicia sesión como administrador en <code>http://localhost:4502</code>.</li>
+<li>Comprueba que <code>/content/training-permissions</code> y los IDs <code>training-guide-editors</code>, <code>training-guide-reader</code>, <code>training-permissions-demo</code> no correspondan a trabajo ajeno. Usa otro prefijo en todo el ejemplo si ya existen.</li>
+<li>Conserva la sesión de administración separada de la del usuario de prueba. No uses <code>admin</code> para demostrar mínimo privilegio.</li>
+<li>La demo creará dos carpetas <code>sling:Folder</code>: <code>guides</code> y <code>outside</code>. No son páginas ni aparecerán como páginas editables de Sites.</li>
+</ol>
+<h3>B. Leer el script completo</h3>
+<p><a href="../reference/examples/session-28/permissions.repoinit">Descargar permissions.repoinit</a></p>
+<pre tabindex="0"><code class="language-text">create path (sling:Folder) /content/training-permissions
+create path (sling:Folder) /content/training-permissions/guides
+create path (sling:Folder) /content/training-permissions/outside
+
+create group training-guide-editors
+create service user training-guide-reader with forced path system/cq:services/training
+
+set ACL for training-guide-editors
+    allow jcr:read on /content/training-permissions
+    allow jcr:modifyProperties on /content/training-permissions/guides
+end
+
+set ACL for training-guide-reader
+    allow jcr:read on /content/training-permissions/guides
+end
+</code></pre>
+<p>El grupo recibe lectura en la raíz del ejemplo y modificación de propiedades en <code>guides</code>. <code>outside</code> es un hermano, por lo que esa concesión de modificación no se hereda allí. La ACL del service user concede lectura en <code>guides</code>; su acceso efectivo debe revisarse según el modo de autenticación utilizado. No afirmamos que sea incapaz de leer cualquier otro recurso por el solo hecho de tener esta regla.</p>
+<p>Usamos <strong>ACL basadas en recursos</strong> (<code>set ACL</code>), almacenadas en los recursos objetivo. No las confundas con <code>set principal ACL</code> o <code>ensure principal ACL</code>: son instrucciones para otro modelo de políticas. Aquí no hacen falta para enseñar el alcance del permiso. <a href="https://jackrabbit.apache.org/oak/docs/security/accesscontrol/default.html">Control de acceso basado en recursos — Oak</a>.</p>
+<p><code>create path</code> permite usar el ejemplo con parsers antiguos del SDK: crea los nodos que faltan, sin cambiar el tipo de los existentes. Sling actual lo considera obsoleto y recomienda <code>ensure nodes</code>, que comprueba/ajusta el estado con semántica distinta. No reemplaces la instrucción sin revisar la versión del bundle y sus tipos de nodo. <a href="https://sling.apache.org/documentation/bundles/repository-initialization.html">Repo Init y compatibilidad — Sling</a>.</p>
+<h3>C. Instalar la configuración</h3>
+<p>Copia el archivo completo en tu proyecto WKND:</p>
+<p><code>ui.config/src/main/content/jcr_root/apps/wknd/osgiconfig/config.author/org.apache.sling.jcr.repoinit.RepositoryInitializer~training-permissions.cfg.json</code></p>
+<p><a href="../reference/examples/session-28/ui.config/src/main/content/jcr_root/apps/wknd/osgiconfig/config.author/org.apache.sling.jcr.repoinit.RepositoryInitializer~training-permissions.cfg.json">Descargar configuración JSON</a></p>
+<pre tabindex="0"><code class="language-json">{
+  &quot;scripts&quot;: [
+    &quot;create path (sling:Folder) /content/training-permissions\ncreate path (sling:Folder) /content/training-permissions/guides\ncreate path (sling:Folder) /content/training-permissions/outside\n\ncreate group training-guide-editors\ncreate service user training-guide-reader with forced path system/cq:services/training\n\nset ACL for training-guide-editors\n    allow jcr:read on /content/training-permissions\n    allow jcr:modifyProperties on /content/training-permissions/guides\nend\n\nset ACL for training-guide-reader\n    allow jcr:read on /content/training-permissions/guides\nend\n&quot;
+  ]
+}
+</code></pre>
+<ol>
+<li>Para Archetype, cambia <code>/apps/wknd</code> por la raíz de aplicación de tu proyecto y conserva el PID y el sufijo de instancia <code>~training-permissions</code>. El árbol <code>/content/training-permissions</code> puede mantenerse.</li>
+<li><code>scripts</code> contiene <strong>un string con el script entero</strong>. Los <code>\n</code> son saltos de línea escapados en JSON; no separes las líneas de un bloque ACL en scripts independientes.</li>
+<li>Usa el perfil Maven local de tu baseline para construir e instalar. En un WKND estándar suele ser <code>mvn clean install -PautoInstallSinglePackage</code>, ejecutado desde la raíz del <strong>proyecto AEM</strong>, no desde este repositorio de formación. Conserva las opciones Java/SDK y autenticación documentadas por tu baseline.</li>
+<li>En <a href="http://localhost:4502/system/console/configMgr">OSGi Configuration Manager local</a>, busca <code>org.apache.sling.jcr.repoinit.RepositoryInitializer</code> y la instancia <code>training-permissions</code>. Comprueba el script efectivo sin guardar cambios manuales adicionales.</li>
+<li>Revisa <code>crx-quickstart/logs/error.log</code> si faltan nodos o identidades: busca <code>repoinit</code>, <code>RepositoryInitializer</code> y los IDs del ejemplo. La presencia del archivo en <code>/apps</code> no demuestra que el script se haya aplicado.</li>
+</ol>
+<p>El directorio <code>config.author</code> limita esta configuración a Author. En Cloud se distribuye como código mediante el pipeline del proyecto; no se propone editar producción desde una consola. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/deploying/configuring-osgi">Configuración OSGi — Adobe</a>, <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/deploying/overview#repoinit">Repo Init en despliegues — Adobe</a>.</p>
+<h3>D. Inspeccionar identidades y ACL</h3>
+<ol>
+<li>En <a href="http://localhost:4502/crx/de/index.jsp">CRXDE Lite local</a>, abre <code>/content/training-permissions</code> y sus dos carpetas. Confirma sus tipos <code>sling:Folder</code>.</li>
+<li>En <strong>Tools → Security → Groups</strong>, busca <code>training-guide-editors</code>.</li>
+<li>En <strong>Tools → Security → Users</strong>, busca <code>training-guide-reader</code>. También puedes inspeccionar <code>/home/users/system/cq:services/training</code> en CRXDE. Verifica que la identidad creada sea <code>rep:SystemUser</code>. Su ubicación organiza la identidad, no concede permisos sobre contenido.</li>
+<li>En <strong>Tools → Security → Permissions</strong>, busca el grupo y comprueba sus dos entradas: lectura en la raíz y modificación en <code>guides</code>. Busca el service user y su entrada de lectura en <code>guides</code>.</li>
+<li>Cuando tu SDK tenga <strong>Node View</strong>, selecciona las rutas y revisa también las ACL de sus antecesores. En <strong>Audit View</strong> o la vista filtrada equivalente, selecciona usuario/ruta e incluye las membresías de grupo. Los nombres y disponibilidad de estas vistas dependen del SDK.</li>
+</ol>
+<p>La vista por principal lista entradas asignadas; por sí sola no es una ejecución con esa identidad. Si tu SDK no tiene Audit View, inspecciona ACL y antecesores mediante el panel <strong>Access Control</strong> de CRXDE; identifica los principales de cada entrada y las membresías por separado. No presentes esa inspección como una prueba de guardado. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/security/touch-ui-principal-view">Vistas de permisos — Adobe</a>.</p>
+<h3>E. Comprobar el alcance con una persona local</h3>
+<ol>
+<li>Como administrador, abre <strong>Tools → Security → Users → Create User</strong> y crea <code>training-permissions-demo</code>. Define una contraseña local fuera de los archivos del curso.</li>
+<li>Añádelo a <code>training-guide-editors</code> desde la administración del usuario/grupo y guarda. No lo añadas a <code>administrators</code>, <code>content-authors</code> ni a otro grupo con escritura; revisa también membresías automáticas y <code>everyone</code>.</li>
+<li>Inspecciona sus ACL aplicables en <code>guides</code> y <code>outside</code>. Usa esta matriz para anticipar la operación, antes de intentarla.</li>
+</ol>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Identidad</th>
+<th>Operación</th>
+<th>Ruta</th>
+<th>Expectativa en el fixture sin otros grants de escritura</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>training-permissions-demo</code></td>
+<td>Leer</td>
+<td><code>/content/training-permissions/guides</code></td>
+<td>Permitido.</td>
+</tr>
+<tr>
+<td><code>training-permissions-demo</code></td>
+<td>Modificar una propiedad</td>
+<td><code>/content/training-permissions/guides</code></td>
+<td>Permitido.</td>
+</tr>
+<tr>
+<td><code>training-permissions-demo</code></td>
+<td>Modificar una propiedad</td>
+<td><code>/content/training-permissions/outside</code></td>
+<td>Denegado.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Comprobación operativa, si CRXDE está accesible al usuario local:</strong> abre un perfil/ventana privada, inicia sesión explícitamente como <code>training-permissions-demo</code> y verifica la identidad mostrada. En CRXDE, selecciona <code>guides</code>, añade la propiedad String <code>trainingNote</code> con valor <code>demo</code> y pulsa <strong>Save All</strong>. Debe guardarse. Selecciona <code>outside</code>, intenta añadir la misma propiedad y guardar: debe fallar por autorización. Descarta/refresca los cambios pendientes después del fallo. Desde la sesión administradora comprueba que la propiedad existe sólo en <code>guides</code>.</p>
+<p>Si CRXDE o sus recursos de interfaz no están accesibles a esa identidad, no amplíes los permisos para forzar la demo. Completa la inspección de ACL y deja la ejecución como pendiente; el instructor puede mostrar su SDK preparado. Un bloqueo de interfaz no demuestra por sí solo una ACL de escritura incorrecta. Tampoco un HTTP 403 identifica automáticamente la causa: la sesión 29 separará identidad, ACL y protección HTTP.</p>
+<p><strong>Resultados esperados, no ejecución registrada:</strong> el material no se instaló en tu SDK durante su preparación. Una operación inesperadamente permitida requiere revisar otras concesiones. Una operación inesperadamente denegada requiere revisar identidad, aplicación del script, ruta y restricciones. No se “corrige” dando privilegios de administrador.</p>
+<h3>F. Repetición y cambios posteriores</h3>
+<p>Reinstala la misma configuración y comprueba que conservas los mismos IDs y entradas previstas. La intención de Repo Init es declarar un estado repetible, pero no es un reconciliador que borre todo lo que ya no aparece. Quitar un <code>allow</code> del archivo o desinstalar la configuración <strong>no garantiza revocar la ACE existente</strong>. La retirada requiere una modificación explícita y revisada de las reglas que posea tu aplicación, seguida de la misma comprobación de alcance.</p>
+<p>No incluyas un borrado de <code>/content</code> ni de ACL compartidas en una “limpieza”. Para repetir desde cero utiliza otro prefijo de demo o un SDK desechable. Conserva las identidades y permisos de otras funcionalidades.</p>
+</section><h2>Official references</h2><ul><li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/security/ims-support">Adobe: IMS and AEM access</a></li><li><a href="https://sling.apache.org/documentation/bundles/repository-initialization.html">Sling: Repository Initialization</a></li><li><a href="https://jackrabbit.apache.org/oak/docs/security/permission/evaluation.html">Oak: Permission evaluation</a></li><li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/security/touch-ui-principal-view">Adobe: Permissions views</a></li></ul><nav aria-label="Lesson navigation"><a href="0027-query-diagnosis-indexes.html">Previous: Class 27</a> · <a href="../index.html">Overview</a></nav></main><footer>Class 28 · AEM Training · <a href="../reference/session-28-study-guide.html">Study guide</a></footer><script src="../assets/copy-slide.js"></script></body></html>

@@ -1,0 +1,501 @@
+{
+  "run_status": "slides_recorded",
+  "deck_name": "lesson-28",
+  "selected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "edit",
+    "prompt_source": "Per-slide lesson28 JSON job; established course style and continuation workflow.",
+    "size": "16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-27/origin_image/slide_04.png",
+    "input_context_preparation": "Parent and worker inspect local style reference using view_image, then pass reference to image_gen.",
+    "handoff_rule": "Use built-in image_gen only; redraw the reference as the specified slide. Existing course workflow and prior intermediate-confirmation waiver persist."
+  },
+  "max_concurrent_slides": 3,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "Permissions as code",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-27/origin_image/slide_04.png",
+          "role": "Established lesson27 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_01.json",
+        "prompt_sha256": "0341d91c9443595b6568e6ffca35c86742f264ed31f15dae7a536f1b4178a170",
+        "dispatched_at": "2026-09-21T15:55:27Z"
+      },
+      "result": {
+        "agent_id": "/root/slide01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0c4ad-868d-7f81-ad45-b69f1a074c9b/exec-e1fa24c0-c710-42dd-bc66-148a59857980.png",
+        "selected_source_sha256": "a62ca8e664fc8ee2b2b18fc9a097b5cc63da1dae66096e3ca110d1733723b69c",
+        "final_image": "origin_image/slide_01.png",
+        "final_image_sha256": "a62ca8e664fc8ee2b2b18fc9a097b5cc63da1dae66096e3ca110d1733723b69c",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Readable numbered cover; reference style preserved.",
+        "recorded_at": "2026-09-21T15:56:51Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "Access starts with an identity",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-27/origin_image/slide_04.png",
+          "role": "Established lesson27 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide02",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "1d650c85d2cd44a9deaf7cebc8f3511f47614cc686c186a9567ae01e8aabf3b3",
+        "dispatched_at": "2026-09-21T15:55:27Z"
+      },
+      "result": {
+        "agent_id": "/root/slide02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0c4ad-9fdc-7ce3-ba30-9f22e25f43fa/exec-a216ef32-52d5-4fd1-9323-c54d5f8e3f9a.png",
+        "selected_source_sha256": "aa633830d7c9dab44c3dfc3c09642de438c19c466d25a5080a5da838e79b9906",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "aa633830d7c9dab44c3dfc3c09642de438c19c466d25a5080a5da838e79b9906",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Text and number readable; concepts repeated in diagram labels.",
+        "recorded_at": "2026-09-21T15:56:51Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "Cloud identity and content access",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-27/origin_image/slide_04.png",
+          "role": "Established lesson27 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide03",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_03.json",
+        "prompt_sha256": "ccf0e7a1455eb7a5c317a76b93d6749262efcaab3e46f2571ca60ec2d2a20d7e",
+        "dispatched_at": "2026-09-21T15:55:27Z"
+      },
+      "result": {
+        "agent_id": "/root/slide03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0c4ad-c0fc-7d32-9d12-ee1fdc305001/exec-0c3a7644-10b5-4618-b17a-8cc24efdb074.png",
+        "selected_source_sha256": "a36d619545a6581a6984b44679f5f088aa48db853fb0531746e7915fa6a73f2a",
+        "final_image": "origin_image/slide_03.png",
+        "final_image_sha256": "a36d619545a6581a6984b44679f5f088aa48db853fb0531746e7915fa6a73f2a",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Readable lanes, complete content, number03.",
+        "recorded_at": "2026-09-21T15:57:25Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "An ACL describes access rules",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-27/origin_image/slide_04.png",
+          "role": "Established lesson27 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_04.json",
+        "prompt_sha256": "e4c7eeb0c929db3ab58069b7e08411f9622db7e8e21172ebd9bf070af47496fc",
+        "dispatched_at": "2026-09-21T15:57:25Z"
+      },
+      "result": {
+        "agent_id": "/root/slide01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0c4ad-868d-7f81-ad45-b69f1a074c9b/exec-09541c67-8c0a-4c94-b4d8-534253e9d29a.png",
+        "selected_source_sha256": "d70821a8ccc73caa66ad6e3b0a2f56afe3d38b2ccecdb443ef5475144e44fb5a",
+        "final_image": "origin_image/slide_04.png",
+        "final_image_sha256": "d70821a8ccc73caa66ad6e3b0a2f56afe3d38b2ccecdb443ef5475144e44fb5a",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Readable annotated ACE, number04, no clipping.",
+        "recorded_at": "2026-09-21T16:00:21Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "Least privilege for one task",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-27/origin_image/slide_04.png",
+          "role": "Established lesson27 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide02",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_05.json",
+        "prompt_sha256": "8fd67d08e755c493afe9001ea13403d4f42e5b639f27c4428b8d5ae8709b0b08",
+        "dispatched_at": "2026-09-21T15:57:26Z"
+      },
+      "result": {
+        "agent_id": "/root/slide02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0c4ad-9fdc-7ce3-ba30-9f22e25f43fa/exec-cbc79b74-f171-4b36-919d-6cd4f2c18b76.png",
+        "selected_source_sha256": "845f3c62111877b802ab6a73c1af25fb27d20d97549fb95339e522eb796ae174",
+        "final_image": "origin_image/slide_05.png",
+        "final_image_sha256": "845f3c62111877b802ab6a73c1af25fb27d20d97549fb95339e522eb796ae174",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Readable scoped tree and privileges, number05.",
+        "recorded_at": "2026-09-21T16:00:22Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "Effective access includes inherited rules",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-27/origin_image/slide_04.png",
+          "role": "Established lesson27 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide03",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_06.json",
+        "prompt_sha256": "974bacf8d1f1f979f06e6a330303a791311f1d1117584779e3526e6d74e3a81a",
+        "dispatched_at": "2026-09-21T15:57:26Z"
+      },
+      "result": {
+        "agent_id": "/root/slide03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0c4ad-c0fc-7d32-9d12-ee1fdc305001/exec-9af73994-3c8f-43be-a065-d8d81f844c47.png",
+        "selected_source_sha256": "d8fbe3e158c66cb6e9e7754bc5ca6047e053e04294a66f768f44bb022bd9b710",
+        "final_image": "origin_image/slide_06.png",
+        "final_image_sha256": "d8fbe3e158c66cb6e9e7754bc5ca6047e053e04294a66f768f44bb022bd9b710",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Corrected misleading initial candidate; reviewed inherited permission inputs and numbering.",
+        "recorded_at": "2026-09-21T16:00:22Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "Repo Init in source control",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-27/origin_image/slide_04.png",
+          "role": "Established lesson27 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_07.json",
+        "prompt_sha256": "7c4680002be9fedbe8d9d2f299d6e64b5719f6953e3800a9908e02ca96fd5e7e",
+        "dispatched_at": "2026-09-21T16:01:03Z"
+      },
+      "result": {
+        "agent_id": "/root/slide01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0c4ad-868d-7f81-ad45-b69f1a074c9b/exec-6f054683-7916-4c34-8e02-e8dc1c7f34b1.png",
+        "selected_source_sha256": "2dd75b8011656af5ff6cd0ce058c780950284e185d1c4becb90ab41066b39aaf",
+        "final_image": "origin_image/slide_07.png",
+        "final_image_sha256": "2dd75b8011656af5ff6cd0ce058c780950284e185d1c4becb90ab41066b39aaf",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Complete readable process with local/Cloud distinction.",
+        "recorded_at": "2026-09-21T16:03:07Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "A small permission model",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-27/origin_image/slide_04.png",
+          "role": "Established lesson27 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide02",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_08.json",
+        "prompt_sha256": "966a4170a70566fbf70cae5cab31f95d2eccc2fdc5eae271db9bf1b7ef2212b7",
+        "dispatched_at": "2026-09-21T16:01:03Z"
+      },
+      "result": {
+        "agent_id": "/root/slide02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0c4ad-9fdc-7ce3-ba30-9f22e25f43fa/exec-a1404450-cfff-45c9-853e-457d4c1a9bc9.png",
+        "selected_source_sha256": "43724590bd524c27fd0a1373936116af42ad85bfd9f3dd9e176bae11430a8c8a",
+        "final_image": "origin_image/slide_08.png",
+        "final_image_sha256": "43724590bd524c27fd0a1373936116af42ad85bfd9f3dd9e176bae11430a8c8a",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Exact four-line ACL excerpt with no wrapping, readable number08.",
+        "recorded_at": "2026-09-21T16:03:07Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Local configuration and inspection",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-27/origin_image/slide_04.png",
+          "role": "Established lesson27 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide03",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "fa851a37b05eddfddeec572f0ab34556037c6521f8788452662dfd06fa6ece89",
+        "dispatched_at": "2026-09-21T16:01:03Z"
+      },
+      "result": {
+        "agent_id": "/root/slide03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0c4ad-c0fc-7d32-9d12-ee1fdc305001/exec-abfe4096-1c45-479c-9b9c-3d8d6cd51cc5.png",
+        "selected_source_sha256": "9d4f2212e483675bb969685a05f65afc1898a12b45dd3faff2815f8bafc2c413",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "9d4f2212e483675bb969685a05f65afc1898a12b45dd3faff2815f8bafc2c413",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Exact group and service user labels, no invented path, number09.",
+        "recorded_at": "2026-09-21T21:26:12Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_10",
+      "number": 10,
+      "title": "Allowed and excluded operations",
+      "job": "prompts/slide_10.json",
+      "out": "origin_image/slide_10.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-27/origin_image/slide_04.png",
+          "role": "Established lesson27 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_10.json",
+        "prompt_sha256": "2d60c9671277a6cc2c9b75d563c001eb52074d0294ab3335e05829346fec6397",
+        "dispatched_at": "2026-09-21T21:24:55Z"
+      },
+      "result": {
+        "agent_id": "/root/slide01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0c4ad-868d-7f81-ad45-b69f1a074c9b/exec-fc72149d-4ec3-4296-ab28-9071b1c959be.png",
+        "selected_source_sha256": "7bbe710324451083977a47bbc00582982ff4cc689d368fb8004a2a22b53acb50",
+        "final_image": "origin_image/slide_10.png",
+        "final_image_sha256": "7bbe710324451083977a47bbc00582982ff4cc689d368fb8004a2a22b53acb50",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Expected checks clearly labeled and caveated, number10.",
+        "recorded_at": "2026-09-21T21:26:12Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_11",
+      "number": 11,
+      "title": "Key takeaways",
+      "job": "prompts/slide_11.json",
+      "out": "origin_image/slide_11.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-27/origin_image/slide_04.png",
+          "role": "Established lesson27 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide02",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_11.json",
+        "prompt_sha256": "111f6254ed0b50b71caa404d2a4fc7f18a8da56816b487f2ed48a0ebae630761",
+        "dispatched_at": "2026-09-21T21:24:56Z"
+      },
+      "result": {
+        "agent_id": "/root/slide02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0c4ad-9fdc-7ce3-ba30-9f22e25f43fa/exec-c04af1d9-47da-47e8-a381-d941e3b41fdf.png",
+        "selected_source_sha256": "abceed67abca39fe954248456f2bdf9cb9b5bea13c0c5e6e36d30945d0839599",
+        "final_image": "origin_image/slide_11.png",
+        "final_image_sha256": "abceed67abca39fe954248456f2bdf9cb9b5bea13c0c5e6e36d30945d0839599",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "All five takeaways once and readable, number11.",
+        "recorded_at": "2026-09-21T21:26:13Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_12",
+      "number": 12,
+      "title": "Questions / Thank you.",
+      "job": "prompts/slide_12.json",
+      "out": "origin_image/slide_12.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-27/origin_image/slide_04.png",
+          "role": "Established lesson27 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_12.json",
+        "prompt_sha256": "7939e9b06e2973603c4692f97310bcf9c9e52a2161a3f428de3512019bdac1e5",
+        "dispatched_at": "2026-09-21T21:26:14Z"
+      },
+      "result": {
+        "agent_id": "/root/slide01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0c4ad-868d-7f81-ad45-b69f1a074c9b/exec-eaeb77ca-39a4-4257-91de-45c23b826a92.png",
+        "selected_source_sha256": "1b743d288e57980a0e73d9ffbc8ee25f646536b95c24b9ab160e2ae7470f8382",
+        "final_image": "origin_image/slide_12.png",
+        "final_image_sha256": "1b743d288e57980a0e73d9ffbc8ee25f646536b95c24b9ab160e2ae7470f8382",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Only Questions, Thank you. and number12, all once.",
+        "recorded_at": "2026-09-21T21:27:32Z"
+      },
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-09-21T21:27:32Z"
+}

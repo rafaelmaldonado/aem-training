@@ -1,0 +1,5 @@
+{
+  "scripts": [
+    "create path (sling:Folder) /content/training-permissions\ncreate path (sling:Folder) /content/training-permissions/guides\ncreate path (sling:Folder) /content/training-permissions/outside\n\ncreate group training-guide-editors\ncreate service user training-guide-reader with forced path system/cq:services/training\n\nset ACL for training-guide-editors\n    allow jcr:read on /content/training-permissions\n    allow jcr:modifyProperties on /content/training-permissions/guides\nend\n\nset ACL for training-guide-reader\n    allow jcr:read on /content/training-permissions/guides\nend\n"
+  ]
+}

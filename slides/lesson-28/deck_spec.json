@@ -1,0 +1,379 @@
+{
+  "language": "English",
+  "aspect_ratio": "16:9",
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 3,
+  "outputs": [
+    "PNG slide images",
+    "HTML lesson",
+    "Spanish HTML and Markdown summary",
+    "Simple Author examples with step-by-step instructions"
+  ],
+  "pptx": false,
+  "style": {
+    "name": "technical atlas courseware",
+    "visual_direction": "Technical atlas courseware: query execution, evidence and index coverage.",
+    "color_palette": "Warm ivory drafting-paper background with a faint square grid; deep navy titles; cobalt for source-to-target flow; violet for configuration; green for valid or protected local state; restrained orange for destructive actions and cautions.",
+    "typography": "Large bold condensed sans-serif headings; crisp sans-serif supporting text; true monospace appearance for repository paths, property names, action names and state values.",
+    "texture_and_finish": "Flat 2D technical diagrams, fine rules, precise page, relationship, configuration and status icons. No gradients, neon, glass, 3D, photography or generic corporate people.",
+    "deck_consistency": "Match Class24 slide02 palette, typography and drafting grid; vary layouts."
+  },
+  "deck_name": "lesson-28",
+  "title": "Class 28 · Permissions as code",
+  "goal": "Model narrowly scoped repository permissions and inspect effective access with Repo Init.",
+  "render_slide_number": true,
+  "numbering": {
+    "format": "01–12",
+    "position": "top-left above title",
+    "required_in_png": true,
+    "scope": "All slides including cover and Questions / Thank you."
+  },
+  "approved_style_reference": {
+    "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-27/origin_image/slide_04.png",
+    "role": "Established lesson27 style only; replace every piece of content.",
+    "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+  },
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "edit",
+    "prompt_source": "Per-slide lesson28 JSON job; established course style and continuation workflow.",
+    "size": "16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-27/origin_image/slide_04.png",
+    "input_context_preparation": "Parent and worker inspect local style reference using view_image, then pass reference to image_gen.",
+    "handoff_rule": "Use built-in image_gen only; redraw the reference as the specified slide. Existing course workflow and prior intermediate-confirmation waiver persist."
+  },
+  "approval": {
+    "scope": "Create session28 following the existing course continuation workflow recorded in lessons24,26,27.",
+    "style": "Continue lesson27 technical atlas style.",
+    "backend": "built-in image tool",
+    "intermediate_confirmations": "Prior continuation waiver recorded in lesson24 and lesson26 persists.",
+    "speech": false,
+    "pptx": false
+  },
+  "deck_context": {
+    "source_summary": "Class28, week6, September23 2026. Traditional AEM Sites on AEM as a Cloud Service. Demo uses local Author SDK only. Configuration and ACL inspection today; subservice mappings and ResourceResolver lifecycle belong to Class29.",
+    "canonical_facts": [
+      "Humans on Cloud Author authenticate through IMS; repository ACLs govern content operations. A service user is a repository identity for code, with no password login.",
+      "Demo root /content/training-permissions has guides and outside child folders. training-guide-editors receives read on root and modifyProperties on guides only. training-guide-reader receives read on guides only via resource ACL.",
+      "A narrow grant does not remove other grants. everyone, all groups, ancestors, restrictions and direct user entries matter. Deny does not always win in Oak.",
+      "Repo Init creates identities and paths before ACLs. Source-controlled author configuration. create path used for broad SDK compatibility; modern Sling prefers ensure nodes.",
+      "Local human demo is manually created with an uncommitted password and assigned only to training-guide-editors. No administrators membership.",
+      "No Java, HTTP security bypass, cloud deployment or claimed SDK execution. Final page contains only Questions, Thank you. and 12."
+    ]
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Permissions as code",
+      "key_points": [
+        "Class 28 · Week 6 · September 23, 2026",
+        "Juan Maldonado",
+        "Users, groups, ACLs and Repo Init"
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "cover",
+        "composition": "Large title left. Right: repository tree, identity and small key motif. Plenty of whitespace.",
+        "intent": "Large title left. Right: repository tree, identity and small key motif. Plenty of whitespace."
+      },
+      "local_context": {
+        "required_background": "Large title left. Right: repository tree, identity and small key motif. Plenty of whitespace."
+      },
+      "constraints": [
+        "English only. Render exact key points clearly. Use reference only for visual style.",
+        "16:9 landscape. Ivory drafting grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "No fabricated screenshot, measured results or unsupported claims.",
+        "Render slide number 01 exactly once top-left inside the image.",
+        "No extra text on closing slide."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Access starts with an identity",
+      "key_points": [
+        "A human user performs an interactive action.",
+        "A group represents a shared responsibility.",
+        "A service user gives application code a repository identity.",
+        "Each operation needs permission on its target path."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "concept",
+        "composition": "Three labeled identity symbols Human user, Group, Service user connect to one repository path and an operation check. Do not imply a group logs in.",
+        "intent": "Three labeled identity symbols Human user, Group, Service user connect to one repository path and an operation check. Do not imply a group logs in."
+      },
+      "local_context": {
+        "required_background": "Three labeled identity symbols Human user, Group, Service user connect to one repository path and an operation check. Do not imply a group logs in."
+      },
+      "constraints": [
+        "English only. Render exact key points clearly. Use reference only for visual style.",
+        "16:9 landscape. Ivory drafting grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "No fabricated screenshot, measured results or unsupported claims.",
+        "Render slide number 02 exactly once top-left inside the image.",
+        "No extra text on closing slide."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Cloud identity and content access",
+      "key_points": [
+        "IMS authenticates people on Cloud Author.",
+        "Admin Console product profiles grant environment access.",
+        "AEM groups and ACLs define content operations.",
+        "Repository service users have no password login."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "comparison",
+        "composition": "Two lanes: Human access shows IMS, environment access, AEM permissions. Application lane shows repository service user and scoped ACL. No token or mapping code. Small footer: Local demo users do not reproduce IMS provisioning.",
+        "intent": "Two lanes: Human access shows IMS, environment access, AEM permissions. Application lane shows repository service user and scoped ACL. No token or mapping code. Small footer: Local demo users do not reproduce IMS provisioning."
+      },
+      "local_context": {
+        "required_background": "Two lanes: Human access shows IMS, environment access, AEM permissions. Application lane shows repository service user and scoped ACL. No token or mapping code. Small footer: Local demo users do not reproduce IMS provisioning."
+      },
+      "constraints": [
+        "English only. Render exact key points clearly. Use reference only for visual style.",
+        "16:9 landscape. Ivory drafting grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "No fabricated screenshot, measured results or unsupported claims.",
+        "Render slide number 03 exactly once top-left inside the image.",
+        "No extra text on closing slide."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "An ACL describes access rules",
+      "key_points": [
+        "Principal: who the entry applies to.",
+        "Path: where the entry takes effect.",
+        "Privilege: which operation it covers.",
+        "Allow or deny, with optional restrictions."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "definition",
+        "composition": "Annotate a single legible ACE: training-guide-editors /content/training-permissions/guides jcr:modifyProperties allow. Define ACL = list of entries; ACE = one entry. Do not add code.",
+        "intent": "Annotate a single legible ACE: training-guide-editors /content/training-permissions/guides jcr:modifyProperties allow. Define ACL = list of entries; ACE = one entry. Do not add code."
+      },
+      "local_context": {
+        "required_background": "Annotate a single legible ACE: training-guide-editors /content/training-permissions/guides jcr:modifyProperties allow. Define ACL = list of entries; ACE = one entry. Do not add code."
+      },
+      "constraints": [
+        "English only. Render exact key points clearly. Use reference only for visual style.",
+        "16:9 landscape. Ivory drafting grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "No fabricated screenshot, measured results or unsupported claims.",
+        "Render slide number 04 exactly once top-left inside the image.",
+        "No extra text on closing slide."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Least privilege for one task",
+      "key_points": [
+        "Read content: jcr:read",
+        "Change properties: jcr:modifyProperties",
+        "Add child nodes: jcr:addChildNodes",
+        "jcr:write bundles several write privileges."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "scope",
+        "composition": "Repository tree root /content/training-permissions with sibling guides and outside. Group read on root. Green property-edit marker only at guides. No edit marker on outside. Footer: This demo does not grant page creation, deletion or publication.",
+        "intent": "Repository tree root /content/training-permissions with sibling guides and outside. Group read on root. Green property-edit marker only at guides. No edit marker on outside. Footer: This demo does not grant page creation, deletion or publication."
+      },
+      "local_context": {
+        "required_background": "Repository tree root /content/training-permissions with sibling guides and outside. Group read on root. Green property-edit marker only at guides. No edit marker on outside. Footer: This demo does not grant page creation, deletion or publication."
+      },
+      "constraints": [
+        "English only. Render exact key points clearly. Use reference only for visual style.",
+        "16:9 landscape. Ivory drafting grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "No fabricated screenshot, measured results or unsupported claims.",
+        "Render slide number 05 exactly once top-left inside the image.",
+        "No extra text on closing slide."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Effective access includes inherited rules",
+      "key_points": [
+        "Inspect the user and every relevant group.",
+        "Follow ACLs from the target through its ancestors.",
+        "Check entry order and restrictions.",
+        "A narrow grant does not revoke broader access."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "diagnosis",
+        "composition": "Layered diagram: Target ACL, Ancestor ACLs, User and group principals feed Effective access. Orange caution: Deny does not always win. Footer: Verify the actual identity, path and operation.",
+        "intent": "Layered diagram: Target ACL, Ancestor ACLs, User and group principals feed Effective access. Orange caution: Deny does not always win. Footer: Verify the actual identity, path and operation."
+      },
+      "local_context": {
+        "required_background": "Layered diagram: Target ACL, Ancestor ACLs, User and group principals feed Effective access. Orange caution: Deny does not always win. Footer: Verify the actual identity, path and operation."
+      },
+      "constraints": [
+        "English only. Render exact key points clearly. Use reference only for visual style.",
+        "16:9 landscape. Ivory drafting grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "No fabricated screenshot, measured results or unsupported claims.",
+        "Render slide number 06 exactly once top-left inside the image.",
+        "No extra text on closing slide."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Repo Init in source control",
+      "key_points": [
+        "Create the required paths and identities first.",
+        "Assign ACLs to the smallest useful subtree.",
+        "Store the script in an OSGi factory configuration.",
+        "Use config.author for this Author-only example."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "process",
+        "composition": "Four-step vertical or horizontal process from Script to OSGi configuration to Repository initialization to Paths + identities + ACLs. Footer: Cloud delivery uses the project pipeline. Today uses local SDK.",
+        "intent": "Four-step vertical or horizontal process from Script to OSGi configuration to Repository initialization to Paths + identities + ACLs. Footer: Cloud delivery uses the project pipeline. Today uses local SDK."
+      },
+      "local_context": {
+        "required_background": "Four-step vertical or horizontal process from Script to OSGi configuration to Repository initialization to Paths + identities + ACLs. Footer: Cloud delivery uses the project pipeline. Today uses local SDK."
+      },
+      "constraints": [
+        "English only. Render exact key points clearly. Use reference only for visual style.",
+        "16:9 landscape. Ivory drafting grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "No fabricated screenshot, measured results or unsupported claims.",
+        "Render slide number 07 exactly once top-left inside the image.",
+        "No extra text on closing slide."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "A small permission model",
+      "key_points": [
+        "Group: training-guide-editors",
+        "Service user: training-guide-reader",
+        "Human group: read root, modify properties in guides.",
+        "Service user: read guides."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "code",
+        "composition": "Show this exact short complete code block in large monospace on right: set ACL for training-guide-editors\n  allow jcr:read on /content/training-permissions\n  allow jcr:modifyProperties on /content/training-permissions/guides\nend\nLeft contains four key points. Footer: ACL excerpt. Full configuration and setup are in the study guide. No wrapping within privilege names.",
+        "intent": "Show this exact short complete code block in large monospace on right: set ACL for training-guide-editors\n  allow jcr:read on /content/training-permissions\n  allow jcr:modifyProperties on /content/training-permissions/guides\nend\nLeft contains four key points. Footer: ACL excerpt. Full configuration and setup are in the study guide. No wrapping within privilege names."
+      },
+      "local_context": {
+        "required_background": "Show this exact short complete code block in large monospace on right: set ACL for training-guide-editors\n  allow jcr:read on /content/training-permissions\n  allow jcr:modifyProperties on /content/training-permissions/guides\nend\nLeft contains four key points. Footer: ACL excerpt. Full configuration and setup are in the study guide. No wrapping within privilege names."
+      },
+      "constraints": [
+        "English only. Render exact key points clearly. Use reference only for visual style.",
+        "16:9 landscape. Ivory drafting grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "No fabricated screenshot, measured results or unsupported claims.",
+        "Render slide number 08 exactly once top-left inside the image.",
+        "No extra text on closing slide."
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Local configuration and inspection",
+      "key_points": [
+        "Install the supplied Author configuration.",
+        "Inspect the created group, service user and paths.",
+        "Create a local demo user and add the editor group.",
+        "Inspect inherited ACLs before checking the matrix."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "demo",
+        "composition": "Four ordered steps with precise folder, group, user and audit symbols. Footer: Local SDK only. No Cloud Manager access required. Include small note: The demo uses folders, not authorable pages.",
+        "intent": "Four ordered steps with precise folder, group, user and audit symbols. Footer: Local SDK only. No Cloud Manager access required. Include small note: The demo uses folders, not authorable pages."
+      },
+      "local_context": {
+        "required_background": "Four ordered steps with precise folder, group, user and audit symbols. Footer: Local SDK only. No Cloud Manager access required. Include small note: The demo uses folders, not authorable pages."
+      },
+      "constraints": [
+        "English only. Render exact key points clearly. Use reference only for visual style.",
+        "16:9 landscape. Ivory drafting grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "No fabricated screenshot, measured results or unsupported claims.",
+        "Render slide number 09 exactly once top-left inside the image.",
+        "No extra text on closing slide."
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Allowed and excluded operations",
+      "key_points": [
+        "Demo user belongs only to the editor group.",
+        "Read guides: expected allowed.",
+        "Modify guides properties: expected allowed.",
+        "Modify outside properties: expected denied."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "matrix",
+        "composition": "Large 3-row table Operation / Target / Expected: Read / guides / Allowed; Modify properties / guides / Allowed; Modify properties / outside / Denied. Render key points only once by folding them into table and a setup sentence. Footer: Expected on a clean fixture. Inherited grants can change the result. Label table Expected checks, not measured results.",
+        "intent": "Large 3-row table Operation / Target / Expected: Read / guides / Allowed; Modify properties / guides / Allowed; Modify properties / outside / Denied. Render key points only once by folding them into table and a setup sentence. Footer: Expected on a clean fixture. Inherited grants can change the result. Label table Expected checks, not measured results."
+      },
+      "local_context": {
+        "required_background": "Large 3-row table Operation / Target / Expected: Read / guides / Allowed; Modify properties / guides / Allowed; Modify properties / outside / Denied. Render key points only once by folding them into table and a setup sentence. Footer: Expected on a clean fixture. Inherited grants can change the result. Label table Expected checks, not measured results."
+      },
+      "constraints": [
+        "English only. Render exact key points clearly. Use reference only for visual style.",
+        "16:9 landscape. Ivory drafting grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "No fabricated screenshot, measured results or unsupported claims.",
+        "Render slide number 10 exactly once top-left inside the image.",
+        "No extra text on closing slide."
+      ]
+    },
+    {
+      "number": 11,
+      "title": "Key takeaways",
+      "key_points": [
+        "Separate human authentication from repository authorization.",
+        "Give service users a specific technical responsibility.",
+        "Scope privileges to the paths the task requires.",
+        "Inspect effective access, including inherited grants.",
+        "Version Repo Init and check allowed and excluded operations."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "summary",
+        "composition": "Five wide takeaway rows with discreet specific icons. No duplicate bullets. Spacious, readable type.",
+        "intent": "Five wide takeaway rows with discreet specific icons. No duplicate bullets. Spacious, readable type."
+      },
+      "local_context": {
+        "required_background": "Five wide takeaway rows with discreet specific icons. No duplicate bullets. Spacious, readable type."
+      },
+      "constraints": [
+        "English only. Render exact key points clearly. Use reference only for visual style.",
+        "16:9 landscape. Ivory drafting grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "No fabricated screenshot, measured results or unsupported claims.",
+        "Render slide number 11 exactly once top-left inside the image.",
+        "No extra text on closing slide."
+      ]
+    },
+    {
+      "number": 12,
+      "title": "Questions / Thank you.",
+      "key_points": [
+        "Questions",
+        "Thank you."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "closing",
+        "composition": "Passive closing. Render ONLY Questions, Thank you. and the number 12. Abstract speech bubble and quiet repository motif; no footer, metadata, additional prompt or exercise.",
+        "intent": "Passive closing. Render ONLY Questions, Thank you. and the number 12. Abstract speech bubble and quiet repository motif; no footer, metadata, additional prompt or exercise."
+      },
+      "local_context": {
+        "required_background": "Passive closing. Render ONLY Questions, Thank you. and the number 12. Abstract speech bubble and quiet repository motif; no footer, metadata, additional prompt or exercise."
+      },
+      "constraints": [
+        "English only. Render exact key points clearly. Use reference only for visual style.",
+        "16:9 landscape. Ivory drafting grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "No fabricated screenshot, measured results or unsupported claims.",
+        "Render slide number 12 exactly once top-left inside the image.",
+        "No extra text on closing slide."
+      ]
+    }
+  ]
+}

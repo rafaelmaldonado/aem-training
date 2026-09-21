@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sesión 28 · Modelar permisos como código · AEM Training</title><link rel="stylesheet" href="../assets/styles.css"></head><body class="study-guide"><a class="skip-link" href="#contenido">Saltar al contenido</a><nav class="site-nav" aria-label="Primary"><a class="brand" href="../index.html">AEM Training</a><ul><li><a href="../index.html">Overview</a></li><li><a href="../reference/aem-course-topics.html">Syllabus</a></li><li><a href="../reference/wknd-project-backlog.html">Practices</a></li><li><a href="../reference/index.html">References</a></li></ul></nav><header><p class="eyebrow">Semana 6 · Sesión 28 · 23 de septiembre de 2026</p><h1>Modelar permisos como código</h1><p class="lede">Identidades, permisos efectivos y Repo Init con un ejemplo acotado.</p><ul class="meta"><li>Resumen en español</li><li>Ejemplo local</li><li><a href="session-28-study-guide.md" download>Descargar Markdown</a></li></ul></header><main id="contenido"><p><strong>Miércoles 23 de septiembre de 2026 · Semana 6 · Núcleo de 30 minutos, ampliable a 60</strong></p>
+<p><a href="session-28-study-guide.html">Versión HTML</a> · <a href="../lessons/0028-permissions-as-code.html#slide-deck">Slides en inglés</a> · <a href="#ejemplos-locales">Ejemplo local</a></p>
+<p>Un cambio de contenido necesita una identidad y permisos sobre una ruta concreta. Que una persona pueda entrar en Author no demuestra que pueda modificar una página. Tampoco basta con encontrar una regla <code>allow</code> para un grupo: el resultado puede depender de sus otras membresías, de los antecesores y de reglas aplicadas directamente al usuario. La pregunta útil es <strong>qué identidad intenta realizar qué operación sobre qué recurso</strong>.</p>
+<p>En esta sesión modelamos esa intención con Repo Init: una configuración versionada crea un grupo editorial, una identidad técnica y un pequeño árbol de prueba. El grupo puede leer el árbol y modificar propiedades únicamente en <code>guides</code>, siempre que no existan otras concesiones. Después inspeccionamos las ACL y contrastamos una operación permitida con otra fuera del alcance. El ejemplo usa carpetas del repositorio; no pretende configurar un rol completo de autoría de Sites.</p>
+<ul>
+<li>Un usuario representa una identidad; un grupo permite asignar responsabilidades compartidas.</li>
+<li>IMS autentica a las personas en Cloud Author; las ACL regulan operaciones en el repositorio.</li>
+<li>Un service user pertenece al repositorio y sirve al código, sin contraseña para iniciar sesión.</li>
+<li>Mínimo privilegio combina <strong>operación, ruta e identidad</strong>, no sólo un nombre de rol.</li>
+<li>La ACL visible de un grupo es una parte del acceso efectivo.</li>
+<li>Repo Init hace reproducible una configuración; hay que comprobar también los accesos que deberían quedar excluidos.</li>
+</ul>
+<nav aria-label="Contenido de la guía"><a href="#identidades">Identidades</a> · <a href="#acl">ACL</a> · <a href="#ejemplos-locales">Ejemplo local</a> · <a href="#repaso">Repaso</a></nav><h2>Recorrido de la sesión</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Minutos</th>
+<th>Slides</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0–5</td>
+<td>1–3</td>
+<td>Identidades y separación entre acceso Cloud y autorización.</td>
+</tr>
+<tr>
+<td>5–11</td>
+<td>4–6</td>
+<td>ACL, privilegios concretos y acceso heredado.</td>
+</tr>
+<tr>
+<td>11–23</td>
+<td>7–9</td>
+<td>Leer el script e inspeccionar el ejemplo preparado.</td>
+</tr>
+<tr>
+<td>23–27</td>
+<td>10</td>
+<td>Comprobar el alcance y explicar una diferencia.</td>
+</tr>
+<tr>
+<td>27–30</td>
+<td>11–12</td>
+<td>Key takeaways y preguntas.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Para llegar a 60 minutos, añade 20 de instalación/inspección guiada y 10 de preguntas. El instructor prepara el ejemplo antes de clase; no depende de prácticas previas. Las actividades son demostraciones y consulta voluntaria, sin entrega por sesión.</p>
+<p><a id="identidades"></a></p>
+<h2>1. Personas, grupos e identidades técnicas</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Para qué sirve</th>
+<th>Ejemplo de esta sesión</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Usuario humano</td>
+<td>Realizar acciones interactivas con una identidad identificable.</td>
+<td><code>training-permissions-demo</code>, creado sólo en el SDK.</td>
+</tr>
+<tr>
+<td>Grupo</td>
+<td>Asociar permisos a una responsabilidad, reutilizable entre personas.</td>
+<td><code>training-guide-editors</code>.</td>
+</tr>
+<tr>
+<td>Service user</td>
+<td>Dar al código una identidad técnica con acceso específico.</td>
+<td><code>training-guide-reader</code>.</td>
+</tr>
+<tr>
+<td>Principal</td>
+<td>Identidad a la que se refiere una entrada de control de acceso.</td>
+<td>El principal del grupo o del service user.</td>
+</tr>
+</tbody>
+</table></div>
+<p>En Cloud Author, Admin Console e IMS gestionan el acceso de las personas al entorno. Los grupos sincronizados pueden integrarse con grupos locales de AEM que tienen permisos sobre contenido. Mantén las responsabilidades editoriales en esos grupos y revisa cómo llega la membresía desde IMS; crear una persona con contraseña en Repo Init no reproduce ese proceso. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/security/ims-support">IMS y permisos en AEM — Adobe</a>.</p>
+<p>El service user no es una cuenta humana compartida ni una credencial OAuth para una integración externa. Hoy creamos su identidad y una ACL de lectura. La configuración que relaciona bundle y subservice, la obtención del resolver y su cierre pertenecen a la sesión 29. Crear el usuario por sí solo no cambia la identidad con la que se ejecuta el código. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/developing/advanced/service-users">Service users — Adobe</a>.</p>
+<p><a id="acl"></a></p>
+<h2>2. Una ACL y el acceso efectivo</h2>
+<p>Una ACL es una lista de entradas, o ACE. Cada entrada vincula un principal, privilegios y una decisión allow/deny al recurso donde está definida; puede incluir restricciones. Por ejemplo: permitir <code>jcr:modifyProperties</code> al grupo editorial en <code>/content/training-permissions/guides</code>.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Privilegio</th>
+<th>Operación que expresa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>jcr:read</code></td>
+<td>Leer nodos y propiedades ordinarios.</td>
+</tr>
+<tr>
+<td><code>jcr:modifyProperties</code></td>
+<td>Añadir, cambiar o quitar propiedades ordinarias.</td>
+</tr>
+<tr>
+<td><code>jcr:addChildNodes</code></td>
+<td>Añadir nodos hijos.</td>
+</tr>
+<tr>
+<td><code>jcr:removeNode</code> y <code>jcr:removeChildNodes</code></td>
+<td>La eliminación necesita permisos sobre el nodo y su padre.</td>
+</tr>
+<tr>
+<td><code>jcr:write</code></td>
+<td>Agrega varios privilegios de escritura; supera lo necesario para cambiar una propiedad.</td>
+</tr>
+<tr>
+<td><code>jcr:modifyAccessControl</code></td>
+<td>Modificar políticas de acceso; no es edición de contenido.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Las operaciones de Sites pueden requerir más privilegios que un cambio de propiedad, según la acción y los tipos de nodo. No traduzcas “editor” a <code>jcr:all</code>. <a href="https://developer.adobe.com/experience-manager/reference-materials/spec/jcr/2.0/16_Access_Control_Management.html">Privilegios JCR — especificación</a>.</p>
+<p>El resultado efectivo considera principales del usuario y sus grupos, entradas locales/heredadas y restricciones. En el modelo por defecto de Oak, las entradas de usuario tienen precedencia sobre las de grupo; dentro del mismo tipo importan proximidad y orden. Por eso <strong>“deny siempre gana” no es una regla general correcta</strong>. Para diagnosticar, examina el caso concreto. <a href="https://jackrabbit.apache.org/oak/docs/security/permission/evaluation.html">Evaluación de permisos — Oak</a>.</p>
+<p>Una concesión estrecha tampoco revoca otra más amplia. Si el usuario pertenece a un grupo que escribe en todo <code>/content</code>, permitir edición sólo en <code>guides</code> no limita esa otra autorización. No añadas denegaciones globales para ocultar una membresía incorrecta.</p>
+<p><a id="ejemplos-locales"></a></p>
+<h2>3. Ejemplo completo en Author local</h2>
+<h3>A. Punto de partida independiente</h3>
+<p>Necesitas un SDK Author local, una cuenta administradora para preparar la demo y un proyecto WKND o Archetype con <code>ui.config</code>. No necesitas Cloud Manager ni las páginas de las sesiones 26 y 27.</p>
+<ol>
+<li>Inicia sesión como administrador en <code>http://localhost:4502</code>.</li>
+<li>Comprueba que <code>/content/training-permissions</code> y los IDs <code>training-guide-editors</code>, <code>training-guide-reader</code>, <code>training-permissions-demo</code> no correspondan a trabajo ajeno. Usa otro prefijo en todo el ejemplo si ya existen.</li>
+<li>Conserva la sesión de administración separada de la del usuario de prueba. No uses <code>admin</code> para demostrar mínimo privilegio.</li>
+<li>La demo creará dos carpetas <code>sling:Folder</code>: <code>guides</code> y <code>outside</code>. No son páginas ni aparecerán como páginas editables de Sites.</li>
+</ol>
+<h3>B. Leer el script completo</h3>
+<p><a href="examples/session-28/permissions.repoinit">Descargar permissions.repoinit</a></p>
+<pre tabindex="0"><code class="language-text">create path (sling:Folder) /content/training-permissions
+create path (sling:Folder) /content/training-permissions/guides
+create path (sling:Folder) /content/training-permissions/outside
+
+create group training-guide-editors
+create service user training-guide-reader with forced path system/cq:services/training
+
+set ACL for training-guide-editors
+    allow jcr:read on /content/training-permissions
+    allow jcr:modifyProperties on /content/training-permissions/guides
+end
+
+set ACL for training-guide-reader
+    allow jcr:read on /content/training-permissions/guides
+end
+</code></pre>
+<p>El grupo recibe lectura en la raíz del ejemplo y modificación de propiedades en <code>guides</code>. <code>outside</code> es un hermano, por lo que esa concesión de modificación no se hereda allí. La ACL del service user concede lectura en <code>guides</code>; su acceso efectivo debe revisarse según el modo de autenticación utilizado. No afirmamos que sea incapaz de leer cualquier otro recurso por el solo hecho de tener esta regla.</p>
+<p>Usamos <strong>ACL basadas en recursos</strong> (<code>set ACL</code>), almacenadas en los recursos objetivo. No las confundas con <code>set principal ACL</code> o <code>ensure principal ACL</code>: son instrucciones para otro modelo de políticas. Aquí no hacen falta para enseñar el alcance del permiso. <a href="https://jackrabbit.apache.org/oak/docs/security/accesscontrol/default.html">Control de acceso basado en recursos — Oak</a>.</p>
+<p><code>create path</code> permite usar el ejemplo con parsers antiguos del SDK: crea los nodos que faltan, sin cambiar el tipo de los existentes. Sling actual lo considera obsoleto y recomienda <code>ensure nodes</code>, que comprueba/ajusta el estado con semántica distinta. No reemplaces la instrucción sin revisar la versión del bundle y sus tipos de nodo. <a href="https://sling.apache.org/documentation/bundles/repository-initialization.html">Repo Init y compatibilidad — Sling</a>.</p>
+<h3>C. Instalar la configuración</h3>
+<p>Copia el archivo completo en tu proyecto WKND:</p>
+<p><code>ui.config/src/main/content/jcr_root/apps/wknd/osgiconfig/config.author/org.apache.sling.jcr.repoinit.RepositoryInitializer~training-permissions.cfg.json</code></p>
+<p><a href="examples/session-28/ui.config/src/main/content/jcr_root/apps/wknd/osgiconfig/config.author/org.apache.sling.jcr.repoinit.RepositoryInitializer~training-permissions.cfg.json">Descargar configuración JSON</a></p>
+<pre tabindex="0"><code class="language-json">{
+  &quot;scripts&quot;: [
+    &quot;create path (sling:Folder) /content/training-permissions\ncreate path (sling:Folder) /content/training-permissions/guides\ncreate path (sling:Folder) /content/training-permissions/outside\n\ncreate group training-guide-editors\ncreate service user training-guide-reader with forced path system/cq:services/training\n\nset ACL for training-guide-editors\n    allow jcr:read on /content/training-permissions\n    allow jcr:modifyProperties on /content/training-permissions/guides\nend\n\nset ACL for training-guide-reader\n    allow jcr:read on /content/training-permissions/guides\nend\n&quot;
+  ]
+}
+</code></pre>
+<ol>
+<li>Para Archetype, cambia <code>/apps/wknd</code> por la raíz de aplicación de tu proyecto y conserva el PID y el sufijo de instancia <code>~training-permissions</code>. El árbol <code>/content/training-permissions</code> puede mantenerse.</li>
+<li><code>scripts</code> contiene <strong>un string con el script entero</strong>. Los <code>\n</code> son saltos de línea escapados en JSON; no separes las líneas de un bloque ACL en scripts independientes.</li>
+<li>Usa el perfil Maven local de tu baseline para construir e instalar. En un WKND estándar suele ser <code>mvn clean install -PautoInstallSinglePackage</code>, ejecutado desde la raíz del <strong>proyecto AEM</strong>, no desde este repositorio de formación. Conserva las opciones Java/SDK y autenticación documentadas por tu baseline.</li>
+<li>En <a href="http://localhost:4502/system/console/configMgr">OSGi Configuration Manager local</a>, busca <code>org.apache.sling.jcr.repoinit.RepositoryInitializer</code> y la instancia <code>training-permissions</code>. Comprueba el script efectivo sin guardar cambios manuales adicionales.</li>
+<li>Revisa <code>crx-quickstart/logs/error.log</code> si faltan nodos o identidades: busca <code>repoinit</code>, <code>RepositoryInitializer</code> y los IDs del ejemplo. La presencia del archivo en <code>/apps</code> no demuestra que el script se haya aplicado.</li>
+</ol>
+<p>El directorio <code>config.author</code> limita esta configuración a Author. En Cloud se distribuye como código mediante el pipeline del proyecto; no se propone editar producción desde una consola. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/deploying/configuring-osgi">Configuración OSGi — Adobe</a>, <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/deploying/overview#repoinit">Repo Init en despliegues — Adobe</a>.</p>
+<h3>D. Inspeccionar identidades y ACL</h3>
+<ol>
+<li>En <a href="http://localhost:4502/crx/de/index.jsp">CRXDE Lite local</a>, abre <code>/content/training-permissions</code> y sus dos carpetas. Confirma sus tipos <code>sling:Folder</code>.</li>
+<li>En <strong>Tools → Security → Groups</strong>, busca <code>training-guide-editors</code>.</li>
+<li>En <strong>Tools → Security → Users</strong>, busca <code>training-guide-reader</code>. También puedes inspeccionar <code>/home/users/system/cq:services/training</code> en CRXDE. Verifica que la identidad creada sea <code>rep:SystemUser</code>. Su ubicación organiza la identidad, no concede permisos sobre contenido.</li>
+<li>En <strong>Tools → Security → Permissions</strong>, busca el grupo y comprueba sus dos entradas: lectura en la raíz y modificación en <code>guides</code>. Busca el service user y su entrada de lectura en <code>guides</code>.</li>
+<li>Cuando tu SDK tenga <strong>Node View</strong>, selecciona las rutas y revisa también las ACL de sus antecesores. En <strong>Audit View</strong> o la vista filtrada equivalente, selecciona usuario/ruta e incluye las membresías de grupo. Los nombres y disponibilidad de estas vistas dependen del SDK.</li>
+</ol>
+<p>La vista por principal lista entradas asignadas; por sí sola no es una ejecución con esa identidad. Si tu SDK no tiene Audit View, inspecciona ACL y antecesores mediante el panel <strong>Access Control</strong> de CRXDE; identifica los principales de cada entrada y las membresías por separado. No presentes esa inspección como una prueba de guardado. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/security/touch-ui-principal-view">Vistas de permisos — Adobe</a>.</p>
+<h3>E. Comprobar el alcance con una persona local</h3>
+<ol>
+<li>Como administrador, abre <strong>Tools → Security → Users → Create User</strong> y crea <code>training-permissions-demo</code>. Define una contraseña local fuera de los archivos del curso.</li>
+<li>Añádelo a <code>training-guide-editors</code> desde la administración del usuario/grupo y guarda. No lo añadas a <code>administrators</code>, <code>content-authors</code> ni a otro grupo con escritura; revisa también membresías automáticas y <code>everyone</code>.</li>
+<li>Inspecciona sus ACL aplicables en <code>guides</code> y <code>outside</code>. Usa esta matriz para anticipar la operación, antes de intentarla.</li>
+</ol>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Identidad</th>
+<th>Operación</th>
+<th>Ruta</th>
+<th>Expectativa en el fixture sin otros grants de escritura</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>training-permissions-demo</code></td>
+<td>Leer</td>
+<td><code>/content/training-permissions/guides</code></td>
+<td>Permitido.</td>
+</tr>
+<tr>
+<td><code>training-permissions-demo</code></td>
+<td>Modificar una propiedad</td>
+<td><code>/content/training-permissions/guides</code></td>
+<td>Permitido.</td>
+</tr>
+<tr>
+<td><code>training-permissions-demo</code></td>
+<td>Modificar una propiedad</td>
+<td><code>/content/training-permissions/outside</code></td>
+<td>Denegado.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Comprobación operativa, si CRXDE está accesible al usuario local:</strong> abre un perfil/ventana privada, inicia sesión explícitamente como <code>training-permissions-demo</code> y verifica la identidad mostrada. En CRXDE, selecciona <code>guides</code>, añade la propiedad String <code>trainingNote</code> con valor <code>demo</code> y pulsa <strong>Save All</strong>. Debe guardarse. Selecciona <code>outside</code>, intenta añadir la misma propiedad y guardar: debe fallar por autorización. Descarta/refresca los cambios pendientes después del fallo. Desde la sesión administradora comprueba que la propiedad existe sólo en <code>guides</code>.</p>
+<p>Si CRXDE o sus recursos de interfaz no están accesibles a esa identidad, no amplíes los permisos para forzar la demo. Completa la inspección de ACL y deja la ejecución como pendiente; el instructor puede mostrar su SDK preparado. Un bloqueo de interfaz no demuestra por sí solo una ACL de escritura incorrecta. Tampoco un HTTP 403 identifica automáticamente la causa: la sesión 29 separará identidad, ACL y protección HTTP.</p>
+<p><strong>Resultados esperados, no ejecución registrada:</strong> el material no se instaló en tu SDK durante su preparación. Una operación inesperadamente permitida requiere revisar otras concesiones. Una operación inesperadamente denegada requiere revisar identidad, aplicación del script, ruta y restricciones. No se “corrige” dando privilegios de administrador.</p>
+<h3>F. Repetición y cambios posteriores</h3>
+<p>Reinstala la misma configuración y comprueba que conservas los mismos IDs y entradas previstas. La intención de Repo Init es declarar un estado repetible, pero no es un reconciliador que borre todo lo que ya no aparece. Quitar un <code>allow</code> del archivo o desinstalar la configuración <strong>no garantiza revocar la ACE existente</strong>. La retirada requiere una modificación explícita y revisada de las reglas que posea tu aplicación, seguida de la misma comprobación de alcance.</p>
+<p>No incluyas un borrado de <code>/content</code> ni de ACL compartidas en una “limpieza”. Para repetir desde cero utiliza otro prefijo de demo o un SDK desechable. Conserva las identidades y permisos de otras funcionalidades.</p>
+<p><a id="repaso"></a></p>
+<h2>4. Repaso con respuestas</h2>
+<p><strong>Una persona entra en Cloud Author, pero no puede editar una página. ¿Contradice el acceso IMS?</strong> No. Autenticación/acceso al entorno y permiso sobre esa operación son comprobaciones distintas.</p>
+<p><strong>El grupo sólo tiene escritura en <code>guides</code>, pero el usuario también escribe en <code>outside</code>. ¿Qué revisarías primero?</strong> La identidad real, todos sus grupos y las ACL heredadas o asignadas directamente; esa regla no revoca otras concesiones.</p>
+<p><strong>¿Por qué <code>jcr:write</code> es excesivo para esta demo?</strong> El requisito es modificar propiedades. El agregado incluye operaciones adicionales que no necesitamos conceder.</p>
+<p><strong>¿El service user ya puede usarse porque aparece en Users?</strong> Su identidad existe. El código necesita el mapping y el mecanismo de autenticación adecuados, además de permisos; se trabajan en la 29.</p>
+<p><strong>¿Eliminar una línea del script retira automáticamente su permiso?</strong> No. Hay que diseñar y verificar una retirada explícita del permiso existente.</p>
+<p><strong>¿Qué demuestra la tabla de permisos?</strong> Ayuda a explicar el resultado esperado. La operación realizada con la identidad correcta aporta la comprobación operativa; no debemos confundir ambas evidencias.</p>
+<h2>Referencias oficiales</h2>
+<ul>
+<li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/security/ims-support">IMS y acceso a AEM Cloud</a>.</li>
+<li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/developing/advanced/service-users">Service users</a>.</li>
+<li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/security/touch-ui-principal-view">Administración de permisos</a>.</li>
+<li><a href="https://sling.apache.org/documentation/bundles/repository-initialization.html">Repo Init: lenguaje y versiones</a>.</li>
+<li><a href="https://jackrabbit.apache.org/oak/docs/security/permission/evaluation.html">Evaluación de permisos Oak</a>.</li>
+</ul>
+</main><footer><a href="../lessons/0028-permissions-as-code.html">Slides de la sesión 28</a> · <a href="index.html">Referencias</a></footer></body></html>

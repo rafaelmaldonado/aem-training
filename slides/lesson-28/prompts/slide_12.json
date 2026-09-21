@@ -1,0 +1,45 @@
+{
+  "slide": 12,
+  "title": "Questions / Thank you.",
+  "prompt": "# Codex PPT Slide Image Prompt\n\n## Canvas\n{\n  \"type\": \"16:9 full-slide PowerPoint image\",\n  \"language\": \"English\",\n  \"slide_number\": 12,\n  \"render_slide_number\": true\n}\n\n## Deck Goal\nModel narrowly scoped repository permissions and inspect effective access with Repo Init.\n\n## Required Background\n{\n  \"deck_context\": {\n    \"source_summary\": \"Class28, week6, September23 2026. Traditional AEM Sites on AEM as a Cloud Service. Demo uses local Author SDK only. Configuration and ACL inspection today; subservice mappings and ResourceResolver lifecycle belong to Class29.\",\n    \"canonical_facts\": [\n      \"Humans on Cloud Author authenticate through IMS; repository ACLs govern content operations. A service user is a repository identity for code, with no password login.\",\n      \"Demo root /content/training-permissions has guides and outside child folders. training-guide-editors receives read on root and modifyProperties on guides only. training-guide-reader receives read on guides only via resource ACL.\",\n      \"A narrow grant does not remove other grants. everyone, all groups, ancestors, restrictions and direct user entries matter. Deny does not always win in Oak.\",\n      \"Repo Init creates identities and paths before ACLs. Source-controlled author configuration. create path used for broad SDK compatibility; modern Sling prefers ensure nodes.\",\n      \"Local human demo is manually created with an uncommitted password and assigned only to training-guide-editors. No administrators membership.\",\n      \"No Java, HTTP security bypass, cloud deployment or claimed SDK execution. Final page contains only Questions, Thank you. and 12.\"\n    ]\n  },\n  \"slide_local_context\": {\n    \"required_background\": \"Passive closing. Render ONLY Questions, Thank you. and the number 12. Abstract speech bubble and quiet repository motif; no footer, metadata, additional prompt or exercise.\"\n  }\n}\n\n## Global Style\n{\n  \"name\": \"technical atlas courseware\",\n  \"visual_direction\": \"Technical atlas courseware: query execution, evidence and index coverage.\",\n  \"color_palette\": \"Warm ivory drafting-paper background with a faint square grid; deep navy titles; cobalt for source-to-target flow; violet for configuration; green for valid or protected local state; restrained orange for destructive actions and cautions.\",\n  \"typography\": \"Large bold condensed sans-serif headings; crisp sans-serif supporting text; true monospace appearance for repository paths, property names, action names and state values.\",\n  \"texture_and_finish\": \"Flat 2D technical diagrams, fine rules, precise page, relationship, configuration and status icons. No gradients, neon, glass, 3D, photography or generic corporate people.\",\n  \"deck_consistency\": \"Match Class24 slide02 palette, typography and drafting grid; vary layouts.\"\n}\n\n## Input Images\n\n- Image 1: /Users/juanmaldonado/Projects/aem-training/slides/lesson-27/origin_image/slide_04.png — Established lesson27 style only; replace every piece of content.; Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams.\n\n\n## Slide\n{\n  \"number\": 12,\n  \"title\": \"Questions / Thank you.\",\n  \"role\": null,\n  \"intent\": null\n}\n\n## Text\n{\n  \"title\": \"Questions / Thank you.\",\n  \"key_points\": [\n    \"Questions\",\n    \"Thank you.\"\n  ],\n  \"speaker_focus\": null\n}\n\n## Layout\n{\n  \"role\": \"closing\",\n  \"composition\": \"Passive closing. Render ONLY Questions, Thank you. and the number 12. Abstract speech bubble and quiet repository motif; no footer, metadata, additional prompt or exercise.\",\n  \"intent\": \"Passive closing. Render ONLY Questions, Thank you. and the number 12. Abstract speech bubble and quiet repository motif; no footer, metadata, additional prompt or exercise.\"\n}\n\n## Constraints\n[\n  \"English only. Render exact key points clearly. Use reference only for visual style.\",\n  \"16:9 landscape. Ivory drafting grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.\",\n  \"No fabricated screenshot, measured results or unsupported claims.\",\n  \"Render slide number 12 exactly once top-left inside the image.\",\n  \"No extra text on closing slide.\"\n]\n\n## Style Reference Rule\nUse Image 1 as the approved sample-slide style reference. Match its palette, typography mood, density, texture, and overall visual identity. Do not copy its exact layout unless this slide's layout explicitly asks for it.\n\n## Input Image Handling Rules\nFor any input image marked as a strict input asset, include it visibly and preserve its content. Do not redraw, replace, relabel, or invent a similar figure. Scale and crop only as needed for composition while keeping the important labels, arrows, data, and relationships recognizable.\n\n## Universal Constraints\n- The final image itself must contain the title and key points.\n- Render Chinese text exactly and legibly; avoid garbled characters.\n- Keep the confirmed deck style consistent while varying layout by slide role.\n- No watermark, unrelated logo, or extra slide number.\n",
+  "out": "slide_12.png",
+  "input_images": [
+    {
+      "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-27/origin_image/slide_04.png",
+      "role": "Established lesson27 style only; replace every piece of content.",
+      "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+    }
+  ],
+  "requires_context_images": true,
+  "expected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "edit",
+    "prompt_source": "Per-slide lesson28 JSON job; established course style and continuation workflow.",
+    "size": "16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-27/origin_image/slide_04.png",
+    "input_context_preparation": "Parent and worker inspect local style reference using view_image, then pass reference to image_gen.",
+    "handoff_rule": "Use built-in image_gen only; redraw the reference as the specified slide. Existing course workflow and prior intermediate-confirmation waiver persist."
+  },
+  "generation_contract": {
+    "must_use_selected_image_backend": true,
+    "must_match_sample_generation_method": true,
+    "forbidden_final_image_methods": [
+      "local drawing/rendering scripts",
+      "Pillow-generated slides",
+      "SVG/HTML/CSS/canvas screenshots",
+      "python-pptx/PptxGenJS/native PPT layout screenshots",
+      "manually composited text/image overlays"
+    ],
+    "must_return": [
+      "backend_used",
+      "selected_source",
+      "qa_note"
+    ]
+  },
+  "render_slide_number": true,
+  "slide_number_text": "12"
+}

@@ -1,0 +1,15 @@
+create path (sling:Folder) /content/training-permissions
+create path (sling:Folder) /content/training-permissions/guides
+create path (sling:Folder) /content/training-permissions/outside
+
+create group training-guide-editors
+create service user training-guide-reader with forced path system/cq:services/training
+
+set ACL for training-guide-editors
+    allow jcr:read on /content/training-permissions
+    allow jcr:modifyProperties on /content/training-permissions/guides
+end
+
+set ACL for training-guide-reader
+    allow jcr:read on /content/training-permissions/guides
+end
