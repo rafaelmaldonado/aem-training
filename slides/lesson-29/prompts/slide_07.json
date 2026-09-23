@@ -1,0 +1,43 @@
+{
+  "slide": 7,
+  "title": "One small local example",
+  "prompt": "# Codex PPT Slide Image Prompt\n\n## Canvas\n{\n  \"type\": \"16:9 full-slide PowerPoint image\",\n  \"language\": \"English\",\n  \"slide_number\": 7,\n  \"render_slide_number\": false\n}\n\n## Deck Goal\nChoose the correct resolver, configure a subservice mapping, close owned resolvers and diagnose mapping, ACL and HTTP failures.\n\n## Required Background\n{\n  \"deck_context\": {\n    \"source_summary\": \"Class29, week6, September24 2026. Traditional AEM Sites, local Author SDK. English slide images, Spanish guide. No homework, no speech or PPTX.\",\n    \"canonical_facts\": [\n      \"Request resolvers preserve caller access and are owned by Sling. Factory-created service resolvers are owned by the application and must be closed.\",\n      \"Mapping uses actual calling bundle symbolic name plus subservice to a bracketed list of service-user principal names. Mapping grants no repository permissions.\",\n      \"Demo uses wknd.core:training-guide-read=[training-guide-reader], fixed /content/training-permissions/guides, resource-based read ACL from lesson28, no arbitrary HTTP path or elevated servlet.\",\n      \"Principal-based login does not expand group memberships; give intended privileges directly to mapped principals. Resource ACL and principal-based login are different dimensions.\",\n      \"Demo OSGi service reads only the fixed folder and returns a detached String inside try-with-resources. LoginException differs from a null resource. No SDK execution is claimed.\",\n      \"CSRF protection is an HTTP-layer check for protected write requests, not a replacement for ACLs. Do not disable filters or fall back to admin.\"\n    ]\n  },\n  \"slide_local_context\": {\n    \"required_background\": \"OSGi service to factory to fixed folder to detached String. Show subservice label near factory, closure at boundary.\"\n  }\n}\n\n## Global Style\n{\n  \"name\": \"technical atlas courseware\",\n  \"visual_direction\": \"Technical atlas courseware: query execution, evidence and index coverage.\",\n  \"color_palette\": \"Warm ivory drafting-paper background with a faint square grid; deep navy titles; cobalt for source-to-target flow; violet for configuration; green for valid or protected local state; restrained orange for destructive actions and cautions.\",\n  \"typography\": \"Large bold condensed sans-serif headings; crisp sans-serif supporting text; true monospace appearance for repository paths, property names, action names and state values.\",\n  \"texture_and_finish\": \"Flat 2D technical diagrams, fine rules, precise page, relationship, configuration and status icons. No gradients, neon, glass, 3D, photography or generic corporate people.\",\n  \"deck_consistency\": \"Match Class24 slide02 palette, typography and drafting grid; vary layouts.\"\n}\n\n## Input Images\n\n- Image 1: /Users/juanmaldonado/Projects/aem-training/slides/lesson-28/origin_image/slide_04.png — Established lesson28 style only; replace every piece of content.; Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams.\n\n\n## Slide\n{\n  \"number\": 7,\n  \"title\": \"One small local example\",\n  \"role\": null,\n  \"intent\": null\n}\n\n## Text\n{\n  \"title\": \"One small local example\",\n  \"key_points\": [\n    \"Read /content/training-permissions/guides\",\n    \"Use subservice training-guide-read\",\n    \"Return a String, not a live Resource.\",\n    \"No servlet, arbitrary path or write operation.\"\n  ],\n  \"speaker_focus\": null\n}\n\n## Layout\n{\n  \"role\": \"flow\",\n  \"composition\": \"OSGi service to factory to fixed folder to detached String. Show subservice label near factory, closure at boundary.\",\n  \"intent\": \"OSGi service to factory to fixed folder to detached String. Show subservice label near factory, closure at boundary.\"\n}\n\n## Constraints\n[\n  \"English only; exact text and correct code identifiers.\",\n  \"16:9 landscape, ivory grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.\",\n  \"Render number 07 exactly once top-left inside the image.\",\n  \"Use reference only for style. No extra closing slide text.\"\n]\n\n## Style Reference Rule\nUse Image 1 as the approved sample-slide style reference. Match its palette, typography mood, density, texture, and overall visual identity. Do not copy its exact layout unless this slide's layout explicitly asks for it.\n\n## Input Image Handling Rules\nFor any input image marked as a strict input asset, include it visibly and preserve its content. Do not redraw, replace, relabel, or invent a similar figure. Scale and crop only as needed for composition while keeping the important labels, arrows, data, and relationships recognizable.\n\n## Universal Constraints\n- The final image itself must contain the title and key points.\n- Render Chinese text exactly and legibly; avoid garbled characters.\n- Keep the confirmed deck style consistent while varying layout by slide role.\n- No watermark, unrelated logo, or extra slide number.\n",
+  "out": "slide_07.png",
+  "input_images": [
+    {
+      "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-28/origin_image/slide_04.png",
+      "role": "Established lesson28 style only; replace every piece of content.",
+      "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+    }
+  ],
+  "requires_context_images": true,
+  "expected_backend": "scripts/image_gen.py (OpenAI API)",
+  "sample_generation_method": {
+    "backend_used": "scripts/image_gen.py (OpenAI API)",
+    "tool_name": "scripts/image_gen.py",
+    "mode": "edit",
+    "model": "gpt-image-2",
+    "size": "2560x1440",
+    "quality": "high",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-28/origin_image/slide_04.png",
+    "prompt_source": "slides/lesson-29/prompts/slide_XX.json",
+    "input_context_preparation": "Lesson 28 slide 04 supplied as a style-only image input.",
+    "handoff_rule": "Use the user-authorized OpenAI API fallback through scripts/image_gen.py."
+  },
+  "generation_contract": {
+    "must_use_selected_image_backend": true,
+    "must_match_sample_generation_method": true,
+    "forbidden_final_image_methods": [
+      "local drawing/rendering scripts",
+      "Pillow-generated slides",
+      "SVG/HTML/CSS/canvas screenshots",
+      "python-pptx/PptxGenJS/native PPT layout screenshots",
+      "manually composited text/image overlays"
+    ],
+    "must_return": [
+      "backend_used",
+      "selected_source",
+      "qa_note"
+    ]
+  }
+}

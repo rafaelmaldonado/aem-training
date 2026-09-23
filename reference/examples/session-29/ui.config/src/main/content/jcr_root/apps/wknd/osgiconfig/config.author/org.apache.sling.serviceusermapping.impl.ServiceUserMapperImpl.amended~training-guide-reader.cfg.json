@@ -1,0 +1,5 @@
+{
+  "user.mapping": [
+    "wknd.core:training-guide-read=[training-guide-reader]"
+  ]
+}

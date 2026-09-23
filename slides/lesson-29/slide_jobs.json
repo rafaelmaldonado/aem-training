@@ -1,0 +1,501 @@
+{
+  "run_status": "slides_recorded",
+  "deck_name": "lesson-29",
+  "selected_backend": "scripts/image_gen.py (OpenAI API)",
+  "sample_generation_method": {
+    "backend_used": "scripts/image_gen.py (OpenAI API)",
+    "tool_name": "scripts/image_gen.py",
+    "mode": "edit",
+    "model": "gpt-image-2",
+    "size": "2560x1440",
+    "quality": "high",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-28/origin_image/slide_04.png",
+    "prompt_source": "slides/lesson-29/prompts/slide_XX.json",
+    "input_context_preparation": "Lesson 28 slide 04 supplied as a style-only image input.",
+    "handoff_rule": "Use the user-authorized OpenAI API fallback through scripts/image_gen.py."
+  },
+  "max_concurrent_slides": 3,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "Repository access with the right identity",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-28/origin_image/slide_04.png",
+          "role": "Established lesson28 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide01",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_01.json",
+        "prompt_sha256": "08acadd290f9cab878115c60cb9cd76aef9590880b5cc2087bb3de90c930f042",
+        "dispatched_at": "2026-09-21T21:50:05Z"
+      },
+      "result": {
+        "agent_id": "/root/slide01",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0c5f1-f802-7c92-aecb-5a4adcaa8b95/exec-62f8e851-75db-42bb-ab84-ecacf100749a.png",
+        "selected_source_sha256": "ad19704d7705e3d9e970644cfa557a5368b302da7aa86841a2027141f6a201e0",
+        "final_image": "origin_image/slide_01.png",
+        "final_image_sha256": "ad19704d7705e3d9e970644cfa557a5368b302da7aa86841a2027141f6a201e0",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Correct title, date, author, numbering and identity routes; regenerated to remove an invented Java signature.",
+        "recorded_at": "2026-09-23T16:55:45Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "Choose whose permissions apply",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-28/origin_image/slide_04.png",
+          "role": "Established lesson28 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide02",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "55196f5bfbfda3b99fcfff75bf5709df16bc907880b8aefcefdeb18c2a2f6e73",
+        "dispatched_at": "2026-09-21T21:50:06Z"
+      },
+      "result": {
+        "agent_id": "/root/slide02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0c5f2-16b9-7720-bf6b-096168010136/exec-9f5c08ab-4bb9-495a-90fc-35006b6654a9.png",
+        "selected_source_sha256": "736e046bc4c1782b86a11535c96df53a4002e273bcac0d63e5a06f1176ef4e60",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "736e046bc4c1782b86a11535c96df53a4002e273bcac0d63e5a06f1176ef4e60",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Readable text, distinct caller/service identities and correct ownership flow.",
+        "recorded_at": "2026-09-23T16:55:46Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "Borrow the request resolver",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-28/origin_image/slide_04.png",
+          "role": "Established lesson28 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/slide03",
+        "agent_nickname": null,
+        "prompt": "prompts/slide_03.json",
+        "prompt_sha256": "67b1967e12bb181a78758e18fbc0dc6052103cab6d588d39d056c92bb88fc49a",
+        "dispatched_at": "2026-09-21T21:50:08Z"
+      },
+      "result": {
+        "agent_id": "/root/slide03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0c5f2-3beb-77c0-b1e0-5cd97e5f6c18/exec-187a5935-e727-41e3-bd84-ba33fa212ee5.png",
+        "selected_source_sha256": "29f95954901c0f73ca8d4973de8ed9b6d2910bf3b51b23970fd41bc80f0a3ff2",
+        "final_image": "origin_image/slide_03.png",
+        "final_image_sha256": "29f95954901c0f73ca8d4973de8ed9b6d2910bf3b51b23970fd41bc80f0a3ff2",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Readable request lifecycle; targeted correction keeps getResourceResolver intact.",
+        "recorded_at": "2026-09-23T16:55:46Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "A mapping connects three names",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-28/origin_image/slide_04.png",
+          "role": "Established lesson28 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "local-api-script",
+        "agent_nickname": "OpenAI API",
+        "prompt": "prompts/slide_04.json",
+        "prompt_sha256": "52710e2bac775ff9fd8b214bbdfd48da8081e63d514eddab4cec3341b071e225",
+        "dispatched_at": "2026-09-23T21:53:02Z"
+      },
+      "result": {
+        "agent_id": "local-api-script",
+        "backend_used": "scripts/image_gen.py (OpenAI API)",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-29/origin_image/slide_04.png",
+        "selected_source_sha256": "0f66ac26127f3c5d8eced274d189dba9ae4a150269baca4db16eec9ae5e56058",
+        "final_image": "origin_image/slide_04.png",
+        "final_image_sha256": "0f66ac26127f3c5d8eced274d189dba9ae4a150269baca4db16eec9ae5e56058",
+        "expected_backend": "scripts/image_gen.py (OpenAI API)",
+        "expected_backend_labels": [
+          "scripts/image_gen.py (OpenAI API)",
+          "scripts/image_gen.py"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Generated through the OpenAI API; PNG signature verified. Visual review remains required.",
+        "recorded_at": "2026-09-23T21:54:26Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "Mapping and permissions are separate",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-28/origin_image/slide_04.png",
+          "role": "Established lesson28 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "local-api-script",
+        "agent_nickname": "OpenAI API",
+        "prompt": "prompts/slide_05.json",
+        "prompt_sha256": "8da4898149298f321e3b7eacf4517b230394a628d59189e6bb748dab3d502553",
+        "dispatched_at": "2026-09-23T21:54:26Z"
+      },
+      "result": {
+        "agent_id": "local-api-script",
+        "backend_used": "scripts/image_gen.py (OpenAI API)",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-29/origin_image/slide_05.png",
+        "selected_source_sha256": "742fc4272977104e56a52d53a79b38e3b9619ffdc5b4423c921dec866d82bcf1",
+        "final_image": "origin_image/slide_05.png",
+        "final_image_sha256": "742fc4272977104e56a52d53a79b38e3b9619ffdc5b4423c921dec866d82bcf1",
+        "expected_backend": "scripts/image_gen.py (OpenAI API)",
+        "expected_backend_labels": [
+          "scripts/image_gen.py (OpenAI API)",
+          "scripts/image_gen.py"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Generated through the OpenAI API; PNG signature verified. Visual review remains required.",
+        "recorded_at": "2026-09-23T21:55:54Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "Close the resolver you create",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-28/origin_image/slide_04.png",
+          "role": "Established lesson28 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "local-api-script",
+        "agent_nickname": "OpenAI API",
+        "prompt": "prompts/slide_06.json",
+        "prompt_sha256": "10005482efb2bcb301350234128b46a5757b4bbf419bc2fe98d0e2c317918a10",
+        "dispatched_at": "2026-09-23T21:55:54Z"
+      },
+      "result": {
+        "agent_id": "local-api-script",
+        "backend_used": "scripts/image_gen.py (OpenAI API)",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-29/origin_image/slide_06.png",
+        "selected_source_sha256": "61e837dd805ef079c0635e25da0256459314c49838cbff1270a51c923aaa0b50",
+        "final_image": "origin_image/slide_06.png",
+        "final_image_sha256": "61e837dd805ef079c0635e25da0256459314c49838cbff1270a51c923aaa0b50",
+        "expected_backend": "scripts/image_gen.py (OpenAI API)",
+        "expected_backend_labels": [
+          "scripts/image_gen.py (OpenAI API)",
+          "scripts/image_gen.py"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Generated through the OpenAI API; PNG signature verified. Visual review remains required.",
+        "recorded_at": "2026-09-23T21:57:21Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "One small local example",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-28/origin_image/slide_04.png",
+          "role": "Established lesson28 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "local-api-script",
+        "agent_nickname": "OpenAI API",
+        "prompt": "prompts/slide_07.json",
+        "prompt_sha256": "eae9230a4c541425c26abcf9cfce4937435cea0730e353863a031a54ad06efc6",
+        "dispatched_at": "2026-09-23T21:57:21Z"
+      },
+      "result": {
+        "agent_id": "local-api-script",
+        "backend_used": "scripts/image_gen.py (OpenAI API)",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-29/origin_image/slide_07.png",
+        "selected_source_sha256": "7add7b04977386773e8272791e42d30045e592aefb04c8ceef640232a9cf8125",
+        "final_image": "origin_image/slide_07.png",
+        "final_image_sha256": "7add7b04977386773e8272791e42d30045e592aefb04c8ceef640232a9cf8125",
+        "expected_backend": "scripts/image_gen.py (OpenAI API)",
+        "expected_backend_labels": [
+          "scripts/image_gen.py (OpenAI API)",
+          "scripts/image_gen.py"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Generated through the OpenAI API; PNG signature verified. Visual review remains required.",
+        "recorded_at": "2026-09-23T21:58:42Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "Inspect the deployed configuration",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-28/origin_image/slide_04.png",
+          "role": "Established lesson28 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "local-api-script",
+        "agent_nickname": "OpenAI API",
+        "prompt": "prompts/slide_08.json",
+        "prompt_sha256": "3f2645a8c168051abde70276c30c162858cb1e2f0b805eda693709da7b9ed249",
+        "dispatched_at": "2026-09-23T21:58:42Z"
+      },
+      "result": {
+        "agent_id": "local-api-script",
+        "backend_used": "scripts/image_gen.py (OpenAI API)",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-29/origin_image/slide_08.png",
+        "selected_source_sha256": "8544dbec803bd1f03566650db49ff5dcb3d2ef85bf73e8619b2d55e637a93978",
+        "final_image": "origin_image/slide_08.png",
+        "final_image_sha256": "8544dbec803bd1f03566650db49ff5dcb3d2ef85bf73e8619b2d55e637a93978",
+        "expected_backend": "scripts/image_gen.py (OpenAI API)",
+        "expected_backend_labels": [
+          "scripts/image_gen.py (OpenAI API)",
+          "scripts/image_gen.py"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Generated through the OpenAI API; PNG signature verified. Visual review remains required.",
+        "recorded_at": "2026-09-23T22:00:06Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Diagnose the failing layer",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-28/origin_image/slide_04.png",
+          "role": "Established lesson28 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "local-api-script",
+        "agent_nickname": "OpenAI API",
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "f609c31db10ac1705a97d27695f23eaab2dd6fe107b2f5c9ca8c24b0f7ef736e",
+        "dispatched_at": "2026-09-23T22:00:06Z"
+      },
+      "result": {
+        "agent_id": "local-api-script",
+        "backend_used": "scripts/image_gen.py (OpenAI API)",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-29/origin_image/slide_09.png",
+        "selected_source_sha256": "65029b6ef9ad9f6df3058877ae842c4beeacd2c2561eee0256933431b6172fd4",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "65029b6ef9ad9f6df3058877ae842c4beeacd2c2561eee0256933431b6172fd4",
+        "expected_backend": "scripts/image_gen.py (OpenAI API)",
+        "expected_backend_labels": [
+          "scripts/image_gen.py (OpenAI API)",
+          "scripts/image_gen.py"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Generated through the OpenAI API; PNG signature verified. Visual review remains required.",
+        "recorded_at": "2026-09-23T22:01:30Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_10",
+      "number": 10,
+      "title": "CSRF is an HTTP check",
+      "job": "prompts/slide_10.json",
+      "out": "origin_image/slide_10.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-28/origin_image/slide_04.png",
+          "role": "Established lesson28 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "local-api-script",
+        "agent_nickname": "OpenAI API",
+        "prompt": "prompts/slide_10.json",
+        "prompt_sha256": "9bc7ff49b65e76b56274e7e6121f2d932f672677a5e9350499fe17fe870935e9",
+        "dispatched_at": "2026-09-23T22:01:30Z"
+      },
+      "result": {
+        "agent_id": "local-api-script",
+        "backend_used": "scripts/image_gen.py (OpenAI API)",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-29/origin_image/slide_10.png",
+        "selected_source_sha256": "2ff71b7b9bd07b1ca0cd69c8085695d5a008f33bf2faa2767a1e7c31d0037373",
+        "final_image": "origin_image/slide_10.png",
+        "final_image_sha256": "2ff71b7b9bd07b1ca0cd69c8085695d5a008f33bf2faa2767a1e7c31d0037373",
+        "expected_backend": "scripts/image_gen.py (OpenAI API)",
+        "expected_backend_labels": [
+          "scripts/image_gen.py (OpenAI API)",
+          "scripts/image_gen.py"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Generated through the OpenAI API; PNG signature verified. Visual review remains required.",
+        "recorded_at": "2026-09-23T22:02:52Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_11",
+      "number": 11,
+      "title": "Key takeaways",
+      "job": "prompts/slide_11.json",
+      "out": "origin_image/slide_11.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-28/origin_image/slide_04.png",
+          "role": "Established lesson28 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "local-api-script",
+        "agent_nickname": "OpenAI API",
+        "prompt": "prompts/slide_11.json",
+        "prompt_sha256": "36b05dd0d0467b0c410377ae28c83b8c81ae54882c4800bfefa0cfcb0de36dbe",
+        "dispatched_at": "2026-09-23T22:02:52Z"
+      },
+      "result": {
+        "agent_id": "local-api-script",
+        "backend_used": "scripts/image_gen.py (OpenAI API)",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-29/origin_image/slide_11.png",
+        "selected_source_sha256": "8d6e6bbdeb5278009017eb5552cb3518aa61cd66795810c661716085205db48b",
+        "final_image": "origin_image/slide_11.png",
+        "final_image_sha256": "8d6e6bbdeb5278009017eb5552cb3518aa61cd66795810c661716085205db48b",
+        "expected_backend": "scripts/image_gen.py (OpenAI API)",
+        "expected_backend_labels": [
+          "scripts/image_gen.py (OpenAI API)",
+          "scripts/image_gen.py"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Generated through the OpenAI API; PNG signature verified. Visual review remains required.",
+        "recorded_at": "2026-09-23T22:04:17Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_12",
+      "number": 12,
+      "title": "Questions",
+      "job": "prompts/slide_12.json",
+      "out": "origin_image/slide_12.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-28/origin_image/slide_04.png",
+          "role": "Established lesson28 style only; replace every piece of content.",
+          "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "local-api-script",
+        "agent_nickname": "OpenAI API",
+        "prompt": "prompts/slide_12.json",
+        "prompt_sha256": "b53f55e6acf3518aaffe88dc5c5c13a89f614601a4df714ae42bb556d2b41efd",
+        "dispatched_at": "2026-09-23T22:04:17Z"
+      },
+      "result": {
+        "agent_id": "local-api-script",
+        "backend_used": "scripts/image_gen.py (OpenAI API)",
+        "selected_source": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-29/origin_image/slide_12.png",
+        "selected_source_sha256": "8323605de6398016920421a81ae56968cf9e97e2d4695f5c24591875962907e2",
+        "final_image": "origin_image/slide_12.png",
+        "final_image_sha256": "8323605de6398016920421a81ae56968cf9e97e2d4695f5c24591875962907e2",
+        "expected_backend": "scripts/image_gen.py (OpenAI API)",
+        "expected_backend_labels": [
+          "scripts/image_gen.py (OpenAI API)",
+          "scripts/image_gen.py"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Generated through the OpenAI API; PNG signature verified. Visual review remains required.",
+        "recorded_at": "2026-09-23T22:05:22Z"
+      },
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-09-23T22:05:22Z"
+}

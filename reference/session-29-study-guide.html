@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sesión 29 · Identidad correcta · AEM Training</title><link rel="stylesheet" href="../assets/styles.css"></head><body class="study-guide"><a class="skip-link" href="#contenido">Saltar al contenido</a><nav class="site-nav" aria-label="Primary"><a class="brand" href="../index.html">AEM Training</a><ul><li><a href="../index.html">Overview</a></li><li><a href="../reference/aem-course-topics.html">Syllabus</a></li><li><a href="../reference/wknd-project-backlog.html">Practices</a></li><li><a href="../reference/index.html">References</a></li></ul></nav><header><p class="eyebrow">Semana 6 · Sesión 29 · 24 de septiembre de 2026</p><h1>Acceder al repositorio con la identidad correcta</h1><p class="lede">Request resolvers, service mappings, ciclo de vida y diagnóstico por capa.</p><ul class="meta"><li>Resumen en español</li><li>Ejemplo local</li><li><a href="session-29-study-guide.md" download>Descargar Markdown</a></li></ul></header><main id="contenido"><p><strong>Jueves 24 de septiembre de 2026 · Semana 6 · Núcleo de 30 minutos, ampliable a 60</strong></p>
+<p><a href="session-29-study-guide.html">Versión HTML</a> · <a href="../lessons/0029-resource-resolver-identity.html#slide-deck">Slides en inglés</a> · <a href="#ejemplos-locales">Ejemplo local</a></p>
+<p>Un <code>ResourceResolver</code> permite trabajar con recursos bajo un contexto de acceso. Elegirlo también significa elegir qué permisos se aplican. En una acción del usuario, el resolver de la petición conserva ese contexto; en una tarea técnica independiente, un service resolver usa los principales configurados para el servicio. Sustituir uno por otro para conseguir que una lectura funcione puede exponer contenido que el solicitante no tenía permitido consultar.</p>
+<p>Esta sesión conecta la identidad y la ACL de la sesión 28 con una clase Java pequeña. Un mapping relaciona el bundle que pide el acceso con un subservice y un principal; el código obtiene un resolver propio, lee una carpeta fija y lo cierra. Separaremos los fallos de autenticación del servicio, de lectura del recurso y de protección HTTP. El instructor suministra el fixture completo: no hace falta haber realizado una práctica anterior.</p>
+<ul>
+<li>El resolver de la petición conserva el acceso del solicitante; Sling administra su cierre.</li>
+<li>Un service resolver sirve a una tarea técnica concreta; quien lo crea debe cerrarlo.</li>
+<li>El mapping combina <strong>Bundle-SymbolicName, subservice y principal</strong>, con nombres exactos.</li>
+<li>El mapping selecciona identidad; las ACL autorizan operaciones sobre recursos.</li>
+<li>Devuelve valores independientes del resolver, no recursos que dependan de él después del cierre.</li>
+<li>Un HTTP 403 necesita diagnóstico de la capa que rechaza la petición antes de tocar permisos.</li>
+</ul>
+<nav aria-label="Contenido de la guía"><a href="#identidad">Identidad</a> · <a href="#mapping">Mapping</a> · <a href="#ejemplos-locales">Ejemplo local</a> · <a href="#csrf">CSRF</a> · <a href="#repaso">Repaso</a></nav><h2>Recorrido de la sesión</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Minutos</th>
+<th>Slides</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0–6</td>
+<td>1–3</td>
+<td>Elegir identidad y reconocer un resolver prestado.</td>
+</tr>
+<tr>
+<td>6–13</td>
+<td>4–6</td>
+<td>Mapping, permisos y ciclo de vida.</td>
+</tr>
+<tr>
+<td>13–23</td>
+<td>7–9</td>
+<td>Leer el ejemplo e inspeccionar configuración y fallos.</td>
+</tr>
+<tr>
+<td>23–27</td>
+<td>10</td>
+<td>Separar CSRF de autorización del repositorio.</td>
+</tr>
+<tr>
+<td>27–30</td>
+<td>11–12</td>
+<td>Key takeaways y preguntas.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Para ampliar a 60 minutos: 20 de instalación y lectura guiada del log, y 10 de preguntas. Es material de consulta y demostración; no añade entrega ni práctica obligatoria por sesión. El viernes se retoma la práctica semanal con participación voluntaria.</p>
+<p><a id="identidad"></a></p>
+<h2>1. Elegir el contexto de acceso</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Situación</th>
+<th>Resolver apropiado</th>
+<th>Propiedad del cierre</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Un servlet o Sling Model lee contenido para la persona que hace la petición.</td>
+<td><code>request.getResourceResolver()</code> o resolver recibido del contexto.</td>
+<td>Prestado: no lo cierres.</td>
+</tr>
+<tr>
+<td>Un trabajo técnico sin petición necesita leer una ruta delimitada.</td>
+<td><code>ResourceResolverFactory.getServiceResourceResolver(authInfo)</code>.</td>
+<td>Propio: ciérralo con <code>try-with-resources</code>.</td>
+</tr>
+<tr>
+<td>Un helper recibe un resolver como parámetro.</td>
+<td>Usa el recibido bajo el contrato del caller.</td>
+<td>El helper no adquiere su propiedad al recibirlo.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Una operación privilegiada disparada por HTTP requiere autorización explícita del solicitante y validación de los datos antes del acceso técnico. Que el service user pueda leer una ruta no autoriza al usuario a obtener su contenido. Este ejemplo se activa como componente OSGi local y no publica un servlet privilegiado.</p>
+<p>El resolver y sus recursos no se deben compartir entre peticiones o hilos. No guardes un resolver en un campo de un servicio singleton. Un <code>Resource</code>, un iterador o un objeto adaptado pueden depender de su ciclo de vida: copia el dato necesario dentro del bloque. Adaptar el resolver a una <code>Session</code> no crea otra sesión de tu propiedad; no hagas <code>logout()</code> sobre esa sesión prestada. <a href="https://sling.apache.org/apidocs/sling12/org/apache/sling/api/resource/ResourceResolver.html">Contrato de ResourceResolver — Sling</a>.</p>
+<p><a id="mapping"></a></p>
+<h2>2. Los tres nombres del mapping</h2>
+<pre tabindex="0"><code class="language-text">wknd.core:training-guide-read=[training-guide-reader]
+</code></pre>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Parte</th>
+<th>Significado</th>
+<th>Dónde comprobarla</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>wknd.core</code></td>
+<td>Nombre simbólico del bundle que obtiene el factory y solicita el resolver.</td>
+<td>Manifest <code>Bundle-SymbolicName</code> y consola local de bundles.</td>
+</tr>
+<tr>
+<td><code>training-guide-read</code></td>
+<td>Subservice: una tarea del bundle.</td>
+<td>Constante usada con <code>ResourceResolverFactory.SUBSERVICE</code>.</td>
+</tr>
+<tr>
+<td><code>[training-guide-reader]</code></td>
+<td>Lista de nombres de principales de service users.</td>
+<td>Identidad creada con Repo Init y propiedad <code>rep:principalName</code>.</td>
+</tr>
+</tbody>
+</table></div>
+<p>No uses el package Java, el nombre visible del bundle ni su ID numérico como sustitutos del nombre simbólico. La configuración se añade con el factory PID <code>org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended</code> y la propiedad <code>user.mapping</code>. La documentación de Sling describe también fallbacks; no dependas de un mapping global para ocultar un error de nombre. <a href="https://sling.apache.org/documentation/the-sling-engine/service-authentication.html">Service Authentication — Sling</a>.</p>
+<p>El formato con corchetes realiza login por principales y no expande membresías de grupos, incluido <code>everyone</code>. Declara directamente los permisos necesarios para los principales mapeados. El formato antiguo sin corchetes mapea por ID y está obsoleto. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/security/best-practices-for-sling-service-user-mapping-and-service-user-definition">Buenas prácticas de mappings — Adobe</a>.</p>
+<p><strong>Login por principales y ACL basada en principales no son lo mismo.</strong> El primero define cómo se forma la identidad; la segunda es un modelo de política. Podemos usar el mapping con corchetes y la ACL basada en recursos (<code>set ACL</code>) que ya concede lectura a <code>training-guide-reader</code> en la sesión 28. No hay que cambiarla por <code>set principal ACL</code> para realizar esta demostración.</p>
+<p><a id="ejemplos-locales"></a></p>
+<h2>3. Ejemplo completo en Author local</h2>
+<h3>A. Preparar un punto de partida independiente</h3>
+<ol>
+<li>Usa un SDK Author local en <code>http://localhost:4502</code> y un proyecto WKND o Archetype que ya compile. Los archivos siguientes van en ese proyecto AEM, no se compilan como un reactor desde el repositorio del curso.</li>
+<li>Comprueba que las rutas e identidades <code>training-permissions</code> y <code>training-guide-reader</code> no pertenezcan a otro trabajo. Si hay colisión, cambia el prefijo de forma coherente en Java, Repo Init y mapping.</li>
+<li>Instala la <a href="examples/session-28/ui.config/src/main/content/jcr_root/apps/wknd/osgiconfig/config.author/org.apache.sling.jcr.repoinit.RepositoryInitializer~training-permissions.cfg.json">configuración Repo Init suministrada en la sesión 28</a>. No exige una entrega previa: el archivo crea el árbol y la identidad. <a href="examples/session-28/permissions.repoinit">Script legible</a> y <a href="session-28-study-guide.html#ejemplos-locales">pasos de instalación</a>.</li>
+<li>Como administrador, comprueba en CRXDE local que existe <code>/content/training-permissions/guides</code>, de tipo <code>sling:Folder</code>, y que <code>training-guide-reader</code> es un <code>rep:SystemUser</code> con <code>jcr:read</code> asignado directamente en esa ruta. No es una página de Sites.</li>
+<li>Para el resultado inicial no necesitas añadir propiedades: el lector devolverá <code>guides</code> si no existe <code>jcr:title</code>. Opcionalmente, como administrador local, añade <code>jcr:title</code> de tipo String con valor <code>Training guides</code> y guarda para ver el otro caso.</li>
+</ol>
+<p>No crees contraseñas para el service user ni uses un resolver administrativo. La cuenta administradora prepara el fixture; la lectura de la clase usa el mapping.</p>
+<h3>B. Añadir el mapping y habilitar la demo sólo en Author</h3>
+<p>Copia los dos JSON en <code>ui.config/src/main/content/jcr_root/apps/wknd/osgiconfig/config.author/</code>.</p>
+<p><strong>Mapping:</strong> <code>org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~training-guide-reader.cfg.json</code></p>
+<p><a href="examples/session-29/ui.config/src/main/content/jcr_root/apps/wknd/osgiconfig/config.author/org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~training-guide-reader.cfg.json">Descargar org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended~training-guide-reader.cfg.json</a></p>
+<pre tabindex="0"><code class="language-json">{
+  &quot;user.mapping&quot;: [
+    &quot;wknd.core:training-guide-read=[training-guide-reader]&quot;
+  ]
+}
+</code></pre>
+<p><strong>Activación de la demo:</strong> <code>com.adobe.aem.guides.wknd.core.training.TrainingGuideReader.cfg.json</code></p>
+<p><a href="examples/session-29/ui.config/src/main/content/jcr_root/apps/wknd/osgiconfig/config.author/com.adobe.aem.guides.wknd.core.training.TrainingGuideReader.cfg.json">Descargar com.adobe.aem.guides.wknd.core.training.TrainingGuideReader.cfg.json</a></p>
+<pre tabindex="0"><code class="language-json">{}
+</code></pre>
+<p>El segundo archivo es intencionalmente vacío: su presencia satisface <code>ConfigurationPolicy.REQUIRE</code>. Sin esa configuración el componente de demostración no se activa. <code>config.author</code> limita ambas configuraciones a Author. Para Archetype cambia la raíz <code>/apps/wknd</code>, el package Java y el nombre del PID de la clase; cambia también <code>wknd.core</code> por el nombre simbólico real. Conserva el subservice idéntico en Java, la referencia DS y el mapping.</p>
+<h3>C. Clase Java completa</h3>
+<p>Copia el archivo en <code>core/src/main/java/com/adobe/aem/guides/wknd/core/training/TrainingGuideReader.java</code>.</p>
+<p><a href="examples/session-29/core/src/main/java/com/adobe/aem/guides/wknd/core/training/TrainingGuideReader.java">Descargar TrainingGuideReader.java</a></p>
+<pre tabindex="0"><code class="language-java">package com.adobe.aem.guides.wknd.core.training;
+
+import java.util.Collections;
+import org.apache.sling.api.resource.LoginException;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ResourceResolverFactory;
+import org.apache.sling.serviceusermapping.ServiceUserMapped;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ConfigurationPolicy;
+import org.osgi.service.component.annotations.Reference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@Component(service = TrainingGuideReader.class, immediate = true,
+    configurationPolicy = ConfigurationPolicy.REQUIRE,
+    reference = @Reference(name = &quot;serviceMapping&quot;, service = ServiceUserMapped.class,
+        target = &quot;(subServiceName=training-guide-read)&quot;))
+public class TrainingGuideReader {
+    private static final Logger LOG = LoggerFactory.getLogger(TrainingGuideReader.class);
+    private static final String PATH = &quot;/content/training-permissions/guides&quot;;
+
+    @Reference
+    ResourceResolverFactory resolverFactory;
+
+    public String readWithService() throws LoginException {
+        try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(
+                Collections.singletonMap(ResourceResolverFactory.SUBSERVICE, &quot;training-guide-read&quot;))) {
+            return readWith(resolver);
+        }
+    }
+
+    // Borrowed resolver: its caller owns the lifecycle.
+    public String readWith(ResourceResolver resolver) {
+        Resource resource = resolver.getResource(PATH);
+        if (resource == null) {
+            throw new IllegalStateException(&quot;Folder missing or unreadable: &quot; + PATH);
+        }
+        return resource.getValueMap().get(&quot;jcr:title&quot;, resource.getName());
+    }
+
+    @Activate
+    protected void activate() {
+        try {
+            LOG.info(&quot;Training guide title: {}&quot;, readWithService());
+        } catch (LoginException e) {
+            LOG.error(&quot;Training service login failed; inspect mapping and principal&quot;, e);
+        } catch (IllegalStateException e) {
+            LOG.error(&quot;Training read failed; inspect fixture and read permissions&quot;, e);
+        }
+    }
+}
+</code></pre>
+<p><code>readWithService()</code> crea y cierra su resolver. <code>readWith()</code> recibe uno prestado y no lo cierra: se puede invocar con el resolver de una petición cuando la operación debe respetar al solicitante. Ambos leen únicamente la carpeta fija; no reciben rutas arbitrarias de HTTP. Devuelven un String ya obtenido dentro del alcance válido.</p>
+<p>La referencia obligatoria <code>ServiceUserMapped</code> retrasa la activación hasta que el mapping esté disponible. Si está ausente o inválido, el componente puede permanecer <strong>unsatisfied</strong> sin entrar en <code>activate()</code>: no esperes necesariamente una <code>LoginException</code> en el log. Si el login falla al ejecutar una llamada, el método público propaga la excepción; el disparador de demo la registra. Una carpeta inexistente o invisible causa otro mensaje y no se transforma en una lectura elevada. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/developing/advanced/service-users">Ejemplo de ServiceUserMapped — Adobe</a>.</p>
+<h3>D. Construir, instalar y observar</h3>
+<ol>
+<li>Ejecuta la construcción local de tu baseline desde la raíz del proyecto AEM. En WKND estándar suele ser <code>mvn clean install -PautoInstallSinglePackage</code>; conserva las versiones Java/SDK, perfiles y autenticación propios del proyecto.</li>
+<li>En <a href="http://localhost:4502/system/console/bundles">Bundles local</a>, abre el bundle core y confirma su estado Active y <code>Bundle-SymbolicName</code>. Compáralo con <code>wknd.core</code> en el JSON.</li>
+<li>En <a href="http://localhost:4502/system/console/configMgr">Configuration Manager local</a>, comprueba la instancia del mapping y la configuración de <code>TrainingGuideReader</code>. Inspecciona sin introducir cambios manuales que diverjan de los archivos.</li>
+<li>En <a href="http://localhost:4502/system/console/components">Components local</a>, busca <code>com.adobe.aem.guides.wknd.core.training.TrainingGuideReader</code>. Si falta, revisa instalación y metadatos DS. Si está unsatisfied, revisa configuración requerida, <code>resolverFactory</code> y <code>serviceMapping</code>.</li>
+<li>Busca <code>TrainingGuideReader</code> en <code>crx-quickstart/logs/error.log</code>. Si el logger permite INFO, el resultado esperado es <code>Training guide title: guides</code> o el título preparado. Si INFO está filtrado, usa un logger local para ese package siguiendo la <a href="session-23-study-guide.html#ejemplos-locales">guía 23</a>.</li>
+<li>Para repetir la lectura, deshabilita y vuelve a habilitar <strong>sólo este componente de demo</strong> en Components local. Su activación lee una vez; no es un scheduler ni vuelve a ejecutarse automáticamente al editar la carpeta.</li>
+</ol>
+<p><strong>Resultados esperados, no ejecución registrada en tu instancia.</strong> Un componente Active no demuestra éxito de lectura: la demo captura y registra sus errores. Revisa el mensaje y el fixture. No hay despliegue Cloud ni edición de configuración en producción en estos pasos.</p>
+<h3>E. Reconocer los fallos sin ampliar privilegios</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de referencia"><table>
+<thead>
+<tr>
+<th>Síntoma</th>
+<th>Comprobación concreta</th>
+<th>Evita</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Componente unsatisfied</td>
+<td>Configuración requerida, mapping, nombre simbólico y principal existente.</td>
+<td>Añadir acceso global para que arranque.</td>
+</tr>
+<tr>
+<td><code>LoginException</code> al obtener resolver</td>
+<td>Mapping efectivo del bundle/subservice, identidad y disponibilidad del proveedor.</td>
+<td>Fallback a admin o a otra cuenta.</td>
+</tr>
+<tr>
+<td><code>Folder missing or unreadable</code></td>
+<td>Administrador comprueba existencia; revisa ACL del principal técnico sobre la ruta exacta.</td>
+<td>Interpretar <code>null</code> como prueba de inexistencia.</td>
+</tr>
+<tr>
+<td>Error de persistencia en otra funcionalidad</td>
+<td>Identidad, operación, privilegios, restricciones y causa de la excepción.</td>
+<td>Conceder <code>jcr:all</code> sin identificar la operación.</td>
+</tr>
+<tr>
+<td>HTTP 403</td>
+<td>Método, URL, identidad de la petición, log del filtro/handler y capa de respuesta.</td>
+<td>Dar por hecho que siempre es ACL o siempre CSRF.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Para una demostración negativa en un SDK desechable, cambia temporalmente en el mapping el principal a <code>training-guide-reader-missing</code>, instala y observa <code>serviceMapping</code> insatisfecha; después restaura el JSON original. Comprueba antes que ese principal no existe y que no hay mappings duplicados para la misma clave. No cambies permisos ni elimines identidades para provocar el fallo.</p>
+<p>La <a href="examples/session-29/core/src/test/java/com/adobe/aem/guides/wknd/core/training/TrainingGuideReaderTest.java">prueba de cierre incluida</a> usa dobles de las APIs; comprueba que el resolver creado se cierre y que el prestado permanezca abierto, pero no valida ACL reales:</p>
+<pre tabindex="0"><code class="language-java">package com.adobe.aem.guides.wknd.core.training;
+
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ResourceResolverFactory;
+import org.apache.sling.api.resource.ValueMap;
+import org.junit.jupiter.api.Test;
+
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.argThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+class TrainingGuideReaderTest {
+    @Test
+    void closesOnlyTheResolverItCreates() throws Exception {
+        ResourceResolverFactory factory = mock(ResourceResolverFactory.class);
+        ResourceResolver resolver = mock(ResourceResolver.class);
+        Resource resource = mock(Resource.class);
+        ValueMap values = mock(ValueMap.class);
+        when(factory.getServiceResourceResolver(argThat(this::usesExpectedSubservice))).thenReturn(resolver);
+        when(resolver.getResource(&quot;/content/training-permissions/guides&quot;)).thenReturn(resource);
+        when(resource.getValueMap()).thenReturn(values);
+        when(values.get(&quot;jcr:title&quot;, &quot;guides&quot;)).thenReturn(&quot;Training guides&quot;);
+        when(resource.getName()).thenReturn(&quot;guides&quot;);
+
+        TrainingGuideReader reader = new TrainingGuideReader();
+        reader.resolverFactory = factory;
+
+        assertEquals(&quot;Training guides&quot;, reader.readWithService());
+        verify(resolver).close();
+    }
+
+    @Test
+    void leavesBorrowedResolverOpen() {
+        ResourceResolver resolver = mock(ResourceResolver.class);
+        Resource resource = mock(Resource.class);
+        ValueMap values = mock(ValueMap.class);
+        when(resolver.getResource(&quot;/content/training-permissions/guides&quot;)).thenReturn(resource);
+        when(resource.getValueMap()).thenReturn(values);
+        when(resource.getName()).thenReturn(&quot;guides&quot;);
+        when(values.get(&quot;jcr:title&quot;, &quot;guides&quot;)).thenReturn(&quot;guides&quot;);
+
+        assertEquals(&quot;guides&quot;, new TrainingGuideReader().readWith(resolver));
+        verify(resolver, never()).close();
+    }
+
+    private boolean usesExpectedSubservice(Map&lt;String, Object&gt; authInfo) {
+        return &quot;training-guide-read&quot;.equals(authInfo.get(ResourceResolverFactory.SUBSERVICE));
+    }
+}
+</code></pre>
+<p>La ACL efectiva necesita comprobarse en el SDK. El método de lectura no escribe ni llama a <code>commit()</code>. En código que sí escribe, <code>close()</code> libera recursos pero <strong>no sustituye a <code>commit()</code></strong>.</p>
+<p><a id="csrf"></a></p>
+<h2>4. Un 403 no identifica por sí solo el problema</h2>
+<p>CSRF protege peticiones HTTP de escritura autenticadas bajo la configuración aplicable. Se obtiene un token de <code>/libs/granite/csrf/token.json</code> con la misma sesión y se envía recién obtenido mediante <code>CSRF-Token</code>. GET no necesita ese token. Una petición puede ser rechazada antes de que se ejecute el servlet; un token válido tampoco concede permisos de repositorio. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/developing/advanced/csrf-protection">Protección CSRF y fetch — Adobe</a>.</p>
+<p>Para explicarlo en clase, usa la pestaña Network del navegador con una acción normal de Author sobre contenido de demo. Inspecciona método, URL, identidad de sesión, obtención del token y status. Correlaciona con <code>error.log</code>: un mensaje de <code>com.adobe.granite.csrf.impl.CSRFFilter</code> que rechaza el token apunta a esa capa. No compartas el valor del token ni la cookie.</p>
+<p>Si no aparece ese mensaje, revisa otras capas: Sling Referrer Filter, autorización del endpoint o, si existe un proxy, Dispatcher/CDN. El SDK directo en el puerto 4502 permite estudiar AEM sin ese proxy. Esta sesión no requiere implementar un POST ni desactivar filtros. El lector OSGi no pasa por HTTP, por lo que un problema de su mapping no se resuelve enviando un token CSRF.</p>
+<p><a id="repaso"></a></p>
+<h2>5. Repaso con respuestas</h2>
+<p><strong>El request resolver no ve una página. ¿Reintentarías con el service user?</strong> No por defecto: alteraría la identidad y podría exponer contenido. Primero determina si el usuario está autorizado y si la operación requiere realmente privilegios técnicos.</p>
+<p><strong>El subservice coincide, pero el componente queda unsatisfied. ¿Qué falta revisar?</strong> El nombre simbólico del bundle, el principal, las configuraciones efectivas y las referencias DS; el subservice es sólo una parte de la clave.</p>
+<p><strong>¿Por qué no basta con añadir el service user a un grupo lector?</strong> El login por principales del mapping con corchetes no expande esos grupos. Declara el permiso directamente para el principal utilizado.</p>
+<p><strong>¿Quién cierra el resolver que recibe <code>readWith()</code>?</strong> Su propietario. Si procede de la petición, lo administra Sling; si el caller lo creó, ese caller lo cierra.</p>
+<p><strong>¿Un token CSRF válido elimina un error de escritura por ACL?</strong> No. Son controles distintos y pueden fallar en momentos diferentes.</p>
+<p><strong>¿Se puede devolver un Resource y cerrar antes de usarlo?</strong> No es un contrato seguro. Copia los valores necesarios antes del cierre, como el String del ejemplo.</p>
+<h2>Referencias oficiales</h2>
+<ul>
+<li><a href="https://sling.apache.org/apidocs/sling12/org/apache/sling/api/resource/ResourceResolver.html">ResourceResolver: ciclo de vida y recursos — Sling</a>.</li>
+<li><a href="https://sling.apache.org/apidocs/sling12/org/apache/sling/api/resource/ResourceResolverFactory.html">ResourceResolverFactory — Sling</a>.</li>
+<li><a href="https://sling.apache.org/documentation/the-sling-engine/service-authentication.html">Service Authentication — Sling</a>.</li>
+<li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/developing/advanced/service-users">Service users — Adobe</a>.</li>
+<li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/security/best-practices-for-sling-service-user-mapping-and-service-user-definition">Mappings por principales — Adobe</a>.</li>
+<li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/developing/advanced/csrf-protection">Protección CSRF — Adobe</a>.</li>
+</ul>
+</main><footer><a href="../lessons/0029-resource-resolver-identity.html">Material de la sesión 29</a> · <a href="index.html">Referencias</a></footer></body></html>

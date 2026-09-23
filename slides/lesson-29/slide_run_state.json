@@ -1,0 +1,30 @@
+{
+  "status": "slides_recorded",
+  "history": [
+    {
+      "from": "created",
+      "to": "jobs_prepared",
+      "at": "2026-09-21T21:49:15Z",
+      "note": "prepared slide prompt jobs"
+    },
+    {
+      "from": "jobs_prepared",
+      "to": "blocked",
+      "at": "2026-09-23T16:55:47Z",
+      "note": "slide_04: Built-in image generation quota exhausted; HTTP 429 usage_limit_reached. Required backend cannot generate remaining slide."
+    },
+    {
+      "from": "blocked",
+      "to": "slides_dispatched",
+      "at": "2026-09-23T22:04:17Z",
+      "note": "all slide jobs dispatched"
+    },
+    {
+      "from": "slides_dispatched",
+      "to": "slides_recorded",
+      "at": "2026-09-23T22:05:22Z",
+      "note": "all slide images recorded"
+    }
+  ],
+  "updated_at": "2026-09-23T22:05:22Z"
+}

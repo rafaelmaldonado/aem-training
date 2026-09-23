@@ -1,0 +1,365 @@
+{
+  "language": "English",
+  "aspect_ratio": "16:9",
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 3,
+  "outputs": [
+    "PNG slide images",
+    "HTML lesson",
+    "Spanish HTML and Markdown summary",
+    "Simple Author examples with step-by-step instructions"
+  ],
+  "pptx": false,
+  "style": {
+    "name": "technical atlas courseware",
+    "visual_direction": "Technical atlas courseware: query execution, evidence and index coverage.",
+    "color_palette": "Warm ivory drafting-paper background with a faint square grid; deep navy titles; cobalt for source-to-target flow; violet for configuration; green for valid or protected local state; restrained orange for destructive actions and cautions.",
+    "typography": "Large bold condensed sans-serif headings; crisp sans-serif supporting text; true monospace appearance for repository paths, property names, action names and state values.",
+    "texture_and_finish": "Flat 2D technical diagrams, fine rules, precise page, relationship, configuration and status icons. No gradients, neon, glass, 3D, photography or generic corporate people.",
+    "deck_consistency": "Match Class24 slide02 palette, typography and drafting grid; vary layouts."
+  },
+  "deck_name": "lesson-29",
+  "title": "Class 29 · Repository access with the right identity",
+  "goal": "Choose the correct resolver, configure a subservice mapping, close owned resolvers and diagnose mapping, ACL and HTTP failures.",
+  "render_slide_number": true,
+  "numbering": {
+    "format": "01–12",
+    "position": "top-left above title",
+    "required_in_png": true,
+    "scope": "All slides including cover and Questions / Thank you."
+  },
+  "approved_style_reference": {
+    "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-28/origin_image/slide_04.png",
+    "role": "Established lesson28 style only; replace every piece of content.",
+    "fidelity": "Ivory grid, navy condensed headings, cobalt, violet, green and orange diagrams."
+  },
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "edit",
+    "prompt_source": "Per-slide lesson29 JSON job; established course continuation workflow.",
+    "size": "16:9 landscape",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-28/origin_image/slide_04.png",
+    "input_context_preparation": "Parent and worker inspect local style reference using view_image, then pass reference to image_gen.",
+    "handoff_rule": "Use built-in image_gen only; redraw the reference as the specified slide. Existing course workflow and prior intermediate-confirmation waiver persist."
+  },
+  "approval": {
+    "scope": "Create session29 following established course continuation workflow and recorded intermediate-confirmation waiver.",
+    "style": "Continue lesson28 technical atlas style.",
+    "backend": "built-in image tool",
+    "intermediate_confirmations": "Prior continuation waiver recorded in lesson24 and lesson26 persists.",
+    "speech": false,
+    "pptx": false
+  },
+  "deck_context": {
+    "source_summary": "Class29, week6, September24 2026. Traditional AEM Sites, local Author SDK. English slide images, Spanish guide. No homework, no speech or PPTX.",
+    "canonical_facts": [
+      "Request resolvers preserve caller access and are owned by Sling. Factory-created service resolvers are owned by the application and must be closed.",
+      "Mapping uses actual calling bundle symbolic name plus subservice to a bracketed list of service-user principal names. Mapping grants no repository permissions.",
+      "Demo uses wknd.core:training-guide-read=[training-guide-reader], fixed /content/training-permissions/guides, resource-based read ACL from lesson28, no arbitrary HTTP path or elevated servlet.",
+      "Principal-based login does not expand group memberships; give intended privileges directly to mapped principals. Resource ACL and principal-based login are different dimensions.",
+      "Demo OSGi service reads only the fixed folder and returns a detached String inside try-with-resources. LoginException differs from a null resource. No SDK execution is claimed.",
+      "CSRF protection is an HTTP-layer check for protected write requests, not a replacement for ACLs. Do not disable filters or fall back to admin."
+    ]
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Repository access with the right identity",
+      "key_points": [
+        "Class 29 · Week 6 · September 24, 2026",
+        "Juan Maldonado",
+        "Request resolvers, service mappings and ownership"
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "cover",
+        "composition": "Large title left, two distinct identity routes to a repository on right.",
+        "intent": "Large title left, two distinct identity routes to a repository on right."
+      },
+      "local_context": {
+        "required_background": "Large title left, two distinct identity routes to a repository on right."
+      },
+      "constraints": [
+        "English only; exact text and correct code identifiers.",
+        "16:9 landscape, ivory grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "Render number 01 exactly once top-left inside the image.",
+        "Use reference only for style. No extra closing slide text."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Choose whose permissions apply",
+      "key_points": [
+        "User action: preserve the caller’s access.",
+        "Background task: use a dedicated service identity.",
+        "A service resolver does not authorize the HTTP caller."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "decision",
+        "composition": "Two branching routes: user request to request resolver; background task to service resolver. Keep identities distinct.",
+        "intent": "Two branching routes: user request to request resolver; background task to service resolver. Keep identities distinct."
+      },
+      "local_context": {
+        "required_background": "Two branching routes: user request to request resolver; background task to service resolver. Keep identities distinct."
+      },
+      "constraints": [
+        "English only; exact text and correct code identifiers.",
+        "16:9 landscape, ivory grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "Render number 02 exactly once top-left inside the image.",
+        "Use reference only for style. No extra closing slide text."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Borrow the request resolver",
+      "key_points": [
+        "request.getResourceResolver()",
+        "Sling owns this resolver. Do not close it.",
+        "Use it only during the request.",
+        "Do not replace a denied read with elevated access."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "lifecycle",
+        "composition": "Request start, borrowed resolver, repository read, request end as horizontal lifecycle. Highlight Sling ownership.",
+        "intent": "Request start, borrowed resolver, repository read, request end as horizontal lifecycle. Highlight Sling ownership."
+      },
+      "local_context": {
+        "required_background": "Request start, borrowed resolver, repository read, request end as horizontal lifecycle. Highlight Sling ownership."
+      },
+      "constraints": [
+        "English only; exact text and correct code identifiers.",
+        "16:9 landscape, ivory grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "Render number 03 exactly once top-left inside the image.",
+        "Use reference only for style. No extra closing slide text."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "A mapping connects three names",
+      "key_points": [
+        "Bundle symbolic name: wknd.core",
+        "Subservice: training-guide-read",
+        "Principal: training-guide-reader",
+        "wknd.core:training-guide-read=[training-guide-reader]"
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "architecture",
+        "composition": "Three labeled pieces connect to exact mapping line. The line must be readable, intact and accurately spelled.",
+        "intent": "Three labeled pieces connect to exact mapping line. The line must be readable, intact and accurately spelled."
+      },
+      "local_context": {
+        "required_background": "Three labeled pieces connect to exact mapping line. The line must be readable, intact and accurately spelled."
+      },
+      "constraints": [
+        "English only; exact text and correct code identifiers.",
+        "16:9 landscape, ivory grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "Render number 04 exactly once top-left inside the image.",
+        "Use reference only for style. No extra closing slide text."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Mapping and permissions are separate",
+      "key_points": [
+        "Repo Init creates the service user and read ACL.",
+        "OSGi configuration maps bundle and subservice.",
+        "Principal-based login does not expand groups.",
+        "A valid mapping does not grant content access."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "comparison",
+        "composition": "Two columns Identity selection and Repository permission; visually show both required. No implication that principal login requires principal ACL.",
+        "intent": "Two columns Identity selection and Repository permission; visually show both required. No implication that principal login requires principal ACL."
+      },
+      "local_context": {
+        "required_background": "Two columns Identity selection and Repository permission; visually show both required. No implication that principal login requires principal ACL."
+      },
+      "constraints": [
+        "English only; exact text and correct code identifiers.",
+        "16:9 landscape, ivory grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "Render number 05 exactly once top-left inside the image.",
+        "Use reference only for style. No extra closing slide text."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Close the resolver you create",
+      "key_points": [
+        "getServiceResourceResolver(authInfo)",
+        "Use try-with-resources for an owned resolver.",
+        "Read and copy values before the block ends.",
+        "Never keep a resolver in a singleton field."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "lifecycle",
+        "composition": "Open, read, copy String, close timeline with try-with-resources bracket. Detached String leaves scope; Resource and resolver stay inside.",
+        "intent": "Open, read, copy String, close timeline with try-with-resources bracket. Detached String leaves scope; Resource and resolver stay inside."
+      },
+      "local_context": {
+        "required_background": "Open, read, copy String, close timeline with try-with-resources bracket. Detached String leaves scope; Resource and resolver stay inside."
+      },
+      "constraints": [
+        "English only; exact text and correct code identifiers.",
+        "16:9 landscape, ivory grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "Render number 06 exactly once top-left inside the image.",
+        "Use reference only for style. No extra closing slide text."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "One small local example",
+      "key_points": [
+        "Read /content/training-permissions/guides",
+        "Use subservice training-guide-read",
+        "Return a String, not a live Resource.",
+        "No servlet, arbitrary path or write operation."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "flow",
+        "composition": "OSGi service to factory to fixed folder to detached String. Show subservice label near factory, closure at boundary.",
+        "intent": "OSGi service to factory to fixed folder to detached String. Show subservice label near factory, closure at boundary."
+      },
+      "local_context": {
+        "required_background": "OSGi service to factory to fixed folder to detached String. Show subservice label near factory, closure at boundary."
+      },
+      "constraints": [
+        "English only; exact text and correct code identifiers.",
+        "16:9 landscape, ivory grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "Render number 07 exactly once top-left inside the image.",
+        "Use reference only for style. No extra closing slide text."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Inspect the deployed configuration",
+      "key_points": [
+        "Confirm the calling bundle’s symbolic name.",
+        "Check the amended user.mapping entry.",
+        "Inspect the service user and direct read grant.",
+        "Use the local OSGi component and error log views."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "checklist",
+        "composition": "Numbered inspection route with bundle, mapping, principal, folder and log icons. No fabricated console screenshot.",
+        "intent": "Numbered inspection route with bundle, mapping, principal, folder and log icons. No fabricated console screenshot."
+      },
+      "local_context": {
+        "required_background": "Numbered inspection route with bundle, mapping, principal, folder and log icons. No fabricated console screenshot."
+      },
+      "constraints": [
+        "English only; exact text and correct code identifiers.",
+        "16:9 landscape, ivory grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "Render number 08 exactly once top-left inside the image.",
+        "Use reference only for style. No extra closing slide text."
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Diagnose the failing layer",
+      "key_points": [
+        "LoginException: inspect mapping and identity.",
+        "Null resource: check existence and read access.",
+        "Write failure: inspect operation and privileges.",
+        "HTTP 403: identify the rejecting filter or handler."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "diagnostic",
+        "composition": "Four symptom-to-check horizontal rows. Label expectations, do not claim actual results.",
+        "intent": "Four symptom-to-check horizontal rows. Label expectations, do not claim actual results."
+      },
+      "local_context": {
+        "required_background": "Four symptom-to-check horizontal rows. Label expectations, do not claim actual results."
+      },
+      "constraints": [
+        "English only; exact text and correct code identifiers.",
+        "16:9 landscape, ivory grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "Render number 09 exactly once top-left inside the image.",
+        "Use reference only for style. No extra closing slide text."
+      ]
+    },
+    {
+      "number": 10,
+      "title": "CSRF is an HTTP check",
+      "key_points": [
+        "Protected writes need a valid CSRF token.",
+        "Fetch /libs/granite/csrf/token.json in the same session.",
+        "Send it in the CSRF-Token header.",
+        "A valid token does not grant repository permissions."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "sequence",
+        "composition": "Browser request through CSRF check then application then ACL check. Both checks must pass. Do not draw a bypass.",
+        "intent": "Browser request through CSRF check then application then ACL check. Both checks must pass. Do not draw a bypass."
+      },
+      "local_context": {
+        "required_background": "Browser request through CSRF check then application then ACL check. Both checks must pass. Do not draw a bypass."
+      },
+      "constraints": [
+        "English only; exact text and correct code identifiers.",
+        "16:9 landscape, ivory grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "Render number 10 exactly once top-left inside the image.",
+        "Use reference only for style. No extra closing slide text."
+      ]
+    },
+    {
+      "number": 11,
+      "title": "Key takeaways",
+      "key_points": [
+        "Choose identity from the operation’s purpose.",
+        "Match bundle, subservice and principal exactly.",
+        "Mapping and ACL solve different problems.",
+        "Close owned resolvers; keep borrowed ones open.",
+        "Diagnose the layer before changing permissions."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "summary",
+        "composition": "Five compact takeaways with identity, mapping, permission, lifecycle and diagnosis icons.",
+        "intent": "Five compact takeaways with identity, mapping, permission, lifecycle and diagnosis icons."
+      },
+      "local_context": {
+        "required_background": "Five compact takeaways with identity, mapping, permission, lifecycle and diagnosis icons."
+      },
+      "constraints": [
+        "English only; exact text and correct code identifiers.",
+        "16:9 landscape, ivory grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "Render number 11 exactly once top-left inside the image.",
+        "Use reference only for style. No extra closing slide text."
+      ]
+    },
+    {
+      "number": 12,
+      "title": "Questions",
+      "key_points": [
+        "Thank you."
+      ],
+      "render_slide_number": true,
+      "layout": {
+        "role": "closing",
+        "composition": "Only Questions, Thank you. and number 12. Quiet generous whitespace.",
+        "intent": "Only Questions, Thank you. and number 12. Quiet generous whitespace."
+      },
+      "local_context": {
+        "required_background": "Only Questions, Thank you. and number 12. Quiet generous whitespace."
+      },
+      "constraints": [
+        "English only; exact text and correct code identifiers.",
+        "16:9 landscape, ivory grid, navy condensed titles, cobalt/violet/green/orange technical diagrams.",
+        "Render number 12 exactly once top-left inside the image.",
+        "Use reference only for style. No extra closing slide text."
+      ]
+    }
+  ]
+}
