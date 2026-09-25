@@ -1,0 +1,136 @@
+{
+  "language": "English",
+  "aspect_ratio": "16:9",
+  "deck_name": "lesson-32",
+  "title": "Class 32 · Apache and Dispatcher request processing",
+  "goal": "Locate the first layer that changes or answers one public HTTP request after content is verified on Publish.",
+  "selected_image_backend": "built-in image tool",
+  "outputs": [
+    "PNG slide images",
+    "HTML lesson",
+    "Spanish HTML and Markdown study guide"
+  ],
+  "pptx": false,
+  "style_reference": "slides/lesson-31/origin_image/slide_06.png",
+  "slides": [
+    {
+      "number": 1,
+      "title": "Apache and Dispatcher request processing",
+      "key_points": [
+        "Class 32 · Week 7 · September 29, 2026",
+        "Juan Maldonado",
+        "Follow a public URL to the response owner."
+      ],
+      "image": "origin_image/slide_01.png"
+    },
+    {
+      "number": 2,
+      "title": "Trace one HTTP request",
+      "key_points": [
+        "Browser, CDN, Apache vhost, Dispatcher farm and filter, Publish.",
+        "Track Host and URL as each layer processes the request.",
+        "Compare status, Location and resolved path."
+      ],
+      "image": "origin_image/slide_02.png"
+    },
+    {
+      "number": 3,
+      "title": "The Apache virtual host",
+      "key_points": [
+        "Host selects a vhost via ServerName or ServerAlias.",
+        "Check the enabled vhost and included rewrite rules."
+      ],
+      "image": "origin_image/slide_03.png"
+    },
+    {
+      "number": 4,
+      "title": "The Dispatcher farm",
+      "key_points": [
+        "Farm matching uses the request host and URI.",
+        "The farm supplies virtualhosts, filter and renderer."
+      ],
+      "image": "origin_image/slide_04.png"
+    },
+    {
+      "number": 5,
+      "title": "Rewrite or redirect",
+      "key_points": [
+        "An internal Apache rewrite keeps the browser URL.",
+        "An external redirect returns 301 or 302 with Location."
+      ],
+      "image": "origin_image/slide_05.png"
+    },
+    {
+      "number": 6,
+      "title": "Dispatcher request filters",
+      "key_points": [
+        "A filter can match method, URL, selectors or extension.",
+        "Allowed requests continue to Publish; a denied filter request returns 404.",
+        "Use logs to prove the matched rule."
+      ],
+      "image": "origin_image/slide_06.png"
+    },
+    {
+      "number": 7,
+      "title": "Headers across the boundary",
+      "key_points": [
+        "Host affects vhost and farm selection.",
+        "Check which request headers reach Publish through clientheaders.",
+        "Record response status, Location and cache headers."
+      ],
+      "image": "origin_image/slide_07.png"
+    },
+    {
+      "number": 8,
+      "title": "Who returned 403 or 404?",
+      "key_points": [
+        "Check Apache access logs, Dispatcher decisions and Publish request logs.",
+        "HTTP status alone does not name the layer."
+      ],
+      "image": "origin_image/slide_08.png"
+    },
+    {
+      "number": 9,
+      "title": "Run Dispatcher locally",
+      "key_points": [
+        "Browser at localhost:8080, Dispatcher Tools Docker and Publish at localhost:4503.",
+        "Use the project host and path in curl."
+      ],
+      "image": "origin_image/slide_09.png"
+    },
+    {
+      "number": 10,
+      "title": "Three responses, three checks",
+      "key_points": [
+        "301/302 from Apache: inspect redirect rule.",
+        "404 at Dispatcher: inspect farm and filter logs.",
+        "404 at Publish: inspect resolved content path."
+      ],
+      "image": "origin_image/slide_10.png"
+    },
+    {
+      "number": 11,
+      "title": "Find the first divergence",
+      "key_points": [
+        "Capture Host and URL; inspect status and Location.",
+        "Read Apache and Dispatcher logs; compare the same path on Publish."
+      ],
+      "image": "origin_image/slide_11.png"
+    },
+    {
+      "number": 12,
+      "title": "Questions",
+      "key_points": [
+        "Thank you."
+      ],
+      "image": "origin_image/slide_12.png"
+    }
+  ],
+  "official_sources": {
+    "Adobe Dispatcher configuration": "https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration",
+    "Adobe Dispatcher Tools": "https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/local-development-environment-set-up/dispatcher-tools",
+    "Adobe validation and debugging": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/validation-debug",
+    "Adobe Cloud logging": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/logging",
+    "Apache mod_rewrite": "https://httpd.apache.org/docs/2.4/mod/mod_rewrite.html"
+  }
+}

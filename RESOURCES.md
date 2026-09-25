@@ -18,6 +18,8 @@
   Secuencia oficial para herramientas, runtime local y Dispatcher Tools.
 - [Set up the local AEM SDK — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/local-development-environment-set-up/aem-runtime)
   Instrucciones actuales para JDK, descarga del SDK y servicios Author/Publish locales.
+- [Publish and Dispatcher on Windows](reference/windows-publish-dispatcher-sdk.html)
+  Guía en inglés para Publish y Dispatcher local en Windows con Docker, WSL o IIS.
 - [Cloud Manager build environment — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/using-cloud-manager/create-application-project/build-environment-details)
   Referencia teórica para las versiones administradas y el modelo de build; el curso no requiere acceso a Cloud Manager.
 - [Oracle JDK 21.0.12 release notes — Oracle](https://www.oracle.com/java/technologies/javase/21-0-12-relnotes.html)
