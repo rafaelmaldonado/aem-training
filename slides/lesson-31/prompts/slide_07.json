@@ -1,0 +1,42 @@
+{
+  "slide": 7,
+  "title": "Read ReplicationStatus carefully",
+  "prompt": "# Codex PPT Slide Image Prompt\n\n## Canvas\n{\n  \"type\": \"16:9 full-slide PowerPoint image\",\n  \"language\": \"English\",\n  \"slide_number\": 7,\n  \"render_slide_number\": true\n}\n\n## Deck Goal\nDiagnose a content publication by following one path through action, scope, SCD queues, agent-specific status and the Publish resource.\n\n## Required Background\n{\n  \"deck_context\": {\n    \"source_summary\": \"Class 31, week 7, September 28 2026. Traditional AEM Sites. Technical publication tracing in Cloud and local SDK. English PNG slides, Spanish guide.\",\n    \"canonical_facts\": [\n      \"Sling Content Distribution moves Cloud content through an external distribution service.\",\n      \"publish agent is enabled by default; preview is separate when configured.\",\n      \"persisted queue cleared means durable storage on Publish; fully published cleared means live on all Publish pods.\",\n      \"ReplicationStatus isActivated is last action, isPending is queue state, isDelivered is log-derived and not physical presence.\",\n      \"Use getStatusForAgent for Preview versus Publish; preview-only does not update general status.\",\n      \"Local SDK uses a classic replication agent, not the same Cloud SCD queues.\",\n      \"Verify exact page and asset paths on Publish. End before Apache/Dispatcher, covered in Class 32.\"\n    ]\n  },\n  \"slide_local_context\": {\n    \"required_background\": \"three API signals plus a separate target verification checkpoint. API evidence.\"\n  }\n}\n\n## Global Style\n{\n  \"name\": \"technical atlas courseware\",\n  \"visual_direction\": \"Technical atlas training slides explaining content publication, SCD queues, API status and origin verification.\",\n  \"color_palette\": \"Ivory drafting-paper background and faint grid; deep navy headings; cobalt for content flow; violet for configuration or Preview; green for verified outcomes; orange for caution.\",\n  \"typography\": \"Very large bold condensed sans-serif headings; legible sans-serif text; monospace only for paths.\",\n  \"texture_and_finish\": \"Flat 2D diagrams and fine rules. No gradients, neon, 3D, photography or generic people.\",\n  \"deck_consistency\": \"Match Session 29 style; vary layouts by slide role.\"\n}\n\n## Input Images\n\n- Image 1: /Users/juanmaldonado/Projects/aem-training/slides/lesson-31/origin_image/slide_06.png — Revised Session 31 sample slide; style only; replace all content.\n\n\n## Slide\n{\n  \"number\": 7,\n  \"title\": \"Read ReplicationStatus carefully\",\n  \"role\": null,\n  \"intent\": null\n}\n\n## Text\n{\n  \"title\": \"Read ReplicationStatus carefully\",\n  \"key_points\": [\n    \"isActivated(): last action was Activate.\",\n    \"isPending(): last action remains queued.\",\n    \"isDelivered(): derived from replication logs.\",\n    \"None proves the resource is physically on Publish.\"\n  ],\n  \"speaker_focus\": null\n}\n\n## Layout\n{\n  \"role\": \"API evidence\",\n  \"composition\": \"three API signals plus a separate target verification checkpoint. API evidence.\",\n  \"intent\": \"three API signals plus a separate target verification checkpoint. API evidence.\"\n}\n\n## Constraints\n[\n  \"English only; title and every key point must be readable and accurate.\",\n  \"16:9 landscape; number once at upper-left; ivory grid, navy condensed title, cobalt rule, precise flat diagrams.\",\n  \"Use the supplied image for style only. Do not invent screenshots, concrete content paths or real incident evidence.\"\n]\n\n## Style Reference Rule\nUse Image 1 as the approved sample-slide style reference. Match its palette, typography mood, density, texture, and overall visual identity. Do not copy its exact layout unless this slide's layout explicitly asks for it.\n\n## Input Image Handling Rules\nFor any input image marked as a strict input asset, include it visibly and preserve its content. Do not redraw, replace, relabel, or invent a similar figure. Scale and crop only as needed for composition while keeping the important labels, arrows, data, and relationships recognizable.\n\n## Universal Constraints\n- The final image itself must contain the title and key points.\n- Render English text exactly and legibly. Place slide number 07 exactly once in the upper-left.\n- Keep the confirmed deck style consistent while varying layout by slide role.\n- No watermark, unrelated logo, or extra slide number.\n",
+  "out": "slide_07.png",
+  "input_images": [
+    {
+      "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-31/origin_image/slide_06.png",
+      "role": "Revised Session 31 sample slide; style only; replace all content."
+    }
+  ],
+  "requires_context_images": true,
+  "expected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "edit",
+    "prompt_source": "slides/lesson-31/outline.md slide 06, revised technical sample",
+    "size": "16:9 landscape (1672x941 output)",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-31/origin_image/slide_06.png",
+    "input_context_preparation": "Parent inspected existing Session 31 slide 06 and edited it with built-in image_gen; revised slide 06 is now the style-only reference.",
+    "handoff_rule": "Use built-in image_gen edit with revised slide 06 as style-only reference; do not switch backend."
+  },
+  "generation_contract": {
+    "must_use_selected_image_backend": true,
+    "must_match_sample_generation_method": true,
+    "forbidden_final_image_methods": [
+      "local drawing/rendering scripts",
+      "Pillow-generated slides",
+      "SVG/HTML/CSS/canvas screenshots",
+      "python-pptx/PptxGenJS/native PPT layout screenshots",
+      "manually composited text/image overlays"
+    ],
+    "must_return": [
+      "backend_used",
+      "selected_source",
+      "qa_note"
+    ]
+  }
+}

@@ -1,0 +1,435 @@
+{
+  "run_status": "slides_recorded",
+  "deck_name": "lesson-31",
+  "selected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "edit",
+    "prompt_source": "slides/lesson-31/outline.md slide 06, revised technical sample",
+    "size": "16:9 landscape (1672x941 output)",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-31/origin_image/slide_06.png",
+    "input_context_preparation": "Parent inspected existing Session 31 slide 06 and edited it with built-in image_gen; revised slide 06 is now the style-only reference.",
+    "handoff_rule": "Use built-in image_gen edit with revised slide 06 as style-only reference; do not switch backend."
+  },
+  "max_concurrent_slides": 3,
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "number": 1,
+      "title": "Check publication",
+      "job": "prompts/slide_01.json",
+      "out": "origin_image/slide_01.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-31/origin_image/slide_06.png",
+          "role": "Revised Session 31 sample slide; style only; replace all content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "accepted",
+      "dispatch": null,
+      "result": {
+        "final_image": "origin_image/slide_01.png",
+        "accepted_sample": true
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_02",
+      "number": 2,
+      "title": "Four checkpoints for one path",
+      "job": "prompts/slide_02.json",
+      "out": "origin_image/slide_02.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-31/origin_image/slide_06.png",
+          "role": "Revised Session 31 sample slide; style only; replace all content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/s31_02",
+        "agent_nickname": "Slide 02 revision",
+        "prompt": "prompts/slide_02.json",
+        "prompt_sha256": "17254da3e19749054aefe502d9fe32cf8b2d04c7f844bef67a96c78e51e53502",
+        "dispatched_at": "2026-09-24T19:17:51Z"
+      },
+      "result": {
+        "agent_id": "/root/s31_02",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0d4da-0b68-7581-a704-d19938616466/exec-444abf3f-4409-4603-a7f6-d6cbc3af1bab.png",
+        "selected_source_sha256": "665776e2f472e0f60c5ccf2e04451fe03a95b8b711d1f5e2b32b75688fb19214",
+        "final_image": "origin_image/slide_02.png",
+        "final_image_sha256": "665776e2f472e0f60c5ccf2e04451fe03a95b8b711d1f5e2b32b75688fb19214",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Four checkpoints accurate and readable.",
+        "recorded_at": "2026-09-24T19:19:56Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_03",
+      "number": 3,
+      "title": "Inside Cloud distribution",
+      "job": "prompts/slide_03.json",
+      "out": "origin_image/slide_03.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-31/origin_image/slide_06.png",
+          "role": "Revised Session 31 sample slide; style only; replace all content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/s31_03",
+        "agent_nickname": "Slide 03 revision",
+        "prompt": "prompts/slide_03.json",
+        "prompt_sha256": "8ac691b791a3c5ecbd495e0faa196587468aaddfe0991296a48ffee2edd9b130",
+        "dispatched_at": "2026-09-24T19:18:15Z"
+      },
+      "result": {
+        "agent_id": "/root/s31_03",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0d4da-847c-7d92-81fe-decc29c97844/exec-94cd6668-3cde-42d9-aa09-62eb2c27dc1e.png",
+        "selected_source_sha256": "5a5529eab408c296d752994f9a3347208f699816e003167ad26cb3dfb2047f4e",
+        "final_image": "origin_image/slide_03.png",
+        "final_image_sha256": "5a5529eab408c296d752994f9a3347208f699816e003167ad26cb3dfb2047f4e",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Cloud distribution topology and agent defaults readable.",
+        "recorded_at": "2026-09-24T19:20:45Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_04",
+      "number": 4,
+      "title": "Two queues, two meanings",
+      "job": "prompts/slide_04.json",
+      "out": "origin_image/slide_04.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-31/origin_image/slide_06.png",
+          "role": "Revised Session 31 sample slide; style only; replace all content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/s31_04",
+        "agent_nickname": "Slide 04 revision",
+        "prompt": "prompts/slide_04.json",
+        "prompt_sha256": "9cf40b2fd5f786b5cee6f9c88752a7343c6cb82787973beb89b3b979cec6d3e8",
+        "dispatched_at": "2026-09-24T19:18:37Z"
+      },
+      "result": {
+        "agent_id": "/root/s31_04",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0d4da-d696-7e71-8eaf-931169087e9a/exec-2282c329-3b1a-46cf-83a0-37a55d71ec69.png",
+        "selected_source_sha256": "d58920a05e6df02d09a8aa9d633d445282bc8946bcb31aa145fe45cf53681ecf",
+        "final_image": "origin_image/slide_04.png",
+        "final_image_sha256": "d58920a05e6df02d09a8aa9d633d445282bc8946bcb31aa145fe45cf53681ecf",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Persisted and fully published queue meanings correct and legible.",
+        "recorded_at": "2026-09-24T19:20:45Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_05",
+      "number": 5,
+      "title": "Scope is a dependency graph",
+      "job": "prompts/slide_05.json",
+      "out": "origin_image/slide_05.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-31/origin_image/slide_06.png",
+          "role": "Revised Session 31 sample slide; style only; replace all content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/s31_05",
+        "agent_nickname": "Slide 05 revision",
+        "prompt": "prompts/slide_05.json",
+        "prompt_sha256": "bb8a0ebd274fdb74f6971684f377a1bdc892d6677e17b61321c43e2e5038c66a",
+        "dispatched_at": "2026-09-24T19:21:08Z"
+      },
+      "result": {
+        "agent_id": "/root/s31_05",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0d4dd-2578-7e60-b1d9-4628713919b4/exec-6e73067d-a73a-4b50-9f83-022056b103fc.png",
+        "selected_source_sha256": "65f42d1a1250d7aec526194b28e3e344a2a4ffcc22444bc65ed2e4e28eb92ce5",
+        "final_image": "origin_image/slide_05.png",
+        "final_image_sha256": "65f42d1a1250d7aec526194b28e3e344a2a4ffcc22444bc65ed2e4e28eb92ce5",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Dependency graph and path capture clear.",
+        "recorded_at": "2026-09-24T19:25:03Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_06",
+      "number": 6,
+      "title": "Prepare one traceable change",
+      "job": "prompts/slide_06.json",
+      "out": "origin_image/slide_06.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-31/origin_image/slide_06.png",
+          "role": "Revised Session 31 sample slide; style only; replace all content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "accepted",
+      "dispatch": null,
+      "result": {
+        "final_image": "origin_image/slide_06.png",
+        "accepted_sample": true
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_07",
+      "number": 7,
+      "title": "Read ReplicationStatus carefully",
+      "job": "prompts/slide_07.json",
+      "out": "origin_image/slide_07.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-31/origin_image/slide_06.png",
+          "role": "Revised Session 31 sample slide; style only; replace all content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/s31_07",
+        "agent_nickname": "Slide 07 revision",
+        "prompt": "prompts/slide_07.json",
+        "prompt_sha256": "a6d52af60a91e7816a985f7076a7903cc5e14d7dd4ae061c7a3b5a413f7bedd4",
+        "dispatched_at": "2026-09-24T19:21:36Z"
+      },
+      "result": {
+        "agent_id": "/root/s31_07",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0d4dd-8644-79a0-8874-cfbef7aa9df9/exec-4f85e9ec-84c6-43e4-9be9-fdab4058b7bd.png",
+        "selected_source_sha256": "7f20d78c18efd045a6948cc35277f6deb476882ed2d6243a5bd354e760c06bdb",
+        "final_image": "origin_image/slide_07.png",
+        "final_image_sha256": "7f20d78c18efd045a6948cc35277f6deb476882ed2d6243a5bd354e760c06bdb",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "ReplicationStatus semantics and physical-check limitation accurate.",
+        "recorded_at": "2026-09-24T19:23:21Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_08",
+      "number": 8,
+      "title": "Preview has its own status",
+      "job": "prompts/slide_08.json",
+      "out": "origin_image/slide_08.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-31/origin_image/slide_06.png",
+          "role": "Revised Session 31 sample slide; style only; replace all content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/s31_08",
+        "agent_nickname": "Slide 08 revision",
+        "prompt": "prompts/slide_08.json",
+        "prompt_sha256": "69d0520f617c465335b9bb65732b916828f53d44db9c41a5f9bcc98f41a33060",
+        "dispatched_at": "2026-09-24T19:22:08Z"
+      },
+      "result": {
+        "agent_id": "/root/s31_08",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0d4dd-ee4d-7c60-8a81-2a757d340b8a/exec-3e2a0c91-5593-4c49-95fa-00173d3faa3d.png",
+        "selected_source_sha256": "e809d1d0d0eecf6d1b012c84bed031b7a0a6ceeeb0f24e9d2d15ef85b3750e7b",
+        "final_image": "origin_image/slide_08.png",
+        "final_image_sha256": "e809d1d0d0eecf6d1b012c84bed031b7a0a6ceeeb0f24e9d2d15ef85b3750e7b",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Preview and Publish agent-specific status calls readable.",
+        "recorded_at": "2026-09-24T19:25:03Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_09",
+      "number": 9,
+      "title": "Investigate a pending path",
+      "job": "prompts/slide_09.json",
+      "out": "origin_image/slide_09.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-31/origin_image/slide_06.png",
+          "role": "Revised Session 31 sample slide; style only; replace all content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/s31_09",
+        "agent_nickname": "Slide 09 revision",
+        "prompt": "prompts/slide_09.json",
+        "prompt_sha256": "94aff66c00bc49289a916b33e4f218f12f49d136e8a41201b7d36ad5f45a7a01",
+        "dispatched_at": "2026-09-24T19:24:00Z"
+      },
+      "result": {
+        "agent_id": "/root/s31_09",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0d4df-b385-7aa3-909d-0db14b7675b6/exec-85c13fbe-c822-4b55-b0dd-d36fa7d0f4b8.png",
+        "selected_source_sha256": "f16ef5c2b348a737c8a89e925acd360c80a323c6e3f9b16e0f099c6acb15111b",
+        "final_image": "origin_image/slide_09.png",
+        "final_image_sha256": "f16ef5c2b348a737c8a89e925acd360c80a323c6e3f9b16e0f099c6acb15111b",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Ordered distribution inspection route and queue checks are legible.",
+        "recorded_at": "2026-09-24T19:27:35Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_10",
+      "number": 10,
+      "title": "Local proof is not Cloud proof",
+      "job": "prompts/slide_10.json",
+      "out": "origin_image/slide_10.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-31/origin_image/slide_06.png",
+          "role": "Revised Session 31 sample slide; style only; replace all content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/s31_10",
+        "agent_nickname": "Slide 10 revision",
+        "prompt": "prompts/slide_10.json",
+        "prompt_sha256": "00ed3fa0daaa3af23496c4ab9655afa90a278a87c03824918809f024b6537718",
+        "dispatched_at": "2026-09-24T19:26:33Z"
+      },
+      "result": {
+        "agent_id": "/root/s31_10",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0d4e2-0f03-7320-a72e-03059d7c662e/exec-bd0476ca-c5ce-4f6f-8f9f-36c010001f56.png",
+        "selected_source_sha256": "36bc735bbc38e427a7582c9e5accfc578743c7bbcf395428c62ccef7968ec726",
+        "final_image": "origin_image/slide_10.png",
+        "final_image_sha256": "36bc735bbc38e427a7582c9e5accfc578743c7bbcf395428c62ccef7968ec726",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Local and Cloud transport lanes and verification callouts are legible.",
+        "recorded_at": "2026-09-24T19:27:56Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_11",
+      "number": 11,
+      "title": "Stop at the Publish boundary",
+      "job": "prompts/slide_11.json",
+      "out": "origin_image/slide_11.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-31/origin_image/slide_06.png",
+          "role": "Revised Session 31 sample slide; style only; replace all content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "recorded",
+      "dispatch": {
+        "agent_id": "/root/s31_11",
+        "agent_nickname": "Slide 11 revision",
+        "prompt": "prompts/slide_11.json",
+        "prompt_sha256": "87f1d1c9a6b82abb57dd356f72d2230f8572064660618f36caf1b99cdbf14c66",
+        "dispatched_at": "2026-09-24T19:26:34Z"
+      },
+      "result": {
+        "agent_id": "/root/s31_11",
+        "backend_used": "built-in image tool",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0d4e2-2863-7222-abd0-12d9c4b9c273/exec-2ff8a1f9-7b5a-446f-aef3-caa283416623.png",
+        "selected_source_sha256": "66fe1a3f29738afeb5eb33ecccf4d486d072ee6425fe723565c77b500b074e4b",
+        "final_image": "origin_image/slide_11.png",
+        "final_image_sha256": "66fe1a3f29738afeb5eb33ecccf4d486d072ee6425fe723565c77b500b074e4b",
+        "expected_backend": "built-in image tool",
+        "expected_backend_labels": [
+          "built-in image tool",
+          "image_gen"
+        ],
+        "sample_generation_method_matched": true,
+        "qa_note": "Four decision branches are legible and hand off only after Publish verification.",
+        "recorded_at": "2026-09-24T19:28:15Z"
+      },
+      "blocker": null
+    },
+    {
+      "slide_id": "slide_12",
+      "number": 12,
+      "title": "Questions",
+      "job": "prompts/slide_12.json",
+      "out": "origin_image/slide_12.png",
+      "input_images": [
+        {
+          "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-31/origin_image/slide_06.png",
+          "role": "Revised Session 31 sample slide; style only; replace all content."
+        }
+      ],
+      "requires_context_images": true,
+      "status": "accepted",
+      "dispatch": null,
+      "result": {
+        "final_image": "origin_image/slide_12.png",
+        "accepted_sample": true
+      },
+      "blocker": null
+    }
+  ],
+  "updated_at": "2026-09-24T19:28:15Z"
+}

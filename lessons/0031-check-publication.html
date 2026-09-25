@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class 31 · Check publication · AEM Training</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary"><a class="brand" href="../index.html">AEM Training</a><ul><li><a href="../index.html">Overview</a></li><li><a href="../reference/aem-course-topics.html">Syllabus</a></li><li><a href="../reference/wknd-project-backlog.html">Practices</a></li><li><a href="../reference/index.html">References</a></li></ul></nav>
+  <header>
+    <p class="eyebrow">Class 31 · Week 7 · September 28, 2026</p>
+    <h1>Check publication</h1>
+    <p class="lede">Trace one content path through distribution, queue state and the resource served by Publish.</p>
+    <ul class="meta"><li>30-minute core · up to 60 minutes</li><li>Local Author + Publish demo</li><li><a href="../reference/session-31-study-guide.html">Guía completa en español</a></li></ul>
+  </header>
+  <main id="content">
+    <section class="callout"><strong>Session focus:</strong> find the first missing checkpoint between an Author action and the expected version on Publish.</section>
+    <h2>Topic summary</h2>
+    <p>AEM as a Cloud Service uses Sling Content Distribution to move selected content through an external distribution service. The publish agent exposes two consolidated queues: <code>persisted</code> and <code>fully published</code>. ReplicationStatus reports action and queue state, while the target resource supplies the final content check. The local SDK uses a classic replication agent; it demonstrates the result on Publish but not the Cloud queues.</p>
+    <h2>30-minute agenda</h2>
+    <div class="table-wrap"><table><thead><tr><th>Time</th><th>Slides</th><th>Focus</th></tr></thead><tbody>
+      <tr><td>0–4</td><td>1–2</td><td>Define one path, destination and expected version.</td></tr>
+      <tr><td>4–10</td><td>3–5</td><td>SCD, the two queues and dependency scope.</td></tr>
+      <tr><td>10–16</td><td>6–8</td><td>Traceable change and agent-specific ReplicationStatus.</td></tr>
+      <tr><td>16–26</td><td>9–10</td><td>Investigate a pending path and compare local proof.</td></tr>
+      <tr><td>26–30</td><td>11–12</td><td>Decision at the Publish boundary.</td></tr>
+    </tbody></table></div>
+    <p>For a 60-minute session, add guided local execution and discussion of the supplied Cloud queue case. The instructor provides the fixture and evidence.</p>
+    <h2 id="slide-deck">Complete slide deck</h2>
+    <p>Copy each complete numbered image to PowerPoint or download its PNG. The <a href="../reference/session-31-study-guide.html">Spanish guide</a> supplies the walkthrough and expected evidence.</p>
+    <div class="web-deck">
+<article class="web-slide" data-slide-src="../slides/lesson-31/origin_image/slide_01.png"><img class="web-slide-image" src="../slides/lesson-31/origin_image/slide_01.png" alt="01. Check publication. Class 31 · Week 7 · September 28, 2026 Juan Maldonado Follow content from Author to Publish."><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-31/origin_image/slide_01.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-31/origin_image/slide_02.png"><img class="web-slide-image" src="../slides/lesson-31/origin_image/slide_02.png" alt="02. Four checkpoints for one path. 1. Author submits an action for a path. 2. Distribution accepts and queues it. 3. Publish imports the change. 4. The target serves the expected version." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-31/origin_image/slide_02.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-31/origin_image/slide_03.png"><img class="web-slide-image" src="../slides/lesson-31/origin_image/slide_03.png" alt="03. Inside Cloud distribution. Sling Content Distribution moves content outside the AEM runtime. The publish agent is enabled by default. The preview agent targets Preview when configured. A submitted action is not proof of a completed import." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-31/origin_image/slide_03.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-31/origin_image/slide_04.png"><img class="web-slide-image" src="../slides/lesson-31/origin_image/slide_04.png" alt="04. Two queues, two meanings. persisted: the change is durably stored on Publish. fully published: all Publish pods serve it. Pending items and Last Item Processed show progress. Inspect the affected path before changing anything." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-31/origin_image/slide_04.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-31/origin_image/slide_05.png"><img class="web-slide-image" src="../slides/lesson-31/origin_image/slide_05.png" alt="05. Scope is a dependency graph. A selected page does not automatically include child pages. Review referenced assets and other dependencies. A shared reference may support another page. Record the exact paths included in the action." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-31/origin_image/slide_05.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-31/origin_image/slide_06.png"><img class="web-slide-image" src="../slides/lesson-31/origin_image/slide_06.png" alt="06. Prepare one traceable change. Record the exact test page and asset paths. Change a visible marker from Version A to Version B. Publish with Manage Publication after reviewing scope. Capture time, destination and included paths." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-31/origin_image/slide_06.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-31/origin_image/slide_07.png"><img class="web-slide-image" src="../slides/lesson-31/origin_image/slide_07.png" alt="07. Read ReplicationStatus carefully. isActivated(): last action was Activate. isPending(): last action remains queued. isDelivered(): derived from replication logs. None proves the resource is physically on Publish." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-31/origin_image/slide_07.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-31/origin_image/slide_08.png"><img class="web-slide-image" src="../slides/lesson-31/origin_image/slide_08.png" alt="08. Preview has its own status. A preview-only action does not update the default publish status. Read getStatusForAgent(&quot;preview&quot;) for Preview. Read getStatusForAgent(&quot;publish&quot;) for Publish. Verify the chosen destination separately." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-31/origin_image/slide_08.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-31/origin_image/slide_09.png"><img class="web-slide-image" src="../slides/lesson-31/origin_image/slide_09.png" alt="09. Investigate a pending path. Tools → Deployment → Distribution → publish. Check persisted and fully published queues. Inspect Items Pending, Last Item Processed and Logs. Record the blocking path; do not clear the queue in class." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-31/origin_image/slide_09.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-31/origin_image/slide_10.png"><img class="web-slide-image" src="../slides/lesson-31/origin_image/slide_10.png" alt="10. Local proof is not Cloud proof. Local SDK: Author :4502 → replication agent → Publish :4503. Cloud: Author → Sling Content Distribution → Publish. Use local Publish to verify content and references. Use supplied Cloud queue evidence to reason about SCD." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-31/origin_image/slide_10.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-31/origin_image/slide_11.png"><img class="web-slide-image" src="../slides/lesson-31/origin_image/slide_11.png" alt="11. Stop at the Publish boundary. No action: revisit destination and scope. Pending path: inspect queue and logs. Cleared queues, wrong Publish content: verify path and references. Correct Publish content: hand off the request path to Class 32." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-31/origin_image/slide_11.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+<article class="web-slide" data-slide-src="../slides/lesson-31/origin_image/slide_12.png"><img class="web-slide-image" src="../slides/lesson-31/origin_image/slide_12.png" alt="12. Questions. Thank you." loading="lazy"><div class="slide-actions no-print"><button type="button" data-copy-slide>Copy slide as image</button><a href="../slides/lesson-31/origin_image/slide_12.png" download>Download PNG</a><span data-copy-status aria-live="polite"></span></div></article>
+    </div>
+    <section id="ejemplos-locales" lang="es">
+      <h2>Demo local y caso Cloud</h2>
+      <p>Prepara Author en <code>localhost:4502</code> y Publish en <code>localhost:4503</code> con el mismo proyecto. La <a href="../reference/session-31-study-guide.html#ejemplos-locales">guía paso a paso</a> usa una página y un asset con paths registrados, compara Versión A con Versión B y comprueba ambos recursos en Publish.</p>
+      <p>La demo requiere un agente local configurado siguiendo la <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/local-development-environment-set-up/aem-runtime">guía oficial del SDK</a>. Para las colas SCD se usa un <a href="../reference/session-31-study-guide.html#caso">caso didáctico con evidencia simulada</a>; no representa una ejecución Cloud registrada.</p>
+    </section>
+    <h2>Official references</h2>
+    <ul>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/authoring/sites-console/publishing-pages">Adobe: Publishing Pages from the Sites Console</a></li>
+      <li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/operations/replication">Adobe: Replication and Sling Content Distribution</a></li>
+      <li><a href="https://developer.adobe.com/experience-manager/reference-materials/cloud-service/javadoc/com/day/cq/replication/ReplicationStatus.html">Adobe: ReplicationStatus API</a></li>
+    </ul>
+    <nav aria-label="Lesson navigation"><a href="0029-resource-resolver-identity.html">Previous technical class: 29</a> · <a href="../index.html">Overview</a></nav>
+  </main>
+  <footer>Class 31 · AEM Training · <a href="../reference/session-31-study-guide.html">Study guide</a></footer>
+<script src="../assets/copy-slide.js"></script></body>
+</html>

@@ -1,0 +1,363 @@
+{
+  "language": "English",
+  "aspect_ratio": "16:9",
+  "selected_image_backend": "built-in image tool",
+  "max_concurrent_slides": 3,
+  "outputs": [
+    "PNG slide images",
+    "HTML lesson",
+    "Spanish HTML and Markdown study guide"
+  ],
+  "pptx": false,
+  "style": {
+    "name": "technical atlas courseware",
+    "visual_direction": "Technical atlas training slides explaining content publication, SCD queues, API status and origin verification.",
+    "color_palette": "Ivory drafting-paper background and faint grid; deep navy headings; cobalt for content flow; violet for configuration or Preview; green for verified outcomes; orange for caution.",
+    "typography": "Very large bold condensed sans-serif headings; legible sans-serif text; monospace only for paths.",
+    "texture_and_finish": "Flat 2D diagrams and fine rules. No gradients, neon, 3D, photography or generic people.",
+    "deck_consistency": "Match Session 29 style; vary layouts by slide role."
+  },
+  "deck_name": "lesson-31",
+  "title": "Class 31 · Trace a publication",
+  "goal": "Diagnose a content publication by following one path through action, scope, SCD queues, agent-specific status and the Publish resource.",
+  "render_slide_number": true,
+  "numbering": {
+    "format": "01–12",
+    "position": "top-left above title",
+    "required_in_png": true
+  },
+  "approved_style_reference": {
+    "path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-31/origin_image/slide_06.png",
+    "role": "Revised Session 31 sample slide; style only; replace all content."
+  },
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen",
+    "mode": "edit",
+    "prompt_source": "slides/lesson-31/outline.md slide 06, revised technical sample",
+    "size": "16:9 landscape (1672x941 output)",
+    "quality": "built-in default",
+    "model": "built-in default",
+    "approved_sample_path": "/Users/juanmaldonado/Projects/aem-training/slides/lesson-31/origin_image/slide_06.png",
+    "input_context_preparation": "Parent inspected existing Session 31 slide 06 and edited it with built-in image_gen; revised slide 06 is now the style-only reference.",
+    "handoff_rule": "Use built-in image_gen edit with revised slide 06 as style-only reference; do not switch backend."
+  },
+  "approval": {
+    "scope": "User requested a more technical Session 31 and removal of repeated code-versus-content material; revise existing deck.",
+    "style": "Technical atlas style continued from Session 29.",
+    "backend": "built-in image tool",
+    "intermediate_confirmations": "Prior continuation waiver recorded in Sessions 24, 26 and 29 persists.",
+    "speech": false,
+    "pptx": false
+  },
+  "deck_context": {
+    "source_summary": "Class 31, week 7, September 28 2026. Traditional AEM Sites. Technical publication tracing in Cloud and local SDK. English PNG slides, Spanish guide.",
+    "canonical_facts": [
+      "Sling Content Distribution moves Cloud content through an external distribution service.",
+      "publish agent is enabled by default; preview is separate when configured.",
+      "persisted queue cleared means durable storage on Publish; fully published cleared means live on all Publish pods.",
+      "ReplicationStatus isActivated is last action, isPending is queue state, isDelivered is log-derived and not physical presence.",
+      "Use getStatusForAgent for Preview versus Publish; preview-only does not update general status.",
+      "Local SDK uses a classic replication agent, not the same Cloud SCD queues.",
+      "Verify exact page and asset paths on Publish. End before Apache/Dispatcher, covered in Class 32."
+    ]
+  },
+  "slides": [
+    {
+      "number": 1,
+      "title": "Check publication",
+      "key_points": [
+        "Class 31 · Week 7 · September 28, 2026",
+        "Juan Maldonado",
+        "Follow content from Author to Publish."
+      ],
+      "render_slide_number": true,
+      "sample_approved": true,
+      "layout": {
+        "role": "cover",
+        "composition": "one content path with marked checkpoints. Cover.",
+        "intent": "one content path with marked checkpoints. Cover."
+      },
+      "local_context": {
+        "required_background": "one content path with marked checkpoints. Cover."
+      },
+      "constraints": [
+        "English only; title and every key point must be readable and accurate.",
+        "16:9 landscape; number once at upper-left; ivory grid, navy condensed title, cobalt rule, precise flat diagrams.",
+        "Use the supplied image for style only. Do not invent screenshots, concrete content paths or real incident evidence."
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Four checkpoints for one path",
+      "key_points": [
+        "1. Author submits an action for a path.",
+        "2. Distribution accepts and queues it.",
+        "3. Publish imports the change.",
+        "4. The target serves the expected version."
+      ],
+      "render_slide_number": true,
+      "sample_approved": false,
+      "layout": {
+        "role": "process",
+        "composition": "one horizontal path with four distinct checkpoints. Process.",
+        "intent": "one horizontal path with four distinct checkpoints. Process."
+      },
+      "local_context": {
+        "required_background": "one horizontal path with four distinct checkpoints. Process."
+      },
+      "constraints": [
+        "English only; title and every key point must be readable and accurate.",
+        "16:9 landscape; number once at upper-left; ivory grid, navy condensed title, cobalt rule, precise flat diagrams.",
+        "Use the supplied image for style only. Do not invent screenshots, concrete content paths or real incident evidence."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Inside Cloud distribution",
+      "key_points": [
+        "Sling Content Distribution moves content outside the AEM runtime.",
+        "The publish agent is enabled by default.",
+        "The preview agent targets Preview when configured.",
+        "A submitted action is not proof of a completed import."
+      ],
+      "render_slide_number": true,
+      "sample_approved": false,
+      "layout": {
+        "role": "architecture",
+        "composition": "Author, external distribution service, Publish and Preview with agent labels. Architecture.",
+        "intent": "Author, external distribution service, Publish and Preview with agent labels. Architecture."
+      },
+      "local_context": {
+        "required_background": "Author, external distribution service, Publish and Preview with agent labels. Architecture."
+      },
+      "constraints": [
+        "English only; title and every key point must be readable and accurate.",
+        "16:9 landscape; number once at upper-left; ivory grid, navy condensed title, cobalt rule, precise flat diagrams.",
+        "Use the supplied image for style only. Do not invent screenshots, concrete content paths or real incident evidence."
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Two queues, two meanings",
+      "key_points": [
+        "persisted: the change is durably stored on Publish.",
+        "fully published: all Publish pods serve it.",
+        "Pending items and Last Item Processed show progress.",
+        "Inspect the affected path before changing anything."
+      ],
+      "render_slide_number": true,
+      "sample_approved": false,
+      "layout": {
+        "role": "state model",
+        "composition": "two sequential queue checkpoints with exact names. State model.",
+        "intent": "two sequential queue checkpoints with exact names. State model."
+      },
+      "local_context": {
+        "required_background": "two sequential queue checkpoints with exact names. State model."
+      },
+      "constraints": [
+        "English only; title and every key point must be readable and accurate.",
+        "16:9 landscape; number once at upper-left; ivory grid, navy condensed title, cobalt rule, precise flat diagrams.",
+        "Use the supplied image for style only. Do not invent screenshots, concrete content paths or real incident evidence."
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Scope is a dependency graph",
+      "key_points": [
+        "A selected page does not automatically include child pages.",
+        "Review referenced assets and other dependencies.",
+        "A shared reference may support another page.",
+        "Record the exact paths included in the action."
+      ],
+      "render_slide_number": true,
+      "sample_approved": false,
+      "layout": {
+        "role": "graph",
+        "composition": "selected page, child and shared asset as distinct branches. Graph.",
+        "intent": "selected page, child and shared asset as distinct branches. Graph."
+      },
+      "local_context": {
+        "required_background": "selected page, child and shared asset as distinct branches. Graph."
+      },
+      "constraints": [
+        "English only; title and every key point must be readable and accurate.",
+        "16:9 landscape; number once at upper-left; ivory grid, navy condensed title, cobalt rule, precise flat diagrams.",
+        "Use the supplied image for style only. Do not invent screenshots, concrete content paths or real incident evidence."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Prepare one traceable change",
+      "key_points": [
+        "Record the exact test page and asset paths.",
+        "Change a visible marker from Version A to Version B.",
+        "Publish with Manage Publication after reviewing scope.",
+        "Capture time, destination and included paths."
+      ],
+      "render_slide_number": true,
+      "sample_approved": true,
+      "layout": {
+        "role": "procedure",
+        "composition": "a small lab evidence sheet beside the selected page and asset. Procedure.",
+        "intent": "a small lab evidence sheet beside the selected page and asset. Procedure."
+      },
+      "local_context": {
+        "required_background": "a small lab evidence sheet beside the selected page and asset. Procedure."
+      },
+      "constraints": [
+        "English only; title and every key point must be readable and accurate.",
+        "16:9 landscape; number once at upper-left; ivory grid, navy condensed title, cobalt rule, precise flat diagrams.",
+        "Use the supplied image for style only. Do not invent screenshots, concrete content paths or real incident evidence."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Read ReplicationStatus carefully",
+      "key_points": [
+        "isActivated(): last action was Activate.",
+        "isPending(): last action remains queued.",
+        "isDelivered(): derived from replication logs.",
+        "None proves the resource is physically on Publish."
+      ],
+      "render_slide_number": true,
+      "sample_approved": false,
+      "layout": {
+        "role": "API evidence",
+        "composition": "three API signals plus a separate target verification checkpoint. API evidence.",
+        "intent": "three API signals plus a separate target verification checkpoint. API evidence."
+      },
+      "local_context": {
+        "required_background": "three API signals plus a separate target verification checkpoint. API evidence."
+      },
+      "constraints": [
+        "English only; title and every key point must be readable and accurate.",
+        "16:9 landscape; number once at upper-left; ivory grid, navy condensed title, cobalt rule, precise flat diagrams.",
+        "Use the supplied image for style only. Do not invent screenshots, concrete content paths or real incident evidence."
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Preview has its own status",
+      "key_points": [
+        "A preview-only action does not update the default publish status.",
+        "Read getStatusForAgent(\"preview\") for Preview.",
+        "Read getStatusForAgent(\"publish\") for Publish.",
+        "Verify the chosen destination separately."
+      ],
+      "render_slide_number": true,
+      "sample_approved": false,
+      "layout": {
+        "role": "comparison",
+        "composition": "one resource with two agent-specific status branches. Comparison.",
+        "intent": "one resource with two agent-specific status branches. Comparison."
+      },
+      "local_context": {
+        "required_background": "one resource with two agent-specific status branches. Comparison."
+      },
+      "constraints": [
+        "English only; title and every key point must be readable and accurate.",
+        "16:9 landscape; number once at upper-left; ivory grid, navy condensed title, cobalt rule, precise flat diagrams.",
+        "Use the supplied image for style only. Do not invent screenshots, concrete content paths or real incident evidence."
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Investigate a pending path",
+      "key_points": [
+        "Tools → Deployment → Distribution → publish.",
+        "Check persisted and fully published queues.",
+        "Inspect Items Pending, Last Item Processed and Logs.",
+        "Record the blocking path; do not clear the queue in class."
+      ],
+      "render_slide_number": true,
+      "sample_approved": false,
+      "layout": {
+        "role": "diagnosis",
+        "composition": "ordered Cloud investigation route with two queue indicators. Diagnosis.",
+        "intent": "ordered Cloud investigation route with two queue indicators. Diagnosis."
+      },
+      "local_context": {
+        "required_background": "ordered Cloud investigation route with two queue indicators. Diagnosis."
+      },
+      "constraints": [
+        "English only; title and every key point must be readable and accurate.",
+        "16:9 landscape; number once at upper-left; ivory grid, navy condensed title, cobalt rule, precise flat diagrams.",
+        "Use the supplied image for style only. Do not invent screenshots, concrete content paths or real incident evidence."
+      ]
+    },
+    {
+      "number": 10,
+      "title": "Local proof is not Cloud proof",
+      "key_points": [
+        "Local SDK: Author :4502 → replication agent → Publish :4503.",
+        "Cloud: Author → Sling Content Distribution → Publish.",
+        "Use local Publish to verify content and references.",
+        "Use supplied Cloud queue evidence to reason about SCD."
+      ],
+      "render_slide_number": true,
+      "sample_approved": false,
+      "layout": {
+        "role": "comparison",
+        "composition": "parallel local and Cloud transport lanes ending at Publish. Comparison.",
+        "intent": "parallel local and Cloud transport lanes ending at Publish. Comparison."
+      },
+      "local_context": {
+        "required_background": "parallel local and Cloud transport lanes ending at Publish. Comparison."
+      },
+      "constraints": [
+        "English only; title and every key point must be readable and accurate.",
+        "16:9 landscape; number once at upper-left; ivory grid, navy condensed title, cobalt rule, precise flat diagrams.",
+        "Use the supplied image for style only. Do not invent screenshots, concrete content paths or real incident evidence."
+      ]
+    },
+    {
+      "number": 11,
+      "title": "Stop at the Publish boundary",
+      "key_points": [
+        "No action: revisit destination and scope.",
+        "Pending path: inspect queue and logs.",
+        "Cleared queues, wrong Publish content: verify path and references.",
+        "Correct Publish content: hand off the request path to Class 32."
+      ],
+      "render_slide_number": true,
+      "sample_approved": false,
+      "layout": {
+        "role": "decision tree",
+        "composition": "evidence-based decision tree ending at Publish. Boundary.",
+        "intent": "evidence-based decision tree ending at Publish. Boundary."
+      },
+      "local_context": {
+        "required_background": "evidence-based decision tree ending at Publish. Boundary."
+      },
+      "constraints": [
+        "English only; title and every key point must be readable and accurate.",
+        "16:9 landscape; number once at upper-left; ivory grid, navy condensed title, cobalt rule, precise flat diagrams.",
+        "Use the supplied image for style only. Do not invent screenshots, concrete content paths or real incident evidence."
+      ]
+    },
+    {
+      "number": 12,
+      "title": "Questions",
+      "key_points": [
+        "Thank you."
+      ],
+      "render_slide_number": true,
+      "sample_approved": true,
+      "layout": {
+        "role": "Q&A",
+        "composition": "quiet closing slide with generous whitespace. Q&A.",
+        "intent": "quiet closing slide with generous whitespace. Q&A."
+      },
+      "local_context": {
+        "required_background": "quiet closing slide with generous whitespace. Q&A."
+      },
+      "constraints": [
+        "English only; title and every key point must be readable and accurate.",
+        "16:9 landscape; number once at upper-left; ivory grid, navy condensed title, cobalt rule, precise flat diagrams.",
+        "Use the supplied image for style only. Do not invent screenshots, concrete content paths or real incident evidence."
+      ]
+    }
+  ]
+}
