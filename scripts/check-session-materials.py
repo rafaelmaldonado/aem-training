@@ -1,4 +1,4 @@
-"""Check sessions 18–24, 26–29 and 31–32: links, slides and source consistency."""
+"""Check sessions 18–24, 26–29 and 31–33: links, slides and source consistency."""
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -36,7 +36,7 @@ class Page(HTMLParser):
 
 
 pages = [ROOT / 'index.html', ROOT / 'reference/index.html']
-for session in (*range(18, 25), 26, 27, 28, 29, 31, 32):
+for session in (*range(18, 25), 26, 27, 28, 29, 31, 32, 33):
     lesson = list((ROOT / 'lessons').glob(f'{session:04d}-*.html'))
     assert len(lesson) == 1, (session, lesson)
     pages += lesson + [ROOT / f'reference/session-{session}-study-guide.html']
@@ -45,7 +45,7 @@ for path in pages:
     page = Page(path)
     assert len(page.ids) == len(set(page.ids)), f'Duplicate id: {path}'
     if path not in pages[:2]:
-        anchor = 'ejemplos-locales' if path.name.startswith(('0023-', 'session-23-', '0024-', 'session-24-', '0026-', 'session-26-', '0027-', 'session-27-', '0028-', 'session-28-', '0029-', 'session-29-', '0031-', 'session-31-', '0032-', 'session-32-')) else 'practica-local'
+        anchor = 'ejemplos-locales' if path.name.startswith(('0023-', 'session-23-', '0024-', 'session-24-', '0026-', 'session-26-', '0027-', 'session-27-', '0028-', 'session-28-', '0029-', 'session-29-', '0031-', 'session-31-', '0032-', 'session-32-', '0033-', 'session-33-')) else 'practica-local'
         assert anchor in page.ids, f'Missing example anchor: {path}'
     for link in page.links:
         url = urlsplit(link)
@@ -77,7 +77,7 @@ config = json.loads(next(lab.rglob('*.cfg.json')).read_text())
 assert config['scripts'] == [(lab / 'permissions.repoinit').read_text()], 'Repo Init JSON differs from readable source'
 
 slide_count = 0
-for session in (22, 23, 24, 26, 27, 28, 31, 32):
+for session in (22, 23, 24, 26, 27, 28, 31, 32, 33):
     images = sorted((ROOT / f'slides/lesson-{session}/origin_image').glob('*.png'))
     assert [p.name for p in images] == [f'slide_{i:02d}.png' for i in range(1, 13)]
     slide_count += len(images)

@@ -1,0 +1,30 @@
+{
+  "language": "English",
+  "aspect_ratio": "16:9",
+  "deck_name": "lesson-33",
+  "title": "Class 33 · Diagnose the Dispatcher cache",
+  "goal": "Prove a miss, a hit and a fresh response after a controlled content update.",
+  "selected_image_backend": "built-in image tool",
+  "outputs": ["PNG slide images", "HTML lesson", "Spanish HTML and Markdown study guide"],
+  "pptx": false,
+  "style_reference": "slides/lesson-32/origin_image/slide_06.png",
+  "slides": [
+    {"number": 1, "title": "Diagnose the Dispatcher cache", "image": "origin_image/slide_01.png"},
+    {"number": 2, "title": "One URL, two versions", "image": "origin_image/slide_02.png"},
+    {"number": 3, "title": "What can Dispatcher cache?", "image": "origin_image/slide_03.png"},
+    {"number": 4, "title": "Prove a miss and a hit", "image": "origin_image/slide_04.png"},
+    {"number": 5, "title": "Storage and invalidation rules", "image": "origin_image/slide_05.png"},
+    {"number": 6, "title": "How .stat marks stale content", "image": "origin_image/slide_06.png"},
+    {"number": 7, "title": "Publish, flush, refresh", "image": "origin_image/slide_07.png"},
+    {"number": 8, "title": "TTL is another freshness clock", "image": "origin_image/slide_08.png"},
+    {"number": 9, "title": "Query parameters change the test", "image": "origin_image/slide_09.png"},
+    {"number": 10, "title": "Local lab: A, A, B, B", "image": "origin_image/slide_10.png"},
+    {"number": 11, "title": "Diagnose the stale response", "image": "origin_image/slide_11.png"},
+    {"number": 12, "title": "Questions", "image": "origin_image/slide_12.png"}
+  ],
+  "official_sources": {
+    "Adobe Dispatcher configuration": "https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration",
+    "Adobe Cloud caching": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching",
+    "Adobe Dispatcher Tools": "https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/local-development-environment-set-up/dispatcher-tools"
+  }
+}
