@@ -18,16 +18,16 @@
     </ul>
   </nav>
   <header>
-    <p class="eyebrow">Seven weekly practices · one developer per repository</p>
+    <p class="eyebrow">Eleven weekly practices · one developer per repository</p>
     <h1>Individual WKND practices.</h1>
-    <p class="lede">The architect releases one common practice every Monday. Each developer completes it in an individual repository and local AEM SDK, submits evidence by Thursday and reviews it on Friday.</p>
-    <ul class="meta"><li>Released Monday</li><li>Due Thursday</li><li>Reviewed Friday</li></ul>
+    <p class="lede">One common, optional practice is introduced every Monday. Explore the supplied example or implement the extension in your own repository and local AEM SDK. Share progress before Friday if you want feedback; Friday is for recap and voluntary demos.</p>
+    <ul class="meta"><li>Introduced Monday</li><li>Optional feedback before Friday</li><li>Recap and demos Friday</li></ul>
   </header>
   <main id="content">
-    <section class="callout"><strong>Delivery constraint:</strong> no shared deployment environment or Cloud Manager access is required. Each developer owns a repository and local SDK created from either approved starting method. Cloud Manager is studied from supplied diagrams and anonymized evidence; hands-on checks run locally.</section>
+    <section class="callout"><strong>Practice model:</strong> participation, submissions and demos are voluntary; there is no grade or required final defense. Each week has a supplied starting example, so earlier practices are not prerequisites. No shared deployment environment or Cloud Manager access is required. Cloud topics use public documentation and clearly identified supplied evidence; hands-on checks run locally.</section>
 
     <h2>Product scenario</h2>
-    <p>Each developer starts from either approved WKND source—the public tutorial repository or a project generated with AEM Project Archetype—and adds a <strong>Weekend Guides</strong> area. Authors must create guide pages and reusable cards without code changes. Visitors must browse accessible, responsive content. The implementation must be testable, cache-safe and compatible with an AEMaaCS pipeline.</p>
+    <p>The shared scenario is <strong>Weekend Guides</strong>, using either the public WKND tutorial repository or a project generated with AEM Project Archetype. The following are possible capabilities across the course, not prerequisites for any single optional practice:</p>
     <ul class="checklist">
       <li>An editable Guide Page template with controlled policies.</li>
       <li>A Guide Card proxy component with configured and empty states.</li>
@@ -42,41 +42,38 @@
     <ol>
       <li>Before Week 1, each developer chooses one starting method from the <a href="initial-setup.html">setup guide</a>: clone the public Adobe WKND tutorial repository or generate a clean project with the AEM Project Archetype.</li>
       <li>Each developer creates an empty personal repository, publishes the untouched starting project there and tags that commit <code>training-baseline</code>. The tag is a Git reference, not a separate repository or branch.</li>
-      <li>Every developer completes the same weekly practice; there are no dependencies on another learner's branch or environment.</li>
-      <li>Each practice uses <code>practice/week-&lt;number&gt;-short-name</code> and one PR into that developer's own <code>main</code>.</li>
-      <li>A peer may review the PR, but only the repository owner implements, fixes and demonstrates the practice.</li>
+      <li>Anyone who chooses to implement a practice works independently; no practice depends on another learner's branch, environment or earlier optional work.</li>
+      <li>If sharing code for feedback, use <code>practice/week-&lt;number&gt;-short-name</code> and a PR or diff against your own <code>main</code>.</li>
+      <li>A peer may review a shared PR; the repository owner remains responsible for its implementation and explanation.</li>
       <li>Do not copy commits or cherry-pick another learner's implementation. Official documentation and the selected starting source are allowed.</li>
     </ol>
 
     <h2>Weekly delivery rhythm</h2>
-    <p>No project board is required. Publish the practice brief on Monday and use one issue or PR per developer as the delivery record. The architect tracks only its link and demonstrated proficiency in the existing <a href="seguimiento-evidencias.html">evidence sheet</a>.</p>
+    <p>No project board is required. Introduce the practice and its starting example on Monday. Exploring the example is enough to participate; implementing the extension is optional. Share a PR, diff or focused question before Friday only if feedback would help. The instructor prepares a complete demo even when nobody submits work.</p>
     <div class="table-wrap"><table>
       <thead><tr><th>Moment</th><th>Activity</th><th>Output</th></tr></thead>
       <tbody>
-        <tr><td>Monday</td><td>Architect releases the goal, starting point, constraints, acceptance and evidence.</td><td>One common practice brief.</td></tr>
-        <tr><td>Tuesday–Wednesday</td><td>Developer implements independently and asks focused questions when blocked.</td><td>Branch and working commits.</td></tr>
-        <tr><td>Thursday</td><td>Developer opens or updates the PR and submits all required evidence.</td><td>Reviewable PR before close of day.</td></tr>
-        <tr><td>Friday</td><td>Architect reviews common findings; two developers demonstrate on rotation; selected owners explain or vary their code.</td><td>Feedback, proficiency level and next check.</td></tr>
+        <tr><td>Monday</td><td>Instructor introduces the goal, supplied example and two optional routes.</td><td>One common practice brief.</td></tr>
+        <tr><td>Tuesday–Thursday</td><td>Participants explore the example or implement an extension; those wanting feedback share progress and a focused question.</td><td>Optional PR, diff or observation.</td></tr>
+        <tr><td>Friday</td><td>Instructor recaps and shows the prepared case; volunteers may demonstrate their work.</td><td>Discussion and descriptive feedback.</td></tr>
       </tbody>
     </table></div>
 
-    <h2>Friday review session · 30 minutes</h2>
+    <h2>Friday recap and demos · 30–60 minutes</h2>
     <ol>
-      <li><strong>0–3 min:</strong> retrieval question without notes.</li>
-      <li><strong>3–15 min:</strong> two rotating demonstrations, six minutes each.</li>
-      <li><strong>15–25 min:</strong> common findings, alternatives and one small understanding check.</li>
-      <li><strong>25–30 min:</strong> proficiency result, corrections and next week's bridge.</li>
+      <li><strong>30-minute version:</strong> 5 minutes of recap, 15 of prepared or voluntary demos and 10 of questions and feedback.</li>
+      <li><strong>60-minute version:</strong> 10 minutes of recap, 30 of demos and 20 of questions and feedback.</li>
     </ol>
-    <p>All six submissions are reviewed asynchronously before the session. Friday is for representative evidence and technical reasoning, not six status reports.</p>
+    <p>Friday introduces no new requirement. If no one volunteers, the instructor demonstrates the supplied case, including a failure and its correction. The final Friday also includes a retrospective.</p>
 
-    <h2>Weekly completion criteria</h2>
+    <h2>Checks for self-assessment and optional feedback</h2>
     <ul class="checklist">
-      <li><code>mvn clean verify</code> succeeds and no generated <code>target</code> files or secrets are committed.</li>
-      <li>The change installs and runs in the developer's local SDK.</li>
-      <li>The PR contains reproducible author, visitor, test or diagnostic evidence appropriate to the practice.</li>
-      <li>The developer explains where the change lives, why it belongs there and one remaining risk.</li>
-      <li>The developer can make a small requested variation without following another implementation.</li>
+      <li>For an implemented extension, run its relevant local build or test and keep generated files and secrets out of the repository.</li>
+      <li>Show the observable result and one useful negative or regression check appropriate to the week.</li>
+      <li>If sharing for feedback, include reproducible steps, the smallest relevant diff and one question or remaining risk.</li>
     </ul>
+    <p>For Weeks 6–11, the short route is to run or inspect the supplied example, change one input and explain the result. The full route implements the listed extension. The suggested times are 30–60 minutes for exploration and about 4–6 hours for implementation, up to 6–8 hours for the larger Weeks 9 and 11 cases; these are not requirements.</p>
+    <p>The original Weeks 1–5 briefs below are retained as written. Their “must include,” submission and acceptance wording now serves as an implementation checklist for anyone who elects to do the full practice, not a participation or grading requirement.</p>
 
     <h2 id="practice-1">Week 1 practice · Establish the individual baseline</h2>
     <p><strong>Goal:</strong> create a reproducible WKND repository and local SDK, then explain how one page maps to the project.</p>
@@ -226,72 +223,97 @@ git tag --list training-baseline</code></pre>
       </ul>
     </div>
 
-    <h2 id="practice-6">Week 6 practice · Complete a local production-readiness review</h2>
-    <p><strong>Goal:</strong> deliver a bounded, tag-driven Guide List and harden it with local security, Dispatcher, performance and test evidence while explaining the supplied cloud-delivery model.</p>
+    <h2 id="practice-6">Week 6 practice · Bounded Guide List and least-privilege access</h2>
+    <p><strong>Goal:</strong> return the right Guide Pages, explain the query plan and correct an access failure without widening permissions.</p>
+    <p><strong>Starting point:</strong> the instructor supplies tagged Guide Pages with included, excluded and unreadable cases, a costly query and a small technical operation. The <a href="session-26-study-guide.html">query</a> and <a href="session-28-study-guide.html">permissions</a> examples provide local reference steps.</p>
+    <p><strong>Explore the example:</strong> change a tag or identity, compare the resulting list and explain which path or permission excluded a page.</p>
+    <p><strong>Implement the extension:</strong></p>
     <ul>
-      <li>Classify Guide Pages with the approved tag namespace and query by path, type and tag.</li>
-      <li>Capture the Oak query plan and avoid traversal or speculative index changes.</li>
-      <li>Map commit → build → quality gates → environment using supplied Cloud Manager diagrams and logs; do not execute or simulate access.</li>
-      <li>Validate a narrow Dispatcher filter, redirect, rewrite or cache rule with local Dispatcher Tools.</li>
-      <li>Review ACLs, service-user mappings, Repo Init, output security and secrets.</li>
-      <li>Run the cheapest meaningful regression and performance checks.</li>
-      <li>Fix the highest-risk reproducible local finding.</li>
+      <li>Build one Guide List query constrained by path, resource type and tag, with a finite result window and pagination. Use JCR-SQL2 to inspect or compare the plan, not to duplicate the implementation.</li>
+      <li>Compare the original and corrected query plans and observed work. Justify the existing index; propose a Cloud-compatible index change only when the case demonstrates the need.</li>
+      <li>Define the technical operation's service user and narrow ACL with Repo Init, then connect its subservice mapping. Keep visitor-facing reads under the request identity when visibility depends on the visitor.</li>
+      <li>Check allowed and excluded reads plus denied writes in a real local repository; distinguish a missing mapping from an ACL denial.</li>
     </ul>
-    <p><strong>Acceptance:</strong> Guide List returns only intended tagged pages without traversal; Cloud Manager concepts are explained from supplied evidence, local controls are executed, and the selected risk has reproducible before/after proof. <strong>Evidence:</strong> query plan, delivery map, readiness matrix, focused fix and verification.</p>
-    <div class="practice-details">
-      <h3>PR must include</h3>
-      <ul>
-        <li>A one-page theoretical delivery map naming repository, branch, build, quality gates, environment and likely failure owner.</li>
-        <li>The tag contract, bounded Guide List query and captured explain output; no speculative index.</li>
-        <li>Any Dispatcher change in the correct module with the narrowest filter, rewrite or cache rule that meets the requirement.</li>
-        <li>A readiness matrix covering functionality, authoring, ACLs/service users, security, accessibility, SEO, performance, testing and operation.</li>
-        <li>The highest-risk focused correction, its regression check and before/after evidence; no credentials, private URLs or raw environment dumps.</li>
-      </ul>
-      <h3>Developer must show</h3>
-      <ul>
-        <li>The supplied commit-to-environment flow and first actionable error without claiming Cloud Manager access.</li>
-        <li>The Guide List result and Oak plan for one intended tag and one excluded page.</li>
-        <li>One allowed and one denied Dispatcher request with the exact rule responsible.</li>
-        <li>One effective least-privilege ACL or service-user check plus an output-security control.</li>
-        <li>Why the selected local finding outranks the others and which regression or performance check proves the improvement.</li>
-      </ul>
-    </div>
+    <p><strong>Self-check:</strong> the list includes intended pages, excludes the negative fixture, stays bounded, and the access test shows the intended identity and result. An index name alone is not proof of an efficient query.</p>
+    <p><strong>For feedback or Friday demo:</strong> share a diff, query and plan, an identity/path/operation/result table and one repeatable regression check. Show one correct result, one exclusion and the access failure's cause.</p>
 
-    <h2 id="practice-7">Week 7 practice · Deliver and defend the individual capstone</h2>
-    <p><strong>Goal:</strong> deliver one complete Weekend Guides increment and demonstrate independent AEM ownership from authoring to operation.</p>
+    <h2 id="practice-7">Week 7 practice · Publish a guide and diagnose stale or missing content</h2>
+    <p><strong>Goal:</strong> serve a Guide Page and its dependencies through local Publish and Dispatcher, then identify the layer behind a missing or outdated response.</p>
+    <p><strong>Starting point:</strong> the instructor supplies a page with a fragment or asset dependency, a local Dispatcher case and clearly labeled CDN headers or logs. Use the <a href="windows-publish-dispatcher-sdk.html">local Publish and Dispatcher setup</a> if running the exercise.</p>
+    <p><strong>Explore the example:</strong> compare the same URL on Author, Publish and Dispatcher; change one published dependency or request header and identify the first divergent response.</p>
+    <p><strong>Implement the extension:</strong></p>
     <ul>
-      <li>Choose one observable author or visitor outcome not implemented in the selected starting project.</li>
-      <li>Refine acceptance criteria, dependencies and risks before coding.</li>
-      <li>Implement in coherent commits and harden against review findings.</li>
-      <li>Demonstrate authoring, visitor behavior, tests and operational checks.</li>
-      <li>Complete a short technical defense and define one 30-day growth outcome.</li>
+      <li>Publish the page and required fragment or asset, then verify the resource on Publish.</li>
+      <li>Test one permitted and one blocked request and one specific redirect or rewrite, naming the responsible vhost, farm or filter rule.</li>
+      <li>Reproduce a cache miss, hit and controlled refresh after a content change; correct the seeded stale or missing-content symptom without clearing all caches.</li>
+      <li>Explain the supplied CDN case separately from local Publish and Dispatcher evidence, including one response that must stay out of shared cache.</li>
     </ul>
-    <p><strong>Acceptance:</strong> the developer can explain and modify the implementation without direct help; the demo includes working behavior, evidence and one remaining risk. <strong>Evidence:</strong> final PR, demo and technical defense.</p>
-    <div class="practice-details">
-      <h3>PR must include</h3>
-      <ul>
-        <li>An observable author or visitor outcome, explicit acceptance criteria, dependencies and known risks in the PR description.</li>
-        <li>Coherent commits covering the minimum code, content configuration, tests and operational documentation needed for the increment.</li>
-        <li>Clean build output, focused test results, author/visitor evidence and the production-readiness checks relevant to the change.</li>
-        <li>Resolved review comments, one remaining risk and a safe rollback or recovery note.</li>
-      </ul>
-      <h3>Developer must show</h3>
-      <ul>
-        <li>The complete author and visitor journey from a clean local starting state.</li>
-        <li>The most important automated check and one production-readiness control.</li>
-        <li>Where the implementation lives and why three key technical decisions were made.</li>
-        <li>One review finding corrected and verified before the final demonstration.</li>
-      </ul>
-    </div>
+    <p><strong>Self-check:</strong> HTTP status, Location, relevant headers and logs support the layer diagnosis; the corrected response and a control request behave as expected. Local publication does not prove Cloud distribution behavior.</p>
+    <p><strong>For feedback or Friday demo:</strong> share reproducible HTTP commands, the focused config or content change and before/after responses. Reproduce the symptom, show the fix and run a control request.</p>
+
+    <h2 id="practice-8">Week 8 practice · Diagnose a Cloud-compatible delivery</h2>
+    <p><strong>Goal:</strong> locate the first actionable delivery or configuration failure and verify a correction locally without requiring Cloud access.</p>
+    <p><strong>Starting point:</strong> the instructor supplies a labeled synthetic case with a commit, pipeline type, failure log, configuration and service state, plus a locally reproducible defect.</p>
+    <p><strong>Explore the example:</strong> identify the pipeline and destination, point to the first actionable error and choose the Cloud inspection tool that would test your hypothesis.</p>
+    <p><strong>Implement the extension:</strong></p>
+    <ul>
+      <li>Trace commit → build artifact → relevant quality gate → target environment, separating the primary failure from later messages.</li>
+      <li>Correct the supplied build, package or OSGi configuration defect and run the focused local check.</li>
+      <li>Distinguish versioned <code>.cfg.json</code> values, environment variables and secret references; include no live credentials.</li>
+      <li>Check the corrected change against the older fixture content and explain recovery if old and new versions coexist during delivery.</li>
+    </ul>
+    <p><strong>Self-check:</strong> the local defect fails before and passes after the fix, while the diagnostic note states what supplied Cloud evidence supports and what remains untested. RDE does not replace pipeline validation.</p>
+    <p><strong>For feedback or Friday demo:</strong> share the diagnostic map, focused diff, command and result. Show the first actionable error and the local correction without claiming a Cloud Manager run.</p>
+
+    <h2 id="practice-9">Week 9 practice · Retry a safe asynchronous update</h2>
+    <p><strong>Goal:</strong> make one Author-side Sling Job tolerate a transient HTTP failure and a repeated attempt without duplicating its business effect.</p>
+    <p><strong>Starting point:</strong> the instructor supplies a minimal job, controllable local HTTP stub, narrow service identity and one prepared MSM or Content Fragment reference case.</p>
+    <p><strong>Explore the example:</strong> trigger a failed response and a retry with the same business key; observe the stored status and resulting content.</p>
+    <p><strong>Implement the extension:</strong></p>
+    <ul>
+      <li>Add a bounded timeout, explicit handling for transient and permanent HTTP responses, and a repeatable operation keyed to the business item.</li>
+      <li>Use the exercise's least-privilege subservice and persist enough progress to resume after a restart; do not rely on memory alone.</li>
+      <li>Show success, transient failure and replay without a duplicate effect. State that a local check does not prove cluster-wide coordination.</li>
+      <li>Inspect one supplied MSM or Content Fragment reference case and explain the consequence of changing its source; no additional subsystem is required.</li>
+    </ul>
+    <p><strong>Self-check:</strong> the retry completes after the stub recovers, replay leaves one intended effect, and the job's status explains what happened. A timeout does not prove the remote service did nothing.</p>
+    <p><strong>For feedback or Friday demo:</strong> share the diff, attempt/result sequence, replay check and short content-impact decision. Induce the failure and demonstrate controlled recovery.</p>
+
+    <h2 id="practice-10">Week 10 practice · Catch a regression and measure one improvement</h2>
+    <p><strong>Goal:</strong> detect a relevant regression and correct one accessibility, SEO or performance defect with comparable evidence.</p>
+    <p><strong>Starting point:</strong> the instructor supplies a stable Weekend Guides fixture, existing unit tests, a chosen UI test tool and commands for local HTTP checks and measurement.</p>
+    <p><strong>Explore the example:</strong> run one existing check, vary a failing input and compare the resulting browser or HTTP behavior.</p>
+    <p><strong>Implement the extension:</strong></p>
+    <ul>
+      <li>Extend one existing unit test with a negative case that fails before the correction.</li>
+      <li>Add one real repository or HTTP check for a behavior AEM Mocks cannot prove, and automate one critical author-to-visible-page UI route with the chosen tool.</li>
+      <li>Inspect keyboard, focus and relevant metadata; measure one load, query or rendering problem under comparable conditions.</li>
+      <li>Correct the highest-priority finding and record remaining risks without adding an unnecessary framework or broad test suite.</li>
+    </ul>
+    <p><strong>Self-check:</strong> the regression test and local integration/UI checks run, and a before/after measure supports the selected improvement. A Lighthouse score alone does not establish accessibility conformance.</p>
+    <p><strong>For feedback or Friday demo:</strong> share test output, a short checklist, measurement conditions and a focused diff. Show the failing and passing case and why each test level was chosen.</p>
+
+    <h2 id="practice-11">Week 11 practice · Optional integrated troubleshooting case</h2>
+    <p><strong>Goal:</strong> trace one Weekend Guides incident across layers and explain an evidence-backed correction using the supplied case or a voluntary personal extension.</p>
+    <p><strong>Starting point:</strong> the instructor supplies a complete integrated example, a bounded incident and a prepared demo; no previous practice implementation is needed.</p>
+    <p><strong>Explore the example:</strong> follow browser → CDN evidence → Dispatcher → Sling → Model → OSGi → JCR, change one input and identify the first divergent layer.</p>
+    <p><strong>Implement the extension, if desired:</strong></p>
+    <ul>
+      <li>Reproduce the incident from a known state, rank plausible causes and run the next check that best separates them.</li>
+      <li>Make the smallest correction or implement one optional requirement variation on the supplied example or personal project.</li>
+      <li>Repeat the relevant regression and control checks; record recovery steps and one unresolved limitation.</li>
+    </ul>
+    <p><strong>Self-check:</strong> you can follow the trace, reproduce the result and explain one technical decision. Asking for help is part of the exercise; there is no exam, grade or required individual defense.</p>
+    <p><strong>For feedback or final Friday:</strong> optionally share the diff, trace, checks and a specific question before Friday. Volunteers may show a short demo or recording; the instructor's prepared demo and retrospective close the course even if no one submits work.</p>
 
     <h2 id="similarity">Code similarity and understanding protocol</h2>
-    <p>Similarity is expected because everyone starts from the same archetype and completes the same practice. Use it to select follow-up questions, not as an automatic plagiarism score.</p>
+    <p>Similarities may occur because participants use the same starter and examples. When someone voluntarily shares code for feedback, use a comparison to guide a conversation, never as an automatic plagiarism score.</p>
     <ol>
       <li><strong>Compare only learner-authored changes.</strong> Diff each repository from <code>training-baseline</code>. Exclude generated files, <code>target</code>, lockfiles, supplied starter code and formatting-only changes.</li>
       <li><strong>Look for meaningful matches.</strong> Identical custom names, comments, unusual control flow, mistakes or commit sequence are stronger signals than standard AEM patterns.</li>
       <li><strong>Do not set a similarity percentage threshold.</strong> Two correct proxy components will naturally share structure.</li>
-      <li><strong>Verify understanding.</strong> Ask the developer to explain one path and lifecycle, run the relevant check, then make a small variation such as changing a fallback, validation rule or empty state.</li>
-      <li><strong>Record the result.</strong> Similar code passes when the owner can explain, test and adapt it. It remains unverified when the owner cannot reproduce or modify the behavior.</li>
+      <li><strong>Discuss understanding.</strong> If the participant requests feedback, ask them to explain one path and lifecycle, run the relevant check or try a small variation.</li>
+      <li><strong>Give descriptive feedback.</strong> Record what the participant demonstrated and a useful next check; do not assign a grade or proficiency level.</li>
     </ol>
     <p>A dependency is unnecessary here: <code>git diff training-baseline...HEAD</code> isolates each submission, and <code>git diff --no-index</code> can compare two selected learner-authored directories when a closer review is warranted.</p>
 
