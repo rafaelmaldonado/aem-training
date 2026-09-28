@@ -310,24 +310,24 @@
         "agent_id": "/root/s31_09",
         "agent_nickname": "Slide 09 revision",
         "prompt": "prompts/slide_09.json",
-        "prompt_sha256": "94aff66c00bc49289a916b33e4f218f12f49d136e8a41201b7d36ad5f45a7a01",
+        "prompt_sha256": "5e5e6ca40fd99a72e594dfa380771ee88176cf38a00160586b3fc35ee881957a",
         "dispatched_at": "2026-09-24T19:24:00Z"
       },
       "result": {
         "agent_id": "/root/s31_09",
         "backend_used": "built-in image tool",
-        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0d4df-b385-7aa3-909d-0db14b7675b6/exec-85c13fbe-c822-4b55-b0dd-d36fa7d0f4b8.png",
-        "selected_source_sha256": "f16ef5c2b348a737c8a89e925acd360c80a323c6e3f9b16e0f099c6acb15111b",
+        "selected_source": "/Users/juanmaldonado/.codex/generated_images/01a0e828-1185-71b2-b914-6709d124940e/exec-e983605a-3d7f-44f7-b9a0-3b382f77f801.png",
+        "selected_source_sha256": "093fe00db27a76f4d2a6e03e92ea67b76eb0a519bf17b3d41e5b0eb4cda007bc",
         "final_image": "origin_image/slide_09.png",
-        "final_image_sha256": "f16ef5c2b348a737c8a89e925acd360c80a323c6e3f9b16e0f099c6acb15111b",
+        "final_image_sha256": "093fe00db27a76f4d2a6e03e92ea67b76eb0a519bf17b3d41e5b0eb4cda007bc",
         "expected_backend": "built-in image tool",
         "expected_backend_labels": [
           "built-in image tool",
           "image_gen"
         ],
         "sample_generation_method_matched": true,
-        "qa_note": "Ordered distribution inspection route and queue checks are legible.",
-        "recorded_at": "2026-09-24T19:27:35Z"
+        "qa_note": "Audience-facing queue warning removed; diagram and inspection labels remain legible.",
+        "recorded_at": "2026-09-28T13:20:58Z"
       },
       "blocker": null
     },

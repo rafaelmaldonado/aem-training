@@ -61,7 +61,6 @@ Technical continuation of the approved course style. Twelve English image slides
 - Tools → Deployment → Distribution → publish.
 - Check persisted and fully published queues.
 - Inspect Items Pending, Last Item Processed and Logs.
-- Record the blocking path; do not clear the queue in class.
 - Visual: ordered Cloud investigation route with two queue indicators. Diagnosis.
 
 ## Slide 10 · Local proof is not Cloud proof

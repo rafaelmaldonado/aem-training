@@ -268,8 +268,7 @@
       "key_points": [
         "Tools → Deployment → Distribution → publish.",
         "Check persisted and fully published queues.",
-        "Inspect Items Pending, Last Item Processed and Logs.",
-        "Record the blocking path; do not clear the queue in class."
+        "Inspect Items Pending, Last Item Processed and Logs."
       ],
       "render_slide_number": true,
       "sample_approved": false,
