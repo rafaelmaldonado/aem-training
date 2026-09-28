@@ -1,6 +1,6 @@
 # Session 32 · Apache and Dispatcher request processing
 
-Twelve English PNG slides; Spanish guide and local Dispatcher Tools exercise. No PPTX or speaker notes.
+Twelve English PNG slides; Spanish guide and planned local WSL exercise. No PPTX or speaker notes.
 
 ## Slide 01 · Apache and Dispatcher request processing
 - Class 32 · Week 7 · September 29, 2026
@@ -38,9 +38,9 @@ Twelve English PNG slides; Spanish guide and local Dispatcher Tools exercise. No
 - Check Apache access logs, Dispatcher decisions and Publish request logs.
 - HTTP status alone does not name the layer.
 
-## Slide 09 · Run Dispatcher locally
-- Browser at localhost:8080, Dispatcher Tools Docker and Publish at localhost:4503.
-- Use the project host and path in curl.
+## Slide 09 · Explore Dispatcher with WSL
+- Browser at localhost:80, Apache with standalone Dispatcher in WSL, and Publish at localhost:4503.
+- Set up WSL after approval; use the project host and a published path in curl.
 
 ## Slide 10 · Three responses, three checks
 - 301/302 from Apache: inspect redirect rule.

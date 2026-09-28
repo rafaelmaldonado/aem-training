@@ -91,10 +91,10 @@
     },
     {
       "number": 9,
-      "title": "Run Dispatcher locally",
+      "title": "Explore Dispatcher with WSL",
       "key_points": [
-        "Browser at localhost:8080, Dispatcher Tools Docker and Publish at localhost:4503.",
-        "Use the project host and path in curl."
+        "Browser at localhost:80, Apache with standalone Dispatcher in WSL, and Publish at localhost:4503.",
+        "Set up WSL after approval; use the project host and a published path in curl."
       ],
       "image": "origin_image/slide_09.png"
     },
@@ -128,7 +128,8 @@
   ],
   "official_sources": {
     "Adobe Dispatcher configuration": "https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration",
-    "Adobe Dispatcher Tools": "https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/local-development-environment-set-up/dispatcher-tools",
+    "Adobe standalone Dispatcher installation": "https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/getting-started/dispatcher-install",
+    "Microsoft WSL networking": "https://learn.microsoft.com/en-us/windows/wsl/networking",
     "Adobe validation and debugging": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/validation-debug",
     "Adobe Cloud logging": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/logging",
     "Apache mod_rewrite": "https://httpd.apache.org/docs/2.4/mod/mod_rewrite.html"

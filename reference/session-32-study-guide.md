@@ -8,7 +8,7 @@
 
 Ante una URL pública que devuelve 403, 404 o una redirección inesperada mientras el contenido correcto ya existe en Publish, identificar **la primera capa que cambió la petición o respondió**. El participante entrega Host, URL, código, `Location` si existe, path resuelto y la línea de log que sostiene su conclusión.
 
-La sesión 31 terminó al comprobar Publish. Aquí seguimos **una sola petición HTTP** por CDN, Apache, Dispatcher y Publish. La caché y su invalidación se estudian en la sesión 33. La práctica local usa Dispatcher Tools y el Publish del SDK; no afirma reproducir el CDN administrado de Cloud. [Flujo de entrega — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/overview) · [Dispatcher Tools — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/local-development-environment-set-up/dispatcher-tools).
+La sesión 31 terminó al comprobar Publish. Aquí seguimos **una sola petición HTTP** por CDN, Apache, Dispatcher y Publish. La caché y su invalidación se estudian en la sesión 33. La demo prevista usa Apache y el módulo independiente de Dispatcher en WSL, conectado al Publish del SDK en Windows. Es una adaptación didáctica: no ejecuta la configuración Cloud `dispatcher/src` ni reproduce el CDN administrado. [Flujo de entrega — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/overview) · [Instalar Dispatcher — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/getting-started/dispatcher-install).
 
 ## Recorrido de 30 minutos
 
@@ -17,10 +17,10 @@ La sesión 31 terminó al comprobar Publish. Aquí seguimos **una sola petición
 | 0–4 | 1–2 | Fijar Host, URL y respuesta observada; dibujar la ruta. |
 | 4–11 | 3–4 | Encontrar vhost y farm aplicables. |
 | 11–18 | 5–7 | Distinguir rewrite, redirect, filtro y headers. |
-| 18–27 | 8–10 | Comparar 403/404 con logs y ejecutar la prueba local. |
+| 18–27 | 8–10 | Comparar 403/404 con logs simulados; prueba local sólo si WSL está listo. |
 | 27–30 | 11–12 | Nombrar la primera divergencia y cerrar. |
 
-Para 60 minutos, añade 20 de ejecución local y 10 de discusión de las tres respuestas del caso. El instructor prepara de antemano Publish local, el proyecto y Dispatcher Tools; cada participante puede analizar el registro sin acceso a Cloud Manager.
+Para 60 minutos, añade 20 de ejecución local sólo si WSL y Publish ya están disponibles, y 10 de discusión de las tres respuestas del caso. WSL sigue pendiente de aprobación en el equipo del instructor; mientras tanto, presenta el caso simulado de la sección 3 y pide al grupo identificar la primera capa con la evidencia suministrada.
 
 ## 1. Ruta y evidencia de una petición
 
@@ -61,23 +61,21 @@ La configuración de `/filter` puede usar método, URL, query, path, selectors, 
 
 ## Demo local
 
-**Preparación:** Docker, Publish del SDK en `localhost:4503`, proyecto instalado en Publish y Dispatcher Tools del SDK. Usa el Host que realmente figure en `dispatcher/src/conf.d/available_vhosts` y una página de prueba publicada. El comando se ejecuta desde la carpeta extraída de Dispatcher Tools. En macOS/Linux Adobe documenta `docker_run_hot_reload.sh` para recargar cambios de configuración; en Windows se usa `bin\docker_run`. [Preparar Dispatcher Tools — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/local-development-environment-set-up/dispatcher-tools).
+**Estado del instructor:** WSL aún no está instalado; espera aprobación. La demo en vivo es opcional. Sin ese entorno, usa las tres observaciones simuladas de la sección 3 y compara las decisiones de Apache, Dispatcher y Publish sobre el papel.
+
+**Cuando se apruebe WSL:** sigue la [ruta WSL sin Docker de la guía de Windows](windows-publish-dispatcher-sdk.html#wsl): instala Apache y el módulo independiente de Dispatcher en Ubuntu, comprueba desde WSL la conexión al Publish del SDK en Windows (`:4503`) y configura el renderer con la dirección que responda. La guía usa Apache en el puerto 80. Esta instalación tiene su propio `dispatcher.any`: no copies `dispatcher/src` del proyecto Cloud ni presentes la prueba como validación de esa configuración. [Instalación del módulo — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/getting-started/dispatcher-install) · [Red de WSL — Microsoft](https://learn.microsoft.com/en-us/windows/wsl/networking).
+
+Desde Windows, sustituye Host y path por valores reales de tu proyecto y de la configuración de prueba en WSL. La primera petición preserva la respuesta original; la segunda contrasta directamente con Publish.
 
 ```sh
-./bin/docker_run_hot_reload.sh /ruta/al/proyecto/dispatcher/src host.docker.internal:4503 8080
-```
-
-En otra terminal, sustituye Host y path por valores de tu proyecto. La primera petición preserva la respuesta original; la segunda contrasta directamente con Publish.
-
-```sh
-curl -i -H 'Host: www.example.test' 'http://localhost:8080/content/site/en/adventures.html'
+curl -i -H 'Host: www.example.test' 'http://localhost/content/site/en/adventures.html'
 curl -i 'http://localhost:4503/content/site/en/adventures.html'
 ```
 
 1. Registra status, `Location` si aparece y el path solicitado en ambas respuestas. Si se produce 3xx, haz una petición **nueva** al destino después de documentar la primera.
-2. Repite con el Host de tu proyecto y con un Host distinto. Observa qué vhost y farm se eligen; no supongas que el Host ficticio del ejemplo coincide con tu configuración.
-3. Revisa el `stdout` de Dispatcher Tools y, si necesitas más detalle, arráncalo con `DISP_LOG_LEVEL=Debug REWRITE_LOG_LEVEL=Debug` antes del comando. Busca el request, farm, rewrite o rechazo; correlaciona con access y request logs de Publish.
-4. Cambia **una sola regla en una copia local** de la configuración, deja que hot reload la valide y repite exactamente la misma petición. Guarda antes/después. No despliegues la regla de ejercicio.
+2. Repite con el Host configurado en WSL y con un Host distinto. Observa qué vhost y farm se eligen; no supongas que el Host ficticio del ejemplo existe en tu configuración.
+3. Revisa `/var/log/apache2/access.log` y `/var/log/apache2/dispatcher.log` en WSL; correlaciona hora, Host y path con los logs de Publish.
+4. Si el tiempo lo permite, cambia **una sola regla en la configuración local de WSL**, comprueba la sintaxis con `sudo apache2ctl -t`, reinicia Apache y repite la misma petición. Guarda antes/después. No despliegues la regla de ejercicio.
 
 | Evidencia mínima | Registro esperado |
 | --- | --- |
@@ -87,7 +85,7 @@ curl -i 'http://localhost:4503/content/site/en/adventures.html'
 | Publish | Si llegó la petición, path y status de destino. |
 | Conclusión | Primera capa con una decisión distinta y evidencia citada. |
 
-**Resultado esperado, no ejecución registrada.** El ejercicio separa una decisión de Apache/Dispatcher de una respuesta generada por Publish. Las herramientas locales no reproducen por completo la capa CDN de Cloud. [Dispatcher Tools y logs — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/local-development-environment-set-up/dispatcher-tools) · [Logging — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/logging).
+**Resultado esperado, no ejecución registrada.** El ejercicio separa una decisión de Apache/Dispatcher de una respuesta generada por Publish. La ruta WSL no reproduce el CDN ni valida la configuración Cloud del proyecto. [Instalar Dispatcher — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/getting-started/dispatcher-install) · [Logging — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/logging).
 
 ## Decisión al cierre
 
@@ -113,6 +111,7 @@ curl -i 'http://localhost:4503/content/site/en/adventures.html'
 - [Dispatcher en Cloud y herramientas locales — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/disp-overview)
 - [Configurar Dispatcher, farm, filtros y headers — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration)
 - [Validar y depurar Apache/Dispatcher — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/validation-debug)
-- [Dispatcher Tools locales — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/local-development-environment-set-up/dispatcher-tools)
+- [Instalar el módulo independiente de Dispatcher — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/getting-started/dispatcher-install)
+- [Red de WSL — Microsoft](https://learn.microsoft.com/en-us/windows/wsl/networking)
 - [Logs en AEM Cloud — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/logging)
 - [mod_rewrite y flags — Apache](https://httpd.apache.org/docs/2.4/mod/mod_rewrite.html)
