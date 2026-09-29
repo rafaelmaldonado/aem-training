@@ -1,0 +1,30 @@
+{
+  "language": "English",
+  "aspect_ratio": "16:9",
+  "deck_name": "lesson-34",
+  "title": "Class 34 · Browser, CDN and Dispatcher caches",
+  "goal": "Identify the first cache layer that still serves the old version.",
+  "selected_image_backend": "built-in image tool",
+  "outputs": ["PNG slide images", "HTML lesson", "Spanish HTML and Markdown study guide"],
+  "pptx": false,
+  "style_reference": "slides/lesson-33/origin_image/slide_06.png",
+  "slides": [
+    {"number": 1, "title": "Browser, CDN and Dispatcher caches", "image": "origin_image/slide_01.png"},
+    {"number": 2, "title": "One page, three cache decisions", "image": "origin_image/slide_02.png"},
+    {"number": 3, "title": "Headers set different clocks", "image": "origin_image/slide_03.png"},
+    {"number": 4, "title": "A response is more than a status", "image": "origin_image/slide_04.png"},
+    {"number": 5, "title": "Did the browser make a request?", "image": "origin_image/slide_05.png"},
+    {"number": 6, "title": "Prove the CDN boundary", "image": "origin_image/slide_06.png"},
+    {"number": 7, "title": "Private content and cookies", "image": "origin_image/slide_07.png"},
+    {"number": 8, "title": "Query strings can change the test", "image": "origin_image/slide_08.png"},
+    {"number": 9, "title": "Versioned client libraries", "image": "origin_image/slide_09.png"},
+    {"number": 10, "title": "Case: B, B, A", "image": "origin_image/slide_10.png"},
+    {"number": 11, "title": "Key Takeaways", "image": "origin_image/slide_11.png"},
+    {"number": 12, "title": "Questions", "image": "origin_image/slide_12.png"}
+  ],
+  "official_sources": {
+    "Adobe Cloud caching": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching",
+    "Adobe CDN logs": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/logging",
+    "Adobe Dispatcher configuration": "https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration"
+  }
+}

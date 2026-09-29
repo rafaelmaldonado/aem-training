@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Configure Dispatcher in WSL</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header>
+    <p class="eyebrow">AEM Publish on Windows · Apache and Dispatcher in WSL</p>
+    <h1>Configure Dispatcher in WSL.</h1>
+    <p class="lede">Connect Ubuntu's Apache and Adobe Dispatcher module to local AEM Publish, then test a page from either an Archetype 57 project or the Adobe WKND tutorial.</p>
+  </header>
+  <main id="content">
+    <section>
+      <h2>What you need</h2>
+      <ul>
+        <li>AEM SDK Publish running on Windows at <code>localhost:4503</code>, with your project installed and one public <code>.html</code> page available. A page visible only on Author at port 4502 has not passed this check. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/local-development-environment-set-up/aem-runtime">Adobe: local AEM runtime</a></li>
+        <li>Ubuntu in WSL. If it is not installed, run <code>wsl --install -d Ubuntu-24.04</code> in an elevated Windows terminal, restart Windows, and complete Ubuntu's first run. <a href="https://learn.microsoft.com/en-us/windows/wsl/install">Microsoft: install WSL</a></li>
+        <li>Either the <a href="https://github.com/adobe/aem-project-archetype/tree/aem-project-archetype-57">AEM Project Archetype 57</a> project generated with <code>-DaemVersion="cloud" -DincludeDispatcherConfig="y"</code>, or a clone of <a href="https://github.com/adobe/aem-guides-wknd">Adobe WKND</a>. Choose a real public page from your own project; the two starting points need not have the same content path.</li>
+      </ul>
+      <p>This setup uses Adobe's standalone Linux Apache module and its sample <code>dispatcher.any</code>. It does not run or validate the project's Cloud <code>dispatcher/src</code> files. Adobe documents the Apache module installation; using it inside WSL with local Cloud SDK Publish is a course adaptation. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/getting-started/dispatcher-install">Adobe: install Dispatcher for Apache</a> · <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/validation-debug">Adobe: Cloud configuration validation</a></p>
+    </section>
+
+    <section>
+      <h2>1. Install Apache and confirm the Publish connection</h2>
+      <p>In Ubuntu, install Apache and the tools used to identify the right Dispatcher package:</p>
+      <pre><code>sudo apt update
+sudo apt install apache2 curl openssl
+uname -m
+openssl version</code></pre>
+      <p>Check whether Ubuntu can reach Publish through loopback. If it cannot, get the Windows host address used by WSL's default NAT network and try that address instead:</p>
+      <pre><code>curl -i http://127.0.0.1:4503/content/YOUR_SITE/PAGE.html
+ip route show | grep -i default | awk '{ print $3}'
+curl -i http://WINDOWS_HOST_IP:4503/content/YOUR_SITE/PAGE.html</code></pre>
+      <p>Replace the page path and <code>WINDOWS_HOST_IP</code> with your values. Continue with whichever address returns your published page. In WSL mirrored networking, loopback can reach Windows; in the default NAT mode, the Windows host IP is usually needed. If neither works, check that Publish is running and accepts connections from WSL before editing Dispatcher. <a href="https://learn.microsoft.com/en-us/windows/wsl/networking">Microsoft: WSL networking</a></p>
+    </section>
+
+    <section>
+      <h2>2. Install the Dispatcher module</h2>
+      <ol>
+        <li>Download the current <strong>Apache 2.4 Linux Dispatcher</strong> archive matching the architecture and OpenSSL version reported above. Use Adobe's <a href="https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/getting-started/release-notes">Dispatcher release notes</a> to choose the package. Extract it inside Ubuntu and read the archive's <code>README</code> for package details. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/getting-started/dispatcher-install">Adobe: archive contents and installation</a></li>
+        <li>Copy the archive's Dispatcher <code>.so</code> file to <code>/usr/lib/apache2/modules/mod_dispatcher.so</code>. Copy its Publish sample <code>dispatcher.any</code> to <code>/etc/apache2/dispatcher.any</code>. Use <code>sudo</code> for these system paths. Keep the sample as the starting configuration; your project's <code>dispatcher/src</code> has a different layout. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/getting-started/dispatcher-install#apache-web-server-add-the-dispatcher-module">Adobe: Apache module files</a></li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>3. Point the sample farm at Publish</h2>
+      <p>Edit <code>/etc/apache2/dispatcher.any</code>. In its existing Publish farm, set the renderer's <code>/hostname</code> to the address that worked in step 1 and <code>/port</code> to <code>4503</code>. Set <code>/cache /docroot</code> to <code>/var/www/html</code>, the document root of Ubuntu's default site. Keep the sample's filter and cache rules until the first request works. Ensure the farm's <code>/virtualhosts</code> accepts the Host used in the test below. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration">Adobe: renders, virtual hosts, and cache root</a></p>
+    </section>
+
+    <section>
+      <h2>4. Enable Dispatcher in Apache</h2>
+      <p>Create <code>/etc/apache2/mods-available/dispatcher.load</code>:</p>
+      <pre><code>LoadModule dispatcher_module /usr/lib/apache2/modules/mod_dispatcher.so</code></pre>
+      <p>Create <code>/etc/apache2/conf-available/dispatcher.conf</code>:</p>
+      <pre><code>&lt;IfModule disp_apache2.c&gt;
+  DispatcherConfig /etc/apache2/dispatcher.any
+  DispatcherLog /var/log/apache2/dispatcher.log
+  DispatcherLogLevel 3
+&lt;/IfModule&gt;</code></pre>
+      <p>Inside the existing <code>&lt;VirtualHost *:80&gt;</code> in <code>/etc/apache2/sites-available/000-default.conf</code>, add this Directory block:</p>
+      <pre><code>&lt;Directory /var/www/html&gt;
+  Options FollowSymLinks
+  AllowOverride None
+  Require all granted
+  &lt;IfModule disp_apache2.c&gt;
+    SetHandler dispatcher-handler
+    ModMimeUsePathInfo On
+  &lt;/IfModule&gt;
+&lt;/Directory&gt;</code></pre>
+      <p>Enable the module and configuration, give Apache write access to its local cache root, check syntax, and restart:</p>
+      <pre><code>sudo a2enmod dispatcher
+sudo a2enconf dispatcher
+sudo chown -R www-data:www-data /var/www/html
+sudo apache2ctl -t
+sudo service apache2 restart</code></pre>
+      <p>The syntax check must report <code>Syntax OK</code>. Adobe documents <code>LoadModule</code>, <code>DispatcherConfig</code>, <code>SetHandler</code>, and <code>ModMimeUsePathInfo</code>; Apache documents the syntax test. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/getting-started/dispatcher-install#apache-web-server-configure-apache-web-server-for-dispatcher">Adobe: Apache directives</a> · <a href="https://httpd.apache.org/docs/2.4/programs/apachectl.html">Apache: apachectl</a></p>
+    </section>
+
+    <section>
+      <h2>5. Test your project's page</h2>
+      <p>From Ubuntu, request the same public page through Publish and through Apache. Start with its full <code>/content/.../page.html</code> path, replacing the path and Publish address with those confirmed in step 1:</p>
+      <pre><code>curl -i http://WINDOWS_HOST_IP:4503/content/YOUR_SITE/PAGE.html
+curl -i -H "Host: localhost" http://127.0.0.1/content/YOUR_SITE/PAGE.html</code></pre>
+      <p>Then open this URL in a <strong>Windows browser</strong>, replacing the path with the same published page:</p>
+      <pre><code>http://localhost/content/YOUR_SITE/PAGE.html</code></pre>
+      <p>The browser should display the Publish page through Apache and Dispatcher in WSL. For comparison, <code>http://localhost:4503/content/YOUR_SITE/PAGE.html</code> goes directly to Publish on Windows. If the Ubuntu <code>curl</code> request works but the browser URL does not, check that port 80 on Windows is available and that WSL localhost forwarding is working. <a href="https://learn.microsoft.com/en-us/windows/wsl/networking">Microsoft: access WSL applications from Windows</a></p>
+      <p>The second <code>curl</code> response should serve the page through Dispatcher. Record its status and any <code>Location</code> header. If Apache returns a different result, inspect <code>/var/log/apache2/dispatcher.log</code> and <code>/var/log/apache2/access.log</code>. A Dispatcher filter rejection can appear as a 404; check the rule before broadening access. Apache selects virtual hosts using the request Host, while Dispatcher also matches the farm's <code>/virtualhosts</code>. <a href="https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration#configuring-access-to-content-filter">Adobe: filter behavior</a> · <a href="https://httpd.apache.org/docs/2.4/vhosts/name-based.html">Apache: name based virtual hosts</a></p>
+      <p>Compare the project's source rules only after this request works: WKND already contains a WKND vhost, farm, and rewrites; an Archetype 57 Cloud project has its own generated baseline. Those files can show the intended Host, URL mapping, filters, and cache policy, but this standalone WSL installation must be configured in its own Apache and <code>dispatcher.any</code> files. <a href="https://github.com/adobe/aem-guides-wknd/tree/main/dispatcher">Adobe WKND source</a> · <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/validation-debug#flexible-mode-file-structure">Adobe: Cloud Dispatcher file structure</a></p>
+    </section>
+  </main>
+</body>
+</html>
