@@ -129,6 +129,8 @@ No se enseñan Cypress, Playwright y Selenium como tres cursos. Se elige la herr
 
 Los materiales de las prácticas 1–5 se conservan intactos; cualquier instrucción previa de obligatoriedad o evaluación deja de aplicarse conforme a esta aclaración. La práctica 6 antigua se descompone; la práctica 7 antigua se reformula como caso integrador opcional en la semana 11. Las nuevas prácticas reutilizan el mismo proyecto, con un punto de partida suministrado por semana para evitar dependencias de tareas anteriores.
 
+**Desde la práctica 8:** el material para compartir está incluido en la [página de prácticas](wknd-project-backlog.html#practice-8). Los participantes usan su proyecto y SDK locales; no necesitan GitHub, repositorio remoto ni pull requests. El feedback se da durante demos locales voluntarias o sobre una grabación breve. El instructor puede presentar el caso publicado en la página si nadie participa.
+
 Ofrecer dos recorridos voluntarios: **explorar el ejemplo** (30–60 minutos orientativos para ejecutarlo, cambiar un dato y observar) o **implementar la ampliación completa** (4–6 horas estimadas; hasta 6–8 para los casos más extensos de semanas 9 y 11). No son horas exigidas ni criterios de participación. Los pasos siguientes describen la ampliación; cada brief debe identificar también el recorrido breve. Quien no haga práctica puede seguir todas las sesiones y el recap del viernes.
 
 ### Práctica 6 · Guide List acotada y acceso de mínimo privilegio
@@ -157,43 +159,43 @@ Ofrecer dos recorridos voluntarios: **explorar el ejemplo** (30–60 minutos ori
 
 **Resultado:** ubicar un fallo en el flujo de entrega y producir una corrección verificable sin requerir un despliegue real.
 
-- Analizar un paquete de evidencia suministrado: commit, tipo de pipeline, log de fallo, configuración declarada y estado del servicio.
+- Analizar el caso sintético publicado en la página: commit ficticio, tipo de pipeline, log de fallo, configuración declarada y estado del servicio.
 - Corregir un problema de build, paquete o configuración reproducible en el SDK; separar causa de mensajes derivados.
 - Documentar valores versionados, variables y referencias de secretos sin credenciales reales.
-- Demostrar compatibilidad con el contenido anterior del fixture y explicar recuperación y herramienta de inspección elegida.
+- Demostrar compatibilidad con el contenido anterior del ejemplo local y explicar recuperación y herramienta de inspección elegida.
 
-**Comprobaciones sugeridas:** PR o diff, comando local y resultado, diagnóstico, mapa commit → pipeline → destino y límite de lo demostrado. **Demo:** primer error accionable y corrección; no simular haber usado Cloud Manager. Al cerrar esta semana el instructor presenta el alcance del caso integrador final; quien quiera una ampliación personal puede elegirla sin compromiso de entrega.
+**Comprobaciones sugeridas:** comando local y resultado, diagnóstico, mapa del commit ficticio → pipeline → destino y límite de lo demostrado. **Demo local:** primer error accionable y corrección del caso publicado en la página; no simular haber usado Cloud Manager. No se pide PR. Al cerrar esta semana el instructor presenta el alcance del caso integrador final; quien quiera una ampliación personal puede elegirla sin compromiso de entrega.
 
 ### Práctica 9 · Una actualización asíncrona que tolera fallos
 
 **Resultado principal:** un Sling Job en Author actualiza de forma controlada un dato del escenario, con un servicio HTTP local simulado y un efecto verificable al repetir la operación.
 
-- Partir de un esqueleto suministrado; completar timeout, error transitorio y operación repetida con la misma clave de negocio.
-- Usar el subservice de mínimo privilegio y rutas del ejercicio. Verificar progreso/estado según el diseño; no almacenar el estado duradero sólo en memoria.
+- Partir del proyecto local y del stub HTTP publicado en la página; completar timeout, error transitorio y operación repetida con la misma clave de negocio si se elige implementar el Job.
+- Usar un subservice de mínimo privilegio en el proyecto local. Verificar progreso/estado según el diseño; no almacenar el estado duradero sólo en memoria.
 - Mostrar éxito, fallo transitorio y repetición sin duplicar el efecto. Declarar el límite de la prueba local; no afirmar que demuestra coordinación de todo un clúster.
-- Como evidencia secundaria breve, inspeccionar **uno** de los casos preparados de MSM o referencias CF y explicar el impacto de modificar su fuente. No implementar dos subsistemas nuevos adicionales.
+- Como evidencia secundaria breve, analizar el caso publicado de un CF con dos consumidores y explicar el impacto de modificar su fuente. No implementar subsistemas nuevos adicionales.
 
-**Evidencia:** PR, secuencia de intentos/resultado, prueba del efecto repetido y decisión de contenido. **Demo:** provocar un fallo y recuperarlo de manera controlada. Quedan fuera pagos, grandes importaciones, endpoints externos reales y automatización de publicación masiva.
+**Evidencia en el entorno local:** secuencia de intentos/resultado, prueba del efecto repetido y decisión de contenido con el stub y el caso publicados en la página. **Demo:** provocar un fallo y recuperarlo de manera controlada. No se pide PR. Quedan fuera pagos, grandes importaciones, endpoints externos reales y automatización de publicación masiva.
 
 ### Práctica 10 · Proteger el incremento con pruebas y una mejora medida
 
 **Resultado:** una regresión relevante es detectable y una deficiencia concreta de accesibilidad, SEO o rendimiento queda corregida.
 
 - Extender una prueba unitaria existente con un caso negativo que falle sin la corrección.
-- Añadir una comprobación real de HTTP/repositorio para algo que AEM Mocks no pueda probar y automatizar un único recorrido UI crítico.
+- Añadir una comprobación real de HTTP/repositorio para algo que AEM Mocks no pueda probar; automatizar un recorrido UI sólo si ya existe la herramienta en el proyecto local.
 - Revisar teclado/foco y metadatos del recorrido; medir un problema de carga/consulta/render bajo condiciones comparables.
 - Corregir el hallazgo prioritario y mantener los demás como riesgos explícitos si exceden el alcance acordado.
 
-**Evidencia:** pruebas ejecutadas, checklist breve, medición comparable y diff. **Demo:** regresión antes/después y razón para elegir cada nivel de prueba. No se pide un framework nuevo, una suite completa ni una cifra arbitraria de cobertura.
+**Evidencia en el entorno local:** pruebas ejecutadas, checklist breve y medición comparable con el caso publicado en la página. **Demo:** regresión antes/después y razón para elegir cada nivel de prueba. No se pide PR, un framework nuevo, una suite completa ni una cifra arbitraria de cobertura.
 
 ### Práctica 11 · Caso integrador opcional
 
-**Resultado:** conectar las capas del caso Weekend Guides y explicar un diagnóstico completo, sobre el ejemplo suministrado o una implementación propia voluntaria.
+**Resultado:** conectar las capas del caso Weekend Guides y explicar un diagnóstico completo, sobre la traza publicada o una implementación local voluntaria.
 
-- Partir del ejemplo suministrado o del proyecto personal; no comenzar una aplicación nueva.
+- Partir de la traza publicada o del proyecto local; no comenzar una aplicación nueva.
 - Explorar el incidente acotado publicado el lunes y, opcionalmente, intentar una variación de requisito.
-- Si se desea feedback, compartir antes del viernes el diff, la traza, las comprobaciones y la duda concreta; no hay entrega obligatoria.
-- Quien quiera presentar puede llevar una demo breve o una grabación; el instructor prepara una demo completa para asegurar el cierre aunque no haya voluntarios.
+- Si se desea feedback, preparar la traza, las comprobaciones y la duda concreta para una demo local; no hay entrega obligatoria ni PR.
+- Quien quiera presentar puede llevar una demo breve en su ambiente local o una grabación; el instructor usa el incidente publicado en la página para asegurar el cierre aunque no haya voluntarios.
 
 **Autoevaluación:** poder seguir la traza, reproducir un resultado y explicar una decisión; pedir ayuda forma parte del aprendizaje. **Demo del viernes:** resultado visible, decisión técnica y comprobación útil. No hay examen, calificación, defensa individual ni requisito de implementar todos los mecanismos vistos.
 
@@ -211,12 +213,12 @@ No se asignan notas ni niveles de desempeño. Las preguntas, ejemplos y comproba
 | --- | --- | --- |
 | Semana 6 | Fixture de Guide Pages y tags; query costosa y corregible; usuarios/rutas del ejercicio y servicio técnico mínimo. | Repositorio real para ACL/plan. Si el baseline carece de un índice útil, preparar el fixture o índice de laboratorio antes; no prometer que el mismo plan existe en todos los SDK. |
 | Semana 7 | Instrucciones de Publish local, Dispatcher Tools/contenedor, contenido dependiente y casos de caché; ejemplos de headers/logs CDN identificados como reales o sintéticos. | Preparar la demo local del instructor. El entorno de participantes sólo se necesita si eligen ejecutar la práctica; un análisis de logs no se presenta como ejecución Cloud. |
-| Semana 8 | Documentación pública, diagramas y caso sintético coherente de pipeline/configuración/runtime, más fallo reproducible localmente. | El instructor no tiene Cloud Manager. No planear capturas nuevas ni demos en vivo de Cloud/RDE; usar material público o evidencia existente autorizada. |
-| Semana 9 | Job mínimo, stub HTTP controlable y casos pequeños de contenido localizado/relacionado. | Mantener una sola implementación central; la revisión de arquitectura reutiliza fixtures. |
-| Semana 10 | Una herramienta UI acordada, fixture estable y comandos de test/medición del baseline. | Ejecutar pruebas antes de asignarlas; una prueba local no demuestra el gate Cloud. |
-| Semana 11 | Ejemplo integrador completo, incidente acotado y demo preparada; espacio para voluntarios. | El cierre funciona sin prácticas entregadas. No hay seis demos obligatorias ni defensa final. |
+| Semana 8 | Compartir el caso sintético y la configuración rota publicados en la página de prácticas. | El instructor no tiene Cloud Manager; la corrección y la demo se hacen localmente. |
+| Semana 9 | Compartir el stub HTTP y el caso de dos consumidores CF publicados en la página de prácticas. | La implementación de Sling Job es opcional y se hace en el proyecto local de cada participante. |
+| Semana 10 | Compartir el ejemplo y la prueba existentes de TrainingMessage enlazados desde la página de prácticas. | Usar el proyecto y las herramientas UI locales ya disponibles; una prueba local no demuestra el gate Cloud. |
+| Semana 11 | Compartir la traza sintética y las guías de Publish/Dispatcher enlazadas desde la página de prácticas. | El cierre funciona con una demo local voluntaria o con el análisis guiado del incidente publicado. |
 
-No se han generado todavía estos fixtures, las clases 26–55 ni sus diapositivas. Son trabajo de preparación posterior a adoptar la secuencia, no evidencia de aprendizaje ya disponible.
+Los casos de las prácticas 8–11 ya están publicados en la página; cualquier ampliación de código se realiza en el proyecto local de quien elija implementarla. Las clases y diapositivas restantes se preparan por separado.
 
 ## Temas que no convertiría en bloques obligatorios
 

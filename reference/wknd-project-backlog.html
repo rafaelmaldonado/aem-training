@@ -20,11 +20,11 @@
   <header>
     <p class="eyebrow">Eleven weekly practices · one developer per repository</p>
     <h1>Individual WKND practices.</h1>
-    <p class="lede">One common, optional practice is introduced every Monday. Explore the supplied example or implement the extension in your own repository and local AEM SDK. Share progress before Friday if you want feedback; Friday is for recap and voluntary demos.</p>
+    <p class="lede">One common, optional practice is introduced every Monday. Explore the example on this page or implement the extension in your local AEM SDK. Friday is for recap and voluntary demos.</p>
     <ul class="meta"><li>Introduced Monday</li><li>Optional feedback before Friday</li><li>Recap and demos Friday</li></ul>
   </header>
   <main id="content">
-    <section class="callout"><strong>Practice model:</strong> participation, submissions and demos are voluntary; there is no grade or required final defense. Each week has a supplied starting example, so earlier practices are not prerequisites. No shared deployment environment or Cloud Manager access is required. Cloud topics use public documentation and clearly identified supplied evidence; hands-on checks run locally.</section>
+    <section class="callout"><strong>Practice model:</strong> participation and demos are voluntary; there is no grade or required final defense. Earlier practices are not prerequisites. No shared deployment environment or Cloud Manager access is required. From Week 8 onward, the cases are on this page and any supporting examples are linked here; participants work and demonstrate in their local environment. No GitHub account, remote repository or pull request is needed.</section>
 
     <h2>Product scenario</h2>
     <p>The shared scenario is <strong>Weekend Guides</strong>, using either the public WKND tutorial repository or a project generated with AEM Project Archetype. The following are possible capabilities across the course, not prerequisites for any single optional practice:</p>
@@ -38,7 +38,7 @@
       <li>Tests, permissions, Dispatcher rules and an operational runbook.</li>
     </ul>
 
-    <h2>Repository model</h2>
+    <h2>Repository model · original Weeks 1–7</h2>
     <ol>
       <li>Before Week 1, each developer chooses one starting method from the <a href="initial-setup.html">setup guide</a>: clone the public Adobe WKND tutorial repository or generate a clean project with the AEM Project Archetype.</li>
       <li>Each developer creates an empty personal repository, publishes the untouched starting project there and tags that commit <code>training-baseline</code>. The tag is a Git reference, not a separate repository or branch.</li>
@@ -47,14 +47,15 @@
       <li>A peer may review a shared PR; the repository owner remains responsible for its implementation and explanation.</li>
       <li>Do not copy commits or cherry-pick another learner's implementation. Official documentation and the selected starting source are allowed.</li>
     </ol>
+    <p><strong>Weeks 8–11:</strong> use the local project and SDK already available to you. Keep changes and checks on your machine; show the result in a live local demo or a short recording. The instructor does not collect or review pull requests.</p>
 
     <h2>Weekly delivery rhythm</h2>
-    <p>No project board is required. Introduce the practice and its starting example on Monday. Exploring the example is enough to participate; implementing the extension is optional. Share a PR, diff or focused question before Friday only if feedback would help. The instructor prepares a complete demo even when nobody submits work.</p>
+    <p>No project board is required. Introduce the practice and its starting example on Monday. Exploring the example is enough to participate; implementing the extension is optional. For Weeks 8–11, the instructor uses the case on this page if nobody volunteers for a local demo.</p>
     <div class="table-wrap"><table>
       <thead><tr><th>Moment</th><th>Activity</th><th>Output</th></tr></thead>
       <tbody>
         <tr><td>Monday</td><td>Instructor introduces the goal, supplied example and two optional routes.</td><td>One common practice brief.</td></tr>
-        <tr><td>Tuesday–Thursday</td><td>Participants explore the example or implement an extension; those wanting feedback share progress and a focused question.</td><td>Optional PR, diff or observation.</td></tr>
+        <tr><td>Tuesday–Thursday</td><td>Participants explore the example or implement an extension; those wanting feedback prepare a local demo and a focused question.</td><td>Optional observation or local result.</td></tr>
         <tr><td>Friday</td><td>Instructor recaps and shows the prepared case; volunteers may demonstrate their work.</td><td>Discussion and descriptive feedback.</td></tr>
       </tbody>
     </table></div>
@@ -253,50 +254,89 @@ git tag --list training-baseline</code></pre>
 
     <h2 id="practice-8">Week 8 practice · Diagnose a Cloud-compatible delivery</h2>
     <p><strong>Goal:</strong> locate the first actionable delivery or configuration failure and verify a correction locally without requiring Cloud access.</p>
-    <p><strong>Starting point:</strong> the instructor supplies a labeled synthetic case with a commit, pipeline type, failure log, configuration and service state, plus a locally reproducible defect.</p>
+    <p><strong>Material to share · synthetic case:</strong> the following record is invented for the exercise. It is not a Cloud Manager run. The <a href="session-18-study-guide.html#practica-local">TrainingMessage local example</a> provides the service and its valid Author configuration if participants want to install the correction in their SDK.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Evidence</th><th>Value in the case</th></tr></thead>
+      <tbody>
+        <tr><td>Change and source</td><td>Commit <code>8ac42f</code> in the fictional Adobe-managed repository <code>site</code>, branch <code>main</code>; only the Author <code>TrainingMessage.cfg.json</code> changed.</td></tr>
+        <tr><td>Delivery</td><td>Full-stack pipeline <code>fullstack-dev</code> targeting <code>dev</code>. Build stopped before an artifact was deployed.</td></tr>
+        <tr><td>Log excerpt</td><td><code>ERROR ui.config: invalid JSON in TrainingMessage.cfg.json</code><br><code>SKIPPED deploy: build failed</code></td></tr>
+        <tr><td>Service state</td><td>The previous <code>TrainingMessage</code> remains active with the old message; the new value is not installed.</td></tr>
+      </tbody>
+    </table></div>
+    <p>Copy this intentionally broken configuration to a temporary <code>TrainingMessage.cfg.json</code> file. The property name and fallback come from the linked local example:</p>
+    <pre><code>{
+  "message": "Hello from Week 8"
+  "enabled": true
+}</code></pre>
+    <p>Run <code>python3 -m json.tool TrainingMessage.cfg.json</code>, correct the syntax and rerun it. For an SDK demo, copy only the corrected <code>message</code> property into your project's matching Author configuration, build and inspect the effective service value. A pre-existing component instance without an authored title should still render its fallback; the <a href="session-19-study-guide.html#practica-local">existing local test</a> checks that behavior. The extra <code>enabled</code> key is illustrative and should be removed because this service does not declare it.</p>
+    <p><strong>Configuration classification for the discussion:</strong> <code>message</code> is a shareable versioned value. This service has no environment variable or secret. For a separate integration, an environment-specific URL would use an environment reference and a credential would use a secret reference; the <a href="session-18-study-guide.html#secretos">configuration guide</a> contains both example forms. Do not add either property to <code>TrainingMessage</code>.</p>
     <p><strong>Explore the example:</strong> identify the pipeline and destination, point to the first actionable error and choose the Cloud inspection tool that would test your hypothesis.</p>
     <p><strong>Implement the extension:</strong></p>
     <ul>
-      <li>Trace commit → build artifact → relevant quality gate → target environment, separating the primary failure from later messages.</li>
+      <li>Trace the fictional commit → build validation → intended artifact → target environment, separating the primary failure from later messages.</li>
       <li>Correct the supplied build, package or OSGi configuration defect and run the focused local check.</li>
       <li>Distinguish versioned <code>.cfg.json</code> values, environment variables and secret references; include no live credentials.</li>
       <li>Check the corrected change against the older fixture content and explain recovery if old and new versions coexist during delivery.</li>
     </ul>
     <p><strong>Self-check:</strong> the local defect fails before and passes after the fix, while the diagnostic note states what supplied Cloud evidence supports and what remains untested. RDE does not replace pipeline validation.</p>
-    <p><strong>For feedback or Friday demo:</strong> share the diagnostic map, focused diff, command and result. Show the first actionable error and the local correction without claiming a Cloud Manager run.</p>
+    <p><strong>Friday local demo:</strong> show the failing and passing JSON command, the corrected local configuration or SDK result, and the map from the fictional commit to the intended destination. Explain that no Cloud deployment was observed. No PR or GitHub access is involved.</p>
 
     <h2 id="practice-9">Week 9 practice · Retry a safe asynchronous update</h2>
     <p><strong>Goal:</strong> make one Author-side Sling Job tolerate a transient HTTP failure and a repeated attempt without duplicating its business effect.</p>
-    <p><strong>Starting point:</strong> the instructor supplies a minimal job, controllable local HTTP stub, narrow service identity and one prepared MSM or Content Fragment reference case.</p>
+    <p><strong>Material to share · local retry case:</strong> a Guide update has business key <code>guide-42</code>. Its first HTTP attempt returns <code>503</code>, the next returns <code>200</code>, and a replay of the same key returns <code>200</code>. The intended content effect occurs once. Use a local service or the following Python standard-library stub; it keeps request counts only for this demo, while job progress belongs in AEM's persistent state.</p>
+    <pre><code>from http.server import BaseHTTPRequestHandler, HTTPServer
+
+attempts = {}
+
+class Handler(BaseHTTPRequestHandler):
+    def do_POST(self):
+        key = self.path.rsplit("/", 1)[-1]
+        attempts[key] = attempts.get(key, 0) + 1
+        self.send_response(503 if attempts[key] == 1 else 200)
+        self.end_headers()
+
+HTTPServer(("127.0.0.1", 8765), Handler).serve_forever()</code></pre>
+    <p>Save as <code>retry_stub.py</code> and run <code>python3 retry_stub.py</code>. In another terminal, run <code>curl -i -X POST http://127.0.0.1:8765/guide-42</code> twice. For the content decision, use this supplied fact: the source Content Fragment is referenced by two Guide Pages; changing it may affect both, so check both consumers before publishing. The <a href="session-23-study-guide.html#jobs">Sling Jobs guide</a> explains result and retry semantics. Implement the job in your existing local project only if taking the full route.</p>
     <p><strong>Explore the example:</strong> trigger a failed response and a retry with the same business key; observe the stored status and resulting content.</p>
     <p><strong>Implement the extension:</strong></p>
     <ul>
       <li>Add a bounded timeout, explicit handling for transient and permanent HTTP responses, and a repeatable operation keyed to the business item.</li>
-      <li>Use the exercise's least-privilege subservice and persist enough progress to resume after a restart; do not rely on memory alone.</li>
+      <li>Use a least-privilege subservice in your local project and persist enough progress to resume after a restart; do not rely on memory alone.</li>
       <li>Show success, transient failure and replay without a duplicate effect. State that a local check does not prove cluster-wide coordination.</li>
-      <li>Inspect one supplied MSM or Content Fragment reference case and explain the consequence of changing its source; no additional subsystem is required.</li>
+      <li>Use the two-consumer Content Fragment case above to explain the consequence of changing its source; no additional subsystem is required.</li>
     </ul>
     <p><strong>Self-check:</strong> the retry completes after the stub recovers, replay leaves one intended effect, and the job's status explains what happened. A timeout does not prove the remote service did nothing.</p>
-    <p><strong>For feedback or Friday demo:</strong> share the diff, attempt/result sequence, replay check and short content-impact decision. Induce the failure and demonstrate controlled recovery.</p>
+    <p><strong>Friday local demo:</strong> show the first <code>503</code>, the successful retry and a replay with one content effect in the SDK if implemented. Otherwise, show the local stub responses and explain the persisted-state and Content Fragment decisions using the case above. No PR is required.</p>
 
     <h2 id="practice-10">Week 10 practice · Catch a regression and measure one improvement</h2>
     <p><strong>Goal:</strong> detect a relevant regression and correct one accessibility, SEO or performance defect with comparable evidence.</p>
-    <p><strong>Starting point:</strong> the instructor supplies a stable Weekend Guides fixture, existing unit tests, a chosen UI test tool and commands for local HTTP checks and measurement.</p>
+    <p><strong>Material to share · local regression case:</strong> use the <a href="session-18-study-guide.html#practica-local">TrainingMessage component</a> and its <a href="session-19-study-guide.html#practica-local">two existing unit tests</a>. Add a case where the authored title contains only spaces; the expected title is <code>Weekend Guides</code>. Temporarily remove that fallback in your local working copy to see the test fail, then restore it and see the test pass. For a visible quality check, inspect one meaningful Guide image on a local page: it needs a useful text alternative, keyboard-reachable controls and a page title. Record the page URL, browser width and one repeatable before/after observation. Use the UI test tool already present in your project, if any.</p>
     <p><strong>Explore the example:</strong> run one existing check, vary a failing input and compare the resulting browser or HTTP behavior.</p>
     <p><strong>Implement the extension:</strong></p>
     <ul>
       <li>Extend one existing unit test with a negative case that fails before the correction.</li>
-      <li>Add one real repository or HTTP check for a behavior AEM Mocks cannot prove, and automate one critical author-to-visible-page UI route with the chosen tool.</li>
+      <li>Add one real repository or HTTP check for a behavior AEM Mocks cannot prove. Automate one critical author-to-visible-page UI route only if a UI test tool is already available locally.</li>
       <li>Inspect keyboard, focus and relevant metadata; measure one load, query or rendering problem under comparable conditions.</li>
       <li>Correct the highest-priority finding and record remaining risks without adding an unnecessary framework or broad test suite.</li>
     </ul>
     <p><strong>Self-check:</strong> the regression test and local integration/UI checks run, and a before/after measure supports the selected improvement. A Lighthouse score alone does not establish accessibility conformance.</p>
-    <p><strong>For feedback or Friday demo:</strong> share test output, a short checklist, measurement conditions and a focused diff. Show the failing and passing case and why each test level was chosen.</p>
+    <p><strong>Friday local demo:</strong> run the existing test with its negative input, show one browser or HTTP check and the corrected quality issue under the same conditions. If no UI automation exists locally, show the manual route and explain what an automated check would cover; do not install a new framework for this practice.</p>
 
     <h2 id="practice-11">Week 11 practice · Optional integrated troubleshooting case</h2>
     <p><strong>Goal:</strong> trace one Weekend Guides incident across layers and explain an evidence-backed correction using the supplied case or a voluntary personal extension.</p>
-    <p><strong>Starting point:</strong> the instructor supplies a complete integrated example, a bounded incident and a prepared demo; no previous practice implementation is needed.</p>
-    <p><strong>Explore the example:</strong> follow browser → CDN evidence → Dispatcher → Sling → Model → OSGi → JCR, change one input and identify the first divergent layer.</p>
+    <p><strong>Material to share · synthetic incident:</strong> a Guide Page references a Content Fragment whose title changed from “Old route” to “New route.” The table is an invented trace for diagnosis; no previous practice implementation is needed.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Layer</th><th>Observed value</th></tr></thead>
+      <tbody>
+        <tr><td>Author page and fragment</td><td>“New route”</td></tr>
+        <tr><td>Publish fragment and page</td><td>“Old route”</td></tr>
+        <tr><td>Local Dispatcher and browser</td><td>“Old route”</td></tr>
+        <tr><td>Publication check</td><td>The page was published after the edit; the referenced fragment was not.</td></tr>
+      </tbody>
+    </table></div>
+    <p>First inspect the fragment on Publish, then publish that dependency and repeat the same requests. If your local SDK lacks Publish or Dispatcher, use the table to explain the first divergence and demonstrate the Author reference in your SDK. The <a href="session-31-study-guide.html">publication guide</a> and <a href="session-33-study-guide.html">cache guide</a> contain local checks; neither a CDN nor a Cloud environment is needed.</p>
+    <p><strong>Explore the example:</strong> compare Author, Publish and Dispatcher in the supplied trace, then identify the first divergent layer. Explain where you would inspect Sling, Model, OSGi or JCR if Publish still showed the old value after the fragment was published.</p>
     <p><strong>Implement the extension, if desired:</strong></p>
     <ul>
       <li>Reproduce the incident from a known state, rank plausible causes and run the next check that best separates them.</li>
@@ -304,10 +344,11 @@ git tag --list training-baseline</code></pre>
       <li>Repeat the relevant regression and control checks; record recovery steps and one unresolved limitation.</li>
     </ul>
     <p><strong>Self-check:</strong> you can follow the trace, reproduce the result and explain one technical decision. Asking for help is part of the exercise; there is no exam, grade or required individual defense.</p>
-    <p><strong>For feedback or final Friday:</strong> optionally share the diff, trace, checks and a specific question before Friday. Volunteers may show a short demo or recording; the instructor's prepared demo and retrospective close the course even if no one submits work.</p>
+    <p><strong>Final Friday local demo:</strong> volunteers show the first divergent layer, the corrected local result and one control request, live or in a short recording. The instructor can walk through the supplied trace if nobody volunteers. No PR, repository access or individual defense is required.</p>
 
-    <h2 id="similarity">Code similarity and understanding protocol</h2>
+    <h2 id="similarity">Code similarity and understanding protocol · original Weeks 1–7</h2>
     <p>Similarities may occur because participants use the same starter and examples. When someone voluntarily shares code for feedback, use a comparison to guide a conversation, never as an automatic plagiarism score.</p>
+    <p>Weeks 8–11 use local demonstrations and do not use this repository comparison protocol.</p>
     <ol>
       <li><strong>Compare only learner-authored changes.</strong> Diff each repository from <code>training-baseline</code>. Exclude generated files, <code>target</code>, lockfiles, supplied starter code and formatting-only changes.</li>
       <li><strong>Look for meaningful matches.</strong> Identical custom names, comments, unusual control flow, mistakes or commit sequence are stronger signals than standard AEM patterns.</li>
