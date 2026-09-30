@@ -6,7 +6,7 @@
 
 ## Objetivo observable
 
-Ante contenido antiguo en la URL pública después de comprobar la versión nueva en Publish y Dispatcher, identificar **la primera capa que diverge**. Entregar la misma URL y Host, marcador A/B, hora, headers y evidencia del navegador o del log de CDN. La sesión 33 cubrió la caché de Dispatcher; aquí se comparan sus resultados con el navegador y la CDN. No se presupone acceso a Cloud Manager ni una CDN real en clase.
+Ante una traza suministrada donde Publish y Dispatcher sirven la versión nueva pero la respuesta pública es antigua, identificar **la primera capa que diverge**. Entregar Host, URL, marcador A/B, hora, headers y evidencia, distinguiendo observaciones locales de datos simulados. La sesión 33 cubrió Dispatcher. **Esta clase no requiere acceso a una CDN, logs Cloud ni una URL pública real.**
 
 ## Recorrido de 30 minutos
 
@@ -18,20 +18,20 @@ Ante contenido antiguo en la URL pública después de comprobar la versión nuev
 | 21–28 | 10–11 | Resolver la traza B, B, A con evidencia. |
 | 28–30 | 12 | Defender la capa responsable y cerrar. |
 
-Para 60 minutos, añade 15 minutos de comparación en DevTools y 15 de discusión de variantes del caso. El material de CDN es **simulado**; la comprobación local sólo cubre navegador, Publish y Dispatcher Tools.
+Para 60 minutos, añade 15 minutos de comparación en DevTools sobre el sitio local y 15 de discusión de variantes. La respuesta y el log de CDN son **evidencia didáctica suministrada**; la comprobación local sólo cubre navegador, Publish y Dispatcher Tools.
 
 ## 1. Un recorrido, tres decisiones
 
-La respuesta puede salir de **navegador → CDN → Apache/Dispatcher → Publish**. Un hit temprano impide que la petición llegue a las capas siguientes. Mantén método GET, Host, path y query string constantes. Registra un marcador visible del cuerpo, por ejemplo `Version A` o `Version B`; un `200` por sí solo no indica frescura ni origen. Al comparar Publish directo con Dispatcher, respeta el Host que selecciona vhost y farm. Al comparar la URL pública, conserva el dominio público real. [Caché en AEM Cloud — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching).
+La respuesta puede salir de **navegador → CDN → Apache/Dispatcher → Publish**. Un hit temprano impide que la petición llegue a las capas siguientes. Mantén método GET, Host, path y query string constantes dentro de cada comparación local. Registra un marcador visible del cuerpo, por ejemplo `Version A` o `Version B`; un `200` por sí solo no indica frescura ni origen. Para la URL pública, **lee la respuesta suministrada** y sus coordenadas; no intentes consultar una CDN real. [Caché en AEM Cloud — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/caching).
 
 | Capa | Prueba útil | Límite de la prueba |
 | --- | --- | --- |
 | Navegador | DevTools Network: memoria/disco frente a petición de red; respuesta y URL. | Un reload puede cambiar headers y comportamiento de caché. |
-| CDN | Log del GET público: `rid`, `host`, `url`, `cache`, `res_age`, `pop`, status. | Una respuesta pública aislada no prueba `HIT`. |
+| CDN | Respuesta y log simulados del GET público: `rid`, `host`, `url`, `cache`, `res_age`, `pop`, status. | Permiten resolver el caso, no demuestran el estado de una CDN real. |
 | Dispatcher | Log de decisión y ausencia/presencia de nueva GET en Publish. | Dispatcher Tools local no reproduce la CDN administrada. |
 | Publish | Respuesta directa con marcador B. | Publish B no garantiza que las capas anteriores hayan vencido. |
 
-Los logs de CDN de AEM registran `cache` como `HIT`, `MISS` o `PASS`, además de `res_age` y `pop`. Correlaciona **la petición concreta** por hora, Host, URL y `rid`; un HIT de otra URL o POP no explica esta respuesta. [Logging en AEM Cloud — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/logging).
+Los logs de CDN de AEM registran `cache` como `HIT`, `MISS` o `PASS`, además de `res_age` y `pop`. En la traza suministrada, correlaciona **la petición concreta** por hora, Host, URL y `rid`; un HIT de otra URL o POP no explica esa respuesta. [Logging en AEM Cloud — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/logging).
 
 ## 2. Leer la política HTTP
 
@@ -62,33 +62,31 @@ AEM Cloud activa el versionado estricto de clientlibs: cuando cambia CSS o JS, l
 | --- | --- | --- |
 | 10:00 | Publish directo | `200`, cuerpo `Version B`. |
 | 10:01 | Dispatcher local, Host del sitio | `200`, `Version B`; log local indica archivo actualizado. |
-| 10:02 | GET a URL pública con `curl` | `200`, `Version A`, `Cache-Control: max-age=300`, `Surrogate-Control: max-age=3600`. |
-| 10:02 | Log CDN de esa GET | `host=www.example.test`, `url=/content/site/en/cache-lab.html`, `cache=HIT`, `res_age=900`, `pop=MAD`. |
-| 10:03 | Navegador normal | `Version A`; Network indica respuesta de red, no memoria/disco. |
+| 10:02 | Respuesta pública suministrada | `200`, `Version A`, `Cache-Control: max-age=300`, `Surrogate-Control: max-age=3600`. |
+| 10:02 | Log CDN simulado de esa GET | `host=www.example.test`, `url=/content/site/en/cache-lab.html`, `cache=HIT`, `res_age=900`, `pop=MAD`. |
+| 10:03 | Registro de navegador suministrado | `Version A`; Network indica respuesta de red, no memoria/disco. |
 
-**Conclusión sustentada:** Publish y Dispatcher ya sirven B; una GET pública independiente sigue recibiendo A y el log correspondiente indica `HIT`. La CDN es la primera capa divergente en esta traza. El navegador también muestra A, pero recibió esa versión por red. La acción siguiente es revisar la política de vigencia y el mecanismo de purga para **esa URL**, sin borrar toda la caché para esconder la causa. El purgado de CDN existe, pero requiere configuración y autorización operativa; no es parte de la demo local. [Purgar caché CDN — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/cdn-cache-purge).
+**Conclusión sustentada para este caso simulado:** Publish y Dispatcher sirven B; la respuesta pública suministrada es A y el log correspondiente indica `HIT`. La CDN es la primera capa divergente **en la traza**, no un hallazgo en un ambiente real. El navegador también muestra A, pero recibió esa versión por red. Propón revisar la vigencia y, si la actualización debe ser inmediata, el mecanismo de purga para esa URL; no ejecutes ninguna purga en esta práctica. [Purgar caché CDN — Adobe](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/content-delivery/cdn-cache-purge).
 
-**Variante A:** navegador A, GET pública fresca B y Network marca memoria/disco → primera divergencia: navegador. **Variante B:** CDN `MISS`, URL pública A, Dispatcher B → vuelve a comprobar Host, ruta y origen realmente usado; el `MISS` impide atribuir el A a un hit de CDN. **Variante C:** Dispatcher A y Publish B → retoma el diagnóstico de la sesión 33.
+**Variante A:** navegador A, respuesta pública suministrada B y Network marca memoria/disco → primera divergencia: navegador. **Variante B:** log CDN simulado `MISS`, respuesta pública A, Dispatcher B → faltaría comprobar Host, ruta y origen realmente usado; el `MISS` impide atribuir A a un hit de CDN. **Variante C:** Dispatcher A y Publish B → retoma el diagnóstico de la sesión 33.
 
-## Comprobación guiada si hay entorno
+## Comprobación guiada sin CDN
 
-1. En el navegador abre DevTools → Network, conserva la URL exacta y registra si hubo petición de red, status, marcador, `Cache-Control`, `Surrogate-Control` y `Age` si aparecen. Anota si usaste reload o desactivaste caché en DevTools.
-2. Desde una terminal nueva, solicita la **URL pública con GET**, sin cookies ni query añadida: `curl -i 'https://www.example.test/content/site/en/cache-lab.html'`. Reemplaza dominio y path por los reales; no ejecutes literalmente el dominio de ejemplo.
-3. Si tienes acceso autorizado a logs Cloud, busca esa petición por hora, Host, URL y `rid`. Lee `cache`, `res_age` y `pop`. Sin ese acceso, usa la traza simulada y declara la conclusión como análisis del caso, no observación real.
-4. Compara con Publish y Dispatcher local siguiendo las sesiones 31–33. Registra la **primera respuesta distinta**, no sólo la última pantalla que parece antigua.
+1. Si tienes Publish y Dispatcher Tools locales, solicita la página de prueba por ambos límites como en la sesión 33. Registra Host, URL, marcador A/B y decisión de caché de Dispatcher. No atribuyas esa observación a la CDN.
+2. En el navegador local, abre DevTools → Network y comprueba memoria/disco frente a petición de red. Anota si usaste reload o desactivaste caché. Para comparar navegador y `curl`, ambos deben usar el **mismo Host y path**; si no coinciden, registra las pruebas por separado.
+3. Lee la respuesta pública y el log CDN **suministrados en la tabla**, sin ejecutar `curl` contra un dominio público ni buscar logs Cloud. Correlaciona hora, Host, URL, `cache`, `res_age` y `pop` y determina la primera capa divergente de esa traza.
+4. Resuelve las variantes A–C con la siguiente prueba que pedirías en un ambiente real. Declara qué parte se observó localmente y qué parte provino del caso simulado.
 
 | Evidencia mínima | Registro |
 | --- | --- |
-| Petición | GET, Host, URL completa, hora, entorno y cookies presentes o ausentes. |
-| Contenido | Marcador A/B en Publish, Dispatcher y URL pública. |
-| Política | `Cache-Control`, `Surrogate-Control`, `Age` y `Set-Cookie` si aparece. |
-| CDN/navegador | `cache`/`res_age`/`pop`/`rid` o indicación de memoria/disco/red en Network. |
-| Decisión | Primera capa divergente y prueba que descarta las anteriores. |
+| Observación local | GET, Host, URL, marcador A/B y decisión de Dispatcher o Network del navegador, si hay entorno. |
+| Datos suministrados | Respuesta pública, headers y log CDN simulados; `cache`, `res_age`, `pop` y `rid` cuando aparezca. |
+| Decisión | Primera capa divergente **del caso** y prueba que descarta las anteriores. |
 
 ## Repaso con respuestas
 
 1. **¿`Surrogate-Control` y `Cache-Control` tienen que durar lo mismo?** No. En la CDN administrada por Adobe pueden fijar vigencias distintas para CDN y navegador.
-2. **¿Un HTTP 200 con `Age` demuestra un hit de CDN?** No por sí solo. Correlaciona la GET con el campo `cache` del log CDN.
+2. **¿Un HTTP 200 con `Age` demuestra un hit de CDN?** No por sí solo. En el caso, correlaciona la respuesta con el campo `cache` del log suministrado.
 3. **¿`private` protege también Dispatcher?** No necesariamente. Revisa su política de caché y autenticación por separado.
 4. **¿Sirve añadir `?v=123` para ubicar la capa?** No de forma fiable. CDN y Dispatcher pueden tratar la query de modo distinto.
 5. **¿Qué indica HTML antiguo que referencia un hash `lc-` anterior?** Primero se debe actualizar el HTML; el navegador puede estar descargando correctamente la clientlib que ese HTML pidió.

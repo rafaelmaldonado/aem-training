@@ -1,0 +1,37 @@
+{
+  "language": "English",
+  "aspect_ratio": "16:9",
+  "deck_name": "lesson-36",
+  "title": "Class 36 · Choose the delivery path",
+  "goal": "Use simulated evidence to choose a Cloud Manager pipeline and explain its source, artifact and destination.",
+  "selected_image_backend": "built-in image tool",
+  "outputs": ["12 PNG slide images", "HTML lesson", "Spanish HTML and Markdown theoretical study guide"],
+  "pptx": false,
+  "style_reference": "slides/lesson-24/origin_image/slide_03.png",
+  "style": {
+    "name": "technical atlas courseware",
+    "color_palette": "Warm ivory drafting-paper grid; deep navy titles; cobalt flow, violet configuration, green confirmed state and restrained orange caution.",
+    "typography": "Bold condensed navy headings, crisp supporting text and monospace for technical identifiers.",
+    "composition": "Structured teaching panels, fine cobalt rules and flat 2D technical diagrams; varied layouts by slide role."
+  },
+  "delivery_mode": "Theoretical only; simulated evidence, no Cloud Manager access or local lab",
+  "slides": [
+    {"number": 1, "title": "Choose the delivery path", "image": "origin_image/slide_01.png"},
+    {"number": 2, "title": "Code delivery has four coordinates", "image": "origin_image/slide_02.png"},
+    {"number": 3, "title": "Production or non-production?", "image": "origin_image/slide_03.png"},
+    {"number": 4, "title": "Choose by the changed files", "image": "origin_image/slide_04.png"},
+    {"number": 5, "title": "Full-stack owns the AEM application", "image": "origin_image/slide_05.png"},
+    {"number": 6, "title": "Front-end has a distinct artifact", "image": "origin_image/slide_06.png"},
+    {"number": 7, "title": "Web tier and config are different", "image": "origin_image/slide_07.png"},
+    {"number": 8, "title": "Trace one release", "image": "origin_image/slide_08.png"},
+    {"number": 9, "title": "Green run, wrong branch", "image": "origin_image/slide_09.png"},
+    {"number": 10, "title": "Four change cards", "image": "origin_image/slide_10.png"},
+    {"number": 11, "title": "Key takeaways", "image": "origin_image/slide_11.png"},
+    {"number": 12, "title": "Questions", "image": "origin_image/slide_12.png"}
+  ],
+  "official_sources": {
+    "Cloud Manager pipelines": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/using-cloud-manager/cicd-pipelines/introduction-ci-cd-pipelines",
+    "Production pipelines": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/using-cloud-manager/cicd-pipelines/configuring-production-pipelines",
+    "Repositories": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/using-cloud-manager/managing-code/managing-repositories"
+  }
+}

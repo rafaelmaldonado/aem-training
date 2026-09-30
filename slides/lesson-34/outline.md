@@ -1,6 +1,6 @@
 # Session 34 · Separate browser, CDN and Dispatcher caches
 
-Twelve English PNG slides; Spanish study guide and simulated CDN evidence. No Cloud access or PPTX required.
+Twelve English PNG slides; Spanish guide with local browser/Dispatcher checks and supplied simulated CDN evidence. No CDN or Cloud access required.
 
 ## Slide 01 · Browser, CDN and Dispatcher caches
 - Class 34 · Week 7 · October 1, 2026 · Juan Maldonado.
@@ -26,8 +26,8 @@ Twelve English PNG slides; Spanish study guide and simulated CDN evidence. No Cl
 - Inspect whether the browser used memory/disk cache or made a network request.
 - Record whether DevTools "Disable cache" was off and inspect both request and response.
 
-## Slide 06 · Prove the CDN boundary
-- Match a public GET to CDN log fields: `rid`, Host, URL, `cache`, `res_age` and POP.
+## Slide 06 · CDN log fields
+- The illustrated log is simulated: `rid`, Host, URL, `cache`, `res_age` and POP describe one edge response.
 - `HIT` serves from edge, `MISS` fetches origin, `PASS` does not cache.
 - A local Dispatcher Tools run cannot reproduce the managed CDN.
 
@@ -53,9 +53,9 @@ Twelve English PNG slides; Spanish study guide and simulated CDN evidence. No Cl
 - If the CDN log says `MISS`, verify origin, Host and marker again.
 
 ## Slide 11 · Key Takeaways
-- Compare the same GET at every boundary.
-- Use browser Network and CDN logs to prove the hit.
-- Fix the first layer that serves the old version.
+- Matching Host, path, and query make responses comparable.
+- Browser Network identifies local cache hits.
+- The first stale layer determines the proposed fix.
 
 ## Slide 12 · Questions
-- State the first divergent boundary and the evidence that supports it.
+- Explain how local browser and Dispatcher evidence identifies the first stale layer.

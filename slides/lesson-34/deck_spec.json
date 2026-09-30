@@ -14,7 +14,7 @@
     {"number": 3, "title": "Headers set different clocks", "image": "origin_image/slide_03.png"},
     {"number": 4, "title": "A response is more than a status", "image": "origin_image/slide_04.png"},
     {"number": 5, "title": "Did the browser make a request?", "image": "origin_image/slide_05.png"},
-    {"number": 6, "title": "Prove the CDN boundary", "image": "origin_image/slide_06.png"},
+    {"number": 6, "title": "CDN log fields", "image": "origin_image/slide_06.png"},
     {"number": 7, "title": "Private content and cookies", "image": "origin_image/slide_07.png"},
     {"number": 8, "title": "Query strings can change the test", "image": "origin_image/slide_08.png"},
     {"number": 9, "title": "Versioned client libraries", "image": "origin_image/slide_09.png"},
