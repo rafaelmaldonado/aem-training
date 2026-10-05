@@ -1,0 +1,76 @@
+{
+  "language": "English",
+  "aspect_ratio": "16:9",
+  "deck_name": "lesson-37",
+  "title": "Class 37 · Read a pipeline failure",
+  "goal": "Find the first actionable error, inspect local code coverage, and explain compatible recovery.",
+  "selected_image_backend": "built-in image tool",
+  "outputs": [
+    "9 PNG slide images",
+    "HTML lesson",
+    "Spanish HTML and Markdown theoretical study guide"
+  ],
+  "pptx": false,
+  "style_reference": "slides/lesson-13/origin_image/slide_01.png",
+  "style": {
+    "name": "technical atlas courseware",
+    "color_palette": "Warm ivory drafting grid, deep navy titles, cobalt rules, violet configuration, green confirmed state and restrained orange caution.",
+    "typography": "Bold navy titles and crisp readable technical text.",
+    "composition": "Class 13 cover layout; compact diagrams and teaching panels on later slides."
+  },
+  "delivery_mode": "Theoretical examples; optional local JaCoCo instructor demo; no Cloud Manager access or participant exercises",
+  "slides": [
+    {
+      "number": 1,
+      "title": "Read a pipeline failure",
+      "image": "origin_image/slide_01.png"
+    },
+    {
+      "number": 2,
+      "title": "Locate the first failed step",
+      "image": "origin_image/slide_02.png"
+    },
+    {
+      "number": 3,
+      "title": "The first error explains the build",
+      "image": "origin_image/slide_03.png"
+    },
+    {
+      "number": 4,
+      "title": "Coverage is one signal, not the verdict",
+      "image": "origin_image/slide_04.png"
+    },
+    {
+      "number": 5,
+      "title": "See which code your tests execute",
+      "image": "origin_image/slide_05.png"
+    },
+    {
+      "number": 6,
+      "title": "A 404 in stage is not a build failure",
+      "image": "origin_image/slide_06.png"
+    },
+    {
+      "number": 7,
+      "title": "Old and new code can share content",
+      "image": "origin_image/slide_07.png"
+    },
+    {
+      "number": 8,
+      "title": "Recover from the boundary that failed",
+      "image": "origin_image/slide_08.png"
+    },
+    {
+      "number": 9,
+      "title": "Questions",
+      "image": "origin_image/slide_09.png"
+    }
+  ],
+  "official_sources": {
+    "Deploy your code": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/using-cloud-manager/deploy-code",
+    "Code quality testing": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/using-cloud-manager/test-results/code-quality-testing",
+    "JaCoCo Maven plugin": "https://www.jacoco.org/jacoco/trunk/doc/maven.html",
+    "Rolling deployment": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/deploying/overview",
+    "Restore previous code deployed": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/operations/restore-previous-code-deployed"
+  }
+}
