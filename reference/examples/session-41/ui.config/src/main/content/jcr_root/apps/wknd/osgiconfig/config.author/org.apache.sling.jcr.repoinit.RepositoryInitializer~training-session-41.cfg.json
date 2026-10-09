@@ -1,0 +1,5 @@
+{
+  "scripts": [
+    "create path (nt:unstructured) /content/session-41-demo\ncreate path (nt:unstructured) /content/session-41-demo/control\ncreate path (nt:unstructured) /content/session-41-demo/guides\ncreate path (nt:unstructured) /content/session-41-demo/guides/guide-a\ncreate path (nt:unstructured) /content/session-41-demo/guides/guide-b\n\ncreate service user training-session-41-writer with forced path system/cq:services/training\n\nset ACL for training-session-41-writer\n    allow jcr:read on /content\n    allow jcr:modifyProperties on /content/session-41-demo/guides\nend\n"
+  ]
+}
