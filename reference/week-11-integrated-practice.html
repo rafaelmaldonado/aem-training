@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 11 · Integrated practice</title>
+  <style>
+    body { max-width: 56rem; margin: 2rem auto; padding: 0 1rem; color: #20262e; font: 11pt/1.5 Arial, sans-serif; }
+    h1, h2, h3 { line-height: 1.2; }
+    h1 { font-size: 24pt; } h2 { margin-top: 2rem; font-size: 16pt; } h3 { font-size: 13pt; }
+    .intro { font-size: 12pt; } .note { padding: .75rem 1rem; border-left: 4px solid #334e68; background: #edf1f4; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    th, td { padding: .5rem; border: 1px solid #c9d0d8; text-align: left; vertical-align: top; }
+    th { background: #edf1f4; }
+    @media print { body { max-width: none; margin: 0; padding: 0; } h2, h3 { break-after: avoid; } tr { break-inside: avoid; } }
+  </style>
+</head>
+<body>
+  <header>
+    <p>Week 11 · October 26–30, 2026 · Sessions 51–55</p>
+    <h1>Integrated practice: a Weekend Guides page</h1>
+    <p class="intro">Build one working AEM page, trace how it obtains its content, and explain one correction. Three practice variants divide the course concepts. Each variant ends with a page and components that can be demonstrated.</p>
+  </header>
+  <main>
+    <p class="note"><strong>How to participate:</strong> work individually or in pairs. With six participants, one pair can take each variant. The criteria below support self-checks and feedback; they are not a grade. The instructor can demonstrate the prepared example when participants prefer to observe.</p>
+
+    <h2>Starting point and shared result</h2>
+    <p>Everyone already has a working local AEM project and Author instance. Continue in that project; use its existing content root and components.</p>
+    <ol>
+      <li>Create a <em>Weekend Guides</em> page from an editable template. Its policy should allow Title, Image, and Container Core Components or their existing proxies.</li>
+      <li>Build a header, an image with useful alternative text, an introduction, a guide area, and the section required by your variant. The final page must render authored content in Author.</li>
+      <li>Check the page at a narrow and a wide viewport, navigate its interactive parts with a keyboard, and inspect the relevant Data Layer event if the existing components expose one.</li>
+      <li>Keep the local page URL and a short trace: request → Sling resource → component/HTL/Model → JCR content or fragment → response. Mark observations separately from assumptions.</li>
+    </ol>
+    <p>For feedback, show the page in your local instance. If you changed code or configuration, show the relevant file, installation or test command, and result. Screenshots or a short recording can replace a live demonstration.</p>
+
+    <h2>Choose one practice variant</h2>
+    <p>Every variant uses the shared page. A participant completes one variant; the group covers the broader course when the three results are reviewed together.</p>
+
+    <h3>A · Reusable content and localization</h3>
+    <ol>
+      <li><strong>Model a guide:</strong> create or reuse a Content Fragment with a title, summary, and image reference. Add a tag. Configure a card or teaser through its dialog to select the fragment. Use HTL and a Sling Model only if the existing component cannot render the required fields.</li>
+      <li><strong>Reuse a section:</strong> place an Experience Fragment on the page as a shared editorial band. Explain why the band is reusable presentation and the Content Fragment is structured content.</li>
+      <li><strong>Localize:</strong> create a Live Copy or use an existing MSM relationship. Change text in the source, perform the available rollout, and show the inherited change. Cancel inheritance for one local property, add a visible override, and check that it survives the next applicable rollout.</li>
+      <li><strong>Check dependencies:</strong> if local Publish is available, publish the page, fragment, Experience Fragment, and asset, then inspect the result. For diagnosis, use this case: the fragment title is “New route” in Author but “Old route” in Publish because only the page was republished. Identify the first divergent resource and the next check.</li>
+    </ol>
+    <p><strong>Acceptance criteria A:</strong> the page displays the fragment-backed card and shared band; changing the fragment updates its Author consumer; the MSM demonstration shows an inherited change and a preserved override; the publication check identifies the missing dependency. The card remains usable by keyboard.</p>
+
+    <h3>B · Components and backend behavior</h3>
+    <ol>
+      <li><strong>Build the section:</strong> create a guide card or status panel with its own resource type, a dialog for a guide path or identifier, escaped HTL output, and a useful empty state. Reuse Core Components for the standard page elements.</li>
+      <li><strong>Separate responsibilities:</strong> have a Sling Model read the component properties and call a small OSGi service for the displayed status. Explain which values belong in JCR and which, if any, belong in OSGi configuration.</li>
+      <li><strong>Expose a bounded check:</strong> if the status must be requested separately, add a GET servlet using a resource type or selector. Validate input, limit the response, and demonstrate a valid and invalid request. The servlet does not replace component rendering.</li>
+      <li><strong>Handle repeated work:</strong> reuse the retryable workflow/launcher and Sling Job exercise from earlier in the course. Trigger the same business key twice and show that the persisted effect occurs once. If using the local HTTP stub from the earlier retry exercise, set a timeout and handle its first 503 without blocking page rendering. Use a narrowly permitted subservice for technical writes; reads that must respect the visitor keep the visitor's identity.</li>
+    </ol>
+    <p><strong>Acceptance criteria B:</strong> changing the dialog changes the visible section; its empty state is readable; the Model, service, and JCR have clear roles; the servlet handles valid and invalid input; replay does not duplicate the effect. One JUnit/AEM Mocks negative test and one local HTTP or permission check cover the relevant risks.</p>
+
+    <h3>C · Bounded queries, local delivery, and testable page behavior</h3>
+    <ol>
+      <li><strong>List guides:</strong> reuse Guide List or create a small list component. Query by content root, resource type, and tag with an explicit result limit. Show at least two included guides and one excluded guide. Inspect Explain/Measure and justify the query or existing index.</li>
+      <li><strong>Follow local delivery:</strong> publish the page and its content dependencies. Compare the response from Publish with the response through Dispatcher. Identify the relevant vhost/filter rule, one allowed and one blocked request, a cache miss and hit, and the result after a controlled content update. If Dispatcher is unavailable locally, use the instructor's HTTP trace and label those observations as supplied evidence.</li>
+      <li><strong>Test Java behavior:</strong> if the list contains project-owned Java logic, add a negative JUnit test for its filtering or limit and run JaCoCo. Otherwise, run the project's existing Java tests and inspect the JaCoCo report. Use coverage to find an untested branch, not as a score to chase.</li>
+      <li><strong>Test browser behavior:</strong> if the page has custom clientlib JavaScript, use Jest to test one visible behavior and its empty or invalid state. Use Cypress, as practiced in Week 10, to load the page from the running local AEM instance and verify authored content, included guides, and an excluded guide. Use the tools that match the code actually present.</li>
+      <li><strong>Check quality:</strong> inspect keyboard focus, image alt text, page title, and relevant metadata. Measure one query, image, or clientlib issue under comparable conditions, make one focused correction, and repeat the same check on the final page.</li>
+    </ol>
+    <p><strong>Acceptance criteria C:</strong> the tag-based list returns the intended included and excluded results within its limit, with a recorded query plan or measurement; Publish and Dispatcher responses identify the first divergent layer, including an allowed/blocked request and cache behavior demonstrated locally or in the supplied trace; at least one relevant automated negative test runs, and a Cypress integration check runs against local AEM when the Week 10 setup is available. A quality finding has a repeatable before/after check, and the final page remains usable by keyboard.</p>
+
+    <h2>Course coverage across the variants</h2>
+    <table>
+      <thead><tr><th>Concepts</th><th>Where they appear</th></tr></thead>
+      <tbody>
+        <tr><td>JCR, Sling, pages, templates, policies, dialogs, Core Components, Assets, HTL, clientlibs, responsive behavior, and Data Layer</td><td>Shared page; A emphasizes authoring, B the custom component, and C the rendered behavior.</td></tr>
+        <tr><td>Content Fragments, Experience Fragments, tags, MSM, and publication dependencies</td><td>A; C also uses tags in its list.</td></tr>
+        <tr><td>Sling Models, OSGi services, servlet, ResourceResolver identity, ACL/Repo Init, workflow, and Sling Jobs</td><td>B, including permissions and replay.</td></tr>
+        <tr><td>Queries and indexes, JUnit/AEM Mocks, JaCoCo, Jest, Cypress, accessibility, SEO, and performance</td><td>C; B supplies a backend regression test. All variants inspect the final page.</td></tr>
+        <tr><td>Author/Publish and Dispatcher diagnosis</td><td>A checks content dependencies; C compares Publish with Dispatcher, request filtering, and cache behavior.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Daily review of the same page</h2>
+    <p>Open the page each day and review one observable section. A participant can demonstrate it, or the instructor can use the prepared example. Friday adds no new requirement.</p>
+    <table>
+      <thead><tr><th>Day</th><th>Section to show</th><th>Check or discussion</th></tr></thead>
+      <tbody>
+        <tr><td>Monday, Oct 26 · 51</td><td>Page structure, template, Title, Image, Container, and chosen variant.</td><td>Record the URL and starting state. Trace how Sling resolves the page request.</td></tr>
+        <tr><td>Tuesday, Oct 27 · 52</td><td>A: Content Fragment card and Experience Fragment. B: dialog → HTL/Model/service. C: list results and query plan.</td><td>Change one input, show a negative case, and choose the next check if the browser does not reflect the change.</td></tr>
+        <tr><td>Wednesday, Oct 28 · 53</td><td>A: Live Copy and override. B: servlet and repeated operation. C: Publish versus Dispatcher, request filter, and cache result.</td><td>Follow the operation to its data or HTTP response and locate the first divergence.</td></tr>
+        <tr><td>Thursday, Oct 29 · 54</td><td>Complete page plus one correction: A publication dependency, B regression/permission issue, or C JaCoCo/Jest/Cypress result and quality finding.</td><td>Repeat the check, review basic accessibility, and record one limitation or recovery step.</td></tr>
+        <tr><td>Friday, Oct 30 · 55</td><td>Final page with its components and variant section.</td><td>In 3–5 minutes, show the visible result, one technical decision, one check, and the first layer to inspect if it fails.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>What to show for feedback</h2>
+    <ul>
+      <li>The final page in Author and, where available, local Publish/Dispatcher; the component names and where their content comes from.</li>
+      <li>One working case and one failure or excluded case, with enough local evidence to reproduce them.</li>
+      <li>The variant's correction or decision, its regression check, and one limit of the evidence.</li>
+    </ul>
+    <p>Keep credentials, tokens, and private URLs out of screenshots. If a local layer is unavailable, state which check you would run there rather than presenting an assumption as an observed result.</p>
+  </main>
+</body>
+</html>

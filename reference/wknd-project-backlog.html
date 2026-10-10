@@ -311,20 +311,21 @@ HTTPServer(("127.0.0.1", 8765), Handler).serve_forever()</code></pre>
 
     <h2 id="practice-10">Week 10 practice · Catch a regression and measure one improvement</h2>
     <p><strong>Goal:</strong> detect a relevant regression and correct one accessibility, SEO or performance defect with comparable evidence.</p>
-    <p><strong>Material to share · local regression case:</strong> use the <a href="session-18-study-guide.html#practica-local">TrainingMessage component</a> and its <a href="session-19-study-guide.html#practica-local">two existing unit tests</a>. Add a case where the authored title contains only spaces; the expected title is <code>Weekend Guides</code>. Temporarily remove that fallback in your local working copy to see the test fail, then restore it and see the test pass. For a visible quality check, inspect one meaningful Guide image on a local page: it needs a useful text alternative, keyboard-reachable controls and a page title. Record the page URL, browser width and one repeatable before/after observation. Use the UI test tool already present in your project, if any.</p>
+    <p><strong>Material to share · local regression case:</strong> use the <a href="session-18-study-guide.html#practica-local">TrainingMessage component</a> and its <a href="session-19-study-guide.html#practica-local">two existing unit tests</a>. Add a case where the authored title contains only spaces; the expected title is <code>Weekend Guides</code>. Temporarily remove that fallback in your local working copy to see the test fail, then restore it and see the test pass. For a visible quality check, inspect one meaningful Guide image on a local page: it needs a useful text alternative, keyboard-reachable controls and a page title. Record the page URL, browser width and one repeatable before/after observation. Use the Cypress setup introduced in Session 47 for the browser check.</p>
     <p><strong>Explore the example:</strong> run one existing check, vary a failing input and compare the resulting browser or HTTP behavior.</p>
     <p><strong>Implement the extension:</strong></p>
     <ul>
       <li>Extend one existing unit test with a negative case that fails before the correction.</li>
-      <li>Add one real repository or HTTP check for a behavior AEM Mocks cannot prove. Automate one critical author-to-visible-page UI route only if a UI test tool is already available locally.</li>
+      <li>Add one real repository or HTTP check for a behavior AEM Mocks cannot prove. Use Cypress to check one critical author-to-visible-page route in the local instance.</li>
       <li>Inspect keyboard, focus and relevant metadata; measure one load, query or rendering problem under comparable conditions.</li>
       <li>Correct the highest-priority finding and record remaining risks without adding an unnecessary framework or broad test suite.</li>
     </ul>
     <p><strong>Self-check:</strong> the regression test and local integration/UI checks run, and a before/after measure supports the selected improvement. A Lighthouse score alone does not establish accessibility conformance.</p>
-    <p><strong>Friday local demo:</strong> run the existing test with its negative input, show one browser or HTTP check and the corrected quality issue under the same conditions. If no UI automation exists locally, show the manual route and explain what an automated check would cover; do not install a new framework for this practice.</p>
+    <p><strong>Friday local demo:</strong> run the existing test with its negative input, show the Cypress browser check and the corrected quality issue under the same conditions. If the local Cypress setup is unavailable, show the manual route and explain what the automated check would cover.</p>
 
-    <h2 id="practice-11">Week 11 practice · Optional integrated troubleshooting case</h2>
-    <p><strong>Goal:</strong> trace one Weekend Guides incident across layers and explain an evidence-backed correction using the supplied case or a voluntary personal extension.</p>
+    <h2 id="practice-11">Week 11 practice · Integrated Weekend Guides page</h2>
+    <p><strong>Full practice:</strong> follow the <a href="week-11-integrated-practice.html">Week 11 instructions and acceptance criteria</a>. Three variants divide content/localization, backend behavior, and queries/Publish/Dispatcher/testing. Each ends with a page of working components, reviewed section by section from Monday to Friday.</p>
+    <p><strong>Short route:</strong> trace the incident below across layers and explain an evidence-backed correction. Participation and demos remain voluntary.</p>
     <p><strong>Material to share · synthetic incident:</strong> a Guide Page references a Content Fragment whose title changed from “Old route” to “New route.” The table is an invented trace for diagnosis; no previous practice implementation is needed.</p>
     <div class="table-wrap"><table>
       <thead><tr><th>Layer</th><th>Observed value</th></tr></thead>
