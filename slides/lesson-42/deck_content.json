@@ -1,0 +1,142 @@
+[
+  {
+    "title": "Call an external service safely",
+    "subtitle": "Bound the wait. Classify the result. Make retries deliberate.",
+    "takeaway": "",
+    "alt": "Cover for class 42: an outbound HTTP call has three decisions—define the contract, bound the wait, and react to evidence.",
+    "notes": [
+      "Presentar la llamada externa como dependencia de Weekend Guides. La sesión combina un contrato HTTP, tiempo de espera finito y diagnóstico antes de volver a intentar. La demo es una sonda GET iniciada por workflow manual."
+    ],
+    "source_label": "",
+    "source_url": ""
+  },
+  {
+    "title": "Common outbound integrations",
+    "subtitle": "Illustrative provider APIs a custom OSGi service may wrap.",
+    "takeaway": "Use an AEM connector or submit action when it fits the provider.",
+    "alt": "Three typical outbound integration needs: read commerce availability, submit a CRM lead, and send or poll a translation job. Each has a different latency and retry concern.",
+    "notes": [
+      "Dar tres ejemplos reconocibles. Comercio: consultar disponibilidad o precio; AEM CIF ya ofrece una integración GraphQL cuando corresponde. Formularios: enviar un lead a CRM mediante POST; AEM Forms tiene acciones y conectores antes de escribir código propio. Traducción: enviar contenido y consultar el resultado; AEM Translation Integration Framework ofrece conectores.",
+      "Un servicio OSGi HTTP personalizado tiene sentido cuando el proveedor exige un contrato o transformación que la integración disponible no cubre. Elegir cache o trabajo de fondo según frescura, y proteger las escrituras frente a duplicados."
+    ],
+    "source_label": "Adobe · Commerce Integration Framework",
+    "source_url": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/content-and-commerce/cif-storefront/storefront/getting-started",
+    "extra_sources": [
+      {
+        "label": "Adobe · AEM Forms REST endpoint",
+        "url": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/forms/integrate/set-submit-action/configure-environment-specific-rest-endpoints"
+      },
+      {
+        "label": "Adobe · Translation connector",
+        "url": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/reusing-content/translation/sites/configure-connector"
+      }
+    ]
+  },
+  {
+    "title": "Define the HTTP boundary",
+    "subtitle": "The workflow starts it; the OSGi service owns the outbound call.",
+    "takeaway": "A 200 status is only one part of a data contract.",
+    "alt": "A workflow invokes a Process Step, injected OSGi service and provider. A sample GET and HTTP response sit beside the response checks a real data integration must define.",
+    "notes": [
+      "Explicar @Reference como inyección y el servicio como dueño del destino, timeouts y llamada HTTP. Registrar el servicio no crea un trabajo de fondo. La demo comprueba únicamente el status 200; una integración de datos también valida Content-Type, tamaño, estructura y campos. El llamador decide cuándo se ejecuta y cómo tratar el resultado."
+    ],
+    "source_label": "RFC 9110 · Adobe OSGi configuration",
+    "source_url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+  },
+  {
+    "title": "Keep credentials on the server",
+    "subtitle": "The local probe uses a disposable API key; Cloud uses a secret reference.",
+    "takeaway": "Cloud Manager holds the value; OSGi configuration holds only its reference.",
+    "alt": "The credential path shows a Cloud Manager secret value, an OSGi configuration placeholder in Git, and the service sending X-API-Key to an approved HTTPS host. It warns against putting credentials in content, client code or logs.",
+    "notes": [
+      "En Cloud, guardar STATUS_API_KEY como variable secreta por ambiente. El archivo OSGi en Git referencia $[secret:STATUS_API_KEY]; el valor se resuelve en el runtime y el servicio lo envía en X-API-Key sólo al host HTTPS configurado. La credencial ficticia de la demo se escribe en ConfigMgr local; no debe copiarse a Cloud.",
+      "AttributeType.PASSWORD sólo oculta el campo en la interfaz de ConfigMgr; no es un almacén de secretos. No poner valores en Git, /content, HTML, JavaScript, parámetros de usuario ni logs. Desactivar redirecciones ayuda a mantener fijo el destino del header."
+    ],
+    "source_label": "Adobe · OSGi secret values and Cloud Manager",
+    "source_url": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/deploying/configuring-osgi",
+    "extra_sources": [
+      {
+        "label": "Adobe · Managing secrets in AEM Cloud",
+        "url": "https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/developing/advanced/secrets"
+      }
+    ]
+  },
+  {
+    "title": "A remote call spends caller time",
+    "subtitle": "The demo runs in a workflow, outside page rendering.",
+    "takeaway": "Connect and read limits are not an end-to-end deadline.",
+    "alt": "Illustrative page render timeline adds 150 milliseconds local work and two seconds remote waiting. Separate connect and read timeout panels show that a blocked read has its own limit, not a total deadline.",
+    "notes": [
+      "El ejemplo de 2,15 segundos es ilustrativo. Una llamada síncrona retrasa el render y ocupa su hilo. Si el dato tolera antigüedad, un job puede refrescarlo con una política de frescura y fallback. connectTimeout limita el establecimiento de conexión; readTimeout limita una lectura bloqueada. DNS y varias lecturas pueden alargar el total. /slow espera tres segundos y la demo deja de leer tras unos dos."
+    ],
+    "source_label": "Oracle Java 11 · URLConnection timeouts",
+    "source_url": "https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/net/URLConnection.html"
+  },
+  {
+    "title": "Classify the observation first",
+    "subtitle": "Predict, run and read four separate local outcomes.",
+    "takeaway": "One workflow instance makes one GET; RETRY does not schedule another.",
+    "alt": "Four illustrative log lines show 200 OK, 401 STOP, 503 RETRY and SocketTimeoutException RETRY. The interpretation distinguishes an HTTP response from a transport failure.",
+    "notes": [
+      "Preparar stub y modelo antes de clase. Los cuatro registros ilustran ejecuciones separadas y resultados esperados, no capturas de Author. Pedir la predicción antes de cada instancia; /ok con clave correcta completa, 401 exige corregir la clave, 503 pide inspeccionar al proveedor y /slow señala la espera de lectura.",
+      "Un status HTTP y un fallo de transporte requieren investigaciones distintas. La clasificación didáctica agrupa todos los 5xx e IOException como RETRY, pero no prueba que repetir ayude. El Process Step hace un solo GET por instancia; RETRY no programa una segunda llamada."
+    ],
+    "source_label": "RFC 9110 · status semantics",
+    "source_url": "https://www.rfc-editor.org/rfc/rfc9110.html"
+  },
+  {
+    "title": "Retry with a budget and a stable key",
+    "subtitle": "A second attempt can add load—or repeat a completed effect.",
+    "takeaway": "One layer owns retries; writes need provider-side deduplication.",
+    "alt": "A policy example totals three two-second attempts plus one and two seconds of waiting, nine seconds inside a ten-second cap. A separate POST example shows a committed write whose response is lost before a retry.",
+    "notes": [
+      "Es un ejemplo de política, no código de la demo: tres intentos totales, dos reintentos, nueve segundos nominales y límite global de diez. Los dos timeouts del cliente no implementan esos deadlines. Evitar multiplicar reentregas de job por reintentos HTTP. La secuencia POST es conceptual; la demo hace GET. Para evitar duplicados, el proveedor debe documentar y aplicar una clave de idempotencia con alcance y retención definidos."
+    ],
+    "source_label": "AWS Builders' Library · retry policy",
+    "source_url": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/"
+  },
+  {
+    "title": "Read the client and its limits",
+    "subtitle": "The excerpt comes from ExternalStatusService.check().",
+    "takeaway": "This is a status probe, not a complete data integration.",
+    "alt": "Java excerpt highlights connection and read timeouts, disabled redirects, GET method, X-API-Key header and the observed response code; a side panel identifies what the status probe still lacks.",
+    "notes": [
+      "Abrir ExternalStatusService.java. El servicio valida el destino, configura ambos timeouts, desactiva redirecciones, envía X-API-Key sólo al proveedor configurado y desconecta en finally. Cloud Manager guarda el valor secreto; la referencia OSGi vive en Git. La demo no incluye parsing de cuerpo, deadline total ni reintento automático."
+    ],
+    "source_label": "Local source · ExternalStatusService.check()",
+    "source_url": ""
+  },
+  {
+    "title": "Local success does not prove Cloud egress",
+    "subtitle": "The same client crosses a different network path in Cloud.",
+    "takeaway": "Locate the failed stage, then capture duration, outcome and correlation ID.",
+    "alt": "Local Author reaches a loopback stub; Cloud reaches an approved external host. The diagnostic order is effective configuration, DNS and route, TLS, then HTTP response and data contract.",
+    "notes": [
+      "127.0.0.1 en Cloud apunta a la propia instancia, no al stub del portátil. Comprobar URL y secreto efectivos, DNS y ruta de egress, TLS, status y contrato de datos. Advanced Networking depende del destino y requisitos del proveedor; éxito local no lo verifica. Registrar duración, resultado, intento e ID de correlación, sin credenciales ni payloads."
+    ],
+    "source_label": "Adobe · Advanced Networking and egress",
+    "source_url": "https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/security/configuring-advanced-networking"
+  },
+  {
+    "title": "Key takeaways",
+    "subtitle": "Five decisions for a safe outbound integration.",
+    "takeaway": "",
+    "alt": "Five bullet takeaways: choose an existing connector or narrow OSGi client; keep credentials server-side; bound and measure waiting; classify failures and budget retries; verify local and Cloud paths separately.",
+    "notes": [
+      "Pedir al grupo que aplique las cinco decisiones a un proveedor nuevo: contrato, identidad, tiempo, reintentos y evidencia. Recordar que el ejemplo entregado sólo hace una sonda GET, no parsing de datos ni reintentos automáticos."
+    ],
+    "source_label": "",
+    "source_url": ""
+  },
+  {
+    "title": "Questions",
+    "subtitle": "Thank you.",
+    "takeaway": "",
+    "alt": "Questions. Thank you.",
+    "notes": [
+      "Abrir espacio para preguntas y cerrar la sesión."
+    ],
+    "source_label": "",
+    "source_url": ""
+  }
+]
