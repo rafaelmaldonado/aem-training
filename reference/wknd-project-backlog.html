@@ -284,21 +284,11 @@ git tag --list training-baseline</code></pre>
 
     <h2 id="practice-9">Week 9 practice · Retry a safe asynchronous update</h2>
     <p><strong>Goal:</strong> make one Author-side Sling Job tolerate a transient HTTP failure and a repeated attempt without duplicating its business effect.</p>
-    <p><strong>Material to share · local retry case:</strong> a Guide update has business key <code>guide-42</code>. Its first HTTP attempt returns <code>503</code>, the next returns <code>200</code>, and a replay of the same key returns <code>200</code>. The intended content effect occurs once. Use a local service or the following Python standard-library stub; it keeps request counts only for this demo, while job progress belongs in AEM's persistent state.</p>
-    <pre><code>from http.server import BaseHTTPRequestHandler, HTTPServer
-
-attempts = {}
-
-class Handler(BaseHTTPRequestHandler):
-    def do_POST(self):
-        key = self.path.rsplit("/", 1)[-1]
-        attempts[key] = attempts.get(key, 0) + 1
-        self.send_response(503 if attempts[key] == 1 else 200)
-        self.end_headers()
-
-HTTPServer(("127.0.0.1", 8765), Handler).serve_forever()</code></pre>
-    <p>Save as <code>retry_stub.py</code> and run <code>python3 retry_stub.py</code>. In another terminal, run <code>curl -i -X POST http://127.0.0.1:8765/guide-42</code> twice. For the content decision, use this supplied fact: the source Content Fragment is referenced by two Guide Pages; changing it may affect both, so check both consumers before publishing. The <a href="session-23-study-guide.html#jobs">Sling Jobs guide</a> explains result and retry semantics. Implement the job in your existing local project only if taking the full route.</p>
-    <p><strong>Explore the example:</strong> trigger a failed response and a retry with the same business key; observe the stored status and resulting content.</p>
+    <p><strong>Material to share · local retry case:</strong> a Guide update has business key <code>guide-42</code>. Its first HTTP attempt returns <code>503</code>, the next returns <code>200</code>, and a replay of the same key returns <code>200</code>. The intended content effect occurs once. Use a local service or the <a href="examples/week-9/RetryStub.java">Java retry stub</a>; it keeps request counts only for this demo, while job progress belongs in AEM's persistent state.</p>
+    <p>From the repository root, run the stub with JDK 11 or later. It listens only on loopback, on port <code>8766</code>, so it can run beside the Session 42 stub. Stop it with Ctrl+C.</p>
+    <pre><code>java --add-modules jdk.httpserver reference/examples/week-9/RetryStub.java</code></pre>
+    <p>In another terminal, run <code>curl -i -X POST http://127.0.0.1:8766/guide-42</code> three times: expect <code>503</code>, <code>200</code>, then <code>200</code> on replay. Restarting the stub resets its in-memory count; it does not perform or deduplicate a content update. For the content decision, use this supplied fact: the source Content Fragment is referenced by two Guide Pages; changing it may affect both, so check both consumers before publishing. The <a href="session-23-study-guide.html#jobs">Sling Jobs guide</a> explains result and retry semantics. Implement the job in your existing local project only if taking the full route.</p>
+    <p><strong>Explore the example:</strong> trigger a failed response and a retry with the same business key; observe the HTTP status and terminal log, then identify what the AEM job must persist to avoid a duplicate content effect.</p>
     <p><strong>Implement the extension:</strong></p>
     <ul>
       <li>Add a bounded timeout, explicit handling for transient and permanent HTTP responses, and a repeatable operation keyed to the business item.</li>
@@ -306,7 +296,7 @@ HTTPServer(("127.0.0.1", 8765), Handler).serve_forever()</code></pre>
       <li>Show success, transient failure and replay without a duplicate effect. State that a local check does not prove cluster-wide coordination.</li>
       <li>Use the two-consumer Content Fragment case above to explain the consequence of changing its source; no additional subsystem is required.</li>
     </ul>
-    <p><strong>Self-check:</strong> the retry completes after the stub recovers, replay leaves one intended effect, and the job's status explains what happened. A timeout does not prove the remote service did nothing.</p>
+    <p><strong>Self-check:</strong> the stub returns <code>503</code>, <code>200</code>, <code>200</code> for one key. If the job is implemented, replay leaves one intended effect and its persisted status explains what happened. A timeout does not prove the remote service did nothing.</p>
     <p><strong>Friday local demo:</strong> show the first <code>503</code>, the successful retry and a replay with one content effect in the SDK if implemented. Otherwise, show the local stub responses and explain the persisted-state and Content Fragment decisions using the case above. No PR is required.</p>
 
     <h2 id="practice-10">Week 10 practice · Catch a regression and measure one improvement</h2>

@@ -99,7 +99,7 @@ En el ejemplo, `@AttributeDefinition(type = AttributeType.PASSWORD)` sólo enmas
 
 ## 5. Demo del instructor · Author SDK y stub local
 
-Sigue la [preparación completa](examples/session-42/README.md) antes de la reunión. El stub de Python escucha **sólo loopback** en el mismo equipo que Author. El código copiable está en `reference/examples/session-42/core/`; el modelo se crea en Author. Este repositorio de formación no incluye reactor Maven ni una instancia AEM ejecutándose, así que la observación en SDK indicada aquí es **esperada**, no una ejecución registrada.
+Sigue la [preparación completa](examples/session-42/README.md) antes de la reunión. Ejecuta `java --add-modules jdk.httpserver reference/examples/session-42/StubServer.java` desde la raíz del repositorio con el JDK de AEM; el stub escucha **sólo loopback** en el mismo equipo que Author. El código copiable al proyecto AEM está en `reference/examples/session-42/core/`; el modelo se crea en Author. Este repositorio de formación no incluye reactor Maven ni una instancia AEM ejecutándose, así que la observación en SDK indicada aquí es **esperada**, no una ejecución registrada.
 
 1. Verifica el stub: `curl -i -H 'X-API-Key: training-demo-only' http://127.0.0.1:8765/ok` devuelve `200`.
 2. Abre `Training: external status probe` en ConfigMgr: `/ok`, clave ficticia, conexión `1000 ms`, lectura `2000 ms`. Inicia el modelo manual con una página existente. Busca `Session 42 upstreamStatus=200 outcome=OK` y el workflow completo.
