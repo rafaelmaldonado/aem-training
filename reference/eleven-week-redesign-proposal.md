@@ -99,7 +99,7 @@ RDE no reemplaza la validación del pipeline. La selección de configuración se
 | 42 | Mar 13 oct | **Consumir un servicio externo desde AEM.** Servicio OSGi, timeouts, errores HTTP, credenciales y límites de reintento; diagnóstico de conectividad/egress. Usar un stub local; no bloquear el render de una página con trabajo largo. |
 | 43 | Mié 14 oct | **Resolver un caso MSM de localización.** Rollout configurations existentes, cancelación/restauración de herencia y referencias localizadas. Diferenciar Live Copy, Language Copy y proceso de traducción. |
 | 44 | Jue 15 oct | **Evolucionar un modelo CF sin romper consumidores.** Referencias de contenido frente a referencias entre fragmentos, campos ausentes, profundidad del modelo y dependencias de publicación. Mantener consumo en Sites. |
-| 45 | Vie 16 oct | **Recap y demo de la práctica 9:** tarea que tolera fallo/reintento y justificación del impacto sobre contenido compartido. |
+| 45 | Vie 16 oct | **Recap y demo de la práctica 9:** extender el ejemplo de la sesión 41 a 300 nodos, observar launcher → workflow → Sling Job, avance persistido y reintento sin duplicados. |
 
 No se exige escribir un motor de workflows, una rollout action propia ni una aplicación Headless. La sesión 44 mantiene CF relacionados y evolución del modelo para Sites. GraphQL se ofrece únicamente como lectura opcional; no se reserva una sesión ni se añade a la práctica mientras su necesidad laboral siga sin confirmar.
 
@@ -166,16 +166,18 @@ Ofrecer dos recorridos voluntarios: **explorar el ejemplo** (30–60 minutos ori
 
 **Comprobaciones sugeridas:** comando local y resultado, diagnóstico, mapa del commit ficticio → pipeline → destino y límite de lo demostrado. **Demo local:** primer error accionable y corrección del caso publicado en la página; no simular haber usado Cloud Manager. No se pide PR. Al cerrar esta semana el instructor presenta el alcance del caso integrador final; quien quiera una ampliación personal puede elegirla sin compromiso de entrega.
 
-### Práctica 9 · Una actualización asíncrona que tolera fallos
+### Práctica 9 · Extender el Sling Job de la sesión 41
 
-**Resultado principal:** un Sling Job en Author actualiza de forma controlada un dato del escenario, con un servicio HTTP local simulado y un efecto verificable al repetir la operación.
+**Resultado principal:** con el launcher, modelo y Process Step de la sesión 41, crear 300 Guides en lotes mediante el Sling Job. El workflow termina al encolar; el job continúa y persiste el avance bajo `/content/session-41-demo/guides`.
 
-- Partir del proyecto local y del stub HTTP publicado en la página; completar timeout, error transitorio y operación repetida con la misma clave de negocio si se elige implementar el Job.
-- Usar un subservice de mínimo privilegio en el proyecto local. Verificar progreso/estado según el diseño; no almacenar el estado duradero sólo en memoria.
-- Mostrar éxito, fallo transitorio y repetición sin duplicar el efecto. Declarar el límite de la prueba local; no afirmar que demuestra coordinación de todo un clúster.
-- Como evidencia secundaria breve, analizar el caso publicado de un CF con dos consumidores y explicar el impacto de modificar su fuente. No implementar subsistemas nuevos adicionales.
+**Punto de inicio para participantes:** usar los seis archivos ya entregados en la sesión 41. Se modifican sólo `GuideBatchJobConsumer.java`, `GuideBatchJobConsumerTest.java` y el Repo Init `.cfg.json`. `QueueGuidesProcess.java`, el service-user mapping, la cola ordenada, el modelo y el launcher conservan los valores de clase.
 
-**Evidencia en el entorno local:** secuencia de intentos/resultado, prueba del efecto repetido y decisión de contenido con el stub y el caso publicados en la página. **Demo:** provocar un fallo y recuperarlo de manera controlada. No se pide PR. Quedan fuera pagos, grandes importaciones, endpoints externos reales y automatización de publicación masiva.
+- Ampliar la ACL del service user sólo bajo `/content/session-41-demo/guides` para permitir crear hijos y actualizar propiedades.
+- Generar `guide-0001` a `guide-0300` en lotes de 25; guardar `processedVersion`, `completed` y `lastGuide` con cada lote. Los nombres deterministas permiten omitir nodos ya procesados al reintentar.
+- Devolver `FAILED` tras el cuarto lote del primer intento. El reintento de la cola reanuda desde 100 y termina en 300. Repetir el mismo payload sin duplicar nodos ni aplicar de nuevo la misma versión.
+- Ampliar la prueba existente para verificar el checkpoint en 100, la reanudación y el replay sin escrituras adicionales.
+
+**Evidencia en el entorno local:** cambiar `requestedVersion` de `v0` a `v1` en `/content/session-41-demo/control`, observar la instancia del workflow y el Sling Job, comprobar `completed=100` y después `completed=300`, y contar exactamente 300 Guides numerados. Los `guide-a` y `guide-b` originales permanecen fuera de ese conteo. La demo del instructor usa una solución preparada sobre esos mismos archivos. No se pide PR ni servicio externo; la prueba local no demuestra coordinación de un clúster.
 
 ### Práctica 10 · Proteger el incremento con pruebas y una mejora medida
 
@@ -214,7 +216,7 @@ No se asignan notas ni niveles de desempeño. Las preguntas, ejemplos y comproba
 | Semana 6 | Fixture de Guide Pages y tags; query costosa y corregible; usuarios/rutas del ejercicio y servicio técnico mínimo. | Repositorio real para ACL/plan. Si el baseline carece de un índice útil, preparar el fixture o índice de laboratorio antes; no prometer que el mismo plan existe en todos los SDK. |
 | Semana 7 | Instrucciones de Publish local, Dispatcher Tools/contenedor, contenido dependiente y casos de caché; ejemplos de headers/logs CDN identificados como reales o sintéticos. | Preparar la demo local del instructor. El entorno de participantes sólo se necesita si eligen ejecutar la práctica; un análisis de logs no se presenta como ejecución Cloud. |
 | Semana 8 | Compartir el caso sintético y la configuración rota publicados en la página de prácticas. | El instructor no tiene Cloud Manager; la corrección y la demo se hacen localmente. |
-| Semana 9 | Compartir el stub HTTP y el caso de dos consumidores CF publicados en la página de prácticas. | La implementación de Sling Job es opcional y se hace en el proyecto local de cada participante. |
+| Semana 9 | Reutilizar los seis archivos entregados en la sesión 41 y preparar la extensión resuelta para la demo del viernes. | Cada participante modifica tres archivos en su SDK local; no se requiere material nuevo, HTTP externo ni Cloud. |
 | Semana 10 | Compartir el ejemplo y la prueba existentes de TrainingMessage enlazados desde la página de prácticas. | Usar el proyecto y las herramientas UI locales ya disponibles; una prueba local no demuestra el gate Cloud. |
 | Semana 11 | Compartir la traza sintética y las guías de Publish/Dispatcher enlazadas desde la página de prácticas. | El cierre funciona con una demo local voluntaria o con el análisis guiado del incidente publicado. |
 

@@ -274,7 +274,7 @@
 <tr>
 <td>45</td>
 <td>Vie 16 oct</td>
-<td><strong>Recap y demo de la práctica 9:</strong> tarea que tolera fallo/reintento y justificación del impacto sobre contenido compartido.</td>
+<td><strong>Recap y demo de la práctica 9:</strong> extender el ejemplo de la sesión 41 a 300 nodos, observar launcher → workflow → Sling Job, avance persistido y reintento sin duplicados.</td>
 </tr>
 </tbody>
 </table></div>
@@ -385,15 +385,16 @@
 <li>Demostrar compatibilidad con el contenido anterior del ejemplo local y explicar recuperación y herramienta de inspección elegida.</li>
 </ul>
 <p><strong>Comprobaciones sugeridas:</strong> comando local y resultado, diagnóstico, mapa del commit ficticio → pipeline → destino y límite de lo demostrado. <strong>Demo local:</strong> primer error accionable y corrección del caso publicado en la página; no simular haber usado Cloud Manager. No se pide PR. Al cerrar esta semana el instructor presenta el alcance del caso integrador final; quien quiera una ampliación personal puede elegirla sin compromiso de entrega.</p>
-<h3>Práctica 9 · Una actualización asíncrona que tolera fallos</h3>
-<p><strong>Resultado principal:</strong> un Sling Job en Author actualiza de forma controlada un dato del escenario, con un servicio HTTP local simulado y un efecto verificable al repetir la operación.</p>
+<h3>Práctica 9 · Extender el Sling Job de la sesión 41</h3>
+<p><strong>Resultado principal:</strong> con el launcher, modelo y Process Step de la sesión 41, crear 300 Guides en lotes mediante el Sling Job. El workflow termina al encolar; el job continúa y persiste el avance bajo <code>/content/session-41-demo/guides</code>.</p>
+<p><strong>Punto de inicio para participantes:</strong> usar los seis archivos ya entregados en la sesión 41. Se modifican sólo <code>GuideBatchJobConsumer.java</code>, <code>GuideBatchJobConsumerTest.java</code> y el Repo Init <code>.cfg.json</code>. <code>QueueGuidesProcess.java</code>, el service-user mapping, la cola ordenada, el modelo y el launcher conservan los valores de clase.</p>
 <ul>
-<li>Partir del proyecto local y del stub HTTP publicado en la página; completar timeout, error transitorio y operación repetida con la misma clave de negocio si se elige implementar el Job.</li>
-<li>Usar un subservice de mínimo privilegio en el proyecto local. Verificar progreso/estado según el diseño; no almacenar el estado duradero sólo en memoria.</li>
-<li>Mostrar éxito, fallo transitorio y repetición sin duplicar el efecto. Declarar el límite de la prueba local; no afirmar que demuestra coordinación de todo un clúster.</li>
-<li>Como evidencia secundaria breve, analizar el caso publicado de un CF con dos consumidores y explicar el impacto de modificar su fuente. No implementar subsistemas nuevos adicionales.</li>
+<li>Ampliar la ACL del service user sólo bajo <code>/content/session-41-demo/guides</code> para permitir crear hijos y actualizar propiedades.</li>
+<li>Generar <code>guide-0001</code> a <code>guide-0300</code> en lotes de 25; guardar <code>processedVersion</code>, <code>completed</code> y <code>lastGuide</code> con cada lote. Los nombres deterministas permiten omitir nodos ya procesados al reintentar.</li>
+<li>Devolver <code>FAILED</code> tras el cuarto lote del primer intento. El reintento de la cola reanuda desde 100 y termina en 300. Repetir el mismo payload sin duplicar nodos ni aplicar de nuevo la misma versión.</li>
+<li>Ampliar la prueba existente para verificar el checkpoint en 100, la reanudación y el replay sin escrituras adicionales.</li>
 </ul>
-<p><strong>Evidencia en el entorno local:</strong> secuencia de intentos/resultado, prueba del efecto repetido y decisión de contenido con el stub y el caso publicados en la página. <strong>Demo:</strong> provocar un fallo y recuperarlo de manera controlada. No se pide PR. Quedan fuera pagos, grandes importaciones, endpoints externos reales y automatización de publicación masiva.</p>
+<p><strong>Evidencia en el entorno local:</strong> cambiar <code>requestedVersion</code> de <code>v0</code> a <code>v1</code> en <code>/content/session-41-demo/control</code>, observar la instancia del workflow y el Sling Job, comprobar <code>completed=100</code> y después <code>completed=300</code>, y contar exactamente 300 Guides numerados. Los <code>guide-a</code> y <code>guide-b</code> originales permanecen fuera de ese conteo. La demo del instructor usa una solución preparada sobre esos mismos archivos. No se pide PR ni servicio externo; la prueba local no demuestra coordinación de un clúster.</p>
 <h3>Práctica 10 · Proteger el incremento con pruebas y una mejora medida</h3>
 <p><strong>Resultado:</strong> una regresión relevante es detectable y una deficiencia concreta de accesibilidad, SEO o rendimiento queda corregida.</p>
 <ul>
@@ -443,8 +444,8 @@
 </tr>
 <tr>
 <td>Semana 9</td>
-<td>Compartir el stub HTTP y el caso de dos consumidores CF publicados en la página de prácticas.</td>
-<td>La implementación de Sling Job es opcional y se hace en el proyecto local de cada participante.</td>
+<td>Reutilizar los seis archivos entregados en la sesión 41 y preparar la extensión resuelta para la demo del viernes.</td>
+<td>Cada participante modifica tres archivos en su SDK local; no se requiere material nuevo, HTTP externo ni Cloud.</td>
 </tr>
 <tr>
 <td>Semana 10</td>
