@@ -1,0 +1,73 @@
+@import url("../lesson-43/deck.css");
+
+.msm-slide .cf-stage { position: absolute; left: 4.2%; right: 4.2%; top: 25%; bottom: 12%; z-index: 1; }
+.msm-slide .cf-stage.tall { top: 24%; bottom: 11%; }
+.msm-slide .cf-window { height: 100%; overflow: hidden; border: 1px solid #aeb9c9; border-radius: 8px; background: #fff; box-shadow: 0 12px 32px #06134f1f; color: #243148; font: .62em/1.3 Arial, sans-serif; }
+.msm-slide .cf-window p { margin: .12em 0 .4em; }
+.msm-slide .cf-toolbar { display: flex; align-items: center; justify-content: space-between; padding: .5em 1em; min-height: 2.5em; background: #242424; color: white; font-weight: 700; }
+.msm-slide .cf-toolbar .cf-brand { font-size: 1.15em; letter-spacing: .03em; }
+.msm-slide .cf-toolbar .cf-app { color: #e8ebf2; font-weight: 400; }
+.msm-slide .cf-toolbar .cf-demo { color: #fff; background: #4f5662; border-radius: 2em; padding: .25em .7em; font-size: .83em; }
+.msm-slide .cf-subbar { display: flex; justify-content: space-between; align-items: center; padding: .5em 1em; background: #f6f7f9; border-bottom: 1px solid #d8dee8; color: #536174; }
+.msm-slide .cf-subbar strong { color: #23314b; }
+.msm-slide .cf-workspace { display: flex; height: calc(100% - 6.3em); }
+.msm-slide .cf-rail { flex: 0 0 18%; padding: .9em; border-right: 1px solid #dde3eb; background: #fbfcfe; }
+.msm-slide .cf-main { flex: 1; min-width: 0; padding: 1.1em 1.35em; }
+.msm-slide .cf-properties { flex: 0 0 26%; padding: 1em; border-left: 1px solid #dde3eb; background: #fafbfd; }
+.msm-slide .cf-section { color: #60718a; font-weight: 700; font-size: .84em; text-transform: uppercase; letter-spacing: .08em; margin: .4em 0 .8em; }
+.msm-slide .cf-navline { padding: .48em .55em; border-radius: 4px; margin-bottom: .3em; }
+.msm-slide .cf-navline.active { background: #e7eeff; color: #1236f4; font-weight: 700; }
+.msm-slide .cf-field { border: 1px solid #d0d8e3; background: #fff; border-radius: 4px; padding: .55em .7em; margin: .45em 0 .8em; }
+.msm-slide .cf-field.active { border: 2px solid #1236f4; background: #f5f7ff; }
+.msm-slide .cf-field.empty { border-style: dashed; color: #6c7890; }
+.msm-slide .cf-field small, .msm-slide .cf-muted { color: #65758d; font-size: .85em; }
+.msm-slide .cf-field b { display: block; color: #1c2c44; font-size: 1.05em; }
+.msm-slide .cf-field code { font-size: .95em; }
+.msm-slide .cf-label { display: block; color: #44536b; font-weight: 700; margin: .55em 0 .2em; }
+.msm-slide .cf-input { display: block; border: 1px solid #bdc8d7; border-radius: 4px; padding: .53em .65em; background: white; color: #263b5b; }
+.msm-slide .cf-input.selected { border-color: #1236f4; background: #f7f9ff; }
+.msm-slide .cf-button { display: inline-block; border-radius: 3px; background: #1776cb; color: white; padding: .48em .85em; font-weight: 700; }
+.msm-slide .cf-outline { display: inline-block; border: 1px solid #a6b5c9; border-radius: 3px; background: white; color: #344763; padding: .42em .7em; }
+.msm-slide .cf-badge { display: inline-block; padding: .16em .45em; border-radius: 3px; background: #e8f5e9; color: #21643b; font-size: .83em; font-weight: 700; }
+.msm-slide .cf-badge.blue { background: #e7eeff; color: #1236f4; }
+.msm-slide .cf-badge.gray { background: #eceff3; color: #516176; }
+.msm-slide .cf-browserbar { display: flex; gap: .6em; align-items: center; padding: .42em .75em; background: #e9edf3; border-bottom: 1px solid #c9d2dd; }
+.msm-slide .cf-dots { color: #8995a7; letter-spacing: .18em; }
+.msm-slide .cf-address { flex: 1; padding: .3em .7em; border-radius: 3em; background: white; color: #53657d; }
+.msm-slide .cf-photo { background: #edf2f8 url("assets/image-placeholder.svg") center/auto 67% no-repeat; border: 1px solid #b8c9dd; }
+.msm-slide .cf-story .cf-photo, .msm-slide .cf-main > .cf-photo { position: relative; }
+.msm-slide .cf-story .cf-photo::after, .msm-slide .cf-main > .cf-photo::after { content: 'Illustrative page image · outside the CF'; position: absolute; right: .5em; bottom: .5em; padding: .25em .45em; border-radius: 2px; background: #06134fcc; color: #fff; font-size: .82em; }
+.msm-slide .cf-page { display: flex; flex-direction: column; height: calc(100% - 3em); background: #fff; }
+.msm-slide .cf-sitehead { padding: .7em 1.3em; border-bottom: 1px solid #e0e4e8; color: #1b3b30; font-weight: 700; letter-spacing: .1em; }
+.msm-slide .cf-sitehead span { float: right; color: #65778e; font-weight: 400; letter-spacing: 0; }
+.msm-slide .cf-pagebody { display: flex; flex: 1; min-height: 0; }
+.msm-slide .cf-story { flex: 1; padding: .9em 1.15em; }
+.msm-slide .cf-story .cf-photo { height: 55%; border-radius: 3px; }
+.msm-slide .cf-story h3 { margin: .48em 0 .25em; color: #15392e; font-size: 1.65em; letter-spacing: -.02em; text-transform: none; }
+.msm-slide .cf-story p { color: #294239; font-size: 1.12em; }
+.msm-slide .cf-inspector { flex: 0 0 27%; padding: .9em; border-left: 1px solid #dde3eb; background: #f8fafb; }
+.msm-slide .cf-check { color: #127241; font-weight: 700; }
+.msm-slide .cf-danger { color: #bb391b; font-weight: 700; }
+.msm-slide .cf-tree { padding: .4em 1em; }
+.msm-slide .cf-tree-line { padding: .33em .45em; border-bottom: 1px solid #e8ebf0; white-space: nowrap; }
+.msm-slide .cf-tree-line.indent1 { padding-left: 2em; }
+.msm-slide .cf-tree-line.indent2 { padding-left: 3.55em; }
+.msm-slide .cf-tree-line.indent3 { padding-left: 5.1em; }
+.msm-slide .cf-tree-line strong { color: #23314b; }
+.msm-slide .cf-tree-line .cf-path { color: #66768d; font: .85em/1.2 monospace; margin-left: .8em; }
+.msm-slide .cf-table { width: 100%; border-collapse: collapse; font-size: 1em; }
+.msm-slide .cf-table th, .msm-slide .cf-table td { padding: .55em .75em; border-bottom: 1px solid #e3e8ef; }
+.msm-slide .cf-table th { background: #f2f5f9; color: #43546c; }
+.msm-slide .cf-caption { position: absolute; z-index: 2; right: 4.2%; top: 1.6%; font: 700 .54em Arial, sans-serif; color: #6e7f95; text-transform: uppercase; letter-spacing: .07em; }
+.msm-slide .cf-callout { display: inline-block; background: #eaf2ff; color: #1236f4; padding: .28em .55em; border-radius: 3px; font-weight: 700; }
+.msm-slide .cf-number { display: inline-grid; place-items: center; width: 1.4em; height: 1.4em; border-radius: 50%; background: #1236f4; color: #fff; font-weight: 700; margin-right: .35em; }
+.lesson-44 .msm-slide .takeaway { font-size: .88em; padding: .42em .7em; }
+
+/* Reuse the course deck; capture one slide at a time for downloadable PNGs. */
+body.capture { margin: 0; background: #fcfaf7; }
+body.capture > :not(main), body.capture main > :not(.msm-deck), body.capture .web-slide:not(.capture-target), body.capture .slide-actions, body.capture .presenter-note, body.capture figcaption { display: none !important; }
+body.capture main { width: 100%; margin: 0; padding: 0; }
+body.capture .msm-deck { display: block; margin: 0; }
+body.capture .msm-page { margin: 0; }
+body.capture .msm-slide { width: 100vw; height: 100vh; aspect-ratio: auto; font-size: 2.05vw; }
+@media print { .lesson-44 main { width: 100%; } }
