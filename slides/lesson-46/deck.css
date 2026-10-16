@@ -1,0 +1,36 @@
+@import url("../lesson-43/deck.css");
+
+.lesson-46 .msm-slide .takeaway { font-size: .9em; padding: .42em .7em; }
+.lesson-46 .msm-slide .eyebrow-line { color: #1236f4; font-weight: 700; font-size: 1.03em; margin: .2em 0 1.2em; }
+.lesson-46 .msm-slide .case-line { font-size: 1.4em; margin: .55em 0; }
+.lesson-46 .msm-slide .case-line code { font-size: .95em; }
+.lesson-46 .msm-slide code { white-space: pre; }
+.lesson-46 .msm-slide .decision-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5%; margin-top: .75em; }
+.lesson-46 .msm-slide .decision-grid .panel { min-height: 10.5em; }
+.lesson-46 .msm-slide .decision-grid .panel p { font-size: 1.05em; }
+.lesson-46 .msm-slide .test-code { display: block; white-space: pre; background: #111d40; color: #f5f8ff; border-radius: 10px; padding: .85em 1em; font: .8em/1.4 "Courier New", monospace; margin: .55em 0; overflow: hidden; }
+.lesson-46 .msm-slide .test-code strong { color: #a7e3ff; }
+.lesson-46 .msm-slide .result { font: 700 1.27em/1.3 "Courier New", monospace; padding: .7em .8em; border-radius: 8px; }
+.lesson-46 .msm-slide .result.red { border: 2px solid #b83713; background: #fff1e9; color: #a23112; }
+.lesson-46 .msm-slide .result.green { border: 2px solid #075b25; background: #edf8f0; color: #075b25; }
+.lesson-46 .msm-slide .scope-table { margin-top: .5em; font-size: .91em; }
+.lesson-46 .msm-slide .scope-table td, .lesson-46 .msm-slide .scope-table th { padding: .6em .65em; }
+.lesson-46 .msm-slide .timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5%; margin-top: .8em; }
+.lesson-46 .msm-slide .timeline .panel { min-height: 8em; }
+.lesson-46 .msm-slide .timeline .result { font-size: .94em; padding: .4em .5em; }
+.lesson-46 .msm-slide .timeline .step { font-size: 2em; color: #1236f4; font-weight: 700; line-height: 1; }
+.lesson-46 .msm-slide .plain-list { font-size: 1.14em; padding-left: 1.1em; }
+.lesson-46 .msm-slide .plain-list li { margin-bottom: .68em; }
+.lesson-46 .msm-slide .slide-number { position: absolute; right: 4.2%; bottom: 1%; color: #546381; font-size: .58em; font-weight: 700; }
+.lesson-46 .msm-slide.cover .cover-left .kicker { font-size: 1.16em; }
+.lesson-46 .msm-slide.cover h2 { font-size: 3.2em; }
+.lesson-46 .msm-slide.cover .cover-agenda { gap: 1em; }
+.lesson-46 .msm-slide.cover .agenda-item { font-size: 1.05em; }
+
+body.capture { margin: 0; background: #fcfaf7; }
+body.capture > :not(main), body.capture main > :not(.msm-deck), body.capture .web-slide:not(.capture-target), body.capture .slide-actions, body.capture .presenter-note, body.capture figcaption { display: none !important; }
+body.capture main { width: 100%; margin: 0; padding: 0; }
+body.capture .msm-deck { display: block; margin: 0; }
+body.capture .msm-page { margin: 0; }
+body.capture .msm-slide { width: 100vw; height: 100vh; aspect-ratio: auto; font-size: 2.05vw; }
+@media print { .lesson-46 main { width: 100%; } }
