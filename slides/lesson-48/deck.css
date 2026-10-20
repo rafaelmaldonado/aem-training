@@ -1,0 +1,39 @@
+@import url("../lesson-44/deck.css");
+
+.lesson-48 .msm-slide.cover h2 { font-size: 3.16em; }
+.lesson-48 .msm-slide.cover .cover-left .kicker { font-size: 1.18em; }
+.lesson-48 .msm-slide .takeaway { font-size: .88em; padding: .42em .68em; }
+.lesson-48 .msm-slide .slide-number { position: absolute; right: 4.2%; bottom: 1%; color: #546381; font-size: .58em; font-weight: 700; }
+.lesson-48 .msm-slide .audit-stage { position: absolute; left: 4.2%; right: 4.2%; top: 25%; bottom: 12%; }
+.lesson-48 .msm-slide .audit-browser { height: 100%; overflow: hidden; border: 1px solid #aeb9c9; border-radius: 8px; background: #fff; box-shadow: 0 12px 32px #06134f1f; font: .68em/1.35 Arial, sans-serif; color: #243148; }
+.lesson-48 .msm-slide .audit-bar { display: flex; gap: .7em; align-items: center; height: 2.2em; padding: .2em .75em; background: #e9edf3; border-bottom: 1px solid #c9d2dd; color: #65758d; }
+.lesson-48 .msm-slide .audit-url { flex: 1; padding: .22em .8em; border-radius: 2em; background: #fff; color: #53657d; }
+.lesson-48 .msm-slide .audit-pagehead { display: flex; justify-content: space-between; padding: .7em 1.25em; color: #173e31; border-bottom: 1px solid #e0e4e8; font-weight: 700; }
+.lesson-48 .msm-slide .audit-main { display: flex; height: calc(100% - 5.6em); }
+.lesson-48 .msm-slide .audit-story { flex: 1; padding: 1em 1.3em; }
+.lesson-48 .msm-slide .audit-story h3 { margin: .2em 0 .35em; color: #173e31; font-size: 1.7em; text-transform: none; }
+.lesson-48 .msm-slide .audit-photo { height: 42%; display: grid; place-items: center; border: 1px solid #b8c9dd; border-radius: 4px; background: #edf2f8; color: #516ba6; font-weight: 700; }
+.lesson-48 .msm-slide .audit-aside { flex: 0 0 28%; padding: 1em; border-left: 1px solid #dde3eb; background: #f8fafb; }
+.lesson-48 .msm-slide .audit-aside p { margin: .15em 0 .7em; }
+.lesson-48 .msm-slide .audit-label { color: #62728b; font-size: .8em; text-transform: uppercase; font-weight: 700; letter-spacing: .05em; }
+.lesson-48 .msm-slide .audit-focus { display: inline-block; margin-right: .35em; outline: 3px solid #1236f4; outline-offset: 4px; color: #1236f4; font-weight: 700; }
+.lesson-48 .msm-slide .audit-chips { display: flex; gap: .65em; margin: 1.1em 0; }
+.lesson-48 .msm-slide .audit-chips span { flex: 1; padding: .75em .6em; border-bottom: 3px solid #1236f4; background: #fffefd; text-align: center; font-size: 1.05em; font-weight: 700; }
+.lesson-48 .msm-slide .audit-chips b { align-self: center; color: #1236f4; }
+.lesson-48 .msm-slide .audit-note { margin: 1.1em 0; font-size: 1.12em; }
+.lesson-48 .msm-slide .audit-code { margin: .65em 0; padding: .65em .8em; border-radius: 8px; background: #111d40; color: #f5f8ff; white-space: pre-wrap; font: .88em/1.32 "Courier New", monospace; }
+.lesson-48 .msm-slide .audit-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 3%; }
+.lesson-48 .msm-slide .audit-compare > div { min-width: 0; }
+.lesson-48 .msm-slide .audit-compare h3 { margin-bottom: .25em; }
+.lesson-48 .msm-slide .audit-compare p { font-size: 1.1em; }
+.lesson-48 .msm-slide .audit-viewport { border: 2px solid #1236f4; background: #fffefd; border-radius: 8px; padding: .65em .8em; min-height: 5.5em; }
+.lesson-48 .msm-slide .audit-viewport.narrow { width: 46%; }
+.lesson-48 .msm-slide .audit-viewport p { margin-bottom: .25em; }
+.lesson-48 .msm-slide .audit-viewport .mini-rule { height: .42em; margin: .35em 0; background: #d6e2ef; border-radius: 2em; }
+.lesson-48 .msm-slide .audit-viewport .mini-rule.short { width: 67%; }
+.lesson-48 .msm-slide .audit-status { display: inline-block; padding: .25em .5em; background: #edf8f0; color: #075b25; font-weight: 700; }
+.lesson-48 .msm-slide .audit-table { font-size: .86em; }
+.lesson-48 .msm-slide .audit-table td, .lesson-48 .msm-slide .audit-table th { padding: .43em .55em; }
+.lesson-48 .msm-slide .definition-table td:first-child { width: 25%; font-weight: 700; color: #1236f4; }
+.lesson-48 .msm-slide .compact-table { font-size: .82em; }
+@media print { .lesson-48 main { width: 100%; } }
