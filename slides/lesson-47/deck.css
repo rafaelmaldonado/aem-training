@@ -1,0 +1,22 @@
+@import url("../lesson-43/deck.css");
+
+.lesson-47 .msm-slide.cover h2 { font-size: 3.25em; }
+.lesson-47 .msm-slide.cover .cover-left .kicker { font-size: 1.18em; }
+.lesson-47 .msm-slide .takeaway { font-size: .94em; padding: .45em .7em; }
+.lesson-47 .msm-slide .slide-number { position: absolute; right: 4.2%; bottom: 1%; color: #546381; font-size: .58em; font-weight: 700; }
+.lesson-47 .msm-slide .code-block { display: block; margin: .45em 0; padding: .7em .85em; border-radius: 9px; background: #111d40; color: #f5f8ff; white-space: pre; font: .88em/1.42 "Courier New", monospace; }
+.lesson-47 .msm-slide .code-block b { color: #a7e3ff; }
+.lesson-47 .msm-slide .scope-table { font-size: .89em; margin-top: .45em; }
+.lesson-47 .msm-slide .scope-table td, .lesson-47 .msm-slide .scope-table th { padding: .58em .65em; }
+.lesson-47 .msm-slide .flow-line { display: flex; align-items: center; gap: .65em; margin: .8em 0 1.1em; font-size: 1.18em; font-weight: 700; }
+.lesson-47 .msm-slide .flow-line span { flex: 1; border-bottom: 3px solid #1236f4; padding: .45em .2em; text-align: center; }
+.lesson-47 .msm-slide .flow-line b { color: #1236f4; }
+.lesson-47 .msm-slide .concept-list { font-size: 1.13em; margin-top: .45em; }
+.lesson-47 .msm-slide .concept-list li { margin-bottom: .57em; }
+body.capture { margin: 0; background: #fcfaf7; }
+body.capture > :not(main), body.capture main > :not(.msm-deck), body.capture .web-slide:not(.capture-target), body.capture .slide-actions, body.capture .presenter-note, body.capture figcaption { display: none !important; }
+body.capture main { width: 100%; margin: 0; padding: 0; }
+body.capture .msm-deck { display: block; margin: 0; }
+body.capture .msm-page { margin: 0; }
+body.capture .msm-slide { width: 100vw; height: 100vh; aspect-ratio: auto; font-size: 2.05vw; }
+@media print { .lesson-47 main { width: 100%; } }
