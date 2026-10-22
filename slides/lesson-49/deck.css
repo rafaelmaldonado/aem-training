@@ -1,0 +1,31 @@
+@import url("../lesson-44/deck.css");
+
+.lesson-49 .msm-slide.cover h2 { font-size: 3.02em; }
+.lesson-49 .msm-slide .takeaway { font-size: .88em; padding: .42em .68em; }
+.lesson-49 .msm-slide .slide-number { position: absolute; right: 4.2%; bottom: 1%; color: #546381; font-size: .58em; font-weight: 700; }
+.lesson-49 .msm-slide .perf-label { display: inline-block; padding: .18em .48em; border-radius: 3px; background: #fff1e9; color: #a83315; font-size: .72em; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+.lesson-49 .msm-slide .perf-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.1em; margin-top: .8em; }
+.lesson-49 .msm-slide .perf-grid .panel { min-height: 6.4em; }
+.lesson-49 .msm-slide .perf-grid .panel p { font-size: .92em; }
+.lesson-49 .msm-slide .perf-path { display: flex; align-items: stretch; gap: .3em; margin: 1.1em 0 .7em; }
+.lesson-49 .msm-slide .perf-node { flex: 1; display: grid; align-content: center; text-align: center; min-height: 3.6em; padding: .25em; border: 2px solid #1236f4; border-radius: 8px; background: #fffefd; font-size: .91em; font-weight: 700; }
+.lesson-49 .msm-slide .perf-node.muted { border-style: dashed; border-color: #8190aa; color: #53647e; }
+.lesson-49 .msm-slide .perf-node.hot { border-color: #ef4b17; background: #fff1e9; color: #ad3214; }
+.lesson-49 .msm-slide .perf-arrow { align-self: center; color: #1236f4; font-size: 1.18em; font-weight: 700; }
+.lesson-49 .msm-slide .perf-track { margin: .7em 0 0; padding: .8em 1em; background: #fffefd; border: 1px solid #c7d0e1; border-radius: 8px; }
+.lesson-49 .msm-slide .perf-row { display: grid; grid-template-columns: 16% 1fr 12%; gap: .55em; align-items: center; margin: .42em 0; font-size: .78em; }
+.lesson-49 .msm-slide .perf-bar { height: 1.1em; border-radius: 3px; background: #1236f4; }
+.lesson-49 .msm-slide .perf-bar.orange { background: #ef4b17; }
+.lesson-49 .msm-slide .perf-bar.green { background: #177c43; }
+.lesson-49 .msm-slide .perf-table { font-size: .81em; }
+.lesson-49 .msm-slide .perf-table td, .lesson-49 .msm-slide .perf-table th { padding: .43em .52em; }
+.lesson-49 .msm-slide .perf-note { margin-top: .65em; font-size: .9em; }
+.lesson-49 .msm-slide .perf-steps { display: grid; grid-template-columns: repeat(2,1fr); gap: .55em 1.1em; margin-top: .35em; }
+.lesson-49 .msm-slide .perf-step { padding: .58em .7em; border-left: 4px solid #1236f4; background: #fffefd; font-size: .9em; }
+.lesson-49 .msm-slide .perf-step b { color: #1236f4; }
+.lesson-49 .msm-slide .perf-result { display: grid; grid-template-columns: repeat(2,1fr); gap: 1em; margin-top: .75em; }
+.lesson-49 .msm-slide .perf-result .panel { text-align: center; padding: .65em; }
+.lesson-49 .msm-slide .perf-result strong { display: block; font-size: 2.4em; line-height: 1; color: #1236f4; }
+.lesson-49 .msm-slide .perf-result .green strong { color: #075b25; }
+.lesson-49 .msm-slide .perf-result small { display: block; margin-top: .4em; }
+@media print { .lesson-49 main { width: 100%; } }
