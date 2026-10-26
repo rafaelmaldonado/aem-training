@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/conf/global/settings/dam/processing" mode="merge"/>
+    <filter root="/content/dam/assets" mode="update_properties">
+        <exclude pattern="/content/dam/assets/.*"/>
+        <include pattern="/content/dam/assets/jcr:content(/.*)?"/>
+    </filter>
+</workspaceFilter>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.example.assets</groupId>
+        <artifactId>assets.local.workflow</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <artifactId>assets.local.workflow.package</artifactId>
+    <packaging>content-package</packaging>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.jackrabbit</groupId>
+                <artifactId>filevault-package-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <group>com.example.assets.local</group>
+                    <packageType>mixed</packageType>
+                    <embeddeds>
+                        <embedded>
+                            <groupId>com.example.assets</groupId>
+                            <artifactId>assets.local.workflow.bundle</artifactId>
+                            <target>/apps/assets-local/install</target>
+                        </embedded>
+                    </embeddeds>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.day.jcr.vault</groupId>
+                <artifactId>content-package-maven-plugin</artifactId>
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>com.example.assets</groupId>
+            <artifactId>assets.local.workflow.bundle</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+</project>

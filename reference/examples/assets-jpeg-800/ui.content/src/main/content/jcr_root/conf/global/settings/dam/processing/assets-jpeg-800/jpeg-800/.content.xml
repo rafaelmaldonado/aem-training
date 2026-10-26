@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+          jcr:primaryType="cq:Page">
+    <jcr:content jcr:primaryType="nt:unstructured"
+                 sling:resourceType="dam/processing/profile/rendition"
+                 name="assets.800x800.jpeg"
+                 fmt="jpeg"
+                 wid="800"
+                 hei="800"
+                 qlt="85"
+                 includeMimeTypes="image/.*"
+                 excludeMimeTypes=""/>
+</jcr:root>

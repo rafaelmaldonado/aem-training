@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          xmlns:sling="http://sling.apache.org/jcr/sling/1.0" jcr:primaryType="cq:Page">
+    <jcr:content jcr:primaryType="cq:PageContent"
+                 jcr:title="Local JPEG 800 rendition"
+                 jcr:description="Local SDK only: generate the JPEG rendition after uploading an image."
+                 cq:template="/libs/cq/workflow/templates/model"
+                 sling:resourceType="cq/workflow/components/pages/model"
+                 transient="true">
+        <flow jcr:primaryType="nt:unstructured" sling:resourceType="foundation/components/parsys">
+            <generate jcr:primaryType="nt:unstructured" jcr:title="Generate JPEG 800"
+                      sling:resourceType="cq/workflow/components/model/process">
+                <metaData jcr:primaryType="nt:unstructured"
+                          PROCESS="com.example.assets.local.workflow.Jpeg800WorkflowProcess"
+                          PROCESS_AUTO_ADVANCE="true"/>
+            </generate>
+        </flow>
+    </jcr:content>
+</jcr:root>
