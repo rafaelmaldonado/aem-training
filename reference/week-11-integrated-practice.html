@@ -36,8 +36,10 @@
 
     <h2>Choose one practice variant</h2>
     <p>Every variant uses the shared page. A participant completes one variant; the group covers the broader course when the three results are reviewed together.</p>
+    <p class="note"><strong>Step-by-step solutions in Spanish:</strong> <a href="week-11-variant-a.html">Variant A · reusable content and localization</a> · <a href="week-11-variant-b.html">Variant B · components and backend behavior</a> · <a href="week-11-variant-c.html">Variant C · list, delivery, and tests</a>. Each page includes code, execution steps, and checks.</p>
 
     <h3>A · Reusable content and localization</h3>
+    <p><a href="week-11-variant-a.html">Open the detailed solution for A →</a></p>
     <ol>
       <li><strong>Create structured guide content:</strong> create a Guide Content Fragment Model with title, summary, image reference, and tag fields. Create a Content Fragment from that model and fill in its fields. Configure a card or teaser through its dialog to select and display that fragment. Use HTL and a Sling Model only if the existing component cannot render the required fields.</li>
       <li><strong>Create a reusable visual section:</strong> create an Experience Fragment with a promotional heading, image, and call to action, then place it on the page with the Experience Fragment component. The Experience Fragment owns that reusable arrangement of components; the Content Fragment Model defines the guide's structured fields and the Content Fragment stores their values. Do not use the Experience Fragment as the guide data source.</li>
@@ -47,6 +49,7 @@
     <p><strong>Acceptance criteria A:</strong> a Guide Content Fragment Model and a fragment created from it exist; the page displays that fragment's fields in a card and displays the separate Experience Fragment as a promotional section. Changing the fragment updates the card in Author; changing the Experience Fragment updates its section. The MSM demonstration shows an inherited change and a preserved override; the publication check identifies the missing dependency. The card remains usable by keyboard.</p>
 
     <h3>B · Components and backend behavior</h3>
+    <p><a href="week-11-variant-b.html">Open the detailed solution for B →</a></p>
     <ol>
       <li><strong>Prepare the data:</strong> under your project's content root, create a control resource with <code>requestedVersion=v0</code> and a guide resource named <code>guide-b</code> with no <code>processedVersion</code>. These are the inputs for this practice.</li>
       <li><strong>Build the section:</strong> create a status panel with its own resource type, a dialog for the control and guide paths, escaped HTL output, and a useful empty state. Use Core Components for the standard page elements.</li>
@@ -64,6 +67,7 @@ Apply count: 1</pre>
     <p><strong>Acceptance criteria B:</strong> changing the dialog changes the visible section; the panel moves from Pending to Up to date for the selected guide and its empty state is readable; the Model, service, and JCR have clear roles; the servlet handles valid and invalid input if implemented; replay leaves the apply count at 1. One JUnit/AEM Mocks negative test and one local HTTP or permission check cover the relevant risks.</p>
 
     <h3>C · Bounded queries, local delivery, and testable page behavior</h3>
+    <p><a href="week-11-variant-c.html">Open the detailed solution for C →</a></p>
     <ol>
       <li><strong>List guides:</strong> create a small Guide List component or adapt a list component already in your project. Query by content root, resource type, and tag with an explicit result limit. Show at least two included guides and one excluded guide. Inspect Explain/Measure and justify the query or existing index.</li>
       <li><strong>Follow local delivery:</strong> publish the page and its content dependencies. Compare the response from Publish with the response through Dispatcher. Identify the relevant vhost/filter rule, one allowed and one blocked request, a cache miss and hit, and the result after a controlled content update. If Dispatcher is unavailable locally, use the instructor's HTTP trace and label those observations as supplied evidence.</li>

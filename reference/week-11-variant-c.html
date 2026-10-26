@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 11 · Solución C · AEM Training</title><link rel="stylesheet" href="../assets/styles.css"></head>
+<body class="study-guide"><a class="skip-link" href="#contenido">Saltar al contenido</a>
+<nav class="site-nav" aria-label="Principal"><a class="brand" href="../index.html">AEM Training</a><ul><li><a href="week-11-integrated-practice.html">Práctica 11</a></li><li><a href="week-11-variant-a.html">Variante A</a></li><li><a href="week-11-variant-b.html">Variante B</a></li></ul></nav>
+<header><p class="eyebrow">Semana 11 · Variante C</p><h1>Lista acotada, entrega local y pruebas</h1><p class="lede">Una Core List filtrada por tag, una consulta de diagnóstico con límite explícito, evidencia de Publish/Dispatcher y una prueba de navegador sobre el resultado visible.</p><ul class="meta"><li>Author y Publish locales</li><li>Dispatcher Tools si están disponibles</li><li><a href="week-11-integrated-practice.html">Consigna y criterios</a></li></ul></header>
+<main id="contenido">
+<section class="callout"><strong>Resultado que vas a mostrar:</strong> Forest y River aparecen; City ride, Visitor notes y Outside trail quedan fuera. Guarda el plan y la medición de la consulta, una comparación HTTP antes/después, un test negativo y una observación de calidad repetida.</section>
+<h2>1. Preparar página y datos</h2>
+<ol><li>Crea Weekend Guides con la editable template y los Core Components comunes: Title, Image con alt útil, Text introductorio y Container. Permite <strong>List</strong> o su proxy en la policy del contenedor. Usa la URL real de tu sitio.</li><li>Reutiliza el conjunto de la <a href="session-26-study-guide.html#ejemplos-locales">sesión 26</a>: bajo <code>training-search</code> crea <code>01 Forest trail</code> y <code>02 River trail</code> con tag <code>training:activity/hiking</code>; <code>03 City ride</code> con Cycling; <code>04 Visitor notes</code> sin tag; y <code>05 Outside trail</code> con Hiking pero fuera de esa raíz. Ajusta el prefijo <code>/content/wknd/us/en</code> a tu sitio.</li><li>Inserta el <strong>Core List Component</strong> en el área de guías. En su diálogo elige <strong>Build list using → Tags</strong>, <strong>Parent page → training-search</strong>, <strong>Tags → Hiking</strong>, <strong>Match → any</strong>, <strong>Order by → Title</strong>, ascendente, <strong>Max Items → 2</strong> e <strong>ID → week11-guide-list</strong>. Activa enlaces de los items. No dejes Max Items vacío: eso permite devolver todos.</li><li>En Preview confirma que los dos incluidos aparecen y los otros tres no. El componente existente ya resuelve y representa la lista; la práctica no necesita Java propio para ese comportamiento. Si tu baseline no ofrece la opción Tags, primero revisa el proxy y la policy de List antes de crear otro componente.</li></ol>
+<h2>2. Código de la consulta diagnóstica</h2>
+<p>En el QueryBuilder Debugger local (<code>http://localhost:4502/libs/cq/search/content/querydebug.html</code>) pega estos predicados; sustituye sólo la raíz si tu sitio difiere. Sirven para comprobar el contrato de selección de la lista. El Core List puede construir internamente otra consulta, por lo que este plan no prueba por sí solo el coste interno del componente.</p>
+<pre><code>path=/content/wknd/us/en/training-search
+type=cq:Page
+property=jcr:content/cq:tags
+property.value=training:activity/hiking
+orderby=@jcr:content/jcr:title
+orderby.sort=asc
+p.limit=2
+p.offset=0
+p.guessTotal=true</code></pre>
+<p>El archivo <a href="examples/session-26/querybuilder.properties">querybuilder.properties</a> tiene el mismo ejemplo. En CRXDE Lite, <strong>Tools → Query</strong>, puedes contrastar esta SQL2 con <strong>Limit 2 / Offset 0</strong> de la herramienta; JCR-SQL2 no usa un <code>LIMIT 2</code> SQL genérico:</p>
+<pre><code>SELECT * FROM [cq:Page] AS page
+WHERE ISDESCENDANTNODE(page, '/content/wknd/us/en/training-search')
+AND page.[jcr:content/cq:tags] = 'training:activity/hiking'
+ORDER BY page.[jcr:content/jcr:title] ASC</code></pre>
+<ol><li>Ejecuta la consulta con la misma cuenta que inspecciona las páginas. Comprueba paths de Forest y River; con <code>p.offset=2</code> no debe haber más hits. Si aparece City ride, revisa si también tiene Hiking; si aparece Outside trail, corrige la raíz.</li><li>Abre <strong>Explain Query</strong> y <strong>Measure</strong> como en la <a href="session-27-study-guide.html">sesión 27</a>. Guarda el plan, índice elegido, número de nodos examinados y tiempo para este conjunto. Dos resultados no prueban una consulta barata. No declares que hace falta un índice nuevo sin observar el plan.</li><li>Haz una prueba negativa visible: cambia temporalmente el tag de Forest a Cycling; la lista debe perder Forest. Restaura el tag y registra el resultado. Si existen páginas no legibles para el visitante, comprueba la lista con esa identidad: no eleves permisos mediante un service resolver para renderizar resultados.</li></ol>
+<h2>3. Publish, Dispatcher y caché</h2>
+<p>Publica Weekend Guides, las dos páginas incluidas, sus assets, tags y otras dependencias que use la página. Confirma el HTML directamente en Publish antes de comparar Dispatcher. Si no tienes Publish/Dispatcher, usa la traza del instructor de las <a href="session-32-study-guide.html">sesiones 32</a> y <a href="session-33-study-guide.html">33</a> y rotula cada dato como evidencia suministrada.</p>
+<pre><code># Reemplaza Host y path; usa el mismo GET y la misma URL en cada repetición.
+curl -i 'http://localhost:4503/content/&lt;tu-sitio&gt;/weekend-guides.html'
+curl -i -H 'Host: www.example.test' 'http://localhost:8080/content/&lt;tu-sitio&gt;/weekend-guides.html'
+curl -i -H 'Host: www.example.test' 'http://localhost:8080/content/&lt;tu-sitio&gt;/weekend-guides.html'
+
+# Solicitud que la farm local debe permitir: la página pública anterior.
+# Solicitud que una regla de /filter debe bloquear: elige una ruta de prueba
+# realmente bloqueada en TU configuración y registra status y línea de log.
+curl -i -H 'Host: www.example.test' 'http://localhost:8080/&lt;ruta-bloqueada-real&gt;'</code></pre>
+<ol><li>Con Docker y Dispatcher Tools del SDK, inicia la configuración de tu proyecto desde la carpeta extraída de Tools (ruta de ejemplo macOS/Linux): <code>DISP_LOG_LEVEL=Debug ./bin/docker_run_hot_reload.sh /ruta/al/proyecto/dispatcher/src host.docker.internal:4503 8080</code>. En Windows sigue la <a href="windows-publish-dispatcher-sdk.html">guía local</a>.</li><li>Identifica el vhost que recibe el Host elegido, la farm y la regla <code>/filter</code> que permite la página. Para una ruta bloqueada usa una regla existente de la configuración de prueba; no inventes una URL “prohibida” sin comprobar el log. Registra método, Host, path, status y regla.</li><li>Primera GET a Dispatcher: busca la decisión de miss y la petición correspondiente en Publish. Segunda GET idéntica: busca hit y ausencia de otra GET a Publish. Dos códigos 200 no distinguen esas decisiones por sí solos.</li><li>Haz un cambio controlado en el título de una página Guide, publica ese Guide y verifica primero el cambio en Publish. Repite la GET por Dispatcher. Si el HTML sigue antiguo, inspecciona el flush, <code>/invalidate</code>, <code>.stat</code>, Host y path antes de limpiar toda la caché.</li></ol>
+<p>Las pruebas locales no incluyen CDN. Si Publish y Dispatcher devuelven versiones distintas, la primera capa divergente observada es Dispatcher. Si ambos coinciden pero una URL pública real difiere, hace falta evidencia de la CDN y del navegador antes de atribuirla.</p>
+<h2>4. Tests que corresponden al código presente</h2>
+<p>Como esta solución usa Core List, no introduce una clase Java propia para la consulta ni JavaScript propio para la lista. Ejecuta los tests Java ya existentes del proyecto y revisa el reporte JaCoCo; selecciona una rama negativa relevante si vas a modificar código propio. Jest sólo aplica si hay una clientlib JavaScript personalizada que controle un comportamiento visible. No agregues Jest por obligación cuando sólo se usa Core List.</p>
+<pre><code># En la raíz de TU proyecto AEM; ajusta el perfil JaCoCo si tu POM usa otro.
+mvn -pl core test
+mvn -pl core verify
+# Abre core/target/site/jacoco/index.html si tu build genera ese reporte.</code></pre>
+<p>Si Cypress ya está configurado, guarda este spec como <code>cypress/e2e/week-11-guides.cy.js</code>. Usa los títulos exactos de las páginas publicadas y la URL real de Publish; prepara el contenido antes de ejecutar, sin credenciales de Author.</p>
+<pre><code>describe('Weekend Guides publicado', () =&gt; {
+  it('muestra sólo las guías etiquetadas bajo la raíz', () =&gt; {
+    const url = Cypress.env('publishPageUrl')
+    expect(url, 'URL de Publish').to.be.a('string').and.not.be.empty
+    cy.visit(url)
+    cy.contains('h1', 'Weekend Guides').should('be.visible')
+    cy.get('#week11-guide-list').within(() =&gt; {
+      cy.contains('a', '01 Forest trail').should('be.visible')
+      cy.contains('a', '02 River trail').should('be.visible')
+      cy.contains('03 City ride').should('not.exist')
+      cy.contains('04 Visitor notes').should('not.exist')
+      cy.contains('05 Outside trail').should('not.exist')
+    })
+  })
+})</code></pre>
+<pre><code>export CYPRESS_publishPageUrl='http://localhost:4503/content/&lt;tu-sitio&gt;/weekend-guides.html'
+npx cypress run --spec cypress/e2e/week-11-guides.cy.js</code></pre>
+<p>El selector usa el ID que asignaste en el diálogo del Core List; comprueba el HTML publicado si tu versión lo emite de otra forma. Su aserción negativa detecta una guía excluida dentro de la lista, no sólo un título de página. Si Cypress no está configurado, sigue la <a href="session-47-study-guide.html#preparacion-del-ejemplo-local">sesión 47</a> y registra mientras tanto la comprobación manual con la misma URL.</p>
+<h2>5. Calidad y evidencia final</h2>
+<ol><li>Con teclado, recorre los enlaces de la lista y observa foco visible. Comprueba el alt de la imagen informativa, el <code>h1</code>, el título de documento, canonical y robots de la URL publicada; la <a href="session-48-study-guide.html">sesión 48</a> da el procedimiento.</li><li>Elige <strong>un</strong> hallazgo medible: por ejemplo, una imagen LCP pesada. Fija URL, viewport, perfil de red/CPU y estado de caché; toma una línea base. Cambia sólo el asset por una variante de calidad suficiente y repite la medición con el mismo protocolo de la <a href="session-49-study-guide.html">sesión 49</a>. Si el problema real es la consulta, mide y corrige esa consulta en vez de tocar la imagen.</li><li>Entrega URL, fixture/tag, plan y medida de consulta, respuesta de Publish/Dispatcher o traza suministrada, comando y resultado de tests, y antes/después de la corrección. Distingue lo observado de lo esperado.</li></ol>
+<div class="table-wrap"><table><thead><tr><th>Comprobación</th><th>Resultado esperado del laboratorio</th></tr></thead><tbody><tr><td>Core List / QueryBuilder</td><td>Forest y River; máximo dos; tres exclusiones.</td></tr><tr><td>Entrega</td><td>Publish correcto, miss/hit y actualización en Dispatcher, o evidencia suministrada rotulada.</td></tr><tr><td>Pruebas</td><td>Test negativo pertinente y Cypress sobre Publish si está configurado.</td></tr><tr><td>Calidad</td><td>Un hallazgo, una corrección y comparación con iguales condiciones.</td></tr></tbody></table></div>
+<h2>Fuentes</h2><ul><li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-core-components/using/wcm-components/list">Adobe · Core List</a> · <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/implementing/developing/full-stack/search/query-builder-api">Adobe · QueryBuilder</a></li><li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration">Adobe · Dispatcher</a> · <a href="https://docs.cypress.io/app/core-concepts/best-practices">Cypress · buenas prácticas</a></li></ul>
+<nav aria-label="Otras variantes"><a href="week-11-integrated-practice.html">Consigna</a> · <a href="week-11-variant-a.html">Variante A</a> · <a href="week-11-variant-b.html">Variante B</a></nav>
+</main><footer>Semana 11 · AEM Training</footer></body></html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 11 · Solución A · AEM Training</title><link rel="stylesheet" href="../assets/styles.css"></head>
+<body class="study-guide"><a class="skip-link" href="#contenido">Saltar al contenido</a>
+<nav class="site-nav" aria-label="Principal"><a class="brand" href="../index.html">AEM Training</a><ul><li><a href="week-11-integrated-practice.html">Práctica 11</a></li><li><a href="week-11-variant-b.html">Variante B</a></li><li><a href="week-11-variant-c.html">Variante C</a></li></ul></nav>
+<header><p class="eyebrow">Semana 11 · Variante A</p><h1>Contenido reutilizable y localización</h1><p class="lede">Una página Weekend Guides con una ficha que lee un Content Fragment, una promoción independiente en un Experience Fragment y una Live Copy con una excepción local.</p><ul class="meta"><li>Author SDK local</li><li><a href="week-11-integrated-practice.html">Consigna y criterios</a></li></ul></header>
+<main id="contenido">
+<section class="callout"><strong>Resultado que vas a mostrar:</strong> cambiar el fragmento cambia la ficha; cambiar el Experience Fragment cambia la promoción; una sincronización MSM actualiza contenido heredado y conserva el override local. Si hay Publish local, comprueba cada dependencia allí.</section>
+<h2>1. Preparar la página común</h2>
+<ol><li>Usa el proyecto AEM local que ya funciona. Anota su raíz de contenido, package Java, <code>/apps/&lt;proyecto&gt;</code> y la URL real de Author. No copies rutas WKND si tu proyecto usa Archetype.</li><li>En una rama de práctica crea <strong>Weekend Guides</strong> con una editable template. En la policy del contenedor permite Title, Image, Text, Container, Content Fragment y Experience Fragment, o sus proxies ya instalados.</li><li>Agrega Title como <code>h1</code>, Core Image con texto alternativo útil, un texto introductorio y un contenedor para las guías. Conserva la URL de la página para la demo.</li><li>Comprueba la página a 320 CSS px y a un ancho de escritorio; recorre enlaces y controles con Tab. Inspecciona un evento de Data Layer sólo si los componentes instalados lo emiten.</li></ol>
+<p>La <a href="session-24-study-guide.html#ejemplos-locales">sesión 24</a> explica cómo habilitar modelos de fragmento y permitirlos en una carpeta de Assets. Las operaciones siguientes se hacen en Author; este repositorio de formación no es un proyecto Maven instalable.</p>
+<h2>2. Crear los datos del Guide</h2>
+<ol><li>En <strong>Tools → General → Configuration Browser</strong> crea o reutiliza una configuración de práctica con <strong>Content Fragment Models</strong> habilitado. En <strong>Tools → General → Content Fragment Models</strong> crea <code>Week 11 Guide</code> y habilítalo.</li><li>En una carpeta Assets de práctica asigna esa configuración y permite el modelo en <strong>Properties → Policies</strong>. Crea un tag propio, por ejemplo <code>training:activity/hiking</code>.</li><li>Crea <code>River walk</code> desde el modelo; usa una imagen de esa carpeta. Comprueba los nombres técnicos, no sólo las etiquetas visibles.</li></ol>
+<div class="table-wrap"><table><thead><tr><th>Tipo de campo</th><th>Property Name</th><th>Valor de ejemplo</th></tr></thead><tbody><tr><td>Single line text</td><td><code>guideTitle</code></td><td>River walk</td></tr><tr><td>Multi line text, plain text</td><td><code>summary</code></td><td>Follow the riverside trail.</td></tr><tr><td>Content Reference, una imagen</td><td><code>image</code></td><td>Asset bajo <code>/content/dam/...</code></td></tr><tr><td>Tags</td><td><code>tags</code></td><td><code>training:activity/hiking</code></td></tr></tbody></table></div>
+<p>Para una solución sin Java, coloca el Core Content Fragment Component en un contenedor con estilo de ficha y selecciona <strong>Multiple Elements → guideTitle, summary</strong>. La referencia de imagen y el tag permanecen en el fragmento; ese componente no convierte automáticamente la ruta de imagen en una imagen de la ficha. Si la ficha debe mostrar también la imagen referenciada, usa el pequeño componente siguiente. El <code>alt</code> vacío del ejemplo es deliberado: la imagen de la ficha repite el mismo Guide cuyo título y resumen ya están en texto. La Core Image principal de la página sí lleva un alt informativo.</p>
+<h2>3. Código para la ficha que muestra la referencia de imagen</h2>
+<p>Crea <code>ui.apps/src/main/content/jcr_root/apps/&lt;proyecto&gt;/components/guide-card/.content.xml</code> y su diálogo. Cambia <code>wknd</code> y el package Java por los de tu baseline. La policy de la plantilla debe permitir este componente.</p>
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0"
+  xmlns:cq="http://www.day.com/jcr/cq/1.0"
+  xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+  jcr:primaryType="cq:Component" jcr:title="Guide Card"
+  componentGroup="WKND Training"/&gt;</code></pre>
+<p>En <code>guide-card/_cq_dialog/.content.xml</code>:</p>
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0"
+  xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+  jcr:primaryType="nt:unstructured" jcr:title="Guide Card"
+  sling:resourceType="cq/gui/components/authoring/dialog"&gt;
+  &lt;content jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/container"&gt;
+    &lt;items jcr:primaryType="nt:unstructured"&gt;
+      &lt;fragmentPath jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+        fieldLabel="Guide Content Fragment" name="./fragmentPath"
+        rootPath="/content/dam" required="{Boolean}true"/&gt;
+    &lt;/items&gt;
+  &lt;/content&gt;
+&lt;/jcr:root&gt;</code></pre>
+<p>En <code>core/src/main/java/.../training/GuideCardModel.java</code>. El resolver es el de la petición; la ficha no eleva permisos para leer contenido oculto. El Model usa la API de Content Fragments en lugar de depender de la estructura interna <code>jcr:content/data</code>.</p>
+<pre><code>package com.adobe.aem.guides.wknd.core.training;
+
+import javax.annotation.PostConstruct;
+import com.adobe.cq.dam.cfm.ContentElement;
+import com.adobe.cq.dam.cfm.ContentFragment;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.Model;
+
+@Model(adaptables = Resource.class)
+public class GuideCardModel {
+    private final Resource component;
+    private String title;
+    private String summary;
+    private String imagePath;
+
+    public GuideCardModel(Resource component) { this.component = component; }
+
+    @PostConstruct
+    private void init() {
+        String path = component.getValueMap().get("fragmentPath", String.class);
+        if (path == null || !path.startsWith("/content/dam/")) return;
+        Resource source = component.getResourceResolver().getResource(path);
+        ContentFragment fragment = source == null ? null : source.adaptTo(ContentFragment.class);
+        if (fragment == null) return;
+        title = text(fragment, "guideTitle");
+        summary = text(fragment, "summary");
+        String candidate = text(fragment, "image");
+        if (candidate != null &amp;&amp; candidate.startsWith("/content/dam/")) {
+            imagePath = candidate;
+        }
+    }
+
+    private static String text(ContentFragment fragment, String name) {
+        ContentElement element = fragment.getElement(name);
+        return element == null ? null : element.getContent();
+    }
+
+    public boolean isReady() { return title != null &amp;&amp; !title.trim().isEmpty(); }
+    public String getTitle() { return title; }
+    public String getSummary() { return summary; }
+    public String getImagePath() { return imagePath; }
+}</code></pre>
+<p>En <code>guide-card/guide-card.html</code>. HTL escapa los valores de texto y trata la ruta del asset como URI:</p>
+<pre><code>&lt;sly data-sly-use.card="com.adobe.aem.guides.wknd.core.training.GuideCardModel"/&gt;
+&lt;article class="guide-card" data-sly-test="${card.ready}"&gt;
+  &lt;img data-sly-test="${card.imagePath}" src="${card.imagePath @ context='uri'}" alt=""&gt;
+  &lt;h2&gt;${card.title}&lt;/h2&gt;
+  &lt;p data-sly-test="${card.summary}"&gt;${card.summary}&lt;/p&gt;
+&lt;/article&gt;
+&lt;p data-sly-test="${!card.ready}"&gt;Selecciona un Guide Content Fragment válido.&lt;/p&gt;</code></pre>
+<p>Agrega el CSS mínimo a la clientlib ya usada por el sitio, si necesitas una presentación de ficha: <code>.guide-card { border: 1px solid currentColor; padding: 1rem; }</code>. No crees otra clientlib para una regla. En el diálogo de la ficha selecciona <code>River walk</code>. Cambia su <code>summary</code> en Assets y recarga la página: debe cambiar la ficha sin volver a editarla. Si el campo Tags debe verse, resuélvelo con el componente o el diseño de tu proyecto; en este ejemplo el tag se usa como metadato del Guide y se comprueba en el editor del fragmento.</p>
+<p>Como comprobación negativa automatizada de la validación de ruta, agrega a los tests con AEM Mocks de tu proyecto un caso que cree un recurso de componente con <code>fragmentPath=/etc/private</code>, lo adapte a <code>GuideCardModel</code> y compruebe <code>assertFalse(model.isReady())</code>. Después prueba en Author un fragmento válido y otro inexistente: el segundo debe mostrar el estado vacío sin exponer una ruta ajena a DAM.</p>
+<h2>4. Experience Fragment y MSM</h2>
+<ol><li>Crea un Experience Fragment web de práctica con Title, Image y Button. En el botón usa un destino de práctica válido. Inserta el <strong>Experience Fragment Component</strong> en Weekend Guides y selecciona su variación, no sólo la carpeta.</li><li>Edita el título en la fuente XF. Recarga la página: la promoción cambia; el campo <code>summary</code> del CF no cambia. Así verificas las dos fuentes independientes.</li><li>Crea una Live Copy de la página en otra rama de práctica, o reutiliza una relación MSM existente. Registra el origen y la configuración efectiva. Cambia el texto introductorio en la fuente y ejecuta la sincronización/rollout disponible; confirma el cambio en el destino.</li><li>En la Live Copy cancela herencia sólo para una propiedad visible, por ejemplo el título local del Hero, y pon un valor propio. Cambia de nuevo esa propiedad en origen y repite la sincronización. El valor local debe persistir mientras el texto aún heredado se actualiza. No cambies una configuración global de rollout para esta demostración.</li></ol>
+<p>La operación exacta disponible depende de si tu origen tiene blueprint configuration. Consulta la <a href="session-43-study-guide.html">guía MSM de la sesión 43</a> antes de interpretar una opción ausente. No presupongas que la Live Copy traduce el contenido.</p>
+<h2>5. Publicar y resolver el caso “New route / Old route”</h2>
+<ol><li>Si existe Publish local, publica modelo, CF, asset, variación XF y página. Comprueba las referencias ofrecidas por el asistente y visita la URL real en Publish. No des por publicada una dependencia sólo porque la página se publicó.</li><li>Cambia el título del CF a <code>New route</code> en Author. Publica únicamente la página para reproducir el caso. La ficha de Author puede leer el valor nuevo mientras Publish sigue leyendo <code>Old route</code> del CF publicado anteriormente.</li><li>Comprueba la ruta <code>fragmentPath</code> guardada en el componente y abre ese mismo fragmento en ambos límites. La primera divergencia es el recurso CF. Publica el CF y verifica otra vez; si sigue antiguo, inspecciona la caché de entrega.</li></ol>
+<pre><code># Sustituye la ruta real; esta GET comprueba el HTML publicado, no el estado de Author.
+curl -i 'http://localhost:4503/content/&lt;tu-sitio&gt;/&lt;tu-pagina&gt;.html'</code></pre>
+<h2>6. Evidencia de aceptación</h2>
+<div class="table-wrap"><table><thead><tr><th>Prueba</th><th>Qué guardar</th></tr></thead><tbody><tr><td>CF → ficha</td><td>Ruta del CF, valores antes/después y HTML de la ficha.</td></tr><tr><td>XF → promoción</td><td>Ruta de la variación y cambio visible independiente.</td></tr><tr><td>MSM</td><td>Origen, destino, propiedad heredada y override que sobrevive.</td></tr><tr><td>Publicación</td><td>Estado y versión del CF, XF, asset y página en Publish, si existe.</td></tr><tr><td>Uso</td><td>URL, dos anchos, navegación por teclado y alt de la imagen informativa.</td></tr></tbody></table></div>
+<p><strong>Límite:</strong> el código de ficha supone un campo <code>image</code> de referencia única que devuelve una ruta DAM. Verifica el valor real en tu SDK antes de usarlo. Este material no registra una instalación ni un resultado en tu instancia.</p>
+<h2>Fuentes</h2><ul><li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/sites/administering/content-fragments/content-fragment-models">Adobe · Content Fragment Models</a> · <a href="https://developer.adobe.com/experience-manager/reference-materials/cloud-service/javadoc/com/adobe/cq/dam/cfm/ContentFragment.html">Adobe · API ContentFragment</a></li><li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-core-components/using/wcm-components/content-fragment-component">Adobe · Content Fragment Component</a> · <a href="https://experienceleague.adobe.com/en/docs/experience-manager-core-components/using/wcm-components/experience-fragment">Adobe · Experience Fragment Component</a></li></ul>
+<nav aria-label="Otras variantes"><a href="week-11-integrated-practice.html">Consigna</a> · <a href="week-11-variant-b.html">Variante B</a> · <a href="week-11-variant-c.html">Variante C</a></nav>
+</main><footer>Semana 11 · AEM Training</footer></body></html>

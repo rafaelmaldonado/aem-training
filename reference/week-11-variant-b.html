@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Semana 11 · Solución B · AEM Training</title><link rel="stylesheet" href="../assets/styles.css"></head>
+<body class="study-guide"><a class="skip-link" href="#contenido">Saltar al contenido</a>
+<nav class="site-nav" aria-label="Principal"><a class="brand" href="../index.html">AEM Training</a><ul><li><a href="week-11-integrated-practice.html">Práctica 11</a></li><li><a href="week-11-variant-a.html">Variante A</a></li><li><a href="week-11-variant-c.html">Variante C</a></li></ul></nav>
+<header><p class="eyebrow">Semana 11 · Variante B</p><h1>Componente de estado y trabajo reintentable</h1><p class="lede">El panel lee JCR con la identidad del visitante. Un workflow encola un Sling Job que falla antes de escribir, reintenta y aplica una sola vez <code>v1</code> a <code>guide-b</code>.</p><ul class="meta"><li>Author SDK local</li><li><a href="week-11-integrated-practice.html">Consigna y criterios</a></li></ul></header>
+<main id="contenido">
+<section class="callout"><strong>Secuencia esperada:</strong> <code>requestedVersion=v0</code> y sin <code>processedVersion</code> → Pending; cambiar a <code>v1</code> → primer intento FAILED sin escritura → reintento OK con <code>processedVersion=v1</code> y <code>applyCount=1</code>; replay → count sigue en 1.</section>
+<h2>1. Página y fixture</h2>
+<ol><li>Prepara la página Weekend Guides como en la <a href="week-11-integrated-practice.html">consigna común</a>: editable template, Title, Core Image con alt útil, introducción y contenedor. Anota URL y dos anchos de revisión.</li><li>Parte de los <a href="examples/session-41/README.md">archivos completos de la sesión 41</a>. Cópialos a <em>tu proyecto AEM</em>, conservando estructura <code>core/</code> y <code>ui.config/</code>. Ajusta package, <code>/apps/&lt;proyecto&gt;</code> y Bundle-SymbolicName según tu baseline. Este repositorio de curso no tiene POM AEM.</li><li>El Repo Init existente crea <code>/content/session-41-demo/control</code> y <code>/content/session-41-demo/guides/guide-b</code>. En CRXDE Lite, antes de habilitar el launcher, pon <code>requestedVersion=v0</code> en control y deja <code>processedVersion</code> y <code>applyCount</code> ausentes en guide-b. La fixture adicional <code>guide-a</code> del ejemplo 41 no participa en esta variante.</li></ol>
+<div class="table-wrap"><table><thead><tr><th>Dato</th><th>Lugar</th><th>Motivo</th></tr></thead><tbody><tr><td><code>requestedVersion</code>, <code>processedVersion</code>, <code>applyCount</code></td><td>JCR</td><td>Estado de negocio que debe sobrevivir reinicios y replay.</td></tr><tr><td>Topic, cola, mapping de subservice</td><td>Código y OSGi</td><td>Infraestructura del job y sus permisos.</td></tr><tr><td>Rutas seleccionadas</td><td>Diálogo del panel</td><td>Entrada de autoría; se valida antes de leer.</td></tr></tbody></table></div>
+<h2>2. Código del panel</h2>
+<p>Crea <code>core/src/main/java/com/adobe/aem/guides/wknd/core/training/GuideStatusService.java</code>. Conserva el package de tu proyecto. El servicio no abre un resolver técnico: recibe el resolver del componente y respeta sus permisos. Los paths se restringen a la fixture de laboratorio.</p>
+<pre><code>package com.adobe.aem.guides.wknd.core.training;
+
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.osgi.service.component.annotations.Component;
+
+@Component(service = GuideStatusService.class)
+public class GuideStatusService {
+    public Status read(ResourceResolver resolver, String controlPath, String guidePath) {
+        String prefix = "/content/session-41-demo/guides/";
+        if (!"/content/session-41-demo/control".equals(controlPath)
+                || guidePath == null || !guidePath.startsWith(prefix)
+                || guidePath.substring(prefix.length()).isEmpty()
+                || guidePath.substring(prefix.length()).contains("/")) return null;
+        Resource control = resolver.getResource(controlPath);
+        Resource guide = resolver.getResource(guidePath);
+        if (control == null || guide == null) return null;
+        String requested = control.getValueMap().get("requestedVersion", String.class);
+        if (requested == null || !requested.matches("v[0-9]+")) return null;
+        String processed = guide.getValueMap().get("processedVersion", String.class);
+        int count = guide.getValueMap().get("applyCount", 0);
+        return new Status(guide.getName(), requested, processed, count);
+    }
+
+    public static final class Status {
+        private final String name, requested, processed;
+        private final int count;
+        Status(String name, String requested, String processed, int count) {
+            this.name = name; this.requested = requested;
+            this.processed = processed; this.count = count;
+        }
+        public String getName() { return name; }
+        public String getRequested() { return requested; }
+        public String getProcessed() { return processed; }
+        public int getCount() { return count; }
+        public String getLabel() {
+            return requested.equals(processed) ? "Up to date" : "Pending";
+        }
+    }
+}</code></pre>
+<p>Crea <code>GuideStatusModel.java</code> en el mismo package. La única responsabilidad del Model es unir el recurso de componente, el diálogo y el servicio:</p>
+<pre><code>package com.adobe.aem.guides.wknd.core.training;
+
+import javax.annotation.PostConstruct;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.Self;
+
+@Model(adaptables = Resource.class)
+public class GuideStatusModel {
+    @Self private Resource resource;
+    @OSGiService private GuideStatusService service;
+    private GuideStatusService.Status status;
+
+    @PostConstruct
+    private void init() {
+        status = service.read(resource.getResourceResolver(),
+                resource.getValueMap().get("controlPath", String.class),
+                resource.getValueMap().get("guidePath", String.class));
+    }
+    public GuideStatusService.Status getStatus() { return status; }
+}</code></pre>
+<p>En <code>ui.apps/src/main/content/jcr_root/apps/&lt;proyecto&gt;/components/guide-status/.content.xml</code> define el componente:</p>
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0"
+  xmlns:cq="http://www.day.com/jcr/cq/1.0"
+  jcr:primaryType="cq:Component" jcr:title="Guide Status"
+  componentGroup="WKND Training"/&gt;</code></pre>
+<p>En <code>guide-status/_cq_dialog/.content.xml</code> usa dos pathfields:</p>
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0"
+  xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+  jcr:primaryType="nt:unstructured" jcr:title="Guide Status"
+  sling:resourceType="cq/gui/components/authoring/dialog"&gt;
+  &lt;content jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/container"&gt;
+    &lt;items jcr:primaryType="nt:unstructured"&gt;
+      &lt;controlPath jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+        fieldLabel="Control" name="./controlPath" rootPath="/content/session-41-demo"/&gt;
+      &lt;guidePath jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+        fieldLabel="Guide" name="./guidePath" rootPath="/content/session-41-demo/guides"/&gt;
+    &lt;/items&gt;
+  &lt;/content&gt;
+&lt;/jcr:root&gt;</code></pre>
+<p>En <code>guide-status/guide-status.html</code> usa HTL escapado y un estado vacío legible:</p>
+<pre><code>&lt;sly data-sly-use.model="com.adobe.aem.guides.wknd.core.training.GuideStatusModel"/&gt;
+&lt;section aria-label="Estado de la guía"&gt;
+  &lt;sly data-sly-test.status="${model.status}"&gt;
+    &lt;h2&gt;Guide: ${status.name}&lt;/h2&gt;
+    &lt;p&gt;Status: ${status.label}&lt;/p&gt;
+    &lt;p&gt;Requested version: ${status.requested}&lt;/p&gt;
+    &lt;p&gt;Processed version: ${status.processed || '—'}&lt;/p&gt;
+    &lt;p&gt;Apply count: ${status.count}&lt;/p&gt;
+  &lt;/sly&gt;
+  &lt;p data-sly-test="${!model.status}"&gt;Selecciona un control y una guía accesibles.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+<p>Permite Guide Status en la policy de la plantilla, agrégalo a Weekend Guides y elige los dos nodos. Si quitas <code>guidePath</code>, el panel debe mostrar el estado vacío. En Author normalmente leerá el usuario autenticado. Para Publish harían falta datos publicados y permisos de lectura adecuados; no expongas el control técnico por comodidad.</p>
+<h2>3. Código del reintento y replay</h2>
+<p>Reutiliza sin cambios el <a href="examples/session-41/core/src/main/java/com/adobe/aem/guides/wknd/core/training/QueueGuidesProcess.java">Process Step</a>, el <a href="examples/session-41/ui.config/src/main/content/jcr_root/apps/wknd/osgiconfig/config.author/org.apache.sling.event.jobs.QueueConfiguration~training-session-41.cfg.json">topic/cola ORDERED</a>, el mapping y la ACL de la sesión 41. En una <strong>copia local</strong> de <code>GuideBatchJobConsumer.java</code>, cambia la lista y coloca la falla después de detectar un Guide pendiente, pero antes de escribir:</p>
+<pre><code>private static final String[] BATCHES = {"guide-b"};
+
+// Dentro del for, inmediatamente DESPUÉS del bloque que compara
+// version con processedVersion y hace continue si ya coincide:
+if (job.getRetryCount() == 0) {
+    LOG.warn("Week 11: fallo controlado antes de escribir job={}", job.getId());
+    return JobResult.FAILED;
+}
+
+// Elimina el bloque original que fallaba después de guardar guide-a.
+// Conserva processedVersion y applyCount en el mismo commit.</code></pre>
+<p>Este cambio conserva el manejo de <code>LoginException</code> y <code>PersistenceException</code> del consumidor original. El primer intento no modifica guide-b; el segundo aplica <code>v1</code>; un job nuevo con la misma versión se omite <em>antes</em> de la falla controlada por la comparación persistida. La cola local tiene dos reintentos con diez segundos de demora. La idempotencia de este laboratorio supone un único consumidor ordenado y sin escritores externos concurrentes.</p>
+<p>Adapta la <a href="examples/session-41/core/src/test/java/com/adobe/aem/guides/wknd/core/training/GuideBatchJobConsumerTest.java">prueba existente</a> para que sólo cree el mock de guide-b. Sus aserciones centrales deben quedar así:</p>
+<pre><code>when(job.getRetryCount()).thenReturn(0, 1, 0);
+assertEquals(JobResult.FAILED, consumer.process(job));
+assertEquals(null, stateB.get("processedVersion"));
+assertEquals(null, stateB.get("applyCount"));
+assertEquals(JobResult.OK, consumer.process(job));
+assertEquals("v1", stateB.get("processedVersion"));
+assertEquals(1, stateB.get("applyCount"));
+assertEquals(JobResult.OK, consumer.process(job));
+assertEquals(1, stateB.get("applyCount"));
+verify(resolver, times(1)).commit();</code></pre>
+<p>Añade un test negativo pequeño para el panel: una ruta fuera del árbol permitido se rechaza <strong>antes</strong> de leer JCR. Colócalo en <code>GuideStatusServiceTest</code> con imports JUnit 5 y Mockito:</p>
+<pre><code>@Test
+void rejectsGuideOutsideLabWithoutReadingRepository() {
+    ResourceResolver resolver = mock(ResourceResolver.class);
+    GuideStatusService service = new GuideStatusService();
+    assertNull(service.read(resolver, "/content/session-41-demo/control", "/etc/private"));
+    verifyNoInteractions(resolver);
+}</code></pre>
+<p>Después haz una comprobación local con un usuario que pueda leer la fixture y otra con uno que no pueda: el panel debe respetar la identidad del visitante. Esa verificación HTTP/repo cubre lo que un mock no puede probar sobre ACL.</p>
+<h2>4. Instalar y ejecutar la práctica</h2>
+<pre><code># Desde la raíz de TU proyecto AEM, no desde este repositorio de formación.
+mvn -pl core -Dtest=GuideBatchJobConsumerTest test
+mvn clean install -PautoInstallSinglePackage</code></pre>
+<ol><li>En <code>http://localhost:4502/system/console/bundles</code> confirma que el bundle está activo; en <code>/system/console/components</code> confirma el servicio, Process Step y consumer; en ConfigMgr comprueba mapping y cola. El Sling Model se comprueba adaptando el componente en la página. Si tu perfil Maven tiene otro nombre, usa el comando de instalación de tu proyecto.</li><li>En Author crea el workflow model con Process Step <code>Training: queue Guide batches</code>, activa Handler Advance y haz <strong>Sync</strong>. Crea un launcher <strong>Modified</strong> de tipo <code>nt:unstructured</code>, path exacto <code>/content/session-41-demo/control</code>, condición <code>requestedVersion==v1</code>, run mode Author y ese modelo. No incluyas <code>/guides</code> en la ruta del launcher.</li><li>Abre la página: con <code>v0</code> y guide-b sin procesar debe decir Pending. Cambia el control a <code>v1</code>. Sigue la instancia en Workflow y el job en log/Jobs; un workflow finalizado sólo prueba el encolado.</li><li>En el primer intento comprueba <code>FAILED</code> sin <code>processedVersion</code> ni <code>applyCount</code>. Tras el retry observa <code>v1</code> y <code>1</code> en CRXDE Lite y <em>Up to date</em> al recargar la página.</li><li>Inicia manualmente el mismo workflow con payload del control. Comprueba que el job termina OK sin segundo commit y el contador permanece en 1. Verifica que no apareció otro workflow por la escritura bajo <code>/guides</code>.</li></ol>
+<div class="table-wrap"><table><thead><tr><th>Si no coincide</th><th>Primer lugar que revisar</th></tr></thead><tbody><tr><td>Panel vacío</td><td>Paths del diálogo, validez de la versión y permiso de lectura del usuario.</td></tr><tr><td>Workflow no arranca</td><td>Path/condición/evento del launcher y modelo sincronizado.</td></tr><tr><td>Workflow termina pero estado sigue Pending</td><td>Job ID, topic, consumer activo, mapping y resultado del retry.</td></tr><tr><td>Count pasa de 1</td><td>Comparación de <code>processedVersion</code> antes de escribir y otros escritores concurrentes.</td></tr></tbody></table></div>
+<p><strong>Servlet GET:</strong> la consigna lo pide sólo si el estado debe consultarse aparte. Esta solución lo muestra dentro del componente y no crea un endpoint adicional. Para repetir la demo, deshabilita el launcher, elimina las dos propiedades de guide-b, restaura <code>requestedVersion=v0</code> y vuelve a habilitarlo.</p>
+<h2>Fuentes</h2><ul><li><a href="https://sling.apache.org/documentation/bundles/apache-sling-eventing-and-job-handling.html">Apache Sling · Jobs y colas</a> · <a href="https://sling.apache.org/documentation/bundles/models.html">Apache Sling · Models</a></li><li><a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/developing/advanced/service-users">Adobe · Service users</a> · <a href="session-41-study-guide.html">Material de la sesión 41</a></li></ul>
+<nav aria-label="Otras variantes"><a href="week-11-integrated-practice.html">Consigna</a> · <a href="week-11-variant-a.html">Variante A</a> · <a href="week-11-variant-c.html">Variante C</a></nav>
+</main><footer>Semana 11 · AEM Training</footer></body></html>
