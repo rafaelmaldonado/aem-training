@@ -10,7 +10,7 @@ Copia los archivos dentro de **tu proyecto AEM**, conservando las rutas relativa
 - `session-29`: mapping por principal, lector OSGi con resolver propio y una prueba de ownership. [Guía 29](../session-29-study-guide.html#ejemplos-locales).
 - `session-41`: launcher, workflow y Sling Job sobre dos Guides, con `FAILED` controlado, reintento y replay en Author SDK local. [Archivos y demo](session-41/README.md).
 - `session-42`: servicio OSGi y Process Step para una llamada HTTP saliente con timeouts, clasificación y stub local. [Archivos y demo](session-42/README.md).
-- `assets-jpeg-800`: perfil de procesamiento para Cloud y workflow separado para Author local. [Solution design y archivos](assets-jpeg-800/SOLUTION-DESIGN.md).
+- `assets-jpeg-800`: guía HTML con el XML y las rutas de un Processing Profile, más pasos de `aio` para un worker personalizado. [Abrir guía](assets-jpeg-800/GUIDE.html).
 - `session-46`: test completo de la sesión 19 con un caso adicional para el título compuesto sólo por espacios. [Guía 46](../session-46-study-guide.html).
 - `week-9`: [solución interna del instructor](week-9/README.md) que extiende tres archivos ya entregados en la sesión 41 para crear 300 Guides en lotes, reintentar y evitar duplicados. Los participantes no reciben archivos nuevos.
 - Las sesiones [20](../session-20-study-guide.html#practica-local) y [21](../session-21-study-guide.html#practica-local) describen acciones en la instancia.

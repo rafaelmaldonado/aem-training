@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AEM Processing Profiles and Asset Compute CLI</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, sans-serif; color: #20262e; background: #f3f5f7; }
+    body { max-width: 72rem; margin: auto; padding: 1rem; line-height: 1.6; }
+    header, main { background: white; padding: clamp(1.25rem, 3vw, 2.5rem); }
+    header { border-bottom: 1px solid #c9d0d8; }
+    h1, h2, h3 { line-height: 1.25; }
+    h2 { margin-top: 2.5rem; border-top: 1px solid #c9d0d8; padding-top: 1rem; }
+    a { color: #285c85; }
+    nav a { margin-right: 1rem; }
+    .note { padding: 1rem; border-left: 4px solid #285c85; background: #edf3f8; }
+    .path { margin-bottom: .25rem; font-weight: 700; overflow-wrap: anywhere; }
+    pre { overflow-x: auto; padding: 1rem; background: #f3f5f7; border: 1px solid #c9d0d8; line-height: 1.45; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    :not(pre) > code { background: #f3f5f7; padding: .1rem .25rem; overflow-wrap: anywhere; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { padding: .5rem .7rem; border: 1px solid #c9d0d8; text-align: left; }
+    .skip { position: absolute; left: -9999px; }
+    .skip:focus { left: 1rem; top: 1rem; background: white; padding: .5rem; }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <header>
+    <p>AEM Assets · Step-by-step guide</p>
+    <h1>Processing Profiles and Asset Compute CLI</h1>
+    <p>Create <code>assets.800x800.jpeg</code> for images uploaded or updated under <code>/content/dam/assets</code>: JPEG, up to 800 × 800 px, preserved aspect ratio, quality 85.</p>
+    <nav aria-label="On this page"><a href="#profile">Processing Profile</a><a href="#files">Files to create</a><a href="#verify">Deploy and verify</a><a href="#aio">Custom worker with aio</a></nav>
+  </header>
+  <main id="content">
+    <div class="note"><strong>Choose the standard profile for this JPEG rule.</strong> It uses AEM as a Cloud Service's managed Asset Microservices. The <code>aio</code> commands below are for a separate custom Asset Compute worker project when the standard profile cannot express the transformation.</div>
+
+    <h2 id="profile">1. Create the standard Processing Profile</h2>
+    <p>Use the AEM interface for a quick setup, or create the files in the next section for deployment from an AEM project. Both routes define the same profile.</p>
+    <ol>
+      <li>In an AEM as a Cloud Service Author environment, open <strong>Tools → Assets → Processing Profiles → Create</strong>.</li>
+      <li>Name the profile <strong>Assets JPEG 800</strong>. On the <strong>Image</strong> tab, select <strong>Add New</strong> and enter:</li>
+    </ol>
+    <table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody>
+      <tr><td>Rendition file name</td><td><code>assets.800x800.jpeg</code></td></tr>
+      <tr><td>Format</td><td>JPEG</td></tr>
+      <tr><td>Width / Height</td><td>800 / 800 px</td></tr>
+      <tr><td>Quality</td><td>85</td></tr>
+      <tr><td>Included MIME types</td><td><code>image/.*</code></td></tr>
+      <tr><td>Excluded MIME types</td><td>Empty</td></tr>
+    </tbody></table>
+    <p>Select <strong>Save</strong>. These are the fields in Adobe's <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/assets/manage/asset-microservices-configure-and-use#create-standard-profile">standard Processing Profile instructions</a>.</p>
+
+    <h2 id="files">2. Create the profile as code in an AEM project</h2>
+    <p>Use these paths relative to the <strong>root of your archetype-based AEM project</strong>. This training repository is not itself an AEM Maven reactor. Copy the XML into the matching paths under <code>ui.content</code>. If a target file already exists, merge the relevant entries or properties; keep its other content.</p>
+    <h3>Processing folder</h3>
+    <p class="path"><code>ui.content/src/main/content/jcr_root/conf/global/settings/dam/processing/.content.xml</code></p>
+    <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;jcr:root xmlns:cq=&quot;http://www.day.com/jcr/cq/1.0&quot;
+          xmlns:jcr=&quot;http://www.jcp.org/jcr/1.0&quot;
+          jcr:primaryType=&quot;cq:Page&quot;&gt;
+    &lt;jcr:content jcr:primaryType=&quot;nt:unstructured&quot; mergeList=&quot;{Boolean}true&quot;/&gt;
+&lt;/jcr:root&gt;</code></pre>
+    <h3>Profile definition</h3>
+    <p class="path"><code>ui.content/src/main/content/jcr_root/conf/global/settings/dam/processing/assets-jpeg-800/.content.xml</code></p>
+    <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;jcr:root xmlns:cq=&quot;http://www.day.com/jcr/cq/1.0&quot;
+          xmlns:jcr=&quot;http://www.jcp.org/jcr/1.0&quot;
+          xmlns:sling=&quot;http://sling.apache.org/jcr/sling/1.0&quot;
+          jcr:primaryType=&quot;cq:Page&quot;&gt;
+    &lt;jcr:content jcr:primaryType=&quot;nt:unstructured&quot;
+                 jcr:title=&quot;Assets JPEG 800&quot;
+                 sling:resourceType=&quot;dam/processing/profile&quot;/&gt;
+&lt;/jcr:root&gt;</code></pre>
+    <h3>JPEG rendition rule</h3>
+    <p class="path"><code>ui.content/src/main/content/jcr_root/conf/global/settings/dam/processing/assets-jpeg-800/jpeg-800/.content.xml</code></p>
+    <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;jcr:root xmlns:cq=&quot;http://www.day.com/jcr/cq/1.0&quot;
+          xmlns:jcr=&quot;http://www.jcp.org/jcr/1.0&quot;
+          xmlns:sling=&quot;http://sling.apache.org/jcr/sling/1.0&quot;
+          jcr:primaryType=&quot;cq:Page&quot;&gt;
+    &lt;jcr:content jcr:primaryType=&quot;nt:unstructured&quot;
+                 sling:resourceType=&quot;dam/processing/profile/rendition&quot;
+                 name=&quot;assets.800x800.jpeg&quot;
+                 fmt=&quot;jpeg&quot;
+                 wid=&quot;800&quot;
+                 hei=&quot;800&quot;
+                 qlt=&quot;85&quot;
+                 includeMimeTypes=&quot;image/.*&quot;
+                 excludeMimeTypes=&quot;&quot;/&gt;
+&lt;/jcr:root&gt;</code></pre>
+    <h3>Folder assignment</h3>
+    <p class="path"><code>ui.content/src/main/content/jcr_root/content/dam/assets/_jcr_content/.content.xml</code></p>
+    <p>Merge <code>processingProfile</code> into the existing <code>jcr:content</code> node when this file already exists. A folder can have only one assigned Processing Profile; add this rendition to the existing profile if it must remain assigned.</p>
+    <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;jcr:root xmlns:cq=&quot;http://www.day.com/jcr/cq/1.0&quot;
+          xmlns:jcr=&quot;http://www.jcp.org/jcr/1.0&quot;
+          jcr:primaryType=&quot;nt:unstructured&quot;
+          cq:conf=&quot;/conf/assets&quot;
+          jcr:title=&quot;Assets&quot;
+          processingProfile=&quot;/conf/global/settings/dam/processing/assets-jpeg-800&quot;/&gt;</code></pre>
+    <h3>FileVault filter</h3>
+    <p class="path"><code>ui.content/src/main/content/META-INF/vault/filter.xml</code></p>
+    <p>Merge these filter entries into the project's filter; do not replace its other roots or rules.</p>
+    <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;workspaceFilter version=&quot;1.0&quot;&gt;
+    &lt;filter root=&quot;/conf/global/settings/dam/processing&quot; mode=&quot;merge&quot;/&gt;
+    &lt;filter root=&quot;/content/dam/assets&quot; mode=&quot;update_properties&quot;&gt;
+        &lt;exclude pattern=&quot;/content/dam/assets/.*&quot;/&gt;
+        &lt;include pattern=&quot;/content/dam/assets/jcr:content(/.*)?&quot;/&gt;
+    &lt;/filter&gt;
+&lt;/workspaceFilter&gt;</code></pre>
+
+    <h2 id="verify">3. Deploy, assign, and verify</h2>
+    <ol>
+      <li>From the receiving AEM project root, run <code>./mvnw clean install</code> and deploy its normal <code>all</code> package through Cloud Manager. Confirm <strong>Assets JPEG 800</strong> appears under <strong>Tools → Assets → Processing Profiles</strong>.</li>
+      <li>The folder XML above assigns the profile to <code>/content/dam/assets</code>. If you created it in the UI instead, select that folder in <strong>Assets → Files</strong>, open <strong>Properties → Asset Processing</strong>, choose <strong>Assets JPEG 800</strong> under <strong>Processing Profile</strong>, and select <strong>Save &amp; Close</strong>. You can also use <strong>Apply Profile to Folders</strong> from the profile list.</li>
+      <li>Upload a 1600 × 600 image to the folder. Open its preview and <strong>Renditions</strong> rail; check that <code>assets.800x800.jpeg</code> exists at 800 × 300. Replace the original and check that the rendition updates.</li>
+      <li>Upload a non-image file inside the folder and an image outside it; neither should receive this rendition. To process assets already present when the profile was assigned or changed, select them or their folder and use <strong>Reprocess Assets</strong>.</li>
+    </ol>
+    <p>Subfolders inherit the profile unless they assign another one. The default AEM processing still runs alongside it. See Adobe's <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/assets/manage/asset-microservices-configure-and-use#use-profiles">folder assignment and reprocessing instructions</a>.</p>
+
+    <h2 id="aio">4. Develop a custom Asset Compute worker with <code>aio</code></h2>
+    <p>This section applies to a <strong>separate App Builder project</strong>. The standard JPEG rule above has no custom worker, so running <code>aio</code> from this directory cannot execute it.</p>
+    <ol>
+      <li>Create an App Builder project and workspace in the <strong>same Adobe organization</strong> as AEM. Configure Asset Compute, I/O Events, I/O Events Management, and Runtime access. Install Adobe I/O CLI and Node.js. See Adobe's <a href="https://experienceleague.adobe.com/en/docs/asset-compute/using/extend/setup-environment">setup requirements</a>.</li>
+      <li>From a parent directory, run <code>aio app init asset-compute-app</code>. Select <strong>DX Asset Compute Worker</strong>, <strong>Actions</strong>, and the <strong>Adobe Asset Compute Worker</strong> sample. Implement the transformation in <code>asset-compute-app/actions/&lt;worker-name&gt;/index.js</code>; Adobe's sample worker only copies the source.</li>
+      <li>In the new app root, configure <code>asset-compute-app/.env</code>, the integration JSON as <code>asset-compute-app/console.json</code> or through <code>ASSET_COMPUTE_INTEGRATION_FILE_PATH</code>, and S3 or Azure test storage credentials. Keep credentials out of source control. The Development Tool uses this storage separately from AEM.</li>
+    </ol>
+    <p>Run from <code>asset-compute-app/</code>:</p>
+    <pre><code class="language-sh">npm install
+aio app run</code></pre>
+    <p><code>aio app run</code> deploys the worker to Adobe I/O Runtime and opens the Development Tool at <code>http://localhost:9000</code>. Use the browser URL containing its generated <code>devToolToken</code>. Select a source image and set the tool's profile to the deployed worker URL and output name:</p>
+    <pre><code class="language-json">{
+  "renditions": [
+    {
+      "worker": "&lt;deployed-worker-url&gt;",
+      "name": "assets.800x800.jpeg"
+    }
+  ]
+}</code></pre>
+    <p>Select <strong>Run</strong>; inspect <strong>Renditions</strong> and <strong>Activation Logs</strong>. The worker must actually write a JPEG rendition for that name. Do not use <code>aio app run --local</code>: Asset Compute cannot call an action running only on your computer. See Adobe's <a href="https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/asset-compute/develop/development-tool">Development Tool guide</a>.</p>
+    <p>To launch only the Development Tool after deploying the worker, stop any <code>aio app run</code> session and run from the app root:</p>
+    <pre><code class="language-sh">aio app deploy
+aio asset-compute devtool</code></pre>
+    <p>To execute the worker against a local file with Docker running:</p>
+    <pre><code class="language-sh">aio asset-compute run-worker /path/to/source.jpg /tmp/assets.800x800.jpeg</code></pre>
+    <p>If the <code>aio asset-compute</code> command is unavailable, install the <a href="https://github.com/adobe/aio-cli-plugin-asset-compute">Adobe CLI plugin</a> with <code>aio plugins:install @adobe/aio-cli-plugin-asset-compute</code>. Adobe currently notes that the Development Tool does not work for custom workers created with OAuth credentials; check the <a href="https://experienceleague.adobe.com/en/docs/asset-compute/using/extend/setup-environment">authentication limitation</a>.</p>
+    <h3>Connect the worker to AEM</h3>
+    <p>After <code>aio app deploy</code>, copy the endpoint URL from the deployment output. Edit the Processing Profile assigned to the target folder in AEM, open its <strong>Custom</strong> tab, select <strong>Add New</strong>, and enter the rendition name, worker endpoint, and included MIME types. Save and upload a new image. Keep the standard JPEG rule on the <strong>Image</strong> tab if it is also required; only one Processing Profile can be assigned to the folder. See Adobe's <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/assets/manage/asset-microservices-configure-and-use#create-custom-profile">custom profile instructions</a>.</p>
+
+    <h2>Local SDK note</h2>
+    <p>The local AEM SDK can confirm that a package installs, but it does not run Cloud Asset Microservices. A separate Java workflow can reproduce this JPEG output locally; its result does not validate the Cloud Processing Profile or a custom worker. Verify those flows in your AEM Cloud and App Builder environments.</p>
+  </main>
+</body>
+</html>
